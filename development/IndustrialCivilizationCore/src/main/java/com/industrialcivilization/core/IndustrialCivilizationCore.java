@@ -1,5 +1,8 @@
 package com.industrialcivilization.core;
 
+import betterquesting.api.properties.NativeProps;
+import betterquesting.handlers.SaveLoadHandler;
+import betterquesting.storage.QuestSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -17,6 +20,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
@@ -30,12 +34,13 @@ import org.apache.logging.log4j.Logger;
     name = IndustrialCivilizationCore.NAME,
     version = IndustrialCivilizationCore.VERSION,
     acceptedMinecraftVersions = "[1.12.2]",
-    dependencies = "required-after:forge@[14.23.5.2860,);required-after:computercraft;required-after:galacticraftcore;required-after:galacticraftplanets"
+    dependencies = "required-after:forge@[14.23.5.2860,);required-after:betterquesting;required-after:computercraft;required-after:galacticraftcore;required-after:galacticraftplanets"
 )
 public final class IndustrialCivilizationCore {
     public static final String MODID = "industrialcivilizationcore";
     public static final String NAME = "Industrial Civilization Core";
     public static final String VERSION = "0.1.0";
+    public static final String QUEST_HOME_IMAGE = MODID + ":textures/gui/quest_home.png";
     public static Logger LOGGER;
 
     public static final Block MOLECULAR_ANALYZER = new BlockMolecularAnalyzer()
@@ -74,10 +79,21 @@ public final class IndustrialCivilizationCore {
                 .setRegistryName(MOLECULAR_ANALYZER.getRegistryName()));
         }
 
-        @SubscribeEvent
+        @SubscribeEvent(priority = EventPriority.HIGHEST)
         public static void playerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
+            migrateQuestHomeImage();
             event.player.sendMessage(new TextComponentTranslation(
                 "message.industrialcivilization.quest_guide"));
+        }
+
+        private static void migrateQuestHomeImage() {
+            String current = QuestSettings.INSTANCE.getProperty(NativeProps.HOME_IMAGE);
+            if (!QUEST_HOME_IMAGE.equals(current)) {
+                QuestSettings.INSTANCE.setProperty(NativeProps.HOME_IMAGE, QUEST_HOME_IMAGE);
+                SaveLoadHandler.INSTANCE.markDirty();
+                LOGGER.info("Migrated Better Questing home image from '{}' to '{}'",
+                    current, QUEST_HOME_IMAGE);
+            }
         }
 
         @SubscribeEvent

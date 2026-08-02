@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / ".backups" / "pre-industrial-civilization"
 OUTPUT = ROOT / "manifest" / "changed-files.json"
 EXCLUDED_PREFIXES = (
+    ".git/",
     ".backups/",
     "cache/",
     "logs/",
@@ -52,7 +53,7 @@ removed = sorted(set(before) - set(after))
 
 payload = {
     "baseline": ".backups/pre-industrial-civilization",
-    "scope_note": "Disposable cache, logs, VintageFix caches, the rollback snapshot itself, and Gradle download caches are excluded.",
+    "scope_note": "Git metadata, disposable cache, logs, VintageFix caches, the rollback snapshot itself, and Gradle download caches are excluded.",
     "added": added,
     "modified": modified,
     "removed": removed,

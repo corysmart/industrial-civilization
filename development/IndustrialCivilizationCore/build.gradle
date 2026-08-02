@@ -21,6 +21,7 @@ minecraft {
 dependencies {
     minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2860'
     compileOnly files('../../mods/cc-tweaked-1.12.2-1.89.2.jar')
+    compileOnly files('../../mods/BetterQuesting-3.5.329.jar')
 }
 
 processResources {

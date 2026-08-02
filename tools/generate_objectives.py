@@ -78,7 +78,7 @@ data = {
             "home_anchor_x:5": 0.5,
             "editmode:1": 0,
             "hardcore:1": 0,
-            "home_image:8": "betterquesting:textures/gui/image_v10.png",
+            "home_image:8": "industrialcivilizationcore:textures/gui/quest_home.png",
             "party_enable:1": 1,
             "pack_version:3": 1,
             "home_offset_x:3": 0,

@@ -1615,8 +1615,8 @@
     {
       "file": "mods/IndustrialCivilizationCore-0.1.0.jar",
       "filename": "IndustrialCivilizationCore-0.1.0.jar",
-      "size": 20336,
-      "sha256": "98a7bc07ec00157ddb05d944b7de441761b3919a48947a7c42388388703a49c6",
+      "size": 20864,
+      "sha256": "dfdf3a11280d767cb39076ef3c220b35acf3bea3faf2ded2a2aee34175bd3a34",
       "classification": "KEEP",
       "mods": [
         {
@@ -3870,8 +3870,8 @@
     },
     {
       "file": "config/betterquesting/DefaultQuests.json",
-      "sha256": "4bd786c6bae73a67f760881966eb2527850cc95a7766d18802be4f035c753000",
-      "size": 13117
+      "sha256": "02d72269dbc0e51260406cdc881d3392352703c9c77de24b593810eb40f832e5",
+      "size": 13130
     },
     {
       "file": "config/blockcraftery.cfg",
@@ -5127,6 +5127,11 @@
       "file": "resources/assets/modernsplash/textures/gui/title/mojang.png",
       "sha256": "a4985a99d84feaf816a98684cdaa9b7e5b1c393754ed0aca104e04e382590120",
       "size": 54786
+    },
+    {
+      "file": "resources/industrialcivilizationcore/textures/gui/quest_home.png",
+      "sha256": "f59c9f9d189a5546c88aa33827f30503d65d6a8f6fd5d905394ef1cec471f96e",
+      "size": 457682
     },
     {
       "file": "resources/minecraft/sounds/music/menu/menu1.ogg",
