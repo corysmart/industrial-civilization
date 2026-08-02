@@ -411,7 +411,9 @@
     "progression/schemas/pacing.schema.json",
     "progression/schemas/placeholder.schema.json",
     "progression/schemas/progression-graph.schema.json",
+    "progression/schemas/side-path.schema.json",
     "progression/schemas/telemetry.schema.json",
+    "progression/side-paths/01-factions-and-salvage.json",
     "progression/telemetry-schema.json",
     "resources/industrialcivilizationcore/textures/gui/quest_home.png",
     "resources/industrialcivilizationcore/textures/gui/quest_home_v2.png",
@@ -458,7 +460,7 @@
     "cache/z-tekkit2-configs-1.2.6.zip"
   ],
   "counts": {
-    "added": 421,
+    "added": 423,
     "modified": 12,
     "removed": 11
   }

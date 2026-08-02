@@ -29,6 +29,8 @@ def read_json(path):
 
 chapter_paths = sorted((PROG / "chapters").glob("*.json"))
 chapters = [read_json(path) for path in chapter_paths]
+side_path_paths = sorted((PROG / "side-paths").glob("*.json"))
+side_paths = [read_json(path) for path in side_path_paths]
 graph = read_json(PROG / "progression-graph.json")
 pacing = read_json(PROG / "pacing.json")
 profiles = read_json(PROG / "optimization-profiles.json")
@@ -47,6 +49,12 @@ for chapter in chapters:
             check(key in milestone, f"milestone {milestone.get('id')} schema field {key}")
         check(milestone.get("category") in {"possession", "construction", "operation", "mastery", "research", "transition"},
               f"milestone {milestone.get('id')} category enum")
+for side_path in side_paths:
+    for key in schemas.get("side-path.schema.json", {}).get("required", []):
+        check(key in side_path, f"side path {side_path.get('id')} schema field {key}")
+    for milestone in side_path.get("milestones", []):
+        for key in milestone_required:
+            check(key in milestone, f"milestone {milestone.get('id')} schema field {key}")
 for name, required in (("pacing", ["canonical_profile", "ai_age_target_hours", "milestones"]),
                        ("optimization profiles", ["profiles"]),
                        ("placeholder registry", ["namespace", "config", "entries"]),
@@ -59,12 +67,14 @@ check(len(chapters) == 16, "exactly 16 canonical chapters")
 check([c.get("number") for c in chapters] == list(range(1, 17)), "chapter numbers are contiguous")
 check([c.get("id") for c in chapters] == graph.get("canonical_order"), "chapter order matches progression graph")
 
-milestones = [ms for chapter in chapters for ms in chapter.get("milestones", [])]
+milestones = ([ms for chapter in chapters for ms in chapter.get("milestones", [])] +
+              [ms for path in side_paths for ms in path.get("milestones", [])])
 by_id = {ms.get("id"): ms for ms in milestones}
 check(len(by_id) == len(milestones), "milestone IDs are globally unique")
 for chapter in chapters:
     check(chapter.get("completion_milestone") in by_id, f"chapter {chapter.get('id')} has a real completion milestone")
 for ms in milestones:
+    check(ms.get("prerequisite_logic", "AND") in {"AND", "OR"}, f"milestone {ms.get('id')} prerequisite logic")
     for pre in ms.get("prerequisites", []):
         check(pre in by_id, f"milestone {ms.get('id')} prerequisite exists: {pre}")
 
@@ -113,6 +123,13 @@ post_ai_ids = {ms["id"] for c in chapters if c.get("number") == 16 for ms in c.g
 check(not (ancestors("ai_age_entry") & post_ai_ids), "post-AI milestones do not gate AI entry")
 check("ai_age_entry" in ancestors("ae2_entry"), "AE2 entry is gated by AI Age")
 
+alternate_gates = graph.get("alternate_gates", {})
+for gate, definition in alternate_gates.items():
+    check(gate in by_id, f"alternate gate exists: {gate}")
+    check(by_id.get(gate, {}).get("prerequisite_logic") == "OR", f"alternate gate {gate} uses native OR logic")
+    check(by_id.get(gate, {}).get("prerequisites") == definition.get("routes"), f"alternate gate routes match: {gate}")
+    check(len(definition.get("routes", [])) >= 2, f"alternate gate {gate} has multiple routes")
+
 critical = graph.get("critical_path", [])
 check(len(critical) == len(set(critical)) and all(mid in by_id for mid in critical), "critical path uses unique real milestones")
 for prior, later in zip(critical, critical[1:]):
@@ -143,6 +160,11 @@ for pid, entry in placeholder_entries.items():
     check(entry.get("display_name", "").startswith("[TEST PLACEHOLDER]"), f"placeholder {pid} is visibly temporary")
     check(entry.get("temporary_recipe") in (["minecraft:paper", "minecraft:redstone"], ["minecraft:iron_ingot", "minecraft:redstone"]), f"placeholder {pid} follows simple recipe convention")
 check((ROOT / placeholders.get("config", "missing")).is_file(), "central placeholder toggle exists")
+
+branch_members = [mid for branch in graph.get("optional_branches", {}).values() for mid in branch]
+optional_ids = {ms["id"] for ms in milestones if ms.get("optional")}
+check(len(branch_members) == len(set(branch_members)), "side-path visual membership has no duplicates")
+check(set(branch_members) == optional_ids, "every optional objective is assigned to one independent side path")
 
 # Build a practical item/resource index from installed jars and custom source.
 asset_domains = set()
@@ -212,7 +234,7 @@ quests = read_json(ROOT / "config/betterquesting/DefaultQuests.json")
 quest_db = quests.get("questDatabase:9", {})
 quest_lines = quests.get("questLines:9", {})
 check(len(quest_db) == len(milestones), "generated quest count matches canonical milestones")
-check(len(quest_lines) == len(chapters), "generated quest lines match canonical chapters")
+check(len(quest_lines) == len(chapters) + len(graph.get("optional_branches", {})), "generated quest lines include chapters and independent side paths")
 id_order = {ms["id"]: index for index, ms in enumerate(milestones)}
 for index, ms in enumerate(milestones):
     quest = quest_db.get(f"{index}:10", {})
@@ -222,9 +244,20 @@ for index, ms in enumerate(milestones):
     task = quest.get("tasks:9", {}).get("0:10", {})
     expected_task = "bq_standard:retrieval" if ms.get("required_item") else "bq_standard:checkbox"
     check(task.get("taskID:8") == expected_task, f"generated task type matches {ms['id']}")
+    check(props.get("visibility:8") == "ALWAYS", f"quest is aspirationally visible from the start: {ms['id']}")
+    check(props.get("questlogic:8") == ms.get("prerequisite_logic", "AND"), f"generated prerequisite logic matches {ms['id']}")
     if ms.get("placeholder_id"):
         check("TEMPORARY VALIDATION:" in props.get("desc:8", ""), f"placeholder quest explains temporary validation: {ms['id']}")
-check(quests.get("questSettings:10", {}).get("betterquesting:10", {}).get("pack_version:3") == 2, "Better Questing pack version is Phase 2")
+check(quests.get("questSettings:10", {}).get("betterquesting:10", {}).get("pack_version:3") == 3, "Better Questing pack version includes visible side paths")
+
+placements = []
+for line in quest_lines.values():
+    placements.extend(entry.get("id:3") for entry in line.get("quests:9", {}).values())
+check(len(placements) == len(milestones) and len(set(placements)) == len(milestones), "every quest appears in exactly one chapter or side-path tab")
+for chapter in chapters:
+    line = quest_lines.get(f"{chapter['number'] - 1}:10", {})
+    placed = {entry.get("id:3") for entry in line.get("quests:9", {}).values()}
+    check(all(id_order[ms["id"]] not in placed for ms in chapter["milestones"] if ms.get("optional")), f"chapter {chapter['id']} contains no embedded optional objectives")
 
 telemetry_ids = {field.get("id") for field in telemetry.get("fields", [])}
 required_telemetry = {"milestone_completion_time", "chapter_time", "manual_crafts", "autocrafting_operations",
@@ -239,4 +272,4 @@ if errors:
     for message in errors:
         print(f"  - {message}")
     sys.exit(1)
-print(f"PASS: {len(checks)} progression checks; {len(chapters)} chapters; {len(milestones)} milestones; {len(placeholder_entries)} placeholders")
+print(f"PASS: {len(checks)} progression checks; {len(chapters)} chapters; {len(graph.get('optional_branches', {}))} side paths; {len(milestones)} milestones; {len(placeholder_entries)} placeholders")

@@ -13,6 +13,11 @@ def load_chapters():
             for path in sorted((PROGRESSION / "chapters").glob("*.json"))]
 
 
+def load_side_paths():
+    return [json.loads(path.read_text(encoding="utf-8"))
+            for path in sorted((PROGRESSION / "side-paths").glob("*.json"))]
+
+
 def split_item(ref):
     parts = ref.split(":")
     if len(parts) == 3 and parts[-1].isdigit():
@@ -60,14 +65,14 @@ def quest(qid, ms, ids):
     props = {
         "issilent:1": 0,
         "snd_complete:8": "minecraft:entity.player.levelup",
-        "lockedprogress:1": 0,
+        "lockedprogress:1": 1,
         "tasklogic:8": "AND",
         "repeattime:3": -1,
-        "visibility:8": "NORMAL",
+        "visibility:8": "ALWAYS",
         "simultaneous:1": 0,
         "icon:10": stack(ms["icon"]),
         "globalshare:1": 0,
-        "questlogic:8": "AND",
+        "questlogic:8": ms.get("prerequisite_logic", "AND"),
         "partysinglereward:1": 0,
         "snd_update:8": "minecraft:entity.player.levelup",
         "autoclaim:1": 0,
@@ -86,7 +91,10 @@ def quest(qid, ms, ids):
 
 def main():
     chapters = load_chapters()
-    milestones = [ms for chapter in chapters for ms in chapter["milestones"]]
+    side_paths = load_side_paths()
+    graph = json.loads((PROGRESSION / "progression-graph.json").read_text(encoding="utf-8"))
+    milestones = ([ms for chapter in chapters for ms in chapter["milestones"]] +
+                  [ms for path in side_paths for ms in path["milestones"]])
     ids = {ms["id"]: index for index, ms in enumerate(milestones)}
 
     quest_database = {}
@@ -94,16 +102,13 @@ def main():
     for chapter in chapters:
         line_quests = {}
         critical_column = 0
-        optional_column = 0
         for ms in chapter["milestones"]:
             qid = ids[ms["id"]]
             quest_database[f"{qid}:10"] = quest(qid, ms, ids)
             if ms["optional"]:
-                x, y = optional_column * 48, 72
-                optional_column += 1
-            else:
-                x, y = critical_column * 48, 0
-                critical_column += 1
+                continue
+            x, y = critical_column * 48, 0
+            critical_column += 1
             line_quests[f"{qid}:10"] = {
                 "sizeX:3": 24, "x:3": x, "y:3": y,
                 "id:3": qid, "sizeY:3": 24,
@@ -117,6 +122,42 @@ def main():
                 "bg_image:8": "",
                 "bg_size:3": 512,
                 "desc:8": chapter["purpose"],
+            }},
+            "order:3": line_id,
+        }
+
+    for side_path in side_paths:
+        for ms in side_path["milestones"]:
+            qid = ids[ms["id"]]
+            quest_database[f"{qid}:10"] = quest(qid, ms, ids)
+
+    # Side paths are first-class quest lines, not hidden nodes inside the
+    # numbered chapters. A quest appears in exactly one visual line.
+    branch_titles = {
+        "field_engineering": ("Side Path — Field Engineering", "Optional tools, resilience, remote control, and recovery capabilities."),
+        "factions_and_salvage": (side_paths[0]["title"], side_paths[0]["purpose"]),
+        "orbital_power": ("Side Path — Orbital Power", "Optional orbital generation and tracking-array development."),
+        "cargo_logistics": ("Side Path — Cargo Logistics", "Optional freight and interplanetary cargo mastery."),
+        "post_ai_parallel": ("Side Path — Post-AI Horizons", "Parallel civilization-scale endgame projects."),
+    }
+    for branch_index, (branch_id, branch_milestones) in enumerate(graph["optional_branches"].items()):
+        line_id = len(chapters) + branch_index
+        title, desc = branch_titles[branch_id]
+        line_quests = {}
+        for index, mid in enumerate(branch_milestones):
+            qid = ids[mid]
+            line_quests[f"{qid}:10"] = {
+                "sizeX:3": 24, "x:3": (index % 6) * 56, "y:3": (index // 6) * 64,
+                "id:3": qid, "sizeY:3": 24,
+            }
+        quest_lines[f"{line_id}:10"] = {
+            "quests:9": line_quests,
+            "lineID:3": line_id,
+            "properties:10": {"betterquesting:10": {
+                "name:8": title,
+                "bg_image:8": "",
+                "bg_size:3": 512,
+                "desc:8": desc + " Side paths are visible from the start and may create alternate progression routes.",
             }},
             "order:3": line_id,
         }
@@ -135,14 +176,14 @@ def main():
             "hardcore:1": 0,
             "home_image:8": "industrialcivilizationcore:textures/gui/quest_home_v2.png",
             "party_enable:1": 1,
-            "pack_version:3": 2,
+            "pack_version:3": 3,
             "home_offset_x:3": -128,
             "home_offset_y:3": 0,
         }},
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
-    print(f"Generated {len(quest_database)} quests across {len(quest_lines)} chapters")
+    print(f"Generated {len(quest_database)} quests across {len(chapters)} chapters and {len(quest_lines) - len(chapters)} side paths")
 
 
 if __name__ == "__main__":

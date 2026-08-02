@@ -26,7 +26,9 @@
     "physical_logistics",
     "early_autocrafting",
     "heavy_industry",
+    "industrial_capacity_access",
     "programmable_manufacturing",
+    "programmable_capacity_access",
     "monitored_nuclear_power",
     "tier1_orbital_launch",
     "functional_orbital_station",
@@ -72,11 +74,23 @@
     ]
   },
   "optional_branches": {
-    "industrial_defense": [
+    "field_engineering": [
+      "defensive_readiness",
+      "electric_tools",
+      "loaded_industry",
+      "wireless_control",
+      "advanced_material_recovery"
+    ],
+    "factions_and_salvage": [
       "industrial_armament",
       "faction_contacts",
       "mffs_installation",
-      "nuclear_containment"
+      "nuclear_containment",
+      "underworld_lead",
+      "criminal_network_defeated",
+      "abandoned_factory_discovered",
+      "abandoned_factory_operational",
+      "recovered_factory_control_system"
     ],
     "orbital_power": [
       "orbital_solar_industry",
@@ -95,6 +109,22 @@
       "autonomous_colony_expansion",
       "civilization_scale_ai"
     ]
+  },
+  "alternate_gates": {
+    "industrial_capacity_access": {
+      "logic": "OR",
+      "routes": [
+        "heavy_industry",
+        "abandoned_factory_operational"
+      ]
+    },
+    "programmable_capacity_access": {
+      "logic": "OR",
+      "routes": [
+        "programmable_manufacturing",
+        "recovered_factory_control_system"
+      ]
+    }
   },
   "autocrafting_tiers": [
     "manual_crafting_table",

@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "id": "factions_and_salvage",
+  "number": 1,
+  "title": "Side Path — Factions and Salvage",
+  "purpose": "Pursue settlements, criminal networks, recovered infrastructure, and a risky alternate route into industrial capacity.",
+  "milestones": [
+    {
+      "id": "underworld_lead",
+      "title": "Rumors of the Industrial Underworld",
+      "category": "transition",
+      "icon": "minecraft:paper",
+      "prerequisites": [],
+      "critical": false,
+      "optional": true,
+      "capability": "Discover a settlement rumor, map fragment, radio message, or NPC lead pointing toward organized industrial crime.",
+      "final_validation": [
+        "Obtain a credible lead from exploration, trade, radio traffic, or a faction encounter."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Manual-check when the narrative opportunity occurs; final NPC dialogue and discovery triggers are future work."
+    },
+    {
+      "id": "criminal_network_defeated",
+      "title": "Break the Criminal Industrial Network",
+      "category": "mastery",
+      "icon": "techguns:m4",
+      "prerequisites": [
+        "underworld_lead",
+        "faction_contacts"
+      ],
+      "prerequisite_logic": "OR",
+      "critical": false,
+      "optional": true,
+      "capability": "Defeat, negotiate with, expose, or dismantle the criminal NPC leadership controlling an abandoned industrial site.",
+      "final_validation": [
+        "Resolve the criminal leadership through combat, negotiation, evidence, or faction support."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Manual-check the resolved encounter until CustomNPCs faction state can be detected."
+    },
+    {
+      "id": "abandoned_factory_discovered",
+      "title": "Discover an Abandoned Factory",
+      "category": "construction",
+      "icon": "minecraft:iron_door",
+      "prerequisites": [
+        "criminal_network_defeated"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Locate and secure a procedurally placed or authored abandoned factory instead of constructing every industrial line yourself.",
+      "final_validation": [
+        "Secure the site, survey intact machines, and verify that the factory is not an unlimited free-resource cache."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Manual-check a suitable discovered or role-played site until world structures and NPC ownership exist."
+    },
+    {
+      "id": "abandoned_factory_operational",
+      "title": "Restore the Abandoned Factory",
+      "category": "operation",
+      "icon": "minecraft:anvil",
+      "prerequisites": [
+        "abandoned_factory_discovered"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Repair power, safety, inputs, and at least one intact production line to gain heavy industrial capacity through salvage.",
+      "final_validation": [
+        "Restore safe power and operate one useful production line.",
+        "Repair missing logistics and supply inputs rather than receiving free perpetual output.",
+        "Accept that the recovered layout may be inefficient and require later improvement."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Manual-check the restored site. Completion unlocks Industrial Capacity Secured without requiring the Chapter 4 build route."
+    },
+    {
+      "id": "recovered_factory_control_system",
+      "title": "Recover the Factory Control System",
+      "category": "operation",
+      "icon": "computercraft:computer",
+      "prerequisites": [
+        "abandoned_factory_operational"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Audit, repair, and safely operate the abandoned factory's programmable controller and production queue.",
+      "final_validation": [
+        "Bring the recovered controller online.",
+        "Inspect its program rather than trusting unknown automation blindly.",
+        "Queue and complete one controlled production order."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Manual-check the recovered controller. Completion unlocks Programmable Capacity Secured without requiring the Chapter 5 build route."
+    }
+  ]
+}

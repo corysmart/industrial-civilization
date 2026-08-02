@@ -33,6 +33,12 @@
       "items": {
         "type": "string"
       }
+    },
+    "prerequisite_logic": {
+      "enum": [
+        "AND",
+        "OR"
+      ]
     }
   }
 }

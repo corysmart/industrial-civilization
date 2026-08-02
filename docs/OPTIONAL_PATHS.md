@@ -2,14 +2,27 @@
 
 # Optional Paths
 
-Optional paths teach useful capabilities or expand the endgame but do not block AI entry.
+Optional objectives live in independent Better Questing tabs, never inside numbered chapter tabs. They remain visible from the start. Most teach useful capabilities without gating the critical path; explicitly documented salvage routes can substitute for selected construction chapters.
 
-## Industrial Defense
+## Field Engineering
+
+- `defensive_readiness` — Workshop Defense
+- `electric_tools` — Electric Tools
+- `loaded_industry` — Loaded Industrial Area
+- `wireless_control` — Remote Factory Control
+- `advanced_material_recovery` — Advanced Material Recovery
+
+## Factions And Salvage
 
 - `industrial_armament` — Industrial Armament
 - `faction_contacts` — Human Factions
 - `mffs_installation` — Industrial Containment
 - `nuclear_containment` — Nuclear Containment
+- `underworld_lead` — Rumors of the Industrial Underworld
+- `criminal_network_defeated` — Break the Criminal Industrial Network
+- `abandoned_factory_discovered` — Discover an Abandoned Factory
+- `abandoned_factory_operational` — Restore the Abandoned Factory
+- `recovered_factory_control_system` — Recover the Factory Control System
 
 ## Orbital Power
 
@@ -30,3 +43,7 @@ Optional paths teach useful capabilities or expand the endgame but do not block 
 - `orbital_megastructures` — Orbital Megastructures
 - `autonomous_colony_expansion` — Autonomous Colony Expansion
 - `civilization_scale_ai` — Civilization-Scale AI Core
+
+## Alternate construction bypasses
+
+Defeating or otherwise resolving the criminal network can reveal an abandoned factory. Restoring its power and production satisfies `industrial_capacity_access` through native OR prerequisite logic. Recovering and auditing its control system similarly satisfies `programmable_capacity_access`. These routes bypass building Chapters 4 and 5, but do not bypass Nuclear safety, Orbital Research, Lunar Research, Quantum Technology, Mars Authorization, Martian Autonomy, Lite Matter, or the AI gate.

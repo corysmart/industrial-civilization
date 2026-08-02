@@ -7,7 +7,7 @@
   "prerequisite_chapters": [
     "automated_industry"
   ],
-  "completion_milestone": "heavy_industry",
+  "completion_milestone": "industrial_capacity_access",
   "automation_paths": [
     "Automated steel",
     "Automated oil refining",
@@ -106,7 +106,7 @@
       "category": "mastery",
       "icon": "minecraft:skull",
       "prerequisites": [
-        "industrial_armament"
+        "underworld_lead"
       ],
       "critical": false,
       "optional": true,
@@ -149,6 +149,25 @@
         "Sustain steel, refined fuel, advanced processing, powered storage, and bulk logistics."
       ],
       "automation_paths": []
+    },
+    {
+      "id": "industrial_capacity_access",
+      "title": "Industrial Capacity Secured",
+      "category": "transition",
+      "icon": "minecraft:anvil",
+      "prerequisites": [
+        "heavy_industry",
+        "abandoned_factory_operational"
+      ],
+      "prerequisite_logic": "OR",
+      "critical": true,
+      "optional": false,
+      "capability": "Gain heavy industrial capacity by building it or restoring a captured abandoned factory.",
+      "final_validation": [
+        "Complete the Heavy Industrial Complex construction route OR restore the side-path abandoned factory to safe operation."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Check this transition after either prerequisite route completes. The restored-factory route intentionally bypasses Chapter 4 construction quests."
     }
   ]
 }

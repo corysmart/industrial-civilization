@@ -5,6 +5,7 @@
     "canonical_order",
     "critical_path",
     "hard_gates",
-    "optional_branches"
+    "optional_branches",
+    "alternate_gates"
   ]
 }

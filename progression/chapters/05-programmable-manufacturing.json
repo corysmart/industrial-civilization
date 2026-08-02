@@ -7,7 +7,7 @@
   "prerequisite_chapters": [
     "heavy_industry"
   ],
-  "completion_milestone": "programmable_manufacturing",
+  "completion_milestone": "programmable_capacity_access",
   "automation_paths": [
     "Electric fixed-recipe fabrication",
     "ComputerCraft production queues",
@@ -25,7 +25,7 @@
       "category": "operation",
       "icon": "computercraft:computer",
       "prerequisites": [
-        "heavy_industry"
+        "industrial_capacity_access"
       ],
       "critical": false,
       "optional": false,
@@ -140,6 +140,25 @@
       ],
       "automation_paths": [],
       "temporary_validation": "Manual-check the combined system until final peripheral APIs exist."
+    },
+    {
+      "id": "programmable_capacity_access",
+      "title": "Programmable Capacity Secured",
+      "category": "transition",
+      "icon": "computercraft:computer",
+      "prerequisites": [
+        "programmable_manufacturing",
+        "recovered_factory_control_system"
+      ],
+      "prerequisite_logic": "OR",
+      "critical": true,
+      "optional": false,
+      "capability": "Gain programmable manufacturing by building it or recovering the abandoned factory control system.",
+      "final_validation": [
+        "Complete the programmable manufacturing route OR restore and audit the captured factory control system."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Check this transition after either prerequisite route completes. The recovered-control route intentionally bypasses Chapter 5 construction quests."
     }
   ]
 }

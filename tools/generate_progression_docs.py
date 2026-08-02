@@ -7,12 +7,14 @@ ROOT = Path(__file__).resolve().parents[1]
 PROG = ROOT / "progression"
 DOCS = ROOT / "docs"
 chapters = [json.loads(p.read_text()) for p in sorted((PROG / "chapters").glob("*.json"))]
+side_paths = [json.loads(p.read_text()) for p in sorted((PROG / "side-paths").glob("*.json"))]
 graph = json.loads((PROG / "progression-graph.json").read_text())
 pacing = json.loads((PROG / "pacing.json").read_text())
 profiles = json.loads((PROG / "optimization-profiles.json").read_text())
 placeholders = json.loads((PROG / "placeholder-registry.json").read_text())
 telemetry = json.loads((PROG / "telemetry-schema.json").read_text())
-milestones = [m for c in chapters for m in c["milestones"]]
+milestones = ([m for c in chapters for m in c["milestones"]] +
+              [m for p in side_paths for m in p["milestones"]])
 by_id = {m["id"]: m for m in milestones}
 
 NOTICE = "<!-- Generated from progression/*.json by tools/generate_progression_docs.py. -->\n\n"
@@ -36,7 +38,7 @@ Canonical order:
 
 {chr(10).join(chapter_table)}
 
-The model contains **{len(chapters)} chapters**, **{len(milestones)} milestones**, and **{len(placeholders['entries'])} explicit placeholders**. The AI Age begins the endgame; it is not a victory screen.
+The model contains **{len(chapters)} numbered chapters**, **{len(graph['optional_branches'])} independent side paths**, **{len(milestones)} milestones**, and **{len(placeholders['entries'])} explicit placeholders**. Every objective uses `ALWAYS` visibility: future goals are aspirationally visible even while locked. The AI Age begins the endgame; it is not a victory screen.
 """)
 (PROG / "progression-overview.md").write_text((DOCS / "PROGRESSION_OVERVIEW.md").read_text(), encoding="utf-8")
 
@@ -81,7 +83,7 @@ write("CRITICAL_PATH.md", "Critical Path", "The authoritative critical path is:\
 branch_sections = []
 for name, mids in graph["optional_branches"].items():
     branch_sections.append(f"## {name.replace('_', ' ').title()}\n\n" + "\n".join(f"- `{mid}` — {by_id[mid]['title']}" for mid in mids))
-write("OPTIONAL_PATHS.md", "Optional Paths", "Optional paths teach useful capabilities or expand the endgame but do not block AI entry.\n\n" + "\n\n".join(branch_sections))
+write("OPTIONAL_PATHS.md", "Optional Paths", "Optional objectives live in independent Better Questing tabs, never inside numbered chapter tabs. They remain visible from the start. Most teach useful capabilities without gating the critical path; explicitly documented salvage routes can substitute for selected construction chapters.\n\n" + "\n\n".join(branch_sections) + "\n\n## Alternate construction bypasses\n\nDefeating or otherwise resolving the criminal network can reveal an abandoned factory. Restoring its power and production satisfies `industrial_capacity_access` through native OR prerequisite logic. Recovering and auditing its control system similarly satisfies `programmable_capacity_access`. These routes bypass building Chapters 4 and 5, but do not bypass Nuclear safety, Orbital Research, Lunar Research, Quantum Technology, Mars Authorization, Martian Autonomy, Lite Matter, or the AI gate.")
 
 pacing_rows = ["| Major milestone | Optimized | Average | Poor | Primary bottleneck |", "|---|---:|---:|---:|---|"]
 for p in pacing["milestones"]:
@@ -128,11 +130,11 @@ When a final implementation arrives, keep `milestone_id`, replace only `placehol
 """)
 
 write("QUEST_IMPLEMENTATION.md", "Quest Implementation", f"""
-Better Questing 3 reads `config/betterquesting/DefaultQuests.json`. Run `python3 tools/generate_objectives.py` after canonical edits; never hand-edit generated quests. The current projection has {len(chapters)} quest lines and {len(milestones)} quests.
+Better Questing 3 reads `config/betterquesting/DefaultQuests.json`. Run `python3 tools/generate_objectives.py` after canonical edits; never hand-edit generated quests. The current projection has {len(chapters) + len(graph['optional_branches'])} quest lines ({len(chapters)} numbered chapters and {len(graph['optional_branches'])} independent side paths) and {len(milestones)} quests.
 
-Possession milestones use Standard Expansion `bq_standard:retrieval` tasks with NBT ignored, group detection enabled, and consumption disabled. Construction, operation, mastery, research, and transitions use manual checkboxes where no reliable runtime trigger exists. Each such quest lists final validation; placeholder-backed quests add a conspicuous `TEMPORARY VALIDATION` section.
+Possession milestones use Standard Expansion `bq_standard:retrieval` tasks with NBT ignored, group detection enabled, and consumption disabled. Construction, operation, mastery, research, and transitions use manual checkboxes where no reliable runtime trigger exists. Each such quest lists final validation; placeholder-backed quests add a conspicuous `TEMPORARY VALIDATION` section. All quests use `ALWAYS` visibility and locked progress, so players can browse the whole civilization plan without completing locked objectives early.
 
-Quest IDs are deterministic from chapter number and milestone order. Cross-chapter prerequisites use the same global numeric map. `pack_version` is 2. Import/update the default pack through Better Questing on a disposable test world if an existing world retains the older database.
+Quest IDs are deterministic from chapter/side-path order and milestone order. Cross-line prerequisites use the same global numeric map. `pack_version` is 3. Import/update the default pack through Better Questing when a world retains the older database.
 
 The quest graph documents gates but does not yet intercept Galacticraft destination selection. Runtime destination and operation enforcement remains future work.
 """)
@@ -232,8 +234,14 @@ The goal is to compare real engineering behavior with 20/40/80 targets, not surv
 """)
 
 checklist = [
-"Quest book opens with F6.", "All 16 chapters appear.", "Early quests are reachable.",
+"Quest book opens with F6.", "All 16 numbered chapters and all 5 independent side-path tabs appear.",
+"Every future quest is visible for aspirational browsing, but locked quests cannot be opened or progressed.",
+"Numbered chapter tabs contain no optional side-path objectives.", "Early quests are reachable.",
 "Placeholder recipes work when enabled.", "Electrification chapter completes.", "Automation chapter opens.",
+"The Factions and Salvage path can start independently of the numbered chapters.",
+"Resolving the criminal network can reveal and restore the abandoned factory.",
+"Industrial Capacity Secured accepts either built Heavy Industry or the restored abandoned factory.",
+"Programmable Capacity Secured accepts either built Programmable Manufacturing or the recovered factory control system.",
 "Orbital Age follows Nuclear Age.", "Moon remains locked before Orbital Research.",
 "Moon unlocks after the Orbital Research Archive.", "Lunar Research follows Lunar Settlement.",
 "Quantum Technology remains locked before Lunar Research.", "Quantum Technology unlocks after the Lunar Engineering Archive.",
@@ -259,4 +267,4 @@ write("KNOWN_LIMITATIONS.md", "Known Limitations", """
 - Quest updates may require importing Better Questing defaults in existing worlds. Back up world quest data first.
 """)
 
-print(f"Generated 25 progression documents from {len(chapters)} chapters and {len(milestones)} milestones")
+print(f"Generated 25 progression documents from {len(chapters)} chapters, {len(graph['optional_branches'])} side paths, and {len(milestones)} milestones")

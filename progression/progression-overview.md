@@ -13,8 +13,8 @@ Early Survival and Workshop → Electrification → Automated Industry → Heavy
 | 1 | Early Survival and Workshop | Secure a compact workshop and gather the material families needed for electrification. | `secure_workshop` |
 | 2 | Electrification | Establish safe IC2 generation, storage, machine processing, and ore doubling. | `stable_electrical_workshop` |
 | 3 | Automated Industry | Replace repeated mining, transport, processing, and crafting labor with physical automation. | `early_autocrafting` |
-| 4 | Heavy Industry | Grow the workshop into a large steel, fuel, freight, power, and defense installation. | `heavy_industry` |
-| 5 | Programmable Manufacturing | Use ComputerCraft monitoring and programmable production to reduce downtime and manual scheduling. | `programmable_manufacturing` |
+| 4 | Heavy Industry | Grow the workshop into a large steel, fuel, freight, power, and defense installation. | `industrial_capacity_access` |
+| 5 | Programmable Manufacturing | Use ComputerCraft monitoring and programmable production to reduce downtime and manual scheduling. | `programmable_capacity_access` |
 | 6 | Nuclear Age | Operate monitored high-output nuclear power suitable for orbital development. | `monitored_nuclear_power` |
 | 7 | Orbital Age | Make Earth orbit the first mandatory destination and establish a survivable, expandable station. | `functional_orbital_station` |
 | 8 | Orbital Research | Prove sustained station operation through experiments and produce the archive that gates Moon access. | `orbital_research_complete` |
@@ -27,4 +27,4 @@ Early Survival and Workshop → Electrification → Automated Industry → Heavy
 | 15 | AI Age | Enter—not finish—the endgame by creating an industrial AI core from all major research eras. | `ai_age_entry` |
 | 16 | Continuously Expanding Post-AI Civilization | Branch into scale, matter engineering, megastructures, autonomy, and new colonies without blocking AI entry. | `continuous_civilization` |
 
-The model contains **16 chapters**, **108 milestones**, and **11 explicit placeholders**. The AI Age begins the endgame; it is not a victory screen.
+The model contains **16 numbered chapters**, **5 independent side paths**, **115 milestones**, and **11 explicit placeholders**. Every objective uses `ALWAYS` visibility: future goals are aspirationally visible even while locked. The AI Age begins the endgame; it is not a victory screen.

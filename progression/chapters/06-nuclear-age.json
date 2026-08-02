@@ -24,7 +24,7 @@
       "category": "construction",
       "icon": "minecraft:cauldron",
       "prerequisites": [
-        "programmable_manufacturing"
+        "programmable_capacity_access"
       ],
       "critical": false,
       "optional": false,
