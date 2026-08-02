@@ -1,0 +1,21 @@
+{
+  "packName": "Industrial Civilization",
+  "packId": "industrial_civilization",
+  "version": "0.1.0",
+  "debug": true,
+  "loaders": {
+    "preInit": [
+      "preInit/"
+    ],
+    "postInit": [
+      "postInit/"
+    ]
+  },
+  "packmode": {
+    "values": [
+      "normal"
+    ],
+    "default": "normal",
+    "integratePackmodeMod": false
+  }
+}

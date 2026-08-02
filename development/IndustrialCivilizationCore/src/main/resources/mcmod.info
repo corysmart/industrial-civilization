@@ -1,0 +1,11 @@
+[
+  {
+    "modid": "industrialcivilizationcore",
+    "name": "Industrial Civilization Core",
+    "description": "Narrow progression and Lite Matter Engineering integration for Industrial Civilization.",
+    "version": "${version}",
+    "mcversion": "1.12.2",
+    "authorList": ["Industrial Civilization"],
+    "dependencies": ["forge", "computercraft", "galacticraftcore", "galacticraftplanets"]
+  }
+]

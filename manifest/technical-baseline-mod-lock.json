@@ -1,0 +1,5037 @@
+{
+  "schema": 1,
+  "pack": "Tekkit 2 baseline",
+  "instance_root": "/Users/cory/Documents/tekkit-3",
+  "source_tree": "/Users/cory/Documents/tekkit-3/.backups/pre-industrial-civilization",
+  "minecraft": "1.12.2",
+  "forge": "14.23.5.2860",
+  "java": "8",
+  "mode": "technical",
+  "mod_count_jars": 152,
+  "mods": [
+    {
+      "file": "mods/!configanytime-3.0.jar",
+      "filename": "!configanytime-3.0.jar",
+      "size": 5201,
+      "sha256": "29fe190f0d1bb0b3841b2b9f315a5d561cab9f587df6164a0205440540577575",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "configanytime",
+          "name": "ConfigAnytime",
+          "version": "3.0",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": "com.cleanroommc.configanytime.ConfigAnytimePlugin",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/!mixinbooter-10.6.jar",
+      "filename": "!mixinbooter-10.6.jar",
+      "size": 2382989,
+      "sha256": "c74998ccd73e6722b2b1f0d236c7b9c0b34572a892a3810d5e49557d96a356bd",
+      "classification": "LIBRARY",
+      "mods": [
+        {
+          "id": "mixinbooter",
+          "name": "MixinBooter",
+          "version": "10.6",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": "zone.rong.mixinbooter.MixinBooterPlugin",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/1.12.2/ChickenASM-1.12-1.0.2.7.jar",
+      "filename": "ChickenASM-1.12-1.0.2.7.jar",
+      "size": 55622,
+      "sha256": "54c063e72abb6af999d80b94a2f1c9593c6ef0bb7769f3410d2a49f47c1ba3b0",
+      "classification": "KEEP",
+      "mods": [],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/AdditionalBanners-1.12.2-1.1.77.jar",
+      "filename": "AdditionalBanners-1.12.2-1.1.77.jar",
+      "size": 89210,
+      "sha256": "e9a8d22825b0741025ba5912f4f100d85cfa24d1e4bece7b8a358e159598ba4c",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "additionalbanners",
+          "name": "Additional Banners",
+          "version": "1.1.77",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/additionalpipes-6.0.0.9-technic.jar",
+      "filename": "additionalpipes-6.0.0.9-technic.jar",
+      "size": 232371,
+      "sha256": "e6741f8b0e7d82db1ffa6b370cb2ca042bd7776bbae4a2350671247bebfb8c27",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "additionalpipes",
+          "name": "Additional Pipes",
+          "version": "6.0.0.9",
+          "minecraft": null,
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/advancedsolars-1.0.11.jar",
+      "filename": "advancedsolars-1.0.11.jar",
+      "size": 98550,
+      "sha256": "4dd7114bbe310864206408fa502991411d22f9d715638cab5a1cb207c77090c0",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "advancedsolars",
+          "name": "Advanced Solars Classic Edition",
+          "version": "1.0.11",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "Ic2 classic"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "Ic2 classic"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/AkashicTome-1.2-12.jar",
+      "filename": "AkashicTome-1.2-12.jar",
+      "size": 44663,
+      "sha256": "4edda1cb9a1eb9240b7c9087dfc0347b0f75c29f7239299991b27324524b167f",
+      "classification": "REVIEW",
+      "mods": [
+        {
+          "id": "akashictome",
+          "name": "Akashic Tome",
+          "version": "1.2-12",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/AppleSkin-mc1.12-1.0.14.jar",
+      "filename": "AppleSkin-mc1.12-1.0.14.jar",
+      "size": 33683,
+      "sha256": "4bbd37edecff0b420ab0eea166b5d7b4b41a9870bfb8647bf243140dc57f101e",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "appleskin",
+          "name": "AppleSkin",
+          "version": "1.0.14",
+          "minecraft": "1.12",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/AquaAcrobatics-1.15.4.jar",
+      "filename": "AquaAcrobatics-1.15.4.jar",
+      "size": 182194,
+      "sha256": "506ee8e264c347fad33302183b8f4daddb05d5e5f75c0b6d833266c886e127ce",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "aquaacrobatics",
+          "name": "Aqua Acrobatics",
+          "version": "1.15.4",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": "com.fuzs.aquaacrobatics.core.AquaAcrobaticsCore",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/ASMC-1.12.2-1.0.2.jar",
+      "filename": "ASMC-1.12.2-1.0.2.jar",
+      "size": 4057289,
+      "sha256": "29aa1b312d33b73a2923236cf15ec31c7e9c7c07c7e3ec2f2c996745fc6fe6a6",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "asmc",
+          "name": "ASMC",
+          "version": "",
+          "minecraft": "",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/AsmodeusCore-1.12.2-1.0.3.jar",
+      "filename": "AsmodeusCore-1.12.2-1.0.3.jar",
+      "size": 4204755,
+      "sha256": "ace5058ad08e3a9b418a672457f8e7179ef8f013831783600264fb94ffe555bd",
+      "classification": "LIBRARY",
+      "mods": [
+        {
+          "id": "asmodeuscore",
+          "name": "AsmodeusCore",
+          "version": "1.0.2",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/AutoRegLib-1.3-32.jar",
+      "filename": "AutoRegLib-1.3-32.jar",
+      "size": 108306,
+      "sha256": "d8610a94da8f30815db4612b3291ecdcfd8204eaf1a4db8c5d0663c7b1191d91",
+      "classification": "LIBRARY",
+      "mods": [
+        {
+          "id": "autoreglib",
+          "name": "AutoRegLib",
+          "version": "1.3-32",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/Backups-1.12.2-1.5.7.jar",
+      "filename": "Backups-1.12.2-1.5.7.jar",
+      "size": 98541,
+      "sha256": "5d7fdda78778b508014aaece4200b7d8ec9f23a0164cf15265f9bb8303726924",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "backups",
+          "name": "Backups",
+          "version": "1.5.7",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/badwithernocookiereloaded-1.12.2-3.4.18.jar",
+      "filename": "badwithernocookiereloaded-1.12.2-3.4.18.jar",
+      "size": 10402,
+      "sha256": "f7df4a095a08d74f553b6223d0059490cd2b9197b15e26721fbfbaf708e8290a",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "badwithernocookiereloaded",
+          "name": "Bad Wither No Cookie! Reloaded",
+          "version": "${version}",
+          "minecraft": "${mcversion}",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/BetterInvalidSession-1.12.2-1.0.3.jar",
+      "filename": "BetterInvalidSession-1.12.2-1.0.3.jar",
+      "size": 3853,
+      "sha256": "da7edc7d88b6a03908f5e47481ac2862ce8b27df7b38e40a5c6bbd0bfb41fd0c",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "BetterInvalidSession",
+          "name": "BetterInvalidSession",
+          "version": "1.0.3",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/BetterPingDisplay-1.12.2-1.0.jar",
+      "filename": "BetterPingDisplay-1.12.2-1.0.jar",
+      "size": 10689,
+      "sha256": "056736f67a1dcc64ca401fe5d55c4f6adfcaa866b3641113529b48847a90b18a",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "betterpingdisplay",
+          "name": "Better Ping Display",
+          "version": "1.0",
+          "minecraft": "${mcversion}",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/binnie-mods-1.12.2-2.5.1.212.jar",
+      "filename": "binnie-mods-1.12.2-2.5.1.212.jar",
+      "size": 5860442,
+      "sha256": "d9930ae3e472036b5857ec337690bf24c9cca21eb3adc57c8080e5e242db102c",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "binniecore",
+          "name": "Binnie Core",
+          "version": "2.5.1.212",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "forestry"
+          ]
+        },
+        {
+          "id": "extrabees",
+          "name": "Binnie's Extra Bees",
+          "version": "2.5.1.212",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "BinnieCore"
+          ]
+        },
+        {
+          "id": "extratrees",
+          "name": "Binnie's Extra Trees",
+          "version": "2.5.1.212",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "BinnieCore"
+          ]
+        },
+        {
+          "id": "botany",
+          "name": "Binnie's Botany",
+          "version": "2.5.1.212",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "BinnieCore"
+          ]
+        },
+        {
+          "id": "genetics",
+          "name": "Binnie's Genetics",
+          "version": "2.5.1.212",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "BinnieCore"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "BinnieCore",
+        "forestry"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/blockcraftery-1.12.2-1.3.1.jar",
+      "filename": "blockcraftery-1.12.2-1.3.1.jar",
+      "size": 105052,
+      "sha256": "2b64a900a30d12c55c48f295097327eab5547fa3e7dccdce0f929ecdee25d038",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "blockcraftery",
+          "name": "Blockcraftery",
+          "version": "1.2.0",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "forge,mysticallib"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "forge,mysticallib"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/buildcraft-all-7.99.24.8.jar",
+      "filename": "buildcraft-all-7.99.24.8.jar",
+      "size": 4879732,
+      "sha256": "c8b0e0ae0cd52e8217185e8e6e603d37c95158d9e3701c1dae7bb927cee6b4ec",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "buildcraftlib",
+          "name": "BuildCraft Lib",
+          "version": "7.99.24.8",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "mod_MinecraftForge"
+          ]
+        },
+        {
+          "id": "buildcraftcore",
+          "name": "BuildCraft",
+          "version": "7.99.24.8",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "mod_MinecraftForge"
+          ]
+        },
+        {
+          "id": "buildcraftbuilders",
+          "name": "BuildCraft Builders",
+          "version": "7.99.24.8",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "mod_MinecraftForge"
+          ]
+        },
+        {
+          "id": "buildcraftenergy",
+          "name": "BuildCraft Energy",
+          "version": "7.99.24.8",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "mod_MinecraftForge"
+          ]
+        },
+        {
+          "id": "buildcraftfactory",
+          "name": "BuildCraft Factory",
+          "version": "7.99.24.8",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "mod_MinecraftForge"
+          ]
+        },
+        {
+          "id": "buildcraftsilicon",
+          "name": "BuildCraft Silicon",
+          "version": "7.99.24.8",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "mod_MinecraftForge"
+          ]
+        },
+        {
+          "id": "buildcrafttransport",
+          "name": "BuildCraft Transport",
+          "version": "7.99.24.8",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "mod_MinecraftForge"
+          ]
+        },
+        {
+          "id": "buildcraftrobotics",
+          "name": "BuildCraft Robotics",
+          "version": "7.99.24.8",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "mod_MinecraftForge"
+          ]
+        },
+        {
+          "id": "buildcraftcompat",
+          "name": "BuildCraft Compat",
+          "version": "7.99.24.8",
+          "minecraft": "$mcversion",
+          "dependencies": [
+            "mod_MinecraftForge"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "mod_MinecraftForge"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/buildcraftfluxified-1.0.0.jar",
+      "filename": "buildcraftfluxified-1.0.0.jar",
+      "size": 11447,
+      "sha256": "90785f14e5678ccbbf76b15cf2ea540fcfa9cbf5bdd17724830c805bce7553ed",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "buildcraftfluxified",
+          "name": "BuildCraft Fluxified",
+          "version": "1.0.0",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/CableFlux-1.12.2-12.2.3-technic2.jar",
+      "filename": "CableFlux-1.12.2-12.2.3-technic2.jar",
+      "size": 44654,
+      "sha256": "6259ea9218abf24d910f6e1c8a11f57c236a24a62dc5ec64c932ca8669ec1c45",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "cableflux",
+          "name": "Cable Flux",
+          "version": "12.2.4",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/cc-tweaked-1.12.2-1.89.2.jar",
+      "filename": "cc-tweaked-1.12.2-1.89.2.jar",
+      "size": 1815047,
+      "sha256": "f32537175f89ddc9890550a158a910e746cac2848db8f6f123865bd4a8a425fb",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "computercraft",
+          "name": "CC: Tweaked",
+          "version": "1.89.2",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        },
+        {
+          "id": "cctweaked",
+          "name": "CC: Tweaked",
+          "version": "1.89.2",
+          "minecraft": null,
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/censoredasm5.28.jar",
+      "filename": "censoredasm5.28.jar",
+      "size": 1657503,
+      "sha256": "86d1cff43d8c85c7640b0411d0107858e5e60b336783f80e0e867257a95d1474",
+      "classification": "LIBRARY",
+      "mods": [
+        {
+          "id": "loliasm",
+          "name": "LoliASM",
+          "version": "5.28",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": "zone.rong.loliasm.core.LoliLoadingPlugin",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/Charset-Crafting-0.5.6.7.jar",
+      "filename": "Charset-Crafting-0.5.6.7.jar",
+      "size": 113697,
+      "sha256": "9cd54338d12b8602d2da665f5e90fc154cd721a6aa3c186dc0eb824d4f0a5c88",
+      "classification": "KEEP",
+      "mods": [],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/Charset-Immersion-0.5.6.0.jar",
+      "filename": "Charset-Immersion-0.5.6.0.jar",
+      "size": 27881,
+      "sha256": "21f11a527c49ed04b09003f25c7631fb5978158e480edad0d60f60c6cf27ad3c",
+      "classification": "KEEP",
+      "mods": [],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/Charset-Lib-0.5.6.6.jar",
+      "filename": "Charset-Lib-0.5.6.6.jar",
+      "size": 1057690,
+      "sha256": "fea7c9084d1974b3d539c1693579ab07614b4bcc5a8bc6cb4a1d3c855e963cc8",
+      "classification": "LIBRARY",
+      "mods": [
+        {
+          "id": "charset",
+          "name": "Charset",
+          "version": "0.5.6.6",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/Charset-StorageBarrels-0.5.6.6.jar",
+      "filename": "Charset-StorageBarrels-0.5.6.6.jar",
+      "size": 84950,
+      "sha256": "5c01056f1177ec5ec0bba1c73e7b5701777db6635ee80bc05fd05d91069aade3",
+      "classification": "KEEP",
+      "mods": [],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/Chisel-MC1.12.2-1.0.2.45.jar",
+      "filename": "Chisel-MC1.12.2-1.0.2.45.jar",
+      "size": 4755282,
+      "sha256": "64c62f20a89939db2c03d47737c7bd371d8bd8c10ae42e2e8c63432ae89db2c7",
+      "classification": "KEEP",
+      "mods": [],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/chiselsandbits-14.33.jar",
+      "filename": "chiselsandbits-14.33.jar",
+      "size": 737407,
+      "sha256": "0b086aced1beca90ed5bb25fe6951a4d191d9b49f221af1074d1f9ff4f364b74",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "chiselsandbits",
+          "name": "Chisels & Bits",
+          "version": "14.33",
+          "minecraft": "1.12",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/ClassicFabricators-mc1.12.2-1.0.3.jar",
+      "filename": "ClassicFabricators-mc1.12.2-1.0.3.jar",
+      "size": 38321,
+      "sha256": "60401f654d2cd19455a32222f23111b9336f470df7926428c4c3f5a225f4413f",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "classicfabs",
+          "name": "Classic Fabricators",
+          "version": "1.0.3",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "Ic2 classic",
+            "buildcraftenergy"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "Ic2 classic",
+        "buildcraftenergy"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/ClientTweaks_1.12.2-3.1.11.jar",
+      "filename": "ClientTweaks_1.12.2-3.1.11.jar",
+      "size": 30515,
+      "sha256": "ac75e2d505bda70dc3c4f0778d66a79213870ee43b74744e31e37f9c3aaf7654",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "clienttweaks",
+          "name": "Client Tweaks",
+          "version": "3.1.11",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/CodeChickenLib-1.12.2-3.2.3.358-universal.jar",
+      "filename": "CodeChickenLib-1.12.2-3.2.3.358-universal.jar",
+      "size": 704330,
+      "sha256": "5f8499f7ee2590e45110bbf296b2bf101aec15897e28d5e9759cf8f2387d8a74",
+      "classification": "LIBRARY",
+      "mods": [
+        {
+          "id": "codechickenlib",
+          "name": "CodeChicken Lib",
+          "version": "3.2.3.358",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/CoFHWorld-1.12.2-1.4.0.1-universal.jar",
+      "filename": "CoFHWorld-1.12.2-1.4.0.1-universal.jar",
+      "size": 505987,
+      "sha256": "f10cd57075690ecbe52094f8af0d2a5af12f89c82b7c6eb73d3d090d74206ea0",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "cofhworld",
+          "name": "CoFH World",
+          "version": "1.4.0.1",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "forge"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "forge"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/Computronics-1.12.2-1.6.7-railcraft-beta-8.jar",
+      "filename": "Computronics-1.12.2-1.6.7-railcraft-beta-8.jar",
+      "size": 1293080,
+      "sha256": "2c92d2ceccf1d9f68aa5764322cd7dec675c57044c7d6f65897405958b5b0bac",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "computronics",
+          "name": "Computronics",
+          "version": "1.12.2-1.6.7",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        },
+        {
+          "id": "asielib",
+          "name": "asielib",
+          "version": "1.12.2-1.0.0",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/Controlling-3.0.12.4.jar",
+      "filename": "Controlling-3.0.12.4.jar",
+      "size": 34383,
+      "sha256": "f5edd4793f96cd5a6f31aecbd3030093b367a51afba5d6f7281756d0f9c03786",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "controlling",
+          "name": "Controlling",
+          "version": "3.0.12.4",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/CraftingTableIV-1.12.2-1.5.123-technic.jar",
+      "filename": "CraftingTableIV-1.12.2-1.5.123-technic.jar",
+      "size": 158785,
+      "sha256": "b2d340bcc8eeb1275322bddcb84de1d992fb2568f1b99155231c9c350d940283",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "craftingtableiv",
+          "name": "Crafting Table IV",
+          "version": "1.12.2-1.5.123",
+          "minecraft": null,
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/CraftTweaker2-1.12-4.1.20.703.jar",
+      "filename": "CraftTweaker2-1.12-4.1.20.703.jar",
+      "size": 1589459,
+      "sha256": "4ce18ca1c77b99d48d8b9a1d59d051e76d8f7dc1c5734b8feee1bd0e00036c1d",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "crafttweaker",
+          "name": "CraftTweaker2",
+          "version": "1.12-4.1.20.703",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/cta-1.12.2-1.2.2.jar",
+      "filename": "cta-1.12.2-1.2.2.jar",
+      "size": 21815,
+      "sha256": "3dc58b9bf13a4f494db5d3c213222922afad1994944cd04c085a6c42b332648e",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "cta",
+          "name": "Advancement Locator",
+          "version": "1.2.2",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": "gkappa.cta.CTALoadingPlugin",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/CTM-MC1.12.2-1.0.2.31.jar",
+      "filename": "CTM-MC1.12.2-1.0.2.31.jar",
+      "size": 199045,
+      "sha256": "433f441dc9c0aa75a4168df832900720ddadac1f22cc3bba4e4f25ca789b268b",
+      "classification": "LIBRARY",
+      "mods": [
+        {
+          "id": "ctm",
+          "name": "CTM",
+          "version": "MC1.12.2-1.0.2.31",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": "team.chisel.ctm.client.asm.CTMCorePlugin",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/CustomMainMenu-MC1.12.2-2.0.9.1.jar",
+      "filename": "CustomMainMenu-MC1.12.2-2.0.9.1.jar",
+      "size": 91121,
+      "sha256": "63b8e4d86b336739c9df8275d28e61519c73c815d0ba9ec18fb8d0cf8a218488",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "custommainmenu",
+          "name": "Custom Main Menu",
+          "version": "2.0.9.1",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/DamageTilt-1.12.2-0.1.0.jar",
+      "filename": "DamageTilt-1.12.2-0.1.0.jar",
+      "size": 8552,
+      "sha256": "0ff1b538040aaa128b66238cdf6cb2a3eb9a5dbc88170103eb48e86d8a567640",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "damagetilt",
+          "name": "Damage Tilt",
+          "version": "1.12.2-0.1.0",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/Debark-0.1.3.jar",
+      "filename": "Debark-0.1.3.jar",
+      "size": 48640,
+      "sha256": "0ba50d6ec19a5c81fe3d59e5c2cbb45efbe895dabe7a1a08e8d11ba90862b7d2",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "debark",
+          "name": "Debark",
+          "version": "0.1.3",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/DefaultOptions_1.12.2-9.2.8.jar",
+      "filename": "DefaultOptions_1.12.2-9.2.8.jar",
+      "size": 15056,
+      "sha256": "1a4007ec8c503fe75faf7429b66c0ffe1555fa7a7d43147386049913ce6ebf4a",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "defaultoptions",
+          "name": "Default Options",
+          "version": "9.2.8",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/ElecCore-1.12.2-1.9.453.jar",
+      "filename": "ElecCore-1.12.2-1.9.453.jar",
+      "size": 544144,
+      "sha256": "df882cf3eb14627678d4c32aa62dd7ceec9840f6c8d2adb4260dc4b80a3241c2",
+      "classification": "LIBRARY",
+      "mods": [
+        {
+          "id": "eleccore",
+          "name": "ElecCore",
+          "version": "1.9.453",
+          "minecraft": null,
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/EnderStorage-1.12.2-2.4.6.137-universal.jar",
+      "filename": "EnderStorage-1.12.2-2.4.6.137-universal.jar",
+      "size": 223250,
+      "sha256": "06e2357019f4e0836bfb9202af013adc125252f610b198a7a547d4596d2934c0",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "enderstorage",
+          "name": "EnderStorage",
+          "version": "2.4.6.137",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "CodeChickenLib"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "CodeChickenLib"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/EnergyControl-1.12.2-0.3.2a.jar",
+      "filename": "EnergyControl-1.12.2-0.3.2a.jar",
+      "size": 1277920,
+      "sha256": "57a11c22f5d6517029bbd4250ca1d5ac59826c29596b7b9f1fdaafa025b71e54",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "energycontrol",
+          "name": "Energy Control",
+          "version": "1.12.2-0.3.2a",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": "com.zuxelus.energycontrol.hooks.ECHookLoader",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/EntityCulling-1.12.2-6.5.0.jar",
+      "filename": "EntityCulling-1.12.2-6.5.0.jar",
+      "size": 63926,
+      "sha256": "f6c43debaa3b6ac46160c39e09a434cbf9f17d495a49e0a81defdaad3ace2cb2",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "entityculling",
+          "name": "EntityCulling",
+          "version": "6.5.0",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": "meldexun.entityculling.asm.EntityCullingPlugin",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/Exchangers-1.12.2-2.10.3.jar",
+      "filename": "Exchangers-1.12.2-2.10.3.jar",
+      "size": 334852,
+      "sha256": "19f56f24a0a2481926b1035b1619bd0958938a88630a1d439bb3b03d607f8c0a",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "exchangers",
+          "name": "Exchangers",
+          "version": "1.12.2-2.10.3",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/ExperienceBugFix-1.12.2-1.0.0.0.jar",
+      "filename": "ExperienceBugFix-1.12.2-1.0.0.0.jar",
+      "size": 50399,
+      "sha256": "f44ffe25a0c835571da284a03a8fb0700ac54d6d303f894c0674f66ef86c5015",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "experiencebugfix",
+          "name": "experiencebugfix",
+          "version": "1.0.0.0",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/fairylights-2.2.0-1.12.2.jar",
+      "filename": "fairylights-2.2.0-1.12.2.jar",
+      "size": 1161511,
+      "sha256": "524f1734869765f15185ced926bea0c46f133b0e22342bcb736b7a2da2f673f0",
+      "classification": "REVIEW",
+      "mods": [
+        {
+          "id": "fairylights",
+          "name": "Fairy Lights",
+          "version": "2.2.0",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/Fluidlogged-API-v3.0.6-mc1.12.2.jar",
+      "filename": "Fluidlogged-API-v3.0.6-mc1.12.2.jar",
+      "size": 741671,
+      "sha256": "80c4e18f877359dadb40748150ccf53ee511ae0d19701dca43b4c311cec3fcc6",
+      "classification": "LIBRARY",
+      "mods": [
+        {
+          "id": "fluidlogged_api",
+          "name": "Fluidlogged API",
+          "version": "3.0.6",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": "git.jbredwards.fluidlogged_api.mod.asm.ASMHandler",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/forestry_1.12.2-5.8.2.425.jar",
+      "filename": "forestry_1.12.2-5.8.2.425.jar",
+      "size": 5395828,
+      "sha256": "2bf3ee6a793d7b93c96f6750cd1b91f948c4ea4e06fa74f1bc09df4a14120139",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "forestry",
+          "name": "Forestry",
+          "version": "5.8.2.425",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "mod_MinecraftForge"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "mod_MinecraftForge"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/Forgelin-1.8.4.jar",
+      "filename": "Forgelin-1.8.4.jar",
+      "size": 6278399,
+      "sha256": "ccfcad80ef73ab815875a91979128ed58c262c479c7c0e5da65b225954bee197",
+      "classification": "LIBRARY",
+      "mods": [
+        {
+          "id": "forgelin",
+          "name": "Shadowfacts' Forgelin",
+          "version": "1.8.4",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": "net.shadowfacts.forgelin.preloader.ForgelinPlugin",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/forgemod_VoxelMap-1.9.28_for_1.12.2.jar",
+      "filename": "forgemod_VoxelMap-1.9.28_for_1.12.2.jar",
+      "size": 1676294,
+      "sha256": "034c08a0b35fd311e61dbdc1fb65fadfbaefb7ec17a17934c73b1d2f1395cd6b",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "voxelmap",
+          "name": "VoxelMap",
+          "version": "1.9.28",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/ForgeMultipart-1.12.2-2.6.3.1-universal.jar",
+      "filename": "ForgeMultipart-1.12.2-2.6.3.1-universal.jar",
+      "size": 1238700,
+      "sha256": "0fdf362fd3eaa7ceedadf1825137c44068da3eca07ba830d78830a2842c05bd4",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "forgemultipartcbe",
+          "name": "Forge Multipart CBE",
+          "version": "2.6.3.1",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        },
+        {
+          "id": "minecraftmultipartcbe",
+          "name": "Minecraft Multipart Plugin",
+          "version": "2.6.3.1",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        },
+        {
+          "id": "microblockcbe",
+          "name": "Forge Microblocks",
+          "version": "2.6.3.1",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [
+        "contains nested JAR"
+      ],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/Galacticraft-1.12.2-4.0.7-technic-ic2c.jar",
+      "filename": "Galacticraft-1.12.2-4.0.7-technic-ic2c.jar",
+      "size": 15617697,
+      "sha256": "8f583400b87a8ed16b7ef6fc7dc4e26ff2a7bcb43353bc4d85df0f5497aac588",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "galacticraftcore",
+          "name": "Galacticraft",
+          "version": "4.0.7",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": "micdoodle8.mods.miccore.MicdoodlePlugin",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/gravisuit-1.0.8.11-2.jar",
+      "filename": "gravisuit-1.0.8.11-2.jar",
+      "size": 220728,
+      "sha256": "5769ba4c03c9284daaa20679566e7107f1c9741bead41e53a2c5ee3703069cde",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "gravisuit",
+          "name": "Gravisuit Classic",
+          "version": "1.0.8.11",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/Guide-API-1.12-2.1.8-63.jar",
+      "filename": "Guide-API-1.12-2.1.8-63.jar",
+      "size": 169528,
+      "sha256": "e201712ef8fadc6c4b6380939751e92fe32cad2ba2dcb717e1acb3b07e0c2125",
+      "classification": "LIBRARY",
+      "mods": [
+        {
+          "id": "guideapi",
+          "name": "Guide-API",
+          "version": "1.12-2.1.8-63",
+          "minecraft": "1.12",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/GunpowderLib-1.12.2-1.1.jar",
+      "filename": "GunpowderLib-1.12.2-1.1.jar",
+      "size": 23153,
+      "sha256": "6130bd064d4aa1158308d699f370b5586447d026e2f559dfe14aa7df76cd6203",
+      "classification": "LIBRARY",
+      "mods": [
+        {
+          "id": "gunpowderlib",
+          "name": "GunpowderLib",
+          "version": "1.12.2-1.1",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/HadEnoughItems_1.12.2-4.27.3.jar",
+      "filename": "HadEnoughItems_1.12.2-4.27.3.jar",
+      "size": 693026,
+      "sha256": "7cab6f474bbe40ba226e30a3004e3af61497236729102988a58777798457f881",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "jei",
+          "name": "Had Enough Items",
+          "version": "4.27.0",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/HammerLib-1.12.2-2.0.6.32.jar",
+      "filename": "HammerLib-1.12.2-2.0.6.32.jar",
+      "size": 2430079,
+      "sha256": "1accbf33afff19bf37d27400e39cf0931b2306cbadf92e2c4e74fd81803b79f4",
+      "classification": "LIBRARY",
+      "mods": [
+        {
+          "id": "hammercore",
+          "name": "Hammer Core",
+          "version": null,
+          "minecraft": null,
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": "com.zeitheron.hammercore.asm.HCASM",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/HelpFixer-1.12.1-1.5.18.jar",
+      "filename": "HelpFixer-1.12.1-1.5.18.jar",
+      "size": 6778,
+      "sha256": "a3cc25bd00e3d63724f667f569889001be461eb8f383c03b931104ec42833cd5",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "helpfixer",
+          "name": "HelpFixer",
+          "version": "1.12.1-1.5.18",
+          "minecraft": null,
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/Hwyla-1.8.26-B41_1.12.2.jar",
+      "filename": "Hwyla-1.8.26-B41_1.12.2.jar",
+      "size": 453778,
+      "sha256": "e9ddecd4920ee9a57e11e4b43fb1dd395bbf37e276be726a99a2590272304124",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "waila",
+          "name": "Waila",
+          "version": "1.8.26",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/IC2Classic-1.12.2-1.5.11.jar",
+      "filename": "IC2Classic-1.12.2-1.5.11.jar",
+      "size": 6221033,
+      "sha256": "e2e1a9cf8471673e79dac235ec403f06cc8d425626a67b16bb725ce503d78435",
+      "classification": "KEEP",
+      "mods": [],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/iChunUtil-1.12.2-7.2.2.jar",
+      "filename": "iChunUtil-1.12.2-7.2.2.jar",
+      "size": 581963,
+      "sha256": "e0b90727cbe54a11fe568f3d60cd59d64ff3c14f82437e1d1c10b575886ab8a3",
+      "classification": "LIBRARY",
+      "mods": [
+        {
+          "id": "ichunutil",
+          "name": "iChunUtil",
+          "version": "1.12.2-7.2.2",
+          "minecraft": null,
+          "dependencies": [
+            "Forge"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "Forge"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/IFPatcher-2.4.0.jar",
+      "filename": "IFPatcher-2.4.0.jar",
+      "size": 131134,
+      "sha256": "5359241f1b410384f6e5ff0b9c85ac5d7ed54e3b95521233e1c5b2db977d5342",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "ifpatcher",
+          "name": "IFPatcher",
+          "version": "2.4.0",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "industrialforegoing"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "industrialforegoing"
+      ],
+      "core_plugin": "net.eve0415.ifpatcher.IFPatcher",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/industrialforegoing-1.12.2-1.12.13-237.jar",
+      "filename": "industrialforegoing-1.12.2-1.12.13-237.jar",
+      "size": 1603134,
+      "sha256": "8b6e1aa820d7d02571aeae818b4ab9aa2d78e0d3b277d7be6df53e3153ae9ea7",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "industrialforegoing",
+          "name": "Industrial Foregoing",
+          "version": "1.12.13",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "teslacorelib"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "teslacorelib"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/IntegrationForegoing-1.12.2-1.11.jar",
+      "filename": "IntegrationForegoing-1.12.2-1.11.jar",
+      "size": 220777,
+      "sha256": "f38ee79126f39002555e904b9baa7f963c4e3f96a734227c3f0fd5f980b42896",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "integrationforegoing",
+          "name": "Integration Foregoing",
+          "version": "1.12.2-1.11",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/InventoryTweaks-1.63.jar",
+      "filename": "InventoryTweaks-1.63.jar",
+      "size": 263258,
+      "sha256": "ef2fdcb59f9a766ee5c3c4c514c78f0a9e35b3d6bf02c17051b7dd4e94efdf7a",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "inventorytweaks",
+          "name": "Inventory Tweaks",
+          "version": "1.63+release.109.220f184",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": "invtweaks.forge.asm.FMLPlugin",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/ironchest-1.12.2-7.0.72.847.jar",
+      "filename": "ironchest-1.12.2-7.0.72.847.jar",
+      "size": 956692,
+      "sha256": "29d3a4115d67b83eb542b618eb64db40db23a7f009a0f4dc9a396101d6f8491f",
+      "classification": "KEEP",
+      "mods": [],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/irontanks-1.12.2-2.1.0-beta.18.jar",
+      "filename": "irontanks-1.12.2-2.1.0-beta.18.jar",
+      "size": 63604,
+      "sha256": "e13f0c13fc92f1bf8c115e492c6adff2a15a328758e3685390d2405c7f077c47",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "irontanks",
+          "name": "Iron Tank",
+          "version": "1.12.2-2.1.0-beta.18",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/jei_area_fixer-2.2.0.jar",
+      "filename": "jei_area_fixer-2.2.0.jar",
+      "size": 110885,
+      "sha256": "fd1982bd84b2b1302df8d8fb75819d8f62c94459cc31902cef094a3fc84d9a5d",
+      "classification": "KEEP",
+      "mods": [],
+      "declared_dependencies": [],
+      "core_plugin": "zzzank.mod.jei_area_fixer.mixin.JEIAreaFixerEarlyMixin",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/jeibees-0.9.0.5-mc1.12.2.jar",
+      "filename": "jeibees-0.9.0.5-mc1.12.2.jar",
+      "size": 117480,
+      "sha256": "07c6c95eddf0f6f3d15339f373da51a638716c3cbe69f93da5586f7957e3c22a",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "jeibees",
+          "name": "JEI Bees",
+          "version": "0.9.0.5",
+          "minecraft": null,
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/jeiintegration_1.12.2-1.6.0.jar",
+      "filename": "jeiintegration_1.12.2-1.6.0.jar",
+      "size": 25196,
+      "sha256": "b072944ed22907db480bea91b0660924d3dcef266e6501de236d08c45d07dc19",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "jeiintegration",
+          "name": "JEI Integration",
+          "version": "1.6.0",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/jepb-1.12-1.2.1.jar",
+      "filename": "jepb-1.12-1.2.1.jar",
+      "size": 27195,
+      "sha256": "1d4841af1f9988651f8174f0b1e90b5d8effa86f41490c987348f9e57527b01b",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "jepb",
+          "name": "Just Enough Pattern Banners",
+          "version": "1.2.1",
+          "minecraft": "1.12",
+          "dependencies": [
+            "jei"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "jei"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/JonsExclusives-MC1.12.2-v1.1.3.jar",
+      "filename": "JonsExclusives-MC1.12.2-v1.1.3.jar",
+      "size": 82029,
+      "sha256": "2154c17ca245861746ab0846ae3349c7254ef3c74c32c9618be42463d77a6f58",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "jexclusives",
+          "name": "Jon's Exclusives",
+          "version": "1.1.3",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/justenoughdrags-1.4-beta.1.jar",
+      "filename": "justenoughdrags-1.4-beta.1.jar",
+      "size": 41853,
+      "sha256": "5b86ca32848d582af5cff579b697089f88b7722a5ce431d42568e926f0796b09",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "justenoughdrags",
+          "name": "Just Enough Drags",
+          "version": "1.4-beta.1",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/justenoughmagiculture-1.12.2-1.2.1.jar",
+      "filename": "justenoughmagiculture-1.12.2-1.2.1.jar",
+      "size": 535755,
+      "sha256": "4bfbaddc5d8bfefae2e013ee7d986708c02dd26abb982548f9c380884f034395",
+      "classification": "KEEP",
+      "mods": [],
+      "declared_dependencies": [],
+      "core_plugin": "com.invadermonky.justenoughmagiculture.asm.ASMPlugin",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/JustEnoughResources-1.12.2-0.9.2.60.jar",
+      "filename": "JustEnoughResources-1.12.2-0.9.2.60.jar",
+      "size": 222270,
+      "sha256": "9ea4d7df19c0a53880aae5e745ef1e886854bea5c533878688587a5e3fdaebdd",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "jeresources",
+          "name": "Just Enough Resources",
+          "version": "0.9.2",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "JEI"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "JEI"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/KleeSlabs_1.12.2-5.4.12.jar",
+      "filename": "KleeSlabs_1.12.2-5.4.12.jar",
+      "size": 23967,
+      "sha256": "597c21ab6f0d701ec2d7d9e6abdd9e4e3d949af1a9635ef018cef7df4c126e57",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "kleeslabs",
+          "name": "KleeSlabs",
+          "version": "5.4.12",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/lemonlib-1.12.2-1.3.0.jar",
+      "filename": "lemonlib-1.12.2-1.3.0.jar",
+      "size": 45341,
+      "sha256": "b76950b93358a9273fab35d9a3e57d81257527a04a38dcb2c9cd1485c5fa987d",
+      "classification": "LIBRARY",
+      "mods": [
+        {
+          "id": "lemonlib",
+          "name": "LemonLib",
+          "version": "1.12.2-1.3.0",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/LetSleepingDogsLie-1.12.2-1.0.2.jar",
+      "filename": "LetSleepingDogsLie-1.12.2-1.0.2.jar",
+      "size": 19481,
+      "sha256": "674994649167d4e8a4dbfa296d76af0953e384ec1bf856f32898047f15efac8d",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "dogslie",
+          "name": "Let Sleeping Dogs Lie",
+          "version": "1.12.2-1.0.2",
+          "minecraft": null,
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/Loading-Progress-Bar-v1.0-mc[1.8-1.12.2].jar",
+      "filename": "Loading-Progress-Bar-v1.0-mc[1.8-1.12.2].jar",
+      "size": 4810,
+      "sha256": "ccb4e2add5a5a09702368d90b1d9b8f50ff73c8c88ed7f388cd5f4775be0e2c6",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "lpb",
+          "name": "Loading Progress Bar",
+          "version": "1.0",
+          "minecraft": null,
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": "git.jbredwards.lpb.Main",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/logisticspipes-0.10.4.49.jar",
+      "filename": "logisticspipes-0.10.4.49.jar",
+      "size": 8896780,
+      "sha256": "bc5608db77c508b91b34f25525043d1a5bb11ddb328a995cdc2025df45543a3f",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "logisticspipes",
+          "name": "Logistics Pipes",
+          "version": "0.10.4.49",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "appliedenergistics",
+            "betterstorage",
+            "buildcraftcore",
+            "buildcraftrobotics",
+            "buildcraftsilicon",
+            "buildcrafttransport",
+            "codechickenlib@[3.1.7.340,)",
+            "computercraft",
+            "factorization",
+            "forge@[10.12.1.1079,)",
+            "gregtech_addon",
+            "ic2",
+            "mcmultipart",
+            "thermalexpansion"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "appliedenergistics",
+        "betterstorage",
+        "buildcraftcore",
+        "buildcraftrobotics",
+        "buildcraftsilicon",
+        "buildcrafttransport",
+        "codechickenlib@[3.1.7.340,)",
+        "computercraft",
+        "factorization",
+        "forge@[10.12.1.1079,)",
+        "gregtech_addon",
+        "ic2",
+        "mcmultipart",
+        "thermalexpansion"
+      ],
+      "core_plugin": "logisticspipes.asm.LogisticsPipesCoreLoader",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/LunatriusCore-1.12.2-1.2.0.42-universal.jar",
+      "filename": "LunatriusCore-1.12.2-1.2.0.42-universal.jar",
+      "size": 76753,
+      "sha256": "67c5e8d8e975172d838f765040130ea0f73ec7a590b4470217a2f5516fdc652b",
+      "classification": "LIBRARY",
+      "mods": [
+        {
+          "id": "lunatriuscore",
+          "name": "LunatriusCore",
+          "version": "1.2.0.42",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "forge@[14.23.0.2491,)"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "forge@[14.23.0.2491,)"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/MainMenuScale-1.3.2.jar",
+      "filename": "MainMenuScale-1.3.2.jar",
+      "size": 4174,
+      "sha256": "d2b59786e982b4b5a60714821edd9fd18b16a412a84bb3978b87f05be5c92a94",
+      "classification": "KEEP",
+      "mods": [],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/matmos-1.12.2-36.0.1+nomixin.jar",
+      "filename": "matmos-1.12.2-36.0.1+nomixin.jar",
+      "size": 740003,
+      "sha256": "ad65d92a95afaf073fd18551afc30e3fcbfd806ddbe979af59fb5f74ec257d72",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "matmos",
+          "name": "MAtmos",
+          "version": "1.12.2-36.0.1+nomixin",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/MCMultiPart-2.5.3.jar",
+      "filename": "MCMultiPart-2.5.3.jar",
+      "size": 173426,
+      "sha256": "ce28db33cfdca80c98dfbb2e5928a5f090477897fa6d28a37300d5564617fde2",
+      "classification": "LIBRARY",
+      "mods": [],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/memory_repo/ichttt/moresoundconfig-core/1.0.4/moresoundconfig-core-1.0.4.jar",
+      "filename": "moresoundconfig-core-1.0.4.jar",
+      "size": 12259,
+      "sha256": "de8b85e79cb73826ec77d038bb8bae38e8e3e334526bac1a4812b29f6cf2ae24",
+      "classification": "LIBRARY",
+      "mods": [],
+      "declared_dependencies": [],
+      "core_plugin": "ichttt.mods.moresoundconfig.asm.MSCCoreMod",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/MFFS-1.12.2-4.0.1.5-technic.jar",
+      "filename": "MFFS-1.12.2-4.0.1.5-technic.jar",
+      "size": 514060,
+      "sha256": "84b1324729b9a55f9c7df319ba2ec59d1f0b4426b918ed1d51b7494a3cbe291d",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "modularforcefieldsystem",
+          "name": "Modular ForceField System",
+          "version": "4.0.1.5",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/mia-1.12.2-0.2.2a.jar",
+      "filename": "mia-1.12.2-0.2.2a.jar",
+      "size": 933036,
+      "sha256": "a0cc5ac40ea56361f967647ca31dd69172260310e64b09baf6c7bd73c5e36cb5",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "mia",
+          "name": "Minor Integrations and Additions",
+          "version": "1.12.2-0.2.2a",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/MmmMmmMmmMmm-1.12-1.14.jar",
+      "filename": "MmmMmmMmmMmm-1.12-1.14.jar",
+      "size": 33622,
+      "sha256": "def6e04f8ecb9b506447dc52ec0aa8e310c02463caaeb7f73955b612af59c252",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "testdummy",
+          "name": "MmmMmmMmmMmm",
+          "version": "1.12-1.14",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/modernbetaforge-1.12.2-1.6.1.0.jar",
+      "filename": "modernbetaforge-1.12.2-1.6.1.0.jar",
+      "size": 2020391,
+      "sha256": "5c55f69190db1fffaf38d87ef634971dcb7432c2aa327223fc0879a40cd10f0b",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "modernbetaforge",
+          "name": "Modern Beta Forge",
+          "version": "1.12.2-1.6.1.0",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/modernbetareleaseplus-1.12.2-1.2.0.0.jar",
+      "filename": "modernbetareleaseplus-1.12.2-1.2.0.0.jar",
+      "size": 908124,
+      "sha256": "89bd33e0b72336c8b6e70a0c1155f63a348892bbb93b4d16f52531b2c0bddf32",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "modernbetareleaseplus",
+          "name": "Modern Beta Forge Release Plus",
+          "version": "1.12.2-1.2.0.0",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/modernsplash-1.12.2-1.3.1.jar",
+      "filename": "modernsplash-1.12.2-1.3.1.jar",
+      "size": 60546,
+      "sha256": "ed564bb473db81149c4bef39b1d404e263267f5832eef0c4d4f8afb652a20c7f",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "modernsplash",
+          "name": "ModernSplash",
+          "version": "1.3.1",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": "gkappa.modernsplash.MSLoadingPlugin",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/moreoverlays-1.15.1-technic1.jar",
+      "filename": "moreoverlays-1.15.1-technic1.jar",
+      "size": 51079,
+      "sha256": "c1006d7facd4b6de9a9d8416964affb67db13fcb4e0c64ccc850efe8abe8c6b3",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "moreoverlays",
+          "name": "MoreOverlays",
+          "version": "1.15.1-technic1",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/moresoundconfig-1.0.4.jar",
+      "filename": "moresoundconfig-1.0.4.jar",
+      "size": 27237,
+      "sha256": "7a62ee6873864043d345a9ddda02696d71121193e21f06cae645479975f35c1f",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "moresoundconfig",
+          "name": "More Sound Config",
+          "version": "1.0.4",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [
+        "contains nested JAR"
+      ],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/Morpheus-1.12.2-3.5.106.jar",
+      "filename": "Morpheus-1.12.2-3.5.106.jar",
+      "size": 21508,
+      "sha256": "1904c32a8e0077e005bfefe005c26834c2df09881bc075a7deadce8da97fb457",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "morpheus",
+          "name": "Morpheus",
+          "version": "1.12.2-3.5.106",
+          "minecraft": null,
+          "dependencies": [
+            "forge"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "forge"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/mousetweaks-1.12.2-3.1.5.jar",
+      "filename": "mousetweaks-1.12.2-3.1.5.jar",
+      "size": 201591,
+      "sha256": "4874dc0e614ea47f4c049875ffffc4a48b79dceebb5b76f41945b42dfd624175",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "mousetweaks",
+          "name": "Mouse Tweaks Unofficial",
+          "version": "3.1.5",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/MrTJPCore-2.1.5.1-universal.jar",
+      "filename": "MrTJPCore-2.1.5.1-universal.jar",
+      "size": 803450,
+      "sha256": "0a7cc87f425098ce0850055d573b9ce5414dc581980fffc5d26fa430f0a7bb54",
+      "classification": "LIBRARY",
+      "mods": [
+        {
+          "id": "mrtjpcore",
+          "name": "MrTJPCore",
+          "version": "2.1.5.1",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "codechickenlib@[3.2.2,)",
+            "forge@[14.23.5.2847,)"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "codechickenlib@[3.2.2,)",
+        "forge@[14.23.5.2847,)"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/mysticallib-1.12.2-1.13.0.jar",
+      "filename": "mysticallib-1.12.2-1.13.0.jar",
+      "size": 426226,
+      "sha256": "9293907825d431db479afd87fcc70b5d09b672231c2f66db2f41e74de02e4891",
+      "classification": "LIBRARY",
+      "mods": [
+        {
+          "id": "mysticallib",
+          "name": "Mystical Lib",
+          "version": "1.12.2-1.13.0",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/NaturesCompass-1.12.2-1.8.5.jar",
+      "filename": "NaturesCompass-1.12.2-1.8.5.jar",
+      "size": 196434,
+      "sha256": "bd4f556b7e5480687dbc09735dca05a1ceb3622dc93422adb5dab4f68cc9f2d1",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "naturescompass",
+          "name": "Nature's Compass",
+          "version": "1.12.2-1.8.5",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/naughthirium-2.3.0.jar",
+      "filename": "naughthirium-2.3.0.jar",
+      "size": 61250,
+      "sha256": "b4c071fd3d2f4722db6bb3b6b744e57b51d114041d1a2583579666517300175d",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "naughthirium",
+          "name": "Naughthirium",
+          "version": "2.3.0",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": "zone.rong.naughthirium.Naughthirium",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/Netherending-Ores-1.12.2-1.4.2.jar",
+      "filename": "Netherending-Ores-1.12.2-1.4.2.jar",
+      "size": 367701,
+      "sha256": "84ac74ed254fcc2c7c9d1a9702d636a2c825a8825af7fe2db79f31bfe0cf8849",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "netherendingores",
+          "name": "Netherending Ores",
+          "version": "1.4.2",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/NoMoreRecipeConflict-0.13(1.12.2).jar",
+      "filename": "NoMoreRecipeConflict-0.13(1.12.2).jar",
+      "size": 50084,
+      "sha256": "6a021aa8bf091d82781deb3b4ecc272d6fd29d02962c2eb48a6c3a739332dde8",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "recipehandler",
+          "name": "NoMoreRecipeConflict",
+          "version": "0.13",
+          "minecraft": "[1.12,)",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/Nothirium-1.12.2-0.4.7-beta.jar",
+      "filename": "Nothirium-1.12.2-0.4.7-beta.jar",
+      "size": 207963,
+      "sha256": "2257915b46ccf80d0cd4c310aed5b7ea836179e02f151e468c53ec9586664e2f",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "nothirium",
+          "name": "Nothirium",
+          "version": "0.4.7-beta",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": "meldexun.nothirium.mc.asm.NothiriumPlugin",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/packcrashinfo-1.0.1.jar",
+      "filename": "packcrashinfo-1.0.1.jar",
+      "size": 6611,
+      "sha256": "b0c939bbbada43ecbdd10f91deaa27556e552770b967a00459bdf43da0797820",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "packcrashinfo",
+          "name": "PackCrashInfo",
+          "version": "1.0.1",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/particleculling-1.12.2-v1.4.3.jar",
+      "filename": "particleculling-1.12.2-v1.4.3.jar",
+      "size": 17450,
+      "sha256": "bb00f2f5cdbe710cfa92af782581531dc0056bfedb552d05f4fddfbee5416847",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "particleculling",
+          "name": "Particle Culling",
+          "version": "1.12.2-v1.4.3",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": "bl4ckscor3.mod.particleculling.ParticleCullingLoadingPl",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/phosphor-1.12.2-0.2.9.3-SNAPSHOT.jar",
+      "filename": "phosphor-1.12.2-0.2.9.3-SNAPSHOT.jar",
+      "size": 62371,
+      "sha256": "e978b398da44911597f157faf6849918c52e5768040af7a500080f5e19dbfb4c",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "phosphor-lighting",
+          "name": "Hesperus, fork from Phosphor",
+          "version": "1.12.2-0.2.9.3-SNAPSHOT",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": "me.jellysquid.mods.phosphor.core.PhosphorFMLPlugin",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/PiP-1.12.2-7.0.0.jar",
+      "filename": "PiP-1.12.2-7.0.0.jar",
+      "size": 33256,
+      "sha256": "287f619a4f7ef3c1d08d27df3d8082bd852de47897524cf872556f14625e740f",
+      "classification": "KEEP",
+      "mods": [],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/playerplates-1.12.2-1.3.1.1.jar",
+      "filename": "playerplates-1.12.2-1.3.1.1.jar",
+      "size": 24591,
+      "sha256": "a1101ec8a6fa635670093b0fc511700c76650922a3f422d52902f556e6268c36",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "playerplates",
+          "name": "Player Plates",
+          "version": "1.12.2-1.3.1.1",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/plethora-1.12.2-1.2.3.jar",
+      "filename": "plethora-1.12.2-1.2.3.jar",
+      "size": 1097627,
+      "sha256": "94cc1c05725d81270aee57a3fcce58b726603c272a8d1ad527bbe1379aa85361",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "plethora-core",
+          "name": "Plethora Core",
+          "version": "1.2.3",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "computercraft"
+          ]
+        },
+        {
+          "id": "plethora",
+          "name": "Plethora",
+          "version": "1.2.3",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "computercraft"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "computercraft"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/ProjectRed-1.12.2-4.9.4.120-Base.jar",
+      "filename": "ProjectRed-1.12.2-4.9.4.120-Base.jar",
+      "size": 2036136,
+      "sha256": "8345e86d84cc38e8017fef9b20b1160b4a988637e14b8bcb5b817747d8e63570",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "projectred-core",
+          "name": "ProjectRed Core",
+          "version": "4.9.4.120",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "codechickenlib@[3.2.2,)",
+            "forge@[14.23.5.2768,)",
+            "forgemultipartcbe@[2.6.1,)",
+            "mrtjpcore@[2.1.4,)",
+            "projectred-compatibility",
+            "projectred-expansion",
+            "projectred-exploration",
+            "projectred-fabrication",
+            "projectred-illumination",
+            "projectred-integration",
+            "projectred-transmission",
+            "projectred-transportation"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "codechickenlib@[3.2.2,)",
+        "forge@[14.23.5.2768,)",
+        "forgemultipartcbe@[2.6.1,)",
+        "mrtjpcore@[2.1.4,)",
+        "projectred-compatibility",
+        "projectred-expansion",
+        "projectred-exploration",
+        "projectred-fabrication",
+        "projectred-illumination",
+        "projectred-integration",
+        "projectred-transmission",
+        "projectred-transportation"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/ProjectRed-1.12.2-4.9.4.120-compat.jar",
+      "filename": "ProjectRed-1.12.2-4.9.4.120-compat.jar",
+      "size": 67384,
+      "sha256": "02c2f75cc0c6630195072bd2cd5878fb60cc0b6780d4fd6a3b0f7b1f3f8ea394",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "projectred-compatibility",
+          "name": "ProjectRed Compatibility",
+          "version": "4.9.4.120",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "ComputerCraft",
+            "TConstruct",
+            "ThermalExpansion",
+            "projectred-core@[4.9.4.120,]",
+            "projectred-exploration@[4.9.4.120,]",
+            "projectred-transmission@[4.9.4.120,]",
+            "projectred-transportation@[4.9.4.120,]"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "ComputerCraft",
+        "TConstruct",
+        "ThermalExpansion",
+        "projectred-core@[4.9.4.120,]",
+        "projectred-exploration@[4.9.4.120,]",
+        "projectred-transmission@[4.9.4.120,]",
+        "projectred-transportation@[4.9.4.120,]"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/ProjectRed-1.12.2-4.9.4.120-fabrication.jar",
+      "filename": "ProjectRed-1.12.2-4.9.4.120-fabrication.jar",
+      "size": 1894139,
+      "sha256": "6f74f0cc3223636bae0c2a6f61dabdf377df2e4bd73db62f12e9c2356492ae9c",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "projectred-fabrication",
+          "name": "ProjectRed Fabrication",
+          "version": "4.9.4.120",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "projectred-core@[4.9.4.120,]",
+            "projectred-integration@[4.9.4.120,]",
+            "projectred-transmission@[4.9.4.120,]"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "projectred-core@[4.9.4.120,]",
+        "projectred-integration@[4.9.4.120,]",
+        "projectred-transmission@[4.9.4.120,]"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/ProjectRed-1.12.2-4.9.4.120-integration.jar",
+      "filename": "ProjectRed-1.12.2-4.9.4.120-integration.jar",
+      "size": 3923751,
+      "sha256": "659623f496dd457dd689c69dbd7a593453f65f78662a4af8dc624bfff33ee2eb",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "projectred-transmission",
+          "name": "ProjectRed Transmission",
+          "version": "4.9.4.120",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "projectred-core@[4.9.4.120,]",
+            "projectred-expansion",
+            "projectred-fabrication"
+          ]
+        },
+        {
+          "id": "projectred-integration",
+          "name": "ProjectRed Integration",
+          "version": "4.9.4.120",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "projectred-core@[4.9.4.120,]",
+            "projectred-fabrication"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "projectred-core@[4.9.4.120,]",
+        "projectred-expansion",
+        "projectred-fabrication"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/ProjectRed-1.12.2-4.9.4.120-lighting.jar",
+      "filename": "ProjectRed-1.12.2-4.9.4.120-lighting.jar",
+      "size": 724477,
+      "sha256": "65d3a196ff8ca2a1caf119e28ebfb37d0157730d97c9acc0c7e2601f5edbe244",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "projectred-illumination",
+          "name": "ProjectRed Illumination",
+          "version": "4.9.4.120",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "projectred-core@[4.9.4.120,]"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "projectred-core@[4.9.4.120,]"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/ProjectRed-1.12.2-4.9.4.120-mechanical.jar",
+      "filename": "ProjectRed-1.12.2-4.9.4.120-mechanical.jar",
+      "size": 2596509,
+      "sha256": "3e2f19faf3f9f19d5835a7e368d2bf855ca3d1ee82575a48182b3746d214cad8",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "projectred-expansion",
+          "name": "ProjectRed Expansion",
+          "version": "4.9.4.120",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "projectred-core@[4.9.4.120,]"
+          ]
+        },
+        {
+          "id": "projectred-transportation",
+          "name": "ProjectRed Transportation",
+          "version": "4.9.4.120",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "projectred-core@[4.9.4.120,]"
+          ]
+        },
+        {
+          "id": "projectred-relocation",
+          "name": "ProjectRed Relocation",
+          "version": "4.9.4.120",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "projectred-core@[4.9.4.120,]"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "projectred-core@[4.9.4.120,]"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/ProjectRed-1.12.2-4.9.4.120-world.jar",
+      "filename": "ProjectRed-1.12.2-4.9.4.120-world.jar",
+      "size": 501169,
+      "sha256": "6b763b939c4a8517ac7fbb2a3cc7267d67e25823b60cf4231443eca3bb681c2e",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "projectred-exploration",
+          "name": "ProjectRed Exploration",
+          "version": "4.9.4.120",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "projectred-core@[4.9.4.120,]"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "projectred-core@[4.9.4.120,]"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/Quark-r1.6-185-technic.jar",
+      "filename": "Quark-r1.6-185-technic.jar",
+      "size": 3873477,
+      "sha256": "d3e11e5f4becd48e730ab893c127eac4f98597a60f729f0105f0ee268d3b625f",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "quark",
+          "name": "Quark",
+          "version": "r1.6-180",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": "vazkii.quark.base.asm.LoadingPlugin",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/railcraft-12.1.0-beta-8.2.1-technic.jar",
+      "filename": "railcraft-12.1.0-beta-8.2.1-technic.jar",
+      "size": 5016148,
+      "sha256": "cc4a7f19655b2ac2445b033a2903608bbabd649b6ac45724f7c7c021a52d3143",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "railcraft",
+          "name": "Railcraft",
+          "version": "12.1.0-beta-8.2.1",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "forge",
+            "railcraftretrogen"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "forge",
+        "railcraftretrogen"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/RailwayDepotWorker-1.8.0+build.20.jar",
+      "filename": "RailwayDepotWorker-1.8.0+build.20.jar",
+      "size": 51071,
+      "sha256": "9b9a99124e15e233afc9d5c267b1490130879f7ec0b9fd921bf0ea1b4be90f63",
+      "classification": "KEEP",
+      "mods": [],
+      "declared_dependencies": [],
+      "core_plugin": "info.tritusk.modpack.railcraft.patcher.EntryPoint",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/randompatches-1.12.2-1.22.1.10.jar",
+      "filename": "randompatches-1.12.2-1.22.1.10.jar",
+      "size": 293231,
+      "sha256": "c6d836b4d14223999afcd9df143076a5a709ff2009d6604382c346d1a258284b",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "randompatches",
+          "name": "RandomPatches",
+          "version": "1.12.2-1.22.1.10",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": "com.therandomlabs.randompatches.core.RPCore",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/ReachFix-1.12.2-1.1.3.jar",
+      "filename": "ReachFix-1.12.2-1.1.3.jar",
+      "size": 98093,
+      "sha256": "2f4114f438a4a72278554a41027e69eacab57eaf6515b7c7951b11cc63a817cc",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "reachfix",
+          "name": "Reach Fix",
+          "version": "1.1.3",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": "meldexun.reachfix.asm.ReachFixPlugin",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/ReAuth-1.12-Forge-4.0.7.jar",
+      "filename": "ReAuth-1.12-Forge-4.0.7.jar",
+      "size": 168847,
+      "sha256": "bfc2323d06c7059ca8f90a20add83866019e402dca3582fd544a5ad9ff3de19f",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "reauth",
+          "name": "ReAuth",
+          "version": "4.0.7",
+          "minecraft": "[1.12]",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/RebornCore-1.12.2-3.19.5-universal.jar",
+      "filename": "RebornCore-1.12.2-3.19.5-universal.jar",
+      "size": 2285146,
+      "sha256": "31571a6c01b9fd8daf481fa2f22615bbc99335c21f5e474a5607ea149bf2b9aa",
+      "classification": "LIBRARY",
+      "mods": [
+        {
+          "id": "reborncore",
+          "name": "Reborn Core",
+          "version": "3.19.5",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/Reforged-0.7.9-1.12+.jar",
+      "filename": "Reforged-0.7.9-1.12+.jar",
+      "size": 677700,
+      "sha256": "8456029c94329c992619f55336662d67be954f151af617335cc770cd6b47babc",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "reforged",
+          "name": "Reforged",
+          "version": "0.7.9",
+          "minecraft": [
+            "1.12",
+            "1.12.1",
+            "1.12.2"
+          ],
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/RenderLib-1.12.2-1.4.5.jar",
+      "filename": "RenderLib-1.12.2-1.4.5.jar",
+      "size": 290334,
+      "sha256": "fa51ece8bb5aeb61de10d110de8dcb5b37119b701ac6dc0f03affcc6ad86de96",
+      "classification": "LIBRARY",
+      "mods": [
+        {
+          "id": "renderlib",
+          "name": "RenderLib",
+          "version": "1.4.5",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": "meldexun.renderlib.asm.RenderLibPlugin",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/ResourceLoader-MC1.12.1-1.5.3.jar",
+      "filename": "ResourceLoader-MC1.12.1-1.5.3.jar",
+      "size": 16612,
+      "sha256": "5c5ee114dccab5caca1772e3487eca04e161c494baca4d53c8fddf5cf8722e56",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "resourceloader",
+          "name": "Resource Loader",
+          "version": "1.5.3",
+          "minecraft": "1.12.1",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": "lumien.resourceloader.asm.LoadingPlugin",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/SC-IC2C-Compat-1.0.0.jar",
+      "filename": "SC-IC2C-Compat-1.0.0.jar",
+      "size": 7389,
+      "sha256": "0e898fd47467dae2eb978ee0e93cbabf007198c9b431667aee3442f6a2dbe24b",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "sc_ic2c_compac",
+          "name": "SC IC2C Compat",
+          "version": "1.0.0",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/Schematica-1.12.2-1.8.0.169-universal.jar",
+      "filename": "Schematica-1.12.2-1.8.0.169-universal.jar",
+      "size": 336150,
+      "sha256": "7f2642cdc85c32ec754914e77f5bad11976c7c9c51d296e0ae4a8428d01153e8",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "schematica",
+          "name": "Schematica",
+          "version": "1.8.0.169",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "forge@[14.23.0.2491,)",
+            "lunatriuscore@[1.2.0.42,)"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "forge@[14.23.0.2491,)",
+        "lunatriuscore@[1.2.0.42,)"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/serializationisbad-1.5.2.jar",
+      "filename": "serializationisbad-1.5.2.jar",
+      "size": 511085,
+      "sha256": "2031c8edce4b124f29a33c9ba892b9049d19fcff4c711e2aa276d051cf0d5d31",
+      "classification": "KEEP",
+      "mods": [],
+      "declared_dependencies": [],
+      "core_plugin": "io.dogboy.serializationisbad.legacyforge.SerializationIsB",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/Sledgehammer-1.12.2-2.0.26-thin.jar",
+      "filename": "Sledgehammer-1.12.2-2.0.26-thin.jar",
+      "size": 1354215,
+      "sha256": "2b6e65e8822b728c37b12123b46955455cf6817c8357ff6b5e0b0b5c37ed1a83",
+      "classification": "LIBRARY",
+      "mods": [
+        {
+          "id": "sledgehammer",
+          "name": "Sledgehammer",
+          "version": "1.12.2-2.0.26",
+          "minecraft": null,
+          "dependencies": [
+            "spongeapi@7.4.0-5ea6215"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "spongeapi@7.4.0-5ea6215"
+      ],
+      "core_plugin": "io.github.lxgaming.sledgehammer.launch.SledgehammerLoadin",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/smooth-scrolling-everywhere-1.1.jar",
+      "filename": "smooth-scrolling-everywhere-1.1.jar",
+      "size": 1058093,
+      "sha256": "2d491d0b9a2391b405eeb00ceede801b0eebcd355a024584dc8665394463c6da",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "smooth-scrolling-everywhere",
+          "name": "Smooth Scrolling Everywhere",
+          "version": "1.1",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/SmoothFont-mc1.12.2-2.1.4.jar",
+      "filename": "SmoothFont-mc1.12.2-2.1.4.jar",
+      "size": 283749,
+      "sha256": "986090ef0d56be1d6f46a9dae7a3669098c0e3f995ed6ba3d2b01223ce9b129a",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "smoothfont",
+          "name": "Smooth Font",
+          "version": "mc1.12.2-2.1.4",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": "bre.smoothfont.asm.CorePlugin",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/SnowRealMagic-1.12.2-0.7.4.jar",
+      "filename": "SnowRealMagic-1.12.2-0.7.4.jar",
+      "size": 921015,
+      "sha256": "0b1146ccc53b0c6bb1186a66cf3f9ced80cbf604f3534e93d022c77758caade4",
+      "classification": "REVIEW",
+      "mods": [
+        {
+          "id": "snowrealmagic",
+          "name": "Snow! Real Magic!",
+          "version": "0.7.4",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": "snownee.snow.core.CoreMod",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/SpaceAmbient-1.12.2-0.0.1.jar",
+      "filename": "SpaceAmbient-1.12.2-0.0.1.jar",
+      "size": 31465665,
+      "sha256": "3ad398077ab0e558af1690050ebf8943d5289571ac8ef0e1e14fbf8989e1fdd2",
+      "classification": "KEEP",
+      "mods": [],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/statues-rechiseled-1.12.2-1.0.1.jar",
+      "filename": "statues-rechiseled-1.12.2-1.0.1.jar",
+      "size": 180065,
+      "sha256": "5efd826e2bc2bc854f271b5e0f5cfd04e17f23abb6fbcf2fb9d03acd36a0c172",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "statues",
+          "name": "Statues",
+          "version": "1.12.2-1.0.1",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/StevesCarts-1.12.2-2.4.32.137.jar",
+      "filename": "StevesCarts-1.12.2-2.4.32.137.jar",
+      "size": 2475522,
+      "sha256": "df8b6999b59cacd90a94fa1eff5da0cdf0b5d3a3c72c0a9e6b50c12836950de9",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "stevescarts",
+          "name": "Steve's Carts 2",
+          "version": "2.4.32.137",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/Tekkit2Content-1.12.2-1.0.0.jar",
+      "filename": "Tekkit2Content-1.12.2-1.0.0.jar",
+      "size": 35174,
+      "sha256": "9832434da3bda468457a5c6df08b41189cec9abc0117b1077e7dad27ad24cb21",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "tekkit2jc",
+          "name": "Tekkit Jaffa Cakes",
+          "version": "1.0.0",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        },
+        {
+          "id": "fluxcables",
+          "name": "Flux Cables",
+          "version": "1.0.0",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "cableflux"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "cableflux"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/tesla-core-lib-1.12.2-1.0.18.jar",
+      "filename": "tesla-core-lib-1.12.2-1.0.18.jar",
+      "size": 1139012,
+      "sha256": "2e65e880be07a2cac3784490f93ddcba241160dbeb5191716f0e26b44b9d89d0",
+      "classification": "LIBRARY",
+      "mods": [
+        {
+          "id": "teslacorelib",
+          "name": "Tesla Core Lib",
+          "version": "1.12.2-1.0.18",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "forgelin"
+          ]
+        },
+        {
+          "id": "teslacorelib_registries",
+          "name": "Tesla Core Lib Registries",
+          "version": "1.12.2-1.0.18",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "forgelin"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "forgelin"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/TipTheScales-1.12.2-1.0.4.jar",
+      "filename": "TipTheScales-1.12.2-1.0.4.jar",
+      "size": 11641,
+      "sha256": "91eab825f0730d412a05a40136e9f0755b9a2b9483fc92255cba08e282a1e146",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "tipthescales",
+          "name": "TipTheScales",
+          "version": "1.12.2-1.0.4",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/Translocators-1.12.2-2.5.2.81-universal.jar",
+      "filename": "Translocators-1.12.2-2.5.2.81-universal.jar",
+      "size": 446678,
+      "sha256": "f527ba59d8ab56d936b7edcd9ef0f42232dac436864603a016b83bfbb53c2384",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "translocators",
+          "name": "Translocators",
+          "version": "2.5.2.81",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "codechickenlib",
+            "forgemultipartcbe"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "codechickenlib",
+        "forgemultipartcbe"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/tumbleweed-1.12-0.4.7.jar",
+      "filename": "tumbleweed-1.12-0.4.7.jar",
+      "size": 87400,
+      "sha256": "ff78f5ac00574912d60022b4a4208cc00f9d4fccfa444efcea38cf1cbb76bcce",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "tumbleweed",
+          "name": "Tumbleweed",
+          "version": "1.12-0.4.7",
+          "minecraft": null,
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/UniDict-1.12.2-3.0.10.jar",
+      "filename": "UniDict-1.12.2-3.0.10.jar",
+      "size": 225385,
+      "sha256": "003421fa15bc84733343ad26f8bd9387bbd110df6c7ff860cae87ec11f85399d",
+      "classification": "KEEP",
+      "mods": [],
+      "declared_dependencies": [],
+      "core_plugin": "wanion.unidict.core.UniDictCoreMod",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/UniversalTweaks-1.12.2-1.15.0-798.jar",
+      "filename": "UniversalTweaks-1.12.2-1.15.0-798.jar",
+      "size": 1558541,
+      "sha256": "81586d7999e9378dcaf3887f2628be04b1e5373df1b356bf6c67cd2fa0c9055e",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "universaltweaks",
+          "name": "Universal Tweaks",
+          "version": "1.15.0",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": "mod.acgaming.universaltweaks.core.UTLoadingPlugin",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/vintagefix-0.5.6.jar",
+      "filename": "vintagefix-0.5.6.jar",
+      "size": 1024293,
+      "sha256": "960d73233bbba3f62a393e4c936fe7f8f51f1c22f2fdd602a9484891058700c6",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "vintagefix",
+          "name": "VintageFix",
+          "version": "0.5.6",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "mixinbooter"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "mixinbooter"
+      ],
+      "core_plugin": "org.embeddedt.vintagefix.core.VintageFixCore",
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/VoxelMapFixes-1.12.2-1.1.3.jar",
+      "filename": "VoxelMapFixes-1.12.2-1.1.3.jar",
+      "size": 15028,
+      "sha256": "fa4485f12c0b1fd8c815a6c870def6ecc4d211c2af1956fd0fc80e8c6b5ecf75",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "vmfixes",
+          "name": "VoxelMap Fixes",
+          "version": "1.1.3",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/WailaHarvestability-mc1.12-1.1.12.jar",
+      "filename": "WailaHarvestability-mc1.12-1.1.12.jar",
+      "size": 31462,
+      "sha256": "f445cdccfe824a895ace7cb83d29cfb17d5b3c3383949298e44c2da8697237f0",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "wailaharvestability",
+          "name": "Waila Harvestability",
+          "version": "1.1.12",
+          "minecraft": "1.12",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/WanionLib-1.12.2-2.91.jar",
+      "filename": "WanionLib-1.12.2-2.91.jar",
+      "size": 223035,
+      "sha256": "6dbb4140af8171d07752abfe225d6ad0a6981b4dc143b53d78fed4ea0ea3f00c",
+      "classification": "LIBRARY",
+      "mods": [
+        {
+          "id": "wanionlib",
+          "name": "WanionLib",
+          "version": "1.12.2-2.91",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/WR-CBE-1.12.2-2.3.2.33-universal-patched.jar",
+      "filename": "WR-CBE-1.12.2-2.3.2.33-universal-patched.jar",
+      "size": 349774,
+      "sha256": "9564e0f7efae5c01bf4c8d192437d25abee4f26be84e53a7aa8e73b3e5074cbd",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "wrcbe",
+          "name": "WirelessRedstone-CBE",
+          "version": "2.3.2.33",
+          "minecraft": "1.12.2",
+          "dependencies": [
+            "codechickenlib",
+            "forgemultipartcbe"
+          ]
+        }
+      ],
+      "declared_dependencies": [
+        "codechickenlib",
+        "forgemultipartcbe"
+      ],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/zettaindustries-1.3-1.12.2-166.jar",
+      "filename": "zettaindustries-1.3-1.12.2-166.jar",
+      "size": 1559326,
+      "sha256": "9401b4c8346c755743c5480fa15dc905b4a9f96ec16ee240cc65ec6699c2ba2a",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "zettaindustries",
+          "name": "Zetta Industries",
+          "version": "1.3-1.12.2-166",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
+    }
+  ],
+  "duplicate_detected_mod_ids": [],
+  "configuration_hashes": [
+    {
+      "file": "config/.DS_Store",
+      "sha256": "b4305170ebd342286aee2e8e8d0c43a2620f8648f15170ed2916ff288c499d8c",
+      "size": 12292
+    },
+    {
+      "file": "config/AsmodeusCore/core.conf",
+      "sha256": "3391c1f663233e750bddaa8693a15b276ab3b944edfbfdf0097b2f14b33182d6",
+      "size": 2672
+    },
+    {
+      "file": "config/ChickenChunks.cfg",
+      "sha256": "d80f93947603aabe6e5706de76e67cefd8420967f01bc65e9f33c7b2c7536585",
+      "size": 1147
+    },
+    {
+      "file": "config/CustomMainMenu/mainmenu.json",
+      "sha256": "696fc89f116dc196ece3a343bbbb1a747065fe116bca6d0b242d54133f6a9359",
+      "size": 5703
+    },
+    {
+      "file": "config/Elec's Mods/craftingtableiv.cfg",
+      "sha256": "2921e506c21ce4d1bb5b567dd208ebc2185eed9b818bd252771e7de237f7a723",
+      "size": 1054
+    },
+    {
+      "file": "config/Exchangers.cfg",
+      "sha256": "68706d57798a7fc747e7d156fdb4ca6032a2dbcf4ab7b71ba8c8a2d25d8a1683",
+      "size": 20965
+    },
+    {
+      "file": "config/Galacticraft/MicdoodleCore.cfg",
+      "sha256": "4223c3c9585db40818af46bcededfddcbdaf3df48ee15b9aad0d5d1a271770fd",
+      "size": 151
+    },
+    {
+      "file": "config/Galacticraft/chunkloading.cfg",
+      "sha256": "3f9f75228eaf2061f7a161849196f3721289e686ad4f9e58812fc6b8ba119543",
+      "size": 157
+    },
+    {
+      "file": "config/Galacticraft/core.cfg",
+      "sha256": "4e837966e0c6b4081267a6cbf8896d499ec060bdd3976731633de70d62592a16",
+      "size": 12015
+    },
+    {
+      "file": "config/Galacticraft/energy.cfg",
+      "sha256": "801c092c760d313494764eec07763cfc707db2e863893b34b5fb4d0c60a11da2",
+      "size": 1255
+    },
+    {
+      "file": "config/Galacticraft/planets.cfg",
+      "sha256": "cb7089ea048559100bda4de8baa921194040fb69138642958e956ed88664f5ad",
+      "size": 2539
+    },
+    {
+      "file": "config/Guide-API/Guide-API.cfg",
+      "sha256": "cf18a6af0243fac5cc47b481b8cdc0edc2661d3240485b9f47a7903461376eca",
+      "size": 1583
+    },
+    {
+      "file": "config/IntegrationForegoing.cfg",
+      "sha256": "bac89b0764a7831b2cc88702c88b611c4cd96bacbc96ef7e6d49db3239525149",
+      "size": 2571
+    },
+    {
+      "file": "config/InvTweaks.cfg",
+      "sha256": "0ee9cadddddc9bc685f5e89be28fc5e1f7d58ecf94fab40d9d73b6ec2cbeea54",
+      "size": 724
+    },
+    {
+      "file": "config/InvTweaksRules.txt",
+      "sha256": "b63870bb7b08cb7edb1189dd929ae802a8e7a6857ede3d92055038a5c617bb22",
+      "size": 1237
+    },
+    {
+      "file": "config/InvTweaksTree.txt",
+      "sha256": "5dbafa1e67c70c79660a4da7a663fabfda69724ec352f79d5d4ab5e0323368e8",
+      "size": 62968
+    },
+    {
+      "file": "config/JonsExclusives.cfg",
+      "sha256": "bc21951cc438bfb0e94c0018ce2a2576b36e7d14c931e804931d9977ea2ada45",
+      "size": 622
+    },
+    {
+      "file": "config/LogisticsPipes.cfg",
+      "sha256": "75c0817c295694a5d4bd4d4e3fe5ea51ac11559606908708f1f99bf7f3022dac",
+      "size": 3658
+    },
+    {
+      "file": "config/MoreOverlays.cfg",
+      "sha256": "7f60f9f39e2373cb10de5423802bb12fd5b9747bf540bd4f234618c1b9d7da7c",
+      "size": 2494
+    },
+    {
+      "file": "config/MrTJPCore.cfg",
+      "sha256": "d5e4e40fb65ffa43c31f98982993fc9a204acab9826d6413462b99668241866f",
+      "size": 1379
+    },
+    {
+      "file": "config/Netherending Ores.cfg",
+      "sha256": "b01b5ae21637cd3681525632105b2d790bb7d9c83d590c46f6c2ca2ede8ce20f",
+      "size": 33909
+    },
+    {
+      "file": "config/OreDictInit.cfg",
+      "sha256": "0dec5e8788c293388f8a4705278173d1a7bbff2ec67e5010f47beaae6d152aa4",
+      "size": 320
+    },
+    {
+      "file": "config/ProjectE/ProjectE.cfg",
+      "sha256": "587205c483c71da8aa4d9a3aed06303aaf8540e249e7e7156a8e85141e198806",
+      "size": 5705
+    },
+    {
+      "file": "config/ProjectE/customConversions/ODdefaults.json",
+      "sha256": "7b7677f48d41699415a4790a72194b59d9bf84ac83aae5d429bfc1c4411711c3",
+      "size": 1436
+    },
+    {
+      "file": "config/ProjectE/customConversions/defaults.json",
+      "sha256": "e112640d76a8763be538c885ed19d0f13a55cd395ff3cb69d0eb126c34f5f658",
+      "size": 8090
+    },
+    {
+      "file": "config/ProjectE/customConversions/example.json",
+      "sha256": "85df95fec69ba7eaa2fa77c28b1e108c81389af8b0724a432c0e40890ce598fd",
+      "size": 3049
+    },
+    {
+      "file": "config/ProjectE/customConversions/metals.json",
+      "sha256": "8bba197f0c43abf111cf306d661fee3ff221945fce29999ed0fe50812aa2771e",
+      "size": 3583
+    },
+    {
+      "file": "config/ProjectE/custom_emc.json",
+      "sha256": "001795eb855ccc25d2413bd2fa952cafd746757e3b97a90ce2a58d9fb4506272",
+      "size": 52767
+    },
+    {
+      "file": "config/ProjectE/mapping.cfg",
+      "sha256": "00566726f487e0651a4e445f919baa155b6a03bd0e0b684c819dd699dc791572",
+      "size": 3445
+    },
+    {
+      "file": "config/ProjectE/nbt_whitelist.json",
+      "sha256": "b35f6cead768e9f698ec3ff55e51b3b364ff5e3756dbb960fcd6194bce6d18c9",
+      "size": 126
+    },
+    {
+      "file": "config/ProjectRed.cfg",
+      "sha256": "6104665683f65fadcf0e9e40089718ab8aba2a510ba3b068f6ff536fccb9443c",
+      "size": 5099
+    },
+    {
+      "file": "config/ProjectRedRelocation.cfg",
+      "sha256": "0bf6f3ba8ecb7311e9f0782758aef5c94b6aa21cf2623c28193dbc99418bbd33",
+      "size": 3636
+    },
+    {
+      "file": "config/Reforged/reforged.cfg",
+      "sha256": "e87482024ea0cd9bb2e038d8135099cdd415ad5b19ea9f04f692249974144a02",
+      "size": 1720
+    },
+    {
+      "file": "config/Universal Tweaks - Bugfixes.cfg",
+      "sha256": "a0cbae8559d10eaed62ef94b9bdd32cdeba6d432aee61de9d6063a3c8d835cd4",
+      "size": 9363
+    },
+    {
+      "file": "config/Universal Tweaks - General.cfg",
+      "sha256": "e2146cc07e7fe5f95ee39715832281ceb1bcedc717d8aa71dce843220691689a",
+      "size": 344
+    },
+    {
+      "file": "config/Universal Tweaks - Mod Integration.cfg",
+      "sha256": "feebc03b8e400c777b70be97b579d26f87683133e2cc6db1fa49a480be99421f",
+      "size": 23668
+    },
+    {
+      "file": "config/Universal Tweaks - Tweaks.cfg",
+      "sha256": "df904bac352f44e11e4c4f0946df155e8c78095fcbe8266d43bba35e4f99c409",
+      "size": 56906
+    },
+    {
+      "file": "config/WirelessRedstone.cfg",
+      "sha256": "45528f6913c7ff869aaed02c385e33142bba645bd97633125a01ccfd64412ffb",
+      "size": 882
+    },
+    {
+      "file": "config/additionalpipes.cfg",
+      "sha256": "3354a444d5c56533f0e6fb1d37d9dcb6a77a5d065f0b9fa9e1505703c222595b",
+      "size": 844
+    },
+    {
+      "file": "config/akashictome.cfg",
+      "sha256": "dd091cf0dd6e16b0b77205f26cd4d4ef10aa1b27e8ac5597e029dadc0337b1fc",
+      "size": 1204
+    },
+    {
+      "file": "config/appleskin.cfg",
+      "sha256": "a1e9889cdc8cbc973597215f4a8a9073a4d4032a76e5463f8ee08363764f1ea0",
+      "size": 1335
+    },
+    {
+      "file": "config/aquaacrobatics.cfg",
+      "sha256": "e62ac96085bb322f845171b99ecc1a29b9b02a567b9ef779dd5e1cef8d7d080d",
+      "size": 6429
+    },
+    {
+      "file": "config/aquaacrobatics_core.cfg",
+      "sha256": "2b34ba14a25600ebdb49ebb6fd5de4623114c524abf2e73852553461d6552127",
+      "size": 242
+    },
+    {
+      "file": "config/asielib.cfg",
+      "sha256": "0d20ca70e415085c7e218d4e5afd40325a45826c3d5ad2a6fa2fc4912c32e296",
+      "size": 352
+    },
+    {
+      "file": "config/asmc.cfg",
+      "sha256": "151ccfe1680d0e557bb83b289b50ca4185451563038f308685084beee9c53d73",
+      "size": 5203
+    },
+    {
+      "file": "config/attributefix.cfg",
+      "sha256": "80d08f0ef97fb614d3ec1e5d7737cc92c8f7004328eec08ea758f416f5335cfc",
+      "size": 2755
+    },
+    {
+      "file": "config/backups.cfg",
+      "sha256": "bfe0b80d1c5a186068ab17c6aef4d8d2a710d692dca2c027be4776790c760104",
+      "size": 1757
+    },
+    {
+      "file": "config/badwithernocookiereloaded.cfg",
+      "sha256": "cff0ce490cfc4e14ce9e2bae9be1269e06239296e692e4f0f79fdb60cbd7bc0a",
+      "size": 1452
+    },
+    {
+      "file": "config/bcfe.cfg",
+      "sha256": "54b7def600e2d0a46abb95ab08f49bfc2307a84020005ecafbd9b3b930c2290f",
+      "size": 131
+    },
+    {
+      "file": "config/betterfoliage.cfg",
+      "sha256": "a66fae1e3834095ad675af63c457a1cef2ae910e2e1afe17eab21c4bfa4a0d50",
+      "size": 7466
+    },
+    {
+      "file": "config/betterpingdisplay.cfg",
+      "sha256": "ab224e800791e9b991e9f6b023a6d2d74cbfe6467ad1f3c43af2f012c728f20b",
+      "size": 393
+    },
+    {
+      "file": "config/blockcraftery.cfg",
+      "sha256": "9ef23aa5bc31dd9697380f334afa1c613ab9ac028c958752bf6ce42efeb6e21c",
+      "size": 320
+    },
+    {
+      "file": "config/bloodymods/packcrashinfo.cfg",
+      "sha256": "1a878fdb0b1f1e636e81fa6f90d80763d5a0a67104a66dd8acf70349e4c4bdd1",
+      "size": 146
+    },
+    {
+      "file": "config/buildcraft/detailed.properties",
+      "sha256": "2a6524860f8823ea00837d473a9fda7a55f4a9fcfccc0373c7eed45adc5abb1f",
+      "size": 434
+    },
+    {
+      "file": "config/buildcraft/gui.json",
+      "sha256": "866bd1da885aa62b09b4dde3f6b04f190b1f7d1062969ba5e6dfbe299426152d",
+      "size": 361
+    },
+    {
+      "file": "config/buildcraft/main.cfg",
+      "sha256": "e95496746f934ebe4081a69c572bdb1acd160157d11111d8d81de56eeff87672",
+      "size": 7228
+    },
+    {
+      "file": "config/buildcraft/objects.cfg",
+      "sha256": "5f3a062c6fd3859f92324fa6cc7bd4ae1264ae18995e71081ad59c1c4b13e2dd",
+      "size": 1597
+    },
+    {
+      "file": "config/cableflux.cfg",
+      "sha256": "905d306c329d1eba35f52187e2d9c2561bed5f41ad288a8ece037c6ac66184b1",
+      "size": 120
+    },
+    {
+      "file": "config/charset/charset.cfg",
+      "sha256": "729812a1fb197d3b9c42a34ec517deff0262e2ca3e92a0e2aea4aa6574dc62e8",
+      "size": 320
+    },
+    {
+      "file": "config/charset/ids.cfg",
+      "sha256": "0b59fdeea46f912e39b10045eedb9b159a56ef5022c758be707529864e60e873",
+      "size": 61
+    },
+    {
+      "file": "config/charset/module/crafting.cauldron.cfg",
+      "sha256": "89963b172293e833cddcf390e74fbe242fca17f6ea704f6c13fd62b122e3b4b2",
+      "size": 715
+    },
+    {
+      "file": "config/charset/module/immersion.stacks.cfg",
+      "sha256": "6ca707fe60cdc774544caf39f9926924f54aa9911d0d4234b7c525c8c59d3895",
+      "size": 175
+    },
+    {
+      "file": "config/charset/module/lib.cfg",
+      "sha256": "8858463624490d50073b9b982bf34dc440b26469854793fd775d17c09e43a285",
+      "size": 1465
+    },
+    {
+      "file": "config/charset/module/storage.barrels.cfg",
+      "sha256": "0a9ca383f632090942eb8d801da06067e067aaf0821623dbcd846562bdce9350",
+      "size": 667
+    },
+    {
+      "file": "config/charset/modules.cfg",
+      "sha256": "9381dcc54ba6c8ab499c7e884cdd1b1245e2a9d61f5f71794e293bff40435051",
+      "size": 1870
+    },
+    {
+      "file": "config/chisel.cfg",
+      "sha256": "948352a929309c085eb3602f5f2dc658aaeca14b2739f1a55c3640c95cb2c3cc",
+      "size": 4832
+    },
+    {
+      "file": "config/chiselsandbits.cfg",
+      "sha256": "c0ab465fef60a884b1c2ea3696f5839120222afd4e9484910481a46e9c2daeb8",
+      "size": 25617
+    },
+    {
+      "file": "config/chiselsandbits_clipboard.cfg",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "file": "config/classicfabs.cfg",
+      "sha256": "4a70b98574e42ea90ac8e9cf65f0db89314dd303bff47f561416e95eb1f572cd",
+      "size": 943
+    },
+    {
+      "file": "config/clienttweaks.cfg",
+      "sha256": "c0159c1dd93e24d9e02eb81c6e2d24c85fe16fc6d465e6ebf694a99507f719f9",
+      "size": 3247
+    },
+    {
+      "file": "config/codechicken/supporters.json",
+      "sha256": "17dbbdaf349fe74ceeecfdce8c5e54247ccaf83775749d9194d20d23674540f0",
+      "size": 728
+    },
+    {
+      "file": "config/codechicken/supporters.marker",
+      "sha256": "68e05b5db1df76ce08bee6fead9773b1da45cd90bc9c2952eb30454002ec13fe",
+      "size": 13
+    },
+    {
+      "file": "config/codechickenlib.cfg",
+      "sha256": "fdabac87e892d38be5ffbb6fad662ebf4231e020adca82f9b01a9a8b5f20cf06",
+      "size": 1473
+    },
+    {
+      "file": "config/cofh/world/00_minecraft.json",
+      "sha256": "cba133ba6ce78679471b1d29260c126f5b3d357d751f3b3ff73d9fc1790f8130",
+      "size": 7036
+    },
+    {
+      "file": "config/cofh/world/01_t2_gems.json",
+      "sha256": "342c1601564e6ab21e3fb68bfc4cee55d932cb683ff5996f7839fb478dfb7751",
+      "size": 1457
+    },
+    {
+      "file": "config/cofh/world/02_t2_nether_ores.json",
+      "sha256": "29bd56113763d6003b74a743d55fcdcac566dbac3d48cb25966732838fb11c45",
+      "size": 6407
+    },
+    {
+      "file": "config/cofh/world/config.cfg",
+      "sha256": "7cd72fb3b8cae95058e33b07656982c34769122975e0208d38f163e01d32bf02",
+      "size": 1444
+    },
+    {
+      "file": "config/computercraft.cfg",
+      "sha256": "c64985a161e3387b590dc836190dfc2f915771dd6dc4fe1e786d14f3ca326b6c",
+      "size": 7886
+    },
+    {
+      "file": "config/computronics.cfg",
+      "sha256": "53a434bae4124736a86d8bb4472eac36e2f95a9de792c9ab5f4f52d1945d9b9b",
+      "size": 7730
+    },
+    {
+      "file": "config/ctm.cfg",
+      "sha256": "2695969995e5c4d34e6f350bc2bac289b8ab0e80bca9fce098f5e10c370389d6",
+      "size": 229
+    },
+    {
+      "file": "config/damagetilt.cfg",
+      "sha256": "af7b4c19185fdbb535256d664ef4b3776dc2c8973c9d4e3ca2c15debfcd96bc3",
+      "size": 117
+    },
+    {
+      "file": "config/debark.cfg",
+      "sha256": "c89708a67ee6af2efa49d713b8f6ddabe8ce3fc933f4c9a08c29c2919aab3b50",
+      "size": 523
+    },
+    {
+      "file": "config/defaultoptions/keybindings.txt",
+      "sha256": "9cf23c89171acb61fce5aabbc65e02654218b7bedce9cf8cce44ec628b7ccca6",
+      "size": 5516
+    },
+    {
+      "file": "config/defaultoptions/options.txt",
+      "sha256": "58ca41898536ffebbf9bcc4bceaf4402c05a44c9c37365441b0e190f943cee18",
+      "size": 1463
+    },
+    {
+      "file": "config/defaultoptions.cfg",
+      "sha256": "f177ee6ebdbde5e015d422455259f8547719051c9a983656eaa367429d09ed50",
+      "size": 457
+    },
+    {
+      "file": "config/dogslie.cfg",
+      "sha256": "c56ccb4c735a7a44cc8f21a2530e6cd7d8f2683da8e3a6b0ab6d2f0fc9245c71",
+      "size": 1327
+    },
+    {
+      "file": "config/eleccore.cfg",
+      "sha256": "afdc56975ac0569fdb42a5ac5669c14728542fddd3923aac9076bee6c126a241",
+      "size": 468
+    },
+    {
+      "file": "config/enderstorage.cfg",
+      "sha256": "915e5bad2e0c736a4caeab4071ee55bbc05f3d5fcf3f579dbc9569bb813ea4f2",
+      "size": 673
+    },
+    {
+      "file": "config/energycontrol.cfg",
+      "sha256": "eb1dfdb6146a97b315902a65a1c2f30cd49266b23619b707f31baec09835b879",
+      "size": 741
+    },
+    {
+      "file": "config/entityculling.cfg",
+      "sha256": "db9907e245289c529c02052f57328b0477474c7f24cb9c6fb0dbee693fadf133",
+      "size": 4720
+    },
+    {
+      "file": "config/fairylights.cfg",
+      "sha256": "8218538cb709ad767847ad46ed1177eb5e464ecb7150817e79634aa86a0a1387",
+      "size": 261
+    },
+    {
+      "file": "config/fastbench.cfg",
+      "sha256": "78acc6f6472d9519e350625fabdf412bd871f84e18b6fe5b16f3d4b22e3b1332",
+      "size": 296
+    },
+    {
+      "file": "config/fastleafdecay.cfg",
+      "sha256": "5a8c5caee6f90244b51ae5d56d7fa9fbdd98506cb04804092e1536c6b341535b",
+      "size": 686
+    },
+    {
+      "file": "config/fluidlogged_api/blacklist.cfg",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "size": 2
+    },
+    {
+      "file": "config/fluidlogged_api/fluidTags.cfg",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "size": 2
+    },
+    {
+      "file": "config/fluidlogged_api/general.cfg",
+      "sha256": "3fa4e2b7fc962aaaafada0a807b75e2ed5b13632c483d12c45750910e64c2dc0",
+      "size": 653
+    },
+    {
+      "file": "config/fluidlogged_api/whitelist.cfg",
+      "sha256": "b7fbdf68ebfc38b436bedcc1e1603e4f8843b03c5ead17f4df0df4f89b6bc66d",
+      "size": 9189
+    },
+    {
+      "file": "config/fluidlogged_api.cfg_README.txt",
+      "sha256": "4d3d54f073dfb29cd9ca056957114f11dc1963ebfc8735437c3fb153aa3b3c72",
+      "size": 680
+    },
+    {
+      "file": "config/fluidlogged_api.cfg_old",
+      "sha256": "0d855f00a895f94e57f44c3cb3658aa8539c7275da9d71329a469bde2ca34b2d",
+      "size": 8789
+    },
+    {
+      "file": "config/foamfix.cfg",
+      "sha256": "58cf8e124b1da1b21f9f1c6fc88f9759a1fe021a4b37b13fa8e9a9a3bb6ef01e",
+      "size": 7882
+    },
+    {
+      "file": "config/forestry/apiculture.cfg",
+      "sha256": "993dd0e6e62f769205f2443d832a1f0b14a21cbc20f92cdf08f7a4fbf2330155",
+      "size": 1401
+    },
+    {
+      "file": "config/forestry/arboriculture.cfg",
+      "sha256": "58e3780eeddf236ced00bbc64e33df396fc5f6ded2df889013750a01bd665ede",
+      "size": 46705
+    },
+    {
+      "file": "config/forestry/backpacks.cfg",
+      "sha256": "61d35e6b9216a873e211157861bb0890ea907984ef7252e78b7c823f9adfbc17",
+      "size": 10414
+    },
+    {
+      "file": "config/forestry/binnie-mods.conf",
+      "sha256": "3b5a6fe40aa260b9ea15f6ffc5385ed1c662d34a4ac2c0fb8eb1896f521c92b6",
+      "size": 347
+    },
+    {
+      "file": "config/forestry/binniecore/main.conf",
+      "sha256": "3b24ae8b5cededbe729d0a938727db46ea2a01fe2d5e42463f525dadde921023",
+      "size": 22
+    },
+    {
+      "file": "config/forestry/botany/modules.cfg",
+      "sha256": "0ed5eb28617337385549751871415ba51ccd42e5b437a419b9f253a265285832",
+      "size": 1317
+    },
+    {
+      "file": "config/forestry/common.cfg",
+      "sha256": "f5a30ef396e5d281d7c5afdc8903c399ffd49cf95e647ec647845829d735a453",
+      "size": 9073
+    },
+    {
+      "file": "config/forestry/crates.cfg",
+      "sha256": "83cce0c3a6dd8f404a9bd55c14fd520145848b48b565fa43381d3ff7da7eac47",
+      "size": 762
+    },
+    {
+      "file": "config/forestry/extrabees/main.conf",
+      "sha256": "a6386e8646b82b3484fbb8387a3571fae996bec8918e746fad328e7cac6f6c9c",
+      "size": 1011
+    },
+    {
+      "file": "config/forestry/extrabees/modules.cfg",
+      "sha256": "dab3ba61b7908312964b594755b25570d48b7daec11f2de5a6f3bc8f1ce31520",
+      "size": 827
+    },
+    {
+      "file": "config/forestry/extratrees/main.cfg",
+      "sha256": "84cd11efca93c97734a7aefd90267b4680d5e0d81448bb57b11819a9c01f311e",
+      "size": 270
+    },
+    {
+      "file": "config/forestry/extratrees/modules.cfg",
+      "sha256": "7389d4deae70ed22899282b42895fb69368497ee736d27bf9eecb2086f2a9bfe",
+      "size": 1550
+    },
+    {
+      "file": "config/forestry/farm.cfg",
+      "sha256": "658b1519b969432239c631e7f553ae9a192824e98bac8cb8f7f6dd02677d06b4",
+      "size": 558
+    },
+    {
+      "file": "config/forestry/fluids.cfg",
+      "sha256": "d08654e4fa40af3f1c372c9670fdea7826440ebd6659f42f793dd766e86c65a5",
+      "size": 1412
+    },
+    {
+      "file": "config/forestry/gamemodes/EASY.cfg",
+      "sha256": "4f1e1e54822314841441c65705e565811a77e45d88c7b69bdfd23f2e80ae8ad7",
+      "size": 4995
+    },
+    {
+      "file": "config/forestry/gamemodes/HARD.cfg",
+      "sha256": "29392ba39553f4a94dfa4dccd16237bceeef4514afaddfc1ed756b2274f543a3",
+      "size": 4822
+    },
+    {
+      "file": "config/forestry/gamemodes/NORMAL.cfg",
+      "sha256": "bea2b7556e5cf24b5596e46ca68ff49f26418e4149e07caf3b97be4a84c4db10",
+      "size": 4838
+    },
+    {
+      "file": "config/forestry/gamemodes/OP.cfg",
+      "sha256": "5d76036dbc9cd6a2441ed8dd44b6946b671a4ad4b30fb63e7aa3d0a8e2c5ebe5",
+      "size": 4854
+    },
+    {
+      "file": "config/forestry/genetics/main.conf",
+      "sha256": "5503dbd4ef4b38d12791df6b7db08eb180713f2314406c9f81d26e8bef163aa8",
+      "size": 2121
+    },
+    {
+      "file": "config/forestry/genetics/modules.cfg",
+      "sha256": "95ac8f44d6c8c5d9a6c3a0c95f9f3499b221e0d2f087823db82b69e14dead953",
+      "size": 705
+    },
+    {
+      "file": "config/forestry/lepidopterology.cfg",
+      "sha256": "c4284f5d0cc68a991db3dadf0b75c78b97ccbafd3160b41ddba055bf3e85e9a6",
+      "size": 4678
+    },
+    {
+      "file": "config/forestry/modules.cfg",
+      "sha256": "3c4e462d04cd4ecce9f288c8bd5d312863c2ce3b3a7dadd593aea913953037f8",
+      "size": 5163
+    },
+    {
+      "file": "config/forge.cfg",
+      "sha256": "c222fc2c444b1843da84672bf404e73e82b5dd881a0dcc33cc2526fdf2811672",
+      "size": 3953
+    },
+    {
+      "file": "config/forgeChunkLoading.cfg",
+      "sha256": "38c5efb3ddd72ced6b4e2035714c54ba53dff7f5dba1d1eb1ff432a584215091",
+      "size": 2293
+    },
+    {
+      "file": "config/hammercore/tile_entity_tick_slip.json",
+      "sha256": "eff4c2594988239af664a5731ed8dbaea89285d478117e4c417d369d98c60c2c",
+      "size": 25
+    },
+    {
+      "file": "config/hammercore.cfg",
+      "sha256": "d2d4572f8e1476895614d6160d69a4cdfbd27735e52a8136ea7610497455ce9c",
+      "size": 1187
+    },
+    {
+      "file": "config/ic2/advancedsolars.cfg",
+      "sha256": "d4458a16cc50036159aba24c48847661c4f407871fd277ef22212594cd9037ba",
+      "size": 3852
+    },
+    {
+      "file": "config/ic2/customCraftingRecipes.json",
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "size": 2
+    },
+    {
+      "file": "config/ic2/customMachineRecipes.json",
+      "sha256": "417fb949a827796e2aee6f261f8166e7433da4f57250248f7b427c5f81618024",
+      "size": 1568
+    },
+    {
+      "file": "config/ic2/gravisuit.cfg",
+      "sha256": "c135edd76749aa882a9196628472a229d148e86efc7520d150ee4c400d33d765",
+      "size": 5549
+    },
+    {
+      "file": "config/ic2/ic2.cfg",
+      "sha256": "e1c61c88e668d24bb29f787e0cd2ab5995b3dd7137b299757d84572a082b313f",
+      "size": 7316
+    },
+    {
+      "file": "config/ic2/ic2craftingRecipes.json",
+      "sha256": "00bfc430bc464981c2b7e9403d547ddde4d27ead57c8de10f359ac7898c3b626",
+      "size": 46155
+    },
+    {
+      "file": "config/ic2/ic2machineRecipes.json",
+      "sha256": "38d89de9c92ac3cc71388e8c31451a1a960f7ae23e62f4c396a7c5dbee05cc26",
+      "size": 23741
+    },
+    {
+      "file": "config/ichunutil.cfg",
+      "sha256": "5260569a3b1deb41d85967b060cdcf4faebfe1fb6b460313f62ecfdeb9da81fb",
+      "size": 3777
+    },
+    {
+      "file": "config/ichunutil_keybinds.cfg",
+      "sha256": "fc4024735165a70bedf0c9454fdf26e70856d18ed2b5598e351a02b3646e437a",
+      "size": 1397
+    },
+    {
+      "file": "config/industrialforegoing.cfg",
+      "sha256": "52310c8ac3ec9f5bb30b910edac93b1a3815f0ae04901a20053e5a697745fb38",
+      "size": 33076
+    },
+    {
+      "file": "config/ironchest.cfg",
+      "sha256": "6069282a9cf2a7047073120d602c7f54e6b642b52be4329787e95af97246d2be",
+      "size": 163
+    },
+    {
+      "file": "config/jei/itemBlacklist.cfg",
+      "sha256": "ec5a0f084e452649cc5017b412a1c04d6f0ab12f0c05e12009313c9e0f337e48",
+      "size": 87712
+    },
+    {
+      "file": "config/jei/jei.cfg",
+      "sha256": "b72d23c48d174c6e738c526ec5a186e265bcfc9e716800ba72ca1bff9090fe69",
+      "size": 4939
+    },
+    {
+      "file": "config/jei/searchColors.cfg",
+      "sha256": "aa2d125660ad731dff9aec92c745a6947e204dba56ecc95d6907f1883d26ec33",
+      "size": 1941
+    },
+    {
+      "file": "config/jei/worldSettings.cfg",
+      "sha256": "5541b462c3a5ce2b8b12941aaa650a711d880359524436d305938c918d2b04de",
+      "size": 612
+    },
+    {
+      "file": "config/jei_area_fixer.cfg",
+      "sha256": "0d2dce77a4a6c84aff81f7495a59ab34f7ba458f618d22b82b0ca0d285d93a87",
+      "size": 1619
+    },
+    {
+      "file": "config/jeibees.cfg",
+      "sha256": "efb654501dd64d62d9fbd8ecf422bf2a446e5f9960e83647a30c589d1e77a3f3",
+      "size": 876
+    },
+    {
+      "file": "config/jeiintegration.cfg",
+      "sha256": "9f3bdaa99cff2aae77daae8a74e18545b679d31308bb76f18a194ef0d306a66f",
+      "size": 2442
+    },
+    {
+      "file": "config/jepb.cfg",
+      "sha256": "c13151baeb9be6de261a7f41bf59b9424e1732869c05a0f32cc259d910784b0d",
+      "size": 223
+    },
+    {
+      "file": "config/jeresources/jeresources.cfg",
+      "sha256": "89a554fa03284ed83867e2876bcebc7a2ff80e915d6bfa6938bda51d4894ea57",
+      "size": 842
+    },
+    {
+      "file": "config/jeresources/world-gen.json",
+      "sha256": "ed8dfbe68a6b97c7ce236e887c5cc5d647b6269eb2f351f16f00dc2ad2edebf6",
+      "size": 69142
+    },
+    {
+      "file": "config/justenoughmagiculture.cfg",
+      "sha256": "ae67b082def78b07dc4383820c8197efd148d2fbb626e6f70d4f3fbc97f6b8f6",
+      "size": 68875
+    },
+    {
+      "file": "config/kleeslabs.cfg",
+      "sha256": "8e4be93089d691db866629c032b059b2902bf0fe1ed114aa5834fa23be3980fd",
+      "size": 781
+    },
+    {
+      "file": "config/laser_drill_ores/default_ores.json",
+      "sha256": "e2d8efaedc01f6c60f02908b15fb9778adf47ce19d6c1539f836101c734c3d8d",
+      "size": 7759
+    },
+    {
+      "file": "config/laser_drill_ores/forestry_ores.json",
+      "sha256": "4559240b43ec8a8f28bbfb49912279aa097053061e976ec7d78f7fd0a93265c8",
+      "size": 411
+    },
+    {
+      "file": "config/laser_drill_ores/quark_ores.json",
+      "sha256": "88008ace4c1cc131455b0c9262be1bfa671b5101632f8a8f0428024491d7ad75",
+      "size": 232
+    },
+    {
+      "file": "config/lemonlib.cfg",
+      "sha256": "794278bfbc86e035aa4d5a22886dad702765c576b22549b8881ffdd5afcdcf4d",
+      "size": 54
+    },
+    {
+      "file": "config/loliasm/methods-stable_39.csv",
+      "sha256": "0a583eb8a8f4e8f797e965fdecb5d72ec4d33fc7e8d6002a82a4e62d35abe9c2",
+      "size": 315657
+    },
+    {
+      "file": "config/loliasm.cfg",
+      "sha256": "4da091e60553c656f87b23cd478dc2023072b8bb0cdc39ef46313ae78c73f8c2",
+      "size": 17597
+    },
+    {
+      "file": "config/lunatriuscore.cfg",
+      "sha256": "aafd32bfc7557d9cb97c1c088d56e81e885c07c5649103a633c5a40cfe48e74c",
+      "size": 109
+    },
+    {
+      "file": "config/matmos/alias.map",
+      "sha256": "2a4b49341af24f6a8c973e46c7b4b90c83b3417c6a1d185a3d09a8f4f0eb8f60",
+      "size": 1045
+    },
+    {
+      "file": "config/matmos/builtin_aliases/__DO_NOT_MODIFY_THESE_FILES__.txt",
+      "sha256": "bc119b5ecabff3478a72afd74ae7da1157d2ee712bee5016609f0a66099ba337",
+      "size": 203
+    },
+    {
+      "file": "config/matmos/builtin_aliases/builtins.map",
+      "sha256": "4b2deae17d65b1d5c6a3ab4509e35484170a5251fcc1af2c83c21328f04a7862",
+      "size": 73
+    },
+    {
+      "file": "config/matmos/builtin_aliases/misc.map",
+      "sha256": "03fe9667e174274bf8059f40504d6cc0b240953c6db8ea009901f7a4c485303a",
+      "size": 172
+    },
+    {
+      "file": "config/matmos/builtin_aliases/tconstruct.map",
+      "sha256": "d6a8d74e558710f3912051825536c5be27e90a87e81ae0537c04847d6118e2ee",
+      "size": 534
+    },
+    {
+      "file": "config/matmos/builtin_aliases/tfc.map",
+      "sha256": "8d870b12dc2e49b8ae2919356015456c6b332052269441e336486b2f4dd03e86",
+      "size": 227
+    },
+    {
+      "file": "config/matmos/dataconfigvars.cfg",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "file": "config/matmos/dataconfigvars_defaults.cfg",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "file": "config/matmos/expansions_userconfig/eu.ha3.default.earthlies.cfg",
+      "sha256": "6d11a2b3321f4df1f23440a3be10614c3d4da6416530d410090b871c89af8828",
+      "size": 13
+    },
+    {
+      "file": "config/matmos/expansions_userconfig/eu.ha3.default.environments.cfg",
+      "sha256": "1dceccf0e2a327d430ec9b48a41b524ddcf61bd30f8fb2ac2780abed0e801604",
+      "size": 12
+    },
+    {
+      "file": "config/matmos/expansions_userconfig/eu.ha3.default.extras.cfg",
+      "sha256": "e671ccab843dec1e2e66f46b9fb60443b35479221bc2da031ad8b23dc38dee47",
+      "size": 12
+    },
+    {
+      "file": "config/matmos/expansions_userconfig/eu.ha3.default.itemswitches.cfg",
+      "sha256": "cc670dc3ac9ff23ecc7d032180de25051f41edf4c2f6fb151528923017b2853d",
+      "size": 13
+    },
+    {
+      "file": "config/matmos/expansions_userconfig/eu.ha3.default.weapons.cfg",
+      "sha256": "cc670dc3ac9ff23ecc7d032180de25051f41edf4c2f6fb151528923017b2853d",
+      "size": 13
+    },
+    {
+      "file": "config/matmos/userconfig.cfg",
+      "sha256": "b5c4932c67dfce2b201530a7ab7aa5fc4b402dadc463eacc16e32f191ce4fa3f",
+      "size": 3334
+    },
+    {
+      "file": "config/mia/aether.cfg",
+      "sha256": "a4a04631717479b1ba05d4484d3991e9445f6c8ef6cf62439824ae5d8aa05054",
+      "size": 1480
+    },
+    {
+      "file": "config/mia/base.cfg",
+      "sha256": "e9e508e6a7395bbe96e5ad4554107e9170515fe6dba41262c18f7157b9270baf",
+      "size": 977
+    },
+    {
+      "file": "config/mia/base_additions.cfg",
+      "sha256": "39388a8399ecf9722061efcc8b7d612b3d1ac7ce587d3a179172e4d2b0ef4cb5",
+      "size": 7436
+    },
+    {
+      "file": "config/mia/biomes_o_plenty.cfg",
+      "sha256": "71ed59ec3bfc4c10c5b4a1bc3422587054b731ed5313daeae21f9b139fdfa67e",
+      "size": 934
+    },
+    {
+      "file": "config/mia/botania.cfg",
+      "sha256": "a403d96b85a56478a11894a0e6253ccfb25c74c6286f23af9925e76ce4876e6d",
+      "size": 2951
+    },
+    {
+      "file": "config/mia/charm.cfg",
+      "sha256": "3398bd2cf3a1f8c470e79c7b502e5c1b17a2870832d5e0c7189a9a2a0d2e980f",
+      "size": 714
+    },
+    {
+      "file": "config/mia/chisel.cfg",
+      "sha256": "528ca83f2bc11098f4cbcc5af74e36a2e10c783a11cb648e9065cfa38d63547d",
+      "size": 148
+    },
+    {
+      "file": "config/mia/cofh_core.cfg",
+      "sha256": "6618470a0fa372b25b920e00abb97ed638e330b6af10d75b9c1ed8d76cac105d",
+      "size": 138
+    },
+    {
+      "file": "config/mia/dungeon_tactics.cfg",
+      "sha256": "26dd13a13abc9aa1a34710296d54bf87c70be1d28362049939cae77a601f3bb5",
+      "size": 1125
+    },
+    {
+      "file": "config/mia/ender_io.cfg",
+      "sha256": "9f89ca0268bdd454cd62b534a14d44fd9c909af07c6fd2b40155e4fb8f730981",
+      "size": 134
+    },
+    {
+      "file": "config/mia/extrabotany.cfg",
+      "sha256": "d774317e054112364dc1d0184a4eb4453d62e8ef08e4522b4131afc716ca4e92",
+      "size": 271
+    },
+    {
+      "file": "config/mia/future_mc.cfg",
+      "sha256": "0cc833043060721a84e68d513ce91d2d9876d9bed0412c28d6a13e8c55d433ac",
+      "size": 1092
+    },
+    {
+      "file": "config/mia/harvestcraft.cfg",
+      "sha256": "3f39ff1fe4a6ea82da3b1a3a57c56c8c02be6852c6e0e1535670222fc20522ac",
+      "size": 594
+    },
+    {
+      "file": "config/mia/hatchery.cfg",
+      "sha256": "7f50815f95e56d60145cb86d6e2222d03347a50c4411b588e6c3463a527adcdc",
+      "size": 909
+    },
+    {
+      "file": "config/mia/iceandfire.cfg",
+      "sha256": "74989a72c09f88014ba35d0bd4959be02fa14e29ea72744f52dde38fdb0378c3",
+      "size": 1064
+    },
+    {
+      "file": "config/mia/industrial_foregoing.cfg",
+      "sha256": "3170f3cc7f0f2b9f9bcd1478b3eb832dd59c2196b846b920284f220d791b8cad",
+      "size": 669
+    },
+    {
+      "file": "config/mia/jei.cfg",
+      "sha256": "3a5f164aba65d15f454d3d46a680a8ad2f23a2bfd2f5a324a3e553c6610b76c6",
+      "size": 490
+    },
+    {
+      "file": "config/mia/jer.cfg",
+      "sha256": "e5d876f6fc160be608dae3a0727de9adb9e79761d47115170735e0afcb0f0e07",
+      "size": 145
+    },
+    {
+      "file": "config/mia/mocreatures.cfg",
+      "sha256": "a9a109c9486fa734242258ef35e0b4f979b2ec12e8780105c1820f3a3c5b8768",
+      "size": 1387
+    },
+    {
+      "file": "config/mia/natura.cfg",
+      "sha256": "d10c7d234f319d36493bf0bf705e98437fef2fa404dd4fe9ebe2789496d8caa3",
+      "size": 678
+    },
+    {
+      "file": "config/mia/quark.cfg",
+      "sha256": "b37ea873c2535703ef89ff04c9495c05a0df7a97a326f13f7d0628562115b9bc",
+      "size": 1642
+    },
+    {
+      "file": "config/mia/tconstruct.cfg",
+      "sha256": "34b1957bf79f488a5427e2dd67609c1d7dc67773fd4f61e94c3f9c62a2920c0b",
+      "size": 945
+    },
+    {
+      "file": "config/mia/thaumcraft.cfg",
+      "sha256": "2d3c5d9f22f761e9130cc4bd1855dbce6fe3d005d5c0eff3afef17d2e65aa728",
+      "size": 1046
+    },
+    {
+      "file": "config/mia/thermalexpansion.cfg",
+      "sha256": "39b9ec041860bf4455685d372dc890ffb48861aaf159734be9e5d7e48b799742",
+      "size": 365
+    },
+    {
+      "file": "config/mia/thermalfoundation.cfg",
+      "sha256": "df161899ee83ae01bacdc6ec70a394da0334d92d3fb7240f7d8d3929c7f01aa1",
+      "size": 705
+    },
+    {
+      "file": "config/mia/xu2.cfg",
+      "sha256": "7d6c9e46e3306a744dee3979f9227949c868d0cfc6ef74a8369f73dfe7a7ce1b",
+      "size": 1057
+    },
+    {
+      "file": "config/microblocks.cfg",
+      "sha256": "f6435803b5f43af10d5ed40afb3ee62aba71b94bd9af64e754bf8dcbb0a83b14",
+      "size": 7449
+    },
+    {
+      "file": "config/modernbetaforge.cfg",
+      "sha256": "6506cda0fc5e8915d206f3e2a370115da05fa49bd0c05d5340dcc31d16e28537",
+      "size": 2141
+    },
+    {
+      "file": "config/modularforcefieldsystem.cfg",
+      "sha256": "445f8c891fb8db739601f641b5dd0e94d8aaf14d99c4f405e1956b57b5407ffd",
+      "size": 3264
+    },
+    {
+      "file": "config/modularrouters.cfg",
+      "sha256": "eee0cf38b5792aefafd41bd60eed757af43319cffd2effadc9267ff490ebbe52",
+      "size": 4466
+    },
+    {
+      "file": "config/moresoundconfig.cfg",
+      "sha256": "514d2b1fe6cb01a9194f2aefc7da5f11daaceb1df343ddda0d6f394736f397dd",
+      "size": 114
+    },
+    {
+      "file": "config/morpheus.cfg",
+      "sha256": "914702b5d40c6e571c12d7d7eeaafa7c21ae2d14ceaaf48400d16536cf7be982",
+      "size": 353
+    },
+    {
+      "file": "config/mousetweaks.cfg",
+      "sha256": "0234e1ad2d13ebf0326fce8132e9d548a7169f58963d2d15eafb2d7319e51cfe",
+      "size": 1621
+    },
+    {
+      "file": "config/multipart.cfg",
+      "sha256": "cc6a5f19afb365f55ebaf05e46b6dcc56aa47b4b286973b727ae3514b92d6635",
+      "size": 319
+    },
+    {
+      "file": "config/naturescompass.cfg",
+      "sha256": "35776e290169c9010721942ec6886727d369bde1ecb1e6ca7fb860b70b11ef32",
+      "size": 2357
+    },
+    {
+      "file": "config/nothirium.cfg",
+      "sha256": "45fd7f83fe3a256647bd63b6a81f15dc7a6812d172d31a383994723293b70903",
+      "size": 145
+    },
+    {
+      "file": "config/oauth.cfg",
+      "sha256": "9f88fa894ea790572d33883497fae8ceb8b9736ced0e25f60c043d4d85ec83cd",
+      "size": 296
+    },
+    {
+      "file": "config/particleculling.cfg",
+      "sha256": "9340892a0a34ef86aa36974b4680d24c4db3e1ec87a5c7e372398992f21a8844",
+      "size": 1379
+    },
+    {
+      "file": "config/phosphor.json",
+      "sha256": "cbff9a6c5f512355728a48301e1dc26bc01681a649d1ae914cc637302ca53d6e",
+      "size": 78
+    },
+    {
+      "file": "config/pip.cfg",
+      "sha256": "15ab6be50e3376fabbbc248bc999547f91fb28dfa00909e201fcea545f0bb2b8",
+      "size": 3547
+    },
+    {
+      "file": "config/placebo.cfg",
+      "sha256": "429f34e5b247773ef47295ffc07a18c211c151e50679d6f217904d9d6fe64b6a",
+      "size": 325
+    },
+    {
+      "file": "config/plethora-core.cfg",
+      "sha256": "ddf75feb0cfc0c44d5b604450f2bee03fcd129e2926754a04c68d037e328a5e2",
+      "size": 37536
+    },
+    {
+      "file": "config/plethora.cfg",
+      "sha256": "6966faacb703d05ed6cf4d846183c7f80b5d18a72b15ca67b85bbdace0415ddb",
+      "size": 4396
+    },
+    {
+      "file": "config/quark.cfg",
+      "sha256": "0da9b8188c83285ef9a93bd7031c17b8f940623e5eb20581675eff8ffd7ca714",
+      "size": 104047
+    },
+    {
+      "file": "config/railcraft/blocks.cfg",
+      "sha256": "8fe769870ba3dbacda9ccd1cd377ee315ec85c6a1aefda5426e7703645b08c86",
+      "size": 14644
+    },
+    {
+      "file": "config/railcraft/client.cfg",
+      "sha256": "e697d596912cf33c5ff148f8e45aa7e26e71e63739efc974a35a70fd45d41424",
+      "size": 493
+    },
+    {
+      "file": "config/railcraft/entities.cfg",
+      "sha256": "26703f33136eac4ea54b14f451c56554527cb12b4ddce0605c48d7a3a588e19b",
+      "size": 1154
+    },
+    {
+      "file": "config/railcraft/items.cfg",
+      "sha256": "cf7361428e92fb1ae867058fd3fe79756f6308a66902ba395cdef1071d836efd",
+      "size": 2595
+    },
+    {
+      "file": "config/railcraft/modules/automation.cfg",
+      "sha256": "abddafc658e36f0e032f0b8a2d97e9037503677a2d5ffa21798c22d79da8168d",
+      "size": 1601
+    },
+    {
+      "file": "config/railcraft/modules/building.cfg",
+      "sha256": "691eae974850c95ca537662b88cd0a1b22d5045da30b87cfb6387d2581ced754",
+      "size": 2712
+    },
+    {
+      "file": "config/railcraft/modules/carts.cfg",
+      "sha256": "5f588c7d925481ebb550f06194b4e3dc90b50b20bfc414aa9aaeb26adc0d1776",
+      "size": 1191
+    },
+    {
+      "file": "config/railcraft/modules/charge.cfg",
+      "sha256": "7cd083b8f6200e54d03c949b7e0ef9c69a38ffde8eaf63b85891a056f5095213",
+      "size": 1749
+    },
+    {
+      "file": "config/railcraft/modules/emblem.cfg",
+      "sha256": "85c838fcf3244202ba51ac33baab1793e412c11adb3f51c0f7b86ef3e2bcfb84",
+      "size": 1139
+    },
+    {
+      "file": "config/railcraft/modules/extras.cfg",
+      "sha256": "4f08611a56ed1ca01e2f24cd6f2215f2cdf3112e14255820f7a6969fc5b8f76d",
+      "size": 1413
+    },
+    {
+      "file": "config/railcraft/modules/factory.cfg",
+      "sha256": "35794f8b61d23bef1ae7e5098f72142dc8359c03fe91bb2b7fb5d837ea89c84a",
+      "size": 1390
+    },
+    {
+      "file": "config/railcraft/modules/forestry.cfg",
+      "sha256": "11d78122b7b690825a3acf3614ecec2b83b2418cda55a632a3aa75c65965c699",
+      "size": 1411
+    },
+    {
+      "file": "config/railcraft/modules/ic2.cfg",
+      "sha256": "99612c6e52c17ab4384a853b7f0de0d0c7c5ae37f8e970fbfad0cb634d98b0ff",
+      "size": 1244
+    },
+    {
+      "file": "config/railcraft/modules/locomotives.cfg",
+      "sha256": "fe4010f769a08e03c3d3c95ad5083cdfd1857d7e929d256633bff0698952673c",
+      "size": 1921
+    },
+    {
+      "file": "config/railcraft/modules/magic.cfg",
+      "sha256": "8865842e3d50afc9ce43f9955331c0e46fa7196865c6ec258a0f8b89203ce010",
+      "size": 1329
+    },
+    {
+      "file": "config/railcraft/modules/redstone_flux.cfg",
+      "sha256": "fde0678fc81b6bb1a26102d55e665eca02f0154db1488863efac6bd5a459cc64",
+      "size": 1219
+    },
+    {
+      "file": "config/railcraft/modules/resources.cfg",
+      "sha256": "754b91ce5c5e3d89e2502e4c8fae1f491d03fadcc80b66fbc4b80f3f7f86199e",
+      "size": 1285
+    },
+    {
+      "file": "config/railcraft/modules/routing.cfg",
+      "sha256": "8b4545649238f5ce90ed7dad73bf7f0e2115d20a3c9a1d3dbc5748035d9cf620",
+      "size": 1307
+    },
+    {
+      "file": "config/railcraft/modules/seasonal.cfg",
+      "sha256": "dd8ff71f77fd7e36e4c77c09239893e74fa9982c07759b13195bb8555deade2c",
+      "size": 1657
+    },
+    {
+      "file": "config/railcraft/modules/signals.cfg",
+      "sha256": "1964e839ff6643a821b719433596c4780c676cf4cd2be9865330bf6348f11aaa",
+      "size": 1622
+    },
+    {
+      "file": "config/railcraft/modules/steam.cfg",
+      "sha256": "22f0e055c1ae29c2265f2970220e9b58a73768ef07802e9dec6db94b78da9c1a",
+      "size": 1784
+    },
+    {
+      "file": "config/railcraft/modules/thaumcraft.cfg",
+      "sha256": "9eb97bee13c07103b826d4cb243ec9073c2c92d8636aa60d0f60d6a1e4a4115b",
+      "size": 1148
+    },
+    {
+      "file": "config/railcraft/modules/tracks.cfg",
+      "sha256": "125e674d8f3fab842cc4176731030beff73cc8f7000439a65aedc909bd3e9ea8",
+      "size": 1538
+    },
+    {
+      "file": "config/railcraft/modules/tracks_abandoned.cfg",
+      "sha256": "bd01c881f13270d5ee8b1238407056200dac8162775cfef0a6f6413b2df400c3",
+      "size": 1182
+    },
+    {
+      "file": "config/railcraft/modules/tracks_electric.cfg",
+      "sha256": "d0b28eed7ec2cbaed478d1080ef5c895b979f43f10ebf3f723fcf7760cc15094",
+      "size": 1250
+    },
+    {
+      "file": "config/railcraft/modules/tracks_high_speed.cfg",
+      "sha256": "c9553f11d88b23af2945d7eeef9b8aed750d31bed32e5552c6c5baef5a14bafe",
+      "size": 1998
+    },
+    {
+      "file": "config/railcraft/modules/tracks_high_speed_electric.cfg",
+      "sha256": "592c7702441ed6851f66069a5dae1d7598d6f18f7e40f05086cdf6a9fd934d07",
+      "size": 1354
+    },
+    {
+      "file": "config/railcraft/modules/tracks_reinforced.cfg",
+      "sha256": "e4006d1d7067c2f79fd42c6b0d2b594782ccdd1975b31412567518739b77bb59",
+      "size": 1186
+    },
+    {
+      "file": "config/railcraft/modules/tracks_strap_iron.cfg",
+      "sha256": "1d2aeadb4c1e65f0d71a449adbee7ef352a46f0caa797288c19df236fe11281d",
+      "size": 1381
+    },
+    {
+      "file": "config/railcraft/modules/trains.cfg",
+      "sha256": "b732a97d21e9218265bdcc1bc623665eecc333f7f10a326d40777952c45bebb5",
+      "size": 1333
+    },
+    {
+      "file": "config/railcraft/modules/transport.cfg",
+      "sha256": "49daa2556406c27a4905c57c25229b281d15f1b419852885fa37ddd6f44f7180",
+      "size": 1424
+    },
+    {
+      "file": "config/railcraft/modules/world.cfg",
+      "sha256": "82635159b50453cbe5843ab6a7a857640161badd0a655ada6e16b8e5cd5bd723",
+      "size": 1805
+    },
+    {
+      "file": "config/railcraft/modules/worldspikes.cfg",
+      "sha256": "94b5245241f67a05775ea4bbb388146781dfb6682de2c0e6797ba404f563c214",
+      "size": 3780
+    },
+    {
+      "file": "config/railcraft/modules.cfg",
+      "sha256": "70e019795c1f1c130f0666134d2802da7ea8b59356fc684599d4b448531b8ca9",
+      "size": 3114
+    },
+    {
+      "file": "config/railcraft/railcraft.cfg",
+      "sha256": "5a70d6bb3260e9181885f4c7716bd0f68cd4b706c8bb44efde59ac4f4cbf4ba8",
+      "size": 16124
+    },
+    {
+      "file": "config/railway_depot_worker.cfg",
+      "sha256": "96870d25413c93af2f616cc76129f0968a708ce94db8821f1d105b3d7b82a9d7",
+      "size": 643
+    },
+    {
+      "file": "config/randompatches.cfg",
+      "sha256": "87ae2baf55423abe20a7f291f9b84c53529a0c5f8ab2e53f036799f3e748beaf",
+      "size": 9579
+    },
+    {
+      "file": "config/reachfix.cfg",
+      "sha256": "8621d85c9dca6855d9e4622028497805f75d42f284a4a663c16e47fa11846688",
+      "size": 465
+    },
+    {
+      "file": "config/recipehandler.cfg",
+      "sha256": "3930913903d77af5802a37a913bdfa38d2dec9be42bd2c8acdb76304c7e63a43",
+      "size": 1933
+    },
+    {
+      "file": "config/renderlib.cfg",
+      "sha256": "cab10f7c6f34765c8c82844df540940f0b9609d5201b92ba7f77d3002444bde3",
+      "size": 3065
+    },
+    {
+      "file": "config/schematica.cfg",
+      "sha256": "790cf64e250940281c44978251da3ecd46701f63a7d811f087fb2ef670e99061",
+      "size": 2577
+    },
+    {
+      "file": "config/serializationisbad-remotecache.json",
+      "sha256": "53784981469d3944fb0a26e4739882907e3304f0885eda5a56b0ba7d36622b81",
+      "size": 11196
+    },
+    {
+      "file": "config/serializationisbad.json",
+      "sha256": "5a32c4884fa0239b0140ed5e560eefe3d16adcabde36391a1dcd01be09706d83",
+      "size": 213
+    },
+    {
+      "file": "config/sledgehammer.conf",
+      "sha256": "16ad82b8b26928213957db90dbf7e760e8b28d033ba0e612f8825039af941566",
+      "size": 15694
+    },
+    {
+      "file": "config/smooth-scrolling-everywhere.cfg",
+      "sha256": "635ae7b3c04ab9d0ac3748086d76d449895c325ac38f37d9bce24c4c88053d1c",
+      "size": 207
+    },
+    {
+      "file": "config/smoothfont/smoothfont.cfg",
+      "sha256": "fb5ac196d77e206baf1af6e26ac192580f3accc16edd0dd5dc91a90ae9b342d0",
+      "size": 10883
+    },
+    {
+      "file": "config/snowrealmagic.cfg",
+      "sha256": "3467682781a90797e0940f6db866a59b9b7dea26ecd12595c0df91297b3a874f",
+      "size": 1521
+    },
+    {
+      "file": "config/splash.properties",
+      "sha256": "f1b1d336978f3f6e1c1b9e8752405bd5d7c06cf3a2d6db12a5be6ecf18f0901b",
+      "size": 762
+    },
+    {
+      "file": "config/startuptimer/config.json",
+      "sha256": "4af0ffcbb13548cc8d3cb2cf38db4bca82b77c830873eb32b257a70903ee58bf",
+      "size": 43
+    },
+    {
+      "file": "config/startuptimer/startup_times.json",
+      "sha256": "18108d9113319f6afa77879835cf309584237b7bac081137f0db7eec1a0263f7",
+      "size": 30
+    },
+    {
+      "file": "config/stevescarts.cfg",
+      "sha256": "68b2f01397d61b15cc79a64855b64d11a81db1be064fadaa4cd663e7012fc477",
+      "size": 5012
+    },
+    {
+      "file": "config/teamreborn/configData.nbt",
+      "sha256": "f7c1fed418f83b23ae14f5a63456068233f418aa0972a108acae1036c472b883",
+      "size": 3074
+    },
+    {
+      "file": "config/teamreborn/mainmenuscale/config.cfg",
+      "sha256": "09f649e2cc24ca802304129cd0f86e9b199f6163f2bc43ea24d4557927401227",
+      "size": 402
+    },
+    {
+      "file": "config/teamreborn/reborncore/client.cfg",
+      "sha256": "71943ec63f7cb34eed0ddc8c69fb076f1e2bcd51faaff93c51bfa024aed7e374",
+      "size": 371
+    },
+    {
+      "file": "config/teamreborn/reborncore/misc.cfg",
+      "sha256": "05ccf557712ae295e59bfa73a67020e182431f9a99afee65f384b984bacafdf6",
+      "size": 616
+    },
+    {
+      "file": "config/teamreborn/reborncore/power.cfg",
+      "sha256": "5b235e812acf3527b3acf8f28b5c257fa1a1c0cd9a2d321cb19e3676a7c690c1",
+      "size": 376
+    },
+    {
+      "file": "config/teamreborn/reborncore/selected_energy.json",
+      "sha256": "9a1954243a3851247769c8525d22faf6addfb36cd3fb347449b14c1e18a98214",
+      "size": 2
+    },
+    {
+      "file": "config/teamreborn/reborncore/upgrades.cfg",
+      "sha256": "15cb9cf9e02d6fde193b0fa8dd1e924f9fe752b370a76aebbc4a788e73410e54",
+      "size": 469
+    },
+    {
+      "file": "config/teslacorelib.cfg",
+      "sha256": "6478b88f568378e87015dec23874157ff2f742bbc5324b11b29ef94f6cb09c90",
+      "size": 2171
+    },
+    {
+      "file": "config/time.history",
+      "sha256": "2739b2afb130b15f94fc860de405ca1fd8346f9d37ed3b304890344d39500b73",
+      "size": 80
+    },
+    {
+      "file": "config/toastcontrol.cfg",
+      "sha256": "45f5fbced3b98103513288df2ef1808e89699c42f1e4b9d5e1ecfec38bd72449",
+      "size": 1926
+    },
+    {
+      "file": "config/torchmaster.cfg",
+      "sha256": "81a9678fa7ab3e351c14c2b411368b4d18c9279869642e8448c5865364944806",
+      "size": 4847
+    },
+    {
+      "file": "config/translocators.cfg",
+      "sha256": "ea2edea650bcb9bf22caac1fb6b448abb9e12000d2ebd2977980a155e7fa8ee7",
+      "size": 277
+    },
+    {
+      "file": "config/tumbleweed.cfg",
+      "sha256": "df1f32fc25239b8da704d6a36c24b44f554ccb1c746072e8169df10966c12d1d",
+      "size": 2387
+    },
+    {
+      "file": "config/unidict/IntegrationModule.cfg",
+      "sha256": "5ebf96e9e4c677c62941091df6146c4455e9c52cbbb1c2cb81a1b84caa481d3f",
+      "size": 787
+    },
+    {
+      "file": "config/unidict/ModConfigModule.cfg",
+      "sha256": "521e8d70aab1ddc5de3df5a94884cc1691ae6cd3a6f65c6b6969e2aba523fa2f",
+      "size": 93
+    },
+    {
+      "file": "config/unidict/UniDict.cfg",
+      "sha256": "27cad26e7bc32573325a70a4d09ef81a5fae243036dd7f28f2e772bf89a250b3",
+      "size": 8927
+    },
+    {
+      "file": "config/vintagefix.properties",
+      "sha256": "d16ddd9330fe4e3eaca3c4bea8e0f664fb8945af0a2894eea57c5a88752fe529",
+      "size": 931
+    },
+    {
+      "file": "config/voxelmap.properties",
+      "sha256": "ae79a8d4bd466dae650b4dfffacf921aa3ab68bdd722c5092818bc93190ab795",
+      "size": 983
+    },
+    {
+      "file": "config/waila/theme/dark.json",
+      "sha256": "cd2696aae34e17993d6eb737f7a1bc74d949058463bc304ae0ded14c5cac9f19",
+      "size": 137
+    },
+    {
+      "file": "config/waila/theme/vanilla.json",
+      "sha256": "b2aae1f2d5b272a9b533a6f13316aefe535173f379efc2ea48bd8fc327c7fa0b",
+      "size": 140
+    },
+    {
+      "file": "config/waila/waila.cfg",
+      "sha256": "480438b537ba48f692c46620834248b27672fa7632cb3d2f850045f7123156e4",
+      "size": 5703
+    },
+    {
+      "file": "config/wailaharvestability.cfg",
+      "sha256": "b28bf855210415faa693e655b82f5595292254b99a77a9d921d360ec8b9ee384",
+      "size": 262
+    },
+    {
+      "file": "config/zettaindustries.cfg",
+      "sha256": "8fab6193186ad35504629fc0f56b10aab764d5e0d1356a8ce32bf461e541177d",
+      "size": 579
+    },
+    {
+      "file": "scripts/tekkit2.zs",
+      "sha256": "74f42d0449a33dc86ad89e3bdb8aaa9ea20537befecf3192e6efc7d0ef377152",
+      "size": 24589
+    },
+    {
+      "file": "resources/.DS_Store",
+      "sha256": "9d4aa8fed13a744f9d2f8c9b31388757b228e5397be55c8c50902ce9bdd6bb4c",
+      "size": 6148
+    },
+    {
+      "file": "resources/assets/fml/textures/gui/tekkit2.gif",
+      "sha256": "b480bf64134efa8c42247d3c188e2a2b4a09e2e72fb276a226457d85941a9880",
+      "size": 65563
+    },
+    {
+      "file": "resources/assets/modernsplash/textures/gui/title/mojang.png",
+      "sha256": "a4985a99d84feaf816a98684cdaa9b7e5b1c393754ed0aca104e04e382590120",
+      "size": 54786
+    },
+    {
+      "file": "resources/minecraft/sounds/music/menu/menu1.ogg",
+      "sha256": "85109b40150b1689e070a9325c920353aa8a84d6735092c496a0716a5761d596",
+      "size": 3952935
+    },
+    {
+      "file": "resources/minecraft/sounds/music/menu/menu2.ogg",
+      "sha256": "85109b40150b1689e070a9325c920353aa8a84d6735092c496a0716a5761d596",
+      "size": 3952935
+    },
+    {
+      "file": "resources/minecraft/sounds/music/menu/menu3.ogg",
+      "sha256": "85109b40150b1689e070a9325c920353aa8a84d6735092c496a0716a5761d596",
+      "size": 3952935
+    },
+    {
+      "file": "resources/minecraft/sounds/music/menu/menu4.ogg",
+      "sha256": "85109b40150b1689e070a9325c920353aa8a84d6735092c496a0716a5761d596",
+      "size": 3952935
+    },
+    {
+      "file": "resources/tekkit2/textures/icons/16x16.png",
+      "sha256": "52e25aca0bf13ea5c35f65fbd7ffc6d78db41b3ac0d1577a0cb4a774c466d054",
+      "size": 818
+    },
+    {
+      "file": "resources/tekkit2/textures/icons/256x256.png",
+      "sha256": "ab7f8a4946b78d0502492c38e4114f7c8a03c3fa8dc3ed5db3590f8196c6cef9",
+      "size": 8448
+    },
+    {
+      "file": "resources/tekkit2/textures/icons/32x32.png",
+      "sha256": "7ad108d873b5bebee40bfcb2dbc3baa3d52e7cfc6ea971ff23e529cf33f6871e",
+      "size": 1595
+    },
+    {
+      "file": "resources/tekkit2/textures/mainmenu/blank.ogg",
+      "sha256": "3f2a65aeb0bca646861f70237b4e2c24cf0845957b14165ae0c725ffc706c6ba",
+      "size": 4115
+    },
+    {
+      "file": "resources/tekkit2/textures/mainmenu/btn.png",
+      "sha256": "913816bf762ba3788caed4ebcf6076fcc04e523d9236760d2d0d1d0b802072f0",
+      "size": 637
+    },
+    {
+      "file": "resources/tekkit2/textures/mainmenu/btn_blank.png",
+      "sha256": "450056b4174c8e3fd49bda3f3cd43a4b39c7886d59b08be1b64d7d159953655a",
+      "size": 414
+    },
+    {
+      "file": "resources/tekkit2/textures/mainmenu/panoramas/panorama_0.png",
+      "sha256": "f744d444d3c54ba81c24df808bccff5ab4cda3e9b11bf0f4cbd644d8557a9e9d",
+      "size": 751531
+    },
+    {
+      "file": "resources/tekkit2/textures/mainmenu/panoramas/panorama_1.png",
+      "sha256": "112b543265cf259efd7cb808426a4610e4cb368cc04bb63ba356ea01c9a00d35",
+      "size": 515369
+    },
+    {
+      "file": "resources/tekkit2/textures/mainmenu/panoramas/panorama_2.png",
+      "sha256": "5962089c0dc1533554e83a23be0e5a4dc6453837bcb244eee6258e1df300dfdd",
+      "size": 764506
+    },
+    {
+      "file": "resources/tekkit2/textures/mainmenu/panoramas/panorama_3.png",
+      "sha256": "949dbeb897fc2d27a2c60eece3c65b6ea98c24c53ba01e95818de1a5d698a3c2",
+      "size": 806417
+    },
+    {
+      "file": "resources/tekkit2/textures/mainmenu/panoramas/panorama_4.png",
+      "sha256": "4e0b7fea890e1f08789206a88b1e88d56a91ea2310b7a71b8bf5095bee561fcd",
+      "size": 12917
+    },
+    {
+      "file": "resources/tekkit2/textures/mainmenu/panoramas/panorama_5.png",
+      "sha256": "3f656f7f44f19bebd3bd60ed2aeac8af3382be4c4db0ee57f2737793b0865f70",
+      "size": 754287
+    },
+    {
+      "file": "resources/tekkit2/textures/mainmenu/speaker.png",
+      "sha256": "6b516e29c3cc1a36b3361191fa8dde9b972d9eeb9c59b9ef659c40b820ceda2d",
+      "size": 207
+    },
+    {
+      "file": "resources/tekkit2/textures/mainmenu/tekkit2_logo.png",
+      "sha256": "defbaa1f2ea67ba09d553f3d0ff23f421a14a84768d85877e268abe398ac24e7",
+      "size": 59529
+    },
+    {
+      "file": "resourcepacks/mat_default2016-36-1.3.zip",
+      "sha256": "4150c25c709564d212b6f477aec92a7a4fde951a7ddd88cf5e9a6841dba8bc49",
+      "size": 6362759
+    }
+  ]
+}

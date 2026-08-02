@@ -1,0 +1,77 @@
+{
+	"dependencies": "projectred-exploration",
+	"populate": {
+		"sapphire": {
+			"distribution": "uniform",
+			"generator": {
+				"block": {
+					"name": "projectred-exploration:ore",
+					"properties": {
+						"type": "sapphire_ore"
+					}
+				},
+				"material": "minecraft:stone",
+				"cluster-size": 2
+			},
+			"cluster-count": 1,
+			"min-height": 8,
+			"max-height": 48,
+			"retrogen": false,
+			"biome": "all",
+			"dimension": {
+				"restriction": "whitelist",
+				"value": [
+					0
+				]
+			}
+		},
+		"ruby": {
+			"distribution": "uniform",
+			"generator": {
+				"block": {
+					"name": "projectred-exploration:ore",
+					"properties": {
+						"type": "ruby_ore"
+					}
+				},
+				"material": "minecraft:stone",
+				"cluster-size": 2
+			},
+			"cluster-count": 1,
+			"min-height": 8,
+			"max-height": 48,
+			"retrogen": false,
+			"biome": "all",
+			"dimension": {
+				"restriction": "whitelist",
+				"value": [
+					0
+				]
+			}
+		},
+		"peridot": {
+			"distribution": "uniform",
+			"generator": {
+				"block": {
+					"name": "projectred-exploration:ore",
+					"properties": {
+						"type": "peridot_ore"
+					}
+				},
+				"material": "minecraft:stone",
+				"cluster-size": 2
+			},
+			"cluster-count": 1,
+			"min-height": 8,
+			"max-height": 48,
+			"retrogen": false,
+			"biome": "all",
+			"dimension": {
+				"restriction": "whitelist",
+				"value": [
+					0
+				]
+			}
+		}
+	}
+}

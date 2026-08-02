@@ -1,0 +1,11 @@
+{
+  "template": "hostile_raiders",
+  "display_name": "Ashline Raiders",
+  "initial_reputation": -100,
+  "members": [
+    {"role": "raider_leader", "weapon": "reforged:crossbow", "behavior": "hostile"},
+    {"role": "raider", "count": 3, "weapon": "reforged:musket", "behavior": "hostile"}
+  ],
+  "guarded_resource": "small ammunition and Railcraft steel cache",
+  "reward_rule": "Useful consumables only; no rockets, schematics, Desh, analyzer, or AE2 items."
+}

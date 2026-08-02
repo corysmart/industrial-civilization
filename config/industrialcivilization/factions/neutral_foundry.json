@@ -1,0 +1,11 @@
+{
+  "template": "neutral_foundry",
+  "display_name": "Riverside Works",
+  "initial_reputation": 10,
+  "members": [
+    {"role": "trader", "name": "Quartermaster Hale", "interaction": "Trades rubber, coal coke, and oxygen consumables; never progression keys."},
+    {"role": "engineer", "name": "Technician Voss", "interaction": "Explains reactor monitoring and repairs."},
+    {"role": "guard", "name": "Watch Officer", "weapon": "reforged:musket", "behavior": "Defends settlement members."}
+  ],
+  "visual_identity": "steel, brick, lamps, rails, tanks"
+}

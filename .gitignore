@@ -1,0 +1,43 @@
+# macOS and local credentials
+.DS_Store
+.ReAuth.cfg
+
+# Technic/Minecraft runtime state
+/.backups/
+/backups/
+/bin/
+/cache/
+/crash-reports/
+/logs/
+/saves/
+/snapshots-server/
+/vintagefix/
+/voxelmap/cache/
+/crafttweaker.log
+/knownkeys.txt
+/usercache.json
+/usernamecache.json
+/options.txt
+/servers.dat
+/servers.dat_old
+/*_0.png
+
+# User-authored local content
+/schematics/
+
+# Third-party binary artifacts. Exact filenames, versions, hashes, and source
+# IDs are recorded in manifest/final-mod-lock.json and docs/ADDED_MODS.md.
+/mods/
+/resourcepacks/*.zip
+
+# Local mod build output
+/development/IndustrialCivilizationCore/.gradle/
+/development/IndustrialCivilizationCore/build/
+
+# Editor and temporary files
+.idea/
+.vscode/
+*.swp
+*.tmp
+*.next
+

@@ -1,0 +1,44 @@
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net/' }
+        mavenCentral()
+    }
+    dependencies { classpath 'net.minecraftforge.gradle:ForgeGradle:3.+' }
+}
+
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'java'
+
+version = '0.1.0'
+group = 'com.industrialcivilization'
+archivesBaseName = 'IndustrialCivilizationCore'
+sourceCompatibility = targetCompatibility = '1.8'
+
+minecraft {
+    mappings channel: 'snapshot', version: '20171003-1.12'
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2860'
+    compileOnly files('../../mods/cc-tweaked-1.12.2-1.89.2.jar')
+}
+
+processResources {
+    inputs.property 'version', project.version
+    filesMatching('mcmod.info') { expand 'version': project.version }
+}
+
+jar {
+    manifest {
+        attributes(
+            'Specification-Title': 'Industrial Civilization Core',
+            'Specification-Vendor': 'Industrial Civilization',
+            'Specification-Version': '1',
+            'Implementation-Title': project.name,
+            'Implementation-Version': project.version,
+            'Implementation-Vendor': 'Industrial Civilization'
+        )
+    }
+}
+
+jar.finalizedBy('reobfJar')

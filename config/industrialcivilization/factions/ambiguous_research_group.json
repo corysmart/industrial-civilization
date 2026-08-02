@@ -1,0 +1,13 @@
+{
+  "template": "ambiguous_research_group",
+  "display_name": "Survey Detachment 7",
+  "initial_reputation": 0,
+  "public_label": "Survey Detachment 7",
+  "members": [
+    {"role": "survey_scientist", "behavior": "neutral"},
+    {"role": "perimeter_guard", "count": 2, "weapon": "reforged:crossbow", "behavior": "warning_then_hostile"}
+  ],
+  "restricted_area": "marked machinery perimeter",
+  "hostility_triggers": ["trespass after warning", "theft", "attack", "reputation below -10"],
+  "deescalation": "Dialogue and withdrawal preserve neutrality."
+}

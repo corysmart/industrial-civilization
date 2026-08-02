@@ -1,0 +1,96 @@
+{
+	"recipes": [
+		{
+			"recipeType": "macerator",
+			"outputs": [
+				{
+					"item": "minecraft:dye",
+					"meta": 4,
+					"amount": 16
+				}
+			],
+			"input": {
+				"inputType": "ore",
+				"oreID": "oreNetherLapis"
+			}
+		},
+		{
+			"recipeType": "macerator",
+			"outputs": [
+				{
+					"item": "minecraft:redstone",
+					"meta": 0,
+					"amount": 26
+				}
+			],
+			"input": {
+				"inputType": "ore",
+				"oreID": "oreNetherRedstone"
+			}
+		},
+		{
+			"recipeType": "macerator",
+			"outputs": [
+				{
+					"item": "minecraft:coal",
+					"meta": 0,
+					"amount": 5
+				}
+			],
+			"input": {
+				"inputType": "ore",
+				"oreID": "oreNetherCoal"
+			}
+		},
+		{
+			"recipeType": "macerator",
+			"outputs": [
+				{
+					"item": "minecraft:blaze_powder",
+					"meta": 0,
+					"amount": 3
+				}
+			],
+			"recipeExperience": 0.3,
+			"input": {
+				"inputType": "item",
+				"item": "minecraft:blaze_rod",
+				"meta": 0,
+				"amount": 1
+			}
+		},
+		{
+			"recipeType": "compressor",
+			"outputs": [
+				{
+					"item": "minecraft:blaze_rod",
+					"meta": 0,
+					"amount": 1
+				}
+			],
+			"recipeExperience": 0.5,
+			"input": {
+				"inputType": "item",
+				"item": "minecraft:blaze_powder",
+				"meta": 0,
+				"amount": 3
+			}
+		},
+		{
+			"recipeType": "macerator",
+			"outputs": [
+				{
+					"item": "railcraft:dust",
+					"meta": 6,
+					"amount": 1
+				}
+			],
+			"input": {
+				"inputType": "item",
+				"item": "minecraft:ender_pearl",
+				"meta": 0,
+				"amount": 1
+			}
+		},
+	]
+}

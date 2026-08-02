@@ -1,0 +1,9 @@
+item.industrialcivilizationcore.material_pattern_record.name=Material Pattern Record
+item.industrialcivilizationcore.material_pattern_record.tooltip=Read-only molecular composition record
+tile.industrialcivilizationcore.molecular_analyzer.name=Molecular Analyzer
+tile.industrialcivilizationcore.molecular_analyzer.tooltip=Analyzes Martian Desh at 50,000 FE per sample
+message.industrialcivilization.analyzer.no_power=Analyzer requires 50,000 FE.
+message.industrialcivilization.analyzer.invalid_sample=Insert a Martian Desh ingot for analysis.
+message.industrialcivilization.analyzer.complete=Analysis complete. AI Age — Not Yet Available.
+message.industrialcivilization.sequence_violation=Sequence violation: Moon milestone was not recorded before Mars.
+message.industrialcivilization.quest_guide=Industrial Civilization Guide: Press F6 to open quests, tutorials, progression, and in-game reference information.
