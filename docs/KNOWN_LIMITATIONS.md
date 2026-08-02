@@ -1,13 +1,13 @@
+<!-- Generated from progression/*.json by tools/generate_progression_docs.py. -->
+
 # Known Limitations
 
-- Runtime startup and gameplay are intentionally untested; static success is not a claim of runtime compatibility.
-- Techguns is a beta FML coremod and is the highest-risk addition alongside the existing performance/coremod stack.
-- Custom NPC encounter files are blueprints, not pre-instantiated world NPCs. The disposable-world test must instantiate them with the NPC Wand and verify faction behavior.
-- Custom NPCs guards use stable Reforged ranged items; Techguns weapon animations on Custom NPC entities are not claimed.
-- Better Questing checkbox objectives are player-attested capabilities. The integration mod independently records Moon/Mars order and Analyzer completion, but it does not auto-complete every quest.
-- Analyzer environmental readings describe dimension ambient conditions, not room seal integrity. Use Galacticraft's Oxygen Detector redstone output for sealed habitats.
-- Existing `saves/New World` predates the conversion and may retain removed-mod IDs; it was not migrated or validated.
-- Technic may overwrite local files if the user explicitly reinstalls/resets the original public Tekkit 2 pack. Use the rollback/export instructions and avoid “reinstall pack” for this local customized instance.
-- GroovyScript hot reload covers the `groovy/postInit` recipe, HEI visibility, and tooltip layer. JAR changes, Java classes, mod additions/removals, most configuration changes, and pre-init registrations still require a complete game restart.
-- Reloading is a development convenience, not an end-to-end Minecraft simulator. A clean startup test remains necessary before calling a build shippable.
-- The core mod migrates known inherited key conflicts only while each action still has its original conflicting value. Explicit player key choices are preserved.
+- Static validation cannot prove Better Questing GUI rendering, retrieval-task runtime behavior, or existing-world import behavior.
+- Galacticraft destination selection is not runtime-locked by archives/authorization yet; the quest graph is authoritative but enforcement is future integration work.
+- Construction, environment, operation, sustained uptime, telemetry, research, and mastery checks use explicit manual checkboxes until APIs exist.
+- Research Station, experiment module, three archives, three manufacturing tiers, lunar Quantum component, Mars authorization, and AI Core are test placeholders.
+- Orbital/lunar/Mars solar multipliers, dust, darkness, pressure, radiation, and cargo automation are design targets, not new runtime mechanics in this phase.
+- The real Analyzer currently accepts only Martian Desh metadata 2, consumes 50,000 FE, and does not yet perform Earth/lunar comparative research.
+- Temporary AE2 entry covers a small test set; original AE2 recipes stay removed. Cable/terminal and complete AE2 progression still require final AI Age recipe work.
+- UU-Matter, replication, fusion, antimatter, megastructures, autonomous expansion, and civilization-scale AI remain storyboard/manual endgame milestones.
+- Quest updates may require importing Better Questing defaults in existing worlds. Back up world quest data first.

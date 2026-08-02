@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "id": "automated_industry",
+  "number": 3,
+  "title": "Automated Industry",
+  "purpose": "Replace repeated mining, transport, processing, and crafting labor with physical automation.",
+  "prerequisite_chapters": [
+    "electrification"
+  ],
+  "completion_milestone": "early_autocrafting",
+  "automation_paths": [
+    "Quarry extraction",
+    "Pipes, tubes, logistics, or rail",
+    "Fixed-recipe automatic crafting"
+  ],
+  "optimization_opportunities": [
+    "Start the Quarry early, feed processing directly, parallelize bottleneck machines, and buffer outputs."
+  ],
+  "infrastructure_reuse": "The Quarry, routes, processors, and autocrafter become the raw-material backbone of heavy industry.",
+  "milestones": [
+    {
+      "id": "automated_ore_processing",
+      "title": "Automated Ore Processing",
+      "category": "operation",
+      "icon": "minecraft:hopper",
+      "prerequisites": [
+        "stable_electrical_workshop"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "Automated Ore Processing",
+      "final_validation": [
+        "Route raw ore through processing into organized output without hand transfer."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "quarry_extraction",
+      "title": "Quarry Extraction",
+      "category": "operation",
+      "icon": "minecraft:diamond_pickaxe",
+      "prerequisites": [
+        "automated_ore_processing"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Quarry Extraction",
+      "final_validation": [
+        "Build and run a BuildCraft Quarry."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "physical_logistics",
+      "title": "Physical Logistics Network",
+      "category": "construction",
+      "icon": "minecraft:hopper",
+      "prerequisites": [
+        "quarry_extraction"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "Physical Logistics Network",
+      "final_validation": [
+        "Route Quarry output with BuildCraft pipes, ProjectRed tubes, Logistics Pipes, or rail."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "loaded_industry",
+      "title": "Loaded Industrial Area",
+      "category": "operation",
+      "icon": "minecraft:clock",
+      "prerequisites": [
+        "physical_logistics"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Loaded Industrial Area",
+      "final_validation": [
+        "Keep the automated industrial area loaded using an appropriate chunk-loading system."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "wireless_control",
+      "title": "Remote Factory Control",
+      "category": "operation",
+      "icon": "minecraft:lever",
+      "prerequisites": [
+        "physical_logistics"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Remote Factory Control",
+      "final_validation": [
+        "Start or stop a production subsystem using wireless redstone."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "early_autocrafting",
+      "title": "Early Autocrafting",
+      "category": "operation",
+      "icon": "minecraft:crafting_table",
+      "prerequisites": [
+        "physical_logistics"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "Early Autocrafting",
+      "final_validation": [
+        "Use a fixed-recipe automatic crafting table with physical ingredient routing for a repeated recipe."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "automation_throughput",
+      "title": "Automation Throughput Demonstration",
+      "category": "mastery",
+      "icon": "minecraft:minecart",
+      "prerequisites": [
+        "early_autocrafting",
+        "automated_ore_processing"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Automation Throughput Demonstration",
+      "final_validation": [
+        "Demonstrate sustained throughput above manual production."
+      ],
+      "automation_paths": []
+    }
+  ]
+}

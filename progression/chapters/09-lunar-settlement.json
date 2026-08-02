@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "id": "lunar_settlement",
+  "number": 9,
+  "title": "Lunar Settlement",
+  "purpose": "Establish a permanent Moon base with local extraction, processing, manufacturing, and cargo capability.",
+  "prerequisite_chapters": [
+    "orbital_research"
+  ],
+  "completion_milestone": "functional_lunar_base",
+  "automation_paths": [
+    "Automated lunar extraction",
+    "Local processing/manufacturing",
+    "Cargo routing",
+    "Orbital power reception"
+  ],
+  "optimization_opportunities": [
+    "Bring only startup essentials, establish local production early, and avoid importing every component from Earth."
+  ],
+  "infrastructure_reuse": "Orbital power, cargo handling, research equipment, and Earth factories remain part of the lunar supply network.",
+  "milestones": [
+    {
+      "id": "lunar_landing",
+      "title": "Authorized Lunar Landing",
+      "category": "transition",
+      "icon": "minecraft:ender_pearl",
+      "prerequisites": [
+        "moon_access"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "Authorized Lunar Landing",
+      "final_validation": [
+        "Land on the Moon only after Orbital Research completion."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "lunar_habitat",
+      "title": "Lunar Habitat",
+      "category": "construction",
+      "icon": "minecraft:glass",
+      "prerequisites": [
+        "lunar_landing"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Lunar Habitat",
+      "final_validation": [
+        "Establish pressure, oxygen, thermal control, communications, and safe habitation."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "lunar_power",
+      "title": "Lunar Power Through Darkness",
+      "category": "operation",
+      "icon": "minecraft:daylight_detector",
+      "prerequisites": [
+        "lunar_habitat"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Lunar Power Through Darkness",
+      "final_validation": [
+        "Provide generation and storage capable of maintaining the base through a lunar darkness cycle."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "lunar_mining",
+      "title": "Automated Lunar Mining",
+      "category": "operation",
+      "icon": "minecraft:diamond_pickaxe",
+      "prerequisites": [
+        "lunar_power"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Automated Lunar Mining",
+      "final_validation": [
+        "Extract lunar resources automatically and deliver them to local processing."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "lunar_manufacturing",
+      "title": "Local Lunar Manufacturing",
+      "category": "operation",
+      "icon": "minecraft:anvil",
+      "prerequisites": [
+        "lunar_mining"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Local Lunar Manufacturing",
+      "final_validation": [
+        "Process lunar materials and manufacture a useful spacecraft or precision component locally."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "lunar_cargo",
+      "title": "Lunar Cargo Return",
+      "category": "operation",
+      "icon": "minecraft:minecart",
+      "prerequisites": [
+        "lunar_manufacturing"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Lunar Cargo Return",
+      "final_validation": [
+        "Return cargo or establish an automated Earth-orbit-Moon supply route."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "functional_lunar_base",
+      "title": "Functional Lunar Base",
+      "category": "mastery",
+      "icon": "minecraft:beacon",
+      "prerequisites": [
+        "lunar_habitat",
+        "lunar_power",
+        "lunar_mining",
+        "lunar_manufacturing"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "Functional Lunar Base",
+      "final_validation": [
+        "Sustain habitation, local power, mining, processing, manufacturing, research readiness, and communications."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Manual-check the base until environment and throughput triggers exist."
+    }
+  ]
+}

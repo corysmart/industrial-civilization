@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "id": "survival_workshop",
+  "number": 1,
+  "title": "Early Survival and Workshop",
+  "purpose": "Secure a compact workshop and gather the material families needed for electrification.",
+  "prerequisite_chapters": [],
+  "completion_milestone": "secure_workshop",
+  "automation_paths": [
+    "Manual mining is acceptable only at this opening scale."
+  ],
+  "optimization_opportunities": [
+    "Experienced players consolidate mining trips and build only durable workshop infrastructure."
+  ],
+  "infrastructure_reuse": "The workshop, furnaces, and Iron Chests become the intake area for the electrical factory.",
+  "milestones": [
+    {
+      "id": "first_resources",
+      "title": "Industrial Starter Materials",
+      "category": "possession",
+      "icon": "minecraft:iron_ingot",
+      "prerequisites": [],
+      "critical": false,
+      "optional": false,
+      "capability": "Industrial Starter Materials",
+      "final_validation": [
+        "Obtain coal, iron, copper, tin, and rubber."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "basic_storage",
+      "title": "Copper and Iron Storage",
+      "category": "construction",
+      "icon": "ironchest:iron_chest",
+      "prerequisites": [
+        "first_resources"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Copper and Iron Storage",
+      "final_validation": [
+        "Build practical storage using Copper and Iron Chests; higher chest tiers are outside progression."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "defensive_readiness",
+      "title": "Workshop Defense",
+      "category": "possession",
+      "icon": "techguns:pistol",
+      "prerequisites": [
+        "first_resources"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Workshop Defense",
+      "final_validation": [
+        "Obtain a basic defensive weapon and ammunition."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "manual_production_area",
+      "title": "Manual Production Area",
+      "category": "construction",
+      "icon": "minecraft:crafting_table",
+      "prerequisites": [
+        "first_resources"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Manual Production Area",
+      "final_validation": [
+        "Arrange crafting, furnaces, storage, and safe lighting as a usable workshop."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "secure_workshop",
+      "title": "Secure Workshop",
+      "category": "mastery",
+      "icon": "minecraft:iron_door",
+      "prerequisites": [
+        "basic_storage",
+        "manual_production_area"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "Secure Workshop",
+      "final_validation": [
+        "Maintain a lit, enclosed workshop with storage and materials prepared for an IC2 Generator."
+      ],
+      "automation_paths": []
+    }
+  ]
+}

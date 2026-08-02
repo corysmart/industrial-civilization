@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "id": "heavy_industry",
+  "number": 4,
+  "title": "Heavy Industry",
+  "purpose": "Grow the workshop into a large steel, fuel, freight, power, and defense installation.",
+  "prerequisite_chapters": [
+    "automated_industry"
+  ],
+  "completion_milestone": "heavy_industry",
+  "automation_paths": [
+    "Automated steel",
+    "Automated oil refining",
+    "Freight and warehouse routing",
+    "Automated ammunition"
+  ],
+  "optimization_opportunities": [
+    "Run steel and fuel continuously, reuse power/logistics trunks, and move bulk goods without inventories carried by hand."
+  ],
+  "infrastructure_reuse": "Existing ore processing, storage, Quarry output, and routing feed every heavy-industry line.",
+  "milestones": [
+    {
+      "id": "railcraft_steel",
+      "title": "Automated Railcraft Steel",
+      "category": "operation",
+      "icon": "minecraft:anvil",
+      "prerequisites": [
+        "early_autocrafting"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Automated Railcraft Steel",
+      "final_validation": [
+        "Produce Railcraft steel in a repeatable industrial process."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "refined_fuel",
+      "title": "Oil Refining and Fluid Storage",
+      "category": "operation",
+      "icon": "minecraft:bucket",
+      "prerequisites": [
+        "early_autocrafting"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Oil Refining and Fluid Storage",
+      "final_validation": [
+        "Refine oil and buffer fuel at industrial scale."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "advanced_ic2",
+      "title": "Advanced IC2 Processing",
+      "category": "operation",
+      "icon": "minecraft:redstone_block",
+      "prerequisites": [
+        "railcraft_steel"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Advanced IC2 Processing",
+      "final_validation": [
+        "Operate advanced IC2 machines on an appropriately transformed network."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "freight_infrastructure",
+      "title": "Industrial Freight",
+      "category": "operation",
+      "icon": "minecraft:minecart",
+      "prerequisites": [
+        "railcraft_steel",
+        "refined_fuel"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Industrial Freight",
+      "final_validation": [
+        "Move bulk materials or fuel using rail or an equivalent logistics trunk."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "industrial_armament",
+      "title": "Industrial Armament",
+      "category": "operation",
+      "icon": "techguns:m4",
+      "prerequisites": [
+        "railcraft_steel"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Industrial Armament",
+      "final_validation": [
+        "Manufacture a firearm and ammunition through the factory."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "faction_contacts",
+      "title": "Human Factions",
+      "category": "mastery",
+      "icon": "minecraft:skull",
+      "prerequisites": [
+        "industrial_armament"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Human Factions",
+      "final_validation": [
+        "Trade with a friendly settlement, survive a hostile encounter, and approach an ambiguous armed faction."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "mffs_installation",
+      "title": "Industrial Containment",
+      "category": "construction",
+      "icon": "minecraft:beacon",
+      "prerequisites": [
+        "advanced_ic2"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Industrial Containment",
+      "final_validation": [
+        "Build an MFFS defensive, restricted-area, or containment installation."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "heavy_industry",
+      "title": "Heavy Industrial Complex",
+      "category": "mastery",
+      "icon": "minecraft:anvil",
+      "prerequisites": [
+        "railcraft_steel",
+        "refined_fuel",
+        "advanced_ic2"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "Heavy Industrial Complex",
+      "final_validation": [
+        "Sustain steel, refined fuel, advanced processing, powered storage, and bulk logistics."
+      ],
+      "automation_paths": []
+    }
+  ]
+}

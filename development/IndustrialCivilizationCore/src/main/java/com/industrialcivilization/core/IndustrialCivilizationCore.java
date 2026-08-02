@@ -54,6 +54,23 @@ public final class IndustrialCivilizationCore {
         .setRegistryName(MODID, "material_pattern_record")
         .setUnlocalizedName(MODID + ".material_pattern_record")
         .setMaxStackSize(1);
+    public static final ItemTestPlaceholder[] TEST_PLACEHOLDERS = {
+        placeholder("placeholder_research_station"),
+        placeholder("placeholder_orbital_experiment_module"),
+        placeholder("placeholder_orbital_research_archive"),
+        placeholder("placeholder_lunar_engineering_archive"),
+        placeholder("placeholder_lunar_quantum_component"),
+        placeholder("placeholder_mars_mission_authorization"),
+        placeholder("placeholder_martian_autonomy_archive"),
+        placeholder("placeholder_ai_core"),
+        placeholder("placeholder_electric_fabricator"),
+        placeholder("placeholder_programmable_assembler"),
+        placeholder("placeholder_robotic_manufacturing_cell")
+    };
+
+    private static ItemTestPlaceholder placeholder(String id) {
+        return new ItemTestPlaceholder(id);
+    }
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -77,6 +94,7 @@ public final class IndustrialCivilizationCore {
         @SubscribeEvent
         public static void registerItems(RegistryEvent.Register<Item> event) {
             event.getRegistry().register(MATERIAL_PATTERN_RECORD);
+            event.getRegistry().registerAll(TEST_PLACEHOLDERS);
             event.getRegistry().register(new ItemBlock(MOLECULAR_ANALYZER)
                 .setRegistryName(MOLECULAR_ANALYZER.getRegistryName()));
         }
@@ -228,6 +246,11 @@ public final class IndustrialCivilizationCore {
             ModelLoader.setCustomModelResourceLocation(
                 MATERIAL_PATTERN_RECORD, 0,
                 new ModelResourceLocation(MATERIAL_PATTERN_RECORD.getRegistryName(), "inventory"));
+            for (ItemTestPlaceholder placeholder : TEST_PLACEHOLDERS) {
+                ModelLoader.setCustomModelResourceLocation(
+                    placeholder, 0,
+                    new ModelResourceLocation(MODID + ":test_placeholder", "inventory"));
+            }
         }
 
         @SubscribeEvent

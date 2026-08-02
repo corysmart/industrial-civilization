@@ -1615,8 +1615,8 @@
     {
       "file": "mods/IndustrialCivilizationCore-0.1.0.jar",
       "filename": "IndustrialCivilizationCore-0.1.0.jar",
-      "size": 21153,
-      "sha256": "5bf56c8be522c35edbd90ba3e2687e04388e34324b6a0e4d0f85f0050875912b",
+      "size": 24035,
+      "sha256": "e82199dbf898c3ce0c6c009363fe34beb8b168eee8a9ff83dba4920d281a2fde",
       "classification": "KEEP",
       "mods": [
         {
@@ -3870,8 +3870,8 @@
     },
     {
       "file": "config/betterquesting/DefaultQuests.json",
-      "sha256": "e859bdfd2fd0637413419f9ae39a584934d26a713317d397b567cc3308a50d07",
-      "size": 13136
+      "sha256": "5aa15f4709bfb00dae331125e96b669b6ed3534c64966a3759426d341fbb32b3",
+      "size": 161583
     },
     {
       "file": "config/blockcraftery.cfg",
@@ -4317,6 +4317,11 @@
       "file": "config/industrialcivilization/factions/neutral_foundry.json",
       "sha256": "85fe521f657360294941fdbfa55b337c5e3b7d6d5434f03cb27e6f3379b9e51d",
       "size": 556
+    },
+    {
+      "file": "config/industrialcivilization/placeholders.cfg",
+      "sha256": "0eb540ee7e20c3c3f10e493753783fe5dcce51d4b21a3459036af15dec4fb971",
+      "size": 219
     },
     {
       "file": "config/industrialforegoing.cfg",
@@ -5107,6 +5112,11 @@
       "file": "groovy/postInit/industrial_civilization.groovy",
       "sha256": "c2f07803e8f2799aee91c510ad741b930ed3cd69427253f34c0575fdcf2df05b",
       "size": 5451
+    },
+    {
+      "file": "groovy/postInit/industrial_civilization_placeholders.groovy",
+      "sha256": "9865e8c0fe3705cf9d3d28515538887bf954b3c6e17f4e11d2e64288f11b24c7",
+      "size": 2560
     },
     {
       "file": "groovy/runConfig.json",

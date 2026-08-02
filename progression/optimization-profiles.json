@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "profiles": [
+    {
+      "id": "optimized",
+      "ai_age_target_hours": 20,
+      "description": "Near-perfect planning, early automation, minimal downtime, efficient reactors, strong ComputerCraft use, local off-world production, and optimized logistics.",
+      "behaviors": [
+        "parallel production",
+        "planned cargo",
+        "local off-world manufacture"
+      ]
+    },
+    {
+      "id": "average",
+      "ai_age_target_hours": 40,
+      "description": "Competent play with some automation, some manual work, occasional bottlenecks, normal exploration, moderate rebuilding, and reasonable industrial-system use.",
+      "behaviors": [
+        "mixed manual and automatic work",
+        "occasional shortages",
+        "reasonable infrastructure reuse"
+      ]
+    },
+    {
+      "id": "poor",
+      "ai_age_target_hours": 80,
+      "description": "Heavy manual crafting, limited automation, weak balancing, frequent shortages, poor power infrastructure, repeated travel, and minimal programmable control.",
+      "behaviors": [
+        "manual transport",
+        "idle machines",
+        "off-world imports"
+      ]
+    }
+  ]
+}

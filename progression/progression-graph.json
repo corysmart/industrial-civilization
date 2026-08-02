@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "canonical_order": [
+    "survival_workshop",
+    "electrification",
+    "automated_industry",
+    "heavy_industry",
+    "programmable_manufacturing",
+    "nuclear_age",
+    "orbital_age",
+    "orbital_research",
+    "lunar_settlement",
+    "lunar_research",
+    "quantum_technology",
+    "mars_settlement",
+    "martian_autonomy",
+    "lite_matter_engineering",
+    "ai_age",
+    "post_ai_civilization"
+  ],
+  "critical_path": [
+    "secure_workshop",
+    "first_ic2_generator",
+    "stable_electrical_workshop",
+    "automated_ore_processing",
+    "physical_logistics",
+    "early_autocrafting",
+    "heavy_industry",
+    "programmable_manufacturing",
+    "monitored_nuclear_power",
+    "tier1_orbital_launch",
+    "functional_orbital_station",
+    "orbital_research_complete",
+    "moon_access",
+    "functional_lunar_base",
+    "lunar_research_complete",
+    "quantum_technology_complete",
+    "mars_mission_authorization",
+    "tier2_mars_launch",
+    "functional_martian_base",
+    "martian_autonomy_complete",
+    "molecular_analyzer",
+    "material_pattern_record",
+    "lite_matter_complete",
+    "artificial_industrial_intelligence_core",
+    "ai_age_entry",
+    "ae2_entry",
+    "uu_matter_research",
+    "controlled_replication",
+    "continuous_civilization"
+  ],
+  "hard_gates": {
+    "moon_access": [
+      "orbital_research_complete"
+    ],
+    "quantum_research_access": [
+      "lunar_research_complete"
+    ],
+    "tier2_mars_launch": [
+      "quantum_technology_complete",
+      "mars_mission_authorization"
+    ],
+    "ai_age_entry": [
+      "orbital_research_complete",
+      "lunar_research_complete",
+      "quantum_technology_complete",
+      "martian_autonomy_complete",
+      "lite_matter_complete"
+    ],
+    "ae2_entry": [
+      "ai_age_entry"
+    ]
+  },
+  "optional_branches": {
+    "industrial_defense": [
+      "industrial_armament",
+      "faction_contacts",
+      "mffs_installation",
+      "nuclear_containment"
+    ],
+    "orbital_power": [
+      "orbital_solar_industry",
+      "orbital_tracking_array"
+    ],
+    "cargo_logistics": [
+      "freight_infrastructure",
+      "lunar_cargo",
+      "martian_cargo",
+      "cross_planetary_logistics"
+    ],
+    "post_ai_parallel": [
+      "predictive_production",
+      "fusion_and_antimatter",
+      "orbital_megastructures",
+      "autonomous_colony_expansion",
+      "civilization_scale_ai"
+    ]
+  },
+  "autocrafting_tiers": [
+    "manual_crafting_table",
+    "early_autocrafting",
+    "electric_fabricator",
+    "programmable_assembler",
+    "robotic_manufacturing_cell",
+    "ae2_autocrafting"
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "privacy": "future_opt_in_aggregate_only",
+  "implemented": false,
+  "fields": [
+    {
+      "id": "milestone_completion_time",
+      "type": "map<string,seconds>"
+    },
+    {
+      "id": "chapter_time",
+      "type": "map<string,seconds>"
+    },
+    {
+      "id": "manual_crafts",
+      "type": "integer"
+    },
+    {
+      "id": "autocrafting_operations",
+      "type": "integer"
+    },
+    {
+      "id": "blocks_mined_manually",
+      "type": "integer"
+    },
+    {
+      "id": "blocks_mined_automatically",
+      "type": "integer"
+    },
+    {
+      "id": "machine_utilization",
+      "type": "map<string,ratio>"
+    },
+    {
+      "id": "machine_idle_time",
+      "type": "map<string,seconds>"
+    },
+    {
+      "id": "eu_generated",
+      "type": "number"
+    },
+    {
+      "id": "eu_consumed",
+      "type": "number"
+    },
+    {
+      "id": "reactor_efficiency",
+      "type": "number"
+    },
+    {
+      "id": "launches",
+      "type": "integer"
+    },
+    {
+      "id": "cargo_transported",
+      "type": "number"
+    },
+    {
+      "id": "moon_resources_imported",
+      "type": "number"
+    },
+    {
+      "id": "moon_resources_produced",
+      "type": "number"
+    },
+    {
+      "id": "mars_resources_imported",
+      "type": "number"
+    },
+    {
+      "id": "mars_resources_produced",
+      "type": "number"
+    },
+    {
+      "id": "computercraft_programs_used",
+      "type": "integer"
+    },
+    {
+      "id": "ae_unlock_time",
+      "type": "seconds"
+    }
+  ]
+}

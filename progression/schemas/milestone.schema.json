@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Industrial Civilization milestone",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "category",
+    "icon",
+    "prerequisites",
+    "critical",
+    "optional",
+    "capability",
+    "final_validation"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+$"
+    },
+    "category": {
+      "enum": [
+        "possession",
+        "construction",
+        "operation",
+        "mastery",
+        "research",
+        "transition"
+      ]
+    },
+    "prerequisites": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

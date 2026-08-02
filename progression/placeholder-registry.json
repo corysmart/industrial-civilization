@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "namespace": "industrialcivilizationcore",
+  "config": "config/industrialcivilization/placeholders.cfg",
+  "entries": [
+    {
+      "id": "research_station",
+      "milestone_id": "research_station",
+      "placeholder_item": "industrialcivilizationcore:placeholder_research_station",
+      "display_name": "[TEST PLACEHOLDER] Research Station",
+      "final_target": "industrial_civilization:research_station",
+      "represents": [
+        "powered modular station",
+        "environment detection",
+        "ComputerCraft peripheral"
+      ],
+      "replacement_status": "not_implemented",
+      "recipe_kind": "research_station",
+      "temporary_recipe": [
+        "minecraft:paper",
+        "minecraft:redstone"
+      ]
+    },
+    {
+      "id": "orbital_experiment_module",
+      "milestone_id": "orbital_experiment_module",
+      "placeholder_item": "industrialcivilizationcore:placeholder_orbital_experiment_module",
+      "display_name": "[TEST PLACEHOLDER] Orbital Experiment Module",
+      "final_target": "industrial_civilization:orbital_experiment_module",
+      "represents": [
+        "environment-aware orbital experiment",
+        "data output"
+      ],
+      "replacement_status": "not_implemented",
+      "recipe_kind": "research",
+      "temporary_recipe": [
+        "minecraft:paper",
+        "minecraft:redstone"
+      ]
+    },
+    {
+      "id": "orbital_research_archive",
+      "milestone_id": "orbital_research_complete",
+      "placeholder_item": "industrialcivilizationcore:placeholder_orbital_research_archive",
+      "display_name": "[TEST PLACEHOLDER] Orbital Research Archive",
+      "final_target": "industrial_civilization:orbital_research_archive",
+      "represents": [
+        "functional orbital station",
+        "experiments complete",
+        "telemetry recorded"
+      ],
+      "replacement_status": "not_implemented",
+      "recipe_kind": "research",
+      "temporary_recipe": [
+        "minecraft:paper",
+        "minecraft:redstone"
+      ]
+    },
+    {
+      "id": "lunar_engineering_archive",
+      "milestone_id": "lunar_research_complete",
+      "placeholder_item": "industrialcivilizationcore:placeholder_lunar_engineering_archive",
+      "display_name": "[TEST PLACEHOLDER] Lunar Engineering Archive",
+      "final_target": "industrial_civilization:lunar_engineering_archive",
+      "represents": [
+        "functional lunar base",
+        "lunar research complete",
+        "telemetry recorded"
+      ],
+      "replacement_status": "not_implemented",
+      "recipe_kind": "research",
+      "temporary_recipe": [
+        "minecraft:paper",
+        "minecraft:redstone"
+      ]
+    },
+    {
+      "id": "lunar_quantum_component",
+      "milestone_id": "lunar_quantum_component",
+      "placeholder_item": "industrialcivilizationcore:placeholder_lunar_quantum_component",
+      "display_name": "[TEST PLACEHOLDER] Lunar Quantum Component",
+      "final_target": "industrial_civilization:lunar_quantum_component",
+      "represents": [
+        "Moon-only precision manufacturing",
+        "Quantum-compatible material"
+      ],
+      "replacement_status": "not_implemented",
+      "recipe_kind": "research",
+      "temporary_recipe": [
+        "minecraft:paper",
+        "minecraft:redstone"
+      ]
+    },
+    {
+      "id": "mars_mission_authorization",
+      "milestone_id": "mars_mission_authorization",
+      "placeholder_item": "industrialcivilizationcore:placeholder_mars_mission_authorization",
+      "display_name": "[TEST PLACEHOLDER] Mars Mission Authorization",
+      "final_target": "industrial_civilization:mars_mission_authorization",
+      "represents": [
+        "Quantum readiness",
+        "Tier 2 mission authorization"
+      ],
+      "replacement_status": "not_implemented",
+      "recipe_kind": "research",
+      "temporary_recipe": [
+        "minecraft:paper",
+        "minecraft:redstone"
+      ]
+    },
+    {
+      "id": "martian_autonomy_archive",
+      "milestone_id": "martian_autonomy_complete",
+      "placeholder_item": "industrialcivilizationcore:placeholder_martian_autonomy_archive",
+      "display_name": "[TEST PLACEHOLDER] Martian Autonomy Archive",
+      "final_target": "industrial_civilization:martian_autonomy_archive",
+      "represents": [
+        "autonomous Martian industry",
+        "fault response",
+        "telemetry"
+      ],
+      "replacement_status": "not_implemented",
+      "recipe_kind": "research",
+      "temporary_recipe": [
+        "minecraft:paper",
+        "minecraft:redstone"
+      ]
+    },
+    {
+      "id": "ai_core",
+      "milestone_id": "artificial_industrial_intelligence_core",
+      "placeholder_item": "industrialcivilizationcore:placeholder_ai_core",
+      "display_name": "[TEST PLACEHOLDER] Artificial Industrial Intelligence Core",
+      "final_target": "industrial_civilization:artificial_industrial_intelligence_core",
+      "represents": [
+        "industrial AI coordination",
+        "AE2 recipe authorization"
+      ],
+      "replacement_status": "not_implemented",
+      "recipe_kind": "machine",
+      "temporary_recipe": [
+        "minecraft:iron_ingot",
+        "minecraft:redstone"
+      ]
+    },
+    {
+      "id": "electric_fabricator",
+      "milestone_id": "electric_fabricator",
+      "placeholder_item": "industrialcivilizationcore:placeholder_electric_fabricator",
+      "display_name": "[TEST PLACEHOLDER] Electric Fabricator",
+      "final_target": "industrial_civilization:electric_fabricator",
+      "represents": [
+        "EU-powered fixed recipe",
+        "160-tick operation"
+      ],
+      "replacement_status": "not_implemented",
+      "recipe_kind": "machine",
+      "temporary_recipe": [
+        "minecraft:iron_ingot",
+        "minecraft:redstone"
+      ]
+    },
+    {
+      "id": "programmable_assembler",
+      "milestone_id": "programmable_assembler",
+      "placeholder_item": "industrialcivilizationcore:placeholder_programmable_assembler",
+      "display_name": "[TEST PLACEHOLDER] Programmable Assembler",
+      "final_target": "industrial_civilization:programmable_assembler",
+      "represents": [
+        "multiple recipe programs",
+        "ComputerCraft queue API"
+      ],
+      "replacement_status": "not_implemented",
+      "recipe_kind": "machine",
+      "temporary_recipe": [
+        "minecraft:iron_ingot",
+        "minecraft:redstone"
+      ]
+    },
+    {
+      "id": "robotic_manufacturing_cell",
+      "milestone_id": "robotic_manufacturing_cell",
+      "placeholder_item": "industrialcivilizationcore:placeholder_robotic_manufacturing_cell",
+      "display_name": "[TEST PLACEHOLDER] Robotic Manufacturing Cell",
+      "final_target": "industrial_civilization:robotic_manufacturing_cell",
+      "represents": [
+        "parallel high-throughput assembly",
+        "physical logistics"
+      ],
+      "replacement_status": "not_implemented",
+      "recipe_kind": "machine",
+      "temporary_recipe": [
+        "minecraft:iron_ingot",
+        "minecraft:redstone"
+      ]
+    }
+  ]
+}

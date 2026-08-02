@@ -32,6 +32,7 @@
 
 # Local mod build output
 /development/IndustrialCivilizationCore/.gradle/
+/development/IndustrialCivilizationCore/.gradle-user-home/
 /development/IndustrialCivilizationCore/build/
 
 # Editor and temporary files
@@ -40,4 +41,3 @@
 *.swp
 *.tmp
 *.next
-

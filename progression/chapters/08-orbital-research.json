@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "id": "orbital_research",
+  "number": 8,
+  "title": "Orbital Research",
+  "purpose": "Prove sustained station operation through experiments and produce the archive that gates Moon access.",
+  "prerequisite_chapters": [
+    "orbital_age"
+  ],
+  "completion_milestone": "orbital_research_complete",
+  "automation_paths": [
+    "Telemetry collection",
+    "Automated orbital production",
+    "High-output orbital solar"
+  ],
+  "optimization_opportunities": [
+    "Right-size eclipse storage, keep experiments powered, transmit data automatically, and use orbital energy productively."
+  ],
+  "infrastructure_reuse": "The same station, solar array, docking, and Research Station support Moon logistics and later Mars traffic.",
+  "milestones": [
+    {
+      "id": "orbital_experiments",
+      "title": "Orbital Experiment Program",
+      "category": "research",
+      "icon": "minecraft:glass_bottle",
+      "prerequisites": [
+        "functional_orbital_station"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Orbital Experiment Program",
+      "final_validation": [
+        "Complete vacuum materials, radiation, telescope, microgravity, life-support, communications, and eclipse experiments as implemented."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Manual-check representative experiments until modules record them."
+    },
+    {
+      "id": "orbital_operational_data",
+      "title": "Orbital Operational Data",
+      "category": "mastery",
+      "icon": "minecraft:filled_map",
+      "prerequisites": [
+        "orbital_experiments"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Orbital Operational Data",
+      "final_validation": [
+        "Record station, oxygen, power, solar, eclipse, manufacturing, and transmission uptime."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Manual-check the operating run until telemetry persists automatically."
+    },
+    {
+      "id": "orbital_solar_industry",
+      "title": "Orbital Solar Industry",
+      "category": "operation",
+      "icon": "minecraft:daylight_detector",
+      "prerequisites": [
+        "orbital_operational_data"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Orbital Solar Industry",
+      "final_validation": [
+        "Run an automated orbital production line from enhanced orbital solar generation."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "orbital_tracking_array",
+      "title": "Advanced Tracking Solar Array",
+      "category": "construction",
+      "icon": "minecraft:observer",
+      "prerequisites": [
+        "orbital_solar_industry"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Advanced Tracking Solar Array",
+      "final_validation": [
+        "Build an advanced tracking array targeting 15\u201325\u00d7 Earth solar output when implemented."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Manual-check the planned array; final output scaling is not implemented."
+    },
+    {
+      "id": "orbital_research_complete",
+      "title": "Orbital Research Archive",
+      "category": "possession",
+      "icon": "industrialcivilizationcore:placeholder_orbital_research_archive",
+      "prerequisites": [
+        "orbital_operational_data"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "Orbital Research Archive",
+      "final_validation": [
+        "Demonstrate the capability: Orbital Research Archive."
+      ],
+      "automation_paths": [],
+      "required_item": "industrialcivilizationcore:placeholder_orbital_research_archive",
+      "placeholder_id": "orbital_research_archive",
+      "temporary_validation": "Obtain the test archive. Final validation requires powered research, experiments, sustained environment, eclipse survival, and telemetry transmission."
+    },
+    {
+      "id": "moon_access",
+      "title": "Moon Access",
+      "category": "transition",
+      "icon": "galacticraftcore:rocket_t1",
+      "prerequisites": [
+        "orbital_research_complete"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "Moon Access",
+      "final_validation": [
+        "Use the Orbital Research Archive to authorize lunar navigation, descent, and environmental systems."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "The quest dependency is authoritative; destination-level runtime enforcement remains future work."
+    }
+  ]
+}

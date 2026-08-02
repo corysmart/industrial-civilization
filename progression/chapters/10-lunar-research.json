@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "id": "lunar_research",
+  "number": 10,
+  "title": "Lunar Research",
+  "purpose": "Use lunar science and sustained local industry to unlock Quantum Technology\u2014not Mars directly.",
+  "prerequisite_chapters": [
+    "lunar_settlement"
+  ],
+  "completion_milestone": "lunar_research_complete",
+  "automation_paths": [
+    "Automated lunar mining",
+    "Environment-aware research",
+    "Telemetry transmission",
+    "Precision local manufacturing"
+  ],
+  "optimization_opportunities": [
+    "Share power and logistics across experiments, keep lunar industry productive during research, and schedule around darkness."
+  ],
+  "infrastructure_reuse": "The lunar base, automated mine, station platform, and orbital link become Quantum manufacturing infrastructure.",
+  "milestones": [
+    {
+      "id": "lunar_science_program",
+      "title": "Lunar Science Program",
+      "category": "research",
+      "icon": "minecraft:quartz",
+      "prerequisites": [
+        "functional_lunar_base"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Lunar Science Program",
+      "final_validation": [
+        "Complete regolith, metallurgy, radiation, seismic, isotope, habitat, mining, communications, and precision-manufacturing studies as implemented."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Manual-check representative studies until Research Station modules exist."
+    },
+    {
+      "id": "lunar_darkness_mastery",
+      "title": "Darkness-Cycle Habitat Mastery",
+      "category": "mastery",
+      "icon": "minecraft:clock",
+      "prerequisites": [
+        "lunar_science_program"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Darkness-Cycle Habitat Mastery",
+      "final_validation": [
+        "Maintain habitation and industry through a full lunar darkness challenge."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Manual-check the operational run until uptime telemetry exists."
+    },
+    {
+      "id": "lunar_precision_manufacturing",
+      "title": "Lunar Precision Manufacturing",
+      "category": "operation",
+      "icon": "minecraft:comparator",
+      "prerequisites": [
+        "lunar_science_program"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Lunar Precision Manufacturing",
+      "final_validation": [
+        "Manufacture a precision component locally and transmit production telemetry."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Manual-check the local process until environment-aware recipes exist."
+    },
+    {
+      "id": "lunar_research_complete",
+      "title": "Lunar Engineering Archive",
+      "category": "possession",
+      "icon": "industrialcivilizationcore:placeholder_lunar_engineering_archive",
+      "prerequisites": [
+        "lunar_darkness_mastery",
+        "lunar_precision_manufacturing"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "Lunar Engineering Archive",
+      "final_validation": [
+        "Demonstrate the capability: Lunar Engineering Archive."
+      ],
+      "automation_paths": [],
+      "required_item": "industrialcivilizationcore:placeholder_lunar_engineering_archive",
+      "placeholder_id": "lunar_engineering_archive",
+      "temporary_validation": "Obtain the test archive. Final validation requires local materials, automated mining, precision manufacture, sustained habitat, and off-world telemetry."
+    },
+    {
+      "id": "quantum_research_access",
+      "title": "Quantum Research Access",
+      "category": "transition",
+      "icon": "minecraft:nether_star",
+      "prerequisites": [
+        "lunar_research_complete"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "Quantum Research Access",
+      "final_validation": [
+        "Use the Lunar Engineering Archive to open Quantum Technology research; Mars remains locked."
+      ],
+      "automation_paths": []
+    }
+  ]
+}

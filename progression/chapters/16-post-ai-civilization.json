@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "id": "post_ai_civilization",
+  "number": 16,
+  "title": "Continuously Expanding Post-AI Civilization",
+  "purpose": "Branch into scale, matter engineering, megastructures, autonomy, and new colonies without blocking AI entry.",
+  "prerequisite_chapters": [
+    "ai_age"
+  ],
+  "completion_milestone": "continuous_civilization",
+  "automation_paths": [
+    "AE2 network crafting",
+    "Predictive supply",
+    "Automated cargo",
+    "Self-repair",
+    "Autonomous colony construction"
+  ],
+  "optimization_opportunities": [
+    "Optimize energy scale, throughput, resilience, network architecture, colony independence, and research priorities."
+  ],
+  "infrastructure_reuse": "The endgame scales and connects all previous infrastructure; no post-AI milestone is a prerequisite for AI entry.",
+  "milestones": [
+    {
+      "id": "ae2_autocrafting",
+      "title": "AE2 Network Crafting",
+      "category": "operation",
+      "icon": "appliedenergistics2:crafting_unit",
+      "prerequisites": [
+        "ae2_entry"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "AE2 Network Crafting",
+      "final_validation": [
+        "Encode and execute an ordinary multi-step crafting request while physical machine processes retain real throughput."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "ai_factory_coordination",
+      "title": "AI Factory Coordination",
+      "category": "mastery",
+      "icon": "computercraft:computer",
+      "prerequisites": [
+        "ae2_autocrafting"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "AI Factory Coordination",
+      "final_validation": [
+        "Coordinate inventory-aware production across multiple physical machine lines."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "cross_planetary_logistics",
+      "title": "Cross-Planetary AI Logistics",
+      "category": "mastery",
+      "icon": "minecraft:ender_eye",
+      "prerequisites": [
+        "ai_factory_coordination"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Cross-Planetary AI Logistics",
+      "final_validation": [
+        "Coordinate automated orbital cargo, autonomous lunar industry, and autonomous Martian industry."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "predictive_production",
+      "title": "Predictive Production",
+      "category": "mastery",
+      "icon": "minecraft:observer",
+      "prerequisites": [
+        "ai_factory_coordination"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Predictive Production",
+      "final_validation": [
+        "Maintain demand forecasts, resilient buffers, and automatic shortage response."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "uu_matter_research",
+      "title": "UU-Matter Research",
+      "category": "research",
+      "icon": "minecraft:dragon_breath",
+      "prerequisites": [
+        "ai_factory_coordination"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "UU-Matter Research",
+      "final_validation": [
+        "Complete the future AI-assisted energy-to-matter research program."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Manual-check the storyboard; UU-Matter is intentionally not implemented in this phase."
+    },
+    {
+      "id": "uu_matter_production",
+      "title": "Controlled UU-Matter Production",
+      "category": "operation",
+      "icon": "minecraft:purple_glazed_terracotta",
+      "prerequisites": [
+        "uu_matter_research"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Controlled UU-Matter Production",
+      "final_validation": [
+        "Produce UU-Matter through a high-energy, time-based physical process."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Manual-check the storyboard; no temporary free-matter recipe is provided."
+    },
+    {
+      "id": "controlled_replication",
+      "title": "Controlled Matter Replication",
+      "category": "mastery",
+      "icon": "industrialcivilizationcore:material_pattern_record",
+      "prerequisites": [
+        "uu_matter_production"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "Controlled Matter Replication",
+      "final_validation": [
+        "Replicate an authorized pattern with material, energy, and throughput constraints."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Manual-check the storyboard; replication remains deliberately unavailable."
+    },
+    {
+      "id": "fusion_and_antimatter",
+      "title": "Fusion and Antimatter",
+      "category": "research",
+      "icon": "minecraft:end_crystal",
+      "prerequisites": [
+        "uu_matter_research"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Fusion and Antimatter",
+      "final_validation": [
+        "Develop fusion power, exotic materials, and contained antimatter research."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Manual-check the extensible endgame branch."
+    },
+    {
+      "id": "orbital_megastructures",
+      "title": "Orbital Megastructures",
+      "category": "construction",
+      "icon": "minecraft:beacon",
+      "prerequisites": [
+        "cross_planetary_logistics"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Orbital Megastructures",
+      "final_validation": [
+        "Build advanced orbital solar arrays, automated shipyards, and large interplanetary vessels."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Manual-check the extensible endgame branch."
+    },
+    {
+      "id": "autonomous_colony_expansion",
+      "title": "Autonomous Colony Expansion",
+      "category": "mastery",
+      "icon": "minecraft:map",
+      "prerequisites": [
+        "cross_planetary_logistics",
+        "predictive_production"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Autonomous Colony Expansion",
+      "final_validation": [
+        "Establish a new colony with self-repairing factories and connected logistics."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Manual-check the extensible endgame branch."
+    },
+    {
+      "id": "civilization_scale_ai",
+      "title": "Civilization-Scale AI Core",
+      "category": "mastery",
+      "icon": "minecraft:nether_star",
+      "prerequisites": [
+        "controlled_replication",
+        "orbital_megastructures",
+        "autonomous_colony_expansion"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Civilization-Scale AI Core",
+      "final_validation": [
+        "Coordinate a planetary-scale manufacturing and research network."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Manual-check the extensible endgame branch."
+    },
+    {
+      "id": "continuous_civilization",
+      "title": "Continuously Expanding Civilization",
+      "category": "mastery",
+      "icon": "minecraft:elytra",
+      "prerequisites": [
+        "controlled_replication"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Continuously Expanding Civilization",
+      "final_validation": [
+        "Continue the Explore \u2192 Research \u2192 Automate \u2192 Scale \u2192 Colonize \u2192 Connect \u2192 Build loop; optional branches remain open-ended."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "This is an intentionally open-ended capstone, not a terminal victory condition."
+    }
+  ]
+}

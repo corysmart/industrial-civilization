@@ -3,6 +3,7 @@
 import hashlib
 import json
 import re
+import subprocess
 import sys
 import zipfile
 from pathlib import Path
@@ -30,6 +31,12 @@ required_docs = [
     "SENSOR_API.md", "PROGRESSION.md", "NUCLEAR_PROGRESSION.md", "MOON_PROGRESSION.md",
     "MARS_PROGRESSION.md", "LITE_MATTER_ENGINEERING.md", "AI_AGE_LOCK.md",
     "COMPATIBILITY_NOTES.md", "KNOWN_LIMITATIONS.md", "MANUAL_TEST_CHECKLIST.md", "HOT_RELOAD.md", "KEYBINDS.md", "NEXT_STEPS.md",
+    "PROGRESSION_OVERVIEW.md", "PROGRESSION_GRAPH.md", "CRITICAL_PATH.md", "OPTIONAL_PATHS.md",
+    "PACING_TARGETS.md", "PACING_PROFILES.md", "OPTIMIZATION_OPPORTUNITIES.md", "ANTI_GRIND_RULES.md",
+    "PLACEHOLDER_SYSTEM.md", "QUEST_IMPLEMENTATION.md", "AUTOCRAFTING_PROGRESSION.md", "RESEARCH_PROGRESSION.md",
+    "ORBITAL_STATION.md", "ORBITAL_RESEARCH.md", "LUNAR_PROGRAM.md", "LUNAR_RESEARCH.md",
+    "QUANTUM_TECHNOLOGY.md", "MARS_PROGRAM.md", "MARTIAN_AUTONOMY.md", "POST_AI_ENDGAME.md",
+    "TELEMETRY_SCHEMA.md", "MANUAL_QUEST_TEST_CHECKLIST.md",
 ]
 for name in required_docs:
     ok((ROOT / "docs" / name).is_file(), f"required document {name}")
@@ -201,8 +208,10 @@ with zipfile.ZipFile(core_live) as zf:
     for expected in (
         "com/industrialcivilization/core/IndustrialCivilizationCore.class",
         "com/industrialcivilization/core/TileMolecularAnalyzer.class",
+        "com/industrialcivilization/core/ItemTestPlaceholder.class",
         "mcmod.info",
         "assets/industrialcivilizationcore/blockstates/molecular_analyzer.json",
+        "assets/industrialcivilizationcore/models/item/test_placeholder.json",
     ):
         ok(expected in names, f"custom JAR resource {expected}")
     info = json.loads(zf.read("mcmod.info").decode())
@@ -225,9 +234,21 @@ for path in sorted((ROOT / "config").rglob("*.json")) + sorted((ROOT / "developm
 
 quests = json.loads((ROOT / "config/betterquesting/DefaultQuests.json").read_text())
 ok(quests.get("format:8") == "2.0.0", "Better Questing schema version")
-ok(len(quests.get("questDatabase:9", {})) == 10, "ten broad objectives")
+ok(len(quests.get("questDatabase:9", {})) == 108, "108 Phase 2 capability milestones")
+ok(len(quests.get("questLines:9", {})) == 16, "16 Phase 2 chapter tabs")
 names = [q["properties:10"]["betterquesting:10"]["name:8"] for q in quests["questDatabase:9"].values()]
-ok(names[6:9] == ["Moon Program", "Mars Program", "Lite Matter Engineering"], "Moon-before-Mars quest ordering")
+ordered_gates = ["Orbital Research Archive", "Authorized Lunar Landing", "Lunar Engineering Archive",
+                 "Quantum Technology Complete", "Mars Mission Authorization", "Authorized Tier 2 Mars Launch",
+                 "Martian Autonomy Archive", "Lite Matter Engineering Complete", "Enter the AI Age",
+                 "Applied Energistics Entry"]
+ok(all(name in names for name in ordered_gates) and
+   [names.index(name) for name in ordered_gates] == sorted(names.index(name) for name in ordered_gates),
+   "Orbit-Moon-Quantum-Mars-AI-AE2 quest ordering")
+progression_validation = subprocess.run(
+    [sys.executable, str(ROOT / "tools/validate_progression.py")],
+    cwd=str(ROOT), capture_output=True, text=True)
+ok(progression_validation.returncode == 0,
+   "canonical progression validator: " + progression_validation.stdout.strip().splitlines()[-1])
 quest_home = "industrialcivilizationcore:textures/gui/quest_home_v2.png"
 quest_settings = quests["questSettings:10"]["betterquesting:10"]
 ok(quest_settings.get("home_image:8") == quest_home, "pack-owned Better Questing home image configured")

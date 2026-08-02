@@ -13,4 +13,16 @@ Technic test instance is `/Users/cory/Library/Application Support/technic/modpac
 and should be treated as a deployment target rather than the Git working tree.
 
 See `docs/ADDED_MODS.md` for added dependencies, `manifest/final-mod-lock.json`
-for exact hashes, and `docs/MANUAL_TEST_CHECKLIST.md` for verification steps.
+for exact hashes, and `docs/MANUAL_QUEST_TEST_CHECKLIST.md` for Phase 2 verification.
+
+The authoritative Phase 2 progression is the machine-readable `progression/`
+tree. Regenerate its Better Questing projection and documentation with:
+
+```sh
+python3 tools/generate_objectives.py
+python3 tools/generate_progression_docs.py
+python3 tools/validate_progression.py
+python3 tools/static_validate.py
+```
+
+These checks are static and never start Minecraft, Forge, Technic, or a server.

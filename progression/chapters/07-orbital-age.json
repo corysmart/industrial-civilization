@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "id": "orbital_age",
+  "number": 7,
+  "title": "Orbital Age",
+  "purpose": "Make Earth orbit the first mandatory destination and establish a survivable, expandable station.",
+  "prerequisite_chapters": [
+    "nuclear_age"
+  ],
+  "completion_milestone": "functional_orbital_station",
+  "automation_paths": [
+    "ComputerCraft telemetry",
+    "Orbital solar generation",
+    "Planned launch cargo",
+    "Later automated cargo"
+  ],
+  "optimization_opportunities": [
+    "Pre-manufacture station systems, pack launches carefully, and reuse orbital power and docking infrastructure."
+  ],
+  "infrastructure_reuse": "Nuclear manufacturing builds launch hardware; the orbital station remains a research, power, cargo, and shipyard hub.",
+  "milestones": [
+    {
+      "id": "tier1_orbital_launch",
+      "title": "Tier 1 Orbital Launch",
+      "category": "transition",
+      "icon": "galacticraftcore:rocket_t1",
+      "prerequisites": [
+        "monitored_nuclear_power"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "Tier 1 Orbital Launch",
+      "final_validation": [
+        "Build a Tier 1 launch system and safely reach Earth orbit; this alone does not authorize Moon access."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "orbital_habitat",
+      "title": "Pressurized Orbital Habitat",
+      "category": "construction",
+      "icon": "minecraft:glass",
+      "prerequisites": [
+        "tier1_orbital_launch"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Pressurized Orbital Habitat",
+      "final_validation": [
+        "Establish pressure, oxygen, storage, and safe habitation in orbit."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "orbital_power",
+      "title": "Orbital Power and Eclipse Storage",
+      "category": "operation",
+      "icon": "minecraft:daylight_detector",
+      "prerequisites": [
+        "orbital_habitat"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Orbital Power and Eclipse Storage",
+      "final_validation": [
+        "Install IC2 solar generation and enough stored power to survive an eclipse."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "orbital_communications",
+      "title": "Orbital Communications and Telemetry",
+      "category": "operation",
+      "icon": "computercraft:computer",
+      "prerequisites": [
+        "orbital_habitat"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Orbital Communications and Telemetry",
+      "final_validation": [
+        "Bring a ComputerCraft telemetry and communications system online."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "research_station",
+      "title": "Research Station",
+      "category": "possession",
+      "icon": "industrialcivilizationcore:placeholder_research_station",
+      "prerequisites": [
+        "orbital_power",
+        "orbital_communications"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Research Station",
+      "final_validation": [
+        "Demonstrate the capability: Research Station."
+      ],
+      "automation_paths": [],
+      "required_item": "industrialcivilizationcore:placeholder_research_station",
+      "placeholder_id": "research_station",
+      "temporary_validation": "Obtain the test Research Station item. Final validation requires the modular powered station platform."
+    },
+    {
+      "id": "orbital_experiment_module",
+      "title": "Orbital Experiment Module",
+      "category": "possession",
+      "icon": "industrialcivilizationcore:placeholder_orbital_experiment_module",
+      "prerequisites": [
+        "research_station"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Orbital Experiment Module",
+      "final_validation": [
+        "Demonstrate the capability: Orbital Experiment Module."
+      ],
+      "automation_paths": [],
+      "required_item": "industrialcivilizationcore:placeholder_orbital_experiment_module",
+      "placeholder_id": "orbital_experiment_module",
+      "temporary_validation": "Obtain the test experiment module. Final validation requires a real environment-aware module."
+    },
+    {
+      "id": "functional_orbital_station",
+      "title": "Functional Orbital Station",
+      "category": "mastery",
+      "icon": "minecraft:beacon",
+      "prerequisites": [
+        "orbital_habitat",
+        "orbital_power",
+        "orbital_communications",
+        "orbital_experiment_module"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "Functional Orbital Station",
+      "final_validation": [
+        "Sustain habitation, oxygen, power, storage, telemetry, research equipment, and safe arrival infrastructure."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Manual-check the assembled station until environment/uptime triggers exist."
+    }
+  ]
+}

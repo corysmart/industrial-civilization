@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "id": "nuclear_age",
+  "number": 6,
+  "title": "Nuclear Age",
+  "purpose": "Operate monitored high-output nuclear power suitable for orbital development.",
+  "prerequisite_chapters": [
+    "programmable_manufacturing"
+  ],
+  "completion_milestone": "monitored_nuclear_power",
+  "automation_paths": [
+    "Automated fuel-component supply",
+    "Computerized heat/output monitoring",
+    "Remote emergency shutdown"
+  ],
+  "optimization_opportunities": [
+    "Efficient layouts improve fuel use and output; automation reduces downtime and accelerates launch manufacturing."
+  ],
+  "infrastructure_reuse": "Heavy-industry materials, programmable monitoring, and existing power distribution become the space-program utility grid.",
+  "milestones": [
+    {
+      "id": "nuclear_reactor",
+      "title": "IC2 Nuclear Reactor",
+      "category": "construction",
+      "icon": "minecraft:cauldron",
+      "prerequisites": [
+        "programmable_manufacturing"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "IC2 Nuclear Reactor",
+      "final_validation": [
+        "Build a complete IC2 nuclear reactor and safe support area."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "reactor_output",
+      "title": "Sustained Nuclear Output",
+      "category": "operation",
+      "icon": "minecraft:redstone_block",
+      "prerequisites": [
+        "nuclear_reactor"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Sustained Nuclear Output",
+      "final_validation": [
+        "Produce useful sustained power with a stable reactor design."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "reactor_telemetry",
+      "title": "Reactor Telemetry",
+      "category": "operation",
+      "icon": "computercraft:computer",
+      "prerequisites": [
+        "reactor_output"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Reactor Telemetry",
+      "final_validation": [
+        "Monitor heat, output, and operating state."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "emergency_shutdown",
+      "title": "Remote Emergency Shutdown",
+      "category": "operation",
+      "icon": "minecraft:lever",
+      "prerequisites": [
+        "reactor_telemetry"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Remote Emergency Shutdown",
+      "final_validation": [
+        "Trigger a verified remote shutdown and confirm output ceases."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "nuclear_containment",
+      "title": "Nuclear Containment",
+      "category": "construction",
+      "icon": "minecraft:obsidian",
+      "prerequisites": [
+        "nuclear_reactor"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Nuclear Containment",
+      "final_validation": [
+        "Use MFFS or equivalent containment appropriate to the reactor risk."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "monitored_nuclear_power",
+      "title": "Monitored Nuclear Power",
+      "category": "mastery",
+      "icon": "minecraft:beacon",
+      "prerequisites": [
+        "reactor_output",
+        "emergency_shutdown"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "Monitored Nuclear Power",
+      "final_validation": [
+        "Operate stable, monitored high-output nuclear infrastructure for advanced manufacturing."
+      ],
+      "automation_paths": []
+    }
+  ]
+}

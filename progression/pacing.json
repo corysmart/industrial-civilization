@@ -1,0 +1,501 @@
+{
+  "schema_version": 1,
+  "canonical_profile": "average",
+  "ai_age_target_hours": {
+    "optimized": 20,
+    "average": 40,
+    "poor": 80
+  },
+  "milestones": [
+    {
+      "milestone_id": "first_ic2_generator",
+      "cumulative_hours": {
+        "optimized": 0.75,
+        "average": 1.5,
+        "poor": 3
+      },
+      "raw_resource_requirements": "Basic metals, rubber, redstone",
+      "machine_throughput": "Hand tools and furnaces",
+      "power_requirements": "Low",
+      "expected_manual_steps": "Initial setup and verification only; routine repetition should be automated.",
+      "automation_paths": [
+        "Reuse prior production",
+        "Parallelize bottlenecks",
+        "Automate routing and replenishment"
+      ],
+      "optimization_opportunities": [
+        "Reduce downtime",
+        "Prepare inputs in advance",
+        "Avoid unnecessary transport/rebuilding"
+      ],
+      "likely_bottlenecks": [
+        "Generator ingredients"
+      ],
+      "time_waste_risks": [
+        "Manual transport",
+        "Idle machines",
+        "Under-sized power or buffers"
+      ],
+      "catch_up_mechanisms": [
+        "Consolidate mining trips"
+      ],
+      "earlier_infrastructure_useful": true,
+      "fixed_timer": false
+    },
+    {
+      "milestone_id": "automated_ore_processing",
+      "cumulative_hours": {
+        "optimized": 2,
+        "average": 4,
+        "poor": 8
+      },
+      "raw_resource_requirements": "Second machine set and routing",
+      "machine_throughput": "1\u20132 ore stacks/min",
+      "power_requirements": "LV continuous",
+      "expected_manual_steps": "Initial setup and verification only; routine repetition should be automated.",
+      "automation_paths": [
+        "Reuse prior production",
+        "Parallelize bottlenecks",
+        "Automate routing and replenishment"
+      ],
+      "optimization_opportunities": [
+        "Reduce downtime",
+        "Prepare inputs in advance",
+        "Avoid unnecessary transport/rebuilding"
+      ],
+      "likely_bottlenecks": [
+        "Routing and power balance"
+      ],
+      "time_waste_risks": [
+        "Manual transport",
+        "Idle machines",
+        "Under-sized power or buffers"
+      ],
+      "catch_up_mechanisms": [
+        "Manual buffer fallback"
+      ],
+      "earlier_infrastructure_useful": true,
+      "fixed_timer": false
+    },
+    {
+      "milestone_id": "early_autocrafting",
+      "cumulative_hours": {
+        "optimized": 3.5,
+        "average": 7,
+        "poor": 14
+      },
+      "raw_resource_requirements": "Quarry, pipes, fixed autocrafter",
+      "machine_throughput": "Quarry-fed",
+      "power_requirements": "LV/MV mixed",
+      "expected_manual_steps": "Initial setup and verification only; routine repetition should be automated.",
+      "automation_paths": [
+        "Reuse prior production",
+        "Parallelize bottlenecks",
+        "Automate routing and replenishment"
+      ],
+      "optimization_opportunities": [
+        "Reduce downtime",
+        "Prepare inputs in advance",
+        "Avoid unnecessary transport/rebuilding"
+      ],
+      "likely_bottlenecks": [
+        "Transport jams"
+      ],
+      "time_waste_risks": [
+        "Manual transport",
+        "Idle machines",
+        "Under-sized power or buffers"
+      ],
+      "catch_up_mechanisms": [
+        "Manual craft remains possible"
+      ],
+      "earlier_infrastructure_useful": true,
+      "fixed_timer": false
+    },
+    {
+      "milestone_id": "programmable_manufacturing",
+      "cumulative_hours": {
+        "optimized": 5,
+        "average": 10,
+        "poor": 20
+      },
+      "raw_resource_requirements": "Computers, monitors, machine placeholders",
+      "machine_throughput": "Queued multi-step line",
+      "power_requirements": "MV",
+      "expected_manual_steps": "Initial setup and verification only; routine repetition should be automated.",
+      "automation_paths": [
+        "Reuse prior production",
+        "Parallelize bottlenecks",
+        "Automate routing and replenishment"
+      ],
+      "optimization_opportunities": [
+        "Reduce downtime",
+        "Prepare inputs in advance",
+        "Avoid unnecessary transport/rebuilding"
+      ],
+      "likely_bottlenecks": [
+        "Missing inputs and idle time"
+      ],
+      "time_waste_risks": [
+        "Manual transport",
+        "Idle machines",
+        "Under-sized power or buffers"
+      ],
+      "catch_up_mechanisms": [
+        "Use existing fixed autocrafters"
+      ],
+      "earlier_infrastructure_useful": true,
+      "fixed_timer": false
+    },
+    {
+      "milestone_id": "monitored_nuclear_power",
+      "cumulative_hours": {
+        "optimized": 7,
+        "average": 14,
+        "poor": 28
+      },
+      "raw_resource_requirements": "Reactor structure, fuel, sensors",
+      "machine_throughput": "Sustained launch-industry supply",
+      "power_requirements": "High output",
+      "expected_manual_steps": "Initial setup and verification only; routine repetition should be automated.",
+      "automation_paths": [
+        "Reuse prior production",
+        "Parallelize bottlenecks",
+        "Automate routing and replenishment"
+      ],
+      "optimization_opportunities": [
+        "Reduce downtime",
+        "Prepare inputs in advance",
+        "Avoid unnecessary transport/rebuilding"
+      ],
+      "likely_bottlenecks": [
+        "Unsafe/inefficient reactor"
+      ],
+      "time_waste_risks": [
+        "Manual transport",
+        "Idle machines",
+        "Under-sized power or buffers"
+      ],
+      "catch_up_mechanisms": [
+        "Supporting generators remain valid"
+      ],
+      "earlier_infrastructure_useful": true,
+      "fixed_timer": false
+    },
+    {
+      "milestone_id": "functional_orbital_station",
+      "cumulative_hours": {
+        "optimized": 9,
+        "average": 18,
+        "poor": 36
+      },
+      "raw_resource_requirements": "Rocket, habitat, oxygen, solar, storage",
+      "machine_throughput": "Launch-cargo limited",
+      "power_requirements": "Enhanced orbital solar",
+      "expected_manual_steps": "Initial setup and verification only; routine repetition should be automated.",
+      "automation_paths": [
+        "Reuse prior production",
+        "Parallelize bottlenecks",
+        "Automate routing and replenishment"
+      ],
+      "optimization_opportunities": [
+        "Reduce downtime",
+        "Prepare inputs in advance",
+        "Avoid unnecessary transport/rebuilding"
+      ],
+      "likely_bottlenecks": [
+        "Forgotten cargo and eclipse storage"
+      ],
+      "time_waste_risks": [
+        "Manual transport",
+        "Idle machines",
+        "Under-sized power or buffers"
+      ],
+      "catch_up_mechanisms": [
+        "Additional launches remain possible"
+      ],
+      "earlier_infrastructure_useful": true,
+      "fixed_timer": false
+    },
+    {
+      "milestone_id": "orbital_research_complete",
+      "cumulative_hours": {
+        "optimized": 11,
+        "average": 22,
+        "poor": 44
+      },
+      "raw_resource_requirements": "Modules, samples, operational data",
+      "machine_throughput": "Parallel experiments",
+      "power_requirements": "Continuous orbital",
+      "expected_manual_steps": "Initial setup and verification only; routine repetition should be automated.",
+      "automation_paths": [
+        "Reuse prior production",
+        "Parallelize bottlenecks",
+        "Automate routing and replenishment"
+      ],
+      "optimization_opportunities": [
+        "Reduce downtime",
+        "Prepare inputs in advance",
+        "Avoid unnecessary transport/rebuilding"
+      ],
+      "likely_bottlenecks": [
+        "Environment downtime"
+      ],
+      "time_waste_risks": [
+        "Manual transport",
+        "Idle machines",
+        "Under-sized power or buffers"
+      ],
+      "catch_up_mechanisms": [
+        "Repair and resume research"
+      ],
+      "earlier_infrastructure_useful": true,
+      "fixed_timer": false
+    },
+    {
+      "milestone_id": "functional_lunar_base",
+      "cumulative_hours": {
+        "optimized": 13,
+        "average": 26,
+        "poor": 52
+      },
+      "raw_resource_requirements": "Habitat startup and local mining",
+      "machine_throughput": "Local component output",
+      "power_requirements": "3\u20135\u00d7 exposed solar plus storage",
+      "expected_manual_steps": "Initial setup and verification only; routine repetition should be automated.",
+      "automation_paths": [
+        "Reuse prior production",
+        "Parallelize bottlenecks",
+        "Automate routing and replenishment"
+      ],
+      "optimization_opportunities": [
+        "Reduce downtime",
+        "Prepare inputs in advance",
+        "Avoid unnecessary transport/rebuilding"
+      ],
+      "likely_bottlenecks": [
+        "Importing everything"
+      ],
+      "time_waste_risks": [
+        "Manual transport",
+        "Idle machines",
+        "Under-sized power or buffers"
+      ],
+      "catch_up_mechanisms": [
+        "Orbital/Earth supply assists startup"
+      ],
+      "earlier_infrastructure_useful": true,
+      "fixed_timer": false
+    },
+    {
+      "milestone_id": "lunar_research_complete",
+      "cumulative_hours": {
+        "optimized": 15,
+        "average": 30,
+        "poor": 60
+      },
+      "raw_resource_requirements": "Regolith, isotope, precision outputs",
+      "machine_throughput": "Automated local research inputs",
+      "power_requirements": "Darkness-cycle reserve",
+      "expected_manual_steps": "Initial setup and verification only; routine repetition should be automated.",
+      "automation_paths": [
+        "Reuse prior production",
+        "Parallelize bottlenecks",
+        "Automate routing and replenishment"
+      ],
+      "optimization_opportunities": [
+        "Reduce downtime",
+        "Prepare inputs in advance",
+        "Avoid unnecessary transport/rebuilding"
+      ],
+      "likely_bottlenecks": [
+        "Darkness and manual mining"
+      ],
+      "time_waste_risks": [
+        "Manual transport",
+        "Idle machines",
+        "Under-sized power or buffers"
+      ],
+      "catch_up_mechanisms": [
+        "Nuclear/orbital backup"
+      ],
+      "earlier_infrastructure_useful": true,
+      "fixed_timer": false
+    },
+    {
+      "milestone_id": "quantum_technology_complete",
+      "cumulative_hours": {
+        "optimized": 16.5,
+        "average": 33,
+        "poor": 66
+      },
+      "raw_resource_requirements": "Advanced IC2 and lunar component",
+      "machine_throughput": "Parallel high-tier materials",
+      "power_requirements": "HV/EV",
+      "expected_manual_steps": "Initial setup and verification only; routine repetition should be automated.",
+      "automation_paths": [
+        "Reuse prior production",
+        "Parallelize bottlenecks",
+        "Automate routing and replenishment"
+      ],
+      "optimization_opportunities": [
+        "Reduce downtime",
+        "Prepare inputs in advance",
+        "Avoid unnecessary transport/rebuilding"
+      ],
+      "likely_bottlenecks": [
+        "Charging and component throughput"
+      ],
+      "time_waste_risks": [
+        "Manual transport",
+        "Idle machines",
+        "Under-sized power or buffers"
+      ],
+      "catch_up_mechanisms": [
+        "Reuse nuclear and lunar lines"
+      ],
+      "earlier_infrastructure_useful": true,
+      "fixed_timer": false
+    },
+    {
+      "milestone_id": "functional_martian_base",
+      "cumulative_hours": {
+        "optimized": 18,
+        "average": 36,
+        "poor": 72
+      },
+      "raw_resource_requirements": "Tier 2 cargo, habitat, local plant",
+      "machine_throughput": "Local mining/manufacturing",
+      "power_requirements": "Dust-resilient high load",
+      "expected_manual_steps": "Initial setup and verification only; routine repetition should be automated.",
+      "automation_paths": [
+        "Reuse prior production",
+        "Parallelize bottlenecks",
+        "Automate routing and replenishment"
+      ],
+      "optimization_opportunities": [
+        "Reduce downtime",
+        "Prepare inputs in advance",
+        "Avoid unnecessary transport/rebuilding"
+      ],
+      "likely_bottlenecks": [
+        "Repeated Earth trips"
+      ],
+      "time_waste_risks": [
+        "Manual transport",
+        "Idle machines",
+        "Under-sized power or buffers"
+      ],
+      "catch_up_mechanisms": [
+        "Compact resupply remains possible"
+      ],
+      "earlier_infrastructure_useful": true,
+      "fixed_timer": false
+    },
+    {
+      "milestone_id": "martian_autonomy_complete",
+      "cumulative_hours": {
+        "optimized": 19,
+        "average": 38,
+        "poor": 76
+      },
+      "raw_resource_requirements": "Sensors, programs, robotic cell",
+      "machine_throughput": "Unattended local output",
+      "power_requirements": "Stable colony reserve",
+      "expected_manual_steps": "Initial setup and verification only; routine repetition should be automated.",
+      "automation_paths": [
+        "Reuse prior production",
+        "Parallelize bottlenecks",
+        "Automate routing and replenishment"
+      ],
+      "optimization_opportunities": [
+        "Reduce downtime",
+        "Prepare inputs in advance",
+        "Avoid unnecessary transport/rebuilding"
+      ],
+      "likely_bottlenecks": [
+        "Manual intervention"
+      ],
+      "time_waste_risks": [
+        "Manual transport",
+        "Idle machines",
+        "Under-sized power or buffers"
+      ],
+      "catch_up_mechanisms": [
+        "Iteratively automate weak points"
+      ],
+      "earlier_infrastructure_useful": true,
+      "fixed_timer": false
+    },
+    {
+      "milestone_id": "lite_matter_complete",
+      "cumulative_hours": {
+        "optimized": 20,
+        "average": 40,
+        "poor": 80
+      },
+      "raw_resource_requirements": "Real Analyzer, Desh, 50k FE",
+      "machine_throughput": "Single real analysis plus research line",
+      "power_requirements": "50,000 FE per Desh analysis",
+      "expected_manual_steps": "Initial setup and verification only; routine repetition should be automated.",
+      "automation_paths": [
+        "Reuse prior production",
+        "Parallelize bottlenecks",
+        "Automate routing and replenishment"
+      ],
+      "optimization_opportunities": [
+        "Reduce downtime",
+        "Prepare inputs in advance",
+        "Avoid unnecessary transport/rebuilding"
+      ],
+      "likely_bottlenecks": [
+        "Sample/power preparation"
+      ],
+      "time_waste_risks": [
+        "Manual transport",
+        "Idle machines",
+        "Under-sized power or buffers"
+      ],
+      "catch_up_mechanisms": [
+        "Existing interplanetary infrastructure supplies both"
+      ],
+      "earlier_infrastructure_useful": true,
+      "fixed_timer": false
+    },
+    {
+      "milestone_id": "ai_age_entry",
+      "cumulative_hours": {
+        "optimized": 20,
+        "average": 40,
+        "poor": 80
+      },
+      "raw_resource_requirements": "All five research/capability inputs",
+      "machine_throughput": "Coordination transition",
+      "power_requirements": "Existing grid",
+      "expected_manual_steps": "Initial setup and verification only; routine repetition should be automated.",
+      "automation_paths": [
+        "Reuse prior production",
+        "Parallelize bottlenecks",
+        "Automate routing and replenishment"
+      ],
+      "optimization_opportunities": [
+        "Reduce downtime",
+        "Prepare inputs in advance",
+        "Avoid unnecessary transport/rebuilding"
+      ],
+      "likely_bottlenecks": [
+        "Incomplete archives"
+      ],
+      "time_waste_risks": [
+        "Manual transport",
+        "Idle machines",
+        "Under-sized power or buffers"
+      ],
+      "catch_up_mechanisms": [
+        "No new grind; finish missing capability"
+      ],
+      "earlier_infrastructure_useful": true,
+      "fixed_timer": false
+    }
+  ]
+}

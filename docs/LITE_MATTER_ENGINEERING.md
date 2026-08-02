@@ -1,7 +1,7 @@
+<!-- Generated from progression/*.json by tools/generate_progression_docs.py. -->
+
 # Lite Matter Engineering
 
-The Molecular Analyzer is a powered scientific analysis block, not a replicator.
+The existing `industrialcivilizationcore:molecular_analyzer` is preserved. Its existing recipe combines Galacticraft raw meteoric iron, a ComputerCraft advanced computer, steel, an IC2 MV machine block, advanced circuits, and Martian Desh. The working tile accepts only Galacticraft Desh metadata 2, consumes 50,000 FE per analysis, creates `industrialcivilizationcore:material_pattern_record`, and records the current Lite Matter completion flag.
 
-Its recipe joins Moon meteoric iron, a CC:Tweaked advanced computer, Railcraft/ore-dictionary steel, an IC2 MV machine block, IC2 advanced circuits, and Mars Desh. It accepts only a Desh ingot, requires 50,000 FE, and outputs one non-stackable material-pattern record containing sample origin/classification data and `Replicable: false`.
-
-The record is information only. It cannot produce items, UU-Matter, exotic materials, AE2 access, or infinite resources. Completion writes `industrialcivilization.lite_matter_complete` to player persisted data and displays `AI Age — Not Yet Available`.
+Current limitations: one Martian material, FE rather than native EU semantics, no general experiment framework, and no Earth/lunar comparative analysis. The questline represents those future studies with explicit manual validation. Lite Matter includes analysis, records, recovery, engineered/high-purity materials, and early characterization; it explicitly excludes full UU-Matter, replication, magical transmutation, and an AE2 unlock by itself.

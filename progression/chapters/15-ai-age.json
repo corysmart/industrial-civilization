@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "id": "ai_age",
+  "number": 15,
+  "title": "AI Age",
+  "purpose": "Enter\u2014not finish\u2014the endgame by creating an industrial AI core from all major research eras.",
+  "prerequisite_chapters": [
+    "lite_matter_engineering",
+    "martian_autonomy"
+  ],
+  "completion_milestone": "ai_age_entry",
+  "automation_paths": [
+    "AI inventory awareness",
+    "Dependency planning",
+    "Production scheduling",
+    "AE2 digital logistics"
+  ],
+  "optimization_opportunities": [
+    "A mature pre-AI factory turns AI entry into coordination rather than a new raw-material grind."
+  ],
+  "infrastructure_reuse": "Every prior production site and transport route becomes a managed node in the digital industrial network.",
+  "milestones": [
+    {
+      "id": "ai_prerequisite_audit",
+      "title": "Civilization Capability Audit",
+      "category": "mastery",
+      "icon": "minecraft:written_book",
+      "prerequisites": [
+        "orbital_research_complete",
+        "lunar_research_complete",
+        "quantum_technology_complete",
+        "martian_autonomy_complete",
+        "lite_matter_complete"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Civilization Capability Audit",
+      "final_validation": [
+        "Confirm Orbital and Lunar archives, Quantum completion, Martian Autonomy, and Lite Matter completion."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "artificial_industrial_intelligence_core",
+      "title": "Artificial Industrial Intelligence Core",
+      "category": "possession",
+      "icon": "industrialcivilizationcore:placeholder_ai_core",
+      "prerequisites": [
+        "ai_prerequisite_audit"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "Artificial Industrial Intelligence Core",
+      "final_validation": [
+        "Demonstrate the capability: Artificial Industrial Intelligence Core."
+      ],
+      "automation_paths": [],
+      "required_item": "industrialcivilizationcore:placeholder_ai_core",
+      "placeholder_id": "ai_core",
+      "temporary_validation": "Obtain the test AI Core. Final validation requires the five canonical research/capability inputs and future AI-core manufacturing."
+    },
+    {
+      "id": "ai_age_entry",
+      "title": "Enter the AI Age",
+      "category": "transition",
+      "icon": "industrialcivilizationcore:placeholder_ai_core",
+      "prerequisites": [
+        "artificial_industrial_intelligence_core"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "Enter the AI Age",
+      "final_validation": [
+        "Enter the continuously expanding endgame and authorize AI-coordinated digital industry."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "ae2_entry",
+      "title": "Applied Energistics Entry",
+      "category": "operation",
+      "icon": "appliedenergistics2:controller",
+      "prerequisites": [
+        "ai_age_entry"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "Applied Energistics Entry",
+      "final_validation": [
+        "In testing-placeholder mode, use the AI-gated recipes to bring a basic AE2 network online. With placeholders disabled, AE2 remains locked pending the final AI Core."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "The AI Core is consumed by every temporary AE2 entry recipe; recipes do not exist when testing placeholders are disabled."
+    }
+  ]
+}

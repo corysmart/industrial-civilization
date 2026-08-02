@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "id": "quantum_technology",
+  "number": 11,
+  "title": "Quantum Technology",
+  "purpose": "Combine lunar manufacturing with high-tier IC2 power and programmable production for Mars readiness.",
+  "prerequisite_chapters": [
+    "lunar_research",
+    "nuclear_age",
+    "orbital_research"
+  ],
+  "completion_milestone": "quantum_technology_complete",
+  "automation_paths": [
+    "Robotic high-throughput crafting",
+    "Parallel advanced processing",
+    "Lunar component production",
+    "Automated charging supply"
+  ],
+  "optimization_opportunities": [
+    "Prepare high-tier power early, parallelize advanced materials, manufacture on the Moon, and maintain component buffers."
+  ],
+  "infrastructure_reuse": "Nuclear power, lunar industry, orbital logistics, and programmable factories are upgraded rather than discarded.",
+  "milestones": [
+    {
+      "id": "extreme_voltage_industry",
+      "title": "Extreme-Voltage Industry",
+      "category": "mastery",
+      "icon": "minecraft:redstone_block",
+      "prerequisites": [
+        "quantum_research_access",
+        "monitored_nuclear_power"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Extreme-Voltage Industry",
+      "final_validation": [
+        "Operate high-tier generation, storage, transformation, and advanced processing safely."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "robotic_manufacturing_cell",
+      "title": "Robotic Manufacturing Cell",
+      "category": "possession",
+      "icon": "industrialcivilizationcore:placeholder_robotic_manufacturing_cell",
+      "prerequisites": [
+        "extreme_voltage_industry"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Robotic Manufacturing Cell",
+      "final_validation": [
+        "Demonstrate the capability: Robotic Manufacturing Cell."
+      ],
+      "automation_paths": [],
+      "required_item": "industrialcivilizationcore:placeholder_robotic_manufacturing_cell",
+      "placeholder_id": "robotic_manufacturing_cell",
+      "temporary_validation": "Obtain the test cell. Final validation requires high-throughput ComputerCraft queues, physical logistics, and 0.5\u20132 second ordinary operations."
+    },
+    {
+      "id": "lunar_quantum_component",
+      "title": "Lunar Quantum Component",
+      "category": "possession",
+      "icon": "industrialcivilizationcore:placeholder_lunar_quantum_component",
+      "prerequisites": [
+        "robotic_manufacturing_cell",
+        "lunar_research_complete"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Lunar Quantum Component",
+      "final_validation": [
+        "Demonstrate the capability: Lunar Quantum Component."
+      ],
+      "automation_paths": [],
+      "required_item": "industrialcivilizationcore:placeholder_lunar_quantum_component",
+      "placeholder_id": "lunar_quantum_component",
+      "temporary_validation": "Obtain the test component. Final validation requires a functional Moon-only vacuum/low-gravity manufacturing process."
+    },
+    {
+      "id": "nanosuit_and_tools",
+      "title": "NanoSuit and Powered Tools",
+      "category": "possession",
+      "icon": "minecraft:diamond_chestplate",
+      "prerequisites": [
+        "extreme_voltage_industry"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "NanoSuit and Powered Tools",
+      "final_validation": [
+        "Manufacture NanoSuit equipment and advanced charged tools."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "quantumsuit",
+      "title": "Complete Charged QuantumSuit",
+      "category": "mastery",
+      "icon": "minecraft:diamond_chestplate",
+      "prerequisites": [
+        "lunar_quantum_component",
+        "nanosuit_and_tools"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Complete Charged QuantumSuit",
+      "final_validation": [
+        "Manufacture a complete QuantumSuit and demonstrate sufficient infrastructure to charge it."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "mars_readiness_trial",
+      "title": "Mars Readiness Trial",
+      "category": "operation",
+      "icon": "minecraft:firework_rocket",
+      "prerequisites": [
+        "quantumsuit",
+        "robotic_manufacturing_cell"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Mars Readiness Trial",
+      "final_validation": [
+        "Demonstrate thermal, radiation, power, life-support compatibility, and automated spare-part production."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "quantum_technology_complete",
+      "title": "Quantum Technology Complete",
+      "category": "mastery",
+      "icon": "minecraft:nether_star",
+      "prerequisites": [
+        "mars_readiness_trial"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "Quantum Technology Complete",
+      "final_validation": [
+        "Master conventional high-tier technology and Mars-ready automated manufacturing."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "mars_mission_authorization",
+      "title": "Mars Mission Authorization",
+      "category": "possession",
+      "icon": "industrialcivilizationcore:placeholder_mars_mission_authorization",
+      "prerequisites": [
+        "quantum_technology_complete",
+        "orbital_research_complete",
+        "lunar_research_complete"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "Mars Mission Authorization",
+      "final_validation": [
+        "Demonstrate the capability: Mars Mission Authorization."
+      ],
+      "automation_paths": [],
+      "required_item": "industrialcivilizationcore:placeholder_mars_mission_authorization",
+      "placeholder_id": "mars_mission_authorization",
+      "temporary_validation": "Obtain the test authorization. Final validation requires Orbital and Lunar archives, Quantum completion, and Tier 2 mission readiness."
+    }
+  ]
+}

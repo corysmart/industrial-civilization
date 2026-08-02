@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "id": "electrification",
+  "number": 2,
+  "title": "Electrification",
+  "purpose": "Establish safe IC2 generation, storage, machine processing, and ore doubling.",
+  "prerequisite_chapters": [
+    "survival_workshop"
+  ],
+  "completion_milestone": "stable_electrical_workshop",
+  "automation_paths": [
+    "Ore doubling removes repeated mining; machines accept later automatic inputs."
+  ],
+  "optimization_opportunities": [
+    "Keep machines powered, batch compatible work, and avoid needless voltage conversion."
+  ],
+  "infrastructure_reuse": "LV generation, storage, cabling, and processors remain feeder lines for every later factory.",
+  "milestones": [
+    {
+      "id": "first_ic2_generator",
+      "title": "First IC2 Generator",
+      "category": "construction",
+      "icon": "minecraft:redstone",
+      "prerequisites": [
+        "secure_workshop"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "First IC2 Generator",
+      "final_validation": [
+        "Build and fuel an IC2 Generator."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "low_voltage_network",
+      "title": "Safe Low-Voltage Network",
+      "category": "construction",
+      "icon": "minecraft:repeater",
+      "prerequisites": [
+        "first_ic2_generator"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Safe Low-Voltage Network",
+      "final_validation": [
+        "Connect generation, storage, and machines at safe voltage."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "electric_processing",
+      "title": "Electric Processing Suite",
+      "category": "operation",
+      "icon": "minecraft:furnace",
+      "prerequisites": [
+        "low_voltage_network"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Electric Processing Suite",
+      "final_validation": [
+        "Successfully operate a Macerator, Electric Furnace, Extractor, and Compressor."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "ore_doubling",
+      "title": "Demonstrated Ore Doubling",
+      "category": "operation",
+      "icon": "minecraft:iron_ore",
+      "prerequisites": [
+        "electric_processing"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "Demonstrated Ore Doubling",
+      "final_validation": [
+        "Macerate and smelt ore for at least twice the direct-smelting output."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "electric_tools",
+      "title": "Electric Tools",
+      "category": "possession",
+      "icon": "minecraft:diamond_pickaxe",
+      "prerequisites": [
+        "low_voltage_network"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Electric Tools",
+      "final_validation": [
+        "Build and charge basic IC2 electric tools."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "voltage_literacy",
+      "title": "Voltage and Safety",
+      "category": "mastery",
+      "icon": "minecraft:redstone_torch",
+      "prerequisites": [
+        "electric_processing"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Voltage and Safety",
+      "final_validation": [
+        "Explain or demonstrate voltage tiers, transformer placement, and insulation."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "stable_electrical_workshop",
+      "title": "Stable Electrical Workshop",
+      "category": "mastery",
+      "icon": "minecraft:redstone_block",
+      "prerequisites": [
+        "ore_doubling",
+        "voltage_literacy"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "Stable Electrical Workshop",
+      "final_validation": [
+        "Operate the full processing suite without cable loss or recurring power collapse."
+      ],
+      "automation_paths": []
+    }
+  ]
+}

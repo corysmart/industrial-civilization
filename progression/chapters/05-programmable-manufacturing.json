@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "id": "programmable_manufacturing",
+  "number": 5,
+  "title": "Programmable Manufacturing",
+  "purpose": "Use ComputerCraft monitoring and programmable production to reduce downtime and manual scheduling.",
+  "prerequisite_chapters": [
+    "heavy_industry"
+  ],
+  "completion_milestone": "programmable_manufacturing",
+  "automation_paths": [
+    "Electric fixed-recipe fabrication",
+    "ComputerCraft production queues",
+    "Shortage detection",
+    "Parallel machine scheduling"
+  ],
+  "optimization_opportunities": [
+    "Maintain buffers, detect shortages before stalls, monitor power, and parallelize slow physical processes."
+  ],
+  "infrastructure_reuse": "The physical factory remains intact; ComputerCraft adds supervision and scheduling rather than replacing machines.",
+  "milestones": [
+    {
+      "id": "computer_online",
+      "title": "Computer Online",
+      "category": "operation",
+      "icon": "computercraft:computer",
+      "prerequisites": [
+        "heavy_industry"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Computer Online",
+      "final_validation": [
+        "Boot a ComputerCraft computer and save a working factory-control program."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "factory_telemetry",
+      "title": "Factory Telemetry",
+      "category": "operation",
+      "icon": "minecraft:comparator",
+      "prerequisites": [
+        "computer_online"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Factory Telemetry",
+      "final_validation": [
+        "Monitor energy storage, one machine, and a fuel or fluid tank."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "electric_fabricator",
+      "title": "Electric Fabricator",
+      "category": "possession",
+      "icon": "industrialcivilizationcore:placeholder_electric_fabricator",
+      "prerequisites": [
+        "factory_telemetry"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Electric Fabricator",
+      "final_validation": [
+        "Demonstrate the capability: Electric Fabricator."
+      ],
+      "automation_paths": [],
+      "required_item": "industrialcivilizationcore:placeholder_electric_fabricator",
+      "placeholder_id": "electric_fabricator",
+      "temporary_validation": "Obtain the clearly labeled test placeholder. Final validation requires an EU-powered 160-tick fixed-recipe fabricator."
+    },
+    {
+      "id": "programmable_assembler",
+      "title": "Programmable Assembler",
+      "category": "possession",
+      "icon": "industrialcivilizationcore:placeholder_programmable_assembler",
+      "prerequisites": [
+        "electric_fabricator"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Programmable Assembler",
+      "final_validation": [
+        "Demonstrate the capability: Programmable Assembler."
+      ],
+      "automation_paths": [],
+      "required_item": "industrialcivilizationcore:placeholder_programmable_assembler",
+      "placeholder_id": "programmable_assembler",
+      "temporary_validation": "Obtain the clearly labeled test placeholder. Final validation requires a multi-program ComputerCraft-controlled assembler."
+    },
+    {
+      "id": "production_queue",
+      "title": "Queued Production Order",
+      "category": "operation",
+      "icon": "minecraft:book",
+      "prerequisites": [
+        "programmable_assembler"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Queued Production Order",
+      "final_validation": [
+        "Queue a production order and report progress and missing ingredients."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Manual-check the storyboard behavior until the assembler peripheral exists."
+    },
+    {
+      "id": "multi_step_manufacturing",
+      "title": "Automated Multi-Step Manufacturing",
+      "category": "mastery",
+      "icon": "minecraft:hopper",
+      "prerequisites": [
+        "production_queue"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Automated Multi-Step Manufacturing",
+      "final_validation": [
+        "Complete a multi-step product with automatic routing, monitored buffers, and no routine hand-crafting."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Manual-check the physical line and document its inputs and outputs."
+    },
+    {
+      "id": "programmable_manufacturing",
+      "title": "Programmable Manufacturing",
+      "category": "mastery",
+      "icon": "computercraft:computer",
+      "prerequisites": [
+        "factory_telemetry",
+        "multi_step_manufacturing"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "Programmable Manufacturing",
+      "final_validation": [
+        "Operate monitored, queued production that can identify shortages and recover from replenishment."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Manual-check the combined system until final peripheral APIs exist."
+    }
+  ]
+}

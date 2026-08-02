@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "id": "mars_settlement",
+  "number": 12,
+  "title": "Mars Settlement",
+  "purpose": "Establish a distant semi-autonomous industrial colony and recover the real Desh sample used by Lite Matter Engineering.",
+  "prerequisite_chapters": [
+    "quantum_technology"
+  ],
+  "completion_milestone": "functional_martian_base",
+  "automation_paths": [
+    "Automated water/oxygen",
+    "Automated mining",
+    "Local manufacturing",
+    "ComputerCraft colony management",
+    "Cargo routes"
+  ],
+  "optimization_opportunities": [
+    "Pre-build a compact startup package, establish robust power and local production, and avoid repeated Earth\u2013Mars trips."
+  ],
+  "infrastructure_reuse": "Earth, orbital, and lunar factories remain suppliers while Mars rapidly becomes locally productive.",
+  "milestones": [
+    {
+      "id": "tier2_mars_launch",
+      "title": "Authorized Tier 2 Mars Launch",
+      "category": "transition",
+      "icon": "galacticraftplanets:rocket_t2",
+      "prerequisites": [
+        "mars_mission_authorization"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "Authorized Tier 2 Mars Launch",
+      "final_validation": [
+        "Build a Tier 2 spacecraft and travel to Mars with mission authorization."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "martian_habitat",
+      "title": "Martian Habitat",
+      "category": "construction",
+      "icon": "minecraft:glass",
+      "prerequisites": [
+        "tier2_mars_launch"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Martian Habitat",
+      "final_validation": [
+        "Establish pressure, oxygen, water, radiation protection, communications, and safe habitation."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "martian_power",
+      "title": "Reliable Martian Power",
+      "category": "operation",
+      "icon": "minecraft:daylight_detector",
+      "prerequisites": [
+        "martian_habitat"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Reliable Martian Power",
+      "final_validation": [
+        "Maintain local generation and storage through dust-related solar fluctuation; nuclear backup is encouraged."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "martian_mining",
+      "title": "Automated Martian Mining",
+      "category": "operation",
+      "icon": "minecraft:diamond_pickaxe",
+      "prerequisites": [
+        "martian_power"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Automated Martian Mining",
+      "final_validation": [
+        "Mine and route Martian resources without direct labor."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "martian_manufacturing",
+      "title": "Local Martian Manufacturing",
+      "category": "operation",
+      "icon": "minecraft:anvil",
+      "prerequisites": [
+        "martian_mining"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Local Martian Manufacturing",
+      "final_validation": [
+        "Process Martian materials and manufacture colony components locally."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "mars_sample",
+      "title": "Martian Desh Sample",
+      "category": "possession",
+      "icon": "galacticraftplanets:item_basic_mars",
+      "prerequisites": [
+        "martian_mining"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Martian Desh Sample",
+      "final_validation": [
+        "Obtain Galacticraft Desh (metadata 2), the existing real Mars Sample used by the Molecular Analyzer."
+      ],
+      "automation_paths": [],
+      "required_item": "galacticraftplanets:item_basic_mars:2"
+    },
+    {
+      "id": "martian_cargo",
+      "title": "Martian Cargo and Return",
+      "category": "operation",
+      "icon": "minecraft:minecart",
+      "prerequisites": [
+        "martian_manufacturing"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Martian Cargo and Return",
+      "final_validation": [
+        "Establish a return or cargo route without relying on repeated emergency Earth supply trips."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "functional_martian_base",
+      "title": "Functional Martian Base",
+      "category": "mastery",
+      "icon": "minecraft:beacon",
+      "prerequisites": [
+        "martian_habitat",
+        "martian_power",
+        "martian_mining",
+        "martian_manufacturing",
+        "mars_sample"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "Functional Martian Base",
+      "final_validation": [
+        "Sustain habitat, water, power, communications, automated mining, local manufacturing, research readiness, and return capability."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Manual-check the base until colony telemetry triggers exist."
+    }
+  ]
+}

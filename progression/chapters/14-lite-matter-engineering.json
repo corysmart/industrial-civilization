@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "id": "lite_matter_engineering",
+  "number": 14,
+  "title": "Lite Matter Engineering",
+  "purpose": "Use the real Molecular Analyzer and Martian Desh sample to record matter without enabling replication.",
+  "prerequisite_chapters": [
+    "martian_autonomy"
+  ],
+  "completion_milestone": "lite_matter_complete",
+  "automation_paths": [
+    "Automated sample handling",
+    "High-purity material processing",
+    "Industrial recycling"
+  ],
+  "optimization_opportunities": [
+    "Reuse prepared interplanetary samples, stable power, and automated material lines; avoid one-off rebuilding."
+  ],
+  "infrastructure_reuse": "The real Analyzer, Mars Sample, power grid, and material factories become inputs to AI-era matter research.",
+  "milestones": [
+    {
+      "id": "molecular_analyzer",
+      "title": "Molecular Analyzer",
+      "category": "possession",
+      "icon": "industrialcivilizationcore:molecular_analyzer",
+      "prerequisites": [
+        "mars_sample",
+        "martian_autonomy_complete"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Molecular Analyzer",
+      "final_validation": [
+        "Craft the existing Molecular Analyzer from meteorite iron, an advanced computer, steel, an IC2 MV machine block, advanced circuits, and Desh."
+      ],
+      "automation_paths": [],
+      "required_item": "industrialcivilizationcore:molecular_analyzer"
+    },
+    {
+      "id": "analyzer_power",
+      "title": "Power the Analyzer",
+      "category": "operation",
+      "icon": "minecraft:redstone_block",
+      "prerequisites": [
+        "molecular_analyzer"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Power the Analyzer",
+      "final_validation": [
+        "Supply the existing Analyzer with at least 50,000 FE for a Desh analysis."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "material_pattern_record",
+      "title": "Martian Material Pattern Record",
+      "category": "possession",
+      "icon": "industrialcivilizationcore:material_pattern_record",
+      "prerequisites": [
+        "analyzer_power",
+        "mars_sample"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "Martian Material Pattern Record",
+      "final_validation": [
+        "Insert Galacticraft Desh metadata 2 and complete the existing 50,000 FE analysis to produce a non-consumable pattern record."
+      ],
+      "automation_paths": [],
+      "required_item": "industrialcivilizationcore:material_pattern_record"
+    },
+    {
+      "id": "comparative_molecular_analysis",
+      "title": "Comparative Molecular Characterization",
+      "category": "research",
+      "icon": "minecraft:book",
+      "prerequisites": [
+        "material_pattern_record"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Comparative Molecular Characterization",
+      "final_validation": [
+        "Record planned Earth, lunar, and Martian material comparisons without enabling arbitrary transmutation."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Manual-check the research storyboard; the current Analyzer implements only Martian Desh."
+    },
+    {
+      "id": "advanced_material_recovery",
+      "title": "Advanced Material Recovery",
+      "category": "operation",
+      "icon": "minecraft:hopper",
+      "prerequisites": [
+        "comparative_molecular_analysis"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Advanced Material Recovery",
+      "final_validation": [
+        "Demonstrate efficient recycling or high-purity recovery using existing industrial machines."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "lite_matter_complete",
+      "title": "Lite Matter Engineering Complete",
+      "category": "mastery",
+      "icon": "industrialcivilizationcore:material_pattern_record",
+      "prerequisites": [
+        "comparative_molecular_analysis"
+      ],
+      "critical": true,
+      "optional": false,
+      "capability": "Lite Matter Engineering Complete",
+      "final_validation": [
+        "Demonstrate molecular analysis, durable pattern records, and advanced recovery without UU-Matter or replication."
+      ],
+      "automation_paths": [],
+      "temporary_validation": "Manual-check the broader characterization boundary; the real Martian analysis is automatic."
+    }
+  ]
+}
