@@ -228,10 +228,14 @@ ok(quests.get("format:8") == "2.0.0", "Better Questing schema version")
 ok(len(quests.get("questDatabase:9", {})) == 10, "ten broad objectives")
 names = [q["properties:10"]["betterquesting:10"]["name:8"] for q in quests["questDatabase:9"].values()]
 ok(names[6:9] == ["Moon Program", "Mars Program", "Lite Matter Engineering"], "Moon-before-Mars quest ordering")
-quest_home = "industrialcivilizationcore:textures/gui/quest_home.png"
+quest_home = "industrialcivilizationcore:textures/gui/quest_home_v2.png"
 quest_settings = quests["questSettings:10"]["betterquesting:10"]
 ok(quest_settings.get("home_image:8") == quest_home, "pack-owned Better Questing home image configured")
-quest_home_file = ROOT / "resources/industrialcivilizationcore/textures/gui/quest_home.png"
+ok(quest_settings.get("home_anchor_x:5") == 0.5, "Better Questing title uses centered horizontal anchor")
+ok(quest_settings.get("home_offset_x:3") == -128, "Better Questing 256px title is centered on anchor")
+ok(quest_settings.get("home_anchor_y:5") == 0.0 and quest_settings.get("home_offset_y:3") == 0,
+   "Better Questing title uses top vertical anchor")
+quest_home_file = ROOT / "resources/industrialcivilizationcore/textures/gui/quest_home_v2.png"
 ok(quest_home_file.is_file(), "Better Questing home image exists")
 if quest_home_file.is_file():
     png = quest_home_file.read_bytes()
@@ -240,8 +244,9 @@ if quest_home_file.is_file():
     height = int.from_bytes(png[20:24], "big") if len(png) >= 24 else 0
     ok((width, height) == (512, 512), "Better Questing home atlas is 512x512")
 ok(quest_home in (ROOT / "tools/generate_objectives.py").read_text(), "quest generator preserves home image")
-ok("QUEST_HOME_IMAGE" in core_source and "migrateQuestHomeImage" in core_source,
-   "existing Better Questing worlds migrate to pack-owned home image")
+ok("QUEST_HOME_IMAGE" in core_source and "QUEST_HOME_OFFSET_X = -128" in core_source
+   and "migrateQuestHomeImage" in core_source,
+   "existing Better Questing worlds migrate to pack-owned home layout")
 
 ok(not (ROOT / "scripts/industrial_civilization.zs").exists(), "obsolete non-reloadable integration script removed")
 run_config = json.loads((ROOT / "groovy/runConfig.json").read_text())

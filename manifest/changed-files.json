@@ -109,6 +109,7 @@
     "mods/groovyscript-1.4.3.jar",
     "mods/techguns-1.12.2-2.0.2.0_pre3.2.jar",
     "resources/industrialcivilizationcore/textures/gui/quest_home.png",
+    "resources/industrialcivilizationcore/textures/gui/quest_home_v2.png",
     "tools/generate_changes.py",
     "tools/generate_magic_audit.py",
     "tools/generate_manifests.py",
@@ -150,7 +151,7 @@
     "cache/z-tekkit2-configs-1.2.6.zip"
   ],
   "counts": {
-    "added": 113,
+    "added": 114,
     "modified": 12,
     "removed": 11
   }

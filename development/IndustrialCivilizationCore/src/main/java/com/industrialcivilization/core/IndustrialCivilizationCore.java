@@ -40,7 +40,9 @@ public final class IndustrialCivilizationCore {
     public static final String MODID = "industrialcivilizationcore";
     public static final String NAME = "Industrial Civilization Core";
     public static final String VERSION = "0.1.0";
-    public static final String QUEST_HOME_IMAGE = MODID + ":textures/gui/quest_home.png";
+    public static final String QUEST_HOME_IMAGE = MODID + ":textures/gui/quest_home_v2.png";
+    public static final int QUEST_HOME_OFFSET_X = -128;
+    public static final int QUEST_HOME_OFFSET_Y = 0;
     public static Logger LOGGER;
 
     public static final Block MOLECULAR_ANALYZER = new BlockMolecularAnalyzer()
@@ -88,11 +90,26 @@ public final class IndustrialCivilizationCore {
 
         private static void migrateQuestHomeImage() {
             String current = QuestSettings.INSTANCE.getProperty(NativeProps.HOME_IMAGE);
+            int currentOffsetX = QuestSettings.INSTANCE.getProperty(NativeProps.HOME_OFF_X);
+            int currentOffsetY = QuestSettings.INSTANCE.getProperty(NativeProps.HOME_OFF_Y);
+            boolean changed = false;
             if (!QUEST_HOME_IMAGE.equals(current)) {
                 QuestSettings.INSTANCE.setProperty(NativeProps.HOME_IMAGE, QUEST_HOME_IMAGE);
+                changed = true;
+            }
+            if (currentOffsetX != QUEST_HOME_OFFSET_X) {
+                QuestSettings.INSTANCE.setProperty(NativeProps.HOME_OFF_X, QUEST_HOME_OFFSET_X);
+                changed = true;
+            }
+            if (currentOffsetY != QUEST_HOME_OFFSET_Y) {
+                QuestSettings.INSTANCE.setProperty(NativeProps.HOME_OFF_Y, QUEST_HOME_OFFSET_Y);
+                changed = true;
+            }
+            if (changed) {
                 SaveLoadHandler.INSTANCE.markDirty();
-                LOGGER.info("Migrated Better Questing home image from '{}' to '{}'",
-                    current, QUEST_HOME_IMAGE);
+                LOGGER.info("Migrated Better Questing home layout from '{}',({}, {}) to '{}',({}, {})",
+                    current, currentOffsetX, currentOffsetY,
+                    QUEST_HOME_IMAGE, QUEST_HOME_OFFSET_X, QUEST_HOME_OFFSET_Y);
             }
         }
 
