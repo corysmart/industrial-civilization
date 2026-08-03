@@ -214,6 +214,12 @@ def item_exists(ref):
     # the installed Galacticraft archive and the working Analyzer source.
     if domain == "galacticraftplanets" and path == "item_basic_mars":
         return True
+    # WR-CBE uses a custom multipart item renderer and therefore ships no
+    # ordinary models/item JSON. Verify its concrete registry constant against
+    # the installed class instead of treating it as a missing quest picture.
+    if domain == "wrcbe" and path == "wireless_logic":
+        with zipfile.ZipFile(ROOT / "mods/WR-CBE-1.12.2-2.3.2.33-universal-patched.jar") as zf:
+            return b"wireless_logic" in zf.read("codechicken/wirelessredstone/init/ModItems.class")
     if domain not in asset_domains:
         return False
     candidates = asset_paths[domain]
@@ -270,6 +276,11 @@ for index, ms in enumerate(milestones):
     quest = quest_db.get(f"{index}:10", {})
     props = quest.get("properties:10", {}).get("betterquesting:10", {})
     check(props.get("name:8") == ms["title"], f"generated quest title matches {ms['id']}")
+    generated_icon = props.get("icon:10", {}).get("id:8", "")
+    check(item_exists(generated_icon), f"generated quest picture exists: {ms['id']} -> {generated_icon}")
+    description = props.get("desc:8", "")
+    check(all(section in description for section in ("STORY\n", "MISSION\n", "PROOF OF COMPLETION\n", "CONTROLS AND OPERATION\n")),
+          f"generated quest teaches story, proof, and controls: {ms['id']}")
     check(quest.get("preRequisites:11") == [id_order[p] for p in ms["prerequisites"]], f"generated prerequisites match {ms['id']}")
     task = quest.get("tasks:9", {}).get("0:10", {})
     expected_task = ("bq_standard:advancement" if ms.get("runtime_advancement")
@@ -284,7 +295,22 @@ for index, ms in enumerate(milestones):
 check(not any(ms.get("placeholder_id") for ms in milestones), "generated projection has no placeholder milestones")
 check(not any(quest.get("tasks:9", {}).get("0:10", {}).get("taskID:8") == "bq_standard:checkbox"
               for quest in quest_db.values()), "generated quest projection contains no manual checkbox tasks")
-check(quests.get("questSettings:10", {}).get("betterquesting:10", {}).get("pack_version:3") == 5, "Better Questing pack version includes automatic objective detection")
+check(quests.get("questSettings:10", {}).get("betterquesting:10", {}).get("pack_version:3") == 6, "Better Questing pack version includes story, controls, and accurate pictures")
+
+expected_backgrounds = {
+    "industrialcivilizationcore:textures/gui/quest_bg_earth.png",
+    "industrialcivilizationcore:textures/gui/quest_bg_orbit.png",
+    "industrialcivilizationcore:textures/gui/quest_bg_moon.png",
+    "industrialcivilizationcore:textures/gui/quest_bg_mars.png",
+    "industrialcivilizationcore:textures/gui/quest_bg_post_ai.png",
+}
+actual_backgrounds = {line.get("properties:10", {}).get("betterquesting:10", {}).get("bg_image:8", "")
+                      for line in quest_lines.values()}
+check(actual_backgrounds == expected_backgrounds, "quest lines use all five era-specific backgrounds")
+for resource in expected_backgrounds:
+    filename = resource.rsplit("/", 1)[-1]
+    check((ROOT / "resources/industrialcivilizationcore/textures/gui" / filename).is_file(),
+          f"quest background exists: {filename}")
 
 placements = []
 for line in quest_lines.values():

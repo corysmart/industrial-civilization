@@ -8,6 +8,105 @@ PROGRESSION = ROOT / "progression"
 OUT = ROOT / "config" / "betterquesting" / "DefaultQuests.json"
 DETECTION = json.loads((PROGRESSION / "objective-detection.json").read_text(encoding="utf-8"))
 
+STORY_OPENINGS = {
+    "survival_workshop": "You arrive with tools, hunger, and a blank map. Before there can be a civilization, there must be one defensible room where useful materials stop being loot and become inventory.",
+    "electrification": "Hand labor can keep one survivor alive, but it cannot preserve knowledge or scale production. Copper, rubber, and controlled voltage turn the workshop into the first living system of the new industrial order.",
+    "automated_industry": "The machines run, yet every full chest and idle furnace proves that human attention is still the bottleneck. The next victory is not a stronger pickaxe; it is work that continues after you walk away.",
+    "heavy_industry": "Automation makes the workshop valuable enough to defend and hungry enough to outgrow its walls. Steel, fuel, freight, force fields, and organized security transform a homestead into strategic infrastructure.",
+    "programmable_manufacturing": "A factory large enough to matter is too complex to steer with levers alone. Computers become the nervous system: observing queues, scheduling production, and turning many machines into one coordinated plant.",
+    "nuclear_age": "Orbital industry demands an energy source that does not sleep with the weather. Nuclear power is the first technology here that can build the future or erase the workshop, so instrumentation and shutdown discipline matter as much as output.",
+    "orbital_age": "Earth has taught the settlement everything available at the bottom of one gravity well. The first launch is not a sightseeing trip; it is the construction convoy for a permanent laboratory above the atmosphere.",
+    "orbital_research": "Reaching orbit proves only that the rocket worked. Keeping experiments powered, supplied, and repeatable turns the station into a place that can produce knowledge unavailable on Earth.",
+    "lunar_settlement": "The orbital archive points toward the Moon, but flags do not make settlements. A real lunar foothold must breathe, generate power, mine locally, manufacture replacements, and send cargo without depending on a rescue flight.",
+    "lunar_research": "The Moon's long darkness and unfamiliar materials expose the limits of terrestrial engineering. Sustained lunar science now becomes the bridge to extreme voltage and quantum machinery.",
+    "quantum_technology": "Quantum technology is not a trophy; it is the industrial answer to distance. Extreme-voltage power, lunar components, and protected operators must become reliable enough to support a mission that cannot quickly return home.",
+    "mars_settlement": "Mars is too distant for an improvised outpost. The authorization assembled from lunar science commits the civilization to a second world, where every habitat, machine, and cargo route must earn its mass.",
+    "martian_autonomy": "The Martian colony survives, but survival still depends on decisions made by a human standing nearby. Autonomy research tests whether the system can recognize shortages, power loss, and production demand before they become disasters.",
+    "lite_matter_engineering": "Desh carries a material signature the old machines cannot explain. The Molecular Analyzer begins a careful science of recording matter—knowledge powerful enough to prepare replication, but deliberately unable to perform it yet.",
+    "ai_age": "Earth industry, orbital experiments, lunar quantum engineering, and Martian autonomy finally describe one connected civilization. An industrial intelligence can now be built to coordinate that history, but creating it begins the endgame rather than ending it.",
+    "post_ai_civilization": "The AI core removes the limit of human scheduling, not the limits of matter, energy, or distance. From here the civilization branches outward: logistics, replication, fusion, megastructures, and colonies become parallel programs with no final horizon.",
+    "factions_and_salvage": "Not every industrial route begins at a crafting table. Settlements, criminal networks, and abandoned factories preserve fragments of the old world; diplomacy or force can recover them, but inherited machinery carries inherited risks.",
+    "field_engineering": "Civilization is built between major breakthroughs as much as at them. Field engineering rewards the tools, remote controls, and recovery practices that keep ambitious systems from becoming fragile ones.",
+    "orbital_power": "A station that merely survives is still dependent on Earth. Orbital power engineering exploits constant sunlight and active tracking to make the platform an industrial contributor.",
+    "cargo_logistics": "Separate worlds become one civilization only when material can move between them predictably. Cargo logistics turns launches into scheduled infrastructure instead of heroic one-off expeditions.",
+    "post_ai_parallel": "The AI Age creates several urgent frontiers at once. These programs are intentionally parallel: the player decides whether matter, logistics, fusion, colonies, or megastructures receive the next industrial generation.",
+}
+
+STORY_TRANSITIONS = {
+    "survival_workshop": "The workshop is secure. The next chapter asks it to produce power instead of merely consuming daylight.",
+    "electrification": "Electricity is stable enough to trust. Now the factory must learn to move and process material without constant supervision.",
+    "automated_industry": "Automation has created throughput. Heavy industry will decide whether that throughput can survive scale, politics, and attack.",
+    "heavy_industry": "The installation now has industrial weight. Its next weakness is coordination, not machinery.",
+    "programmable_manufacturing": "The plant can be programmed and observed. It is ready to take responsibility for nuclear-scale power.",
+    "nuclear_age": "The reactor can sustain orbital construction. The sky is now a logistics problem rather than a boundary.",
+    "orbital_age": "A station exists above Earth. It must now justify every launch by producing operational research.",
+    "orbital_research": "The orbital archive is complete. Lunar settlement is now a researched commitment, not a gamble.",
+    "lunar_settlement": "The Moon can support industry. Its environment can now be used as an instrument of science.",
+    "lunar_research": "Lunar knowledge has opened the quantum route. Mars remains locked until that route becomes dependable industry.",
+    "quantum_technology": "Quantum industry closes the distance to Mars. The next launch carries the seed of an autonomous colony.",
+    "mars_settlement": "The Martian base can survive and manufacture. Now it must learn to recognize and answer its own needs.",
+    "martian_autonomy": "Autonomy exposes the boundary of conventional control. Matter itself becomes the next engineering subject.",
+    "lite_matter_engineering": "Matter can be measured and recorded, but not yet copied. The accumulated archives can now teach an industrial intelligence.",
+    "ai_age": "The AI core is online and AE2 foundation technology is authorized. The civilization has reached an opening, not an ending.",
+    "post_ai_civilization": "There is no victory screen here. Each completed program creates the capacity—and the obligation—to begin another.",
+    "factions_and_salvage": "The recovered infrastructure offers alternate access to industrial capacity, but it cannot replace the scientific gates ahead.",
+    "field_engineering": "The field toolkit is resilient enough for expansion, but it remains an optional advantage rather than a scientific gate.",
+    "orbital_power": "Orbital generation can now carry real production loads and support later off-world industry.",
+    "cargo_logistics": "The cargo network makes distance routine; future colonies can be supplied as systems rather than emergencies.",
+    "post_ai_parallel": "This program expands the civilization without closing any of its other frontiers.",
+}
+
+ERA_BACKGROUNDS = {
+    "earth": "industrialcivilizationcore:textures/gui/quest_bg_earth.png",
+    "orbit": "industrialcivilizationcore:textures/gui/quest_bg_orbit.png",
+    "moon": "industrialcivilizationcore:textures/gui/quest_bg_moon.png",
+    "mars": "industrialcivilizationcore:textures/gui/quest_bg_mars.png",
+    "post_ai": "industrialcivilizationcore:textures/gui/quest_bg_post_ai.png",
+}
+
+CHAPTER_ERAS = {
+    **{name: "earth" for name in ("survival_workshop", "electrification", "automated_industry", "heavy_industry", "programmable_manufacturing", "nuclear_age")},
+    **{name: "orbit" for name in ("orbital_age", "orbital_research")},
+    **{name: "moon" for name in ("lunar_settlement", "lunar_research", "quantum_technology")},
+    **{name: "mars" for name in ("mars_settlement", "martian_autonomy", "lite_matter_engineering")},
+    **{name: "post_ai" for name in ("ai_age", "post_ai_civilization")},
+    "factions_and_salvage": "earth",
+}
+
+# Better Questing quest pictures are ItemStacks. These exceptions replace old
+# symbolic storyboard icons with the machine, artifact, vehicle, or output that
+# actually proves the objective. Most other icons are derived automatically
+# from required-item or objective-evidence data below.
+ICON_OVERRIDES = {
+    "ore_doubling": "ic2:blockmachinelv",
+    "voltage_literacy": "ic2:itemcable",
+    "loaded_industry": "railcraft:worldspike",
+    "wireless_control": "wrcbe:wireless_logic",
+    "automation_throughput": "minecraft:hopper",
+    "freight_infrastructure": "railcraft:locomotive",
+    "faction_contacts": "customnpcs:npcwand",
+    "production_queue": "industrialcivilizationcore:programmable_assembler",
+    "multi_step_manufacturing": "industrialcivilizationcore:programmable_assembler",
+    "programmable_manufacturing": "industrialcivilizationcore:control_processor",
+    "reactor_output": "ic2:blocknuclearreactor",
+    "orbital_experiments": "industrialcivilizationcore:orbital_experiment_module",
+    "orbital_operational_data": "industrialcivilizationcore:research_data",
+    "moon_access": "industrialcivilizationcore:orbital_research_archive",
+    "lunar_landing": "galacticraftcore:rocket_t1",
+    "lunar_cargo": "galacticraftplanets:rocket_t2",
+    "lunar_science_program": "industrialcivilizationcore:lunar_engineering_archive",
+    "lunar_darkness_mastery": "industrialcivilizationcore:environmental_solar_array",
+    "lunar_precision_manufacturing": "industrialcivilizationcore:precision_frame",
+    "martian_cargo": "industrialcivilizationcore:interplanetary_cargo_controller",
+    "martian_science_program": "industrialcivilizationcore:martian_autonomy_archive",
+    "autonomous_resource_response": "industrialcivilizationcore:programmable_assembler",
+    "autonomous_power_response": "industrialcivilizationcore:environmental_solar_array",
+    "unattended_martian_production": "industrialcivilizationcore:robotic_manufacturing_cell",
+    "analyzer_power": "industrialcivilizationcore:molecular_analyzer",
+    "comparative_molecular_analysis": "industrialcivilizationcore:material_pattern_record",
+    "lite_matter_complete": "industrialcivilizationcore:material_pattern_record",
+}
+
 
 def load_chapters():
     return [json.loads(path.read_text(encoding="utf-8"))
@@ -67,17 +166,89 @@ def task_for(ms):
     return retrieval_task(evidence)
 
 
-def description(ms):
+def evidence_item(value):
+    return value["item"] if isinstance(value, dict) else value
+
+
+def quest_icon(ms):
+    if ms["id"] in ICON_OVERRIDES:
+        return ICON_OVERRIDES[ms["id"]]
+    if ms.get("required_item"):
+        return ms["required_item"]
+    evidence = DETECTION.get("overrides", {}).get(ms["id"])
+    return evidence_item(evidence[0]) if evidence else ms["icon"]
+
+
+def story(ms, line, index, total):
+    line_id = line["id"]
+    opening = STORY_OPENINGS[line_id]
+    transition = STORY_TRANSITIONS[line_id]
+    if index == 0:
+        moment = opening
+    elif index == total - 1:
+        moment = (f"The {line['title'].lower()} program reaches its decisive proof. "
+                  f"{transition}")
+    else:
+        moment = (f"The {line['title'].lower()} program advances one dependable system at a time. "
+                  f"This step turns {ms['title'].lower()} from an idea into infrastructure.")
+    return moment
+
+
+def controls_for(ms):
+    haystack = " ".join([ms["id"], ms["title"], ms["capability"], ms["icon"], quest_icon(ms)]).lower()
+    controls = ["F6 — reopen the Industrial Civilization quest guide."]
+    modded = (":" in ms["icon"] and not ms["icon"].startswith("minecraft:")) or any(
+        word in haystack for word in ("ic2", "electric", "voltage", "reactor", "computer", "factory", "orbit", "lunar", "moon", "mars", "quantum", "matter", "cargo", "faction", "wireless"))
+    if modded:
+        controls.append("HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.")
+    if any(word in haystack for word in ("industrialcivilizationcore", "fabricator", "assembler", "robotic", "research station", "experiment module", "replicator", "fusion", "cargo controller", "megastructure", "colony beacon")):
+        controls.append("Industrial Civilization machines: right-click to open the IC2-styled EU/inventory screen. Put recipe inputs in the three left slots and take output from the right slot. Matching inputs run automatically; ComputerCraft is required only for explicit recipe selection, queues, telemetry, or cargo channels.")
+    if any(word in haystack for word in ("archive", "record", "authorization", "dossier", "ledger", "certificate", "charter", "network key")):
+        controls.append("Research artifacts: hold the finished record and right-click once to register its knowledge with the progression system.")
+    if any(word in haystack for word in ("computercraft", "computer", "programmable", "telemetry", "queue", "autonomous", "unattended")):
+        controls.append("ComputerCraft: right-click a computer to open it; type help for built-in help; hold Control+T to terminate a running program. Use peripheral.getNames() and peripheral.wrap(side) to find attached machines.")
+    if any(word in haystack for word in ("programmable assembler", "production_queue", "multi_step_manufacturing", "programmable_manufacturing")):
+        controls.append("Assembler peripheral: after local m = peripheral.wrap(\"right\"), use m.listRecipes(), m.selectRecipe(\"control_processor\"), and m.queue(4). Replace right with the side where the assembler is attached.")
+    if "cargo" in haystack and "industrialcivilizationcore:interplanetary_cargo_controller" in haystack:
+        controls.append("Cargo peripheral: connect a computer to each controller and call setCargoChannel with the same channel name. Keep both controllers loaded in different dimensions; input enters slot 1 and arrives in the remote output slot.")
+    if "molecular_analyzer" in haystack or "analyzer" in haystack:
+        controls.append("Molecular Analyzer: supply tier-3-compatible IC2 EU, hold Galacticraft Martian Desh metadata 2, and right-click the placed Analyzer. One run consumes one Desh and 6,250 EU.")
+    if "solar" in haystack:
+        controls.append("Environmental solar: place with an unobstructed sky view and connect an IC2 cable to any face. Right-click once so sustained generation is credited to you.")
+    if any(word in haystack for word in ("galacticraft", "rocket", "orbit", "orbital", "moon", "lunar", "mars", "martian", "cargo")):
+        controls.append("Galacticraft: right-click a fueled rocket to mount it, Space begins launch, and W/A/S/D steer supported vehicles. Command+I opens the spaceship inventory. Right-click machines/cargo loaders to open them; use the standard Galacticraft wrench on configurable connections.")
+    if any(word in haystack for word in ("techguns", "firearm", "armament", "pistol", "shotgun", "rifle", "defensive")):
+        controls.append("Techguns: Option+Y forces a reload; right-click aims/uses the weapon and left-click fires.")
+    if any(word in haystack for word in ("railcraft", "freight", "locomotive", "rail logistics")):
+        controls.append("Railcraft locomotive: Option+[ reverse, Option+period faster, Option+] slower, Option+; mode, and Option+' whistle. Right-click the locomotive for its configuration screen.")
+    if any(word in haystack for word in ("faction", "criminal", "settlement", "npc")):
+        controls.append("Custom NPCs: right-click an NPC to talk or interact; F8 opens the NPC quest log when an encounter uses it.")
+    if any(word in haystack for word in ("ic2", "electric tool", "drill", "chainsaw", "nanosuit", "quantumsuit", "quantum suit")):
+        controls.append("IC2 equipment: F10 changes supported modes. Backslash is the armor modifier, Option+H toggles boost, and Option+O expands the armor HUD. Sneak while mining/chopping to suppress pack-added area or whole-tree behavior.")
+    if ms["id"] == "electric_tools":
+        controls.append("Pack tool behavior: stone-tier axes and better, plus the IC2 Chainsaw, fell one connected leaf-bearing tree and charge durability/EU per log. The IC2 Drill mines a 3×3 plane and the Diamond Drill a 9×9 plane; Sneak restores one-block precision.")
+    if any(word in haystack for word in ("applied energistics", "ae2", "storage network", "crafting unit")):
+        controls.append("AE2: right-click terminals and network blocks to configure them; Command+P toggles search-field focus.")
+    if modded:
+        controls.append("Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.")
+    return controls
+
+
+def description(ms, line, index, total):
     lines = [
-        f"Category: {ms['category'].title()}",
+        "STORY",
+        story(ms, line, index, total),
         "",
-        ms["capability"],
+        "MISSION",
+        f"{ms['capability']}",
         "",
-        "Completion is detected automatically from real gameplay evidence.",
+        "Completion is detected automatically from real gameplay evidence; no checkbox or command is required.",
         "",
-        "Required capability:",
+        "PROOF OF COMPLETION",
     ]
     lines.extend(f"- {value}" for value in ms["final_validation"])
+    lines.extend(["", "CONTROLS AND OPERATION"])
+    lines.extend(f"- {value}" for value in controls_for(ms))
     if ms.get("temporary_validation"):
         lines.extend(["", "TEMPORARY VALIDATION:", ms["temporary_validation"]])
     if ms.get("optional"):
@@ -85,7 +256,7 @@ def description(ms):
     return "\n".join(lines)
 
 
-def quest(qid, ms, ids):
+def quest(qid, ms, ids, line, index, total):
     props = {
         "issilent:1": 0,
         "snd_complete:8": "minecraft:entity.player.levelup",
@@ -94,7 +265,7 @@ def quest(qid, ms, ids):
         "repeattime:3": -1,
         "visibility:8": "ALWAYS",
         "simultaneous:1": 0,
-        "icon:10": stack(ms["icon"]),
+        "icon:10": stack(quest_icon(ms)),
         "globalshare:1": 0,
         "questlogic:8": ms.get("prerequisite_logic", "AND"),
         "partysinglereward:1": 0,
@@ -102,7 +273,7 @@ def quest(qid, ms, ids):
         "autoclaim:1": 0,
         "ismain:1": 1 if ms["critical"] else 0,
         "name:8": ms["title"],
-        "desc:8": description(ms),
+        "desc:8": description(ms, line, index, total),
     }
     return {
         "questID:3": qid,
@@ -117,6 +288,16 @@ def main():
     chapters = load_chapters()
     side_paths = load_side_paths()
     graph = json.loads((PROGRESSION / "progression-graph.json").read_text(encoding="utf-8"))
+    branch_story_lines = {
+        "field_engineering": {"id": "field_engineering", "title": "Field Engineering"},
+        "orbital_power": {"id": "orbital_power", "title": "Orbital Power"},
+        "cargo_logistics": {"id": "cargo_logistics", "title": "Cargo Logistics"},
+        "post_ai_parallel": {"id": "post_ai_parallel", "title": "Post-AI Horizons"},
+    }
+    branch_by_mid = {mid: branch_id for branch_id, mids in graph["optional_branches"].items()
+                     for mid in mids if branch_id in branch_story_lines}
+    branch_positions = {branch_id: {mid: index for index, mid in enumerate(mids)}
+                        for branch_id, mids in graph["optional_branches"].items()}
     milestones = ([ms for chapter in chapters for ms in chapter["milestones"]] +
                   [ms for path in side_paths for ms in path["milestones"]])
     ids = {ms["id"]: index for index, ms in enumerate(milestones)}
@@ -126,9 +307,16 @@ def main():
     for chapter in chapters:
         line_quests = {}
         critical_column = 0
-        for ms in chapter["milestones"]:
+        for index, ms in enumerate(chapter["milestones"]):
             qid = ids[ms["id"]]
-            quest_database[f"{qid}:10"] = quest(qid, ms, ids)
+            branch_id = branch_by_mid.get(ms["id"])
+            if branch_id:
+                line = branch_story_lines[branch_id]
+                story_index = branch_positions[branch_id][ms["id"]]
+                story_total = len(graph["optional_branches"][branch_id])
+            else:
+                line, story_index, story_total = chapter, index, len(chapter["milestones"])
+            quest_database[f"{qid}:10"] = quest(qid, ms, ids, line, story_index, story_total)
             if ms["optional"]:
                 continue
             x, y = critical_column * 48, 0
@@ -143,7 +331,7 @@ def main():
             "lineID:3": line_id,
             "properties:10": {"betterquesting:10": {
                 "name:8": f"{chapter['number']:02d} — {chapter['title']}",
-                "bg_image:8": "",
+                "bg_image:8": ERA_BACKGROUNDS[CHAPTER_ERAS[chapter["id"]]],
                 "bg_size:3": 512,
                 "desc:8": chapter["purpose"],
             }},
@@ -151,9 +339,9 @@ def main():
         }
 
     for side_path in side_paths:
-        for ms in side_path["milestones"]:
+        for index, ms in enumerate(side_path["milestones"]):
             qid = ids[ms["id"]]
-            quest_database[f"{qid}:10"] = quest(qid, ms, ids)
+            quest_database[f"{qid}:10"] = quest(qid, ms, ids, side_path, index, len(side_path["milestones"]))
 
     # Side paths are first-class quest lines, not hidden nodes inside the
     # numbered chapters. A quest appears in exactly one visual line.
@@ -163,6 +351,13 @@ def main():
         "orbital_power": ("Side Path — Orbital Power", "Optional orbital generation and tracking-array development."),
         "cargo_logistics": ("Side Path — Cargo Logistics", "Optional freight and interplanetary cargo mastery."),
         "post_ai_parallel": ("Side Path — Post-AI Horizons", "Parallel civilization-scale endgame projects."),
+    }
+    branch_eras = {
+        "field_engineering": "earth",
+        "factions_and_salvage": "earth",
+        "orbital_power": "orbit",
+        "cargo_logistics": "post_ai",
+        "post_ai_parallel": "post_ai",
     }
     for branch_index, (branch_id, branch_milestones) in enumerate(graph["optional_branches"].items()):
         line_id = len(chapters) + branch_index
@@ -179,7 +374,7 @@ def main():
             "lineID:3": line_id,
             "properties:10": {"betterquesting:10": {
                 "name:8": title,
-                "bg_image:8": "",
+                "bg_image:8": ERA_BACKGROUNDS[branch_eras[branch_id]],
                 "bg_size:3": 512,
                 "desc:8": desc + " Side paths are visible from the start and may create alternate progression routes.",
             }},
@@ -200,7 +395,7 @@ def main():
             "hardcore:1": 0,
             "home_image:8": "industrialcivilizationcore:textures/gui/quest_home_v2.png",
             "party_enable:1": 1,
-            "pack_version:3": 5,
+            "pack_version:3": 6,
             "home_offset_x:3": -128,
             "home_offset_y:3": 0,
         }},

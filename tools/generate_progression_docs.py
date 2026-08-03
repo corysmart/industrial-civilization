@@ -127,7 +127,7 @@ Better Questing 3 reads `config/betterquesting/DefaultQuests.json`. Run `python3
 
 Every quest completes automatically. Native machine operations and dimension events use hidden advancement tasks; item, construction, and cross-mod capability objectives use non-consuming Standard Expansion retrieval tasks, including multi-item evidence sets from `progression/objective-detection.json`. There are no manual checkbox tasks. All quests use `ALWAYS` visibility and locked progress, so players can browse the whole civilization plan without completing locked objectives early.
 
-Quest IDs are deterministic from chapter/side-path order and milestone order. Cross-line prerequisites use the same global numeric map. `pack_version` is 5. Import/update the default pack through Better Questing when a world retains the older database.
+Quest IDs are deterministic from chapter/side-path order and milestone order. Cross-line prerequisites use the same global numeric map. `pack_version` is 6. Every generated description contains story, mission, automatic proof, and contextual Mac/no-numpad controls. Quest pictures use real required/evidence objects, and each line uses an era-specific pack-owned background. Import/update the default pack through Better Questing when a world retains the older database.
 
 The integration mod persists research artifacts on each player and returns unauthorized arrivals to Earth. Moon entry requires the Orbital Research Archive. Mars entry requires the Lunar Quantum Component and Mars Mission Authorization. `config/industrialcivilization/runtime.cfg` provides an explicit creative-testing bypass.
 """)
@@ -200,7 +200,7 @@ Martian experiment data plus an Industrial Control Processor produces the real M
 write("LITE_MATTER_ENGINEERING.md", "Lite Matter Engineering", """
 The existing `industrialcivilizationcore:molecular_analyzer` is preserved. Its existing recipe combines Galacticraft raw meteoric iron, a ComputerCraft advanced computer, steel, an IC2 MV machine block, advanced circuits, and Martian Desh. The working tile is a native IC2 EU sink, accepts only Galacticraft Desh metadata 2, consumes 6,250 EU per analysis, creates `industrialcivilizationcore:material_pattern_record`, and records the current Lite Matter completion flag. Forge Energy compatibility is an invisible adapter and never changes the player-facing EU semantics.
 
-Current limitations: one Martian material, no general experiment framework, and no Earth/lunar comparative analysis. The questline represents those future studies with explicit manual validation. Lite Matter includes analysis, records, recovery, engineered/high-purity materials, and early characterization; it explicitly excludes full UU-Matter, replication, magical transmutation, and an AE2 unlock by itself.
+Current limitations: one Martian material, no general experiment framework, and no Earth/lunar comparative analysis. Current objectives use automatic Analyzer advancements and tangible records rather than manual validation. Lite Matter includes analysis, records, recovery, engineered/high-purity materials, and early characterization; it explicitly excludes full UU-Matter, replication, magical transmutation, and an AE2 unlock by itself.
 """)
 
 write("AI_AGE.md", "AI Age", """

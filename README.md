@@ -14,6 +14,9 @@ and should be treated as a deployment target rather than the Git working tree.
 
 See `docs/ADDED_MODS.md` for added dependencies, `manifest/final-mod-lock.json`
 for exact hashes, and `docs/MANUAL_QUEST_TEST_CHECKLIST.md` for Phase 2 verification.
+The current narrative, full progression flow, construction paths, controls,
+implemented systems, and remaining work are consolidated in
+`docs/GAME_DESIGN_DOCUMENT.md`.
 
 The authoritative Phase 2 progression is the machine-readable `progression/`
 tree. Regenerate its Better Questing projection and documentation with:
