@@ -16,6 +16,11 @@ REMOVED = {
     "ic2cuumatter-1.12.2-1.1.3.jar": "REMOVE",
 }
 ADDED = {
+    "ICBM-classic-1.12.2-6.5.5.jar": {
+        "source": "https://www.curseforge.com/minecraft/mc-mods/icbm/files/8177228",
+        "license": "All Rights Reserved; local private-pack testing only",
+        "purpose": "Strategic missiles and defense, recipe-gated through IC2 progression",
+    },
     "appliedenergistics2-rv6-stable-7.jar": {
         "source": "https://www.curseforge.com/minecraft/mc-mods/applied-energistics-2/files/2747063",
         "redistribution": "Custom license; local assembled instance only. Re-check permission before publication.",

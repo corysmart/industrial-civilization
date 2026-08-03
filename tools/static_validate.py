@@ -77,6 +77,7 @@ for directory in (ROOT / "config", ROOT / "scripts", ROOT / "groovy", ROOT / "re
                f"no removed-system reference in {path.relative_to(ROOT)}")
 
 added_hashes = {
+    "ICBM-classic-1.12.2-6.5.5.jar": "65533f69c3fe745385f51ff831c6c16adc8c963999093b44743961c8afe8d3d7",
     "appliedenergistics2-rv6-stable-7.jar": "e7f7fbf6caaf6206dbd958fb8f9185f874a405289e62ae3e97209b455a89fb1a",
     "techguns-1.12.2-2.0.2.0_pre3.2.jar": "154d3d794cfd74252f2cec979a6e72f5187bb9c21897ed4b42f45771a0e558f7",
     "CustomNPCs_1.12.2-(05Jul20).jar": "2759356b95ffb6a88c14997ff508dfe30f66abaa8e2d8029e18e02dcb57bc8cc",
@@ -117,6 +118,11 @@ archive_requirements = {
         "com/cleanroommc/groovyscript/GroovyScript.class",
         "com/cleanroommc/groovyscript/core/GroovyScriptCore.class",
     ),
+    "ICBM-classic-1.12.2-6.5.5.jar": (
+        "icbm/classic/ICBMClassic.class",
+        "assets/icbmclassic/recipes/launcher/base.json",
+        "assets/icbmclassic/models/item/missiles/nuclear.json",
+    ),
 }
 for archive, required_entries in archive_requirements.items():
     path = ROOT / "mods" / archive
@@ -129,7 +135,7 @@ for archive, required_entries in archive_requirements.items():
         ok(False, f"dependency/resource archive {archive}: {exc}")
 
 jars = sorted((ROOT / "mods").rglob("*.jar"))
-ok(len(jars) == 161, "expected active JAR count 161")
+ok(len(jars) == 162, "expected active JAR count 162")
 for path in jars:
     try:
         with zipfile.ZipFile(path) as zf:
@@ -326,7 +332,7 @@ ledger = json.loads((ROOT / "bin/extractedFiles.json").read_text())
 ok(not any(any(token in entry.lower() for token in ("projecte", "viewemc", "ic2cuumatter")) for entry in ledger), "Technic extraction ledger repaired")
 
 final_lock = json.loads((ROOT / "manifest/final-mod-lock.json").read_text())
-ok(final_lock["mod_count_jars"] == 161, "final lock JAR count")
+ok(final_lock["mod_count_jars"] == 162, "final lock JAR count")
 ok(not final_lock["duplicate_detected_mod_ids"], "no duplicate declared mod IDs")
 locked = {record["file"]: record["sha256"] for record in final_lock["mods"]}
 for path in jars:

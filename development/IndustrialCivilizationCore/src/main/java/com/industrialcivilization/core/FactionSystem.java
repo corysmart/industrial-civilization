@@ -52,6 +52,7 @@ public final class FactionSystem {
     private static final String SPECIALTY = "IndustrialSpecialty";
     private static final String COMPANION = "IndustrialCompanion";
     private static final String COMPANION_OWNER = "IndustrialCompanionOwner";
+    private static final String MARKET_CAPACITY = "IndustrialMarketCapacity";
 
     public static final Definition[] DEFINITIONS = {
         new Definition("frontier_cooperative", "Frontier Cooperative", 10,
@@ -177,6 +178,11 @@ public final class FactionSystem {
 
     public static EntityVillager spawnCitizen(World world, double x, double y, double z,
             String faction, String role, String specialty, String name) {
+        return spawnCitizen(world, x, y, z, faction, role, specialty, name, 1);
+    }
+
+    public static EntityVillager spawnCitizen(World world, double x, double y, double z,
+            String faction, String role, String specialty, String name, int marketCapacity) {
         EntityVillager citizen = new EntityVillager(world);
         citizen.setPosition(x, y, z);
         citizen.setCustomNameTag(name);
@@ -184,6 +190,7 @@ public final class FactionSystem {
         citizen.getEntityData().setString(FACTION, faction);
         citizen.getEntityData().setString(ROLE, role);
         citizen.getEntityData().setString(SPECIALTY, specialty);
+        citizen.getEntityData().setInteger(MARKET_CAPACITY, Math.max(0, marketCapacity));
         if ("guard".equals(role) || "raider".equals(role)) {
             citizen.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
         }
@@ -193,18 +200,24 @@ public final class FactionSystem {
     }
 
     private static void configureTrades(EntityVillager villager) {
-        configureTrades(villager, 0);
+        configureTrades(villager, null, 0);
     }
 
-    private static void configureTrades(EntityVillager villager, int reputationDiscount) {
+    private static void configureTrades(EntityVillager villager, @Nullable EntityPlayer player,
+            int reputationDiscount) {
         NBTTagCompound tag = villager.getEntityData();
         if (!tag.hasKey(FACTION, 8)) {
             tag.setString(FACTION, "frontier_cooperative");
             tag.setString(ROLE, "villager");
             tag.setString(SPECIALTY, "general");
+            tag.setInteger(MARKET_CAPACITY, 1);
         }
         MerchantRecipeList offers = new MerchantRecipeList();
         String specialty = tag.getString(SPECIALTY);
+        String faction = tag.getString(FACTION);
+        int stage = player == null ? 0 : MarketEconomy.marketStage(player,
+            Math.max(1, tag.getInteger(MARKET_CAPACITY)));
+        boolean earthMarket = villager.world.provider.getDimension() == 0;
         addPurchase(offers, Items.WHEAT, 12, 2, reputationDiscount);
         addPurchase(offers, Items.COAL, 16, 1, reputationDiscount);
         addSale(offers, Items.BREAD, 4, 1, reputationDiscount);
@@ -231,6 +244,29 @@ public final class FactionSystem {
             addSale(offers, Items.COOKED_BEEF, 6, 3, reputationDiscount);
             addSale(offers, Items.BAKED_POTATO, 8, 2, reputationDiscount);
         }
+        // Vehicles and firearms remain luxuries. Each community stocks equipment
+        // relevant to its work, and never sells at the player's current tech stage.
+        if (earthMarket && stage >= 2 && "frontier_cooperative".equals(faction)) {
+            addVehicleSale(offers, "golf_cart", 72, reputationDiscount);
+            if (stage >= 3) addVehicleSale(offers, "tractor", 104, reputationDiscount);
+        }
+        if (earthMarket && stage >= 3 && "riverside_works".equals(faction)) {
+            addVehicleSale(offers, "smart_car", 96, reputationDiscount);
+            if (stage >= 4) addVehicleSale(offers, "mini_bus", 128, reputationDiscount);
+        }
+        if (earthMarket && stage >= 3 && "civil_defense_militia".equals(faction)) {
+            addVehicleSale(offers, "atv", 88, reputationDiscount);
+            addConditionedExternalSale(offers, "techguns:pistol", 0, 36, reputationDiscount);
+            if (stage >= 4) {
+                addVehicleSale(offers, "off_roader", 112, reputationDiscount);
+                addConditionedExternalSale(offers, "techguns:combatshotgun", 0, 72, reputationDiscount);
+            }
+            if (stage >= 6) addConditionedExternalSale(offers, "techguns:m4", 0, 112, reputationDiscount);
+        }
+        if (earthMarket && stage >= 4 && "survey_detachment_7".equals(faction)) {
+            addVehicleSale(offers, "off_roader", 116, reputationDiscount);
+        }
+        if (earthMarket && player != null) addConditionedBuyback(offers, player.getHeldItemMainhand());
         villager.setRecipes(offers);
         tag.setBoolean("IndustrialTrades", true);
     }
@@ -252,6 +288,39 @@ public final class FactionSystem {
         if (item != null) offers.add(new MerchantRecipe(
             new ItemStack(IndustrialCivilizationCore.INDUSTRIAL_CREDIT, Math.max(1, price - discount)),
             new ItemStack(item, count, metadata)));
+    }
+
+    private static void addConditionedExternalSale(MerchantRecipeList offers, String id, int metadata,
+            int price, int discount) {
+        Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(id));
+        if (item != null) addHighPriceSale(offers,
+            MarketEconomy.newCondition(new ItemStack(item, 1, metadata)), price, discount);
+    }
+
+    private static void addVehicleSale(MerchantRecipeList offers, String vehicleId,
+            int price, int discount) {
+        ItemStack crate = MachineRecipe.vehicleCrate(vehicleId);
+        if (!crate.isEmpty()) addHighPriceSale(offers, MarketEconomy.newCondition(crate), price, discount);
+    }
+
+    private static void addHighPriceSale(MerchantRecipeList offers, ItemStack output,
+            int price, int discount) {
+        int adjusted = Math.max(1, price - Math.min(4, discount * 2));
+        ItemStack first = new ItemStack(IndustrialCivilizationCore.INDUSTRIAL_CREDIT,
+            Math.min(64, adjusted));
+        if (adjusted <= 64) offers.add(new MerchantRecipe(first, output));
+        else offers.add(new MerchantRecipe(first, new ItemStack(IndustrialCivilizationCore.INDUSTRIAL_CREDIT,
+            adjusted - 64), output));
+    }
+
+    private static void addConditionedBuyback(MerchantRecipeList offers, ItemStack held) {
+        if (!MarketEconomy.isConditioned(held)) return;
+        ItemStack exact = held.copy();
+        exact.setCount(1);
+        int newPrice = exact.getItem().getRegistryName() != null
+            && "vehicle".equals(exact.getItem().getRegistryName().getResourceDomain()) ? 104 : 64;
+        offers.add(new MerchantRecipe(exact, new ItemStack(IndustrialCivilizationCore.INDUSTRIAL_CREDIT,
+            MarketEconomy.usedValue(newPrice, MarketEconomy.condition(exact)))));
     }
 
     @SubscribeEvent
@@ -317,7 +386,8 @@ public final class FactionSystem {
             return;
         }
         int rep = reputation(player, faction);
-        configureTrades(villager, rep >= COMPANION_REPUTATION ? 2 : rep >= FRIENDLY_REPUTATION ? 1 : 0);
+        configureTrades(villager, player,
+            rep >= COMPANION_REPUTATION ? 2 : rep >= FRIENDLY_REPUTATION ? 1 : 0);
         long day = event.getWorld().getTotalWorldTime() / 24000L;
         String contactKey = "trade_contact_" + player.getUniqueID().toString();
         if (tag.getLong(contactKey) != day + 1 && player.getHeldItem(event.getHand()).getItem()

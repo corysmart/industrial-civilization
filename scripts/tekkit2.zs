@@ -79,6 +79,19 @@ recipes.removeByRecipeName("ic2:shaped_tile.pistonstickybase_1809078030");
 recipes.removeByRecipeName("industrialforegoing:infinity_drill_0");
 recipes.removeByRecipeName("minecraft:purple_shulker_box");
 
+// ICBM strategic payloads cannot bypass the IC2 nuclear and AI stages. Their
+// native crafting-table chains are disabled; controlled machine production is
+// introduced only alongside the corresponding progression quests.
+recipes.removeByRecipeName("icbmclassic:explosives/nuclear");
+recipes.removeByRecipeName("icbmclassic:explosives/antimatter");
+recipes.removeByRecipeName("icbmclassic:explosives/redmatter");
+recipes.removeByRecipeName("icbmclassic:missile/ex/nuclear");
+recipes.removeByRecipeName("icbmclassic:missile/ex/antimatter");
+recipes.removeByRecipeName("icbmclassic:missile/ex/redmatter");
+recipes.removeByRecipeName("icbmclassic:bombcarts/nuclear");
+recipes.removeByRecipeName("icbmclassic:bombcarts/antimatter");
+recipes.removeByRecipeName("icbmclassic:bombcarts/redmatter");
+
 // Remove duplicate colored wool recipes due to Quark
 recipes.removeByRecipeName("minecraft:orange_wool");
 recipes.removeByRecipeName("minecraft:magenta_wool");

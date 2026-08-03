@@ -31,6 +31,20 @@ public final class BlockRepairBench extends Block {
         if (world.isRemote) return true;
         Item machine = ForgeRegistries.ITEMS.getValue(new ResourceLocation("ic2:blockmachinelv"));
         ItemStack held = player.getHeldItem(hand);
+        if (MarketEconomy.isConditioned(held) && held.getItem().getRegistryName() != null
+                && "techguns".equals(held.getItem().getRegistryName().getResourceDomain())) {
+            int materialSlot = findItem(player, machine);
+            if (materialSlot < 0) {
+                player.sendStatusMessage(new net.minecraft.util.text.TextComponentString(
+                    "Gun service requires one IC2 machine block in your inventory."), false);
+                return true;
+            }
+            MarketEconomy.withCondition(held, MarketEconomy.NEW_CONDITION, true);
+            if (!player.capabilities.isCreativeMode) player.inventory.decrStackSize(materialSlot, 1);
+            player.sendStatusMessage(new net.minecraft.util.text.TextComponentString(
+                "Weapon restored at the IC2 repair bench."), false);
+            return true;
+        }
         if (machine == null || held.getItem() != machine) {
             player.sendStatusMessage(new TextComponentTranslation(
                 "message.industrialcivilization.repair_bench.requirement"), false);
@@ -48,5 +62,14 @@ public final class BlockRepairBench extends Block {
         player.sendStatusMessage(new TextComponentTranslation(
             "message.industrialcivilization.repair_bench.none"), false);
         return true;
+    }
+
+    private static int findItem(EntityPlayer player, Item item) {
+        if (item == null) return -1;
+        for (int slot = 0; slot < player.inventory.mainInventory.size(); slot++) {
+            ItemStack stack = player.inventory.mainInventory.get(slot);
+            if (!stack.isEmpty() && stack.getItem() == item) return slot;
+        }
+        return -1;
     }
 }

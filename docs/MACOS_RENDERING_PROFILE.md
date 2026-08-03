@@ -1,6 +1,6 @@
 # macOS Rendering Profile
 
-The test machine is an 8 GB, seven-GPU-core M1 MacBook Air. Minecraft 1.12.2 uses the legacy x86_64 Java/LWJGL 2 OpenGL path through Rosetta; the runtime log reports Apple M1, OpenGL 2.1 over Metal. The pack currently loads 161 JARs, roughly 189 Forge mod IDs, and more than 42,000 texture sprites.
+The test machine is an 8 GB, seven-GPU-core M1 MacBook Air. Minecraft 1.12.2 uses the legacy x86_64 Java/LWJGL 2 OpenGL path through Rosetta; the runtime log reports Apple M1, OpenGL 2.1 over Metal. The pack currently loads 162 JARs after the private-test ICBM addition, roughly 190 Forge mod IDs, and more than 42,000 texture sprites.
 
 OptiFine is cross-platform, but it is intentionally not installed. It overlaps Nothirium, VintageFix, CensoredASM, Entity Culling, and the Forge model pipeline; the current CensoredASM configuration also explicitly disables an optimization when OptiFine is present. This stack already includes Nothirium, VintageFix, Entity Culling, Particle Culling, Phosphor, CensoredASM, Universal Tweaks, and RandomPatches.
 

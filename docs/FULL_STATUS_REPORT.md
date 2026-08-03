@@ -18,18 +18,25 @@ Technic test target: `/Users/cory/Library/Application Support/technic/modpacks/t
 - One-block Car Workshop and Gun Factory controllers deploy 9×7 equipment set pieces. Direct rain rusts them; a Repair Bench consumes one IC2 Machine Block to restore operation.
 - Neutral trading beats emergency IC Credit crafting. Reputation improves prices modestly rather than collapsing the economy.
 - Pistol production moved to the Programmable Assembler; combat shotgun and M4 production moved to the covered Gun Factory.
+- Earth stores now carry faction-specific vehicles/firearms with stage-minus-one stock ceilings, 36–128-credit retail, condition-scaled resale capped at 32%, and substantially heavier steel/electronics build costs.
+- Vehicles have persistent mileage wear, low-condition penalties, zero-condition immobilization, and IC2 machine-block repairs. Machine/market guns wear on attacks and use the IC2 Repair Bench.
+- Vanilla Earth zombies become escalating robbers with door breaking, theft, recoverable stolen drops, guns, squads, and late-stage explosives.
+- Moon villages, dungeons, and non-player living mobs are suppressed; six Apollo heritage flags remain. Mars allows only Galacticraft mobs until AI, after which new terrain can gain settlements, outposts, cities, roads, and utilities.
+- ICBM Classic 6.5.5 is installed for private testing, with duplicate parts normalized, IC2 MV/HV launch hardware, strategic-payload shortcut locks, and IC2 power-bridge guidance.
+- Material canonicalization is documented in `docs/ITEM_UNIFICATION_AUDIT.md` and checked by `tools/audit_item_unification.py`.
 
 ## Current automated evidence
 
 - Offline Forge 1.12.2 build succeeds on Java 8.
 - Progression validator: 3,284 checks, 122 milestones, 0 placeholders.
 - Runtime-content harness: 556 checks across textures, models, recipes, energy contracts, gates, and integrations.
-- Final mod manifest expects 161 JARs and records exact hashes and redistribution notes.
+- Final mod manifest expects 162 JARs and records exact hashes and redistribution notes.
 
 ## Requires a restart and fresh-world playtest
 
 - Onysd/Obfuscate startup, rendering, vehicle crate NBT, handling/fuel behavior, all six chassis, service-carrier persistence, mobile GUIs, and BuildCraft item/fluid transfers.
 - World generation spacing, road continuity across chunk borders, utility spine safety, city-controller exchange under chunk loading, NPC pathfinding, faction economy pacing, and workshop rain/repair behavior.
+- Robber escalation/theft, Moon cleanup and heritage markers, post-AI Mars generation, equipment-condition persistence, damaged-item resale, and ICBM launch/radar power behavior.
 - Better Questing import/rendering of pack version 6, all six side-path tabs, new advancement detection, and control-text wrapping.
 - Full critical-route resource/power pacing, cross-dimensional cargo save/reload, and multiplayer ownership behavior.
 

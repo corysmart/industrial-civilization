@@ -24,7 +24,12 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world,
             IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
-        if (world.provider.getDimension() != 0) return;
+        if (world.provider.getDimension() != 0) {
+            if (isMoon(world)) generateLunarHeritageFlags(chunkX, chunkZ, world);
+            if (isMars(world) && aiAgeUnlocked(world)) generateMartianCivilization(
+                random, chunkX, chunkZ, world);
+            return;
+        }
         BlockPos spawn = world.getSpawnPoint();
         if (isPrimitiveSettlementChunk(world, chunkX, chunkZ, spawn)) {
             BlockPos origin = surfaceOrigin(world, chunkX, chunkZ);
@@ -50,10 +55,54 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
         } else if (distance >= 900 && random.nextInt(96) == 0) {
             AbandonedFactoryWorldGenerator.buildShell(world, origin);
             FactionSystem.spawnCitizen(world, origin.getX() + 2.5, origin.getY() + 1,
-                origin.getZ() + 11.5, "ashline_raiders", "raider", "armaments", "Ashline Lookout");
+                origin.getZ() + 11.5, "ashline_raiders", "raider", "armaments", "Ashline Lookout", 3);
             FactionSystem.spawnCitizen(world, origin.getX() + 11.5, origin.getY() + 1,
-                origin.getZ() + 2.5, "ashline_raiders", "raider", "armaments", "Ashline Salvager");
+                origin.getZ() + 2.5, "ashline_raiders", "raider", "armaments", "Ashline Salvager", 3);
         }
+    }
+
+    private static boolean isMars(World world) {
+        String name = world.provider.getDimensionType().getName().toLowerCase(java.util.Locale.ROOT);
+        return name.contains("mars");
+    }
+
+    private static boolean isMoon(World world) {
+        return world.provider.getDimensionType().getName().toLowerCase(java.util.Locale.ROOT).contains("moon");
+    }
+
+    /** Six compact heritage markers represent the six Apollo surface flag sites. */
+    private static void generateLunarHeritageFlags(int chunkX, int chunkZ, World world) {
+        int[][] sites = {{96, 0}, {192, 80}, {-160, 144}, {320, -96}, {-288, -160}, {64, 352}};
+        for (int[] site : sites) {
+            if (Math.floorDiv(site[0], 16) != chunkX || Math.floorDiv(site[1], 16) != chunkZ) continue;
+            BlockPos ground = world.getTopSolidOrLiquidBlock(new BlockPos(site[0], 0, site[1])).down();
+            if (ground.getY() < 10) return;
+            for (int y = 1; y <= 5; y++) set(world, ground.add(0, y, 0), Blocks.IRON_BARS.getDefaultState());
+            // Small block-art United States flag; these are markers, not loot structures.
+            for (int dx = 1; dx <= 4; dx++) for (int dy = 0; dy <= 2; dy++) {
+                int color = dx <= 2 && dy >= 1 ? 11 : ((dy & 1) == 0 ? 14 : 0);
+                set(world, ground.add(dx, 5 - dy, 0), Blocks.WOOL.getStateFromMeta(color));
+            }
+            return;
+        }
+    }
+
+    private static boolean aiAgeUnlocked(World world) {
+        for (net.minecraft.entity.player.EntityPlayer player : world.playerEntities) {
+            if (ProgressionState.has(player, "ai_age") || MarketEconomy.playerStage(player) >= 7) return true;
+        }
+        return false;
+    }
+
+    /** Mars remains untouched until an AI-age player generates new terrain. */
+    private static void generateMartianCivilization(Random random, int chunkX, int chunkZ, World world) {
+        BlockPos origin = surfaceOrigin(world, chunkX, chunkZ, 25, 190);
+        if (origin == null) return;
+        double distance = Math.sqrt((double) chunkX * chunkX + (double) chunkZ * chunkZ) * 16.0D;
+        buildRegionalRoad(world, chunkX, chunkZ, distance);
+        if (random.nextInt(320) == 0) buildIndustrialCity(world, origin);
+        else if (random.nextInt(220) == 0) buildMilitiaOutpost(world, origin);
+        else if (random.nextInt(160) == 0) buildPrimitiveSettlement(world, origin);
     }
 
     private static boolean isPrimitiveSettlementChunk(World world, int chunkX, int chunkZ,
@@ -69,10 +118,14 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
     }
 
     private static BlockPos surfaceOrigin(World world, int chunkX, int chunkZ) {
+        return surfaceOrigin(world, chunkX, chunkZ, 55, 115);
+    }
+
+    private static BlockPos surfaceOrigin(World world, int chunkX, int chunkZ, int minY, int maxY) {
         int x = chunkX * 16 + 1;
         int z = chunkZ * 16 + 1;
         int y = world.getHeight(new BlockPos(x + 7, 0, z + 7)).getY();
-        return y < 55 || y > 115 ? null : new BlockPos(x, y, z);
+        return y < minY || y > maxY ? null : new BlockPos(x, y, z);
     }
 
     private static void buildPrimitiveSettlement(World world, BlockPos origin) {
@@ -93,9 +146,9 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
         set(world, origin.add(7, 1, 7), Blocks.COBBLESTONE.getDefaultState());
         set(world, origin.add(7, 2, 7), Blocks.TORCH.getDefaultState());
         FactionSystem.spawnCitizen(world, origin.getX() + 6.5, origin.getY() + 2,
-            origin.getZ() + 6.5, "frontier_cooperative", "villager", "food", "Frontier Grower");
+            origin.getZ() + 6.5, "frontier_cooperative", "villager", "food", "Frontier Grower", 2);
         FactionSystem.spawnCitizen(world, origin.getX() + 8.5, origin.getY() + 2,
-            origin.getZ() + 6.5, "frontier_cooperative", "trader", "general", "Cooperative Trader");
+            origin.getZ() + 6.5, "frontier_cooperative", "trader", "general", "Cooperative Trader", 2);
         FactionSystem.spawnCitizen(world, origin.getX() + 6.5, origin.getY() + 2,
             origin.getZ() + 8.5, "frontier_cooperative", "guard", "general", "Village Watch");
     }
@@ -114,7 +167,7 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
         tower(world, origin.add(10, 1, 10));
         set(world, origin.add(7, 1, 0), Blocks.IRON_DOOR.getDefaultState());
         FactionSystem.spawnCitizen(world, origin.getX() + 7.5, origin.getY() + 2,
-            origin.getZ() + 7.5, "civil_defense_militia", "militia", "armaments", "Militia Quartermaster");
+            origin.getZ() + 7.5, "civil_defense_militia", "militia", "armaments", "Militia Quartermaster", 5);
         FactionSystem.spawnCitizen(world, origin.getX() + 4.5, origin.getY() + 2,
             origin.getZ() + 8.5, "civil_defense_militia", "guard", "armaments", "Outpost Guard");
         FactionSystem.spawnCitizen(world, origin.getX() + 10.5, origin.getY() + 2,
@@ -135,7 +188,7 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
         String faction = "research".equals(specialty) ? "survey_detachment_7" : "riverside_works";
         String title = Character.toUpperCase(specialty.charAt(0)) + specialty.substring(1);
         FactionSystem.spawnCitizen(world, origin.getX() + 5.5, origin.getY() + 2,
-            origin.getZ() + 4.5, faction, "trader", specialty, title + " Works Factor");
+            origin.getZ() + 4.5, faction, "trader", specialty, title + " Works Factor", 5);
         FactionSystem.spawnCitizen(world, origin.getX() + 9.5, origin.getY() + 2,
             origin.getZ() + 4.5, faction, "engineer", specialty, title + " Works Engineer");
         FactionSystem.spawnCitizen(world, origin.getX() + 7.5, origin.getY() + 2,
@@ -159,9 +212,9 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
             set(world, lamp.up(), Blocks.GLOWSTONE.getDefaultState());
         }
         FactionSystem.spawnCitizen(world, origin.getX() + 6.5, origin.getY() + 2,
-            origin.getZ() + 7.5, "riverside_works", "trader", "electronics", "City Exchange Broker");
+            origin.getZ() + 7.5, "riverside_works", "trader", "electronics", "City Exchange Broker", 7);
         FactionSystem.spawnCitizen(world, origin.getX() + 8.5, origin.getY() + 2,
-            origin.getZ() + 7.5, "riverside_works", "trader", "steel", "Foundry Representative");
+            origin.getZ() + 7.5, "riverside_works", "trader", "steel", "Foundry Representative", 7);
         FactionSystem.spawnCitizen(world, origin.getX() + 7.5, origin.getY() + 2,
             origin.getZ() + 6.5, "civil_defense_militia", "guard", "armaments", "City Militia");
         FactionSystem.spawnCitizen(world, origin.getX() + 7.5, origin.getY() + 2,

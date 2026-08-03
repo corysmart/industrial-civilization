@@ -7,7 +7,7 @@
   "forge": "14.23.5.2860",
   "java": "8",
   "mode": "final",
-  "mod_count_jars": 161,
+  "mod_count_jars": 162,
   "mods": [
     {
       "file": "mods/!configanytime-3.0.jar",
@@ -1563,6 +1563,28 @@
       "redistribution": "Inherited third-party binary; verify author terms before any export."
     },
     {
+      "file": "mods/ICBM-classic-1.12.2-6.5.5.jar",
+      "filename": "ICBM-classic-1.12.2-6.5.5.jar",
+      "size": 3346719,
+      "sha256": "65533f69c3fe745385f51ff831c6c16adc8c963999093b44743961c8afe8d3d7",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "icbmclassic",
+          "name": "ICBM Classic",
+          "version": "6.5.5",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "https://www.curseforge.com/minecraft/mc-mods/icbm/files/8177228",
+      "license": "All Rights Reserved; local private-pack testing only",
+      "purpose": "Strategic missiles and defense, recipe-gated through IC2 progression"
+    },
+    {
       "file": "mods/iChunUtil-1.12.2-7.2.2.jar",
       "filename": "iChunUtil-1.12.2-7.2.2.jar",
       "size": 581963,
@@ -1615,8 +1637,8 @@
     {
       "file": "mods/IndustrialCivilizationCore-0.2.0.jar",
       "filename": "IndustrialCivilizationCore-0.2.0.jar",
-      "size": 456584,
-      "sha256": "5012fd84e5d7fc3ed6596ab4ffedd9d9402786ea013b7491cae4df5ee81dca94",
+      "size": 472842,
+      "sha256": "e13e38ce699452fe44b58d799776cfb6bd677dfe26a05f8266b331d99ee1887c",
       "classification": "KEEP",
       "mods": [
         {
@@ -3729,8 +3751,8 @@
     },
     {
       "file": "config/Galacticraft/core.cfg",
-      "sha256": "4e837966e0c6b4081267a6cbf8896d499ec060bdd3976731633de70d62592a16",
-      "size": 12015
+      "sha256": "9d2aa37b5cac42bf455974b6f94e874aa4afae3a1a37a301a60b834b5bc7a36d",
+      "size": 12013
     },
     {
       "file": "config/Galacticraft/energy.cfg",
@@ -3814,8 +3836,8 @@
     },
     {
       "file": "config/Techguns.cfg",
-      "sha256": "6332629ccb76d7894bd81fd3c61b26143c2192adef2d60ad5e5b6598e0057d4a",
-      "size": 1075
+      "sha256": "61587c4e8e4d7efc5a1f0ab7a034a5fd3f156ab849909571ebb73513b898610e",
+      "size": 1074
     },
     {
       "file": "config/Universal Tweaks - Bugfixes.cfg",
@@ -3899,8 +3921,8 @@
     },
     {
       "file": "config/betterfoliage.cfg",
-      "sha256": "a66fae1e3834095ad675af63c457a1cef2ae910e2e1afe17eab21c4bfa4a0d50",
-      "size": 7466
+      "sha256": "6731ec33b0d2f8ba96b6efc61d16f370bd514868a1d93eb5f32f3429b1609980",
+      "size": 7465
     },
     {
       "file": "config/betterpingdisplay.cfg",
@@ -4079,8 +4101,8 @@
     },
     {
       "file": "config/defaultoptions/options.txt",
-      "sha256": "58ca41898536ffebbf9bcc4bceaf4402c05a44c9c37365441b0e190f943cee18",
-      "size": 1463
+      "sha256": "3a53472434f1967ffe94442f6c2bc1a70ed842796d5f8bfffad72d94be23de49",
+      "size": 1457
     },
     {
       "file": "config/defaultoptions.cfg",
@@ -4109,8 +4131,8 @@
     },
     {
       "file": "config/entityculling.cfg",
-      "sha256": "db9907e245289c529c02052f57328b0477474c7f24cb9c6fb0dbee693fadf133",
-      "size": 4720
+      "sha256": "fefb5dd75a3de379e788532f7bb853a81be7fe2395d199ea201021e29045ffe1",
+      "size": 4718
     },
     {
       "file": "config/fairylights.cfg",
@@ -4999,7 +5021,7 @@
     },
     {
       "file": "config/smoothfont/smoothfont.cfg",
-      "sha256": "fb5ac196d77e206baf1af6e26ac192580f3accc16edd0dd5dc91a90ae9b342d0",
+      "sha256": "6edfc753c8b177299934549d362c8a8b379d2b9e742927fef5ae5df2ab5960d0",
       "size": 10883
     },
     {
@@ -5149,8 +5171,8 @@
     },
     {
       "file": "scripts/tekkit2.zs",
-      "sha256": "e82e7d63c71623b42f913cae55669fc13db4021188b7739127127e4586da9c60",
-      "size": 21043
+      "sha256": "9027da933d4d031898749314a632f06e7769b263def16e9015783afa87305301",
+      "size": 21837
     },
     {
       "file": "groovy/postInit/industrial_civilization.groovy",
@@ -5161,6 +5183,11 @@
       "file": "groovy/postInit/industrial_civilization_content.groovy",
       "sha256": "1a5a8c35d7d005944148cd270e70da3b6356c3d99ca3bfb8561ca3d149e5f344",
       "size": 7389
+    },
+    {
+      "file": "groovy/postInit/industrial_icbm.groovy",
+      "sha256": "12c288a7371f48f19240e34e5d1c4ca623a709c5dd55151bbc81d6c0787c8d43",
+      "size": 2904
     },
     {
       "file": "groovy/runConfig.json",

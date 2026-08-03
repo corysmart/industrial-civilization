@@ -1,11 +1,13 @@
 package com.industrialcivilization.core;
 
 import com.mrcrayfish.vehicle.entity.vehicle.EntityMiniBus;
+import com.mrcrayfish.vehicle.entity.EntityPoweredVehicle;
 import java.util.List;
 import javax.annotation.Nullable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
@@ -25,12 +27,15 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 /** Adds the top-tier mobile-industry role to Onysd's real Mini Bus vehicle. */
 @Mod.EventBusSubscriber(modid = IndustrialCivilizationCore.MODID)
 public final class VehicleIntegrationSystem {
     private static final ResourceLocation MOBILE_INDUSTRY = new ResourceLocation(
         IndustrialCivilizationCore.MODID, "mobile_industry_vehicle");
+    private static final String CONDITION = "IndustrialVehicleCondition";
 
     @SubscribeEvent
     public static void attach(AttachCapabilitiesEvent<Entity> event) {
@@ -38,7 +43,54 @@ public final class VehicleIntegrationSystem {
     }
 
     @SubscribeEvent
+    public static void joined(net.minecraftforge.event.entity.EntityJoinWorldEvent event) {
+        if (!event.getWorld().isRemote && event.getEntity() instanceof EntityPoweredVehicle
+                && !event.getEntity().getEntityData().hasKey(CONDITION, 3)) {
+            event.getEntity().getEntityData().setInteger(CONDITION, MarketEconomy.NEW_CONDITION);
+        }
+    }
+
+    /** Wear is mileage based, sampled once per second to keep the pack inexpensive. */
+    @SubscribeEvent
+    public static void worldTick(TickEvent.WorldTickEvent event) {
+        if (event.phase != TickEvent.Phase.END || event.world.isRemote
+                || event.world.getTotalWorldTime() % 20L != 0L) return;
+        for (Entity entity : event.world.loadedEntityList) {
+            if (!(entity instanceof EntityPoweredVehicle)) continue;
+            EntityPoweredVehicle vehicle = (EntityPoweredVehicle) entity;
+            NBTTagCompound tag = vehicle.getEntityData();
+            int condition = tag.hasKey(CONDITION, 3) ? tag.getInteger(CONDITION) : MarketEconomy.NEW_CONDITION;
+            if (vehicle.isMoving()) {
+                condition = Math.max(0, condition - (vehicle.isBoosting() ? 3 : 1));
+                tag.setInteger(CONDITION, condition);
+                tag.setBoolean(MarketEconomy.USED, true);
+            }
+            if (condition <= 0) vehicle.setSpeed(0.0F);
+            else if (condition < 2000) vehicle.speedMultiplier = Math.min(vehicle.speedMultiplier, 0.45F);
+        }
+    }
+
+    @SubscribeEvent
     public static void interact(PlayerInteractEvent.EntityInteract event) {
+        if (!(event.getTarget() instanceof EntityPoweredVehicle)) return;
+        EntityPoweredVehicle powered = (EntityPoweredVehicle) event.getTarget();
+        Item machine = ForgeRegistries.ITEMS.getValue(new ResourceLocation("ic2:blockmachinelv"));
+        ItemStack held = event.getEntityPlayer().getHeldItem(event.getHand());
+        if (machine != null && held.getItem() == machine) {
+            cancel(event);
+            if (!event.getWorld().isRemote) {
+                if (powered.isMoving()) {
+                    event.getEntityPlayer().sendStatusMessage(new TextComponentTranslation(
+                        "message.industrialcivilization.service_vehicle.park"), false);
+                } else {
+                    powered.getEntityData().setInteger(CONDITION, MarketEconomy.NEW_CONDITION);
+                    if (!event.getEntityPlayer().capabilities.isCreativeMode) held.shrink(1);
+                    event.getEntityPlayer().sendStatusMessage(new net.minecraft.util.text.TextComponentString(
+                        "Vehicle restored with one IC2 machine block."), false);
+                }
+            }
+            return;
+        }
         if (!(event.getTarget() instanceof EntityMiniBus)) return;
         EntityMiniBus vehicle = (EntityMiniBus) event.getTarget();
         if (vehicle.motionX * vehicle.motionX + vehicle.motionZ * vehicle.motionZ > 0.0025D) {

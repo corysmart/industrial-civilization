@@ -178,6 +178,7 @@ public final class IndustrialCivilizationCore {
             new ResourceLocation(MODID, "vehicle_service_dock"));
         GameRegistry.registerWorldGenerator(new CivilizationWorldGenerator(), 50);
         MinecraftForge.TERRAIN_GEN_BUS.register(new VillageSuppressionHandler());
+        MinecraftForge.TERRAIN_GEN_BUS.register(new MoonPurityHandler());
         FactionNetwork.init();
     }
 
