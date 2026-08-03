@@ -16,7 +16,7 @@
 
 - Create a new disposable survival world.
 - Open the quest UI and confirm all 16 chapters and 6 independent side-path tabs appear in order.
-- Place and roof the Car Workshop, manufacture each of the six curated vehicle crates, then drive each vehicle with W/A/S/D and test H horn/C seat cycling.
+- Place and roof the Car Workshop, manufacture each of the six curated vehicle crates, then drive each vehicle with W/A/S/D and test Option+K horn/Option+L seat cycling.
 - Park the Passenger Carrier, verify its 54-slot inventory, mobile crafting grid, 64,000 mB tank, and item/fluid transfers through a Vehicle Service Dock.
 - Expose a Car Workshop to rain, verify it rusts and stops, then repair it at a Repair Bench for exactly one IC2 Machine Block.
 - In a fresh world, verify dirt-to-paved regional roads, real IC2 utility spines/outlets, and a live specialty-item exchange between two loaded city cargo controllers.

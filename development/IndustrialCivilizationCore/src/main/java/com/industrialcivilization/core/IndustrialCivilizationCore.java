@@ -355,6 +355,8 @@ public final class IndustrialCivilizationCore {
             // Inventory, equipment, and combat.
             key("invtweaks.key.sort", 19, KeyModifier.NONE, 19, KeyModifier.ALT),
             key("techguns.key.forceReload", 19, KeyModifier.NONE, 19, KeyModifier.SHIFT),
+            key("key.vehicle.horn", 35, KeyModifier.NONE, 37, KeyModifier.ALT),
+            key("key.vehicle.cycle_seats", 46, KeyModifier.NONE, 38, KeyModifier.ALT),
             key("Open Spaceship Inventory", 33, KeyModifier.NONE, 33, KeyModifier.ALT),
             key("Boost Key", 29, KeyModifier.NONE, 57, KeyModifier.ALT),
             key("key.control", 29, KeyModifier.NONE, 34, KeyModifier.NONE),

@@ -87,7 +87,7 @@ The generator also owns story openings/transitions, contextual control blocks, e
 | Waila | Command+[ display; Command+] liquid; Command+; recipe; Command+0 config; Command+' uses |
 | Pack area tools | Sneak suppresses whole-tree/area behavior for precision work |
 | Factions and NPCs | Pause > Factions & Settlements; right-click trades; sneak-right-click membership/recruitment/dismissal |
-| Onysd Vehicles | W/A/S/D drive; H horn; C cycle seats; sneak-right-click parked service carrier for cargo |
+| Onysd Vehicles | W/A/S/D drive; Option+K horn; Option+L cycle seats; sneak-right-click parked service carrier for cargo |
 
 Ordinary right-click interaction and machine-specific operational steps are stated beside these bindings; the quest text does not send the player to an external wiki or the Controls menu.
 

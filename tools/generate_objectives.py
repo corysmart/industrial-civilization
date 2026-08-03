@@ -220,7 +220,7 @@ def controls_for(ms):
     if any(word in haystack for word in ("techguns", "firearm", "armament", "pistol", "shotgun", "rifle", "defensive")):
         controls.append("Techguns: Option+Y forces a reload; right-click aims/uses the weapon and left-click fires.")
     if any(word in haystack for word in ("vehicle", "car workshop", "mobility", "service carrier")):
-        controls.append("Vehicles: use W/A/S/D to drive, H for the horn, and C to cycle seats. Sneak-right-click the parked Industrial Service Carrier for its 54-slot cargo hold; hold a Crafting Table while doing so for its mobile crafting grid. Fluid containers interact by right-clicking the parked carrier. Park within four blocks of a Vehicle Service Dock to expose cargo and its 64,000 mB tank to BuildCraft pipes.")
+        controls.append("Vehicles: use W/A/S/D to drive, Option+K for the horn, and Option+L to cycle seats. Sneak-right-click the parked Industrial Service Carrier for its 54-slot cargo hold; hold a Crafting Table while doing so for its mobile crafting grid. Fluid containers interact by right-clicking the parked carrier. Park within four blocks of a Vehicle Service Dock to expose cargo and its 64,000 mB tank to BuildCraft pipes.")
     if any(word in haystack for word in ("car workshop", "gun factory", "rust", "repair bench")):
         controls.append("Large workshops: place the controller to deploy the equipment set piece, then provide a solid roof. Rain reaching the controller rusts it; right-click a Repair Bench while holding one IC2 Machine Block to restore the nearest rusted workshop within 12 blocks.")
     if any(word in haystack for word in ("railcraft", "freight", "locomotive", "rail logistics")):

@@ -31,7 +31,7 @@ The Programmable Assembler produces the pistol. The Gun Factory produces the com
 
 ## Controls
 
-- W/A/S/D: drive; H: horn; C: cycle seats.
+- W/A/S/D: drive; Option+K: horn; Option+L: cycle seats.
 - Sneak-right-click a parked Passenger Carrier: cargo.
 - Sneak-right-click while holding a Crafting Table: mobile crafting.
 - Right-click with a fluid container: fill or drain the carrier tank.
