@@ -10,7 +10,7 @@
       "runtime_item": "industrialcivilizationcore:research_station",
       "display_name": "Research Station",
       "replacement_status": "implemented",
-      "implementation": ["EU and FE energy sink", "four-slot inventory", "environment-aware archive recipes", "IC2-styled GUI", "ComputerCraft peripheral"]
+      "implementation": ["native IC2 EU energy sink", "invisible Forge Energy compatibility adapter", "four-slot inventory", "environment-aware archive recipes", "IC2-styled GUI", "ComputerCraft peripheral"]
     },
     {
       "id": "orbital_experiment_module",

@@ -2,7 +2,7 @@
 
 # Research Progression
 
-The modular Research Station and Environmental Experiment Module are real EU/FE-powered machines with four-slot automation inventories, IC2-styled GUIs, persistent progress, environment recognition, and ComputerCraft peripherals.
+The modular Research Station and Environmental Experiment Module are native IC2 EU-powered machines with four-slot automation inventories, IC2-styled GUIs, persistent progress, environment recognition, and ComputerCraft peripherals. Forge Energy compatibility remains an invisible adapter.
 
 - Orbit produces the Orbital Research Archive from sustained station operation and experiments.
 - The Moon produces the Lunar Engineering Archive from local industry and lunar science.

@@ -49,13 +49,23 @@ public final class TileIndustrialMachine extends TileEntity
 
     private final IEnergyStorage forgeEnergy = new IEnergyStorage() {
         @Override public int receiveEnergy(int amount, boolean simulate) {
-            int accepted = (int) Math.min(amount, getCapacity() - energy);
-            if (!simulate) { energy += accepted; markDirty(); }
+            int missingFe = (int) Math.floor((getCapacity() - energy)
+                * IndustrialCivilizationCore.FE_PER_EU);
+            int transferLimit = getKind().voltage * IndustrialCivilizationCore.FE_PER_EU;
+            int accepted = Math.max(0, Math.min(amount, Math.min(missingFe, transferLimit)));
+            if (!simulate && accepted > 0) {
+                energy += accepted / (double) IndustrialCivilizationCore.FE_PER_EU;
+                markDirty();
+            }
             return accepted;
         }
         @Override public int extractEnergy(int amount, boolean simulate) { return 0; }
-        @Override public int getEnergyStored() { return (int) energy; }
-        @Override public int getMaxEnergyStored() { return getCapacity(); }
+        @Override public int getEnergyStored() {
+            return (int) Math.floor(energy * IndustrialCivilizationCore.FE_PER_EU);
+        }
+        @Override public int getMaxEnergyStored() {
+            return getCapacity() * IndustrialCivilizationCore.FE_PER_EU;
+        }
         @Override public boolean canExtract() { return false; }
         @Override public boolean canReceive() { return true; }
     };

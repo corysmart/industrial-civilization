@@ -56,6 +56,8 @@ public final class IndustrialCivilizationCore {
     public static final String MODID = "industrialcivilizationcore";
     public static final String NAME = "Industrial Civilization Core";
     public static final String VERSION = "0.2.0";
+    /** Canonical pack conversion, matching IC2 Classic's RFPerEU setting. */
+    public static final int FE_PER_EU = 8;
     public static final int GUI_INDUSTRIAL_MACHINE = 1;
     public static boolean ENFORCE_SPACE_GATES = true;
     @Mod.Instance(MODID)

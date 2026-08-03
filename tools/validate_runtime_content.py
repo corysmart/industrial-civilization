@@ -102,4 +102,4 @@ check("placeholder_" not in json.dumps(json.loads(
     "generated quests contain no placeholder registry IDs")
 
 print(f"RUNTIME CONTENT HARNESS: {len(checks)} checks passed")
-print("Validated sprites, GUI atlas, models, IC2/FE energy contracts, ComputerCraft API, factory encounter, gates, and recipes.")
+print("Validated sprites, GUI atlas, models, IC2 energy contracts, hidden compatibility adapters, ComputerCraft API, factory encounter, gates, and recipes.")

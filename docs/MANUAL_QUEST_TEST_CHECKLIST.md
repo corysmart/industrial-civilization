@@ -10,7 +10,7 @@ Do not use a valued world for the first database import. No runtime claims are m
 - [ ] 4. Numbered chapter tabs contain no optional side-path objectives.
 - [ ] 5. Early quests are reachable.
 - [ ] 6. All former placeholder registry objects are absent from HEI and every replacement has a distinct sprite.
-- [ ] 7. The Electric Fabricator processes a fixed recipe using EU or FE.
+- [ ] 7. The Electric Fabricator processes a fixed recipe using IC2 EU.
 - [ ] 8. The Programmable Assembler accepts ComputerCraft recipe selection and queues.
 - [ ] 9. The Robotic Manufacturing Cell enforces Moon-only Quantum-component synthesis.
 - [ ] 10. Electrification chapter completes.

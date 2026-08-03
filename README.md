@@ -24,6 +24,7 @@ python3 tools/generate_runtime_advancements.py
 python3 tools/generate_objectives.py
 python3 tools/generate_progression_docs.py
 python3 tools/validate_runtime_content.py
+python3 tools/validate_energy_interop.py
 python3 tools/validate_progression.py
 python3 tools/static_validate.py
 ```

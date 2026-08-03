@@ -434,9 +434,9 @@
         "average": 40,
         "poor": 80
       },
-      "raw_resource_requirements": "Real Analyzer, Desh, 50k FE",
+      "raw_resource_requirements": "Real Analyzer, Desh, 6,250 EU",
       "machine_throughput": "Single real analysis plus research line",
-      "power_requirements": "50,000 FE per Desh analysis",
+      "power_requirements": "6,250 EU per Desh analysis",
       "expected_manual_steps": "Initial setup and verification only; routine repetition should be automated.",
       "automation_paths": [
         "Reuse prior production",

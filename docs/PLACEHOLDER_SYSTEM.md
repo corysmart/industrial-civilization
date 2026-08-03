@@ -6,7 +6,7 @@ All eleven Phase 2 test placeholders have been removed. Their stable milestone I
 
 | Former placeholder | Stable milestone | Runtime object | Implemented behavior |
 |---|---|---|---|
-| `research_station` | `research_station` | `industrialcivilizationcore:research_station` | EU and FE energy sink; four-slot inventory; environment-aware archive recipes; IC2-styled GUI; ComputerCraft peripheral |
+| `research_station` | `research_station` | `industrialcivilizationcore:research_station` | native IC2 EU energy sink; invisible Forge Energy compatibility adapter; four-slot inventory; environment-aware archive recipes; IC2-styled GUI; ComputerCraft peripheral |
 | `orbital_experiment_module` | `orbital_experiment_module` | `industrialcivilizationcore:orbital_experiment_module` | powered environment detection; orbit/Moon/Mars tagged data; automation-compatible inventory |
 | `orbital_research_archive` | `orbital_research_complete` | `industrialcivilizationcore:orbital_research_archive` | orbit-only Research Station output; persistent Moon-access gate |
 | `lunar_engineering_archive` | `lunar_research_complete` | `industrialcivilizationcore:lunar_engineering_archive` | Moon-only Research Station output; requires orbital archive and lunar experiment data |

@@ -146,7 +146,7 @@ AE2 perfects autocrafting; it does not introduce it. Smelting, macerating, refin
 """)
 
 write("RESEARCH_PROGRESSION.md", "Research Progression", """
-The modular Research Station and Environmental Experiment Module are real EU/FE-powered machines with four-slot automation inventories, IC2-styled GUIs, persistent progress, environment recognition, and ComputerCraft peripherals.
+The modular Research Station and Environmental Experiment Module are native IC2 EU-powered machines with four-slot automation inventories, IC2-styled GUIs, persistent progress, environment recognition, and ComputerCraft peripherals. Forge Energy compatibility remains an invisible adapter.
 
 - Orbit produces the Orbital Research Archive from sustained station operation and experiments.
 - The Moon produces the Lunar Engineering Archive from local industry and lunar science.
@@ -198,9 +198,9 @@ Martian experiment data plus an Industrial Control Processor produces the real M
 """)
 
 write("LITE_MATTER_ENGINEERING.md", "Lite Matter Engineering", """
-The existing `industrialcivilizationcore:molecular_analyzer` is preserved. Its existing recipe combines Galacticraft raw meteoric iron, a ComputerCraft advanced computer, steel, an IC2 MV machine block, advanced circuits, and Martian Desh. The working tile accepts only Galacticraft Desh metadata 2, consumes 50,000 FE per analysis, creates `industrialcivilizationcore:material_pattern_record`, and records the current Lite Matter completion flag.
+The existing `industrialcivilizationcore:molecular_analyzer` is preserved. Its existing recipe combines Galacticraft raw meteoric iron, a ComputerCraft advanced computer, steel, an IC2 MV machine block, advanced circuits, and Martian Desh. The working tile is a native IC2 EU sink, accepts only Galacticraft Desh metadata 2, consumes 6,250 EU per analysis, creates `industrialcivilizationcore:material_pattern_record`, and records the current Lite Matter completion flag. Forge Energy compatibility is an invisible adapter and never changes the player-facing EU semantics.
 
-Current limitations: one Martian material, FE rather than native EU semantics, no general experiment framework, and no Earth/lunar comparative analysis. The questline represents those future studies with explicit manual validation. Lite Matter includes analysis, records, recovery, engineered/high-purity materials, and early characterization; it explicitly excludes full UU-Matter, replication, magical transmutation, and an AE2 unlock by itself.
+Current limitations: one Martian material, no general experiment framework, and no Earth/lunar comparative analysis. The questline represents those future studies with explicit manual validation. Lite Matter includes analysis, records, recovery, engineered/high-purity materials, and early characterization; it explicitly excludes full UU-Matter, replication, magical transmutation, and an AE2 unlock by itself.
 """)
 
 write("AI_AGE.md", "AI Age", """
@@ -235,7 +235,7 @@ checklist = [
 "Every future quest is visible for aspirational browsing, but locked quests cannot be opened or progressed.",
 "Numbered chapter tabs contain no optional side-path objectives.", "Early quests are reachable.",
 "All former placeholder registry objects are absent from HEI and every replacement has a distinct sprite.",
-"The Electric Fabricator processes a fixed recipe using EU or FE.",
+"The Electric Fabricator processes a fixed recipe using IC2 EU.",
 "The Programmable Assembler accepts ComputerCraft recipe selection and queues.",
 "The Robotic Manufacturing Cell enforces Moon-only Quantum-component synthesis.",
 "Electrification chapter completes.", "Automation chapter opens.",
@@ -261,7 +261,7 @@ write("KNOWN_LIMITATIONS.md", "Known Limitations", """
 - Space gates are enforced after Galacticraft transfers the player; unauthorized players briefly enter the destination before being returned to Earth because Galacticraft's selection GUI has no stable public cancellation hook in this pack version.
 - Broad construction, habitat completeness, sustained uptime, cross-mod telemetry, and mastery checks still use explicit manual checkboxes where no reliable common API exists.
 - Solar multipliers, Martian dust derating, and cross-dimensional cargo channels are implemented. Galacticraft remains responsible for oxygen/pressure and its existing environmental survival behavior; richer radiation and habitat-integrity simulation remains future work.
-- The real Analyzer currently accepts only Martian Desh metadata 2, consumes 50,000 FE, and does not yet perform Earth/lunar comparative research.
+- The real Analyzer currently accepts only Martian Desh metadata 2, consumes 6,250 EU, and does not yet perform Earth/lunar comparative research.
 - AI-authorized AE2 covers a curated foundation set; original AE2 recipes stay removed. A complete balanced recipe reconstruction for every AE2 part remains future balance work.
 - Matter, fusion, logistics, megastructure, colony, and civilization-scale AI machines implement concrete capstone proofs; their broad physical build-scale and balance still require full playthrough tuning.
 - Quest updates may require importing Better Questing defaults in existing worlds. Back up world quest data first.

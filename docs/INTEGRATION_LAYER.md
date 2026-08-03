@@ -10,7 +10,7 @@ Responsibilities implemented:
 - ComputerCraft peripheral for analyzer status, energy, progress, and environmental readings.
 - Moon/Mars dimension telemetry stored on the player; a Mars visit without a recorded Moon visit emits a sequence-violation message and log entry.
 - Persistent Lite Matter completion telemetry in player NBT.
-- Five real EU/FE-powered research and manufacturing machines with sided inventories, progress, GUI state, and ComputerCraft peripherals.
+- Native IC2 EU-powered research and manufacturing machines with sided inventories, progress, GUI state, and ComputerCraft peripherals. Forge Energy support is intentionally invisible compatibility plumbing.
 - Environment-tagged orbital, lunar, and Martian research data and real archive synthesis.
 - Persistent Moon and Mars research gates with a documented testing bypass.
 - Rare abandoned-factory world structures, criminal defense encounters, staged repair, and alternate industrial-capacity outputs.

@@ -48,7 +48,7 @@
       "optional": false,
       "capability": "Power the Analyzer",
       "final_validation": [
-        "Supply the existing Analyzer with at least 50,000 FE for a Desh analysis."
+        "Supply the Analyzer with at least 6,250 EU for a Desh analysis."
       ],
       "automation_paths": [],
       "runtime_advancement": true
@@ -66,7 +66,7 @@
       "optional": false,
       "capability": "Martian Material Pattern Record",
       "final_validation": [
-        "Insert Galacticraft Desh metadata 2 and complete the existing 50,000 FE analysis to produce a non-consumable pattern record."
+        "Insert Galacticraft Desh metadata 2 and complete the 6,250 EU analysis to produce a non-consumable pattern record."
       ],
       "automation_paths": [],
       "required_item": "industrialcivilizationcore:material_pattern_record"

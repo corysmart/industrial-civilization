@@ -85,7 +85,7 @@ crafting.addShaped('industrial_civilization:molecular_analyzer', item('industria
 // Keep the two slice tooltips in the same reloadable layer.
 event_manager.listen { ItemTooltipEvent event ->
     if (event.itemStack in item('industrialcivilizationcore:molecular_analyzer')) {
-        event.toolTip << 'Consumes 50,000 FE per Martian Desh analysis'
+        event.toolTip << 'Consumes 6,250 EU per Martian Desh analysis'
     }
     if (event.itemStack in item('industrialcivilizationcore:material_pattern_record')) {
         event.toolTip << 'Lite Matter input for Artificial Industrial Intelligence Core synthesis'

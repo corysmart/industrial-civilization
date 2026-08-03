@@ -1615,8 +1615,8 @@
     {
       "file": "mods/IndustrialCivilizationCore-0.2.0.jar",
       "filename": "IndustrialCivilizationCore-0.2.0.jar",
-      "size": 119187,
-      "sha256": "e0442c63e2fee4a2b5cc3a9bd0ff86eeb1fbb2e3cfe3965d9009781c1bd0c87c",
+      "size": 121579,
+      "sha256": "9ab5e6b92e0ab96cfd5a51d9a811b799784c89c3ecdc9135c189129a33c8150f",
       "classification": "KEEP",
       "mods": [
         {
@@ -3654,6 +3654,11 @@
       "size": 14340
     },
     {
+      "file": "config/AppliedEnergistics2/AppliedEnergistics2.cfg",
+      "sha256": "710428639820467ad0778fe8e58d721d565d17ffc012df90af4c8cf555c48b1b",
+      "size": 11804
+    },
+    {
       "file": "config/AsmodeusCore/core.conf",
       "sha256": "3391c1f663233e750bddaa8693a15b276ab3b944edfbfdf0097b2f14b33182d6",
       "size": 2672
@@ -3870,8 +3875,8 @@
     },
     {
       "file": "config/betterquesting/DefaultQuests.json",
-      "sha256": "9e6eba78322997a834e32a48c892c50278e21d2daca54ec3ac82e84d6a32b3a3",
-      "size": 179817
+      "sha256": "002452085d3a9dedbf716eaeb2bbd126a33509014cc4bb42d76bb62210a2bfc3",
+      "size": 179797
     },
     {
       "file": "config/blockcraftery.cfg",
@@ -5110,8 +5115,8 @@
     },
     {
       "file": "groovy/postInit/industrial_civilization.groovy",
-      "sha256": "616f6c31e676d18f5096d64e460c6c50c471fab0d6451110c4b5f644f2a5027b",
-      "size": 5494
+      "sha256": "f858793046a4bdbd0319b917df61672b43f0525c948c969b0f740d968e07b2c3",
+      "size": 5493
     },
     {
       "file": "groovy/postInit/industrial_civilization_content.groovy",

@@ -23,7 +23,7 @@
 - Use the NPC Wand to instantiate the three faction blueprints; verify neutral trade, hostile ranged combat, warning/trespass hostility, and persistence after reload.
 - Verify IC2 energy values and reactor metadata through Plethora; test SCRAM with no fuel first.
 - Verify Galacticraft Tier 1 selection cannot directly choose Mars and that Moon dungeon progression supplies the Tier 2 path.
-- Give test-only Moon meteoric iron and Mars Desh only after independently validating the travel order; craft the Analyzer, charge it to 50,000 FE, analyze a second Desh ingot, and inspect the pattern record.
+- Give test-only Moon meteoric iron and Mars Desh only after independently validating the travel order; craft the Analyzer, charge it from IC2 EU, consume exactly 6,250 EU to analyze a second Desh ingot, and inspect the pattern record.
 - Attach a wired modem to the Analyzer and call all documented methods.
 
 If startup fails, return `logs/latest.log`, the newest file in `crash-reports/`, and the visible Technic error.

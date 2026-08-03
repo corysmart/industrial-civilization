@@ -1,7 +1,7 @@
 item.industrialcivilizationcore.material_pattern_record.name=Material Pattern Record
 item.industrialcivilizationcore.material_pattern_record.tooltip=Read-only molecular composition record used by the AI Core
 tile.industrialcivilizationcore.molecular_analyzer.name=Molecular Analyzer
-tile.industrialcivilizationcore.molecular_analyzer.tooltip=Analyzes Martian Desh at 50,000 FE per sample
+tile.industrialcivilizationcore.molecular_analyzer.tooltip=Analyzes Martian Desh at 6,250 EU per sample
 
 tile.industrialcivilizationcore.research_station.name=Research Station
 tile.industrialcivilizationcore.orbital_experiment_module.name=Environmental Experiment Module
@@ -61,7 +61,7 @@ item.industrialcivilizationcore.civilization_scale_ai_core.name=Civilization-Sca
 item.industrialcivilizationcore.civilization_scale_ai_core.tooltip=Coordinates replication, megastructure, colony, and logistics systems
 tooltip.industrialcivilizationcore.research_record=Right-click or carry this record to synchronize progression state.
 
-message.industrialcivilization.analyzer.no_power=Analyzer requires 50,000 FE.
+message.industrialcivilization.analyzer.no_power=Analyzer requires 6,250 EU.
 message.industrialcivilization.analyzer.invalid_sample=Insert a Martian Desh ingot for analysis.
 message.industrialcivilization.analyzer.complete=Analysis complete. Material pattern recorded for AI synthesis.
 message.industrialcivilization.sequence_violation=Sequence violation: Moon milestone was not recorded before Mars.

@@ -4,6 +4,7 @@
   "added": [
     ".gitignore",
     "README.md",
+    "config/AppliedEnergistics2/AppliedEnergistics2.cfg",
     "config/Techguns.cfg",
     "config/betterquesting/DefaultQuests.json",
     "config/buildcraft/.DS_Store",
@@ -57,6 +58,7 @@
     "development/IndustrialCivilizationCore/build/classes/java/main/com/industrialcivilization/core/TileFactoryControlTerminal.class",
     "development/IndustrialCivilizationCore/build/classes/java/main/com/industrialcivilization/core/TileIndustrialMachine$1.class",
     "development/IndustrialCivilizationCore/build/classes/java/main/com/industrialcivilization/core/TileIndustrialMachine.class",
+    "development/IndustrialCivilizationCore/build/classes/java/main/com/industrialcivilization/core/TileMolecularAnalyzer$1.class",
     "development/IndustrialCivilizationCore/build/classes/java/main/com/industrialcivilization/core/TileMolecularAnalyzer.class",
     "development/IndustrialCivilizationCore/build/createMcpToSrg/output.tsrg",
     "development/IndustrialCivilizationCore/build/downloadMcpConfig/output.zip",
@@ -349,6 +351,7 @@
     "docs/BASELINE_AUDIT.md",
     "docs/COMPATIBILITY_NOTES.md",
     "docs/CRITICAL_PATH.md",
+    "docs/ENERGY_INTEROPERABILITY.md",
     "docs/FACTIONS.md",
     "docs/FIREARM_PROGRESSION.md",
     "docs/FIREARM_SELECTION.md",
@@ -451,6 +454,7 @@
     "tools/generate_runtime_advancements.py",
     "tools/repair_technic_metadata.py",
     "tools/static_validate.py",
+    "tools/validate_energy_interop.py",
     "tools/validate_progression.py",
     "tools/validate_runtime_content.py"
   ],
@@ -488,7 +492,7 @@
     "cache/z-tekkit2-configs-1.2.6.zip"
   ],
   "counts": {
-    "added": 451,
+    "added": 455,
     "modified": 12,
     "removed": 11
   }

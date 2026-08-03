@@ -251,6 +251,11 @@ progression_validation = subprocess.run(
     cwd=str(ROOT), capture_output=True, text=True)
 ok(progression_validation.returncode == 0,
    "canonical progression validator: " + progression_validation.stdout.strip().splitlines()[-1])
+energy_validation = subprocess.run(
+    [sys.executable, str(ROOT / "tools/validate_energy_interop.py")],
+    cwd=str(ROOT), capture_output=True, text=True)
+ok(energy_validation.returncode == 0,
+   "energy interoperability validator: " + energy_validation.stdout.strip().splitlines()[-1])
 quest_home = "industrialcivilizationcore:textures/gui/quest_home_v2.png"
 quest_settings = quests["questSettings:10"]["betterquesting:10"]
 ok(quest_settings.get("home_image:8") == quest_home, "pack-owned Better Questing home image configured")

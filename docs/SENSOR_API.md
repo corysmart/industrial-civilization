@@ -18,9 +18,9 @@ Place a wired modem adjacent to the Molecular Analyzer. Its type is `molecular_a
 ```lua
 getStatus()           -- "charging" or "ready"
 getProgress()         -- completed analysis count
-getStored()           -- FE stored
-getCapacity()         -- 200000
-analyzeAvailable()    -- true at >= 50000 FE
+getStored()           -- EU stored
+getCapacity()         -- 25000 EU
+analyzeAvailable()    -- true at >= 6250 EU
 getOxygen()           -- ambient percent approximation
 getRadiation()        -- ambient normalized approximation
 getPressure()         -- ambient kPa approximation

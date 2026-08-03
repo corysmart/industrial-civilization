@@ -33,12 +33,21 @@ public final class TileEnvironmentalSolarArray extends TileEntity
     private final IEnergyStorage forgeEnergy = new IEnergyStorage() {
         @Override public int receiveEnergy(int maxReceive, boolean simulate) { return 0; }
         @Override public int extractEnergy(int maxExtract, boolean simulate) {
-            int amount = (int) Math.min(maxExtract, energy);
-            if (!simulate) { energy -= amount; markDirty(); }
+            int availableFe = (int) Math.floor(energy * IndustrialCivilizationCore.FE_PER_EU);
+            int outputLimit = 128 * IndustrialCivilizationCore.FE_PER_EU;
+            int amount = Math.max(0, Math.min(maxExtract, Math.min(availableFe, outputLimit)));
+            if (!simulate && amount > 0) {
+                energy -= amount / (double) IndustrialCivilizationCore.FE_PER_EU;
+                markDirty();
+            }
             return amount;
         }
-        @Override public int getEnergyStored() { return (int) energy; }
-        @Override public int getMaxEnergyStored() { return CAPACITY; }
+        @Override public int getEnergyStored() {
+            return (int) Math.floor(energy * IndustrialCivilizationCore.FE_PER_EU);
+        }
+        @Override public int getMaxEnergyStored() {
+            return CAPACITY * IndustrialCivilizationCore.FE_PER_EU;
+        }
         @Override public boolean canExtract() { return true; }
         @Override public boolean canReceive() { return false; }
     };

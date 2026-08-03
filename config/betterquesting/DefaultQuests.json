@@ -3612,7 +3612,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Power the Analyzer",
-          "desc:8": "Category: Operation\n\nPower the Analyzer\n\nFinal validation will require:\n- Supply the existing Analyzer with at least 50,000 FE for a Desh analysis."
+          "desc:8": "Category: Operation\n\nPower the Analyzer\n\nFinal validation will require:\n- Supply the Analyzer with at least 6,250 EU for a Desh analysis."
         }
       },
       "tasks:9": {
@@ -3652,7 +3652,7 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Martian Material Pattern Record",
-          "desc:8": "Category: Possession\n\nMartian Material Pattern Record\n\nFinal validation will require:\n- Insert Galacticraft Desh metadata 2 and complete the existing 50,000 FE analysis to produce a non-consumable pattern record."
+          "desc:8": "Category: Possession\n\nMartian Material Pattern Record\n\nFinal validation will require:\n- Insert Galacticraft Desh metadata 2 and complete the 6,250 EU analysis to produce a non-consumable pattern record."
         }
       },
       "tasks:9": {
