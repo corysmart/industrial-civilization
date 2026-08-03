@@ -417,8 +417,8 @@ worldgen_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/
 ok("if (!roadChunk && structure == 0) return;" in worldgen_source,
    "empty civilization chunks avoid terrain height work")
 jei_config = (ROOT / "config/jei/jei.cfg").read_text()
-ok("S:tooltipSearchMode=DISABLED" in jei_config,
-   "HEI avoids the measured unused tooltip-search startup cost")
+ok("S:tooltipSearchMode=ENABLED" in jei_config,
+   "HEI retains full tooltip search despite its one-time startup indexing cost")
 run_config = json.loads((ROOT / "groovy/runConfig.json").read_text())
 ok(run_config["packId"] == "industrial_civilization", "stable GroovyScript pack ID")
 ok(run_config["loaders"]["postInit"] == ["postInit/"], "reloadable postInit loader configured")
