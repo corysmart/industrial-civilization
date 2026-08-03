@@ -42,7 +42,7 @@
       "id": "icbm_conventional_missile",
       "title": "Field a Conventional Missile",
       "category": "mastery",
-      "icon": "icbmclassic:missile",
+      "icon": "icbmclassic:explosive_missile",
       "prerequisites": ["icbm_radar_defense"],
       "critical": false,
       "optional": true,
@@ -53,7 +53,7 @@
         "Confirm strategic nuclear and exotic payload crafting remains locked behind later controlled programs."
       ],
       "automation_paths": [],
-      "required_item": "icbmclassic:missile"
+      "required_item": "icbmclassic:explosive_missile"
     }
   ]
 }

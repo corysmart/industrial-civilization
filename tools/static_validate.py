@@ -405,6 +405,20 @@ ok("appliedenergistics2:" not in jei_blacklist
    "AE2 and Industrial Civilization are not suppressed from HEI or Creative search")
 
 ok(not (ROOT / "scripts/industrial_civilization.zs").exists(), "obsolete non-reloadable integration script removed")
+faction_gui = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/GuiFactionDirectory.java").read_text()
+ok("visibleLineCount()" in faction_gui and "handleMouseInput()" in faction_gui
+   and "Math.min(520" in faction_gui,
+   "faction directory is responsive and scrolls long descriptions")
+client_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/IndustrialCivilizationCore.java").read_text()
+ok("showOnlyPackAdvancementTabs" in client_source
+   and '"galacticraftcore".equals(domain)' in client_source,
+   "Galacticraft advancement tabs are replaced by Industrial Civilization")
+worldgen_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/CivilizationWorldGenerator.java").read_text()
+ok("if (!roadChunk && structure == 0) return;" in worldgen_source,
+   "empty civilization chunks avoid terrain height work")
+jei_config = (ROOT / "config/jei/jei.cfg").read_text()
+ok("S:tooltipSearchMode=DISABLED" in jei_config,
+   "HEI avoids the measured unused tooltip-search startup cost")
 run_config = json.loads((ROOT / "groovy/runConfig.json").read_text())
 ok(run_config["packId"] == "industrial_civilization", "stable GroovyScript pack ID")
 ok(run_config["loaders"]["postInit"] == ["postInit/"], "reloadable postInit loader configured")

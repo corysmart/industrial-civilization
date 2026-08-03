@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "railcraft:ingot_steel"
+            "item": "railcraft:tool_pickaxe_steel"
           }
         ]
       }

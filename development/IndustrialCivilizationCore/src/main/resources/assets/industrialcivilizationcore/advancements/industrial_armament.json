@@ -31,7 +31,8 @@
       "conditions": {
         "items": [
           {
-            "item": "techguns:assaultriflemagazine"
+            "item": "techguns:itemshared",
+            "data": 13
           }
         ]
       }

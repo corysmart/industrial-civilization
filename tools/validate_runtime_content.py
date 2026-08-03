@@ -129,8 +129,10 @@ check("setAttackTarget(player)" in faction_source and "COMPANION_OWNER" in facti
       and "raiders_defeated" in faction_source,
       "hostility, companionship, and action-based faction response are implemented")
 check("PRIMITIVE_RADII = {240, 520, 800}" in world_source
-      and "distance >= 900" in world_source and "distance >= 1400" in world_source
-      and "distance >= 2200" in world_source and "distance >= 3000" in world_source,
+      and "distanceSquared >= 900L * 900L" in world_source
+      and "distanceSquared >= 1400L * 1400L" in world_source
+      and "distanceSquared >= 2200L * 2200L" in world_source
+      and "distanceSquared >= 3000L * 3000L" in world_source,
       "spawn-relative settlement and industrial distance bands are implemented")
 check("buildPrimitiveSettlement" in world_source and "buildMilitiaOutpost" in world_source
       and "buildOperationalFactory" in world_source and "buildIndustrialCity" in world_source,

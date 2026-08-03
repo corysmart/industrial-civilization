@@ -176,9 +176,9 @@
               "OreDict:8": ""
             },
             "1:10": {
-              "id:8": "techguns:pistolmagazine",
+              "id:8": "techguns:itemshared",
               "Count:3": 1,
-              "Damage:2": 0,
+              "Damage:2": 11,
               "OreDict:8": ""
             }
           },
@@ -540,7 +540,7 @@
           "visibility:8": "ALWAYS",
           "simultaneous:1": 0,
           "icon:10": {
-            "id:8": "ic2:itemtooldrill",
+            "id:8": "ic2:itemdrills",
             "Count:3": 1,
             "Damage:2": 32767,
             "OreDict:8": ""
@@ -564,7 +564,7 @@
           "autoConsume:1": 0,
           "requiredItems:9": {
             "0:10": {
-              "id:8": "ic2:itemtooldrill",
+              "id:8": "ic2:itemdrills",
               "Count:3": 1,
               "Damage:2": 32767,
               "OreDict:8": ""
@@ -1100,7 +1100,7 @@
           "visibility:8": "ALWAYS",
           "simultaneous:1": 0,
           "icon:10": {
-            "id:8": "railcraft:ingot_steel",
+            "id:8": "railcraft:tool_pickaxe_steel",
             "Count:3": 1,
             "Damage:2": 0,
             "OreDict:8": ""
@@ -1124,8 +1124,8 @@
           "autoConsume:1": 0,
           "requiredItems:9": {
             "0:10": {
-              "id:8": "railcraft:ingot_steel",
-              "Count:3": 8,
+              "id:8": "railcraft:tool_pickaxe_steel",
+              "Count:3": 1,
               "Damage:2": 0,
               "OreDict:8": ""
             }
@@ -1347,9 +1347,9 @@
               "OreDict:8": ""
             },
             "1:10": {
-              "id:8": "techguns:assaultriflemagazine",
+              "id:8": "techguns:itemshared",
               "Count:3": 1,
-              "Damage:2": 0,
+              "Damage:2": 13,
               "OreDict:8": ""
             }
           },
@@ -1472,7 +1472,7 @@
           "visibility:8": "ALWAYS",
           "simultaneous:1": 0,
           "icon:10": {
-            "id:8": "railcraft:ingot_steel",
+            "id:8": "railcraft:tool_pickaxe_steel",
             "Count:3": 1,
             "Damage:2": 0,
             "OreDict:8": ""
@@ -1496,8 +1496,8 @@
           "autoConsume:1": 0,
           "requiredItems:9": {
             "0:10": {
-              "id:8": "railcraft:ingot_steel",
-              "Count:3": 16,
+              "id:8": "railcraft:tool_pickaxe_steel",
+              "Count:3": 1,
               "Damage:2": 0,
               "OreDict:8": ""
             },
@@ -1973,7 +1973,7 @@
           "visibility:8": "ALWAYS",
           "simultaneous:1": 0,
           "icon:10": {
-            "id:8": "ic2:blocknuclearreactor",
+            "id:8": "ic2:blockchambers",
             "Count:3": 1,
             "Damage:2": 32767,
             "OreDict:8": ""
@@ -1997,7 +1997,7 @@
           "autoConsume:1": 0,
           "requiredItems:9": {
             "0:10": {
-              "id:8": "ic2:blocknuclearreactor",
+              "id:8": "ic2:blockchambers",
               "Count:3": 1,
               "Damage:2": 32767,
               "OreDict:8": ""
@@ -2075,7 +2075,7 @@
           "visibility:8": "ALWAYS",
           "simultaneous:1": 0,
           "icon:10": {
-            "id:8": "ic2:blocknuclearreactor",
+            "id:8": "ic2:blockchambers",
             "Count:3": 1,
             "Damage:2": 32767,
             "OreDict:8": ""
@@ -2099,7 +2099,7 @@
           "autoConsume:1": 0,
           "requiredItems:9": {
             "0:10": {
-              "id:8": "ic2:blocknuclearreactor",
+              "id:8": "ic2:blockchambers",
               "Count:3": 1,
               "Damage:2": 32767,
               "OreDict:8": ""
@@ -2138,7 +2138,7 @@
           "visibility:8": "ALWAYS",
           "simultaneous:1": 0,
           "icon:10": {
-            "id:8": "ic2:blocknuclearreactor",
+            "id:8": "ic2:blockchambers",
             "Count:3": 1,
             "Damage:2": 32767,
             "OreDict:8": ""
@@ -2162,7 +2162,7 @@
           "autoConsume:1": 0,
           "requiredItems:9": {
             "0:10": {
-              "id:8": "ic2:blocknuclearreactor",
+              "id:8": "ic2:blockchambers",
               "Count:3": 1,
               "Damage:2": 32767,
               "OreDict:8": ""
@@ -2195,7 +2195,7 @@
           "visibility:8": "ALWAYS",
           "simultaneous:1": 0,
           "icon:10": {
-            "id:8": "ic2:blocknuclearreactor",
+            "id:8": "ic2:blockchambers",
             "Count:3": 1,
             "Damage:2": 32767,
             "OreDict:8": ""
@@ -2219,7 +2219,7 @@
           "autoConsume:1": 0,
           "requiredItems:9": {
             "0:10": {
-              "id:8": "ic2:blocknuclearreactor",
+              "id:8": "ic2:blockchambers",
               "Count:3": 1,
               "Damage:2": 32767,
               "OreDict:8": ""
@@ -2253,7 +2253,7 @@
           "visibility:8": "ALWAYS",
           "simultaneous:1": 0,
           "icon:10": {
-            "id:8": "ic2:blocknuclearreactor",
+            "id:8": "ic2:blockchambers",
             "Count:3": 1,
             "Damage:2": 32767,
             "OreDict:8": ""
@@ -2277,7 +2277,7 @@
           "autoConsume:1": 0,
           "requiredItems:9": {
             "0:10": {
-              "id:8": "ic2:blocknuclearreactor",
+              "id:8": "ic2:blockchambers",
               "Count:3": 1,
               "Damage:2": 32767,
               "OreDict:8": ""
@@ -6543,7 +6543,7 @@
           "visibility:8": "ALWAYS",
           "simultaneous:1": 0,
           "icon:10": {
-            "id:8": "icbmclassic:missile",
+            "id:8": "icbmclassic:explosive_missile",
             "Count:3": 1,
             "Damage:2": 0,
             "OreDict:8": ""
@@ -6567,7 +6567,7 @@
           "autoConsume:1": 0,
           "requiredItems:9": {
             "0:10": {
-              "id:8": "icbmclassic:missile",
+              "id:8": "icbmclassic:explosive_missile",
               "Count:3": 1,
               "Damage:2": 0,
               "OreDict:8": ""
@@ -6616,7 +6616,7 @@
       "properties:10": {
         "betterquesting:10": {
           "name:8": "01 \u2014 Early Survival and Workshop",
-          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_earth.png",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_earth_ui.png",
           "bg_size:3": 512,
           "desc:8": "Secure a compact workshop and gather the material families needed for electrification."
         }
@@ -6672,7 +6672,7 @@
       "properties:10": {
         "betterquesting:10": {
           "name:8": "02 \u2014 Electrification",
-          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_earth.png",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_earth_ui.png",
           "bg_size:3": 512,
           "desc:8": "Establish safe IC2 generation, storage, machine processing, and ore doubling."
         }
@@ -6721,7 +6721,7 @@
       "properties:10": {
         "betterquesting:10": {
           "name:8": "03 \u2014 Automated Industry",
-          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_earth.png",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_earth_ui.png",
           "bg_size:3": 512,
           "desc:8": "Replace repeated mining, transport, processing, and crafting labor with physical automation."
         }
@@ -6770,7 +6770,7 @@
       "properties:10": {
         "betterquesting:10": {
           "name:8": "04 \u2014 Heavy Industry",
-          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_earth.png",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_earth_ui.png",
           "bg_size:3": 512,
           "desc:8": "Grow the workshop into a large steel, fuel, freight, power, and defense installation."
         }
@@ -6840,7 +6840,7 @@
       "properties:10": {
         "betterquesting:10": {
           "name:8": "05 \u2014 Programmable Manufacturing",
-          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_earth.png",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_earth_ui.png",
           "bg_size:3": 512,
           "desc:8": "Use ComputerCraft monitoring and programmable production to reduce downtime and manual scheduling."
         }
@@ -6889,7 +6889,7 @@
       "properties:10": {
         "betterquesting:10": {
           "name:8": "06 \u2014 Nuclear Age",
-          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_earth.png",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_earth_ui.png",
           "bg_size:3": 512,
           "desc:8": "Operate monitored high-output nuclear power suitable for orbital development."
         }
@@ -6952,7 +6952,7 @@
       "properties:10": {
         "betterquesting:10": {
           "name:8": "07 \u2014 Orbital Age",
-          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_orbit.png",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_orbit_ui.png",
           "bg_size:3": 512,
           "desc:8": "Make Earth orbit the first mandatory destination and establish a survivable, expandable station."
         }
@@ -6994,7 +6994,7 @@
       "properties:10": {
         "betterquesting:10": {
           "name:8": "08 \u2014 Orbital Research",
-          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_orbit.png",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_orbit_ui.png",
           "bg_size:3": 512,
           "desc:8": "Prove sustained station operation through experiments and produce the archive that gates Moon access."
         }
@@ -7050,7 +7050,7 @@
       "properties:10": {
         "betterquesting:10": {
           "name:8": "09 \u2014 Lunar Settlement",
-          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_moon.png",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_moon_ui.png",
           "bg_size:3": 512,
           "desc:8": "Establish a permanent Moon base with local extraction, processing, manufacturing, and cargo capability."
         }
@@ -7099,7 +7099,7 @@
       "properties:10": {
         "betterquesting:10": {
           "name:8": "10 \u2014 Lunar Research",
-          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_moon.png",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_moon_ui.png",
           "bg_size:3": 512,
           "desc:8": "Use lunar science and sustained local industry to unlock Quantum Technology\u2014not Mars directly."
         }
@@ -7169,7 +7169,7 @@
       "properties:10": {
         "betterquesting:10": {
           "name:8": "11 \u2014 Quantum Technology",
-          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_moon.png",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_moon_ui.png",
           "bg_size:3": 512,
           "desc:8": "Combine lunar manufacturing with high-tier IC2 power and programmable production for Mars readiness."
         }
@@ -7232,7 +7232,7 @@
       "properties:10": {
         "betterquesting:10": {
           "name:8": "12 \u2014 Mars Settlement",
-          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_mars.png",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_mars_ui.png",
           "bg_size:3": 512,
           "desc:8": "Establish a distant semi-autonomous industrial colony and recover the real Desh sample used by Lite Matter Engineering."
         }
@@ -7281,7 +7281,7 @@
       "properties:10": {
         "betterquesting:10": {
           "name:8": "13 \u2014 Martian Autonomy Research",
-          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_mars.png",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_mars_ui.png",
           "bg_size:3": 512,
           "desc:8": "Prove autonomous off-world industry and expose the limits of conventional programmable control."
         }
@@ -7330,7 +7330,7 @@
       "properties:10": {
         "betterquesting:10": {
           "name:8": "14 \u2014 Lite Matter Engineering",
-          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_mars.png",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_mars_ui.png",
           "bg_size:3": 512,
           "desc:8": "Use the real Molecular Analyzer and Martian Desh sample to record matter without enabling replication."
         }
@@ -7379,7 +7379,7 @@
       "properties:10": {
         "betterquesting:10": {
           "name:8": "15 \u2014 AI Age",
-          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_post_ai.png",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_post_ai_ui.png",
           "bg_size:3": 512,
           "desc:8": "Enter\u2014not finish\u2014the endgame by creating an industrial AI core from all major research eras."
         }
@@ -7435,7 +7435,7 @@
       "properties:10": {
         "betterquesting:10": {
           "name:8": "16 \u2014 Continuously Expanding Post-AI Civilization",
-          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_post_ai.png",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_post_ai_ui.png",
           "bg_size:3": 512,
           "desc:8": "Branch into scale, matter engineering, megastructures, autonomy, and new colonies without blocking AI entry."
         }
@@ -7484,7 +7484,7 @@
       "properties:10": {
         "betterquesting:10": {
           "name:8": "Side Path \u2014 Field Engineering",
-          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_earth.png",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_earth_ui.png",
           "bg_size:3": 512,
           "desc:8": "Optional tools, resilience, remote control, and recovery capabilities. Side paths are visible from the start and may create alternate progression routes."
         }
@@ -7596,7 +7596,7 @@
       "properties:10": {
         "betterquesting:10": {
           "name:8": "Side Path \u2014 Factions and Salvage",
-          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_earth.png",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_earth_ui.png",
           "bg_size:3": 512,
           "desc:8": "Pursue settlements, criminal networks, recovered infrastructure, and a risky alternate route into industrial capacity. Side paths are visible from the start and may create alternate progression routes."
         }
@@ -7624,7 +7624,7 @@
       "properties:10": {
         "betterquesting:10": {
           "name:8": "Side Path \u2014 Orbital Power",
-          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_orbit.png",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_orbit_ui.png",
           "bg_size:3": 512,
           "desc:8": "Optional orbital generation and tracking-array development. Side paths are visible from the start and may create alternate progression routes."
         }
@@ -7666,7 +7666,7 @@
       "properties:10": {
         "betterquesting:10": {
           "name:8": "Side Path \u2014 Cargo Logistics",
-          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_post_ai.png",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_post_ai_ui.png",
           "bg_size:3": 512,
           "desc:8": "Optional freight and interplanetary cargo mastery. Side paths are visible from the start and may create alternate progression routes."
         }
@@ -7715,7 +7715,7 @@
       "properties:10": {
         "betterquesting:10": {
           "name:8": "Side Path \u2014 Mobility and Nations",
-          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_earth.png",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_earth_ui.png",
           "bg_size:3": 512,
           "desc:8": "Optional road travel, industrial vehicles, city exchange, and advanced workshop infrastructure. Side paths are visible from the start and may create alternate progression routes."
         }
@@ -7750,7 +7750,7 @@
       "properties:10": {
         "betterquesting:10": {
           "name:8": "Side Path \u2014 Strategic Defense",
-          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_earth.png",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_earth_ui.png",
           "bg_size:3": 512,
           "desc:8": "Extend IC2 heavy industry into radar, launch control, conventional missiles, and defensive deterrence without bypassing nuclear or AI progression. Side paths are visible from the start and may create alternate progression routes."
         }
@@ -7799,7 +7799,7 @@
       "properties:10": {
         "betterquesting:10": {
           "name:8": "Side Path \u2014 Post-AI Horizons",
-          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_post_ai.png",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_post_ai_ui.png",
           "bg_size:3": 512,
           "desc:8": "Parallel civilization-scale endgame projects. Side paths are visible from the start and may create alternate progression routes."
         }

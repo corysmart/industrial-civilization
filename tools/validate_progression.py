@@ -217,6 +217,15 @@ def item_exists(ref):
     # the installed Galacticraft archive and the working Analyzer source.
     if domain == "galacticraftplanets" and path == "item_basic_mars":
         return True
+    # Techguns ammunition is metadata on its registered itemshared container;
+    # the descriptive names are recipe aliases, not item registry paths.
+    if domain == "techguns" and path == "itemshared":
+        return True
+    # ICBM Classic supplies this missile through a custom item renderer and
+    # therefore does not expose an ordinary models/item JSON.
+    if domain == "icbmclassic" and path == "explosive_missile":
+        with zipfile.ZipFile(ROOT / "mods/ICBM-classic-1.12.2-6.5.5.jar") as zf:
+            return "icbm/classic/content/items/ItemMissile.class" in zf.namelist()
     # WR-CBE uses a custom multipart item renderer and therefore ships no
     # ordinary models/item JSON. Verify its concrete registry constant against
     # the installed class instead of treating it as a missing quest picture.
@@ -311,11 +320,11 @@ check(not any(quest.get("tasks:9", {}).get("0:10", {}).get("taskID:8") == "bq_st
 check(quests.get("questSettings:10", {}).get("betterquesting:10", {}).get("pack_version:3") == 6, "Better Questing pack version includes story, controls, and accurate pictures")
 
 expected_backgrounds = {
-    "industrialcivilizationcore:textures/gui/quest_bg_earth.png",
-    "industrialcivilizationcore:textures/gui/quest_bg_orbit.png",
-    "industrialcivilizationcore:textures/gui/quest_bg_moon.png",
-    "industrialcivilizationcore:textures/gui/quest_bg_mars.png",
-    "industrialcivilizationcore:textures/gui/quest_bg_post_ai.png",
+    "industrialcivilizationcore:textures/gui/quest_bg_earth_ui.png",
+    "industrialcivilizationcore:textures/gui/quest_bg_orbit_ui.png",
+    "industrialcivilizationcore:textures/gui/quest_bg_moon_ui.png",
+    "industrialcivilizationcore:textures/gui/quest_bg_mars_ui.png",
+    "industrialcivilizationcore:textures/gui/quest_bg_post_ai_ui.png",
 }
 actual_backgrounds = {line.get("properties:10", {}).get("betterquesting:10", {}).get("bg_image:8", "")
                       for line in quest_lines.values()}

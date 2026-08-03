@@ -59,11 +59,11 @@ STORY_TRANSITIONS = {
 }
 
 ERA_BACKGROUNDS = {
-    "earth": "industrialcivilizationcore:textures/gui/quest_bg_earth.png",
-    "orbit": "industrialcivilizationcore:textures/gui/quest_bg_orbit.png",
-    "moon": "industrialcivilizationcore:textures/gui/quest_bg_moon.png",
-    "mars": "industrialcivilizationcore:textures/gui/quest_bg_mars.png",
-    "post_ai": "industrialcivilizationcore:textures/gui/quest_bg_post_ai.png",
+    "earth": "industrialcivilizationcore:textures/gui/quest_bg_earth_ui.png",
+    "orbit": "industrialcivilizationcore:textures/gui/quest_bg_orbit_ui.png",
+    "moon": "industrialcivilizationcore:textures/gui/quest_bg_moon_ui.png",
+    "mars": "industrialcivilizationcore:textures/gui/quest_bg_mars_ui.png",
+    "post_ai": "industrialcivilizationcore:textures/gui/quest_bg_post_ai_ui.png",
 }
 
 CHAPTER_ERAS = {

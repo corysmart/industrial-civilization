@@ -9,6 +9,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiIngameMenu;
+import net.minecraft.client.gui.advancements.GuiAdvancementTab;
+import net.minecraft.client.gui.advancements.GuiScreenAdvancements;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.settings.KeyBinding;
@@ -43,6 +45,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.client.settings.KeyModifier;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.MinecraftForge;
@@ -433,6 +436,10 @@ public final class IndustrialCivilizationCore {
 
     @Mod.EventBusSubscriber(value = Side.CLIENT, modid = MODID)
     public static final class ClientRegistration {
+        private static final java.lang.reflect.Field ADVANCEMENT_TABS = ReflectionHelper.findField(
+            GuiScreenAdvancements.class, "tabs", "field_191947_i");
+        private static final java.lang.reflect.Field SELECTED_ADVANCEMENT_TAB = ReflectionHelper.findField(
+            GuiScreenAdvancements.class, "selectedTab", "field_191940_s");
         private static final KeyMigration[] KEY_MIGRATIONS = {
             // Tutorial and interface access.
             key("key.betterquesting.quests", 41, KeyModifier.NONE, 64, KeyModifier.NONE),
@@ -574,6 +581,38 @@ public final class IndustrialCivilizationCore {
                 .findFirst()
                 .ifPresent(button -> button.displayString =
                     I18n.format("gui.industrialcivilization.factions"));
+        }
+
+        /** Galacticraft's standalone tutorial tree is replaced by the pack progression tree. */
+        @SubscribeEvent(priority = EventPriority.LOWEST)
+        @SuppressWarnings("unchecked")
+        public static void showOnlyPackAdvancementTabs(GuiScreenEvent.InitGuiEvent.Post event) {
+            if (!(event.getGui() instanceof GuiScreenAdvancements)) return;
+            try {
+                GuiScreenAdvancements screen = (GuiScreenAdvancements) event.getGui();
+                java.util.Map<net.minecraft.advancements.Advancement, GuiAdvancementTab> tabs =
+                    (java.util.Map<net.minecraft.advancements.Advancement, GuiAdvancementTab>)
+                        ADVANCEMENT_TABS.get(screen);
+                GuiAdvancementTab selectedTab = (GuiAdvancementTab) SELECTED_ADVANCEMENT_TAB.get(screen);
+                boolean removedSelected = selectedTab != null
+                    && isGalacticraftAdvancement(selectedTab.getAdvancement());
+                tabs.entrySet().removeIf(entry -> isGalacticraftAdvancement(entry.getKey()));
+                if (removedSelected || selectedTab == null) {
+                    for (net.minecraft.advancements.Advancement root : tabs.keySet()) {
+                        if (MODID.equals(root.getId().getResourceDomain())) {
+                            screen.setSelectedTab(root);
+                            break;
+                        }
+                    }
+                }
+            } catch (ReflectiveOperationException exception) {
+                LOGGER.warn("Could not filter obsolete Galacticraft advancement tabs", exception);
+            }
+        }
+
+        private static boolean isGalacticraftAdvancement(net.minecraft.advancements.Advancement advancement) {
+            String domain = advancement.getId().getResourceDomain();
+            return "galacticraftcore".equals(domain) || "galacticraftplanets".equals(domain);
         }
 
         @SubscribeEvent(priority = EventPriority.HIGHEST)

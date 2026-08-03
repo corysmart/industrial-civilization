@@ -2,7 +2,7 @@
   "parent": "industrialcivilizationcore:icbm_radar_defense",
   "display": {
     "icon": {
-      "item": "icbmclassic:missile"
+      "item": "icbmclassic:explosive_missile"
     },
     "title": {
       "text": "S2.03 \u2014 Field a Conventional Missile"
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "icbmclassic:missile"
+            "item": "icbmclassic:explosive_missile"
           }
         ]
       }

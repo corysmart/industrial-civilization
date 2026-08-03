@@ -36,23 +36,37 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
             if (origin != null) buildPrimitiveSettlement(world, origin);
             return;
         }
-        double x = chunkX * 16 + 8 - spawn.getX();
-        double z = chunkZ * 16 + 8 - spawn.getZ();
-        double distance = Math.sqrt(x * x + z * z);
+        long x = (long) chunkX * 16L + 8L - spawn.getX();
+        long z = (long) chunkZ * 16L + 8L - spawn.getZ();
+        long distanceSquared = x * x + z * z;
+        boolean roadChunk = distanceSquared >= 850L * 850L
+            && (Math.floorMod(chunkX, 8) == 0 || Math.floorMod(chunkZ, 8) == 0);
+
+        // Decide whether this chunk contains anything before asking the world
+        // for height data. Most generated chunks now leave without touching
+        // terrain, which removes the largest first-party exploration cost.
+        int structure = 0;
+        if (distanceSquared >= 3000L * 3000L && random.nextInt(256) == 0) structure = 4;
+        else if (distanceSquared >= 2200L * 2200L && random.nextInt(160) == 0) structure = 3;
+        else if (distanceSquared >= 1400L * 1400L && random.nextInt(128) == 0) structure = 2;
+        else if (distanceSquared >= 900L * 900L && random.nextInt(96) == 0) structure = 1;
+        if (!roadChunk && structure == 0) return;
+
         BlockPos origin = surfaceOrigin(world, chunkX, chunkZ);
         if (origin == null) return;
-        buildRegionalRoad(world, chunkX, chunkZ, distance);
+        double distance = Math.sqrt((double) distanceSquared);
+        if (roadChunk) buildRegionalRoad(world, chunkX, chunkZ, distance);
 
         // One structure at most per chunk. The order keeps the rarer, more
         // distant landmarks from being replaced by common factory shells.
-        if (distance >= 3000 && random.nextInt(256) == 0) {
+        if (structure == 4) {
             buildIndustrialCity(world, origin);
-        } else if (distance >= 2200 && random.nextInt(160) == 0) {
+        } else if (structure == 3) {
             buildOperationalFactory(world, origin, FACTORY_SPECIALTIES[
                 Math.floorMod(chunkX * 31 + chunkZ * 17, FACTORY_SPECIALTIES.length)]);
-        } else if (distance >= 1400 && random.nextInt(128) == 0) {
+        } else if (structure == 2) {
             buildMilitiaOutpost(world, origin);
-        } else if (distance >= 900 && random.nextInt(96) == 0) {
+        } else if (structure == 1) {
             AbandonedFactoryWorldGenerator.buildShell(world, origin);
             FactionSystem.spawnCitizen(world, origin.getX() + 2.5, origin.getY() + 1,
                 origin.getZ() + 11.5, "ashline_raiders", "raider", "armaments", "Ashline Lookout", 3);

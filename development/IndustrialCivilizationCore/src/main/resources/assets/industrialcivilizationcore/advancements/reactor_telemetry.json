@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "ic2:blocknuclearreactor"
+            "item": "ic2:blockchambers"
           }
         ]
       }
