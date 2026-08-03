@@ -20,6 +20,8 @@
 - Confirm Gold, Diamond, Crystal, and Obsidian Chest recipes are absent; Copper/Iron remain.
 - Confirm pistol, combat shotgun, M4, and ammunition recipes resolve without missing ingredients.
 - Place/energize Techguns Ammo Press and one representative gun; verify reload/fire behavior in a safe test area.
+- Break a natural tree with a Stone Axe and an IC2 Chainsaw; verify the full connected tree falls and durability/EU is charged once per log. Repeat while sneaking and confirm only the selected log breaks.
+- Mine a flat stone wall with IC2 Mining Drill metadata 0 and Diamond Drill metadata 1; verify perpendicular 3×3 and 9×9 areas, per-block EU use, normal drops, and sneaking precision mode.
 - Use the NPC Wand to instantiate the three faction blueprints; verify neutral trade, hostile ranged combat, warning/trespass hostility, and persistence after reload.
 - Verify IC2 energy values and reactor metadata through Plethora; test SCRAM with no fuel first.
 - Verify Galacticraft Tier 1 selection cannot directly choose Mars and that Moon dungeon progression supplies the Tier 2 path.

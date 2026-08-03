@@ -60,6 +60,8 @@
     "development/IndustrialCivilizationCore/build/classes/java/main/com/industrialcivilization/core/TileIndustrialMachine.class",
     "development/IndustrialCivilizationCore/build/classes/java/main/com/industrialcivilization/core/TileMolecularAnalyzer$1.class",
     "development/IndustrialCivilizationCore/build/classes/java/main/com/industrialcivilization/core/TileMolecularAnalyzer.class",
+    "development/IndustrialCivilizationCore/build/classes/java/main/com/industrialcivilization/core/ToolAreaHandler$1.class",
+    "development/IndustrialCivilizationCore/build/classes/java/main/com/industrialcivilization/core/ToolAreaHandler.class",
     "development/IndustrialCivilizationCore/build/createMcpToSrg/output.tsrg",
     "development/IndustrialCivilizationCore/build/downloadMcpConfig/output.zip",
     "development/IndustrialCivilizationCore/build/extractSrg/output.srg",
@@ -260,6 +262,7 @@
     "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/TileFactoryControlTerminal.java",
     "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/TileIndustrialMachine.java",
     "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/TileMolecularAnalyzer.java",
+    "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/ToolAreaHandler.java",
     "development/IndustrialCivilizationCore/src/main/resources/assets/industrialcivilizationcore/advancements/analyzer_power.json",
     "development/IndustrialCivilizationCore/src/main/resources/assets/industrialcivilizationcore/advancements/autonomous_power_response.json",
     "development/IndustrialCivilizationCore/src/main/resources/assets/industrialcivilizationcore/advancements/autonomous_resource_response.json",
@@ -472,6 +475,7 @@
     "docs/RESEARCH_PROGRESSION.md",
     "docs/SENSOR_API.md",
     "docs/TELEMETRY_SCHEMA.md",
+    "docs/TOOL_BEHAVIOR.md",
     "docs/art/industrial_content_block_faces_review.png",
     "docs/art/industrial_content_concept.png",
     "docs/art/industrial_content_sprite_review.png",
@@ -581,7 +585,7 @@
     "cache/z-tekkit2-configs-1.2.6.zip"
   ],
   "counts": {
-    "added": 544,
+    "added": 548,
     "modified": 12,
     "removed": 11
   }

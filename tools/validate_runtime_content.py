@@ -107,6 +107,22 @@ check("AbandonedFactoryWorldGenerator" in source and "IndustrialCriminal" in sou
 check("denyDestination" in source and "orbital_research_archive" in source
       and "mars_mission_authorization" in source, "Moon and Mars gates are implemented")
 
+tool_source = (JAVA / "ToolAreaHandler.java").read_text()
+check("TREE_LIMIT = 96" in tool_source and "isLeaves" in tool_source,
+      "tree felling is leaf-gated and safety-capped")
+check('getHarvestLevel(stack, "axe"' in tool_source and '"itemtoolchainsaw"' in tool_source,
+      "stone-tier axes and the IC2 chainsaw use the tree-felling path")
+check('stack.getMetadata() == 1 ? 4' in tool_source and 'stack.getMetadata() == 0 ? 1' in tool_source,
+      "IC2 drill variants map to 3x3 and 9x9 radii")
+check("tryHarvestBlock(target)" in tool_source and "ElectricItem.manager.canUse" in tool_source,
+      "extra blocks use normal protected harvesting and per-block EU/durability")
+check("hasTileEntity" in tool_source and "getBlockHardness" in tool_source
+      and "isBlockLoaded" in tool_source, "area mining excludes unsafe block targets")
+check("player.isSneaking()" in tool_source, "sneaking provides precision-mode bypass")
+for key in ("tree_axe", "tree_chainsaw", "drill_area", "diamond_drill_area"):
+    check(f"tooltip.industrialcivilization.{key}=" in
+          (ASSETS / "lang/en_us.lang").read_text(), f"tool behavior is documented in-game: {key}")
+
 recipe_source = (JAVA / "MachineRecipe.java").read_text()
 recipe_ids = re.findall(r'new MachineRecipe\("([^"]+)"', recipe_source)
 expected_recipes = {
