@@ -36,6 +36,7 @@ Technic test target: `/Users/cory/Library/Application Support/technic/modpacks/t
 - Progression validator: 3,444 checks, 129 milestones, 0 placeholders.
 - Runtime-content harness: 557 checks across textures, models, recipes, energy contracts, gates, and integrations.
 - Final mod manifest expects 162 JARs and records exact hashes and redistribution notes.
+- Village suppression retains Minecraft's required `MapGenVillage` runtime type while rejecting all spawn candidates, preventing the new-world constructor crash found during the first fresh-world test.
 
 ## Requires a restart and fresh-world playtest
 

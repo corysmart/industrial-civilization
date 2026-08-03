@@ -1,6 +1,6 @@
 package com.industrialcivilization.core;
 
-import net.minecraft.world.gen.MapGenBase;
+import net.minecraft.world.gen.structure.MapGenVillage;
 import net.minecraftforge.event.terraingen.InitMapGenEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -9,7 +9,14 @@ public final class VillageSuppressionHandler {
     @SubscribeEvent
     public void replaceVanillaVillageGenerator(InitMapGenEvent event) {
         if (event.getType() == InitMapGenEvent.EventType.VILLAGE) {
-            event.setNewGen(new MapGenBase() {});
+            // ChunkGeneratorOverworld casts this generator to MapGenVillage.
+            // Preserve that contract while rejecting every village candidate.
+            event.setNewGen(new MapGenVillage() {
+                @Override
+                protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ) {
+                    return false;
+                }
+            });
         }
     }
 }

@@ -329,6 +329,7 @@ progression_network_source = (ROOT / "development/IndustrialCivilizationCore/src
 space_survival_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/SpaceSurvivalSystem.java").read_text()
 analyzer_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/TileMolecularAnalyzer.java").read_text()
 credits_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/GuiIndustrialCredits.java").read_text()
+village_suppression_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/VillageSuppressionHandler.java").read_text()
 ok("GuiIndustrialCredits" in progression_network_source and "corysmart" in credits_source
    and "ai_credits_shown" in core_source
    and 'RuntimeAdvancements.grant(event.player, "ai_age_entry")' in core_source,
@@ -361,6 +362,10 @@ ok('new SampleProfile("minecraft:iron_ingot", "Earth"' in analyzer_source
 ok("TileEntityOxygenSealer" in space_survival_source and "fullQuantumSuit" in space_survival_source
    and "radiation_exposure" in space_survival_source,
    "space radiation is protected by active sealed habitats or a full IC2 QuantumSuit")
+ok("new MapGenVillage()" in village_suppression_source
+   and "canSpawnStructureAtCoords" in village_suppression_source
+   and "new MapGenBase()" not in village_suppression_source,
+   "village suppression preserves ChunkGeneratorOverworld's required MapGenVillage type")
 ok("PlayerContainerEvent.Close" in faction_source and "ContainerMerchant" in faction_source
    and '"completed IC Credit trade"' in faction_source,
    "faction trade contact requires a completed IC Credit transaction")

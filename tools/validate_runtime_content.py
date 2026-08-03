@@ -135,8 +135,12 @@ check("PRIMITIVE_RADII = {240, 520, 800}" in world_source
 check("buildPrimitiveSettlement" in world_source and "buildMilitiaOutpost" in world_source
       and "buildOperationalFactory" in world_source and "buildIndustrialCity" in world_source,
       "primitive villages, outposts, specialty factories, and cities are implemented")
-check("EventType.VILLAGE" in (JAVA / "VillageSuppressionHandler.java").read_text(),
-      "new vanilla village generation is suppressed")
+village_suppression = (JAVA / "VillageSuppressionHandler.java").read_text()
+check("EventType.VILLAGE" in village_suppression
+      and "new MapGenVillage()" in village_suppression
+      and "canSpawnStructureAtCoords" in village_suppression
+      and "new MapGenBase()" not in village_suppression,
+      "vanilla villages are suppressed without violating the Overworld MapGenVillage contract")
 check("sendSnapshot" in network_source and "membership" in network_source,
       "faction directory synchronizes server-owned player state")
 check("gui.industrialcivilization.factions" in directory_source and "membershipRule" in directory_source,
