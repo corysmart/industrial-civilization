@@ -6081,12 +6081,207 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Trusted Faction Companion",
-          "desc:8": "STORY\nThe side path \u2014 factions and salvage program reaches its decisive proof. The recovered infrastructure offers alternate access to industrial capacity, but it cannot replace the scientific gates ahead.\n\nMISSION\nRecruit a trusted faction member who follows and defends you without converting every neutral NPC into a disposable follower.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Reach 60 reputation with your joined faction.\n- Hold at least 8 IC Credits and sneak-right-click a faction member.\n- Verify that the companion follows, defends, persists through saving, and can be dismissed with another sneak-right-click.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Industrial Civilization machines: right-click to open the IC2-styled EU/inventory screen. Put recipe inputs in the three left slots and take output from the right slot. Matching inputs run automatically; ComputerCraft is required only for explicit recipe selection, queues, telemetry, or cargo channels.\n- Factions: Pause > Factions & Settlements shows reputation, attitude, membership rules, known settlement types, and trades. Normal right-click opens IC Credit trades; sneak-right-click requests membership. Trusted members at 60 reputation can recruit a companion by holding 8 IC Credits while sneak-right-clicking.\n- Custom NPCs: F8 opens the separate NPC quest log when an authored encounter uses it.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "STORY\nThe side path \u2014 factions and salvage program advances one dependable system at a time. This step turns trusted faction companion from an idea into infrastructure.\n\nMISSION\nRecruit a trusted faction member who follows and defends you without converting every neutral NPC into a disposable follower.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Reach 60 reputation with your joined faction.\n- Hold at least 8 IC Credits and sneak-right-click a faction member.\n- Verify that the companion follows, defends, persists through saving, and can be dismissed with another sneak-right-click.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Industrial Civilization machines: right-click to open the IC2-styled EU/inventory screen. Put recipe inputs in the three left slots and take output from the right slot. Matching inputs run automatically; ComputerCraft is required only for explicit recipe selection, queues, telemetry, or cargo channels.\n- Large workshops: place the controller to deploy the equipment set piece, then provide a solid roof. Rain reaching the controller rusts it; right-click a Repair Bench while holding one IC2 Machine Block to restore the nearest rusted workshop within 12 blocks.\n- Factions: Pause > Factions & Settlements shows reputation, attitude, membership rules, known settlement types, and trades. Normal right-click opens IC Credit trades; sneak-right-click requests membership. Trusted members at 60 reputation can recruit a companion by holding 8 IC Credits while sneak-right-clicking.\n- Custom NPCs: F8 opens the separate NPC quest log when an authored encounter uses it.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
         "0:10": {
           "advancement_id:8": "industrialcivilizationcore:faction_companion",
+          "index:3": 0,
+          "taskID:8": "bq_standard:advancement"
+        }
+      },
+      "rewards:9": {}
+    },
+    "117:10": {
+      "questID:3": 117,
+      "preRequisites:11": [
+        34
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "industrialcivilizationcore:car_workshop",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Raise a Covered Car Workshop",
+          "desc:8": "STORY\nThe side path \u2014 factions and salvage program advances one dependable system at a time. This step turns raise a covered car workshop from an idea into infrastructure.\n\nMISSION\nDeploy the one-block Car Workshop controller as a complete 9\u00d77 industrial set piece and protect its machinery from rain.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Place the Car Workshop to deploy its assembly bay.\n- Add a roof that prevents rain from reaching the controller.\n- Connect IC2 EU at the displayed voltage tier.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Industrial Civilization machines: right-click to open the IC2-styled EU/inventory screen. Put recipe inputs in the three left slots and take output from the right slot. Matching inputs run automatically; ComputerCraft is required only for explicit recipe selection, queues, telemetry, or cargo channels.\n- Vehicles: use W/A/S/D to drive, H for the horn, and C to cycle seats. Sneak-right-click the parked Industrial Service Carrier for its 54-slot cargo hold; hold a Crafting Table while doing so for its mobile crafting grid. Fluid containers interact by right-clicking the parked carrier. Park within four blocks of a Vehicle Service Dock to expose cargo and its 64,000 mB tank to BuildCraft pipes.\n- Large workshops: place the controller to deploy the equipment set piece, then provide a solid roof. Rain reaching the controller rusts it; right-click a Repair Bench while holding one IC2 Machine Block to restore the nearest rusted workshop within 12 blocks.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "advancement_id:8": "industrialcivilizationcore:car_workshop_deployed",
+          "index:3": 0,
+          "taskID:8": "bq_standard:advancement"
+        }
+      },
+      "rewards:9": {}
+    },
+    "118:10": {
+      "questID:3": 118,
+      "preRequisites:11": [
+        117
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "vehicle:vehicle_crate",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Motorize the Frontier",
+          "desc:8": "STORY\nThe side path \u2014 factions and salvage program advances one dependable system at a time. This step turns motorize the frontier from an idea into infrastructure.\n\nMISSION\nManufacture one purpose-built road vehicle: compact car, off-roader, passenger carrier, tractor, utility cart, or scout ATV.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Select and complete one vehicle program in the Car Workshop.\n- Deploy the resulting vehicle crate and verify driving, fueling, and braking.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Vehicles: use W/A/S/D to drive, H for the horn, and C to cycle seats. Sneak-right-click the parked Industrial Service Carrier for its 54-slot cargo hold; hold a Crafting Table while doing so for its mobile crafting grid. Fluid containers interact by right-clicking the parked carrier. Park within four blocks of a Vehicle Service Dock to expose cargo and its 64,000 mB tank to BuildCraft pipes.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "advancement_id:8": "industrialcivilizationcore:regional_mobility",
+          "index:3": 0,
+          "taskID:8": "bq_standard:advancement"
+        }
+      },
+      "rewards:9": {}
+    },
+    "119:10": {
+      "questID:3": 119,
+      "preRequisites:11": [
+        118
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "vehicle:vehicle_crate",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Industrial Service Carrier",
+          "desc:8": "STORY\nThe side path \u2014 factions and salvage program advances one dependable system at a time. This step turns industrial service carrier from an idea into infrastructure.\n\nMISSION\nBuild the top-tier mobile support vehicle with onboard crafting, 54 cargo slots, a 64,000 mB tank, and a parked BuildCraft pipe interface.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Manufacture the Passenger Carrier program and deploy its minibus chassis.\n- Open its cargo hold and mobile crafting grid while parked.\n- Park beside a Vehicle Service Dock and transfer both an item and a fluid through connected pipes.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Galacticraft: right-click a fueled rocket to mount it, Space begins launch, and W/A/S/D steer supported vehicles. Command+I opens the spaceship inventory. Right-click machines/cargo loaders to open them; use the standard Galacticraft wrench on configurable connections.\n- Vehicles: use W/A/S/D to drive, H for the horn, and C to cycle seats. Sneak-right-click the parked Industrial Service Carrier for its 54-slot cargo hold; hold a Crafting Table while doing so for its mobile crafting grid. Fluid containers interact by right-clicking the parked carrier. Park within four blocks of a Vehicle Service Dock to expose cargo and its 64,000 mB tank to BuildCraft pipes.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "advancement_id:8": "industrialcivilizationcore:industrial_service_carrier",
+          "index:3": 0,
+          "taskID:8": "bq_standard:advancement"
+        }
+      },
+      "rewards:9": {}
+    },
+    "120:10": {
+      "questID:3": 120,
+      "preRequisites:11": [
+        24
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "industrialcivilizationcore:interplanetary_cargo_controller",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Connect the Nation Exchange",
+          "desc:8": "STORY\nThe side path \u2014 factions and salvage program advances one dependable system at a time. This step turns connect the nation exchange from an idea into infrastructure.\n\nMISSION\nWitness two loaded city cargo controllers exchange a locally specialized product over the shared nation channel.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Locate two operational cities with powered utility spines.\n- Keep both regions loaded and observe a specialty item reach the paired controller.\n- Compare settlement prices and confirm reputation only modestly changes the exchange.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Industrial Civilization machines: right-click to open the IC2-styled EU/inventory screen. Put recipe inputs in the three left slots and take output from the right slot. Matching inputs run automatically; ComputerCraft is required only for explicit recipe selection, queues, telemetry, or cargo channels.\n- Cargo peripheral: connect a computer to each controller and call setCargoChannel with the same channel name. Keep both controllers loaded in different dimensions; input enters slot 1 and arrives in the remote output slot.\n- Galacticraft: right-click a fueled rocket to mount it, Space begins launch, and W/A/S/D steer supported vehicles. Command+I opens the spaceship inventory. Right-click machines/cargo loaders to open them; use the standard Galacticraft wrench on configurable connections.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "advancement_id:8": "industrialcivilizationcore:nation_trade_network",
+          "index:3": 0,
+          "taskID:8": "bq_standard:advancement"
+        }
+      },
+      "rewards:9": {}
+    },
+    "121:10": {
+      "questID:3": 121,
+      "preRequisites:11": [
+        34
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "industrialcivilizationcore:gun_factory",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Commission an Advanced Armament Factory",
+          "desc:8": "STORY\nThe side path \u2014 factions and salvage program reaches its decisive proof. The recovered infrastructure offers alternate access to industrial capacity, but it cannot replace the scientific gates ahead.\n\nMISSION\nDeploy a covered Gun Factory and use its IC2-powered production program for a shotgun or automatic rifle instead of hand crafting advanced firearms.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Place and roof the Gun Factory set piece.\n- Complete either the Combat Shotgun or Automatic Rifle factory program.\n- If rain rusts the controller, repair it at a Repair Bench using one IC2 Machine Block.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Industrial Civilization machines: right-click to open the IC2-styled EU/inventory screen. Put recipe inputs in the three left slots and take output from the right slot. Matching inputs run automatically; ComputerCraft is required only for explicit recipe selection, queues, telemetry, or cargo channels.\n- Techguns: Option+Y forces a reload; right-click aims/uses the weapon and left-click fires.\n- Large workshops: place the controller to deploy the equipment set piece, then provide a solid roof. Rain reaching the controller rusts it; right-click a Repair Bench while holding one IC2 Machine Block to restore the nearest rusted workshop within 12 blocks.\n- IC2 equipment: F10 changes supported modes. Backslash is the armor modifier, Option+H toggles boost, and Option+O expands the armor HUD. Sneak while mining/chopping to suppress pack-added area or whole-tree behavior.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "advancement_id:8": "industrialcivilizationcore:advanced_armament_factory",
           "index:3": 0,
           "taskID:8": "bq_standard:advancement"
         }
@@ -7161,6 +7356,55 @@
     },
     "20:10": {
       "quests:9": {
+        "117:10": {
+          "sizeX:3": 24,
+          "x:3": 0,
+          "y:3": 0,
+          "id:3": 117,
+          "sizeY:3": 24
+        },
+        "118:10": {
+          "sizeX:3": 24,
+          "x:3": 56,
+          "y:3": 0,
+          "id:3": 118,
+          "sizeY:3": 24
+        },
+        "119:10": {
+          "sizeX:3": 24,
+          "x:3": 112,
+          "y:3": 0,
+          "id:3": 119,
+          "sizeY:3": 24
+        },
+        "120:10": {
+          "sizeX:3": 24,
+          "x:3": 168,
+          "y:3": 0,
+          "id:3": 120,
+          "sizeY:3": 24
+        },
+        "121:10": {
+          "sizeX:3": 24,
+          "x:3": 224,
+          "y:3": 0,
+          "id:3": 121,
+          "sizeY:3": 24
+        }
+      },
+      "lineID:3": 20,
+      "properties:10": {
+        "betterquesting:10": {
+          "name:8": "Side Path \u2014 Mobility and Nations",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_earth.png",
+          "bg_size:3": 512,
+          "desc:8": "Optional road travel, industrial vehicles, city exchange, and advanced workshop infrastructure. Side paths are visible from the start and may create alternate progression routes."
+        }
+      },
+      "order:3": 20
+    },
+    "21:10": {
+      "quests:9": {
         "101:10": {
           "sizeX:3": 24,
           "x:3": 0,
@@ -7197,7 +7441,7 @@
           "sizeY:3": 24
         }
       },
-      "lineID:3": 20,
+      "lineID:3": 21,
       "properties:10": {
         "betterquesting:10": {
           "name:8": "Side Path \u2014 Post-AI Horizons",
@@ -7206,7 +7450,7 @@
           "desc:8": "Parallel civilization-scale endgame projects. Side paths are visible from the start and may create alternate progression routes."
         }
       },
-      "order:3": 20
+      "order:3": 21
     }
   },
   "questSettings:10": {

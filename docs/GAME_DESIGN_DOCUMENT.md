@@ -19,11 +19,11 @@ The design has four pillars:
 ## Player-facing rules
 
 - F6 opens the Better Questing guide, and the pause-menu Quest Guide button opens the same UI.
-- All 117 quests use aspirational `ALWAYS` visibility. Locked future lines remain visible; secret objectives are not used.
+- All 122 quests use aspirational `ALWAYS` visibility. Locked future lines remain visible; secret objectives are not used.
 - Every quest completes automatically through a runtime advancement or non-consuming inventory evidence. There are no manual checkbox tasks.
 - Every modded quest includes the relevant Mac/no-numpad controls and operating instructions in its description.
 - Every node picture is the actual required item, first evidence item, or an explicit real machine/artifact/vehicle override. Symbolic storyboard pictures are not emitted.
-- Numbered chapters contain the critical route. Five independent side-path tabs can be pursued whenever their prerequisites or discoveries permit.
+- Numbered chapters contain the critical route. Six independent side-path tabs can be pursued whenever their prerequisites or discoveries permit.
 - Pause > Factions & Settlements is the complete in-game directory for faction reputation, attitude, membership rules, settlement types, products, and NPC interaction instructions.
 
 ## Complete progression flow
@@ -57,6 +57,7 @@ Canonical dependency order is Earth industry → monitored nuclear power → orb
 | Factions and Salvage | Settlements, criminal encounters, abandoned factory restoration | Can provide documented alternate access to industrial and programmable capacity; cannot skip scientific gates |
 | Orbital Power | Environmental and tracking solar development | Optional power specialization that becomes especially valuable in orbit |
 | Cargo Logistics | Freight and cross-dimensional cargo mastery | Optional until the post-AI logistics program requires civilization-scale proof |
+| Mobility and Nations | Roads, six real vehicles, city exchange, service carrier, and covered workshops | Optional industrial mobility and advanced armament capacity |
 | Post-AI Horizons | Matter, fusion, colony, logistics, and megastructure programs | Parallel by design; no single branch blocks AI entry or all other branches |
 
 ## How the quest system is built
@@ -86,6 +87,7 @@ The generator also owns story openings/transitions, contextual control blocks, e
 | Waila | Command+[ display; Command+] liquid; Command+; recipe; Command+0 config; Command+' uses |
 | Pack area tools | Sneak suppresses whole-tree/area behavior for precision work |
 | Factions and NPCs | Pause > Factions & Settlements; right-click trades; sneak-right-click membership/recruitment/dismissal |
+| Onysd Vehicles | W/A/S/D drive; H horn; C cycle seats; sneak-right-click parked service carrier for cargo |
 
 Ordinary right-click interaction and machine-specific operational steps are stated beside these bindings; the quest text does not send the player to an external wiki or the Controls menu.
 
@@ -109,6 +111,10 @@ Recipes below use E-Circuit = `ic2:itemmisc:451` and A-Circuit = `ic2:itemmisc:4
 | Interplanetary Cargo Controller | Meteoric Iron, advanced computer, Control Processors, Robotic Cell, Ender Eyes, recovered factory control system | 4,000,000 EU / 512 EU-t; paired same-name channels move one item between loaded controllers in different dimensions |
 | Orbital Megastructure Controller | Beacons, AI Core, IC2 HV machines, Cargo Controller, obsidian, Control Processor | 24,000,000 EU / 8,192 EU-t / 2,000 ticks; in orbit consumes post-AI proofs to create a Megastructure Control Record |
 | Autonomous Colony Beacon | Beacons, AI Core, Control Processors, Cargo Controller, diamonds, Robotic Cell | 8,000,000 EU / 2,048 EU-t / 1,200 ticks; on Moon or Mars produces a colony charter from AI, control, and cargo proofs |
+| Car Workshop | Advanced IC2 and programmable components | Places a 9×7 assembly set piece; covered 128-EU/t manufacturing programs create six Onysd vehicle crates |
+| Gun Factory | Advanced IC2 and programmable components | Places a 9×7 armament set piece; covered 512-EU/t programs produce shotgun and automatic-rifle outputs |
+| Repair Bench | IC2 machine components | Repairs the nearest rusted large workshop within 12 blocks, consuming one complete IC2 Machine Block |
+| Vehicle Service Dock | BuildCraft pipe and IC2 machine components | Bridges BuildCraft item/fluid capabilities to a parked Industrial Service Carrier within four blocks |
 
 All ten processing machines are IC2 EU sinks with sided inventories (inputs on non-bottom faces, output below), a four-slot IC2-styled GUI, automatic matching for inserted inputs, and a ComputerCraft peripheral. The same blocks expose Forge Energy only as hidden compatibility plumbing at the canonical 8 FE = 1 EU ratio.
 
@@ -147,6 +153,7 @@ Research artifacts that carry progression knowledge must be held and right-click
 - **ComputerCraft/Computronics:** monitoring and first-party peripheral control. Machine methods expose status, energy, capacity, progress, environment, recipes, queues, completion counts, and cargo channels.
 - **Galacticraft:** rockets, Moon/Mars dimensions, habitats, oxygen, cargo hardware, and normal Tier 1 → Moon schematic → Tier 2 progression. First-party gates validate entry rather than replacing the travel UI.
 - **Railcraft/BuildCraft/ProjectRed/MFFS/Techguns:** freight, extraction/logistics, wireless control, containment/defense, and industrial armament.
+- **Onysd Vehicles:** real driving physics and chassis. The pack curates six roles and extends the minibus into a 54-slot, 64,000-mB mobile workshop that interfaces with BuildCraft while parked.
 - **AE2:** installed but ordinary recipes removed. After AI, twelve curated foundation outputs require the durable AI Core, Control Processor, iron, and redstone; broader AE2 remains future balance work.
 - **Better Questing + Standard Expansion:** player-facing tutorial, story, automatic tasks, and aspirational map.
 - **GroovyScript:** reloadable recipe locks, HEI filtering, firearm/analyzer recipes, and tooltips. Java owns persistent state and runtime behavior.
@@ -158,6 +165,10 @@ IndustrialCivilizationCore implements five persistent factions: the Frontier Coo
 All generated and surviving village merchants use IC Credits instead of emeralds. Normal right-click trades, sneak-right-click requests eligible membership, and a member at 60 reputation can spend eight credits to recruit a companion. Hostile NPCs attack, guards protect settlements, and companions follow and defend their owner. The pause-menu faction directory explains these rules and shows every known or aspirational faction entry.
 
 New worlds suppress endless vanilla village generation and place three primitive settlements close to spawn at approximately 240, 520, and 800 blocks. Abandoned factories begin beyond 900 blocks, militia outposts beyond 1,400, guarded operational specialty factories beyond 2,200, and industrial cities beyond 3,000. Operational factory markets specialize in steel, electronics, fuel, armaments, or research. Existing world chunks are never deleted, so geography validation requires a fresh test world.
+
+Beyond the primitive zone, a regional three-block road grid appears: dirt approaches precede paved double-slab roads nearer industrial regions. Selected outposts, operational factories, and cities receive real IC2 cable spines, solar generation, wall-height outlet points, and BuildCraft transport holders. Cities receive nation-managed cargo controllers on a shared exchange channel and deterministic local specialties. Neutral coal/component trades are deliberately more favorable than crafting IC Credits; friendly and trusted reputation improve prices only one or two steps, preventing reputation from trivializing the economy.
+
+The Car Workshop manufactures six distinct Onysd chassis: a compact city car, frontier off-roader, passenger/service carrier, agricultural tractor, utility cart, and scout ATV. Generic Onysd workstation crafting is removed. The service carrier extends the minibus with 54 item slots, a 64,000 mB fluid tank, mobile crafting, and capability access through a nearby Vehicle Service Dock. Both the Car Workshop and Gun Factory deploy as large equipment sets from one controller. They require player-provided cover: direct rain rusts the controller and halts production until a Repair Bench consumes one IC2 Machine Block.
 
 ## Visual design
 
@@ -173,10 +184,10 @@ Quest/config changes can be loaded into an existing test world with `/bq_admin d
 
 ## Implemented now
 
-- 16 chapters, 5 independent side paths, 117 automatic quests, full aspirational visibility, no manual checkbox tasks.
+- 16 chapters, 6 independent side paths, 122 automatic quests, full aspirational visibility, no manual checkbox tasks.
 - Story/mission/proof/control descriptions and actual objective icons for the entire generated quest set.
 - Five era-specific quest backgrounds and IC2-styled custom block/item/GUI art.
-- Fourteen first-party blocks, twenty-two progression artifacts, and the IC Credit currency with real construction/production paths.
+- Eighteen first-party blocks, twenty-two progression artifacts, and the IC Credit currency with real construction/production paths.
 - EU-native machines, environment-aware research, Moon/Mars gates, solar multipliers/dust behavior, cargo channels, salvage route, AI synthesis, curated AE2 unlock, and concrete post-AI proofs.
 - Stone-tier axe and better whole-tree behavior, IC2 chainsaw whole-tree behavior, 3×3 drill, 9×9 diamond drill, proportional durability/EU cost, and Sneak precision override.
 - Static/runtime-content/progression/energy validation harnesses and private Git version control.

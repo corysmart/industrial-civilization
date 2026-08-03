@@ -129,7 +129,7 @@ for archive, required_entries in archive_requirements.items():
         ok(False, f"dependency/resource archive {archive}: {exc}")
 
 jars = sorted((ROOT / "mods").rglob("*.jar"))
-ok(len(jars) == 159, "expected active JAR count 159")
+ok(len(jars) == 161, "expected active JAR count 161")
 for path in jars:
     try:
         with zipfile.ZipFile(path) as zf:
@@ -241,8 +241,8 @@ for path in sorted((ROOT / "config").rglob("*.json")) + sorted((ROOT / "developm
 
 quests = json.loads((ROOT / "config/betterquesting/DefaultQuests.json").read_text())
 ok(quests.get("format:8") == "2.0.0", "Better Questing schema version")
-ok(len(quests.get("questDatabase:9", {})) == 117, "117 Phase 2 capability milestones")
-ok(len(quests.get("questLines:9", {})) == 21, "16 chapter and 5 independent side-path tabs")
+ok(len(quests.get("questDatabase:9", {})) == 122, "122 Phase 2 capability milestones")
+ok(len(quests.get("questLines:9", {})) == 22, "16 chapter and 6 independent side-path tabs")
 names = [q["properties:10"]["betterquesting:10"]["name:8"] for q in quests["questDatabase:9"].values()]
 ordered_gates = ["Orbital Research Archive", "Authorized Lunar Landing", "Lunar Engineering Archive",
                  "Quantum Technology Complete", "Mars Mission Authorization", "Authorized Tier 2 Mars Launch",
@@ -326,7 +326,7 @@ ledger = json.loads((ROOT / "bin/extractedFiles.json").read_text())
 ok(not any(any(token in entry.lower() for token in ("projecte", "viewemc", "ic2cuumatter")) for entry in ledger), "Technic extraction ledger repaired")
 
 final_lock = json.loads((ROOT / "manifest/final-mod-lock.json").read_text())
-ok(final_lock["mod_count_jars"] == 159, "final lock JAR count")
+ok(final_lock["mod_count_jars"] == 161, "final lock JAR count")
 ok(not final_lock["duplicate_detected_mod_ids"], "no duplicate declared mod IDs")
 locked = {record["file"]: record["sha256"] for record in final_lock["mods"]}
 for path in jars:

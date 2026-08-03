@@ -7,7 +7,7 @@
   "forge": "14.23.5.2860",
   "java": "8",
   "mode": "final",
-  "mod_count_jars": 159,
+  "mod_count_jars": 161,
   "mods": [
     {
       "file": "mods/!configanytime-3.0.jar",
@@ -1615,8 +1615,8 @@
     {
       "file": "mods/IndustrialCivilizationCore-0.2.0.jar",
       "filename": "IndustrialCivilizationCore-0.2.0.jar",
-      "size": 422618,
-      "sha256": "35802a873b8a67d565fcb74d47bfff01fcaf6ffdb0d6fdf7baf2f84c7ee947b9",
+      "size": 456527,
+      "sha256": "70e43bb2de58a35d97611bf1ee62d63ff6918b2b84b71b19a2b95b5744d30ba9",
       "classification": "KEEP",
       "mods": [
         {
@@ -2492,6 +2492,19 @@
       "suspicious": [],
       "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
       "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/obfuscate-0.4.2-1.12.2.jar",
+      "filename": "obfuscate-0.4.2-1.12.2.jar",
+      "size": 129099,
+      "sha256": "5bcc67ff15e7b0155268dda6b78b103d6abf658ad5c9ca0187f26923d34151fb",
+      "classification": "KEEP",
+      "mods": [],
+      "declared_dependencies": [],
+      "core_plugin": "com.mrcrayfish.obfuscate.asm.ObfuscatePlugin",
+      "suspicious": [],
+      "source": "https://www.curseforge.com/minecraft/mc-mods/obfuscate/files/2916310",
+      "redistribution": "GPL-3.0 dependency; preserve license and corresponding-source obligations when distributing."
     },
     {
       "file": "mods/packcrashinfo-1.0.1.jar",
@@ -3510,6 +3523,27 @@
       "redistribution": "Inherited third-party binary; verify author terms before any export."
     },
     {
+      "file": "mods/vehicle-mod-1.4.0-1.12.2.jar",
+      "filename": "vehicle-mod-1.4.0-1.12.2.jar",
+      "size": 7165700,
+      "sha256": "7a8eb7d278e80972d8b96e19df9cbcfcc25ab9eacb097b917b01a1c431f158c7",
+      "classification": "KEEP",
+      "mods": [
+        {
+          "id": "vehicle",
+          "name": "Onysd Vehicles",
+          "version": "1.4.0",
+          "minecraft": "1.12.2",
+          "dependencies": []
+        }
+      ],
+      "declared_dependencies": [],
+      "core_plugin": null,
+      "suspicious": [],
+      "source": "https://modrinth.com/mod/onysd-vehicles/version/LuvveCaI",
+      "redistribution": "LGPL-2.1-or-later; preserve notices and make source for modifications available under the same terms."
+    },
+    {
       "file": "mods/vintagefix-0.5.6.jar",
       "filename": "vintagefix-0.5.6.jar",
       "size": 1024293,
@@ -3875,8 +3909,8 @@
     },
     {
       "file": "config/betterquesting/DefaultQuests.json",
-      "sha256": "9b072b842b84545695d1cd781921cc2c9d618c3930bca67438b7bbdf86a90d85",
-      "size": 327090
+      "sha256": "8bcd7e0e3ca4a8d41df94fa9b1e23feff98fbe8a8623e7e199bd0111de67b6f9",
+      "size": 343034
     },
     {
       "file": "config/blockcraftery.cfg",
@@ -5120,8 +5154,8 @@
     },
     {
       "file": "groovy/postInit/industrial_civilization.groovy",
-      "sha256": "f858793046a4bdbd0319b917df61672b43f0525c948c969b0f740d968e07b2c3",
-      "size": 5493
+      "sha256": "402e9fe454961f76ca2345a7b967c31a9469323f8fab239a8aadf0072786b32a",
+      "size": 6760
     },
     {
       "file": "groovy/postInit/industrial_civilization_content.groovy",

@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "industrialcivilizationcore:blocks/car_workshop",
+    "north": "industrialcivilizationcore:blocks/car_workshop",
+    "south": "industrialcivilizationcore:blocks/car_workshop_side",
+    "east": "industrialcivilizationcore:blocks/car_workshop_side",
+    "west": "industrialcivilizationcore:blocks/car_workshop_side",
+    "up": "industrialcivilizationcore:blocks/car_workshop_top",
+    "down": "industrialcivilizationcore:blocks/car_workshop_side"
+  }
+}

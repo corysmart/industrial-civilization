@@ -40,6 +40,14 @@ ADDED = {
         "source": "https://www.curseforge.com/minecraft/mc-mods/groovyscript/files/7925117",
         "redistribution": "LGPL-3.0; source and license terms are linked from the upstream project.",
     },
+    "vehicle-mod-1.4.0-1.12.2.jar": {
+        "source": "https://modrinth.com/mod/onysd-vehicles/version/LuvveCaI",
+        "redistribution": "LGPL-2.1-or-later; preserve notices and make source for modifications available under the same terms.",
+    },
+    "obfuscate-0.4.2-1.12.2.jar": {
+        "source": "https://www.curseforge.com/minecraft/mc-mods/obfuscate/files/2916310",
+        "redistribution": "GPL-3.0 dependency; preserve license and corresponding-source obligations when distributing.",
+    },
     "IndustrialCivilizationCore-0.2.0.jar": {
         "source": "development/IndustrialCivilizationCore",
         "redistribution": "First-party pack integration source included in this instance.",

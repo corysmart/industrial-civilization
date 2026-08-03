@@ -127,6 +127,90 @@
       ],
       "automation_paths": [],
       "runtime_advancement": true
+    },
+    {
+      "id": "car_workshop_deployed",
+      "title": "Raise a Covered Car Workshop",
+      "category": "construction",
+      "icon": "industrialcivilizationcore:car_workshop",
+      "prerequisites": ["programmable_manufacturing"],
+      "critical": false,
+      "optional": true,
+      "capability": "Deploy the one-block Car Workshop controller as a complete 9×7 industrial set piece and protect its machinery from rain.",
+      "final_validation": [
+        "Place the Car Workshop to deploy its assembly bay.",
+        "Add a roof that prevents rain from reaching the controller.",
+        "Connect IC2 EU at the displayed voltage tier."
+      ],
+      "automation_paths": [],
+      "runtime_advancement": true
+    },
+    {
+      "id": "regional_mobility",
+      "title": "Motorize the Frontier",
+      "category": "operation",
+      "icon": "vehicle:vehicle_crate",
+      "prerequisites": ["car_workshop_deployed"],
+      "critical": false,
+      "optional": true,
+      "capability": "Manufacture one purpose-built road vehicle: compact car, off-roader, passenger carrier, tractor, utility cart, or scout ATV.",
+      "final_validation": [
+        "Select and complete one vehicle program in the Car Workshop.",
+        "Deploy the resulting vehicle crate and verify driving, fueling, and braking."
+      ],
+      "automation_paths": [],
+      "runtime_advancement": true
+    },
+    {
+      "id": "industrial_service_carrier",
+      "title": "Industrial Service Carrier",
+      "category": "mastery",
+      "icon": "vehicle:vehicle_crate",
+      "prerequisites": ["regional_mobility"],
+      "critical": false,
+      "optional": true,
+      "capability": "Build the top-tier mobile support vehicle with onboard crafting, 54 cargo slots, a 64,000 mB tank, and a parked BuildCraft pipe interface.",
+      "final_validation": [
+        "Manufacture the Passenger Carrier program and deploy its minibus chassis.",
+        "Open its cargo hold and mobile crafting grid while parked.",
+        "Park beside a Vehicle Service Dock and transfer both an item and a fluid through connected pipes."
+      ],
+      "automation_paths": [],
+      "runtime_advancement": true
+    },
+    {
+      "id": "nation_trade_network",
+      "title": "Connect the Nation Exchange",
+      "category": "operation",
+      "icon": "industrialcivilizationcore:interplanetary_cargo_controller",
+      "prerequisites": ["faction_contacts"],
+      "critical": false,
+      "optional": true,
+      "capability": "Witness two loaded city cargo controllers exchange a locally specialized product over the shared nation channel.",
+      "final_validation": [
+        "Locate two operational cities with powered utility spines.",
+        "Keep both regions loaded and observe a specialty item reach the paired controller.",
+        "Compare settlement prices and confirm reputation only modestly changes the exchange."
+      ],
+      "automation_paths": [],
+      "runtime_advancement": true
+    },
+    {
+      "id": "advanced_armament_factory",
+      "title": "Commission an Advanced Armament Factory",
+      "category": "mastery",
+      "icon": "industrialcivilizationcore:gun_factory",
+      "prerequisites": ["programmable_manufacturing"],
+      "critical": false,
+      "optional": true,
+      "capability": "Deploy a covered Gun Factory and use its IC2-powered production program for a shotgun or automatic rifle instead of hand crafting advanced firearms.",
+      "final_validation": [
+        "Place and roof the Gun Factory set piece.",
+        "Complete either the Combat Shotgun or Automatic Rifle factory program.",
+        "If rain rusts the controller, repair it at a Repair Bench using one IC2 Machine Block."
+      ],
+      "automation_paths": [],
+      "runtime_advancement": true
     }
   ]
 }

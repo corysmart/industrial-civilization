@@ -92,6 +92,18 @@ def block_pattern(block_id):
     def solar(d, a):
         for y in (5, 7, 9): d.line((5, y, 10, y), fill=a)
         d.line((5, 10, 10, 10), fill=PALETTE["cyan2"])
+    def workshop(d, a):
+        d.rectangle((4, 6, 11, 10), outline=a); d.line((5, 9, 10, 9), fill=PALETTE["copper"])
+        d.point((6, 7), fill=PALETTE["orange"]); d.point((9, 7), fill=PALETTE["cyan2"])
+    def armament(d, a):
+        d.rectangle((4, 5, 11, 11), outline=PALETTE["copper_dark"])
+        d.line((5, 8, 10, 8), fill=a, width=2); d.line((8, 6, 8, 10), fill=PALETTE["orange"])
+        d.point((5, 6), fill=PALETTE["cyan2"]); d.point((10, 10), fill=PALETTE["light"])
+    def repair(d, a):
+        d.line((5, 10, 10, 5), fill=a, width=2); d.rectangle((4, 4, 7, 6), outline=PALETTE["copper"])
+    def dock(d, a):
+        d.rectangle((4, 5, 7, 10), outline=a); d.rectangle((9, 5, 11, 10), outline=PALETTE["copper"])
+        d.line((7, 7, 9, 7), fill=PALETTE["cyan2"])
     return {
         "molecular_analyzer": analyzer, "research_station": station,
         "orbital_experiment_module": experiment, "electric_fabricator": fabricator,
@@ -102,6 +114,8 @@ def block_pattern(block_id):
         "orbital_megastructure_controller": megastructure,
         "autonomous_colony_beacon": colony,
         "environmental_solar_array": solar, "tracking_solar_array": solar,
+        "car_workshop": workshop, "gun_factory": armament,
+        "repair_bench": repair, "vehicle_service_dock": dock,
     }[block_id]
 
 
@@ -146,7 +160,8 @@ def make_block_top(accent):
 def make_blocks():
     accents = ["cyan", "cyan", "cyan2", "orange", "cyan", "orange", "copper",
                "cyan2", "orange", "cyan", "orange", "cyan2", "cyan", "orange"]
-    for index, (block_id, accent_name) in enumerate(zip(BLOCK_IDS, accents)):
+    for index, block_id in enumerate(BLOCK_IDS):
+        accent_name = accents[index % len(accents)]
         accent = PALETTE[accent_name]
         make_block_face(block_id, accent).save(BLOCKS / f"{block_id}.png")
         make_block_side(accent, port=index % 3 == 0).save(BLOCKS / f"{block_id}_side.png")
@@ -312,7 +327,15 @@ def make_nei_sprites():
     item_atlas = Image.open(NEI_ITEM_ATLAS).convert("RGBA")
     NEI_BLOCKS.mkdir(parents=True, exist_ok=True)
     for index, block_id in enumerate(BLOCK_IDS):
-        inventory_sprite(atlas_cell(block_atlas, index, 7, 2)).save(NEI_BLOCKS / f"{block_id}.png")
+        if index < 14:
+            sprite = inventory_sprite(atlas_cell(block_atlas, index, 7, 2))
+        else:
+            # New systems beyond the original concept sheet use their unique,
+            # reproducible IC2 face art until a dedicated concept atlas is made.
+            source = Image.open(BLOCKS / f"{block_id}.png").resize((48, 48), Image.Resampling.NEAREST)
+            sprite = Image.new("RGBA", (64, 64), (0, 0, 0, 0))
+            sprite.alpha_composite(source, (8, 8))
+        sprite.save(NEI_BLOCKS / f"{block_id}.png")
     # The generated source faithfully retained the final two machine concepts
     # in cells 0-1 before the twenty-two item concepts in cells 2-23.
     for index, item_id in enumerate(ITEM_IDS):
@@ -399,7 +422,8 @@ def contact_sheet():
 
 def block_face_sheet():
     cell_w, cell_h, columns = 192, 132, 7
-    sheet = Image.new("RGB", (cell_w * columns, cell_h * 2), "#182329")
+    rows = (len(BLOCK_IDS) + columns - 1) // columns
+    sheet = Image.new("RGB", (cell_w * columns, cell_h * rows), "#182329")
     d = ImageDraw.Draw(sheet); font = ImageFont.load_default()
     for i, block_id in enumerate(BLOCK_IDS):
         x, y = (i % columns) * cell_w, (i // columns) * cell_h

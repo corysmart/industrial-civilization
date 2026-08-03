@@ -219,6 +219,10 @@ def controls_for(ms):
         controls.append("Galacticraft: right-click a fueled rocket to mount it, Space begins launch, and W/A/S/D steer supported vehicles. Command+I opens the spaceship inventory. Right-click machines/cargo loaders to open them; use the standard Galacticraft wrench on configurable connections.")
     if any(word in haystack for word in ("techguns", "firearm", "armament", "pistol", "shotgun", "rifle", "defensive")):
         controls.append("Techguns: Option+Y forces a reload; right-click aims/uses the weapon and left-click fires.")
+    if any(word in haystack for word in ("vehicle", "car workshop", "mobility", "service carrier")):
+        controls.append("Vehicles: use W/A/S/D to drive, H for the horn, and C to cycle seats. Sneak-right-click the parked Industrial Service Carrier for its 54-slot cargo hold; hold a Crafting Table while doing so for its mobile crafting grid. Fluid containers interact by right-clicking the parked carrier. Park within four blocks of a Vehicle Service Dock to expose cargo and its 64,000 mB tank to BuildCraft pipes.")
+    if any(word in haystack for word in ("car workshop", "gun factory", "rust", "repair bench")):
+        controls.append("Large workshops: place the controller to deploy the equipment set piece, then provide a solid roof. Rain reaching the controller rusts it; right-click a Repair Bench while holding one IC2 Machine Block to restore the nearest rusted workshop within 12 blocks.")
     if any(word in haystack for word in ("railcraft", "freight", "locomotive", "rail logistics")):
         controls.append("Railcraft locomotive: Option+[ reverse, Option+period faster, Option+] slower, Option+; mode, and Option+' whistle. Right-click the locomotive for its configuration screen.")
     if any(word in haystack for word in ("faction", "criminal", "settlement", "npc")):
@@ -351,6 +355,7 @@ def main():
         "factions_and_salvage": (side_paths[0]["title"], side_paths[0]["purpose"]),
         "orbital_power": ("Side Path — Orbital Power", "Optional orbital generation and tracking-array development."),
         "cargo_logistics": ("Side Path — Cargo Logistics", "Optional freight and interplanetary cargo mastery."),
+        "mobility_and_nations": ("Side Path — Mobility and Nations", "Optional road travel, industrial vehicles, city exchange, and advanced workshop infrastructure."),
         "post_ai_parallel": ("Side Path — Post-AI Horizons", "Parallel civilization-scale endgame projects."),
     }
     branch_eras = {
@@ -358,6 +363,7 @@ def main():
         "factions_and_salvage": "earth",
         "orbital_power": "orbit",
         "cargo_logistics": "post_ai",
+        "mobility_and_nations": "earth",
         "post_ai_parallel": "post_ai",
     }
     for branch_index, (branch_id, branch_milestones) in enumerate(graph["optional_branches"].items()):

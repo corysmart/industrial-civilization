@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "industrialcivilizationcore:blocks/repair_bench",
+    "north": "industrialcivilizationcore:blocks/repair_bench",
+    "south": "industrialcivilizationcore:blocks/repair_bench_side",
+    "east": "industrialcivilizationcore:blocks/repair_bench_side",
+    "west": "industrialcivilizationcore:blocks/repair_bench_side",
+    "up": "industrialcivilizationcore:blocks/repair_bench_top",
+    "down": "industrialcivilizationcore:blocks/repair_bench_side"
+  }
+}

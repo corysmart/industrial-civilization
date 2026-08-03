@@ -51,7 +51,7 @@ import org.apache.logging.log4j.Logger;
     name = IndustrialCivilizationCore.NAME,
     version = IndustrialCivilizationCore.VERSION,
     acceptedMinecraftVersions = "[1.12.2]",
-    dependencies = "required-after:forge@[14.23.5.2860,);required-after:betterquesting;required-after:computercraft;required-after:galacticraftcore;required-after:galacticraftplanets"
+    dependencies = "required-after:forge@[14.23.5.2860,);required-after:betterquesting;required-after:computercraft;required-after:galacticraftcore;required-after:galacticraftplanets;required-after:vehicle"
 )
 public final class IndustrialCivilizationCore {
     public static final String MODID = "industrialcivilizationcore";
@@ -60,6 +60,8 @@ public final class IndustrialCivilizationCore {
     /** Canonical pack conversion, matching IC2 Classic's RFPerEU setting. */
     public static final int FE_PER_EU = 8;
     public static final int GUI_INDUSTRIAL_MACHINE = 1;
+    public static final int GUI_VEHICLE_STORAGE = 2;
+    public static final int GUI_VEHICLE_CRAFTING = 3;
     public static boolean ENFORCE_SPACE_GATES = true;
     @Mod.Instance(MODID)
     public static IndustrialCivilizationCore INSTANCE;
@@ -90,6 +92,8 @@ public final class IndustrialCivilizationCore {
     public static final BlockIndustrialMachine ORBITAL_EXPERIMENT_MODULE = machine(IndustrialMachineKind.EXPERIMENT_MODULE);
     public static final BlockIndustrialMachine ELECTRIC_FABRICATOR = machine(IndustrialMachineKind.ELECTRIC_FABRICATOR);
     public static final BlockIndustrialMachine PROGRAMMABLE_ASSEMBLER = machine(IndustrialMachineKind.PROGRAMMABLE_ASSEMBLER);
+    public static final BlockIndustrialMachine CAR_WORKSHOP = machine(IndustrialMachineKind.CAR_WORKSHOP);
+    public static final BlockIndustrialMachine GUN_FACTORY = machine(IndustrialMachineKind.GUN_FACTORY);
     public static final BlockIndustrialMachine ROBOTIC_MANUFACTURING_CELL = machine(IndustrialMachineKind.ROBOTIC_CELL);
     public static final BlockIndustrialMachine MATTER_REPLICATOR = machine(IndustrialMachineKind.MATTER_REPLICATOR);
     public static final BlockIndustrialMachine FUSION_RESEARCH_CORE = machine(IndustrialMachineKind.FUSION_RESEARCH_CORE);
@@ -101,9 +105,12 @@ public final class IndustrialCivilizationCore {
         new BlockEnvironmentalSolarArray("environmental_solar_array", false);
     public static final BlockEnvironmentalSolarArray TRACKING_SOLAR_ARRAY =
         new BlockEnvironmentalSolarArray("tracking_solar_array", true);
+    public static final BlockRepairBench REPAIR_BENCH = new BlockRepairBench();
+    public static final BlockVehicleServiceDock VEHICLE_SERVICE_DOCK = new BlockVehicleServiceDock();
     public static final BlockIndustrialMachine[] INDUSTRIAL_MACHINES = {
         RESEARCH_STATION, ORBITAL_EXPERIMENT_MODULE, ELECTRIC_FABRICATOR,
-        PROGRAMMABLE_ASSEMBLER, ROBOTIC_MANUFACTURING_CELL, MATTER_REPLICATOR,
+        PROGRAMMABLE_ASSEMBLER, CAR_WORKSHOP, GUN_FACTORY,
+        ROBOTIC_MANUFACTURING_CELL, MATTER_REPLICATOR,
         FUSION_RESEARCH_CORE, INTERPLANETARY_CARGO_CONTROLLER,
         ORBITAL_MEGASTRUCTURE_CONTROLLER, AUTONOMOUS_COLONY_BEACON
     };
@@ -167,6 +174,8 @@ public final class IndustrialCivilizationCore {
             new ResourceLocation(MODID, "factory_control_terminal"));
         GameRegistry.registerTileEntity(TileEnvironmentalSolarArray.class,
             new ResourceLocation(MODID, "environmental_solar_array"));
+        GameRegistry.registerTileEntity(TileVehicleServiceDock.class,
+            new ResourceLocation(MODID, "vehicle_service_dock"));
         GameRegistry.registerWorldGenerator(new CivilizationWorldGenerator(), 50);
         MinecraftForge.TERRAIN_GEN_BUS.register(new VillageSuppressionHandler());
         FactionNetwork.init();
@@ -192,6 +201,8 @@ public final class IndustrialCivilizationCore {
             event.getRegistry().register(FACTORY_CONTROL_TERMINAL);
             event.getRegistry().register(ENVIRONMENTAL_SOLAR_ARRAY);
             event.getRegistry().register(TRACKING_SOLAR_ARRAY);
+            event.getRegistry().register(REPAIR_BENCH);
+            event.getRegistry().register(VEHICLE_SERVICE_DOCK);
         }
 
         @SubscribeEvent
@@ -216,6 +227,12 @@ public final class IndustrialCivilizationCore {
             event.getRegistry().register(new ItemBlock(TRACKING_SOLAR_ARRAY)
                 .setCreativeTab(CREATIVE_TAB)
                 .setRegistryName(TRACKING_SOLAR_ARRAY.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(REPAIR_BENCH)
+                .setCreativeTab(CREATIVE_TAB)
+                .setRegistryName(REPAIR_BENCH.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(VEHICLE_SERVICE_DOCK)
+                .setCreativeTab(CREATIVE_TAB)
+                .setRegistryName(VEHICLE_SERVICE_DOCK.getRegistryName()));
         }
 
         @SubscribeEvent(priority = EventPriority.HIGHEST)
@@ -439,6 +456,12 @@ public final class IndustrialCivilizationCore {
             ModelLoader.setCustomModelResourceLocation(
                 Item.getItemFromBlock(TRACKING_SOLAR_ARRAY), 0,
                 new ModelResourceLocation(TRACKING_SOLAR_ARRAY.getRegistryName(), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(
+                Item.getItemFromBlock(REPAIR_BENCH), 0,
+                new ModelResourceLocation(REPAIR_BENCH.getRegistryName(), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(
+                Item.getItemFromBlock(VEHICLE_SERVICE_DOCK), 0,
+                new ModelResourceLocation(VEHICLE_SERVICE_DOCK.getRegistryName(), "inventory"));
             for (ItemIndustrialArtifact artifact : ARTIFACTS) {
                 ModelLoader.setCustomModelResourceLocation(
                     artifact, 0,

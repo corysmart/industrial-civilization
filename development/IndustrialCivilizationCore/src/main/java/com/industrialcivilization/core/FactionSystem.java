@@ -193,6 +193,10 @@ public final class FactionSystem {
     }
 
     private static void configureTrades(EntityVillager villager) {
+        configureTrades(villager, 0);
+    }
+
+    private static void configureTrades(EntityVillager villager, int reputationDiscount) {
         NBTTagCompound tag = villager.getEntityData();
         if (!tag.hasKey(FACTION, 8)) {
             tag.setString(FACTION, "frontier_cooperative");
@@ -201,51 +205,52 @@ public final class FactionSystem {
         }
         MerchantRecipeList offers = new MerchantRecipeList();
         String specialty = tag.getString(SPECIALTY);
-        addPurchase(offers, Items.WHEAT, 12, 2);
-        addPurchase(offers, Items.COAL, 8, 2);
-        addSale(offers, Items.BREAD, 4, 1);
-        addSale(offers, Items.IRON_INGOT, 1, 3);
+        addPurchase(offers, Items.WHEAT, 12, 2, reputationDiscount);
+        addPurchase(offers, Items.COAL, 16, 1, reputationDiscount);
+        addSale(offers, Items.BREAD, 4, 1, reputationDiscount);
+        addSale(offers, Items.IRON_INGOT, 1, 3, reputationDiscount);
         if ("steel".equals(specialty)) {
-            addExternalSale(offers, "railcraft:ingot_steel", 0, 2, 8);
-            addPurchase(offers, Items.IRON_INGOT, 6, 3);
+            addExternalSale(offers, "railcraft:ingot_steel", 0, 2, 8, reputationDiscount);
+            addPurchase(offers, Items.IRON_INGOT, 6, 3, reputationDiscount);
         } else if ("electronics".equals(specialty)) {
-            addExternalSale(offers, "ic2:itemmisc", 451, 1, 10);
-            addExternalSale(offers, "ic2:itemmisc", 452, 1, 24);
-            addSale(offers, Items.REDSTONE, 8, 3);
+            addExternalSale(offers, "ic2:itemmisc", 451, 1, 10, reputationDiscount);
+            addExternalSale(offers, "ic2:itemmisc", 452, 1, 24, reputationDiscount);
+            addSale(offers, Items.REDSTONE, 8, 3, reputationDiscount);
         } else if ("fuel".equals(specialty)) {
-            addSale(offers, Items.COAL, 16, 3);
-            addSale(offers, Items.BLAZE_POWDER, 4, 8);
+            addSale(offers, Items.COAL, 16, 4, reputationDiscount);
+            addSale(offers, Items.BLAZE_POWDER, 4, 8, reputationDiscount);
         } else if ("armaments".equals(specialty)) {
-            addExternalSale(offers, "techguns:itemshared", 11, 1, 8);
-            addExternalSale(offers, "techguns:itemshared", 2, 8, 6);
-            addSale(offers, Items.IRON_SWORD, 1, 7);
+            addExternalSale(offers, "techguns:itemshared", 11, 1, 8, reputationDiscount);
+            addExternalSale(offers, "techguns:itemshared", 2, 8, 6, reputationDiscount);
+            addSale(offers, Items.IRON_SWORD, 1, 7, reputationDiscount);
         } else if ("research".equals(specialty)) {
-            addSale(offers, IndustrialCivilizationCore.BLANK_DATA_CARTRIDGE, 1, 8);
-            addSale(offers, Items.PAPER, 16, 2);
-            addSale(offers, Items.GLASS_BOTTLE, 8, 2);
+            addSale(offers, IndustrialCivilizationCore.BLANK_DATA_CARTRIDGE, 1, 8, reputationDiscount);
+            addSale(offers, Items.PAPER, 16, 2, reputationDiscount);
+            addSale(offers, Items.GLASS_BOTTLE, 8, 2, reputationDiscount);
         } else if ("food".equals(specialty)) {
-            addSale(offers, Items.COOKED_BEEF, 6, 3);
-            addSale(offers, Items.BAKED_POTATO, 8, 2);
+            addSale(offers, Items.COOKED_BEEF, 6, 3, reputationDiscount);
+            addSale(offers, Items.BAKED_POTATO, 8, 2, reputationDiscount);
         }
         villager.setRecipes(offers);
         tag.setBoolean("IndustrialTrades", true);
     }
 
-    private static void addSale(MerchantRecipeList offers, Item output, int count, int price) {
-        offers.add(new MerchantRecipe(new ItemStack(IndustrialCivilizationCore.INDUSTRIAL_CREDIT, price),
+    private static void addSale(MerchantRecipeList offers, Item output, int count, int price, int discount) {
+        offers.add(new MerchantRecipe(new ItemStack(IndustrialCivilizationCore.INDUSTRIAL_CREDIT,
+            Math.max(1, price - discount)),
             new ItemStack(output, count)));
     }
 
-    private static void addPurchase(MerchantRecipeList offers, Item input, int count, int credits) {
+    private static void addPurchase(MerchantRecipeList offers, Item input, int count, int credits, int discount) {
         offers.add(new MerchantRecipe(new ItemStack(input, count),
-            new ItemStack(IndustrialCivilizationCore.INDUSTRIAL_CREDIT, credits)));
+            new ItemStack(IndustrialCivilizationCore.INDUSTRIAL_CREDIT, credits + (discount >= 2 ? 1 : 0))));
     }
 
     private static void addExternalSale(MerchantRecipeList offers, String id, int metadata,
-            int count, int price) {
+            int count, int price, int discount) {
         Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(id));
         if (item != null) offers.add(new MerchantRecipe(
-            new ItemStack(IndustrialCivilizationCore.INDUSTRIAL_CREDIT, price),
+            new ItemStack(IndustrialCivilizationCore.INDUSTRIAL_CREDIT, Math.max(1, price - discount)),
             new ItemStack(item, count, metadata)));
     }
 
@@ -311,7 +316,8 @@ public final class FactionSystem {
             }
             return;
         }
-        configureTrades(villager);
+        int rep = reputation(player, faction);
+        configureTrades(villager, rep >= COMPANION_REPUTATION ? 2 : rep >= FRIENDLY_REPUTATION ? 1 : 0);
         long day = event.getWorld().getTotalWorldTime() / 24000L;
         String contactKey = "trade_contact_" + player.getUniqueID().toString();
         if (tag.getLong(contactKey) != day + 1 && player.getHeldItem(event.getHand()).getItem()

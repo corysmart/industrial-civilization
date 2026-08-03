@@ -29,7 +29,11 @@
     {"id": "fusion_research_core", "system": "orbital antimatter research"},
     {"id": "interplanetary_cargo_controller", "system": "cross-dimensional cargo channels"},
     {"id": "orbital_megastructure_controller", "system": "orbital megastructure validation"},
-    {"id": "autonomous_colony_beacon", "system": "Moon/Mars colony certification"}
+    {"id": "autonomous_colony_beacon", "system": "Moon/Mars colony certification"},
+    {"id": "car_workshop", "system": "covered multiblock vehicle manufacturing"},
+    {"id": "gun_factory", "system": "covered multiblock advanced firearm manufacturing"},
+    {"id": "repair_bench", "system": "rain-rust workshop repair"},
+    {"id": "vehicle_service_dock", "system": "parked service vehicle BuildCraft interface"}
   ],
   "items": [
     {"id": "material_pattern_record", "system": "Lite Matter record"},

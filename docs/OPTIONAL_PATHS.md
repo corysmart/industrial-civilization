@@ -38,6 +38,14 @@ Optional objectives live in independent Better Questing tabs, never inside numbe
 - `martian_cargo` — Martian Cargo and Return
 - `cross_planetary_logistics` — Cross-Planetary AI Logistics
 
+## Mobility And Nations
+
+- `car_workshop_deployed` — Raise a Covered Car Workshop
+- `regional_mobility` — Motorize the Frontier
+- `industrial_service_carrier` — Industrial Service Carrier
+- `nation_trade_network` — Connect the Nation Exchange
+- `advanced_armament_factory` — Commission an Advanced Armament Factory
+
 ## Post Ai Parallel
 
 - `predictive_production` — Predictive Production

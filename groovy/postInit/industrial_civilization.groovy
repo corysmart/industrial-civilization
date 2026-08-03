@@ -35,28 +35,42 @@ def lockedChestUpgrades = [
 mods.jei.ingredient.removeAndHide(lockedChests)
 mods.jei.ingredient.removeAndHide(lockedChestUpgrades)
 
-// Representative industrial firearm routes. Techguns' machines and remaining
-// catalogue stay intact.
+// IC Credits can be minted only as an expensive emergency measure. Selling
+// ordinary components at neutral settlement prices is intentionally cheaper.
+crafting.addShaped('industrial_civilization:industrial_credit', item('industrialcivilizationcore:industrial_credit'), [
+    [ore('ingotCopper'), item('minecraft:redstone'), ore('ingotCopper')],
+    [ore('ingotIron'), ore('ingotGold'), ore('ingotIron')],
+    [null, item('ic2:itemmisc:451'), null]
+])
+
+// Onysd's generic Workstation is disabled: the six curated road vehicles are
+// produced as powered programs in the covered, weather-sensitive Car Workshop.
+crafting.removeByOutput(item('vehicle:workstation'))
+
+crafting.addShaped('industrial_civilization:car_workshop', item('industrialcivilizationcore:car_workshop'), [
+    [ore('ingotSteel'), item('ic2:itemmisc:452'), ore('ingotSteel')],
+    [item('minecraft:piston'), item('industrialcivilizationcore:programmable_assembler'), item('minecraft:piston')],
+    [ore('ingotSteel'), item('ic2:blockmachinemv'), ore('ingotSteel')]
+])
+crafting.addShaped('industrial_civilization:gun_factory', item('industrialcivilizationcore:gun_factory'), [
+    [ore('ingotSteel'), item('ic2:itemmisc:452'), ore('ingotSteel')],
+    [item('minecraft:dispenser'), item('industrialcivilizationcore:programmable_assembler'), item('minecraft:dispenser')],
+    [ore('ingotSteel'), item('ic2:blockmachinemv'), ore('ingotSteel')]
+])
+crafting.addShaped('industrial_civilization:repair_bench', item('industrialcivilizationcore:repair_bench'), [
+    [ore('ingotSteel'), item('minecraft:anvil'), ore('ingotSteel')],
+    [ore('ingotIron'), item('ic2:itemmisc:451'), ore('ingotIron')]
+])
+crafting.addShaped('industrial_civilization:vehicle_service_dock', item('industrialcivilizationcore:vehicle_service_dock'), [
+    [item('buildcrafttransport:pipe_diamond_item'), item('industrialcivilizationcore:control_processor'), item('vehicle:fluid_pipe')],
+    [ore('ingotSteel'), item('ic2:blockmachinelv'), ore('ingotSteel')]
+])
+
+// Firearms above simple black-powder weapons are machine products. The pistol
+// is printed by the Programmable Assembler; shotgun and M4 require the Gun Factory.
 crafting.removeByOutput(item('techguns:pistol'))
-crafting.addShaped('industrial_civilization:pistol', item('techguns:pistol'), [
-    [ore('ingotSteel'), ore('ingotSteel'), ore('ingotCopper')],
-    [null, item('ic2:itemmisc:451'), ore('itemRubber')],
-    [null, ore('ingotSteel'), null]
-])
-
 crafting.removeByOutput(item('techguns:combatshotgun'))
-crafting.addShaped('industrial_civilization:combat_shotgun', item('techguns:combatshotgun'), [
-    [ore('ingotSteel'), ore('ingotSteel'), ore('ingotSteel')],
-    [ore('ingotIron'), item('ic2:itemmisc:451'), ore('itemRubber')],
-    [null, ore('plankWood'), ore('plankWood')]
-])
-
 crafting.removeByOutput(item('techguns:m4'))
-crafting.addShaped('industrial_civilization:m4', item('techguns:m4'), [
-    [ore('ingotSteel'), item('ic2:itemmisc:452'), ore('ingotAluminum')],
-    [ore('ingotSteel'), ore('ingotCopper'), ore('itemRubber')],
-    [null, ore('ingotSteel'), item('minecraft:glass_pane')]
-])
 
 // Techguns ammunition variants share techguns:itemshared.
 // Metadata: shotgun rounds=2, pistol magazine=11, assault-rifle magazine=13.

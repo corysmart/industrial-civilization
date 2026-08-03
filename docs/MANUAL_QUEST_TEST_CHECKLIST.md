@@ -5,7 +5,7 @@
 Do not use a valued world for the first database import. No runtime claims are made until this checklist passes.
 
 - [ ] 1. Quest book opens with F6.
-- [ ] 2. All 16 numbered chapters and all 5 independent side-path tabs appear.
+- [ ] 2. All 16 numbered chapters and all 6 independent side-path tabs appear.
 - [ ] 3. Every objective completes automatically from item evidence or a hooked runtime event; no manual checkbox task appears.
 - [ ] 4. Every future quest is visible for aspirational browsing, but locked quests cannot be opened or progressed.
 - [ ] 5. Numbered chapter tabs contain no optional side-path objectives.

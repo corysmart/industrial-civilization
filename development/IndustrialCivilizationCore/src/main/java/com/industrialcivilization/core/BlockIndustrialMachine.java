@@ -41,6 +41,9 @@ public final class BlockIndustrialMachine extends BlockContainer {
             TileEntity tile = world.getTileEntity(pos);
             if (tile instanceof TileIndustrialMachine) {
                 ((TileIndustrialMachine) tile).setLastUser(player);
+                if (((TileIndustrialMachine) tile).isRusted()) player.sendStatusMessage(
+                    new net.minecraft.util.text.TextComponentTranslation(
+                        "message.industrialcivilization.workshop.rusted"), false);
             }
             player.openGui(IndustrialCivilizationCore.INSTANCE,
                 IndustrialCivilizationCore.GUI_INDUSTRIAL_MACHINE, world,

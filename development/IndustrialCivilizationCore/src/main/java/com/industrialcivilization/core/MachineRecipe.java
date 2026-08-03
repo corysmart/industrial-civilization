@@ -80,6 +80,26 @@ public final class MachineRecipe {
         return item == null ? ItemStack.EMPTY : new ItemStack(item, 1, metadata);
     }
 
+    private static ItemStack external(String id, int metadata, int count) {
+        ItemStack stack = external(id, metadata);
+        if (!stack.isEmpty()) stack.setCount(count);
+        return stack;
+    }
+
+    private static ItemStack vehicleCrate(String vehicleId) {
+        ItemStack stack = external("vehicle:vehicle_crate", 0);
+        if (stack.isEmpty()) return stack;
+        NBTTagCompound blockEntity = new NBTTagCompound();
+        blockEntity.setString("vehicle", "vehicle:" + vehicleId);
+        blockEntity.setInteger("color", 0x3F6672);
+        blockEntity.setInteger("engineTier", 2);
+        blockEntity.setInteger("wheelType", 0);
+        NBTTagCompound tag = new NBTTagCompound();
+        tag.setTag("BlockEntityTag", blockEntity);
+        stack.setTagCompound(tag);
+        return stack;
+    }
+
     public static MachineRecipe[] all() {
         return new MachineRecipe[] {
             new MachineRecipe("record_orbital_data", IndustrialMachineKind.EXPERIMENT_MODULE,
@@ -115,6 +135,36 @@ public final class MachineRecipe {
                 new ItemStack(IndustrialCivilizationCore.PRECISION_FRAME),
                 new ItemStack(IndustrialCivilizationCore.BLANK_DATA_CARTRIDGE),
                 external("minecraft:redstone", 0)),
+            new MachineRecipe("printed_pistol", IndustrialMachineKind.PROGRAMMABLE_ASSEMBLER,
+                null, external("techguns:pistol", 0),
+                new ItemStack(IndustrialCivilizationCore.PRECISION_FRAME),
+                external("ic2:itemmisc", 451), external("minecraft:iron_ingot", 0, 3)),
+            new MachineRecipe("city_compact", IndustrialMachineKind.CAR_WORKSHOP,
+                null, vehicleCrate("smart_car"), new ItemStack(IndustrialCivilizationCore.PRECISION_FRAME, 2),
+                new ItemStack(IndustrialCivilizationCore.CONTROL_PROCESSOR), external("minecraft:iron_ingot", 0, 8)),
+            new MachineRecipe("frontier_off_roader", IndustrialMachineKind.CAR_WORKSHOP,
+                null, vehicleCrate("off_roader"), new ItemStack(IndustrialCivilizationCore.PRECISION_FRAME, 3),
+                new ItemStack(IndustrialCivilizationCore.CONTROL_PROCESSOR), external("minecraft:iron_ingot", 0, 12)),
+            new MachineRecipe("passenger_carrier", IndustrialMachineKind.CAR_WORKSHOP,
+                null, vehicleCrate("mini_bus"), new ItemStack(IndustrialCivilizationCore.PRECISION_FRAME, 4),
+                new ItemStack(IndustrialCivilizationCore.CONTROL_PROCESSOR, 2), external("minecraft:iron_ingot", 0, 16)),
+            new MachineRecipe("agricultural_tractor", IndustrialMachineKind.CAR_WORKSHOP,
+                null, vehicleCrate("tractor"), new ItemStack(IndustrialCivilizationCore.PRECISION_FRAME, 3),
+                new ItemStack(IndustrialCivilizationCore.CONTROL_PROCESSOR), external("minecraft:iron_ingot", 0, 14)),
+            new MachineRecipe("utility_cart", IndustrialMachineKind.CAR_WORKSHOP,
+                null, vehicleCrate("golf_cart"), new ItemStack(IndustrialCivilizationCore.PRECISION_FRAME, 2),
+                new ItemStack(IndustrialCivilizationCore.CONTROL_PROCESSOR), external("minecraft:iron_ingot", 0, 6)),
+            new MachineRecipe("scout_atv", IndustrialMachineKind.CAR_WORKSHOP,
+                null, vehicleCrate("atv"), new ItemStack(IndustrialCivilizationCore.PRECISION_FRAME, 2),
+                new ItemStack(IndustrialCivilizationCore.CONTROL_PROCESSOR), external("minecraft:iron_ingot", 0, 7)),
+            new MachineRecipe("combat_shotgun", IndustrialMachineKind.GUN_FACTORY,
+                null, external("techguns:combatshotgun", 0),
+                new ItemStack(IndustrialCivilizationCore.PRECISION_FRAME, 2),
+                new ItemStack(IndustrialCivilizationCore.CONTROL_PROCESSOR), external("minecraft:iron_ingot", 0, 8)),
+            new MachineRecipe("automatic_rifle", IndustrialMachineKind.GUN_FACTORY,
+                null, external("techguns:m4", 0),
+                new ItemStack(IndustrialCivilizationCore.PRECISION_FRAME, 3),
+                new ItemStack(IndustrialCivilizationCore.CONTROL_PROCESSOR, 2), external("ic2:itemmisc", 452)),
             new MachineRecipe("lunar_quantum_component", IndustrialMachineKind.ROBOTIC_CELL,
                 "moon", new ItemStack(IndustrialCivilizationCore.LUNAR_QUANTUM_COMPONENT),
                 new ItemStack(IndustrialCivilizationCore.CONTROL_PROCESSOR),

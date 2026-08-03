@@ -164,6 +164,8 @@ expected_recipes = {
     "record_orbital_data", "record_lunar_data", "record_martian_data",
     "orbital_archive", "lunar_archive", "mars_authorization", "martian_autonomy",
     "precision_frame", "blank_data_cartridge", "control_processor",
+    "printed_pistol", "city_compact", "frontier_off_roader", "passenger_carrier",
+    "agricultural_tractor", "utility_cart", "scout_atv", "combat_shotgun", "automatic_rifle",
     "lunar_quantum_component", "ai_core",
     "uu_matter", "controlled_replication", "contained_antimatter", "cargo_network",
     "orbital_megastructure", "lunar_colony_charter", "martian_colony_charter",

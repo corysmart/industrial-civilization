@@ -231,7 +231,7 @@ Fields not yet attributable reliably across inherited mods—automatic mining, a
 """)
 
 checklist = [
-"Quest book opens with F6.", "All 16 numbered chapters and all 5 independent side-path tabs appear.",
+"Quest book opens with F6.", f"All {len(chapters)} numbered chapters and all {len(graph['optional_branches'])} independent side-path tabs appear.",
 "Every objective completes automatically from item evidence or a hooked runtime event; no manual checkbox task appears.",
 "Every future quest is visible for aspirational browsing, but locked quests cannot be opened or progressed.",
 "Numbered chapter tabs contain no optional side-path objectives.", "Early quests are reachable.",

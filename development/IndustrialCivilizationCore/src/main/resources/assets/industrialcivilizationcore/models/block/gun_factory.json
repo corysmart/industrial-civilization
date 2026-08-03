@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "industrialcivilizationcore:blocks/gun_factory",
+    "north": "industrialcivilizationcore:blocks/gun_factory",
+    "south": "industrialcivilizationcore:blocks/gun_factory_side",
+    "east": "industrialcivilizationcore:blocks/gun_factory_side",
+    "west": "industrialcivilizationcore:blocks/gun_factory_side",
+    "up": "industrialcivilizationcore:blocks/gun_factory_top",
+    "down": "industrialcivilizationcore:blocks/gun_factory_side"
+  }
+}

@@ -36,6 +36,7 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
         double distance = Math.sqrt(x * x + z * z);
         BlockPos origin = surfaceOrigin(world, chunkX, chunkZ);
         if (origin == null) return;
+        buildRegionalRoad(world, chunkX, chunkZ, distance);
 
         // One structure at most per chunk. The order keeps the rarer, more
         // distant landmarks from being replaced by common factory shells.
@@ -81,8 +82,8 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
         hut(world, origin.add(1, 1, 1), Blocks.PLANKS.getDefaultState());
         hut(world, origin.add(9, 1, 9), Blocks.PLANKS.getDefaultState());
         for (int index = 0; index < 15; index++) {
-            set(world, origin.add(7, 1, index), Blocks.GRAVEL.getDefaultState());
-            set(world, origin.add(index, 1, 7), Blocks.GRAVEL.getDefaultState());
+            set(world, origin.add(7, 1, index), Blocks.DIRT.getDefaultState());
+            set(world, origin.add(index, 1, 7), Blocks.DIRT.getDefaultState());
         }
         for (int x = 9; x <= 13; x++) for (int z = 1; z <= 5; z++) {
             set(world, origin.add(x, 1, z), (x == 11) ? Blocks.WATER.getDefaultState()
@@ -118,6 +119,7 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
             origin.getZ() + 8.5, "civil_defense_militia", "guard", "armaments", "Outpost Guard");
         FactionSystem.spawnCitizen(world, origin.getX() + 10.5, origin.getY() + 2,
             origin.getZ() + 6.5, "civil_defense_militia", "guard", "armaments", "Outpost Guard");
+        if ((origin.getX() ^ origin.getZ()) % 2 == 0) installUtilitySpine(world, origin, false);
     }
 
     private static void buildOperationalFactory(World world, BlockPos origin, String specialty) {
@@ -138,6 +140,7 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
             origin.getZ() + 4.5, faction, "engineer", specialty, title + " Works Engineer");
         FactionSystem.spawnCitizen(world, origin.getX() + 7.5, origin.getY() + 2,
             origin.getZ() + 12.5, faction, "guard", specialty, "Factory Security");
+        installUtilitySpine(world, origin, true);
     }
 
     private static void buildIndustrialCity(World world, BlockPos origin) {
@@ -163,6 +166,16 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
             origin.getZ() + 6.5, "civil_defense_militia", "guard", "armaments", "City Militia");
         FactionSystem.spawnCitizen(world, origin.getX() + 7.5, origin.getY() + 2,
             origin.getZ() + 8.5, "survey_detachment_7", "scientist", "research", "Urban Surveyor");
+        installUtilitySpine(world, origin, true);
+        BlockPos exchange = origin.add(7, 2, 5);
+        set(world, exchange, IndustrialCivilizationCore.INTERPLANETARY_CARGO_CONTROLLER.getDefaultState());
+        net.minecraft.tileentity.TileEntity tile = world.getTileEntity(exchange);
+        if (tile instanceof TileIndustrialMachine) {
+            String[] products = {"minecraft:iron_ingot", "minecraft:redstone", "minecraft:coal",
+                "minecraft:paper", "minecraft:bread"};
+            int index = Math.floorMod(origin.getX() * 31 + origin.getZ(), products.length);
+            ((TileIndustrialMachine) tile).seedNationExchange("earth_nation_exchange", products[index]);
+        }
     }
 
     private static void platform(World world, BlockPos origin, IBlockState floor) {
@@ -171,6 +184,48 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
             set(world, origin.add(x, 1, z), floor);
             for (int y = 2; y <= 10; y++) set(world, origin.add(x, y, z), Blocks.AIR.getDefaultState());
         }
+    }
+
+    private static void buildRegionalRoad(World world, int chunkX, int chunkZ, double distance) {
+        if (distance < 850) return;
+        boolean northSouth = Math.floorMod(chunkX, 8) == 0;
+        boolean eastWest = Math.floorMod(chunkZ, 8) == 0;
+        if (!northSouth && !eastWest) return;
+        IBlockState surface = distance < 1700 ? Blocks.DIRT.getDefaultState()
+            : Blocks.DOUBLE_STONE_SLAB.getDefaultState();
+        for (int step = 0; step < 16; step++) for (int lane = -1; lane <= 1; lane++) {
+            int x = chunkX * 16 + (northSouth ? 8 + lane : step);
+            int z = chunkZ * 16 + (northSouth ? step : 8 + lane);
+            BlockPos top = world.getTopSolidOrLiquidBlock(new BlockPos(x, 0, z));
+            if (top.getY() > 52 && top.getY() < 120) {
+                world.setBlockState(top.down(), surface, 2);
+                world.setBlockToAir(top);
+                world.setBlockToAir(top.up());
+            }
+        }
+    }
+
+    private static void installUtilitySpine(World world, BlockPos origin, boolean pipes) {
+        Block cable = optionalBlock("ic2:blockcable");
+        Block pipe = optionalBlock("buildcrafttransport:pipe_holder");
+        set(world, origin.add(2, 2, 7), IndustrialCivilizationCore.ENVIRONMENTAL_SOLAR_ARRAY.getDefaultState());
+        if (cable != Blocks.AIR) {
+            for (int x = 3; x <= 12; x++) set(world, origin.add(x, 2, 7), cable.getDefaultState());
+            // Wall-height service outlets, with adjacent air reserved for player machines.
+            for (int x : new int[] {4, 7, 10, 12}) {
+                set(world, origin.add(x, 3, 7), cable.getDefaultState());
+                set(world, origin.add(x, 3, 6), Blocks.AIR.getDefaultState());
+            }
+        }
+        if (pipes && pipe != Blocks.AIR) {
+            for (int z = 3; z <= 11; z++) set(world, origin.add(3, 2, z), pipe.getDefaultState());
+        }
+    }
+
+    private static Block optionalBlock(String id) {
+        Block block = net.minecraftforge.fml.common.registry.ForgeRegistries.BLOCKS.getValue(
+            new net.minecraft.util.ResourceLocation(id));
+        return block == null ? Blocks.AIR : block;
     }
 
     private static void hut(World world, BlockPos origin, IBlockState wall) {

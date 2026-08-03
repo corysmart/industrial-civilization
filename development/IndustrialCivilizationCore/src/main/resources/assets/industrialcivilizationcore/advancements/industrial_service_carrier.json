@@ -1,0 +1,7 @@
+{
+  "criteria": {
+    "runtime": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

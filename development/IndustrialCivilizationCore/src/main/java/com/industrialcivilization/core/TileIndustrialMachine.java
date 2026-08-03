@@ -44,6 +44,9 @@ public final class TileIndustrialMachine extends TileEntity
     private boolean addedToEnergyNet;
     private String cargoChannel = "";
     private java.util.UUID lastUser;
+    private boolean rusted;
+    private boolean nationManaged;
+    private String nationProduct = "";
     private static final Set<TileIndustrialMachine> LOADED_CARGO_CONTROLLERS =
         Collections.newSetFromMap(new WeakHashMap<TileIndustrialMachine, Boolean>());
 
@@ -83,6 +86,20 @@ public final class TileIndustrialMachine extends TileEntity
     public int getCompletedOperations() { return completedOperations; }
     public int getEnergyStored() { return (int) energy; }
     public void setLastUser(EntityPlayer player) { lastUser = player.getUniqueID(); markDirty(); }
+    public boolean isRusted() { return rusted; }
+    public boolean repairRust() {
+        if (!rusted) return false;
+        rusted = false;
+        markDirty();
+        return true;
+    }
+    public void seedNationExchange(String channel, String product) {
+        nationManaged = true;
+        cargoChannel = channel;
+        nationProduct = product;
+        energy = getCapacity();
+        markDirty();
+    }
 
     public String environment() {
         if (world == null || world.provider == null) return "earth";
@@ -96,6 +113,14 @@ public final class TileIndustrialMachine extends TileEntity
     @Override
     public void update() {
         if (world == null || world.isRemote) return;
+        if (isWeatherSensitive() && world.getTotalWorldTime() % 20 == 0
+                && world.isRainingAt(pos.up()) && world.canSeeSky(pos.up())) {
+            rusted = true;
+            progress = 0;
+            markDirty();
+        }
+        if (rusted) return;
+        if (nationManaged && world.getTotalWorldTime() % 1200 == 0) restockNationProduct();
         if (getKind() == IndustrialMachineKind.CARGO_CONTROLLER && !cargoChannel.isEmpty()
                 && world.getTotalWorldTime() % 100 == 0 && transferCargo()) return;
         MachineRecipe recipe = queuedOperations > 0 ? MachineRecipe.find(this, selectedRecipe) : null;
@@ -181,6 +206,9 @@ public final class TileIndustrialMachine extends TileEntity
         compound.setInteger("Queued", queuedOperations);
         compound.setString("SelectedRecipe", selectedRecipe);
         compound.setString("CargoChannel", cargoChannel);
+        compound.setBoolean("Rusted", rusted);
+        compound.setBoolean("NationManaged", nationManaged);
+        compound.setString("NationProduct", nationProduct);
         if (lastUser != null) compound.setUniqueId("LastUser", lastUser);
         for (int i = 0; i < inventory.size(); i++) {
             if (!inventory.get(i).isEmpty()) compound.setTag("Slot" + i, inventory.get(i).serializeNBT());
@@ -197,6 +225,9 @@ public final class TileIndustrialMachine extends TileEntity
         queuedOperations = compound.getInteger("Queued");
         selectedRecipe = compound.getString("SelectedRecipe");
         cargoChannel = compound.getString("CargoChannel");
+        rusted = compound.getBoolean("Rusted");
+        nationManaged = compound.getBoolean("NationManaged");
+        nationProduct = compound.getString("NationProduct");
         lastUser = compound.hasUniqueId("LastUser") ? compound.getUniqueId("LastUser") : null;
         for (int i = 0; i < inventory.size(); i++) {
             inventory.set(i, compound.hasKey("Slot" + i, 10)
@@ -261,7 +292,8 @@ public final class TileIndustrialMachine extends TileEntity
     public Object[] callMethod(IComputerAccess computer, ILuaContext context, int method,
             Object[] arguments) throws LuaException {
         switch (method) {
-            case 0: return new Object[] {progress > 0 ? "running" : MachineRecipe.find(this, selectedRecipe) != null ? "ready" : "idle"};
+            case 0: return new Object[] {rusted ? "rusted - repair at a Repair Bench"
+                : progress > 0 ? "running" : MachineRecipe.find(this, selectedRecipe) != null ? "ready" : "idle"};
             case 1: return new Object[] {(int) energy};
             case 2: return new Object[] {getCapacity()};
             case 3: return new Object[] {progress, getDuration()};
@@ -295,7 +327,7 @@ public final class TileIndustrialMachine extends TileEntity
                 || energy < getKind().voltage || inventory.get(0).isEmpty()) return false;
         for (TileIndustrialMachine target : LOADED_CARGO_CONTROLLERS) {
             if (target == this || target.isInvalid() || !cargoChannel.equals(target.cargoChannel)
-                    || target.world == world) continue;
+                    || (target.world == world && !(nationManaged && target.nationManaged))) continue;
             ItemStack destination = target.inventory.get(OUTPUT_SLOT);
             ItemStack source = inventory.get(0);
             if (!destination.isEmpty() && (!ItemStack.areItemsEqual(source, destination)
@@ -307,10 +339,26 @@ public final class TileIndustrialMachine extends TileEntity
             completedOperations++;
             EntityPlayerMP player = RuntimeAdvancements.playerFor(this, lastUser);
             if (player != null) RuntimeAdvancements.grant(player, "cross_planetary_logistics");
+            EntityPlayer nearest = world.getClosestPlayer(pos.getX() + 0.5D, pos.getY() + 0.5D,
+                pos.getZ() + 0.5D, 64D, false);
+            if (nationManaged && target.nationManaged && nearest != null)
+                RuntimeAdvancements.grant(nearest, "nation_trade_network");
             markDirty(); target.markDirty();
             return true;
         }
         return false;
+    }
+
+    private boolean isWeatherSensitive() {
+        return getKind() == IndustrialMachineKind.CAR_WORKSHOP
+            || getKind() == IndustrialMachineKind.GUN_FACTORY;
+    }
+
+    private void restockNationProduct() {
+        if (!inventory.get(0).isEmpty() || nationProduct.isEmpty()) return;
+        net.minecraft.item.Item item = net.minecraftforge.fml.common.registry.ForgeRegistries.ITEMS
+            .getValue(new net.minecraft.util.ResourceLocation(nationProduct));
+        if (item != null) inventory.set(0, new ItemStack(item));
     }
 
     private void awardOperation(String recipe) {
@@ -337,6 +385,14 @@ public final class TileIndustrialMachine extends TileEntity
             RuntimeAdvancements.grant(player, "ai_factory_coordination");
         } else if ("civilization_scale_ai".equals(recipe)) {
             RuntimeAdvancements.grant(player, "continuous_civilization");
+        } else if ("city_compact".equals(recipe) || "frontier_off_roader".equals(recipe)
+                || "passenger_carrier".equals(recipe) || "agricultural_tractor".equals(recipe)
+                || "utility_cart".equals(recipe) || "scout_atv".equals(recipe)) {
+            RuntimeAdvancements.grant(player, "regional_mobility");
+            if ("passenger_carrier".equals(recipe))
+                RuntimeAdvancements.grant(player, "industrial_service_carrier");
+        } else if ("combat_shotgun".equals(recipe) || "automatic_rifle".equals(recipe)) {
+            RuntimeAdvancements.grant(player, "advanced_armament_factory");
         }
     }
 }

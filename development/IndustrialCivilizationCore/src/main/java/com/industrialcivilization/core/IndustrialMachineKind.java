@@ -5,6 +5,8 @@ public enum IndustrialMachineKind {
     EXPERIMENT_MODULE("orbital_experiment_module", 80000, 32, 600),
     ELECTRIC_FABRICATOR("electric_fabricator", 40000, 32, 160),
     PROGRAMMABLE_ASSEMBLER("programmable_assembler", 120000, 128, 240),
+    CAR_WORKSHOP("car_workshop", 300000, 128, 600),
+    GUN_FACTORY("gun_factory", 500000, 512, 800),
     ROBOTIC_CELL("robotic_manufacturing_cell", 400000, 512, 320),
     MATTER_REPLICATOR("matter_replicator", 8000000, 2048, 2000),
     FUSION_RESEARCH_CORE("fusion_research_core", 40000000, 8192, 4000),

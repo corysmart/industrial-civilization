@@ -104,6 +104,13 @@
       "martian_cargo",
       "cross_planetary_logistics"
     ],
+    "mobility_and_nations": [
+      "car_workshop_deployed",
+      "regional_mobility",
+      "industrial_service_carrier",
+      "nation_trade_network",
+      "advanced_armament_factory"
+    ],
     "post_ai_parallel": [
       "predictive_production",
       "fusion_and_antimatter",
