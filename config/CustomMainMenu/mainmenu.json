@@ -1,20 +1,20 @@
 {
 	"images": {
 		"title": {
-			"image": "tekkit2:textures/mainmenu/tekkit2_logo.png",
-			"posX": -144,
-			"posY": 0,
-			"width": 288,
-			"height": 171,
-			"imageWidth": 1800,
-			"imageHeight": 1070,
+			"image": "industrialcivilizationcore:textures/mainmenu/industrial_civilization_logo.png",
+			"posX": -180,
+			"posY": 12,
+			"width": 360,
+			"height": 180,
+			"imageWidth": 512,
+			"imageHeight": 256,
 			"alignment": "top_center"
 		}
 	},
 	"buttons": {
 		"replay": {
 			"text": "replaymod.gui.replayviewer",
-			"texture": "tekkit2:textures/mainmenu/btn.png",
+			"texture": "industrialcivilizationcore:textures/mainmenu/btn.png",
 			"hoverTextColor": 15500800,
 			"alignment": "bottom_left",
 			"textOffsetX": -47,
@@ -24,12 +24,12 @@
 			"height": 20,
 			"imageWidth": 200,
 			"imageHeight": 20,
-			"pressSound": "tekkit2:textures/mainmenu/blank.ogg",
+			"pressSound": "industrialcivilizationcore:textures/mainmenu/blank.ogg",
 			"wrappedButton": 17890234
 		},
 		"singleplayer": {
 			"text": "menu.singleplayer",
-			"texture": "tekkit2:textures/mainmenu/btn.png",
+			"texture": "industrialcivilizationcore:textures/mainmenu/btn.png",
 			"hoverTextColor": 15500800,
 			"alignment": "bottom_left",
 			"textOffsetX": -50,
@@ -46,7 +46,7 @@
 		},
 		"multiplayer": {
 			"text": "menu.multiplayer",
-			"texture": "tekkit2:textures/mainmenu/btn.png",
+			"texture": "industrialcivilizationcore:textures/mainmenu/btn.png",
 			"hoverTextColor": 15500800,
 			"alignment": "bottom_left",
 			"textOffsetX": -54,
@@ -61,26 +61,9 @@
 				"gui": "multiplayer"
 			}
 		},
-		"hostedserver": {
-			"text": "Get a Server",
-			"texture": "tekkit2:textures/mainmenu/btn.png",
-			"hoverTextColor": 15500800,
-			"alignment": "bottom_left",
-			"textOffsetX": -48,
-			"posX": 10,
-			"posY": -100,
-			"width": 200,
-			"height": 20,
-			"imageWidth": 200,
-			"imageHeight": 20,
-			"action": {
-				"type": "openLink",
-				"link": "https://bit.ly/Tekkit-2-Menu-Akliz"
-			}
-		},
 		"options": {
 			"text": "menu.options",
-			"texture": "tekkit2:textures/mainmenu/btn.png",
+			"texture": "industrialcivilizationcore:textures/mainmenu/btn.png",
 			"hoverTextColor": 15500800,
 			"alignment": "bottom_left",
 			"textOffsetX": -60,
@@ -97,7 +80,7 @@
 		},
 		"quit": {
 			"text": "Quit Game",
-			"texture": "tekkit2:textures/mainmenu/btn.png",
+			"texture": "industrialcivilizationcore:textures/mainmenu/btn.png",
 			"hoverTextColor": 15500800,
 			"alignment": "bottom_left",
 			"textOffsetX": -58,
@@ -107,66 +90,15 @@
 			"height": 20,
 			"imageWidth": 200,
 			"imageHeight": 20,
-			"pressSound": "tekkit2:textures/mainmenu/blank.ogg",
+			"pressSound": "industrialcivilizationcore:textures/mainmenu/blank.ogg",
 			"action": {
 				"type": "quit"
-			}
-		},
-		"issuetracker": {
-			"text": "Issue Tracker",
-			"textOffsetX": 45,
-			"texture": "tekkit2:textures/mainmenu/btn.png",
-			"hoverTextColor": 15500800,
-			"alignment": "bottom_right",
-			"posX": -210,
-			"posY": -140,
-			"width": 200,
-			"height": 20,
-			"imageWidth": 200,
-			"imageHeight": 20,
-			"action": {
-				"type": "openLink",
-				"link": "https://bit.ly/Tekkit-2-Issue-Tracker"
-			}
-		},
-		"discordtechnic": {
-			"text": "Technic's Discord",
-			"textOffsetX": 37,
-			"texture": "tekkit2:textures/mainmenu/btn.png",
-			"hoverTextColor": 15500800,
-			"alignment": "bottom_right",
-			"posX": -210,
-			"posY": -120,
-			"width": 200,
-			"height": 20,
-			"imageWidth": 200,
-			"imageHeight": 20,
-			"action": {
-				"type": "openLink",
-				"link": "https://bit.ly/Tekkit-2-Technic-Discord"
-			}
-		},
-		"discordauthor": {
-			"text": "Jon's Discord",
-			"textOffsetX": 47,
-			"texture": "tekkit2:textures/mainmenu/btn.png",
-			"hoverTextColor": 15500800,
-			"alignment": "bottom_right",
-			"posX": -210,
-			"posY": -100,
-			"width": 200,
-			"height": 20,
-			"imageWidth": 200,
-			"imageHeight": 20,
-			"action": {
-				"type": "openLink",
-				"link": "https://bit.ly/Tekkit-2-Author-Discord"
 			}
 		},
 		"mods": {
 			"text": "Loaded Mods",
 			"textOffsetX": 50,
-			"texture": "tekkit2:textures/mainmenu/btn.png",
+			"texture": "industrialcivilizationcore:textures/mainmenu/btn.png",
 			"hoverTextColor": 15500800,
 			"alignment": "bottom_right",
 			"posX": -210,
@@ -182,7 +114,7 @@
 		},
 		"languagebutton": {
 			"text": "Language...",
-			"texture": "tekkit2:textures/mainmenu/btn.png",
+			"texture": "industrialcivilizationcore:textures/mainmenu/btn.png",
 			"hoverTextColor": 15500800,
 			"alignment": "bottom_right",
 			"textOffsetX": 55,
@@ -199,7 +131,7 @@
 		},
 		"modslabel": {
 			"text": "#modsactive# mods loaded and active",
-			"texture": "tekkit2:textures/mainmenu/btn_blank.png",
+			"texture": "industrialcivilizationcore:textures/mainmenu/btn_blank.png",
 			"width": 140,
 			"height": 8,
 			"posX": 1,
@@ -207,12 +139,12 @@
 			"normalTextColor": 16777215,
 			"hoverTextColor": 16777215,
 			"tooltip": "Running Forge #forgeversion#",
-			"pressSound": "tekkit2:textures/mainmenu/blank.ogg",
+			"pressSound": "industrialcivilizationcore:textures/mainmenu/blank.ogg",
 			"alignment": "bottom_left"
 		},
 		"speaker": {
 			"text": "",
-			"texture": "tekkit2:textures/mainmenu/speaker.png",
+			"texture": "industrialcivilizationcore:textures/mainmenu/speaker.png",
 			"width": 19,
 			"height": 20,
 			"imageWidth": 19,
@@ -234,25 +166,18 @@
 			"color": -1,
 			"alignment": "bottom_right"
 		},
-		"tekkit2": {
+		"industrialcivilization": {
 			"text": "Industrial Civilization v0.2.0 — runtime progression slice",
 			"posX": 1,
 			"posY": 2,
 			"color": -1,
-			"alignment": "top_left",
-			"action": {
-				"type": "openLink",
-				"link": "https://www.technicpack.net/modpack/tekkit-2/changelog"
-			}
+			"alignment": "top_left"
 		}
 	},
 	"other": {
-		"panorama": {
-			"images": "tekkit2:textures/mainmenu/panoramas/panorama_%c.png",
-			"animate": true,
-			"animationSpeed": 1,
-			"blur": true,
-			"gradient": true
+		"background": {
+			"image": "industrialcivilizationcore:textures/mainmenu/industrial_civilization_background.png",
+			"mode": "fill"
 		}
 	}
 }

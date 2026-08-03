@@ -2,7 +2,6 @@ package com.industrialcivilization.core;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiWinGame;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -82,7 +81,7 @@ public final class ProgressionNetwork {
         @Override
         public IMessage onMessage(ShowCredits message, MessageContext context) {
             Minecraft.getMinecraft().addScheduledTask(() ->
-                Minecraft.getMinecraft().displayGuiScreen(new GuiWinGame(false, () -> {})));
+                Minecraft.getMinecraft().displayGuiScreen(new GuiIndustrialCredits()));
             return null;
         }
     }

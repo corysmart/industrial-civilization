@@ -32,7 +32,8 @@
 - Verify Galacticraft's map permits only currently reachable orbit/Moon/Mars destinations, never the End/Venus/Asteroids. Confirm Mars Mission Authorization directly unlocks the Tier 2 Rocket NASA Workbench page without a Moon dungeon.
 - Craft the Analyzer, charge it from IC2 EU, and consume exactly 6,250 EU each for Earth Iron, lunar Meteoric Iron, and Martian Desh. Inspect all three origin-tagged records and confirm comparative research completes only after the set.
 - In orbit/Moon/Mars, confirm radiation begins damaging an exposed player after 30 seconds, then stops inside a roofed room served by an active sealed Oxygen Sealer or while wearing a full IC2 QuantumSuit.
-- Reach AI entry and confirm scrolling credits open once without ending the world. Craft the custom-rendered Technical Phase Pearl afterward and verify its quest/advancement completes; no chapter before AI may require a pearl or eye.
+- Restart the client and confirm the main menu shows the Industrial Civilization title plate and widescreen industrial-city background, the window title says `Industrial Civilization`, and no Tekkit promotional links remain.
+- Reach AI entry and confirm the scrolling Industrial Civilization credits prominently include `corysmart`, open once, and close back to the playable world. Craft the custom-rendered Technical Phase Pearl afterward and verify its quest/advancement completes; no chapter before AI may require a pearl or eye.
 - Attach a wired modem to the Analyzer and call all documented methods.
 
 If startup fails, return `logs/latest.log`, the newest file in `crash-reports/`, and the visible Technic error.

@@ -27,7 +27,7 @@ Technic test target: `/Users/cory/Library/Application Support/technic/modpacks/t
 - ICBM Classic 6.5.5 is installed for private testing, with duplicate parts normalized, IC2 MV/HV launch hardware, strategic-payload shortcut locks, and IC2 power-bridge guidance.
 - The End and portal activation are disabled. Natural Ender Pearls are suppressed and the compatible item is globally presented as an IC2-styled Technical Phase Pearl manufactured only after AI entry; no pre-AI recipe or quest requires it.
 - Galacticraft's actionable destination list now contains only currently reachable pack destinations, with server-side transfer denial retained as a backstop.
-- AI entry opens the scrolling credits exactly once per player without ending the post-AI world. Space radiation, sealed-habitat/QuantumSuit protection, three-origin Analyzer research, actual-trade faction credit, and complete AI-gated AE2 catalog reconstruction are implemented.
+- AI entry opens Industrial Civilization's scrolling credits, explicitly crediting creator `corysmart`, exactly once per player without ending the post-AI world. The main menu, window title, icon paths, and crash metadata now use Industrial Civilization branding and a pack-owned widescreen industrial background. Space radiation, sealed-habitat/QuantumSuit protection, three-origin Analyzer research, actual-trade faction credit, and complete AI-gated AE2 catalog reconstruction are implemented.
 - Material canonicalization is documented in `docs/ITEM_UNIFICATION_AUDIT.md` and checked by `tools/audit_item_unification.py`.
 
 ## Current automated evidence

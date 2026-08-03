@@ -204,7 +204,8 @@ Quest/config changes can be loaded into an existing test world with `/bq_admin d
 - Eighteen first-party blocks, twenty-two progression artifacts, and the IC Credit currency with real construction/production paths.
 - EU-native machines, environment-aware research, pre-selection Moon/Mars gates, solar multipliers/dust behavior, cargo channels, salvage route, AI synthesis, complete AI-gated AE2 catalog, and concrete post-AI proofs.
 - The End and portal activation are disabled. Natural pearls are suppressed; the compatible pearl registry item becomes a custom-rendered Technical Phase Pearl with an AI-only IC2 recipe and no pre-AI dependencies.
-- AI entry grants its advancement and opens the credits once per player, then returns to the still-playable post-credits world.
+- AI entry grants its advancement and opens the Industrial Civilization credits once per player, prominently crediting creator `corysmart`, then returns to the still-playable post-credits world.
+- The main menu uses a pack-owned widescreen steam-to-electric-to-space industrial city, the Industrial Civilization title plate, and no inherited Tekkit promotional links. The macOS/desktop window and crash metadata also identify Industrial Civilization.
 - Space radiation requires a powered sealed Oxygen Sealer habitat or full IC2 QuantumSuit, and the Analyzer now performs real Earth/Moon/Mars comparison.
 - Stone-tier axe and better whole-tree behavior, IC2 chainsaw whole-tree behavior, 3×3 drill, 9×9 diamond drill, proportional durability/EU cost, and Sneak precision override.
 - Static/runtime-content/progression/energy validation harnesses and private Git version control.

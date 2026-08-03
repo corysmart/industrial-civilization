@@ -328,9 +328,24 @@ ok("button.id == 6" in core_source and "GuiFactionDirectory" in core_source
 progression_network_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/ProgressionNetwork.java").read_text()
 space_survival_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/SpaceSurvivalSystem.java").read_text()
 analyzer_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/TileMolecularAnalyzer.java").read_text()
-ok("GuiWinGame(false" in progression_network_source and "ai_credits_shown" in core_source
+credits_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/GuiIndustrialCredits.java").read_text()
+ok("GuiIndustrialCredits" in progression_network_source and "corysmart" in credits_source
+   and "ai_credits_shown" in core_source
    and 'RuntimeAdvancements.grant(event.player, "ai_age_entry")' in core_source,
-   "AI entry opens one-time credits and leaves the post-AI world playable")
+   "AI entry opens corysmart-branded one-time credits and leaves the post-AI world playable")
+main_menu = json.loads((ROOT / "config/CustomMainMenu/mainmenu.json").read_text())
+main_menu_text = (ROOT / "config/CustomMainMenu/mainmenu.json").read_text()
+random_patches = (ROOT / "config/randompatches.cfg").read_text()
+crash_info = (ROOT / "config/bloodymods/packcrashinfo.cfg").read_text()
+ok("Industrial Civilization" in main_menu_text and "Tekkit 2" not in main_menu_text
+   and "Tekkit-2" not in main_menu_text
+   and main_menu.get("other", {}).get("background", {}).get("image")
+       == "industrialcivilizationcore:textures/mainmenu/industrial_civilization_background.png",
+   "main menu uses pack-owned Industrial Civilization branding and background")
+ok("S:title=Industrial Civilization" in random_patches
+   and "S:modpackName=Industrial Civilization" in crash_info
+   and "S:modpackAuthor=corysmart" in crash_info,
+   "window and crash-report branding identify Industrial Civilization and corysmart")
 ok("GuiCelestialSelection" in core_source and "gui.possibleBodies = allowed" in core_source
    and "SpaceAccessRequest" in progression_network_source and "event.toDim == 1" in core_source
    and "Blocks.END_PORTAL_FRAME" in core_source and "SchematicRegistry.addUnlockedPage" in core_source

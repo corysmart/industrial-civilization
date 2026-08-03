@@ -1637,8 +1637,8 @@
     {
       "file": "mods/IndustrialCivilizationCore-0.2.0.jar",
       "filename": "IndustrialCivilizationCore-0.2.0.jar",
-      "size": 556716,
-      "sha256": "f7750cd2e82d558155a741971904c7816c69fbcebf10cb94bc3c74086cc8c735",
+      "size": 2758506,
+      "sha256": "40f096ac1a244ba26a0e4934919de0e7771dd6da15e8221851796d9ab2067097",
       "classification": "KEEP",
       "mods": [
         {
@@ -3726,8 +3726,8 @@
     },
     {
       "file": "config/CustomMainMenu/mainmenu.json",
-      "sha256": "62298990e8ba0ceeafdce37a77a6b3013a7472a280db72824ae8774d93475bec",
-      "size": 5749
+      "sha256": "1052a8566f734a700d6930876d619127813a0b70b31cef48da52b35c070d784e",
+      "size": 4290
     },
     {
       "file": "config/Elec's Mods/craftingtableiv.cfg",
@@ -3941,8 +3941,8 @@
     },
     {
       "file": "config/bloodymods/packcrashinfo.cfg",
-      "sha256": "1a878fdb0b1f1e636e81fa6f90d80763d5a0a67104a66dd8acf70349e4c4bdd1",
-      "size": 146
+      "sha256": "bd0eafefeb66c16ee50f25414cdb52844e396eaf1983fe9627314f8c49d3cd66",
+      "size": 166
     },
     {
       "file": "config/buildcraft/.DS_Store",
@@ -4976,8 +4976,8 @@
     },
     {
       "file": "config/randompatches.cfg",
-      "sha256": "87ae2baf55423abe20a7f291f9b84c53529a0c5f8ab2e53f036799f3e748beaf",
-      "size": 9579
+      "sha256": "efb45c3e0b4713e1a4a6815505d48cf51126c173411b4c8d58ac49f674640daa",
+      "size": 9650
     },
     {
       "file": "config/reachfix.cfg",
@@ -5243,6 +5243,51 @@
       "file": "resources/industrialcivilizationcore/textures/gui/quest_home_v2.png",
       "sha256": "9e0aaac77bac6e3f1ce9247025d91c291305c77c326356a6fb9c76f50de0c5fe",
       "size": 429094
+    },
+    {
+      "file": "resources/industrialcivilizationcore/textures/icons/16x16.png",
+      "sha256": "52e25aca0bf13ea5c35f65fbd7ffc6d78db41b3ac0d1577a0cb4a774c466d054",
+      "size": 818
+    },
+    {
+      "file": "resources/industrialcivilizationcore/textures/icons/256x256.png",
+      "sha256": "ab7f8a4946b78d0502492c38e4114f7c8a03c3fa8dc3ed5db3590f8196c6cef9",
+      "size": 8448
+    },
+    {
+      "file": "resources/industrialcivilizationcore/textures/icons/32x32.png",
+      "sha256": "7ad108d873b5bebee40bfcb2dbc3baa3d52e7cfc6ea971ff23e529cf33f6871e",
+      "size": 1595
+    },
+    {
+      "file": "resources/industrialcivilizationcore/textures/mainmenu/blank.ogg",
+      "sha256": "3f2a65aeb0bca646861f70237b4e2c24cf0845957b14165ae0c725ffc706c6ba",
+      "size": 4115
+    },
+    {
+      "file": "resources/industrialcivilizationcore/textures/mainmenu/btn.png",
+      "sha256": "913816bf762ba3788caed4ebcf6076fcc04e523d9236760d2d0d1d0b802072f0",
+      "size": 637
+    },
+    {
+      "file": "resources/industrialcivilizationcore/textures/mainmenu/btn_blank.png",
+      "sha256": "450056b4174c8e3fd49bda3f3cd43a4b39c7886d59b08be1b64d7d159953655a",
+      "size": 414
+    },
+    {
+      "file": "resources/industrialcivilizationcore/textures/mainmenu/industrial_civilization_background.png",
+      "sha256": "15a1887ff81331760d8c364abc46579e94c82fba52cd0f7914c109f6980b0633",
+      "size": 2018478
+    },
+    {
+      "file": "resources/industrialcivilizationcore/textures/mainmenu/industrial_civilization_logo.png",
+      "sha256": "43b5b2c84dbacab6909d70b7af47ce3db63acf80e06f0afdd18b20139a54d56c",
+      "size": 193883
+    },
+    {
+      "file": "resources/industrialcivilizationcore/textures/mainmenu/speaker.png",
+      "sha256": "6b516e29c3cc1a36b3361191fa8dde9b972d9eeb9c59b9ef659c40b820ceda2d",
+      "size": 207
     },
     {
       "file": "resources/minecraft/sounds/music/menu/menu1.ogg",
