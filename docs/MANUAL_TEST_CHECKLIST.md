@@ -24,6 +24,7 @@
 - Confirm Gold, Diamond, Crystal, and Obsidian Chest recipes are absent; Copper/Iron remain.
 - Confirm pistol, combat shotgun, M4, and ammunition recipes resolve without missing ingredients.
 - Place/energize Techguns Ammo Press and one representative gun; verify reload/fire behavior in a safe test area.
+- In a fresh Earth test area, confirm skeleton spawns appear as named Civil Defense patrol riflemen. Verify an unarmed player is ignored, a gun anywhere in inventory triggers fire, sword rushing is lethal, an arrow causes local aggro/reputation loss, fall/cactus/TNT trap kills do not, and three separately dismantled outposts trigger hostility.
 - Break a natural tree with a Stone Axe and an IC2 Chainsaw; verify the full connected tree falls and durability/EU is charged once per log. Repeat while sneaking and confirm only the selected log breaks.
 - Mine a flat stone wall with IC2 Mining Drill metadata 0 and Diamond Drill metadata 1; verify perpendicular 3×3 and 9×9 areas, per-block EU use, normal drops, and sneaking precision mode.
 - Use the NPC Wand to instantiate the three faction blueprints; verify neutral trade, hostile ranged combat, warning/trespass hostility, and persistence after reload.

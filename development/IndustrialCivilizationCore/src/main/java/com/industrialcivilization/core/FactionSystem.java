@@ -170,6 +170,17 @@ public final class FactionSystem {
         reputationData(player).setInteger(faction, Math.max(-100, Math.min(100, value)));
     }
 
+    /** Patrol incidents matter for trust and membership, but can never alone start a war. */
+    public static void adjustMilitiaPatrolReputation(EntityPlayer player, int amount, String reason) {
+        int value = Math.max(-10, Math.min(100,
+            reputation(player, "civil_defense_militia") + amount));
+        setReputation(player, "civil_defense_militia", value);
+        if (player instanceof EntityPlayerMP) FactionNetwork.sendSnapshot((EntityPlayerMP) player);
+        IndustrialCivilizationCore.LOGGER.info(
+            "militia patrol reputation player={} delta={} boundedValue={} reason={}",
+            player.getName(), amount, value, reason);
+    }
+
     private static NBTTagCompound reputationData(EntityPlayer player) {
         NBTTagCompound data = ProgressionState.data(player);
         if (!data.hasKey("FactionReputation", 10)) data.setTag("FactionReputation", new NBTTagCompound());
@@ -445,6 +456,25 @@ public final class FactionSystem {
     @SubscribeEvent
     public static void blockBroken(BlockEvent.BreakEvent event) {
         if (event.getWorld().isRemote || event.getPlayer() == null) return;
+        if (event.getWorld().provider.getDimension() == 0) {
+            String outpost = MilitiaOutpostRegistry.nearby(event.getWorld(), event.getPos(), 18);
+            if (outpost != null) {
+                NBTTagCompound data = ProgressionState.data(event.getPlayer());
+                String damageKey = "militia_outpost_damage_" + outpost;
+                String takenKey = "militia_outpost_taken_" + outpost;
+                int damage = data.getInteger(damageKey) + 1;
+                data.setInteger(damageKey, damage);
+                if (damage >= 16 && !data.getBoolean(takenKey)) {
+                    data.setBoolean(takenKey, true);
+                    ProgressionState.increment(event.getPlayer(), "militia_outposts_taken_down", 1);
+                    adjustReputation(event.getPlayer(), "civil_defense_militia", -8,
+                        "dismantled militia outpost");
+                    event.getPlayer().sendStatusMessage(new net.minecraft.util.text.TextComponentString(
+                        "Civil Defense records this outpost as dismantled."), false);
+                }
+                return;
+            }
+        }
         List<EntityVillager> nearby = event.getWorld().getEntitiesWithinAABB(EntityVillager.class,
             new AxisAlignedBB(event.getPos()).grow(12), npc -> npc.getEntityData().hasKey(FACTION, 8)
                 && !"ashline_raiders".equals(npc.getEntityData().getString(FACTION))

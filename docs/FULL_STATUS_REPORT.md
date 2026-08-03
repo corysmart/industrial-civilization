@@ -21,6 +21,7 @@ Technic test target: `/Users/cory/Library/Application Support/technic/modpacks/t
 - Earth stores now carry faction-specific vehicles/firearms with stage-minus-one stock ceilings, 36–128-credit retail, condition-scaled resale capped at 32%, and substantially heavier steel/electronics build costs.
 - Vehicles have persistent mileage wear, low-condition penalties, zero-condition immobilization, and IC2 machine-block repairs. Machine/market guns wear on attacks and use the IC2 Repair Bench.
 - Vanilla Earth zombies become escalating robbers with door breaking, theft, recoverable stolen drops, guns, squads, and late-stage explosives.
+- Vanilla Earth skeletons become neutral militia rifle patrols. Firearm possession, local player aggression, or three persistent outpost takedowns trigger accurate ranged hostility; arrows affect reputation, traps do not, and patrol-only penalties can never reach global hostility.
 - Moon villages, dungeons, and non-player living mobs are suppressed; six Apollo heritage flags remain. Mars allows only Galacticraft mobs until AI, after which new terrain can gain settlements, outposts, cities, roads, and utilities.
 - ICBM Classic 6.5.5 is installed for private testing, with duplicate parts normalized, IC2 MV/HV launch hardware, strategic-payload shortcut locks, and IC2 power-bridge guidance.
 - Material canonicalization is documented in `docs/ITEM_UNIFICATION_AUDIT.md` and checked by `tools/audit_item_unification.py`.

@@ -154,6 +154,7 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
     }
 
     private static void buildMilitiaOutpost(World world, BlockPos origin) {
+        MilitiaOutpostRegistry.record(world, origin);
         platform(world, origin, Blocks.STONEBRICK.getDefaultState());
         for (int i = 0; i < 15; i++) {
             for (int y = 1; y <= 3; y++) {
@@ -166,13 +167,18 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
         tower(world, origin.add(1, 1, 1));
         tower(world, origin.add(10, 1, 10));
         set(world, origin.add(7, 1, 0), Blocks.IRON_DOOR.getDefaultState());
-        FactionSystem.spawnCitizen(world, origin.getX() + 7.5, origin.getY() + 2,
-            origin.getZ() + 7.5, "civil_defense_militia", "militia", "armaments", "Militia Quartermaster", 5);
-        FactionSystem.spawnCitizen(world, origin.getX() + 4.5, origin.getY() + 2,
-            origin.getZ() + 8.5, "civil_defense_militia", "guard", "armaments", "Outpost Guard");
-        FactionSystem.spawnCitizen(world, origin.getX() + 10.5, origin.getY() + 2,
-            origin.getZ() + 6.5, "civil_defense_militia", "guard", "armaments", "Outpost Guard");
+        markOutpost(FactionSystem.spawnCitizen(world, origin.getX() + 7.5, origin.getY() + 2,
+            origin.getZ() + 7.5, "civil_defense_militia", "militia", "armaments", "Militia Quartermaster", 5), origin);
+        markOutpost(FactionSystem.spawnCitizen(world, origin.getX() + 4.5, origin.getY() + 2,
+            origin.getZ() + 8.5, "civil_defense_militia", "guard", "armaments", "Outpost Guard"), origin);
+        markOutpost(FactionSystem.spawnCitizen(world, origin.getX() + 10.5, origin.getY() + 2,
+            origin.getZ() + 6.5, "civil_defense_militia", "guard", "armaments", "Outpost Guard"), origin);
         if ((origin.getX() ^ origin.getZ()) % 2 == 0) installUtilitySpine(world, origin, false);
+    }
+
+    private static void markOutpost(net.minecraft.entity.passive.EntityVillager citizen, BlockPos origin) {
+        citizen.getEntityData().setBoolean("IndustrialMilitiaOutpost", true);
+        citizen.getEntityData().setString("IndustrialOutpostId", origin.getX() + "_" + origin.getZ());
     }
 
     private static void buildOperationalFactory(World world, BlockPos origin, String specialty) {

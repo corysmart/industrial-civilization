@@ -148,8 +148,20 @@ core_build = ROOT / "development/IndustrialCivilizationCore/build/libs/Industria
 core_live = ROOT / "mods/IndustrialCivilizationCore-0.2.0.jar"
 ok(core_build.is_file() and core_live.is_file() and digest(core_build) == digest(core_live), "custom build output equals live JAR")
 core_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/IndustrialCivilizationCore.java").read_text()
+ecology_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/PlanetaryEcologySystem.java").read_text()
+faction_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/FactionSystem.java").read_text()
 ok("public IndustrialCivilizationCore()" in core_source and "private IndustrialCivilizationCore()" not in core_source,
    "Forge-instantiable public @Mod constructor")
+ok("EntitySkeleton.class" in ecology_source and "IndustrialMilitiaPatrol" in ecology_source,
+   "Earth skeleton militia patrol replacement")
+ok("isArmedWithGun" in ecology_source and "techguns.api.guns.IGenericGun" in ecology_source,
+   "inventory-wide standard and exotic firearm detection")
+ok("isExplosion()" in ecology_source and "militia_patrol_trap_kills" in ecology_source,
+   "trap kills excluded from patrol blame")
+ok("Math.max(-10" in faction_source and "militia_outposts_taken_down" in ecology_source,
+   "patrol reputation floor and outpost hostility threshold")
+ok((ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/MilitiaOutpostRegistry.java").is_file(),
+   "persistent militia outpost coordinate registry")
 ok('"message.industrialcivilization.quest_guide"' in core_source and "PlayerLoggedInEvent" in core_source,
    "quest guide welcome message sent on login")
 ok('key("key.betterquesting.quests", 41, KeyModifier.NONE, 64, KeyModifier.NONE)' in core_source,

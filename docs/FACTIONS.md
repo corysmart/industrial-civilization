@@ -14,6 +14,8 @@ The neutral industrial consortium controls cities and guarded specialty factorie
 
 Militia outposts and city checkpoints protect settlements and sell field supplies and armaments. Fighting raiders without harming civilians is its primary membership path.
 
+Civil Defense patrols replace ordinary Earth skeletons. They ignore unarmed travelers, but detect firearms anywhere in inventory—including holstered Techguns laser/exotic weapons and ICBM handheld launchers. Attacking a patrol makes that nearby group permanently hostile. Arrow or direct attacks reduce militia trust slightly; environmental or explosive traps do not. Patrol-only losses stop at −10 and therefore never cause global hostility, even after 100 kills. Dismantling sixteen blocks at each of three different registered militia outposts does cause faction hostility.
+
 ## Survey Detachment 7
 
 An initially ambiguous research group operates specialist compounds and research factories. Orbital, lunar, or Martian archives establish scientific credibility; damage to guarded research property blocks membership.
