@@ -61,9 +61,12 @@ public final class FactionSystem {
         new Definition("riverside_works", "Riverside Works", 0,
             "Industrial cities and guarded factories", "Steel, electronics, fuel and machine components",
             "Demonstrate industrial capacity, restore machinery, and avoid theft from guarded factories."),
-        new Definition("civil_defense_militia", "Civil Defense Militia", 0,
-            "Militia outposts and city checkpoints", "Ammunition, armor and field supplies",
-            "Defeat raiders, protect civilians, and remain trusted by settlements."),
+        new Definition("civil_defense", "Civil Defense", 0,
+            "Industrial cities and honorable factories", "Emergency equipment, armor and public-safety supplies",
+            "Protect cities and honorable factories, defeat raiders, and avoid civilian harm."),
+        new Definition("territorial_militia", "Territorial Militia", -5,
+            "Militia outposts, criminal factories and abandoned factories", "Guns, ammunition and contraband",
+            "Predatory conduct and damage to civilized industry earn access; civilized factions will distrust membership."),
         new Definition("survey_detachment_7", "Survey Detachment 7", 0,
             "Research compounds and specialist factories", "Data cartridges, precision parts and survey equipment",
             "Produce research archives and respect restricted scientific sites."),
@@ -101,7 +104,13 @@ public final class FactionSystem {
         if (!reputations.hasKey(faction, 99)) {
             reputations.setInteger(faction, definition(faction).initialReputation);
         }
-        return reputations.getInteger(faction);
+        int value = reputations.getInteger(faction);
+        if ("civil_defense".equals(faction)) {
+            // Civil Defense answers to the civilized city/factory network.
+            value = Math.min(value, reputation(player, "riverside_works"));
+            value = Math.min(value, reputation(player, "survey_detachment_7"));
+        }
+        return value;
     }
 
     public static String membership(EntityPlayer player) {
@@ -128,8 +137,12 @@ public final class FactionSystem {
                 || ProgressionState.has(player, "abandoned_factory_operational")
                 || ProgressionState.counter(player, "manual_crafts") >= 80);
         }
-        if ("civil_defense_militia".equals(faction)) {
+        if ("civil_defense".equals(faction)) {
             return civilianHarm == 0 && ProgressionState.counter(player, "raiders_defeated") >= 3;
+        }
+        if ("territorial_militia".equals(faction)) {
+            return civilianHarm >= 2 || propertyDamage >= 8
+                || reputation(player, "ashline_raiders") >= 0;
         }
         if ("survey_detachment_7".equals(faction)) {
             return propertyDamage == 0 && (ProgressionState.has(player, "orbital_research_archive")
@@ -142,10 +155,17 @@ public final class FactionSystem {
     public static String attitude(EntityPlayer player, String faction) {
         if (membership(player).equals(faction)) return "MEMBER";
         int reputation = reputation(player, faction);
-        if (reputation <= HOSTILE_REPUTATION) return "HOSTILE";
+        if (isHostileTo(player, faction)) return "HOSTILE";
         if (eligible(player, faction)) return "ELIGIBLE";
         if (reputation >= FRIENDLY_REPUTATION) return "FRIENDLY";
         return reputation < 0 ? "GUARDED" : "NEUTRAL";
+    }
+
+    public static boolean isHostileTo(EntityPlayer player, String faction) {
+        if (reputation(player, faction) <= HOSTILE_REPUTATION) return true;
+        return "territorial_militia".equals(faction)
+            && (PlanetaryEcologySystem.isArmedWithGun(player)
+                || ProgressionState.counter(player, "militia_outposts_taken_down") >= 3);
     }
 
     public static void adjustReputation(EntityPlayer player, String faction, int amount, String reason) {
@@ -156,8 +176,11 @@ public final class FactionSystem {
         if ("ashline_raiders".equals(faction)) {
             for (Definition definition : DEFINITIONS) {
                 if (!definition.id.equals(faction)) setReputation(player, definition.id,
-                    reputation(player, definition.id) - amount / 3);
+                    reputation(player, definition.id) + ("territorial_militia".equals(definition.id)
+                        ? amount / 3 : -amount / 3));
             }
+        } else if ("territorial_militia".equals(faction)) {
+            setReputation(player, "ashline_raiders", reputation(player, "ashline_raiders") + amount / 3);
         } else {
             setReputation(player, "ashline_raiders", reputation(player, "ashline_raiders") - amount / 2);
         }
@@ -173,8 +196,8 @@ public final class FactionSystem {
     /** Patrol incidents matter for trust and membership, but can never alone start a war. */
     public static void adjustMilitiaPatrolReputation(EntityPlayer player, int amount, String reason) {
         int value = Math.max(-10, Math.min(100,
-            reputation(player, "civil_defense_militia") + amount));
-        setReputation(player, "civil_defense_militia", value);
+            reputation(player, "territorial_militia") + amount));
+        setReputation(player, "territorial_militia", value);
         if (player instanceof EntityPlayerMP) FactionNetwork.sendSnapshot((EntityPlayerMP) player);
         IndustrialCivilizationCore.LOGGER.info(
             "militia patrol reputation player={} delta={} boundedValue={} reason={}",
@@ -265,7 +288,7 @@ public final class FactionSystem {
             addVehicleSale(offers, "smart_car", 96, reputationDiscount);
             if (stage >= 4) addVehicleSale(offers, "mini_bus", 128, reputationDiscount);
         }
-        if (earthMarket && stage >= 3 && "civil_defense_militia".equals(faction)) {
+        if (earthMarket && stage >= 3 && "territorial_militia".equals(faction)) {
             addVehicleSale(offers, "atv", 88, reputationDiscount);
             addConditionedExternalSale(offers, "techguns:pistol", 0, 36, reputationDiscount);
             if (stage >= 4) {
@@ -350,7 +373,7 @@ public final class FactionSystem {
         EntityPlayer player = event.getEntityPlayer();
         String faction = tag.getString(FACTION);
         discover(player, faction);
-        if (reputation(player, faction) <= HOSTILE_REPUTATION && !membership(player).equals(faction)) {
+        if (isHostileTo(player, faction) && !membership(player).equals(faction)) {
             cancel(event);
             player.sendStatusMessage(new TextComponentTranslation(
                 "message.industrialcivilization.faction.hostile", definition(faction).name), false);
@@ -428,6 +451,11 @@ public final class FactionSystem {
         String faction = villager.getEntityData().getString(FACTION);
         if (faction.isEmpty()) return;
         EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
+        if ("territorial_militia".equals(faction)) {
+            adjustMilitiaPatrolReputation(player, -2, "attacked territorial militia");
+            villager.setAttackTarget(player);
+            return;
+        }
         ProgressionState.increment(player, "faction_civilian_harm", 1);
         adjustReputation(player, faction, -8, "attacked faction member");
         villager.setAttackTarget(player);
@@ -442,10 +470,14 @@ public final class FactionSystem {
         EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
         if ("ashline_raiders".equals(faction)) {
             ProgressionState.increment(player, "raiders_defeated", 1);
-            adjustReputation(player, "civil_defense_militia", 8, "defeated raider");
+            adjustReputation(player, "civil_defense", 8, "defeated raider");
             adjustReputation(player, "riverside_works", 3, "protected industry");
             adjustReputation(player, "frontier_cooperative", 3, "protected settlements");
             giveCredits(player, 3 + player.world.rand.nextInt(4));
+        } else if ("territorial_militia".equals(faction)) {
+            ProgressionState.increment(player, "territorial_militia_direct_kills", 1);
+            adjustMilitiaPatrolReputation(player, -3, "killed territorial militia member");
+            adjustReputation(player, "civil_defense", 1, "removed militia threat");
         } else {
             ProgressionState.increment(player, "faction_civilian_harm", 2);
             adjustReputation(player, faction, -25, "killed faction member");
@@ -467,10 +499,10 @@ public final class FactionSystem {
                 if (damage >= 16 && !data.getBoolean(takenKey)) {
                     data.setBoolean(takenKey, true);
                     ProgressionState.increment(event.getPlayer(), "militia_outposts_taken_down", 1);
-                    adjustReputation(event.getPlayer(), "civil_defense_militia", -8,
+                    adjustReputation(event.getPlayer(), "territorial_militia", -8,
                         "dismantled militia outpost");
                     event.getPlayer().sendStatusMessage(new net.minecraft.util.text.TextComponentString(
-                        "Civil Defense records this outpost as dismantled."), false);
+                        "The Territorial Militia records this outpost as dismantled."), false);
                 }
                 return;
             }
@@ -503,7 +535,7 @@ public final class FactionSystem {
             return;
         }
         EntityPlayer hostile = villager.world.getClosestPlayerToEntity(villager, 18);
-        if (hostile != null && reputation(hostile, faction) <= HOSTILE_REPUTATION
+        if (hostile != null && isHostileTo(hostile, faction)
                 && !membership(hostile).equals(faction)) {
             attack(villager, hostile);
         } else if ("guard".equals(tag.getString(ROLE)) || "militia".equals(tag.getString(ROLE))) {

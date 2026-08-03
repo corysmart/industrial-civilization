@@ -77,7 +77,7 @@ public final class PlanetaryEcologySystem {
         patrol.targetTasks.taskEntries.clear();
         if (tag.getBoolean(PATROL)) return;
         tag.setBoolean(PATROL, true);
-        patrol.setCustomNameTag("Civil Defense Patrol Rifleman");
+        patrol.setCustomNameTag("Territorial Militia Patrol Rifleman");
         patrol.setAlwaysRenderNameTag(false);
         patrol.enablePersistence();
         ItemStack rifle = external("techguns:boltaction");
@@ -157,6 +157,7 @@ public final class PlanetaryEcologySystem {
         EntityPlayer target = null;
         double closest = Double.MAX_VALUE;
         for (EntityPlayer player : patrol.world.playerEntities) {
+            ProgressionState.data(player).setBoolean("known_faction_territorial_militia", true);
             double distance = patrol.getDistanceSq(player);
             if (distance > 36.0D * 36.0D || distance >= closest) continue;
             if (isPatrolHostileTo(patrol, player)) { target = player; closest = distance; }

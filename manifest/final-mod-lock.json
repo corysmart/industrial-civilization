@@ -1637,8 +1637,8 @@
     {
       "file": "mods/IndustrialCivilizationCore-0.2.0.jar",
       "filename": "IndustrialCivilizationCore-0.2.0.jar",
-      "size": 479472,
-      "sha256": "dd9835637c92835cbbacc0f23b6d3ec41d8237413de2be9100ec0b0fc523d93a",
+      "size": 480242,
+      "sha256": "5280117f771ea7173d7e3175451faf087cc9a827e8bba3b2fcd8bb3a903da7bf",
       "classification": "KEEP",
       "mods": [
         {
@@ -4366,8 +4366,8 @@
     },
     {
       "file": "config/industrialcivilization/faction-system.json",
-      "sha256": "a2f1236a39be1c1c7042581c4d51dcda2a88b639c404554142739a773a7e3882",
-      "size": 2526
+      "sha256": "baa6e37ecd1c9bc72124b8b40f6ec32ea1bb28768db2c33ea57216966c1a281b",
+      "size": 2983
     },
     {
       "file": "config/industrialcivilization/factions/ambiguous_research_group.json",

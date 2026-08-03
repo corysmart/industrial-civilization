@@ -117,8 +117,8 @@ check("industrial_credit" in item_ids and "INDUSTRIAL_CREDIT" in core_source,
 check("new MerchantRecipe(new ItemStack(IndustrialCivilizationCore.INDUSTRIAL_CREDIT" in faction_source
       and "Items.EMERALD" not in faction_source,
       "all faction merchant offers use IC Credits rather than emeralds")
-for faction in ("frontier_cooperative", "riverside_works", "civil_defense_militia",
-                "survey_detachment_7", "ashline_raiders"):
+for faction in ("frontier_cooperative", "riverside_works", "civil_defense",
+                "territorial_militia", "survey_detachment_7", "ashline_raiders"):
     check(faction in faction_source and any(entry["id"] == faction for entry in config["factions"]),
           f"faction is implemented and configured: {faction}")
 check("MEMBERSHIP_REPUTATION = 35" in faction_source

@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "currency": "industrialcivilizationcore:industrial_credit",
   "world_generation": {
     "disable_new_vanilla_villages": true,
@@ -36,12 +36,20 @@
       "products": ["steel", "electronics", "fuel", "machine components"]
     },
     {
-      "id": "civil_defense_militia",
-      "name": "Civil Defense Militia",
+      "id": "civil_defense",
+      "name": "Civil Defense",
       "initial_reputation": 0,
-      "membership_rule": "Defeat raiders, protect civilians, and maintain non-hostile standing with settlements.",
-      "settlements": ["militia outposts", "city checkpoints"],
-      "products": ["ammunition", "armor", "field supplies"]
+      "membership_rule": "Protect cities and honorable factories, defeat raiders, and maintain good standing with Riverside Works and Survey Detachment 7.",
+      "settlements": ["industrial cities", "honorable operational factories"],
+      "products": ["emergency equipment", "armor", "public-safety supplies"]
+    },
+    {
+      "id": "territorial_militia",
+      "name": "Territorial Militia",
+      "initial_reputation": -5,
+      "membership_rule": "Predatory conduct and damage to civilized industry earn access; membership conflicts with civilized factions.",
+      "settlements": ["militia outposts", "criminal factories", "abandoned factories"],
+      "products": ["guns", "ammunition", "contraband"]
     },
     {
       "id": "survey_detachment_7",

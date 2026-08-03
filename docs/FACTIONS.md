@@ -10,11 +10,13 @@ The starting rural network inhabits the three primitive settlements near world s
 
 The neutral industrial consortium controls cities and guarded specialty factories. Its steel, electronics, fuel, and machine-component markets reward industrial capacity, factory restoration, and respect for guarded property.
 
-## Civil Defense Militia
+## Civil Defense
 
-Militia outposts and city checkpoints protect settlements and sell field supplies and armaments. Fighting raiders without harming civilians is its primary membership path.
+Civil Defense protects industrial cities and honorable operational factories. It is aligned with Riverside Works and Survey Detachment 7. Its effective attitude is the lowest of the player's Civil Defense, Riverside, and Survey reputation, so attacks, theft, or destruction against cities and honorable factories can make it hostile. Carrying a gun, fighting militia patrols, or attacking militia outposts does not independently make Civil Defense hostile.
 
-Civil Defense patrols replace ordinary Earth skeletons. They ignore unarmed travelers, but detect firearms anywhere in inventory—including holstered Techguns laser/exotic weapons and ICBM handheld launchers. Attacking a patrol makes that nearby group permanently hostile. Arrow or direct attacks reduce militia trust slightly; environmental or explosive traps do not. Patrol-only losses stop at −10 and therefore never cause global hostility, even after 100 kills. Dismantling sixteen blocks at each of three different registered militia outposts does cause faction hostility.
+## Territorial Militia
+
+The Territorial Militia is an evil but conditionally neutral faction tied to militia outposts, armament/criminal factories, abandoned factories, and the Ashline economy. Its patrols replace ordinary Earth skeletons. They ignore unarmed travelers, but detect firearms anywhere in inventory—including holstered Techguns laser/exotic weapons and ICBM handheld launchers. Attacking a patrol makes that nearby group permanently hostile. Arrow or direct attacks reduce militia trust slightly; environmental or explosive traps do not. Patrol-only losses stop at −10 and therefore never cause global hostility, even after 100 kills. Dismantling sixteen blocks at each of three different registered militia outposts does cause militia hostility.
 
 ## Survey Detachment 7
 

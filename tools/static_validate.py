@@ -160,6 +160,16 @@ ok("isExplosion()" in ecology_source and "militia_patrol_trap_kills" in ecology_
    "trap kills excluded from patrol blame")
 ok("Math.max(-10" in faction_source and "militia_outposts_taken_down" in ecology_source,
    "patrol reputation floor and outpost hostility threshold")
+ok('new Definition("civil_defense"' in faction_source
+   and 'new Definition("territorial_militia"' in faction_source
+   and "civil_defense_militia" not in faction_source,
+   "Civil Defense and Territorial Militia are cleanly separated")
+ok('Math.min(value, reputation(player, "riverside_works"))' in faction_source
+   and 'Math.min(value, reputation(player, "survey_detachment_7"))' in faction_source,
+   "Civil Defense hostility derives from city and honorable-factory standing")
+ok('"territorial_militia", "trader", "armaments", "Militia Fence"' in
+   (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/CivilizationWorldGenerator.java").read_text(),
+   "militia presence tied to abandoned and criminal factories")
 ok((ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/MilitiaOutpostRegistry.java").is_file(),
    "persistent militia outpost coordinate registry")
 ok('"message.industrialcivilization.quest_guide"' in core_source and "PlayerLoggedInEvent" in core_source,

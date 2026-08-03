@@ -58,6 +58,8 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
                 origin.getZ() + 11.5, "ashline_raiders", "raider", "armaments", "Ashline Lookout", 3);
             FactionSystem.spawnCitizen(world, origin.getX() + 11.5, origin.getY() + 1,
                 origin.getZ() + 2.5, "ashline_raiders", "raider", "armaments", "Ashline Salvager", 3);
+            FactionSystem.spawnCitizen(world, origin.getX() + 7.5, origin.getY() + 1,
+                origin.getZ() + 7.5, "territorial_militia", "trader", "armaments", "Militia Fence", 4);
         }
     }
 
@@ -168,11 +170,11 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
         tower(world, origin.add(10, 1, 10));
         set(world, origin.add(7, 1, 0), Blocks.IRON_DOOR.getDefaultState());
         markOutpost(FactionSystem.spawnCitizen(world, origin.getX() + 7.5, origin.getY() + 2,
-            origin.getZ() + 7.5, "civil_defense_militia", "militia", "armaments", "Militia Quartermaster", 5), origin);
+            origin.getZ() + 7.5, "territorial_militia", "militia", "armaments", "Militia Quartermaster", 5), origin);
         markOutpost(FactionSystem.spawnCitizen(world, origin.getX() + 4.5, origin.getY() + 2,
-            origin.getZ() + 8.5, "civil_defense_militia", "guard", "armaments", "Outpost Guard"), origin);
+            origin.getZ() + 8.5, "territorial_militia", "guard", "armaments", "Outpost Enforcer"), origin);
         markOutpost(FactionSystem.spawnCitizen(world, origin.getX() + 10.5, origin.getY() + 2,
-            origin.getZ() + 6.5, "civil_defense_militia", "guard", "armaments", "Outpost Guard"), origin);
+            origin.getZ() + 6.5, "territorial_militia", "guard", "armaments", "Outpost Enforcer"), origin);
         if ((origin.getX() ^ origin.getZ()) % 2 == 0) installUtilitySpine(world, origin, false);
     }
 
@@ -191,14 +193,17 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
         set(world, origin.add(7, 2, 7), machine.getDefaultState());
         set(world, origin.add(5, 2, 7), Blocks.CHEST.getDefaultState());
         set(world, origin.add(9, 2, 7), Blocks.CHEST.getDefaultState());
-        String faction = "research".equals(specialty) ? "survey_detachment_7" : "riverside_works";
+        boolean criminal = "armaments".equals(specialty);
+        String faction = criminal ? "territorial_militia"
+            : "research".equals(specialty) ? "survey_detachment_7" : "riverside_works";
         String title = Character.toUpperCase(specialty.charAt(0)) + specialty.substring(1);
         FactionSystem.spawnCitizen(world, origin.getX() + 5.5, origin.getY() + 2,
             origin.getZ() + 4.5, faction, "trader", specialty, title + " Works Factor", 5);
         FactionSystem.spawnCitizen(world, origin.getX() + 9.5, origin.getY() + 2,
             origin.getZ() + 4.5, faction, "engineer", specialty, title + " Works Engineer");
         FactionSystem.spawnCitizen(world, origin.getX() + 7.5, origin.getY() + 2,
-            origin.getZ() + 12.5, faction, "guard", specialty, "Factory Security");
+            origin.getZ() + 12.5, criminal ? "territorial_militia" : "civil_defense",
+            "guard", specialty, criminal ? "Militia Factory Enforcer" : "Civil Defense Inspector");
         installUtilitySpine(world, origin, true);
     }
 
@@ -222,7 +227,7 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
         FactionSystem.spawnCitizen(world, origin.getX() + 8.5, origin.getY() + 2,
             origin.getZ() + 7.5, "riverside_works", "trader", "steel", "Foundry Representative", 7);
         FactionSystem.spawnCitizen(world, origin.getX() + 7.5, origin.getY() + 2,
-            origin.getZ() + 6.5, "civil_defense_militia", "guard", "armaments", "City Militia");
+            origin.getZ() + 6.5, "civil_defense", "guard", "armaments", "Civil Defense Officer");
         FactionSystem.spawnCitizen(world, origin.getX() + 7.5, origin.getY() + 2,
             origin.getZ() + 8.5, "survey_detachment_7", "scientist", "research", "Urban Surveyor");
         installUtilitySpine(world, origin, true);
