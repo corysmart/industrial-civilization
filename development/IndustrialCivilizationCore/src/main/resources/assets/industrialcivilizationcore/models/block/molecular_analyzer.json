@@ -1,6 +1,12 @@
 {
-  "parent": "block/cube_all",
+  "parent": "block/cube",
   "textures": {
-    "all": "industrialcivilizationcore:blocks/molecular_analyzer"
+    "particle": "industrialcivilizationcore:blocks/molecular_analyzer",
+    "north": "industrialcivilizationcore:blocks/molecular_analyzer",
+    "south": "industrialcivilizationcore:blocks/molecular_analyzer_side",
+    "east": "industrialcivilizationcore:blocks/molecular_analyzer_side",
+    "west": "industrialcivilizationcore:blocks/molecular_analyzer_side",
+    "up": "industrialcivilizationcore:blocks/molecular_analyzer_top",
+    "down": "industrialcivilizationcore:blocks/molecular_analyzer_side"
   }
 }

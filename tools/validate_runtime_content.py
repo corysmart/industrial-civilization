@@ -42,9 +42,20 @@ for kind, ids in (("blocks", block_ids), ("items", item_ids)):
 for block_id in sorted(block_ids):
     state = ASSETS / "blockstates" / f"{block_id}.json"
     item_model = ASSETS / "models/item" / f"{block_id}.json"
+    block_model = ASSETS / "models/block" / f"{block_id}.json"
     check(state.is_file(), f"blockstate exists: {block_id}")
     check(item_model.is_file(), f"block inventory model exists: {block_id}")
     json.loads(state.read_text()); json.loads(item_model.read_text())
+    model_data = json.loads(block_model.read_text())
+    check(model_data.get("parent") == "block/cube", f"block uses independent cube faces: {block_id}")
+    check({"north", "south", "east", "west", "up", "down"} <= set(model_data.get("textures", {})),
+          f"block model maps every visible face: {block_id}")
+    for suffix in ("side", "top"):
+        face = ASSETS / "textures/blocks" / f"{block_id}_{suffix}.png"
+        check(face.is_file(), f"{suffix} texture exists: blocks/{block_id}")
+        face_image = Image.open(face)
+        check(face_image.size == (16, 16) and face_image.mode == "RGBA",
+              f"{suffix} texture is native RGBA 16x16: blocks/{block_id}")
 
 gui = Image.open(ASSETS / "textures/gui/industrial_machine.png")
 check(gui.size == (256, 256), "machine GUI atlas is 256x256")

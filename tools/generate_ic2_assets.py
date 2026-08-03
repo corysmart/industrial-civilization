@@ -15,7 +15,8 @@ PALETTE = {
     "dark": "#17242a", "panel": "#253941", "shadow": "#52636a",
     "metal": "#aebdc1", "light": "#e5f0ef", "edge": "#71858b",
     "cyan": "#36dbe8", "cyan2": "#9af8f4", "orange": "#e78232",
-    "copper": "#a95228", "red": "#bb3c2f", "paper": "#d9d2b4",
+    "copper": "#a95228", "copper_dark": "#71351f", "red": "#bb3c2f",
+    "paper": "#d9d2b4", "paper_dark": "#9a9276", "rust": "#805033",
 }
 
 RUNTIME_CONTENT = json.loads((ROOT / "progression/runtime-content.json").read_text())
@@ -27,34 +28,52 @@ def pixel_canvas():
     return Image.new("RGBA", (16, 16), (0, 0, 0, 0))
 
 
-def casing(draw, accent, pattern):
-    draw.rectangle((0, 0, 15, 15), fill=PALETTE["edge"])
-    draw.rectangle((1, 1, 14, 14), fill=PALETTE["metal"])
+def machine_shell(draw, weathered=False):
+    """Layered IC2-adjacent casing with readable bevels at native scale."""
+    draw.rectangle((0, 0, 15, 15), fill=PALETTE["dark"])
+    draw.rectangle((1, 1, 14, 14), fill=PALETTE["edge"])
+    draw.rectangle((2, 2, 13, 13), fill=PALETTE["metal"])
     draw.line((2, 2, 13, 2), fill=PALETTE["light"])
+    draw.line((2, 3, 2, 12), fill="#cbd8da")
     draw.line((2, 13, 13, 13), fill=PALETTE["shadow"])
-    for p in ((1, 1), (14, 1), (1, 14), (14, 14)):
+    draw.line((13, 3, 13, 12), fill="#45575e")
+    for p in ((2, 2), (13, 2), (2, 13), (13, 13)):
         draw.point(p, fill=PALETTE["dark"])
-    draw.rectangle((3, 4, 12, 11), fill=PALETTE["dark"])
-    draw.rectangle((4, 5, 11, 10), fill=PALETTE["panel"])
-    pattern(draw, accent)
-    draw.rectangle((13, 5, 13, 9), fill=accent)
-    draw.point((13, 4), fill=PALETTE["cyan2"])
+    if weathered:
+        for p in ((3, 2), (11, 3), (2, 8), (12, 11), (6, 13)):
+            draw.point(p, fill=PALETTE["rust"])
+
+
+def inset(draw, box=(3, 3, 12, 11)):
+    x0, y0, x1, y1 = box
+    draw.rectangle(box, fill="#0b1216")
+    draw.line((x0, y0, x1, y0), fill=PALETTE["shadow"])
+    draw.line((x0, y0, x0, y1), fill="#45575e")
+    draw.rectangle((x0 + 1, y0 + 1, x1 - 1, y1 - 1), fill=PALETTE["panel"])
+
+
+def footer(draw, accent):
+    draw.rectangle((4, 12, 11, 12), fill="#35474e")
+    for x in (5, 7, 9):
+        draw.point((x, 12), fill=PALETTE["dark"])
+    draw.rectangle((12, 5, 12, 9), fill=accent)
+    draw.point((12, 5), fill=PALETTE["cyan2"])
 
 
 def block_pattern(block_id):
     def analyzer(d, a):
-        d.line((5, 9, 7, 6, 10, 8), fill=a, width=1); d.point((8, 7), fill=PALETTE["cyan2"])
+        d.line((5, 9, 7, 6, 10, 8), fill=a); d.point((5, 9), fill=PALETTE["cyan2"]); d.point((10, 8), fill=PALETTE["cyan2"])
     def station(d, a):
         d.line((5, 9, 5, 6, 10, 6, 10, 9), fill=a); d.line((6, 8, 9, 8), fill=PALETTE["cyan2"])
     def experiment(d, a):
-        d.ellipse((5, 5, 10, 10), outline=a); d.point((7, 7), fill=PALETTE["cyan2"]); d.point((9, 8), fill=PALETTE["cyan2"])
+        d.ellipse((4, 4, 11, 11), fill="#091319", outline=PALETTE["edge"]); d.arc((5, 5, 10, 10), 120, 300, fill=PALETTE["light"]); d.point((8, 8), fill=a); d.point((10, 9), fill=PALETTE["cyan2"])
     def fabricator(d, a):
         d.line((5, 9, 7, 7, 7, 5), fill=a); d.line((8, 5, 8, 9, 10, 9), fill=PALETTE["orange"])
     def assembler(d, a):
         for x in (5, 8):
             for y in (6, 9): d.rectangle((x, y, x+1, y+1), fill=a)
     def robot(d, a):
-        d.line((5, 9, 7, 7, 9, 9, 10, 6), fill=PALETTE["orange"]); d.point((7, 7), fill=a)
+        d.line((5, 10, 6, 8, 8, 8, 9, 6, 10, 5), fill=PALETTE["copper"], width=2); d.point((6, 8), fill=PALETTE["orange"]); d.point((9, 6), fill=a)
     def terminal(d, a):
         d.line((5, 9, 6, 7, 8, 8, 10, 6), fill=a); d.point((10, 9), fill=PALETTE["orange"])
     def replicator(d, a):
@@ -68,7 +87,8 @@ def block_pattern(block_id):
     def colony(d, a):
         d.line((8, 5, 8, 10), fill=a); d.line((5, 8, 11, 8), fill=a); d.point((8, 5), fill=PALETTE["orange"])
     def solar(d, a):
-        d.rectangle((5, 5, 10, 9), outline=a); d.line((6, 6, 9, 9), fill=PALETTE["cyan2"]); d.line((9, 6, 6, 9), fill=PALETTE["cyan2"])
+        for y in (5, 7, 9): d.line((5, y, 10, y), fill=a)
+        d.line((5, 10, 10, 10), fill=PALETTE["cyan2"])
     return {
         "molecular_analyzer": analyzer, "research_station": station,
         "orbital_experiment_module": experiment, "electric_fabricator": fabricator,
@@ -82,53 +102,137 @@ def block_pattern(block_id):
     }[block_id]
 
 
+def make_block_face(block_id, accent):
+    image = pixel_canvas(); d = ImageDraw.Draw(image)
+    weathered = block_id == "factory_control_terminal"
+    machine_shell(d, weathered)
+    inset(d)
+    block_pattern(block_id)(d, accent)
+    footer(d, accent)
+    if block_id == "factory_control_terminal":
+        d.line((3, 4, 5, 4), fill=PALETTE["rust"]); d.point((11, 10), fill=PALETTE["rust"])
+    elif block_id == "matter_replicator":
+        d.ellipse((5, 4, 10, 10), outline=PALETTE["light"])
+    elif block_id == "fusion_research_core":
+        d.rectangle((4, 4, 11, 11), outline=PALETTE["copper_dark"])
+    return image
+
+
+def make_block_side(accent, port=False):
+    image = pixel_canvas(); d = ImageDraw.Draw(image); machine_shell(d)
+    d.rectangle((4, 3, 10, 12), fill=PALETTE["shadow"])
+    d.rectangle((5, 4, 9, 11), fill=PALETTE["panel"])
+    for y in (5, 7, 9): d.line((6, y, 8, y), fill=PALETTE["dark"])
+    d.rectangle((11, 5, 12, 10), fill=PALETTE["dark"])
+    d.line((12, 6, 12, 9), fill=accent)
+    if port:
+        d.rectangle((3, 6, 4, 9), fill=PALETTE["copper_dark"]); d.line((4, 7, 4, 8), fill=PALETTE["orange"])
+    return image
+
+
+def make_block_top(accent):
+    image = pixel_canvas(); d = ImageDraw.Draw(image); machine_shell(d)
+    d.rectangle((4, 4, 11, 11), fill=PALETTE["shadow"])
+    d.rectangle((5, 5, 10, 10), fill=PALETTE["panel"])
+    d.rectangle((6, 6, 9, 9), outline=accent)
+    d.line((7, 5, 8, 5), fill=PALETTE["light"])
+    d.point((8, 8), fill=PALETTE["cyan2"])
+    return image
+
+
 def make_blocks():
     accents = ["cyan", "cyan", "cyan2", "orange", "cyan", "orange", "copper",
-               "cyan2", "orange", "cyan", "orange", "cyan2"]
-    accents.append("cyan")
-    accents.append("orange")
-    for block_id, accent in zip(BLOCK_IDS, accents):
-        image = pixel_canvas(); draw = ImageDraw.Draw(image)
-        casing(draw, PALETTE[accent], block_pattern(block_id))
-        image.save(BLOCKS / f"{block_id}.png")
+               "cyan2", "orange", "cyan", "orange", "cyan2", "cyan", "orange"]
+    for index, (block_id, accent_name) in enumerate(zip(BLOCK_IDS, accents)):
+        accent = PALETTE[accent_name]
+        make_block_face(block_id, accent).save(BLOCKS / f"{block_id}.png")
+        make_block_side(accent, port=index % 3 == 0).save(BLOCKS / f"{block_id}_side.png")
+        make_block_top(accent).save(BLOCKS / f"{block_id}_top.png")
 
 
-def item_base(draw, color, page=False):
-    if page:
-        draw.polygon([(3, 2), (11, 2), (13, 4), (13, 13), (3, 13)], fill=PALETTE["dark"])
-        draw.polygon([(4, 2), (10, 2), (12, 4), (12, 12), (4, 12)], fill=color)
-        draw.line((10, 2, 10, 4, 12, 4), fill=PALETTE["light"])
+def cartridge(d, color, blank=False):
+    d.polygon([(4, 2), (10, 2), (12, 4), (12, 12), (10, 14), (4, 14), (2, 12), (2, 4)], fill=PALETTE["dark"])
+    d.polygon([(4, 3), (10, 3), (11, 4), (11, 11), (9, 12), (4, 12), (3, 11), (3, 4)], fill=color)
+    d.line((4, 3, 9, 3), fill=PALETTE["light"])
+    d.rectangle((5, 6, 9, 9), fill=PALETTE["panel"])
+    if not blank: d.line((6, 7, 8, 7), fill=PALETTE["cyan"]); d.point((7, 9), fill=PALETTE["orange"])
+    for x in (5, 7, 9): d.point((x, 13), fill=PALETTE["orange"])
+
+
+def archive(d, color, mark="lines"):
+    d.polygon([(3, 2), (11, 2), (13, 4), (13, 13), (3, 13)], fill=PALETTE["dark"])
+    d.polygon([(4, 2), (10, 2), (12, 4), (12, 12), (4, 12)], fill=color)
+    d.line((10, 2, 10, 4, 12, 4), fill=PALETTE["light"])
+    if mark == "gear":
+        d.ellipse((6, 6, 9, 9), outline=PALETTE["panel"]); d.point((7, 7), fill=PALETTE["panel"])
+    elif mark == "orbit":
+        d.ellipse((5, 5, 10, 10), outline=PALETTE["copper"]); d.line((5, 9, 10, 6), fill=PALETTE["copper"])
     else:
-        draw.rectangle((3, 3, 12, 12), fill=PALETTE["dark"])
-        draw.rectangle((4, 4, 11, 11), fill=color)
-        draw.line((5, 4, 10, 4), fill=PALETTE["light"])
+        d.line((5, 7, 10, 7), fill=PALETTE["panel"]); d.line((5, 9, 9, 9), fill=PALETTE["panel"])
+
+
+def core(d, large=False):
+    box = (3, 3, 12, 12) if large else (4, 4, 11, 11)
+    d.ellipse(box, fill=PALETTE["dark"], outline=PALETTE["light"])
+    d.ellipse((6, 6, 9, 9), fill=PALETTE["cyan"], outline=PALETTE["cyan2"])
+    for p in ((2, 7), (12, 7), (7, 2), (7, 12)):
+        d.rectangle((p[0], p[1], p[0] + 1, p[1] + 1), fill=PALETTE["copper"])
+
+
+def capsule(d, antimatter=False):
+    fluid = PALETTE["cyan2"] if antimatter else PALETTE["cyan"]
+    d.rectangle((5, 2, 10, 13), fill=PALETTE["dark"])
+    d.rectangle((6, 3, 9, 12), fill=PALETTE["edge"])
+    d.rectangle((6, 5, 9, 10), fill=fluid)
+    d.line((7, 5, 7, 9), fill=PALETTE["light"])
+    d.rectangle((4, 2, 11, 3), fill=PALETTE["copper"])
+    d.rectangle((4, 12, 11, 13), fill=PALETTE["metal"])
 
 
 def make_item(item_id, index):
     image = pixel_canvas(); d = ImageDraw.Draw(image)
-    archive = "archive" in item_id or "authorization" in item_id or item_id in {
-        "material_pattern_record", "underworld_dossier", "criminal_network_ledger",
-        "factory_restoration_certificate"}
-    colors = [PALETTE["cyan"], PALETTE["paper"], PALETTE["cyan2"], PALETTE["orange"],
-              PALETTE["red"], PALETTE["copper"]]
-    item_base(d, colors[index % len(colors)], archive)
-    if "core" in item_id:
-        d.ellipse((5, 5, 10, 10), fill=PALETTE["metal"], outline=PALETTE["light"])
-        d.rectangle((7, 7, 8, 8), fill=PALETTE["cyan"])
-        for p in ((2, 7), (13, 7), (7, 2), (7, 13)): d.rectangle((p[0], p[1], p[0]+1, p[1]+1), fill=PALETTE["copper"])
-    elif "quantum" in item_id or "antimatter" in item_id or "uu_matter" in item_id:
-        d.ellipse((5, 5, 10, 10), outline=PALETTE["light"]); d.rectangle((7, 6, 8, 9), fill=PALETTE["cyan2"])
-    elif "processor" in item_id or "system" in item_id:
-        d.rectangle((6, 6, 9, 9), fill=PALETTE["panel"])
-        for x in range(5, 11, 2): d.point((x, 5), fill=PALETTE["cyan"]); d.point((x, 10), fill=PALETTE["copper"])
-    elif "frame" in item_id:
-        d.rectangle((5, 5, 10, 10), outline=PALETTE["light"]); d.rectangle((7, 7, 8, 8), fill=PALETTE["dark"])
-    elif "data" in item_id or "cartridge" in item_id:
-        d.rectangle((5, 6, 10, 10), fill=PALETTE["panel"]); d.line((6, 7, 9, 7), fill=PALETTE["cyan"])
+    if item_id == "blank_data_cartridge": cartridge(d, PALETTE["paper"], True)
+    elif item_id in {"material_pattern_record", "research_data"}: cartridge(d, PALETTE["cyan"] if index == 0 else PALETTE["cyan2"])
+    elif "core" in item_id: core(d, item_id == "civilization_scale_ai_core")
+    elif item_id == "precision_frame":
+        d.rectangle((2, 2, 13, 13), fill=PALETTE["dark"]); d.rectangle((3, 3, 12, 12), fill=PALETTE["metal"])
+        d.rectangle((5, 5, 10, 10), fill=PALETTE["dark"])
+        for p in ((3, 3), (11, 3), (3, 11), (11, 11)): d.rectangle((p[0], p[1], p[0]+1, p[1]+1), fill=PALETTE["copper"])
+    elif item_id in {"control_processor", "recovered_factory_control_system"}:
+        d.rectangle((3, 3, 12, 12), fill=PALETTE["dark"]); d.rectangle((5, 5, 10, 10), fill=PALETTE["edge"])
+        d.rectangle((6, 6, 9, 9), fill=PALETTE["panel"]); d.point((7, 7), fill=PALETTE["cyan"])
+        for n in (4, 7, 10): d.point((n, 2), fill=PALETTE["copper"]); d.point((n, 13), fill=PALETTE["copper"])
+        if item_id == "recovered_factory_control_system":
+            d.point((5, 5), fill=PALETTE["rust"]); d.point((10, 9), fill=PALETTE["rust"])
+    elif item_id == "uu_matter_capsule": capsule(d, False)
+    elif item_id == "contained_antimatter_capsule": capsule(d, True)
+    elif item_id == "interplanetary_cargo_network_key":
+        d.ellipse((2, 2, 10, 10), fill=PALETTE["metal"], outline=PALETTE["dark"]); d.ellipse((5, 5, 8, 8), fill=PALETTE["dark"])
+        d.line((8, 9, 13, 14), fill=PALETTE["edge"], width=2); d.point((12, 12), fill=PALETTE["copper"])
+    elif item_id == "lunar_quantum_component":
+        core(d); d.rectangle((6, 6, 9, 9), fill=PALETTE["cyan2"])
     else:
-        d.line((5, 7, 10, 7), fill=PALETTE["dark"]); d.line((5, 9, 9, 9), fill=PALETTE["copper"])
-    # Tiny per-artifact registry mark keeps silhouettes distinct at native scale.
-    d.point((1 + index % 15, 14), fill=PALETTE["cyan"] if (index // 15) % 2 == 0 else PALETTE["orange"])
+        colors = {
+            "mars_mission_authorization": PALETTE["red"], "martian_autonomy_archive": PALETTE["rust"],
+            "underworld_dossier": PALETTE["red"], "criminal_network_ledger": PALETTE["cyan"],
+            "factory_restoration_certificate": PALETTE["paper"],
+            "controlled_replication_record": PALETTE["red"],
+            "megastructure_control_record": PALETTE["cyan2"],
+            "autonomous_colony_charter": PALETTE["paper"],
+        }
+        color = colors.get(item_id, PALETTE["cyan2"] if index % 2 == 0 else PALETTE["paper"])
+        mark = "gear" if any(x in item_id for x in ("engineering", "control", "colony")) else "orbit" if any(x in item_id for x in ("orbital", "mega", "replication")) else "lines"
+        archive(d, color, mark)
+    if item_id == "megastructure_control_record":
+        d.rectangle((3, 11, 5, 12), fill=PALETTE["copper"])
+    if item_id in {
+        "orbital_research_archive", "lunar_engineering_archive", "mars_mission_authorization",
+        "martian_autonomy_archive", "underworld_dossier", "criminal_network_ledger",
+        "factory_restoration_certificate", "controlled_replication_record",
+        "megastructure_control_record", "autonomous_colony_charter"
+    }:
+        # A keyed copper contact makes each physical archive cartridge identifiable.
+        d.point((3 + index % 9, 13), fill=PALETTE["orange"])
     return image
 
 
@@ -169,8 +273,16 @@ def write_models():
     (ASSETS / "blockstates").mkdir(parents=True, exist_ok=True)
     for block_id in BLOCK_IDS:
         (ASSETS / "models/block" / f"{block_id}.json").write_text(json.dumps({
-            "parent": "block/cube_all",
-            "textures": {"all": f"industrialcivilizationcore:blocks/{block_id}"}
+            "parent": "block/cube",
+            "textures": {
+                "particle": f"industrialcivilizationcore:blocks/{block_id}",
+                "north": f"industrialcivilizationcore:blocks/{block_id}",
+                "south": f"industrialcivilizationcore:blocks/{block_id}_side",
+                "east": f"industrialcivilizationcore:blocks/{block_id}_side",
+                "west": f"industrialcivilizationcore:blocks/{block_id}_side",
+                "up": f"industrialcivilizationcore:blocks/{block_id}_top",
+                "down": f"industrialcivilizationcore:blocks/{block_id}_side"
+            }
         }, indent=2) + "\n")
         (ASSETS / "models/item" / f"{block_id}.json").write_text(json.dumps({
             "parent": f"industrialcivilizationcore:block/{block_id}"
@@ -200,10 +312,25 @@ def contact_sheet():
     sheet.save(DOCS / "industrial_content_sprite_review.png")
 
 
+def block_face_sheet():
+    cell_w, cell_h, columns = 192, 132, 7
+    sheet = Image.new("RGB", (cell_w * columns, cell_h * 2), "#182329")
+    d = ImageDraw.Draw(sheet); font = ImageFont.load_default()
+    for i, block_id in enumerate(BLOCK_IDS):
+        x, y = (i % columns) * cell_w, (i // columns) * cell_h
+        for face_index, suffix in enumerate(("", "_side", "_top")):
+            icon = Image.open(BLOCKS / f"{block_id}{suffix}.png")
+            enlarged = icon.resize((48, 48), Image.Resampling.NEAREST)
+            sheet.paste(enlarged, (x + 12 + face_index * 56, y + 8), enlarged)
+        d.text((x + 8, y + 62), block_id.replace("_", " ")[:30], fill="#d9eeee", font=font)
+        d.text((x + 8, y + 76), "front       side        top", fill="#36dbe8", font=font)
+    sheet.save(DOCS / "industrial_content_block_faces_review.png")
+
+
 def main():
     for path in (BLOCKS, ITEMS, GUI, DOCS): path.mkdir(parents=True, exist_ok=True)
-    make_blocks(); make_items(); make_gui(); write_models(); contact_sheet()
-    print(f"Generated {len(BLOCK_IDS)} block textures, {len(ITEM_IDS)} item sprites, GUI, models, and review sheet")
+    make_blocks(); make_items(); make_gui(); write_models(); contact_sheet(); block_face_sheet()
+    print(f"Generated {len(BLOCK_IDS) * 3} block-face textures, {len(ITEM_IDS)} item sprites, GUI, models, and review sheets")
 
 
 if __name__ == "__main__":

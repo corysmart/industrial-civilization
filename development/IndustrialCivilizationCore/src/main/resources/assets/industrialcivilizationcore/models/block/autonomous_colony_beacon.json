@@ -1,6 +1,12 @@
 {
-  "parent": "block/cube_all",
+  "parent": "block/cube",
   "textures": {
-    "all": "industrialcivilizationcore:blocks/autonomous_colony_beacon"
+    "particle": "industrialcivilizationcore:blocks/autonomous_colony_beacon",
+    "north": "industrialcivilizationcore:blocks/autonomous_colony_beacon",
+    "south": "industrialcivilizationcore:blocks/autonomous_colony_beacon_side",
+    "east": "industrialcivilizationcore:blocks/autonomous_colony_beacon_side",
+    "west": "industrialcivilizationcore:blocks/autonomous_colony_beacon_side",
+    "up": "industrialcivilizationcore:blocks/autonomous_colony_beacon_top",
+    "down": "industrialcivilizationcore:blocks/autonomous_colony_beacon_side"
   }
 }

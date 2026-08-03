@@ -1,6 +1,12 @@
 {
-  "parent": "block/cube_all",
+  "parent": "block/cube",
   "textures": {
-    "all": "industrialcivilizationcore:blocks/electric_fabricator"
+    "particle": "industrialcivilizationcore:blocks/electric_fabricator",
+    "north": "industrialcivilizationcore:blocks/electric_fabricator",
+    "south": "industrialcivilizationcore:blocks/electric_fabricator_side",
+    "east": "industrialcivilizationcore:blocks/electric_fabricator_side",
+    "west": "industrialcivilizationcore:blocks/electric_fabricator_side",
+    "up": "industrialcivilizationcore:blocks/electric_fabricator_top",
+    "down": "industrialcivilizationcore:blocks/electric_fabricator_side"
   }
 }

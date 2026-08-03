@@ -1,6 +1,12 @@
 {
-  "parent": "block/cube_all",
+  "parent": "block/cube",
   "textures": {
-    "all": "industrialcivilizationcore:blocks/programmable_assembler"
+    "particle": "industrialcivilizationcore:blocks/programmable_assembler",
+    "north": "industrialcivilizationcore:blocks/programmable_assembler",
+    "south": "industrialcivilizationcore:blocks/programmable_assembler_side",
+    "east": "industrialcivilizationcore:blocks/programmable_assembler_side",
+    "west": "industrialcivilizationcore:blocks/programmable_assembler_side",
+    "up": "industrialcivilizationcore:blocks/programmable_assembler_top",
+    "down": "industrialcivilizationcore:blocks/programmable_assembler_side"
   }
 }

@@ -1,6 +1,12 @@
 {
-  "parent": "block/cube_all",
+  "parent": "block/cube",
   "textures": {
-    "all": "industrialcivilizationcore:blocks/orbital_megastructure_controller"
+    "particle": "industrialcivilizationcore:blocks/orbital_megastructure_controller",
+    "north": "industrialcivilizationcore:blocks/orbital_megastructure_controller",
+    "south": "industrialcivilizationcore:blocks/orbital_megastructure_controller_side",
+    "east": "industrialcivilizationcore:blocks/orbital_megastructure_controller_side",
+    "west": "industrialcivilizationcore:blocks/orbital_megastructure_controller_side",
+    "up": "industrialcivilizationcore:blocks/orbital_megastructure_controller_top",
+    "down": "industrialcivilizationcore:blocks/orbital_megastructure_controller_side"
   }
 }

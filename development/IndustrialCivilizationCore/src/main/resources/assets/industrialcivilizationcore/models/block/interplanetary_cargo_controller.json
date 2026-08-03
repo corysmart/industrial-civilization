@@ -1,6 +1,12 @@
 {
-  "parent": "block/cube_all",
+  "parent": "block/cube",
   "textures": {
-    "all": "industrialcivilizationcore:blocks/interplanetary_cargo_controller"
+    "particle": "industrialcivilizationcore:blocks/interplanetary_cargo_controller",
+    "north": "industrialcivilizationcore:blocks/interplanetary_cargo_controller",
+    "south": "industrialcivilizationcore:blocks/interplanetary_cargo_controller_side",
+    "east": "industrialcivilizationcore:blocks/interplanetary_cargo_controller_side",
+    "west": "industrialcivilizationcore:blocks/interplanetary_cargo_controller_side",
+    "up": "industrialcivilizationcore:blocks/interplanetary_cargo_controller_top",
+    "down": "industrialcivilizationcore:blocks/interplanetary_cargo_controller_side"
   }
 }

@@ -1,6 +1,12 @@
 {
-  "parent": "block/cube_all",
+  "parent": "block/cube",
   "textures": {
-    "all": "industrialcivilizationcore:blocks/environmental_solar_array"
+    "particle": "industrialcivilizationcore:blocks/environmental_solar_array",
+    "north": "industrialcivilizationcore:blocks/environmental_solar_array",
+    "south": "industrialcivilizationcore:blocks/environmental_solar_array_side",
+    "east": "industrialcivilizationcore:blocks/environmental_solar_array_side",
+    "west": "industrialcivilizationcore:blocks/environmental_solar_array_side",
+    "up": "industrialcivilizationcore:blocks/environmental_solar_array_top",
+    "down": "industrialcivilizationcore:blocks/environmental_solar_array_side"
   }
 }

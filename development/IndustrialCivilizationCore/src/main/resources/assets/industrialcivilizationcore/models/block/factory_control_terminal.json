@@ -1,6 +1,12 @@
 {
-  "parent": "block/cube_all",
+  "parent": "block/cube",
   "textures": {
-    "all": "industrialcivilizationcore:blocks/factory_control_terminal"
+    "particle": "industrialcivilizationcore:blocks/factory_control_terminal",
+    "north": "industrialcivilizationcore:blocks/factory_control_terminal",
+    "south": "industrialcivilizationcore:blocks/factory_control_terminal_side",
+    "east": "industrialcivilizationcore:blocks/factory_control_terminal_side",
+    "west": "industrialcivilizationcore:blocks/factory_control_terminal_side",
+    "up": "industrialcivilizationcore:blocks/factory_control_terminal_top",
+    "down": "industrialcivilizationcore:blocks/factory_control_terminal_side"
   }
 }

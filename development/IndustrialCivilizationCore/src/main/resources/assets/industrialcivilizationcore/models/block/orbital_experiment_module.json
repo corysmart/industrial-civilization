@@ -1,6 +1,12 @@
 {
-  "parent": "block/cube_all",
+  "parent": "block/cube",
   "textures": {
-    "all": "industrialcivilizationcore:blocks/orbital_experiment_module"
+    "particle": "industrialcivilizationcore:blocks/orbital_experiment_module",
+    "north": "industrialcivilizationcore:blocks/orbital_experiment_module",
+    "south": "industrialcivilizationcore:blocks/orbital_experiment_module_side",
+    "east": "industrialcivilizationcore:blocks/orbital_experiment_module_side",
+    "west": "industrialcivilizationcore:blocks/orbital_experiment_module_side",
+    "up": "industrialcivilizationcore:blocks/orbital_experiment_module_top",
+    "down": "industrialcivilizationcore:blocks/orbital_experiment_module_side"
   }
 }

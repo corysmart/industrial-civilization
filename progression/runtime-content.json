@@ -6,7 +6,9 @@
     "style": "original IC2-adjacent industrial pixel art",
     "palette": ["pale blue-gray metal", "dark inset panels", "cyan instrumentation", "copper/orange high-energy accents"],
     "concept_reference": "docs/art/industrial_content_concept.png",
+    "sprite_target": "docs/art/industrial_content_sprite_target_v2.png",
     "review_sheet": "docs/art/industrial_content_sprite_review.png",
+    "block_face_review": "docs/art/industrial_content_block_faces_review.png",
     "generator": "tools/generate_ic2_assets.py",
     "validator": "tools/validate_runtime_content.py"
   },

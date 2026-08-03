@@ -1,6 +1,12 @@
 {
-  "parent": "block/cube_all",
+  "parent": "block/cube",
   "textures": {
-    "all": "industrialcivilizationcore:blocks/matter_replicator"
+    "particle": "industrialcivilizationcore:blocks/matter_replicator",
+    "north": "industrialcivilizationcore:blocks/matter_replicator",
+    "south": "industrialcivilizationcore:blocks/matter_replicator_side",
+    "east": "industrialcivilizationcore:blocks/matter_replicator_side",
+    "west": "industrialcivilizationcore:blocks/matter_replicator_side",
+    "up": "industrialcivilizationcore:blocks/matter_replicator_top",
+    "down": "industrialcivilizationcore:blocks/matter_replicator_side"
   }
 }

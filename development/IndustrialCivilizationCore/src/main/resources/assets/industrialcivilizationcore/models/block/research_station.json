@@ -1,6 +1,12 @@
 {
-  "parent": "block/cube_all",
+  "parent": "block/cube",
   "textures": {
-    "all": "industrialcivilizationcore:blocks/research_station"
+    "particle": "industrialcivilizationcore:blocks/research_station",
+    "north": "industrialcivilizationcore:blocks/research_station",
+    "south": "industrialcivilizationcore:blocks/research_station_side",
+    "east": "industrialcivilizationcore:blocks/research_station_side",
+    "west": "industrialcivilizationcore:blocks/research_station_side",
+    "up": "industrialcivilizationcore:blocks/research_station_top",
+    "down": "industrialcivilizationcore:blocks/research_station_side"
   }
 }

@@ -1,6 +1,12 @@
 {
-  "parent": "block/cube_all",
+  "parent": "block/cube",
   "textures": {
-    "all": "industrialcivilizationcore:blocks/robotic_manufacturing_cell"
+    "particle": "industrialcivilizationcore:blocks/robotic_manufacturing_cell",
+    "north": "industrialcivilizationcore:blocks/robotic_manufacturing_cell",
+    "south": "industrialcivilizationcore:blocks/robotic_manufacturing_cell_side",
+    "east": "industrialcivilizationcore:blocks/robotic_manufacturing_cell_side",
+    "west": "industrialcivilizationcore:blocks/robotic_manufacturing_cell_side",
+    "up": "industrialcivilizationcore:blocks/robotic_manufacturing_cell_top",
+    "down": "industrialcivilizationcore:blocks/robotic_manufacturing_cell_side"
   }
 }
