@@ -13,6 +13,7 @@ import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -63,15 +64,23 @@ public final class IndustrialCivilizationCore {
     public static final int QUEST_HOME_OFFSET_X = -128;
     public static final int QUEST_HOME_OFFSET_Y = 0;
     public static Logger LOGGER;
+    public static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MODID) {
+        @Override
+        public ItemStack getTabIconItem() {
+            return new ItemStack(MOLECULAR_ANALYZER);
+        }
+    };
 
     public static final Block MOLECULAR_ANALYZER = new BlockMolecularAnalyzer()
         .setRegistryName(MODID, "molecular_analyzer")
         .setUnlocalizedName(MODID + ".molecular_analyzer")
+        .setCreativeTab(CREATIVE_TAB)
         .setHardness(5.0F)
         .setResistance(15.0F);
     public static final Item MATERIAL_PATTERN_RECORD = new ItemPatternRecord()
         .setRegistryName(MODID, "material_pattern_record")
         .setUnlocalizedName(MODID + ".material_pattern_record")
+        .setCreativeTab(CREATIVE_TAB)
         .setMaxStackSize(1);
     public static final BlockIndustrialMachine RESEARCH_STATION = machine(IndustrialMachineKind.RESEARCH_STATION);
     public static final BlockIndustrialMachine ORBITAL_EXPERIMENT_MODULE = machine(IndustrialMachineKind.EXPERIMENT_MODULE);
@@ -184,16 +193,21 @@ public final class IndustrialCivilizationCore {
             event.getRegistry().register(MATERIAL_PATTERN_RECORD);
             event.getRegistry().registerAll(ARTIFACTS);
             event.getRegistry().register(new ItemBlock(MOLECULAR_ANALYZER)
+                .setCreativeTab(CREATIVE_TAB)
                 .setRegistryName(MOLECULAR_ANALYZER.getRegistryName()));
             for (BlockIndustrialMachine machine : INDUSTRIAL_MACHINES) {
                 event.getRegistry().register(new ItemBlock(machine)
+                    .setCreativeTab(CREATIVE_TAB)
                     .setRegistryName(machine.getRegistryName()));
             }
             event.getRegistry().register(new ItemBlock(FACTORY_CONTROL_TERMINAL)
+                .setCreativeTab(CREATIVE_TAB)
                 .setRegistryName(FACTORY_CONTROL_TERMINAL.getRegistryName()));
             event.getRegistry().register(new ItemBlock(ENVIRONMENTAL_SOLAR_ARRAY)
+                .setCreativeTab(CREATIVE_TAB)
                 .setRegistryName(ENVIRONMENTAL_SOLAR_ARRAY.getRegistryName()));
             event.getRegistry().register(new ItemBlock(TRACKING_SOLAR_ARRAY)
+                .setCreativeTab(CREATIVE_TAB)
                 .setRegistryName(TRACKING_SOLAR_ARRAY.getRegistryName()));
         }
 

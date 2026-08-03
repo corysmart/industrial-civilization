@@ -19,6 +19,7 @@ public final class BlockIndustrialMachine extends BlockContainer {
         this.kind = kind;
         setRegistryName(IndustrialCivilizationCore.MODID, kind.id);
         setUnlocalizedName(IndustrialCivilizationCore.MODID + "." + kind.id);
+        setCreativeTab(IndustrialCivilizationCore.CREATIVE_TAB);
         setHardness(4.5F);
         setResistance(15.0F);
     }

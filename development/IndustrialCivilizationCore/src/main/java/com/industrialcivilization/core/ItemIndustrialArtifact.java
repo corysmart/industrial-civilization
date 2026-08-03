@@ -28,6 +28,7 @@ public final class ItemIndustrialArtifact extends Item {
         this.activatesMilestone = activatesMilestone;
         setRegistryName(IndustrialCivilizationCore.MODID, id);
         setUnlocalizedName(IndustrialCivilizationCore.MODID + "." + id);
+        setCreativeTab(IndustrialCivilizationCore.CREATIVE_TAB);
         setMaxStackSize(id.endsWith("archive") || id.endsWith("authorization")
             || id.endsWith("core") || id.endsWith("system") ? 1 : 16);
     }

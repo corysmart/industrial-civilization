@@ -15,6 +15,7 @@ public final class BlockFactoryControlTerminal extends BlockContainer {
         super(Material.IRON);
         setRegistryName(IndustrialCivilizationCore.MODID, "factory_control_terminal");
         setUnlocalizedName(IndustrialCivilizationCore.MODID + ".factory_control_terminal");
+        setCreativeTab(IndustrialCivilizationCore.CREATIVE_TAB);
         setHardness(6.0F);
         setResistance(30.0F);
     }

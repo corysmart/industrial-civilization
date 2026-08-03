@@ -273,6 +273,16 @@ ok("QUEST_HOME_IMAGE" in core_source and "QUEST_HOME_OFFSET_X = -128" in core_so
 ok("GuiIngameMenu" in core_source and "button.id == 5" in core_source
    and "PresetGUIs.HOME" in core_source and "gui.industrialcivilization.quest_guide" in core_source,
    "pause-menu Advancements button opens the Better Questing guide")
+ok("new CreativeTabs(MODID)" in core_source
+   and core_source.count(".setCreativeTab(CREATIVE_TAB)") >= 7,
+   "all custom blocks and items are assigned to the Industrial Civilization creative tab")
+with zipfile.ZipFile(ROOT / "mods/appliedenergistics2-rv6-stable-7.jar") as ae2_jar:
+    ok("appeng/core/CreativeTab.class" in ae2_jar.namelist(),
+       "Applied Energistics 2 supplies its gameplay creative tab")
+jei_blacklist = (ROOT / "config/jei/itemBlacklist.cfg").read_text()
+ok("appliedenergistics2:" not in jei_blacklist
+   and "industrialcivilizationcore:" not in jei_blacklist,
+   "AE2 and Industrial Civilization are not suppressed from HEI or Creative search")
 
 ok(not (ROOT / "scripts/industrial_civilization.zs").exists(), "obsolete non-reloadable integration script removed")
 run_config = json.loads((ROOT / "groovy/runConfig.json").read_text())

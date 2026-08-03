@@ -57,6 +57,17 @@ source = "\n".join(path.read_text() for path in JAVA.glob("*.java"))
 check("ItemTestPlaceholder" not in source, "runtime registrations do not reference placeholder items")
 check("EnergyTileLoadEvent" in source and "IEnergySink" in source, "machines register with the IC2 EU network")
 check("CapabilityEnergy.ENERGY" in source, "machines also expose Forge Energy input")
+check("new CreativeTabs(MODID)" in source, "pack-owned creative tab is registered")
+check("itemGroup.industrialcivilizationcore=Industrial Civilization" in
+      (ASSETS / "lang/en_us.lang").read_text(), "pack-owned creative tab is localized")
+for source_name in ("BlockIndustrialMachine.java", "BlockFactoryControlTerminal.java",
+                    "BlockEnvironmentalSolarArray.java", "ItemIndustrialArtifact.java"):
+    check("setCreativeTab(IndustrialCivilizationCore.CREATIVE_TAB)" in
+          (JAVA / source_name).read_text(),
+          f"custom registry family is visible in Creative inventory: {source_name}")
+core_source = (JAVA / "IndustrialCivilizationCore.java").read_text()
+check(core_source.count(".setCreativeTab(CREATIVE_TAB)") >= 7,
+      "standalone items and every custom ItemBlock are visible in Creative inventory")
 check("getMethodNames" in source and "selectRecipe" in source and "queue" in source,
       "ComputerCraft control surface is present")
 check("AbandonedFactoryWorldGenerator" in source and "IndustrialCriminal" in source,

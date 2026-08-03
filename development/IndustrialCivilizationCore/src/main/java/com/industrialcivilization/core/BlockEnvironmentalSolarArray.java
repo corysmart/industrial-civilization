@@ -19,6 +19,7 @@ public final class BlockEnvironmentalSolarArray extends BlockContainer {
         this.tracking = tracking;
         setRegistryName(IndustrialCivilizationCore.MODID, id);
         setUnlocalizedName(IndustrialCivilizationCore.MODID + "." + id);
+        setCreativeTab(IndustrialCivilizationCore.CREATIVE_TAB);
         setHardness(5.0F);
         setResistance(20.0F);
     }

@@ -12,6 +12,6 @@ public final class ItemPatternRecord extends Item {
     public void addInformation(ItemStack stack, World world, List<String> tooltip, ITooltipFlag flag) {
         tooltip.add(TextFormatting.AQUA + "Sample: Martian Desh");
         tooltip.add(TextFormatting.GRAY + "Fe-Ni alloy with non-terrestrial trace signature");
-        tooltip.add(TextFormatting.GOLD + "AI Age — Not Yet Available");
+        tooltip.add(TextFormatting.GOLD + "Research input for AI Core synthesis");
     }
 }

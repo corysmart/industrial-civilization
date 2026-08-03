@@ -67,6 +67,7 @@ message.industrialcivilization.analyzer.complete=Analysis complete. Material pat
 message.industrialcivilization.sequence_violation=Sequence violation: Moon milestone was not recorded before Mars.
 message.industrialcivilization.quest_guide=Industrial Civilization Guide: Press F6 to open quests, tutorials, progression, and in-game reference information.
 gui.industrialcivilization.quest_guide=Quest Guide
+itemGroup.industrialcivilizationcore=Industrial Civilization
 message.industrialcivilization.recorded=%s synchronized with your research record.
 message.industrialcivilization.gate.moon=Moon access denied: complete Orbital Research and carry its archive first.
 message.industrialcivilization.gate.mars=Mars access denied: Lunar Quantum Technology and Mars Mission Authorization are required.

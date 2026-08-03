@@ -10,6 +10,7 @@
 6. Confirm the welcome chat identifies **F6** as the Industrial Civilization Guide key. Press F6 and verify the Industrial Civilization home banner renders without magenta missing-texture panels, then inspect the 16 chapters and 5 side-path tabs.
 7. Open the in-game pause menu. Confirm **Quest Guide** appears instead of **Advancements** and opens the same Better Questing home screen.
 8. Open Options → Controls and confirm the Conflicts section is empty. On macOS, spot-check F6 (guide), Option+Y (Techguns reload), Command+R (GroovyScript reload), Option+R (inventory sort), and Command+[/]/;/0/' (Waila).
+9. Enter Creative inventory and locate the **Industrial Civilization** tab. Confirm all 14 custom blocks and all 22 custom items appear. Use the tab-page arrows to confirm **Applied Energistics 2** is also present; both namespaces must appear in the Search tab.
 
 ## Disposable world
 
