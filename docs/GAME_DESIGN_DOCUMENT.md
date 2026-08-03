@@ -116,7 +116,7 @@ Recipes below use E-Circuit = `ic2:itemmisc:451` and A-Circuit = `ic2:itemmisc:4
 | Repair Bench | IC2 machine components | Repairs the nearest rusted large workshop within 12 blocks, consuming one complete IC2 Machine Block |
 | Vehicle Service Dock | BuildCraft pipe and IC2 machine components | Bridges BuildCraft item/fluid capabilities to a parked Industrial Service Carrier within four blocks |
 
-All ten processing machines are IC2 EU sinks with sided inventories (inputs on non-bottom faces, output below), a four-slot IC2-styled GUI, automatic matching for inserted inputs, and a ComputerCraft peripheral. The same blocks expose Forge Energy only as hidden compatibility plumbing at the canonical 8 FE = 1 EU ratio.
+All twelve processing machines are IC2 EU sinks with sided inventories (inputs on non-bottom faces, output below), a four-slot IC2-styled GUI, automatic matching for inserted inputs, and a ComputerCraft peripheral. The same blocks expose Forge Energy only as hidden compatibility plumbing at the canonical 8 FE = 1 EU ratio.
 
 ## First-party artifacts: production and gates
 
