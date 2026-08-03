@@ -53,6 +53,7 @@
     {"id": "interplanetary_cargo_network_key", "system": "cargo authorization"},
     {"id": "megastructure_control_record", "system": "orbital construction proof"},
     {"id": "autonomous_colony_charter", "system": "colony proof"},
-    {"id": "civilization_scale_ai_core", "system": "open-ended capstone"}
+    {"id": "civilization_scale_ai_core", "system": "open-ended capstone"},
+    {"id": "industrial_credit", "system": "faction and settlement currency"}
   ]
 }

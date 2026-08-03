@@ -1615,8 +1615,8 @@
     {
       "file": "mods/IndustrialCivilizationCore-0.2.0.jar",
       "filename": "IndustrialCivilizationCore-0.2.0.jar",
-      "size": 390226,
-      "sha256": "4e64b3353abf3c1b813aa9605d3a2e8986f88f035dfe39a9fb34f9d873795b56",
+      "size": 422618,
+      "sha256": "35802a873b8a67d565fcb74d47bfff01fcaf6ffdb0d6fdf7baf2f84c7ee947b9",
       "classification": "KEEP",
       "mods": [
         {
@@ -3875,8 +3875,8 @@
     },
     {
       "file": "config/betterquesting/DefaultQuests.json",
-      "sha256": "7bb61abc734a15b86eaa1a4afac9c0664ba99f5e2129691e011186e80f642673",
-      "size": 220365
+      "sha256": "9b072b842b84545695d1cd781921cc2c9d618c3930bca67438b7bbdf86a90d85",
+      "size": 327090
     },
     {
       "file": "config/blockcraftery.cfg",
@@ -4307,6 +4307,11 @@
       "file": "config/ichunutil_keybinds.cfg",
       "sha256": "fc4024735165a70bedf0c9454fdf26e70856d18ed2b5598e351a02b3646e437a",
       "size": 1397
+    },
+    {
+      "file": "config/industrialcivilization/faction-system.json",
+      "sha256": "a2f1236a39be1c1c7042581c4d51dcda2a88b639c404554142739a773a7e3882",
+      "size": 2526
     },
     {
       "file": "config/industrialcivilization/factions/ambiguous_research_group.json",
@@ -5142,6 +5147,31 @@
       "file": "resources/assets/modernsplash/textures/gui/title/mojang.png",
       "sha256": "a4985a99d84feaf816a98684cdaa9b7e5b1c393754ed0aca104e04e382590120",
       "size": 54786
+    },
+    {
+      "file": "resources/industrialcivilizationcore/textures/gui/quest_bg_earth.png",
+      "sha256": "1cb80adbff7241d44b64478959930599097ae7e4c9a214ce1a99c5a7c02eec3a",
+      "size": 356406
+    },
+    {
+      "file": "resources/industrialcivilizationcore/textures/gui/quest_bg_mars.png",
+      "sha256": "da66e176005565cae811ef43b25baf26c59ca7537a902f9895a217639d067922",
+      "size": 465485
+    },
+    {
+      "file": "resources/industrialcivilizationcore/textures/gui/quest_bg_moon.png",
+      "sha256": "06c58844607f4d38340450d8bba94a8d22b430465c709d03e3aa47cf84d16278",
+      "size": 422469
+    },
+    {
+      "file": "resources/industrialcivilizationcore/textures/gui/quest_bg_orbit.png",
+      "sha256": "cf8c0b2672fc02b97ee6e5a98dde2e93ff3a80f10dca4d50084259e735d4b3b1",
+      "size": 375638
+    },
+    {
+      "file": "resources/industrialcivilizationcore/textures/gui/quest_bg_post_ai.png",
+      "sha256": "e6aca180af3520c0f61879529c413d59ce13b056c671ed648f64a3deb9618949",
+      "size": 452288
     },
     {
       "file": "resources/industrialcivilizationcore/textures/gui/quest_home.png",

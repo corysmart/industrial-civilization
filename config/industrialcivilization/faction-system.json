@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "currency": "industrialcivilizationcore:industrial_credit",
+  "world_generation": {
+    "disable_new_vanilla_villages": true,
+    "primitive_settlements": {
+      "count": 3,
+      "distance_from_spawn_blocks": [240, 520, 800]
+    },
+    "abandoned_factories": {"minimum_distance": 900, "chunk_chance": 96},
+    "militia_outposts": {"minimum_distance": 1400, "chunk_chance": 128},
+    "operational_factories": {"minimum_distance": 2200, "chunk_chance": 160},
+    "industrial_cities": {"minimum_distance": 3000, "chunk_chance": 256}
+  },
+  "reputation": {
+    "hostile_at_or_below": -20,
+    "friendly_at_or_above": 25,
+    "membership_at_or_above": 35,
+    "companion_at_or_above": 60
+  },
+  "factions": [
+    {
+      "id": "frontier_cooperative",
+      "name": "Frontier Cooperative",
+      "initial_reputation": 10,
+      "membership_rule": "Trade fairly, avoid civilian violence, and establish a secure workshop.",
+      "settlements": ["primitive villages"],
+      "products": ["food", "coal", "iron", "basic supplies"]
+    },
+    {
+      "id": "riverside_works",
+      "name": "Riverside Works",
+      "initial_reputation": 0,
+      "membership_rule": "Demonstrate industrial capacity, restore machinery, and avoid theft from guarded factories.",
+      "settlements": ["industrial cities", "guarded operational factories"],
+      "products": ["steel", "electronics", "fuel", "machine components"]
+    },
+    {
+      "id": "civil_defense_militia",
+      "name": "Civil Defense Militia",
+      "initial_reputation": 0,
+      "membership_rule": "Defeat raiders, protect civilians, and maintain non-hostile standing with settlements.",
+      "settlements": ["militia outposts", "city checkpoints"],
+      "products": ["ammunition", "armor", "field supplies"]
+    },
+    {
+      "id": "survey_detachment_7",
+      "name": "Survey Detachment 7",
+      "initial_reputation": 0,
+      "membership_rule": "Produce research archives and respect restricted scientific sites.",
+      "settlements": ["research compounds", "specialized factories"],
+      "products": ["data cartridges", "precision components", "survey equipment"]
+    },
+    {
+      "id": "ashline_raiders",
+      "name": "Ashline Raiders",
+      "initial_reputation": -100,
+      "membership_rule": "Only an openly predatory playstyle can earn an invitation; joining excludes settlement factions.",
+      "settlements": ["captured ruins", "raider checkpoints"],
+      "products": ["stolen ammunition", "salvage", "contraband"]
+    }
+  ]
+}

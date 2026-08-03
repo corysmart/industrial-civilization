@@ -19,11 +19,12 @@ The design has four pillars:
 ## Player-facing rules
 
 - F6 opens the Better Questing guide, and the pause-menu Quest Guide button opens the same UI.
-- All 115 quests use aspirational `ALWAYS` visibility. Locked future lines remain visible; secret objectives are not used.
+- All 117 quests use aspirational `ALWAYS` visibility. Locked future lines remain visible; secret objectives are not used.
 - Every quest completes automatically through a runtime advancement or non-consuming inventory evidence. There are no manual checkbox tasks.
 - Every modded quest includes the relevant Mac/no-numpad controls and operating instructions in its description.
 - Every node picture is the actual required item, first evidence item, or an explicit real machine/artifact/vehicle override. Symbolic storyboard pictures are not emitted.
 - Numbered chapters contain the critical route. Five independent side-path tabs can be pursued whenever their prerequisites or discoveries permit.
+- Pause > Factions & Settlements is the complete in-game directory for faction reputation, attitude, membership rules, settlement types, products, and NPC interaction instructions.
 
 ## Complete progression flow
 
@@ -84,6 +85,7 @@ The generator also owns story openings/transitions, contextual control blocks, e
 | Railcraft locomotive | Option+[ reverse; Option+period faster; Option+] slower; Option+; mode; Option+' whistle |
 | Waila | Command+[ display; Command+] liquid; Command+; recipe; Command+0 config; Command+' uses |
 | Pack area tools | Sneak suppresses whole-tree/area behavior for precision work |
+| Factions and NPCs | Pause > Factions & Settlements; right-click trades; sneak-right-click membership/recruitment/dismissal |
 
 Ordinary right-click interaction and machine-specific operational steps are stated beside these bindings; the quest text does not send the player to an external wiki or the Controls menu.
 
@@ -149,6 +151,14 @@ Research artifacts that carry progression knowledge must be held and right-click
 - **Better Questing + Standard Expansion:** player-facing tutorial, story, automatic tasks, and aspirational map.
 - **GroovyScript:** reloadable recipe locks, HEI filtering, firearm/analyzer recipes, and tooltips. Java owns persistent state and runtime behavior.
 
+## NPCs, factions, and settlement geography
+
+IndustrialCivilizationCore implements five persistent factions: the Frontier Cooperative, Riverside Works Consortium, Civil Defense Militia, Survey Detachment 7, and Ashline Raiders. NPC attitudes are derived from per-player reputation and membership. Legitimate factions consider crafting, industrial capacity, research, trading, raider kills, civilian safety, and guarded-property behavior; the raiders reward destructive play. Membership is therefore earned through demonstrated playstyle rather than a universal dialogue choice.
+
+All generated and surviving village merchants use IC Credits instead of emeralds. Normal right-click trades, sneak-right-click requests eligible membership, and a member at 60 reputation can spend eight credits to recruit a companion. Hostile NPCs attack, guards protect settlements, and companions follow and defend their owner. The pause-menu faction directory explains these rules and shows every known or aspirational faction entry.
+
+New worlds suppress endless vanilla village generation and place three primitive settlements close to spawn at approximately 240, 520, and 800 blocks. Abandoned factories begin beyond 900 blocks, militia outposts beyond 1,400, guarded operational specialty factories beyond 2,200, and industrial cities beyond 3,000. Operational factory markets specialize in steel, electronics, fuel, armaments, or research. Existing world chunks are never deleted, so geography validation requires a fresh test world.
+
 ## Visual design
 
 Custom content uses original IC2-adjacent pixel art: pale blue-gray casing, dark inset work areas, cyan instrumentation, and copper/orange energy accents. World faces remain 16×16; inventory/NEI sprites are authored at 64×64 from `progression/runtime-content.json`. Five 512×512 quest backgrounds represent Earth industry, orbit, lunar/quantum, Mars/matter, and post-AI civilization. Backgrounds are deliberately dark with open center space for readable nodes.
@@ -163,10 +173,10 @@ Quest/config changes can be loaded into an existing test world with `/bq_admin d
 
 ## Implemented now
 
-- 16 chapters, 5 independent side paths, 115 automatic quests, full aspirational visibility, no manual checkbox tasks.
+- 16 chapters, 5 independent side paths, 117 automatic quests, full aspirational visibility, no manual checkbox tasks.
 - Story/mission/proof/control descriptions and actual objective icons for the entire generated quest set.
 - Five era-specific quest backgrounds and IC2-styled custom block/item/GUI art.
-- Fourteen first-party blocks and twenty-two artifacts with real construction/production paths.
+- Fourteen first-party blocks, twenty-two progression artifacts, and the IC Credit currency with real construction/production paths.
 - EU-native machines, environment-aware research, Moon/Mars gates, solar multipliers/dust behavior, cargo channels, salvage route, AI synthesis, curated AE2 unlock, and concrete post-AI proofs.
 - Stone-tier axe and better whole-tree behavior, IC2 chainsaw whole-tree behavior, 3×3 drill, 9×9 diamond drill, proportional durability/EU cost, and Sneak precision override.
 - Static/runtime-content/progression/energy validation harnesses and private Git version control.
@@ -184,7 +194,7 @@ Quest/config changes can be loaded into an existing test world with `/bq_admin d
 
 - Galacticraft handles oxygen/pressure; richer habitat integrity and radiation simulation are not implemented. Unauthorized dimension entry is corrected after transfer because this Galacticraft fork offers no stable pre-transfer cancellation hook.
 - The Analyzer accepts only Martian Desh metadata 2. Earth/lunar comparative material studies and a general experiment framework remain future content.
-- Custom NPC encounter templates are data-driven; reproducible world-tested clone exports still need to be captured from a disposable world.
+- Procedural settlements, trade prices, NPC pathfinding, reputation pacing, faction combat, and companion behavior need a fresh-world measured playtest and balance pass.
 - AE2 has a curated foundation set, not a fully reconstructed balanced recipe tree for every part.
 - Matter, fusion, logistics, megastructure, colony, and civilization-scale AI have concrete machine proofs, but their physical scale, throughput, and resource balance need full-playthrough tuning.
 - Static validation cannot prove Better Questing GUI rendering, existing-world import behavior, or every third-party runtime event.

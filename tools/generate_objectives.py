@@ -84,7 +84,7 @@ ICON_OVERRIDES = {
     "wireless_control": "wrcbe:wireless_logic",
     "automation_throughput": "minecraft:hopper",
     "freight_infrastructure": "railcraft:locomotive",
-    "faction_contacts": "customnpcs:npcwand",
+    "faction_contacts": "industrialcivilizationcore:industrial_credit",
     "production_queue": "industrialcivilizationcore:programmable_assembler",
     "multi_step_manufacturing": "industrialcivilizationcore:programmable_assembler",
     "programmable_manufacturing": "industrialcivilizationcore:control_processor",
@@ -222,7 +222,8 @@ def controls_for(ms):
     if any(word in haystack for word in ("railcraft", "freight", "locomotive", "rail logistics")):
         controls.append("Railcraft locomotive: Option+[ reverse, Option+period faster, Option+] slower, Option+; mode, and Option+' whistle. Right-click the locomotive for its configuration screen.")
     if any(word in haystack for word in ("faction", "criminal", "settlement", "npc")):
-        controls.append("Custom NPCs: right-click an NPC to talk or interact; F8 opens the NPC quest log when an encounter uses it.")
+        controls.append("Factions: Pause > Factions & Settlements shows reputation, attitude, membership rules, known settlement types, and trades. Normal right-click opens IC Credit trades; sneak-right-click requests membership. Trusted members at 60 reputation can recruit a companion by holding 8 IC Credits while sneak-right-clicking.")
+        controls.append("Custom NPCs: F8 opens the separate NPC quest log when an authored encounter uses it.")
     if any(word in haystack for word in ("ic2", "electric tool", "drill", "chainsaw", "nanosuit", "quantumsuit", "quantum suit")):
         controls.append("IC2 equipment: F10 changes supported modes. Backslash is the armor modifier, Option+H toggles boost, and Option+O expands the armor HUD. Sneak while mining/chopping to suppress pack-added area or whole-tree behavior.")
     if ms["id"] == "electric_tools":

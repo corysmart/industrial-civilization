@@ -17,25 +17,30 @@ Do not use a valued world for the first database import. No runtime claims are m
 - [ ] 11. Electrification chapter completes.
 - [ ] 12. Automation chapter opens.
 - [ ] 13. The Factions and Salvage path can start independently of the numbered chapters.
-- [ ] 14. Resolving the criminal network can reveal and restore the abandoned factory.
-- [ ] 15. Industrial Capacity Secured accepts either built Heavy Industry or the restored abandoned factory.
-- [ ] 16. Programmable Capacity Secured accepts either built Programmable Manufacturing or the recovered factory control system.
-- [ ] 17. Orbital Age follows Nuclear Age.
-- [ ] 18. Moon remains locked before Orbital Research.
-- [ ] 19. Moon unlocks after the Orbital Research Archive.
-- [ ] 20. Lunar Research follows Lunar Settlement.
-- [ ] 21. Quantum Technology remains locked before Lunar Research.
-- [ ] 22. Quantum Technology unlocks after the Lunar Engineering Archive.
-- [ ] 23. Mars remains locked before Quantum Technology.
-- [ ] 24. Mars remains locked without Mars Mission Authorization.
-- [ ] 25. Mars unlocks after Quantum Technology and authorization.
-- [ ] 26. Existing Galacticraft Desh metadata 2 Mars Sample is recognized.
-- [ ] 27. Existing Molecular Analyzer is recognized.
-- [ ] 28. Martian Autonomy follows Mars Settlement.
-- [ ] 29. AI Age remains locked before Martian Autonomy and Lite Matter Engineering.
-- [ ] 30. The real AI Core is synthesized from Martian Autonomy, Lite Matter, and programmable manufacturing outputs and acts as a durable AE2 recipe catalyst.
-- [ ] 31. AI Age is presented as the beginning of the endgame.
-- [ ] 32. Post-AI branches are visible but do not block AI entry.
-- [ ] 33. No circular or impossible dependencies are visible.
+- [ ] 14. Pause > Factions & Settlements displays all five factions, reputation, attitude, membership eligibility, settlement types, and products.
+- [ ] 15. Every village and settlement merchant accepts IC Credits rather than emeralds.
+- [ ] 16. Sneak-right-click joins an eligible faction, while reputation 60 plus eight IC Credits can recruit a friendly companion.
+- [ ] 17. Hostile faction members attack, guards defend their settlement, and companions follow and defend their owner.
+- [ ] 18. A fresh world has only three primitive settlements near spawn and increasingly industrial structures in the documented distance bands.
+- [ ] 19. Resolving the criminal network can reveal and restore the abandoned factory.
+- [ ] 20. Industrial Capacity Secured accepts either built Heavy Industry or the restored abandoned factory.
+- [ ] 21. Programmable Capacity Secured accepts either built Programmable Manufacturing or the recovered factory control system.
+- [ ] 22. Orbital Age follows Nuclear Age.
+- [ ] 23. Moon remains locked before Orbital Research.
+- [ ] 24. Moon unlocks after the Orbital Research Archive.
+- [ ] 25. Lunar Research follows Lunar Settlement.
+- [ ] 26. Quantum Technology remains locked before Lunar Research.
+- [ ] 27. Quantum Technology unlocks after the Lunar Engineering Archive.
+- [ ] 28. Mars remains locked before Quantum Technology.
+- [ ] 29. Mars remains locked without Mars Mission Authorization.
+- [ ] 30. Mars unlocks after Quantum Technology and authorization.
+- [ ] 31. Existing Galacticraft Desh metadata 2 Mars Sample is recognized.
+- [ ] 32. Existing Molecular Analyzer is recognized.
+- [ ] 33. Martian Autonomy follows Mars Settlement.
+- [ ] 34. AI Age remains locked before Martian Autonomy and Lite Matter Engineering.
+- [ ] 35. The real AI Core is synthesized from Martian Autonomy, Lite Matter, and programmable manufacturing outputs and acts as a durable AE2 recipe catalyst.
+- [ ] 36. AI Age is presented as the beginning of the endgame.
+- [ ] 37. Post-AI branches are visible but do not block AI entry.
+- [ ] 38. No circular or impossible dependencies are visible.
 
 Check `logs/latest.log`, `logs/groovy.log`, and `crafttweaker.log` after the run. Record quest/task IDs and screenshots for any mismatch.

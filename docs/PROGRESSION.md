@@ -13,6 +13,6 @@ The intended optimized 3–6 hour vertical slice is:
 9. Lite Matter Engineering — build/power the Molecular Analyzer and record Desh composition.
 10. AI Age — locked teaser only.
 
-This original vertical-slice outline has been expanded into the 115-quest Phase 2 graph. Every objective now completes from automatic runtime advancements or non-consuming item evidence; no manual checkbox objectives remain. Factory quality—not arbitrary component inflation—is the pacing lever.
+This original vertical-slice outline has been expanded into the 117-quest Phase 2 graph. Every objective now completes from automatic runtime advancements or non-consuming item evidence; no manual checkbox objectives remain. Factory quality—not arbitrary component inflation—is the pacing lever.
 
 The intended passive chest ceiling is Iron Chest. Gold, Diamond, Crystal, and Obsidian Chest recipes are removed and hidden; powered machines, warehouses, pipes, and logistics handle larger storage.

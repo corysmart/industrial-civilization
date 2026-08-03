@@ -107,6 +107,41 @@ check("AbandonedFactoryWorldGenerator" in source and "IndustrialCriminal" in sou
 check("denyDestination" in source and "orbital_research_archive" in source
       and "mars_mission_authorization" in source, "Moon and Mars gates are implemented")
 
+faction_source = (JAVA / "FactionSystem.java").read_text()
+world_source = (JAVA / "CivilizationWorldGenerator.java").read_text()
+network_source = (JAVA / "FactionNetwork.java").read_text()
+directory_source = (JAVA / "GuiFactionDirectory.java").read_text()
+config = json.loads((ROOT / "config/industrialcivilization/faction-system.json").read_text())
+check("industrial_credit" in item_ids and "INDUSTRIAL_CREDIT" in core_source,
+      "IC Credit is a registered first-party item")
+check("new MerchantRecipe(new ItemStack(IndustrialCivilizationCore.INDUSTRIAL_CREDIT" in faction_source
+      and "Items.EMERALD" not in faction_source,
+      "all faction merchant offers use IC Credits rather than emeralds")
+for faction in ("frontier_cooperative", "riverside_works", "civil_defense_militia",
+                "survey_detachment_7", "ashline_raiders"):
+    check(faction in faction_source and any(entry["id"] == faction for entry in config["factions"]),
+          f"faction is implemented and configured: {faction}")
+check("MEMBERSHIP_REPUTATION = 35" in faction_source
+      and "COMPANION_REPUTATION = 60" in faction_source
+      and "faction_membership" in faction_source,
+      "membership and companion reputation gates persist per player")
+check("setAttackTarget(player)" in faction_source and "COMPANION_OWNER" in faction_source
+      and "raiders_defeated" in faction_source,
+      "hostility, companionship, and action-based faction response are implemented")
+check("PRIMITIVE_RADII = {240, 520, 800}" in world_source
+      and "distance >= 900" in world_source and "distance >= 1400" in world_source
+      and "distance >= 2200" in world_source and "distance >= 3000" in world_source,
+      "spawn-relative settlement and industrial distance bands are implemented")
+check("buildPrimitiveSettlement" in world_source and "buildMilitiaOutpost" in world_source
+      and "buildOperationalFactory" in world_source and "buildIndustrialCity" in world_source,
+      "primitive villages, outposts, specialty factories, and cities are implemented")
+check("EventType.VILLAGE" in (JAVA / "VillageSuppressionHandler.java").read_text(),
+      "new vanilla village generation is suppressed")
+check("sendSnapshot" in network_source and "membership" in network_source,
+      "faction directory synchronizes server-owned player state")
+check("gui.industrialcivilization.factions" in directory_source and "membershipRule" in directory_source,
+      "pause-menu faction directory explains relationships and membership")
+
 tool_source = (JAVA / "ToolAreaHandler.java").read_text()
 check("TREE_LIMIT = 96" in tool_source and "isLeaves" in tool_source,
       "tree felling is leaf-gated and safety-capped")

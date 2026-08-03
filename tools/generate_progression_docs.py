@@ -241,6 +241,11 @@ checklist = [
 "The Robotic Manufacturing Cell enforces Moon-only Quantum-component synthesis.",
 "Electrification chapter completes.", "Automation chapter opens.",
 "The Factions and Salvage path can start independently of the numbered chapters.",
+"Pause > Factions & Settlements displays all five factions, reputation, attitude, membership eligibility, settlement types, and products.",
+"Every village and settlement merchant accepts IC Credits rather than emeralds.",
+"Sneak-right-click joins an eligible faction, while reputation 60 plus eight IC Credits can recruit a friendly companion.",
+"Hostile faction members attack, guards defend their settlement, and companions follow and defend their owner.",
+"A fresh world has only three primitive settlements near spawn and increasingly industrial structures in the documented distance bands.",
 "Resolving the criminal network can reveal and restore the abandoned factory.",
 "Industrial Capacity Secured accepts either built Heavy Industry or the restored abandoned factory.",
 "Programmable Capacity Secured accepts either built Programmable Manufacturing or the recovered factory control system.",
@@ -266,6 +271,9 @@ write("KNOWN_LIMITATIONS.md", "Known Limitations", """
 - AI-authorized AE2 covers a curated foundation set; original AE2 recipes stay removed. A complete balanced recipe reconstruction for every AE2 part remains future balance work.
 - Matter, fusion, logistics, megastructure, colony, and civilization-scale AI machines implement concrete capstone proofs; their broad physical build-scale and balance still require full playthrough tuning.
 - Quest updates may require importing Better Questing defaults in existing worlds. Back up world quest data first.
+- Distance-based primitive settlements, abandoned factories, militia outposts, operational factories, and cities generate only in new chunks. Use a fresh world to verify the intended geography; existing village chunks are not deleted.
+- Merchant contact is credited when a player opens a merchant while holding IC Credits because Forge 1.12.2 exposes no reliable universal post-transaction event across inherited merchant implementations. The offers themselves still consume real IC Credits.
+- Generated settlements are compact, deterministic gameplay prototypes. Building scale, structure variety, spawn frequency, pathfinding, and economy prices require measured playtesting.
 """)
 
 print(f"Generated 25 progression documents from {len(chapters)} chapters, {len(graph['optional_branches'])} side paths, and {len(milestones)} milestones")

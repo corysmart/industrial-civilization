@@ -42,6 +42,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.client.settings.KeyModifier;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.BlockEvent;
 import org.apache.logging.log4j.Logger;
 
@@ -84,6 +85,7 @@ public final class IndustrialCivilizationCore {
         .setUnlocalizedName(MODID + ".material_pattern_record")
         .setCreativeTab(CREATIVE_TAB)
         .setMaxStackSize(1);
+    public static final ItemIndustrialCredit INDUSTRIAL_CREDIT = new ItemIndustrialCredit();
     public static final BlockIndustrialMachine RESEARCH_STATION = machine(IndustrialMachineKind.RESEARCH_STATION);
     public static final BlockIndustrialMachine ORBITAL_EXPERIMENT_MODULE = machine(IndustrialMachineKind.EXPERIMENT_MODULE);
     public static final BlockIndustrialMachine ELECTRIC_FABRICATOR = machine(IndustrialMachineKind.ELECTRIC_FABRICATOR);
@@ -165,7 +167,9 @@ public final class IndustrialCivilizationCore {
             new ResourceLocation(MODID, "factory_control_terminal"));
         GameRegistry.registerTileEntity(TileEnvironmentalSolarArray.class,
             new ResourceLocation(MODID, "environmental_solar_array"));
-        GameRegistry.registerWorldGenerator(new AbandonedFactoryWorldGenerator(), 50);
+        GameRegistry.registerWorldGenerator(new CivilizationWorldGenerator(), 50);
+        MinecraftForge.TERRAIN_GEN_BUS.register(new VillageSuppressionHandler());
+        FactionNetwork.init();
     }
 
     @EventHandler
@@ -193,6 +197,7 @@ public final class IndustrialCivilizationCore {
         @SubscribeEvent
         public static void registerItems(RegistryEvent.Register<Item> event) {
             event.getRegistry().register(MATERIAL_PATTERN_RECORD);
+            event.getRegistry().register(INDUSTRIAL_CREDIT);
             event.getRegistry().registerAll(ARTIFACTS);
             event.getRegistry().register(new ItemBlock(MOLECULAR_ANALYZER)
                 .setCreativeTab(CREATIVE_TAB)
@@ -293,6 +298,7 @@ public final class IndustrialCivilizationCore {
                     && ProgressionState.has(event.player, "lite_matter_complete")) {
                 ProgressionState.record(event.player, "ai_age");
             }
+            FactionSystem.updatePlaystyleReputation(event.player);
             ProgressionState.increment(event.player, "active_ticks", 20);
         }
 
@@ -416,6 +422,9 @@ public final class IndustrialCivilizationCore {
             ModelLoader.setCustomModelResourceLocation(
                 MATERIAL_PATTERN_RECORD, 0,
                 new ModelResourceLocation(MATERIAL_PATTERN_RECORD.getRegistryName(), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(
+                INDUSTRIAL_CREDIT, 0,
+                new ModelResourceLocation(INDUSTRIAL_CREDIT.getRegistryName(), "inventory"));
             for (BlockIndustrialMachine machine : INDUSTRIAL_MACHINES) {
                 ModelLoader.setCustomModelResourceLocation(
                     Item.getItemFromBlock(machine), 0,
@@ -446,11 +455,22 @@ public final class IndustrialCivilizationCore {
                 .findFirst()
                 .ifPresent(button -> button.displayString =
                     I18n.format("gui.industrialcivilization.quest_guide"));
+            event.getButtonList().stream()
+                .filter(button -> button.id == 6)
+                .findFirst()
+                .ifPresent(button -> button.displayString =
+                    I18n.format("gui.industrialcivilization.factions"));
         }
 
         @SubscribeEvent(priority = EventPriority.HIGHEST)
         public static void openQuestGuideFromPauseMenu(GuiScreenEvent.ActionPerformedEvent.Pre event) {
-            if (!(event.getGui() instanceof GuiIngameMenu) || event.getButton().id != 5) return;
+            if (!(event.getGui() instanceof GuiIngameMenu)) return;
+            if (event.getButton().id == 6) {
+                event.setCanceled(true);
+                Minecraft.getMinecraft().displayGuiScreen(new GuiFactionDirectory(event.getGui()));
+                return;
+            }
+            if (event.getButton().id != 5) return;
             event.setCanceled(true);
             Minecraft.getMinecraft().displayGuiScreen(ThemeRegistry.INSTANCE.getGui(
                 PresetGUIs.HOME, new GArgsNone(event.getGui())));

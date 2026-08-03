@@ -23,7 +23,7 @@ public final class AbandonedFactoryWorldGenerator implements IWorldGenerator {
         buildShell(world, origin);
     }
 
-    private static void buildShell(World world, BlockPos origin) {
+    public static void buildShell(World world, BlockPos origin) {
         for (int x = 0; x < 9; x++) {
             for (int z = 0; z < 9; z++) {
                 world.setBlockState(origin.add(x, 0, z), Blocks.STONEBRICK.getDefaultState(), 2);

@@ -13,6 +13,10 @@ The in-game pause menu's former **Advancements** button is also replaced with
 **Quest Guide** and opens the same Better Questing home screen. Vanilla
 advancements remain available internally as invisible completion signals for
 automatic quest objectives, but they are not a player-facing progression UI.
+The former **Statistics** button is **Factions & Settlements** and opens the
+read-only faction directory. It displays reputation, attitude, membership,
+settlements, products, and the in-world interaction controls without another
+keybind.
 | IC2 Classic mode switch | F10 |
 | IC2 Classic armor modifier (`ALT Key`) | Backslash |
 | IC2 Classic boost | Option+H |

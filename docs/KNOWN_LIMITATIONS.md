@@ -10,3 +10,6 @@
 - AI-authorized AE2 covers a curated foundation set; original AE2 recipes stay removed. A complete balanced recipe reconstruction for every AE2 part remains future balance work.
 - Matter, fusion, logistics, megastructure, colony, and civilization-scale AI machines implement concrete capstone proofs; their broad physical build-scale and balance still require full playthrough tuning.
 - Quest updates may require importing Better Questing defaults in existing worlds. Back up world quest data first.
+- Distance-based primitive settlements, abandoned factories, militia outposts, operational factories, and cities generate only in new chunks. Use a fresh world to verify the intended geography; existing village chunks are not deleted.
+- Merchant contact is credited when a player opens a merchant while holding IC Credits because Forge 1.12.2 exposes no reliable universal post-transaction event across inherited merchant implementations. The offers themselves still consume real IC Credits.
+- Generated settlements are compact, deterministic gameplay prototypes. Building scale, structure variety, spawn frequency, pathfinding, and economy prices require measured playtesting.

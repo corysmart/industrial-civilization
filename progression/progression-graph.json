@@ -84,6 +84,8 @@
     "factions_and_salvage": [
       "industrial_armament",
       "faction_contacts",
+      "faction_membership",
+      "faction_companion",
       "mffs_installation",
       "nuclear_containment",
       "underworld_lead",

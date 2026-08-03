@@ -214,6 +214,11 @@ with zipfile.ZipFile(core_live) as zf:
         "assets/industrialcivilizationcore/blockstates/molecular_analyzer.json",
         "assets/industrialcivilizationcore/textures/gui/industrial_machine.png",
         "assets/industrialcivilizationcore/models/item/artificial_industrial_intelligence_core.json",
+        "assets/industrialcivilizationcore/models/item/industrial_credit.json",
+        "assets/industrialcivilizationcore/textures/items/industrial_credit.png",
+        "assets/industrialcivilizationcore/advancements/faction_contacts.json",
+        "assets/industrialcivilizationcore/advancements/faction_membership.json",
+        "assets/industrialcivilizationcore/advancements/faction_companion.json",
     ):
         ok(expected in names, f"custom JAR resource {expected}")
     info = json.loads(zf.read("mcmod.info").decode())
@@ -236,7 +241,7 @@ for path in sorted((ROOT / "config").rglob("*.json")) + sorted((ROOT / "developm
 
 quests = json.loads((ROOT / "config/betterquesting/DefaultQuests.json").read_text())
 ok(quests.get("format:8") == "2.0.0", "Better Questing schema version")
-ok(len(quests.get("questDatabase:9", {})) == 115, "115 Phase 2 capability milestones")
+ok(len(quests.get("questDatabase:9", {})) == 117, "117 Phase 2 capability milestones")
 ok(len(quests.get("questLines:9", {})) == 21, "16 chapter and 5 independent side-path tabs")
 names = [q["properties:10"]["betterquesting:10"]["name:8"] for q in quests["questDatabase:9"].values()]
 ordered_gates = ["Orbital Research Archive", "Authorized Lunar Landing", "Lunar Engineering Archive",
@@ -278,6 +283,9 @@ ok("QUEST_HOME_IMAGE" in core_source and "QUEST_HOME_OFFSET_X = -128" in core_so
 ok("GuiIngameMenu" in core_source and "button.id == 5" in core_source
    and "PresetGUIs.HOME" in core_source and "gui.industrialcivilization.quest_guide" in core_source,
    "pause-menu Advancements button opens the Better Questing guide")
+ok("button.id == 6" in core_source and "GuiFactionDirectory" in core_source
+   and "gui.industrialcivilization.factions" in core_source,
+   "pause-menu Statistics button opens the faction directory")
 ok("new CreativeTabs(MODID)" in core_source
    and core_source.count(".setCreativeTab(CREATIVE_TAB)") >= 7,
    "all custom blocks and items are assigned to the Industrial Civilization creative tab")

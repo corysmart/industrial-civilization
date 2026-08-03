@@ -111,6 +111,7 @@
       "critical": false,
       "optional": true,
       "capability": "Human Factions",
+      "runtime_advancement": true,
       "final_validation": [
         "Trade with a friendly settlement, survive a hostile encounter, and approach an ambiguous armed faction."
       ],

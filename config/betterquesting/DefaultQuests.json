@@ -1374,7 +1374,7 @@
           "visibility:8": "ALWAYS",
           "simultaneous:1": 0,
           "icon:10": {
-            "id:8": "customnpcs:npcwand",
+            "id:8": "industrialcivilizationcore:industrial_credit",
             "Count:3": 1,
             "Damage:2": 0,
             "OreDict:8": ""
@@ -1386,26 +1386,14 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Human Factions",
-          "desc:8": "STORY\nThe heavy industry program advances one dependable system at a time. This step turns human factions from an idea into infrastructure.\n\nMISSION\nHuman Factions\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Trade with a friendly settlement, survive a hostile encounter, and approach an ambiguous armed faction.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Custom NPCs: right-click an NPC to talk or interact; F8 opens the NPC quest log when an encounter uses it.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "STORY\nThe heavy industry program advances one dependable system at a time. This step turns human factions from an idea into infrastructure.\n\nMISSION\nHuman Factions\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Trade with a friendly settlement, survive a hostile encounter, and approach an ambiguous armed faction.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Industrial Civilization machines: right-click to open the IC2-styled EU/inventory screen. Put recipe inputs in the three left slots and take output from the right slot. Matching inputs run automatically; ComputerCraft is required only for explicit recipe selection, queues, telemetry, or cargo channels.\n- Factions: Pause > Factions & Settlements shows reputation, attitude, membership rules, known settlement types, and trades. Normal right-click opens IC Credit trades; sneak-right-click requests membership. Trusted members at 60 reputation can recruit a companion by holding 8 IC Credits while sneak-right-clicking.\n- Custom NPCs: F8 opens the separate NPC quest log when an authored encounter uses it.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
         "0:10": {
-          "partialMatch:1": 1,
-          "ignoreNBT:1": 1,
-          "consume:1": 0,
-          "groupDetect:1": 1,
-          "autoConsume:1": 0,
-          "requiredItems:9": {
-            "0:10": {
-              "id:8": "minecraft:skull",
-              "Count:3": 1,
-              "Damage:2": 0,
-              "OreDict:8": ""
-            }
-          },
+          "advancement_id:8": "industrialcivilizationcore:faction_contacts",
           "index:3": 0,
-          "taskID:8": "bq_standard:retrieval"
+          "taskID:8": "bq_standard:advancement"
         }
       },
       "rewards:9": {}
@@ -5798,7 +5786,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Rumors of the Industrial Underworld",
-          "desc:8": "STORY\nNot every industrial route begins at a crafting table. Settlements, criminal networks, and abandoned factories preserve fragments of the old world; diplomacy or force can recover them, but inherited machinery carries inherited risks.\n\nMISSION\nDiscover a settlement rumor, map fragment, radio message, or NPC lead pointing toward organized industrial crime.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Obtain a credible lead from exploration, trade, radio traffic, or a faction encounter.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Industrial Civilization machines: right-click to open the IC2-styled EU/inventory screen. Put recipe inputs in the three left slots and take output from the right slot. Matching inputs run automatically; ComputerCraft is required only for explicit recipe selection, queues, telemetry, or cargo channels.\n- Research artifacts: hold the finished record and right-click once to register its knowledge with the progression system.\n- Custom NPCs: right-click an NPC to talk or interact; F8 opens the NPC quest log when an encounter uses it.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "STORY\nNot every industrial route begins at a crafting table. Settlements, criminal networks, and abandoned factories preserve fragments of the old world; diplomacy or force can recover them, but inherited machinery carries inherited risks.\n\nMISSION\nDiscover a settlement rumor, map fragment, radio message, or NPC lead pointing toward organized industrial crime.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Obtain a credible lead from exploration, trade, radio traffic, or a faction encounter.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Industrial Civilization machines: right-click to open the IC2-styled EU/inventory screen. Put recipe inputs in the three left slots and take output from the right slot. Matching inputs run automatically; ComputerCraft is required only for explicit recipe selection, queues, telemetry, or cargo channels.\n- Research artifacts: hold the finished record and right-click once to register its knowledge with the progression system.\n- Factions: Pause > Factions & Settlements shows reputation, attitude, membership rules, known settlement types, and trades. Normal right-click opens IC Credit trades; sneak-right-click requests membership. Trusted members at 60 reputation can recruit a companion by holding 8 IC Credits while sneak-right-clicking.\n- Custom NPCs: F8 opens the separate NPC quest log when an authored encounter uses it.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
@@ -5850,7 +5838,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Break the Criminal Industrial Network",
-          "desc:8": "STORY\nThe side path \u2014 factions and salvage program advances one dependable system at a time. This step turns break the criminal industrial network from an idea into infrastructure.\n\nMISSION\nDefeat, negotiate with, expose, or dismantle the criminal NPC leadership controlling an abandoned industrial site.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Resolve the criminal leadership through combat, negotiation, evidence, or faction support.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Industrial Civilization machines: right-click to open the IC2-styled EU/inventory screen. Put recipe inputs in the three left slots and take output from the right slot. Matching inputs run automatically; ComputerCraft is required only for explicit recipe selection, queues, telemetry, or cargo channels.\n- Research artifacts: hold the finished record and right-click once to register its knowledge with the progression system.\n- Custom NPCs: right-click an NPC to talk or interact; F8 opens the NPC quest log when an encounter uses it.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "STORY\nThe side path \u2014 factions and salvage program advances one dependable system at a time. This step turns break the criminal industrial network from an idea into infrastructure.\n\nMISSION\nDefeat, negotiate with, expose, or dismantle the criminal NPC leadership controlling an abandoned industrial site.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Resolve the criminal leadership through combat, negotiation, evidence, or faction support.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Industrial Civilization machines: right-click to open the IC2-styled EU/inventory screen. Put recipe inputs in the three left slots and take output from the right slot. Matching inputs run automatically; ComputerCraft is required only for explicit recipe selection, queues, telemetry, or cargo channels.\n- Research artifacts: hold the finished record and right-click once to register its knowledge with the progression system.\n- Factions: Pause > Factions & Settlements shows reputation, attitude, membership rules, known settlement types, and trades. Normal right-click opens IC Credit trades; sneak-right-click requests membership. Trusted members at 60 reputation can recruit a companion by holding 8 IC Credits while sneak-right-clicking.\n- Custom NPCs: F8 opens the separate NPC quest log when an authored encounter uses it.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
@@ -5901,7 +5889,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Discover an Abandoned Factory",
-          "desc:8": "STORY\nThe side path \u2014 factions and salvage program advances one dependable system at a time. This step turns discover an abandoned factory from an idea into infrastructure.\n\nMISSION\nLocate and secure a procedurally placed or authored abandoned factory instead of constructing every industrial line yourself.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Secure the site, survey intact machines, and verify that the factory is not an unlimited free-resource cache.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Industrial Civilization machines: right-click to open the IC2-styled EU/inventory screen. Put recipe inputs in the three left slots and take output from the right slot. Matching inputs run automatically; ComputerCraft is required only for explicit recipe selection, queues, telemetry, or cargo channels.\n- Research artifacts: hold the finished record and right-click once to register its knowledge with the progression system.\n- Custom NPCs: right-click an NPC to talk or interact; F8 opens the NPC quest log when an encounter uses it.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "STORY\nThe side path \u2014 factions and salvage program advances one dependable system at a time. This step turns discover an abandoned factory from an idea into infrastructure.\n\nMISSION\nLocate and secure a procedurally placed or authored abandoned factory instead of constructing every industrial line yourself.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Secure the site, survey intact machines, and verify that the factory is not an unlimited free-resource cache.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Industrial Civilization machines: right-click to open the IC2-styled EU/inventory screen. Put recipe inputs in the three left slots and take output from the right slot. Matching inputs run automatically; ComputerCraft is required only for explicit recipe selection, queues, telemetry, or cargo channels.\n- Research artifacts: hold the finished record and right-click once to register its knowledge with the progression system.\n- Factions: Pause > Factions & Settlements shows reputation, attitude, membership rules, known settlement types, and trades. Normal right-click opens IC Credit trades; sneak-right-click requests membership. Trusted members at 60 reputation can recruit a companion by holding 8 IC Credits while sneak-right-clicking.\n- Custom NPCs: F8 opens the separate NPC quest log when an authored encounter uses it.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
@@ -6003,7 +5991,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Recover the Factory Control System",
-          "desc:8": "STORY\nThe side path \u2014 factions and salvage program reaches its decisive proof. The recovered infrastructure offers alternate access to industrial capacity, but it cannot replace the scientific gates ahead.\n\nMISSION\nAudit, repair, and safely operate the abandoned factory's programmable controller and production queue.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Bring the recovered controller online.\n- Inspect its program rather than trusting unknown automation blindly.\n- Queue and complete one controlled production order.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Industrial Civilization machines: right-click to open the IC2-styled EU/inventory screen. Put recipe inputs in the three left slots and take output from the right slot. Matching inputs run automatically; ComputerCraft is required only for explicit recipe selection, queues, telemetry, or cargo channels.\n- ComputerCraft: right-click a computer to open it; type help for built-in help; hold Control+T to terminate a running program. Use peripheral.getNames() and peripheral.wrap(side) to find attached machines.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "STORY\nThe side path \u2014 factions and salvage program advances one dependable system at a time. This step turns recover the factory control system from an idea into infrastructure.\n\nMISSION\nAudit, repair, and safely operate the abandoned factory's programmable controller and production queue.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Bring the recovered controller online.\n- Inspect its program rather than trusting unknown automation blindly.\n- Queue and complete one controlled production order.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Industrial Civilization machines: right-click to open the IC2-styled EU/inventory screen. Put recipe inputs in the three left slots and take output from the right slot. Matching inputs run automatically; ComputerCraft is required only for explicit recipe selection, queues, telemetry, or cargo channels.\n- ComputerCraft: right-click a computer to open it; type help for built-in help; hold Control+T to terminate a running program. Use peripheral.getNames() and peripheral.wrap(side) to find attached machines.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
@@ -6023,6 +6011,84 @@
           },
           "index:3": 0,
           "taskID:8": "bq_standard:retrieval"
+        }
+      },
+      "rewards:9": {}
+    },
+    "115:10": {
+      "questID:3": 115,
+      "preRequisites:11": [
+        24
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "industrialcivilizationcore:industrial_credit",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Join an Industrial Faction",
+          "desc:8": "STORY\nThe side path \u2014 factions and salvage program advances one dependable system at a time. This step turns join an industrial faction from an idea into infrastructure.\n\nMISSION\nEarn membership through a playstyle that matches one faction's values rather than paying a universal entrance fee.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Use the pause-menu directory to understand reputation and eligibility.\n- Build reputation through trade, defense, industry, research, or predatory behavior.\n- Sneak-right-click a faction member after becoming eligible to join.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Industrial Civilization machines: right-click to open the IC2-styled EU/inventory screen. Put recipe inputs in the three left slots and take output from the right slot. Matching inputs run automatically; ComputerCraft is required only for explicit recipe selection, queues, telemetry, or cargo channels.\n- Factions: Pause > Factions & Settlements shows reputation, attitude, membership rules, known settlement types, and trades. Normal right-click opens IC Credit trades; sneak-right-click requests membership. Trusted members at 60 reputation can recruit a companion by holding 8 IC Credits while sneak-right-clicking.\n- Custom NPCs: F8 opens the separate NPC quest log when an authored encounter uses it.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "advancement_id:8": "industrialcivilizationcore:faction_membership",
+          "index:3": 0,
+          "taskID:8": "bq_standard:advancement"
+        }
+      },
+      "rewards:9": {}
+    },
+    "116:10": {
+      "questID:3": 116,
+      "preRequisites:11": [
+        115
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "industrialcivilizationcore:industrial_credit",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Trusted Faction Companion",
+          "desc:8": "STORY\nThe side path \u2014 factions and salvage program reaches its decisive proof. The recovered infrastructure offers alternate access to industrial capacity, but it cannot replace the scientific gates ahead.\n\nMISSION\nRecruit a trusted faction member who follows and defends you without converting every neutral NPC into a disposable follower.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Reach 60 reputation with your joined faction.\n- Hold at least 8 IC Credits and sneak-right-click a faction member.\n- Verify that the companion follows, defends, persists through saving, and can be dismissed with another sneak-right-click.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Industrial Civilization machines: right-click to open the IC2-styled EU/inventory screen. Put recipe inputs in the three left slots and take output from the right slot. Matching inputs run automatically; ComputerCraft is required only for explicit recipe selection, queues, telemetry, or cargo channels.\n- Factions: Pause > Factions & Settlements shows reputation, attitude, membership rules, known settlement types, and trades. Normal right-click opens IC Credit trades; sneak-right-click requests membership. Trusted members at 60 reputation can recruit a companion by holding 8 IC Credits while sneak-right-clicking.\n- Custom NPCs: F8 opens the separate NPC quest log when an authored encounter uses it.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "advancement_id:8": "industrialcivilizationcore:faction_companion",
+          "index:3": 0,
+          "taskID:8": "bq_standard:advancement"
         }
       },
       "rewards:9": {}
@@ -6948,51 +7014,65 @@
           "id:3": 24,
           "sizeY:3": 24
         },
-        "25:10": {
+        "115:10": {
           "sizeX:3": 24,
           "x:3": 112,
+          "y:3": 0,
+          "id:3": 115,
+          "sizeY:3": 24
+        },
+        "116:10": {
+          "sizeX:3": 24,
+          "x:3": 168,
+          "y:3": 0,
+          "id:3": 116,
+          "sizeY:3": 24
+        },
+        "25:10": {
+          "sizeX:3": 24,
+          "x:3": 224,
           "y:3": 0,
           "id:3": 25,
           "sizeY:3": 24
         },
         "40:10": {
           "sizeX:3": 24,
-          "x:3": 168,
+          "x:3": 280,
           "y:3": 0,
           "id:3": 40,
           "sizeY:3": 24
         },
         "110:10": {
           "sizeX:3": 24,
-          "x:3": 224,
-          "y:3": 0,
+          "x:3": 0,
+          "y:3": 64,
           "id:3": 110,
           "sizeY:3": 24
         },
         "111:10": {
           "sizeX:3": 24,
-          "x:3": 280,
-          "y:3": 0,
+          "x:3": 56,
+          "y:3": 64,
           "id:3": 111,
           "sizeY:3": 24
         },
         "112:10": {
           "sizeX:3": 24,
-          "x:3": 0,
+          "x:3": 112,
           "y:3": 64,
           "id:3": 112,
           "sizeY:3": 24
         },
         "113:10": {
           "sizeX:3": 24,
-          "x:3": 56,
+          "x:3": 168,
           "y:3": 64,
           "id:3": 113,
           "sizeY:3": 24
         },
         "114:10": {
           "sizeX:3": 24,
-          "x:3": 112,
+          "x:3": 224,
           "y:3": 64,
           "id:3": 114,
           "sizeY:3": 24

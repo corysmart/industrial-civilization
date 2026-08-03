@@ -17,6 +17,7 @@ public final class TileFactoryControlTerminal extends TileEntity {
 
     public void interact(EntityPlayer player) {
         if (stage == 0) {
+            FactionSystem.discoverFaction(player, "ashline_raiders");
             spawnCriminalNetwork();
             give(player, IndustrialCivilizationCore.UNDERWORLD_DOSSIER);
             ProgressionState.record(player, "underworld_lead");
@@ -80,6 +81,7 @@ public final class TileFactoryControlTerminal extends TileEntity {
             criminal.setCustomNameTag(index == 0 ? "Criminal Factory Overseer" : "Criminal Industrial Enforcer");
             criminal.setAlwaysRenderNameTag(true);
             criminal.getEntityData().setBoolean("IndustrialCriminal", true);
+            criminal.getEntityData().setString("IndustrialFaction", "ashline_raiders");
             criminal.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
             world.spawnEntity(criminal);
         }

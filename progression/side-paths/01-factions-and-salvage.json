@@ -93,6 +93,40 @@
       ],
       "automation_paths": [],
       "required_item": "industrialcivilizationcore:recovered_factory_control_system"
+    },
+    {
+      "id": "faction_membership",
+      "title": "Join an Industrial Faction",
+      "category": "mastery",
+      "icon": "industrialcivilizationcore:industrial_credit",
+      "prerequisites": ["faction_contacts"],
+      "critical": false,
+      "optional": true,
+      "capability": "Earn membership through a playstyle that matches one faction's values rather than paying a universal entrance fee.",
+      "final_validation": [
+        "Use the pause-menu directory to understand reputation and eligibility.",
+        "Build reputation through trade, defense, industry, research, or predatory behavior.",
+        "Sneak-right-click a faction member after becoming eligible to join."
+      ],
+      "automation_paths": [],
+      "runtime_advancement": true
+    },
+    {
+      "id": "faction_companion",
+      "title": "Trusted Faction Companion",
+      "category": "mastery",
+      "icon": "industrialcivilizationcore:industrial_credit",
+      "prerequisites": ["faction_membership"],
+      "critical": false,
+      "optional": true,
+      "capability": "Recruit a trusted faction member who follows and defends you without converting every neutral NPC into a disposable follower.",
+      "final_validation": [
+        "Reach 60 reputation with your joined faction.",
+        "Hold at least 8 IC Credits and sneak-right-click a faction member.",
+        "Verify that the companion follows, defends, persists through saving, and can be dismissed with another sneak-right-click."
+      ],
+      "automation_paths": [],
+      "runtime_advancement": true
     }
   ]
 }

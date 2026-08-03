@@ -16,6 +16,8 @@ Optional objectives live in independent Better Questing tabs, never inside numbe
 
 - `industrial_armament` — Industrial Armament
 - `faction_contacts` — Human Factions
+- `faction_membership` — Join an Industrial Faction
+- `faction_companion` — Trusted Faction Companion
 - `mffs_installation` — Industrial Containment
 - `nuclear_containment` — Nuclear Containment
 - `underworld_lead` — Rumors of the Industrial Underworld

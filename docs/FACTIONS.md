@@ -1,15 +1,25 @@
 # Factions
 
+The authoritative definitions and balance constants are in `config/industrialcivilization/faction-system.json`. IndustrialCivilizationCore persists each player's reputation, membership, discoveries, trade contacts, civilian harm, guarded-property damage, and raider defeats.
+
+## Frontier Cooperative
+
+The starting rural network inhabits the three primitive settlements near world spawn. It sells food and basic material supplies. Peaceful workshop construction, manual crafting, and fair trading can earn membership.
+
 ## Riverside Works
 
-Neutral industrial settlement with Quartermaster Hale, Technician Voss, and an armed Watch Officer. Its brick/steel/rail identity and trades provide consumables and industrial guidance, never progression keys.
+The neutral industrial consortium controls cities and guarded specialty factories. Its steel, electronics, fuel, and machine-component markets reward industrial capacity, factory restoration, and respect for guarded property.
 
-## Ashline Raiders
+## Civil Defense Militia
 
-Clearly hostile group with a leader and three ranged raiders guarding a small ammunition/Railcraft-steel cache. Rewards exclude rockets, schematics, Desh, the Analyzer, and AE2 items.
+Militia outposts and city checkpoints protect settlements and sell field supplies and armaments. Fighting raiders without harming civilians is its primary membership path.
 
 ## Survey Detachment 7
 
-Initially ambiguous research group. Public naming does not advertise friendliness or hostility. Guards warn before responding to entry into the marked machinery perimeter. Trespass after warning, theft, attack, or reputation below -10 causes hostility; dialogue and withdrawal preserve neutrality.
+An initially ambiguous research group operates specialist compounds and research factories. Orbital, lunar, or Martian archives establish scientific credibility; damage to guarded research property blocks membership.
 
-Machine-readable templates are `neutral_foundry.json`, `hostile_raiders.json`, and `ambiguous_research_group.json` in `config/industrialcivilization/factions/`.
+## Ashline Raiders
+
+The hostile faction occupies abandoned industrial ruins. Raider kills improve standing with legitimate factions. A deliberately predatory player can eventually become eligible for the Raiders, but one player can hold only one faction membership.
+
+Normal right-click opens an IC Credit trade. Sneak-right-click requests membership. A member with 60 reputation and eight credits can recruit a companion. The pause-menu faction directory is the complete in-game reference.

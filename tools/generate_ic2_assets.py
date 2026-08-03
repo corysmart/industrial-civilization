@@ -194,7 +194,14 @@ def capsule(d, antimatter=False):
 
 def make_item(item_id, index):
     image = pixel_canvas(); d = ImageDraw.Draw(image)
-    if item_id == "blank_data_cartridge": cartridge(d, PALETTE["paper"], True)
+    if item_id == "industrial_credit":
+        d.ellipse((2, 2, 13, 13), fill=PALETTE["copper_dark"], outline=PALETTE["dark"])
+        d.ellipse((3, 3, 12, 12), fill=PALETTE["copper"], outline=PALETTE["orange"])
+        d.ellipse((5, 5, 10, 10), fill=PALETTE["metal"], outline=PALETTE["light"])
+        d.line((7, 5, 7, 10), fill=PALETTE["panel"])
+        d.line((8, 5, 8, 10), fill=PALETTE["cyan"])
+        d.point((4, 7), fill=PALETTE["orange"]); d.point((11, 8), fill=PALETTE["orange"])
+    elif item_id == "blank_data_cartridge": cartridge(d, PALETTE["paper"], True)
     elif item_id in {"material_pattern_record", "research_data"}: cartridge(d, PALETTE["cyan"] if index == 0 else PALETTE["cyan2"])
     elif "core" in item_id: core(d, item_id == "civilization_scale_ai_core")
     elif item_id == "precision_frame":
@@ -309,7 +316,13 @@ def make_nei_sprites():
     # The generated source faithfully retained the final two machine concepts
     # in cells 0-1 before the twenty-two item concepts in cells 2-23.
     for index, item_id in enumerate(ITEM_IDS):
-        inventory_sprite(atlas_cell(item_atlas, index + 2, 6, 4)).save(ITEMS / f"{item_id}.png")
+        if item_id == "industrial_credit":
+            source = make_item(item_id, index).resize((48, 48), Image.Resampling.NEAREST)
+            output = Image.new("RGBA", (64, 64), (0, 0, 0, 0))
+            output.alpha_composite(source, (8, 8))
+            output.save(ITEMS / f"{item_id}.png")
+        else:
+            inventory_sprite(atlas_cell(item_atlas, index + 2, 6, 4)).save(ITEMS / f"{item_id}.png")
 
 
 def slot(draw, x, y):

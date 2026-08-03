@@ -1,0 +1,214 @@
+package com.industrialcivilization.core;
+
+import java.util.Random;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraftforge.fml.common.IWorldGenerator;
+
+/**
+ * Spawn-relative civilization geography. The first ring contains exactly three
+ * primitive settlements; increasingly organized structures appear only as the
+ * player explores farther from world spawn.
+ */
+public final class CivilizationWorldGenerator implements IWorldGenerator {
+    private static final int[] PRIMITIVE_RADII = {240, 520, 800};
+    private static final String[] FACTORY_SPECIALTIES = {
+        "steel", "electronics", "fuel", "armaments", "research"
+    };
+
+    @Override
+    public void generate(Random random, int chunkX, int chunkZ, World world,
+            IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
+        if (world.provider.getDimension() != 0) return;
+        BlockPos spawn = world.getSpawnPoint();
+        if (isPrimitiveSettlementChunk(world, chunkX, chunkZ, spawn)) {
+            BlockPos origin = surfaceOrigin(world, chunkX, chunkZ);
+            if (origin != null) buildPrimitiveSettlement(world, origin);
+            return;
+        }
+        double x = chunkX * 16 + 8 - spawn.getX();
+        double z = chunkZ * 16 + 8 - spawn.getZ();
+        double distance = Math.sqrt(x * x + z * z);
+        BlockPos origin = surfaceOrigin(world, chunkX, chunkZ);
+        if (origin == null) return;
+
+        // One structure at most per chunk. The order keeps the rarer, more
+        // distant landmarks from being replaced by common factory shells.
+        if (distance >= 3000 && random.nextInt(256) == 0) {
+            buildIndustrialCity(world, origin);
+        } else if (distance >= 2200 && random.nextInt(160) == 0) {
+            buildOperationalFactory(world, origin, FACTORY_SPECIALTIES[
+                Math.floorMod(chunkX * 31 + chunkZ * 17, FACTORY_SPECIALTIES.length)]);
+        } else if (distance >= 1400 && random.nextInt(128) == 0) {
+            buildMilitiaOutpost(world, origin);
+        } else if (distance >= 900 && random.nextInt(96) == 0) {
+            AbandonedFactoryWorldGenerator.buildShell(world, origin);
+            FactionSystem.spawnCitizen(world, origin.getX() + 2.5, origin.getY() + 1,
+                origin.getZ() + 11.5, "ashline_raiders", "raider", "armaments", "Ashline Lookout");
+            FactionSystem.spawnCitizen(world, origin.getX() + 11.5, origin.getY() + 1,
+                origin.getZ() + 2.5, "ashline_raiders", "raider", "armaments", "Ashline Salvager");
+        }
+    }
+
+    private static boolean isPrimitiveSettlementChunk(World world, int chunkX, int chunkZ,
+            BlockPos spawn) {
+        Random anchors = new Random(world.getSeed() ^ 0x49C1A1F7L);
+        for (int index = 0; index < PRIMITIVE_RADII.length; index++) {
+            double angle = anchors.nextDouble() * Math.PI * 2.0 + index * 2.094;
+            int targetX = spawn.getX() + (int) Math.round(Math.cos(angle) * PRIMITIVE_RADII[index]);
+            int targetZ = spawn.getZ() + (int) Math.round(Math.sin(angle) * PRIMITIVE_RADII[index]);
+            if (Math.floorDiv(targetX, 16) == chunkX && Math.floorDiv(targetZ, 16) == chunkZ) return true;
+        }
+        return false;
+    }
+
+    private static BlockPos surfaceOrigin(World world, int chunkX, int chunkZ) {
+        int x = chunkX * 16 + 1;
+        int z = chunkZ * 16 + 1;
+        int y = world.getHeight(new BlockPos(x + 7, 0, z + 7)).getY();
+        return y < 55 || y > 115 ? null : new BlockPos(x, y, z);
+    }
+
+    private static void buildPrimitiveSettlement(World world, BlockPos origin) {
+        platform(world, origin, Blocks.COBBLESTONE.getDefaultState());
+        // A deliberately primitive cluster: two timber shelters, a well, a
+        // small crop plot and a crossroads. It does not contain free machines.
+        hut(world, origin.add(1, 1, 1), Blocks.PLANKS.getDefaultState());
+        hut(world, origin.add(9, 1, 9), Blocks.PLANKS.getDefaultState());
+        for (int index = 0; index < 15; index++) {
+            set(world, origin.add(7, 1, index), Blocks.GRAVEL.getDefaultState());
+            set(world, origin.add(index, 1, 7), Blocks.GRAVEL.getDefaultState());
+        }
+        for (int x = 9; x <= 13; x++) for (int z = 1; z <= 5; z++) {
+            set(world, origin.add(x, 1, z), (x == 11) ? Blocks.WATER.getDefaultState()
+                : Blocks.FARMLAND.getDefaultState());
+            if (x != 11) set(world, origin.add(x, 2, z), Blocks.WHEAT.getDefaultState());
+        }
+        set(world, origin.add(7, 1, 7), Blocks.COBBLESTONE.getDefaultState());
+        set(world, origin.add(7, 2, 7), Blocks.TORCH.getDefaultState());
+        FactionSystem.spawnCitizen(world, origin.getX() + 6.5, origin.getY() + 2,
+            origin.getZ() + 6.5, "frontier_cooperative", "villager", "food", "Frontier Grower");
+        FactionSystem.spawnCitizen(world, origin.getX() + 8.5, origin.getY() + 2,
+            origin.getZ() + 6.5, "frontier_cooperative", "trader", "general", "Cooperative Trader");
+        FactionSystem.spawnCitizen(world, origin.getX() + 6.5, origin.getY() + 2,
+            origin.getZ() + 8.5, "frontier_cooperative", "guard", "general", "Village Watch");
+    }
+
+    private static void buildMilitiaOutpost(World world, BlockPos origin) {
+        platform(world, origin, Blocks.STONEBRICK.getDefaultState());
+        for (int i = 0; i < 15; i++) {
+            for (int y = 1; y <= 3; y++) {
+                set(world, origin.add(i, y, 0), Blocks.IRON_BARS.getDefaultState());
+                set(world, origin.add(i, y, 14), Blocks.IRON_BARS.getDefaultState());
+                set(world, origin.add(0, y, i), Blocks.IRON_BARS.getDefaultState());
+                set(world, origin.add(14, y, i), Blocks.IRON_BARS.getDefaultState());
+            }
+        }
+        tower(world, origin.add(1, 1, 1));
+        tower(world, origin.add(10, 1, 10));
+        set(world, origin.add(7, 1, 0), Blocks.IRON_DOOR.getDefaultState());
+        FactionSystem.spawnCitizen(world, origin.getX() + 7.5, origin.getY() + 2,
+            origin.getZ() + 7.5, "civil_defense_militia", "militia", "armaments", "Militia Quartermaster");
+        FactionSystem.spawnCitizen(world, origin.getX() + 4.5, origin.getY() + 2,
+            origin.getZ() + 8.5, "civil_defense_militia", "guard", "armaments", "Outpost Guard");
+        FactionSystem.spawnCitizen(world, origin.getX() + 10.5, origin.getY() + 2,
+            origin.getZ() + 6.5, "civil_defense_militia", "guard", "armaments", "Outpost Guard");
+    }
+
+    private static void buildOperationalFactory(World world, BlockPos origin, String specialty) {
+        platform(world, origin, Blocks.STONEBRICK.getDefaultState());
+        industrialShell(world, origin.add(1, 1, 1), specialty);
+        Block machine = "research".equals(specialty) ? IndustrialCivilizationCore.RESEARCH_STATION
+            : "electronics".equals(specialty) ? IndustrialCivilizationCore.PROGRAMMABLE_ASSEMBLER
+            : "armaments".equals(specialty) ? IndustrialCivilizationCore.ROBOTIC_MANUFACTURING_CELL
+            : IndustrialCivilizationCore.ELECTRIC_FABRICATOR;
+        set(world, origin.add(7, 2, 7), machine.getDefaultState());
+        set(world, origin.add(5, 2, 7), Blocks.CHEST.getDefaultState());
+        set(world, origin.add(9, 2, 7), Blocks.CHEST.getDefaultState());
+        String faction = "research".equals(specialty) ? "survey_detachment_7" : "riverside_works";
+        String title = Character.toUpperCase(specialty.charAt(0)) + specialty.substring(1);
+        FactionSystem.spawnCitizen(world, origin.getX() + 5.5, origin.getY() + 2,
+            origin.getZ() + 4.5, faction, "trader", specialty, title + " Works Factor");
+        FactionSystem.spawnCitizen(world, origin.getX() + 9.5, origin.getY() + 2,
+            origin.getZ() + 4.5, faction, "engineer", specialty, title + " Works Engineer");
+        FactionSystem.spawnCitizen(world, origin.getX() + 7.5, origin.getY() + 2,
+            origin.getZ() + 12.5, faction, "guard", specialty, "Factory Security");
+    }
+
+    private static void buildIndustrialCity(World world, BlockPos origin) {
+        platform(world, origin, Blocks.STONEBRICK.getDefaultState());
+        building(world, origin.add(1, 1, 1), 5, 5, Blocks.BRICK_BLOCK.getDefaultState(), 6);
+        building(world, origin.add(9, 1, 1), 5, 5, Blocks.STONEBRICK.getDefaultState(), 8);
+        building(world, origin.add(1, 1, 9), 5, 5, Blocks.QUARTZ_BLOCK.getDefaultState(), 5);
+        building(world, origin.add(9, 1, 9), 5, 5, Blocks.BRICK_BLOCK.getDefaultState(), 7);
+        for (int i = 0; i < 15; i++) {
+            set(world, origin.add(7, 1, i), Blocks.DOUBLE_STONE_SLAB.getDefaultState());
+            set(world, origin.add(i, 1, 7), Blocks.DOUBLE_STONE_SLAB.getDefaultState());
+        }
+        for (BlockPos lamp : new BlockPos[] {origin.add(6, 2, 6), origin.add(8, 2, 6),
+                origin.add(6, 2, 8), origin.add(8, 2, 8)}) {
+            set(world, lamp, Blocks.IRON_BARS.getDefaultState());
+            set(world, lamp.up(), Blocks.GLOWSTONE.getDefaultState());
+        }
+        FactionSystem.spawnCitizen(world, origin.getX() + 6.5, origin.getY() + 2,
+            origin.getZ() + 7.5, "riverside_works", "trader", "electronics", "City Exchange Broker");
+        FactionSystem.spawnCitizen(world, origin.getX() + 8.5, origin.getY() + 2,
+            origin.getZ() + 7.5, "riverside_works", "trader", "steel", "Foundry Representative");
+        FactionSystem.spawnCitizen(world, origin.getX() + 7.5, origin.getY() + 2,
+            origin.getZ() + 6.5, "civil_defense_militia", "guard", "armaments", "City Militia");
+        FactionSystem.spawnCitizen(world, origin.getX() + 7.5, origin.getY() + 2,
+            origin.getZ() + 8.5, "survey_detachment_7", "scientist", "research", "Urban Surveyor");
+    }
+
+    private static void platform(World world, BlockPos origin, IBlockState floor) {
+        for (int x = 0; x < 15; x++) for (int z = 0; z < 15; z++) {
+            set(world, origin.add(x, 0, z), Blocks.STONE.getDefaultState());
+            set(world, origin.add(x, 1, z), floor);
+            for (int y = 2; y <= 10; y++) set(world, origin.add(x, y, z), Blocks.AIR.getDefaultState());
+        }
+    }
+
+    private static void hut(World world, BlockPos origin, IBlockState wall) {
+        building(world, origin, 5, 5, wall, 3);
+        set(world, origin.add(2, 1, 0), Blocks.AIR.getDefaultState());
+        set(world, origin.add(2, 2, 0), Blocks.AIR.getDefaultState());
+        set(world, origin.add(1, 2, 1), Blocks.TORCH.getDefaultState());
+    }
+
+    private static void tower(World world, BlockPos origin) {
+        building(world, origin, 4, 4, Blocks.STONEBRICK.getDefaultState(), 6);
+        for (int y = 1; y <= 5; y++) set(world, origin.add(1, y, 1), Blocks.LADDER.getDefaultState());
+    }
+
+    private static void industrialShell(World world, BlockPos origin, String specialty) {
+        IBlockState wall = "fuel".equals(specialty) ? Blocks.BRICK_BLOCK.getDefaultState()
+            : Blocks.IRON_BLOCK.getDefaultState();
+        building(world, origin, 13, 13, wall, 5);
+        for (int x = 2; x < 11; x += 3) {
+            set(world, origin.add(x, 3, 0), Blocks.GLASS_PANE.getDefaultState());
+            set(world, origin.add(x, 3, 12), Blocks.GLASS_PANE.getDefaultState());
+        }
+        set(world, origin.add(6, 1, 0), Blocks.AIR.getDefaultState());
+        set(world, origin.add(6, 2, 0), Blocks.AIR.getDefaultState());
+    }
+
+    private static void building(World world, BlockPos origin, int width, int depth,
+            IBlockState wall, int height) {
+        for (int x = 0; x < width; x++) for (int z = 0; z < depth; z++) {
+            for (int y = 0; y <= height; y++) {
+                boolean shell = y == 0 || y == height || x == 0 || z == 0
+                    || x == width - 1 || z == depth - 1;
+                set(world, origin.add(x, y, z), shell ? wall : Blocks.AIR.getDefaultState());
+            }
+        }
+    }
+
+    private static void set(World world, BlockPos pos, IBlockState state) {
+        world.setBlockState(pos, state, 2);
+    }
+}
