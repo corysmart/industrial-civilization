@@ -1,3 +1,6 @@
 {
-  "parent": "industrialcivilizationcore:block/research_station"
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "industrialcivilizationcore:items/nei_blocks/research_station"
+  }
 }

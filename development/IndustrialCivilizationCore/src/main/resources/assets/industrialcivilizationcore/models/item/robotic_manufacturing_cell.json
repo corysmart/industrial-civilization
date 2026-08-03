@@ -1,3 +1,6 @@
 {
-  "parent": "industrialcivilizationcore:block/robotic_manufacturing_cell"
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "industrialcivilizationcore:items/nei_blocks/robotic_manufacturing_cell"
+  }
 }

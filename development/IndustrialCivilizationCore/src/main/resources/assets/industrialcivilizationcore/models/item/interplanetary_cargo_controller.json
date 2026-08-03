@@ -1,3 +1,6 @@
 {
-  "parent": "industrialcivilizationcore:block/interplanetary_cargo_controller"
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "industrialcivilizationcore:items/nei_blocks/interplanetary_cargo_controller"
+  }
 }

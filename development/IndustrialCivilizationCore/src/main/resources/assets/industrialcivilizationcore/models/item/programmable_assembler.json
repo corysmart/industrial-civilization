@@ -1,3 +1,6 @@
 {
-  "parent": "industrialcivilizationcore:block/programmable_assembler"
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "industrialcivilizationcore:items/nei_blocks/programmable_assembler"
+  }
 }

@@ -31,8 +31,16 @@ for kind, ids in (("blocks", block_ids), ("items", item_ids)):
         model = ASSETS / "models" / ("block" if kind == "blocks" else "item") / f"{asset_id}.json"
         check(texture.is_file(), f"texture exists: {kind}/{asset_id}")
         image = Image.open(texture)
-        check(image.size == (16, 16), f"texture is native 16x16: {kind}/{asset_id}")
+        expected_size = (16, 16) if kind == "blocks" else (64, 64)
+        check(image.size == expected_size, f"texture has intended resolution {expected_size[0]}x{expected_size[1]}: {kind}/{asset_id}")
         check(image.mode == "RGBA", f"texture has alpha channel: {kind}/{asset_id}")
+        if kind == "items":
+            check(image.getpixel((0, 0))[3] == 0 and image.getpixel((63, 63))[3] == 0,
+                  f"NEI sprite has transparent corners: {kind}/{asset_id}")
+            alpha_bbox = image.getchannel("A").getbbox()
+            check(alpha_bbox is not None and (alpha_bbox[2] - alpha_bbox[0]) >= 32
+                  and (alpha_bbox[3] - alpha_bbox[1]) >= 32,
+                  f"NEI sprite uses readable inventory area: {kind}/{asset_id}")
         digest = hash(image.tobytes())
         check(digest not in pixel_hashes, f"texture is visually distinct: {kind}/{asset_id}")
         pixel_hashes.add(digest)
@@ -45,7 +53,20 @@ for block_id in sorted(block_ids):
     block_model = ASSETS / "models/block" / f"{block_id}.json"
     check(state.is_file(), f"blockstate exists: {block_id}")
     check(item_model.is_file(), f"block inventory model exists: {block_id}")
-    json.loads(state.read_text()); json.loads(item_model.read_text())
+    json.loads(state.read_text())
+    item_model_data = json.loads(item_model.read_text())
+    check(item_model_data.get("parent") == "item/generated",
+          f"block inventory uses dedicated flat NEI sprite: {block_id}")
+    expected_layer = f"industrialcivilizationcore:items/nei_blocks/{block_id}"
+    check(item_model_data.get("textures", {}).get("layer0") == expected_layer,
+          f"block inventory model references concept sprite: {block_id}")
+    nei_texture = ASSETS / "textures/items/nei_blocks" / f"{block_id}.png"
+    check(nei_texture.is_file(), f"block NEI texture exists: {block_id}")
+    nei_image = Image.open(nei_texture)
+    check(nei_image.size == (64, 64) and nei_image.mode == "RGBA",
+          f"block NEI texture is RGBA 64x64: {block_id}")
+    check(nei_image.getpixel((0, 0))[3] == 0 and nei_image.getpixel((63, 63))[3] == 0,
+          f"block NEI sprite has transparent corners: {block_id}")
     model_data = json.loads(block_model.read_text())
     check(model_data.get("parent") == "block/cube", f"block uses independent cube faces: {block_id}")
     check({"north", "south", "east", "west", "up", "down"} <= set(model_data.get("textures", {})),

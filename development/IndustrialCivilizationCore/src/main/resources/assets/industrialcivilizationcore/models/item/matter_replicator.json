@@ -1,3 +1,6 @@
 {
-  "parent": "industrialcivilizationcore:block/matter_replicator"
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "industrialcivilizationcore:items/nei_blocks/matter_replicator"
+  }
 }

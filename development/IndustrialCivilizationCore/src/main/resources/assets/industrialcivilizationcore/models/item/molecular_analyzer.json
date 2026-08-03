@@ -1,3 +1,6 @@
 {
-  "parent": "industrialcivilizationcore:block/molecular_analyzer"
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "industrialcivilizationcore:items/nei_blocks/molecular_analyzer"
+  }
 }

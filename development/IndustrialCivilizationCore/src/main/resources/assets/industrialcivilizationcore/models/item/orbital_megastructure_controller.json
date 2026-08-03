@@ -1,3 +1,6 @@
 {
-  "parent": "industrialcivilizationcore:block/orbital_megastructure_controller"
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "industrialcivilizationcore:items/nei_blocks/orbital_megastructure_controller"
+  }
 }

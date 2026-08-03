@@ -8,8 +8,11 @@ ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "development/IndustrialCivilizationCore/src/main/resources/assets/industrialcivilizationcore"
 BLOCKS = ASSETS / "textures/blocks"
 ITEMS = ASSETS / "textures/items"
+NEI_BLOCKS = ITEMS / "nei_blocks"
 GUI = ASSETS / "textures/gui"
 DOCS = ROOT / "docs/art"
+NEI_BLOCK_ATLAS = DOCS / "industrial_nei_blocks_alpha_v3.png"
+NEI_ITEM_ATLAS = DOCS / "industrial_nei_items_alpha_v3.png"
 
 PALETTE = {
     "dark": "#17242a", "panel": "#253941", "shadow": "#52636a",
@@ -241,6 +244,74 @@ def make_items():
         make_item(item_id, index).save(ITEMS / f"{item_id}.png")
 
 
+def atlas_cell(atlas, index, columns, rows):
+    column, row = index % columns, index // columns
+    x0 = round(column * atlas.width / columns); x1 = round((column + 1) * atlas.width / columns)
+    y0 = round(row * atlas.height / rows); y1 = round((row + 1) * atlas.height / rows)
+    return atlas.crop((x0, y0, x1, y1))
+
+
+def inventory_sprite(cell, size=64, padding=2):
+    # Remove rare saturated key pixels left where the generated atlas varied
+    # slightly from its sampled border color. The concept palette contains no
+    # magenta, so this is lossless for every intended sprite.
+    cleaned = cell.copy()
+    pixels = cleaned.load()
+    for y in range(cleaned.height):
+        for x in range(cleaned.width):
+            red, green, blue, alpha = pixels[x, y]
+            if alpha and red > 30 and blue > 30 and green < min(red, blue) * 0.8:
+                pixels[x, y] = (red, green, blue, 0)
+    cell = cleaned
+    alpha = cell.getchannel("A")
+    bbox = alpha.getbbox()
+    if bbox is None:
+        raise ValueError("NEI atlas cell contains no visible sprite")
+    sprite = cell.crop(bbox)
+    available = size - padding * 2
+    scale = min(available / sprite.width, available / sprite.height)
+    width = max(1, round(sprite.width * scale)); height = max(1, round(sprite.height * scale))
+    sprite = sprite.resize((width, height), Image.Resampling.NEAREST)
+    output = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    output.alpha_composite(sprite, ((size - width) // 2, (size - height) // 2))
+    # Cell-boundary remnants can survive chroma despill as tiny disconnected
+    # dark lines. Inventory concepts are single physical silhouettes, so keep
+    # only the dominant connected alpha component.
+    alpha = output.getchannel("A")
+    remaining = {(x, y) for y in range(size) for x in range(size) if alpha.getpixel((x, y)) > 0}
+    components = []
+    while remaining:
+        pending = [remaining.pop()]; component = []
+        while pending:
+            point = pending.pop(); component.append(point)
+            x, y = point
+            for neighbor in ((x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)):
+                if neighbor in remaining:
+                    remaining.remove(neighbor); pending.append(neighbor)
+        components.append(component)
+    if components:
+        keep = set(max(components, key=len))
+        pixels = output.load()
+        for y in range(size):
+            for x in range(size):
+                if (x, y) not in keep:
+                    pixels[x, y] = (0, 0, 0, 0)
+    return output
+
+
+def make_nei_sprites():
+    """Create detailed inventory-only sprites without changing placed block faces."""
+    block_atlas = Image.open(NEI_BLOCK_ATLAS).convert("RGBA")
+    item_atlas = Image.open(NEI_ITEM_ATLAS).convert("RGBA")
+    NEI_BLOCKS.mkdir(parents=True, exist_ok=True)
+    for index, block_id in enumerate(BLOCK_IDS):
+        inventory_sprite(atlas_cell(block_atlas, index, 7, 2)).save(NEI_BLOCKS / f"{block_id}.png")
+    # The generated source faithfully retained the final two machine concepts
+    # in cells 0-1 before the twenty-two item concepts in cells 2-23.
+    for index, item_id in enumerate(ITEM_IDS):
+        inventory_sprite(atlas_cell(item_atlas, index + 2, 6, 4)).save(ITEMS / f"{item_id}.png")
+
+
 def slot(draw, x, y):
     draw.rectangle((x, y, x + 17, y + 17), fill="#657278")
     draw.rectangle((x + 1, y + 1, x + 16, y + 16), fill="#2d373b")
@@ -285,7 +356,8 @@ def write_models():
             }
         }, indent=2) + "\n")
         (ASSETS / "models/item" / f"{block_id}.json").write_text(json.dumps({
-            "parent": f"industrialcivilizationcore:block/{block_id}"
+            "parent": "item/generated",
+            "textures": {"layer0": f"industrialcivilizationcore:items/nei_blocks/{block_id}"}
         }, indent=2) + "\n")
         (ASSETS / "blockstates" / f"{block_id}.json").write_text(json.dumps({
             "variants": {"normal": {"model": f"industrialcivilizationcore:{block_id}"}}
@@ -298,7 +370,7 @@ def write_models():
 
 
 def contact_sheet():
-    entries = [("block", x, Image.open(BLOCKS / f"{x}.png")) for x in BLOCK_IDS]
+    entries = [("block", x, Image.open(NEI_BLOCKS / f"{x}.png")) for x in BLOCK_IDS]
     entries += [("item", x, Image.open(ITEMS / f"{x}.png")) for x in ITEM_IDS]
     width, cell_h = 960, 164
     sheet = Image.new("RGB", (width, ((len(entries) + 5) // 6) * cell_h), "#182329")
@@ -328,9 +400,9 @@ def block_face_sheet():
 
 
 def main():
-    for path in (BLOCKS, ITEMS, GUI, DOCS): path.mkdir(parents=True, exist_ok=True)
-    make_blocks(); make_items(); make_gui(); write_models(); contact_sheet(); block_face_sheet()
-    print(f"Generated {len(BLOCK_IDS) * 3} block-face textures, {len(ITEM_IDS)} item sprites, GUI, models, and review sheets")
+    for path in (BLOCKS, ITEMS, NEI_BLOCKS, GUI, DOCS): path.mkdir(parents=True, exist_ok=True)
+    make_blocks(); make_items(); make_nei_sprites(); make_gui(); write_models(); contact_sheet(); block_face_sheet()
+    print(f"Generated {len(BLOCK_IDS) * 3} block-face textures, {len(BLOCK_IDS) + len(ITEM_IDS)} concept-faithful NEI sprites, GUI, models, and review sheets")
 
 
 if __name__ == "__main__":

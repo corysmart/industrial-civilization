@@ -1,3 +1,6 @@
 {
-  "parent": "industrialcivilizationcore:block/fusion_research_core"
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "industrialcivilizationcore:items/nei_blocks/fusion_research_core"
+  }
 }
