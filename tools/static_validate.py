@@ -420,8 +420,13 @@ ok("if (!roadChunk && structure == 0) return;" in worldgen_source,
    "empty civilization chunks avoid terrain height work")
 terrain_gui = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/GuiTerrainWarmup.java").read_text()
 ok("doesGuiPauseGame()" in terrain_gui and "return false" in terrain_gui
-   and "hasNoChunkUpdates()" in terrain_gui and "TIMEOUT_MS = 60000L" in terrain_gui,
-   "terrain warmup screen waits for chunks and renderer without pausing or trapping the player")
+   and "MINIMUM_WARMUP_MS = 8000L" in terrain_gui and "TIMEOUT_MS = 30000L" in terrain_gui
+   and "Math.min(4, mc.gameSettings.renderDistanceChunks)" in terrain_gui,
+   "terrain warmup waits for a bounded playable area and post-join initialization without trapping the player")
+icbm_script = (ROOT / "groovy/postInit/industrial_icbm.groovy").read_text()
+ok("crafting.streamRecipes()" in icbm_script and "output.item == part.item" in icbm_script
+   and "duplicateParts.each { part -> crafting.removeByOutput(part) }" not in icbm_script,
+   "ICBM duplicate recipe cleanup silently accepts registered parts with no native recipe")
 ok("holdTerrainLoadingScreen" in client_source and "terrainWarmupWorld != minecraft.world" in client_source,
    "terrain warmup runs after every world or dimension transition")
 jei_config = (ROOT / "config/jei/jei.cfg").read_text()

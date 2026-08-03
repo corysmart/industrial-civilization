@@ -9,7 +9,18 @@ def duplicateParts = [
     item('icbmclassic:battery'), item('icbmclassic:wire:0'), item('icbmclassic:wire:1'),
     item('icbmclassic:ingot'), item('icbmclassic:clump'), item('icbmclassic:plate')
 ]
-duplicateParts.each { part -> crafting.removeByOutput(part) }
+// removeByOutput reports an error when a registered compatibility item has no
+// native recipe (ICBM ingots and plates in this build). Filter the registry so
+// zero matching recipes is the intended, silent result.
+duplicateParts.each { part ->
+    crafting.streamRecipes()
+        .filter { recipe ->
+            def output = recipe.recipeOutput
+            output != null && !output.empty && output.item == part.item
+                && output.metadata == part.metadata
+        }
+        .removeAll()
+}
 mods.jei.ingredient.removeAndHide(duplicateParts)
 
 // Launch control hardware is deliberately MV/HV IC2 infrastructure. ICBM's

@@ -11,8 +11,9 @@ import net.minecraft.util.math.MathHelper;
  * their render meshes compile. The world continues ticking underneath it.
  */
 public final class GuiTerrainWarmup extends GuiScreen {
-    private static final long TIMEOUT_MS = 60000L;
-    private static final int REQUIRED_STABLE_TICKS = 10;
+    private static final long MINIMUM_WARMUP_MS = 8000L;
+    private static final long TIMEOUT_MS = 30000L;
+    private static final int REQUIRED_STABLE_TICKS = 20;
     private final long startedAt = System.currentTimeMillis();
     private int loadedChunks;
     private int totalChunks = 1;
@@ -31,7 +32,10 @@ public final class GuiTerrainWarmup extends GuiScreen {
             finish();
             return;
         }
-        int radius = Math.max(2, Math.min(8, mc.gameSettings.renderDistanceChunks));
+        // Four chunks matches the integrated server's minimum view distance.
+        // Larger client distances stream after entry instead of holding the
+        // player hostage while an enormous outer ring compiles.
+        int radius = Math.max(2, Math.min(4, mc.gameSettings.renderDistanceChunks));
         int centerX = MathHelper.floor(mc.player.posX) >> 4;
         int centerZ = MathHelper.floor(mc.player.posZ) >> 4;
         loadedChunks = 0;
@@ -41,10 +45,11 @@ public final class GuiTerrainWarmup extends GuiScreen {
                 if (mc.world.getChunkProvider().getLoadedChunk(x, z) != null) loadedChunks++;
             }
         }
-        boolean ready = loadedChunks == totalChunks && mc.renderGlobal.hasNoChunkUpdates();
+        long elapsed = System.currentTimeMillis() - startedAt;
+        boolean ready = loadedChunks == totalChunks && elapsed >= MINIMUM_WARMUP_MS;
         stableTicks = ready ? stableTicks + 1 : 0;
         if (stableTicks >= REQUIRED_STABLE_TICKS
-                || System.currentTimeMillis() - startedAt >= TIMEOUT_MS) {
+                || elapsed >= TIMEOUT_MS) {
             finish();
         }
     }

@@ -1637,8 +1637,8 @@
     {
       "file": "mods/IndustrialCivilizationCore-0.2.0.jar",
       "filename": "IndustrialCivilizationCore-0.2.0.jar",
-      "size": 2765863,
-      "sha256": "9247c17be29d03026d2f1b6d658f8dba3b270010a937bc67d29b1f407cf7306e",
+      "size": 2765862,
+      "sha256": "413ef639dc71508b62eaf4b1a4c1aed94f40e82021bf5d55bfb10a7ba5bf4b79",
       "classification": "KEEP",
       "mods": [
         {
@@ -5186,8 +5186,8 @@
     },
     {
       "file": "groovy/postInit/industrial_icbm.groovy",
-      "sha256": "b07dc7a841262f477092a0401bffd7465d461bf27020816ec30c5a0078004fd4",
-      "size": 3120
+      "sha256": "17aab85bffc226fa79aa282581b280d73c540f74582e6286cec8fc83388568ed",
+      "size": 3563
     },
     {
       "file": "groovy/runConfig.json",
