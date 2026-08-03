@@ -349,6 +349,8 @@ ok("Industrial Civilization" in main_menu_text and "Tekkit 2" not in main_menu_t
    and main_menu.get("other", {}).get("background", {}).get("image")
        == "industrialcivilizationcore:textures/mainmenu/industrial_civilization_background.png",
    "main menu uses pack-owned Industrial Civilization branding and background")
+ok("slice" not in main_menu_text.lower(),
+   "main menu contains no internal development-slice terminology")
 ok("S:title=Industrial Civilization" in random_patches
    and "S:modpackName=Industrial Civilization" in crash_info
    and "S:modpackAuthor=corysmart" in crash_info,
