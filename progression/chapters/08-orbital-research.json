@@ -33,7 +33,7 @@
         "Complete vacuum materials, radiation, telescope, microgravity, life-support, communications, and eclipse experiments as implemented."
       ],
       "automation_paths": [],
-      "temporary_validation": "Manual-check representative experiments until modules record them."
+      "runtime_advancement": true
     },
     {
       "id": "orbital_operational_data",
@@ -50,13 +50,13 @@
         "Record station, oxygen, power, solar, eclipse, manufacturing, and transmission uptime."
       ],
       "automation_paths": [],
-      "temporary_validation": "Manual-check the operating run until telemetry persists automatically."
+      "runtime_advancement": true
     },
     {
       "id": "orbital_solar_industry",
       "title": "Orbital Solar Industry",
       "category": "operation",
-      "icon": "minecraft:daylight_detector",
+      "icon": "industrialcivilizationcore:environmental_solar_array",
       "prerequisites": [
         "orbital_operational_data"
       ],
@@ -66,13 +66,15 @@
       "final_validation": [
         "Run an automated orbital production line from enhanced orbital solar generation."
       ],
-      "automation_paths": []
+      "automation_paths": [],
+      "required_item": "industrialcivilizationcore:environmental_solar_array",
+      "runtime_advancement": true
     },
     {
       "id": "orbital_tracking_array",
       "title": "Advanced Tracking Solar Array",
       "category": "construction",
-      "icon": "minecraft:observer",
+      "icon": "industrialcivilizationcore:tracking_solar_array",
       "prerequisites": [
         "orbital_solar_industry"
       ],
@@ -83,13 +85,14 @@
         "Build an advanced tracking array targeting 15\u201325\u00d7 Earth solar output when implemented."
       ],
       "automation_paths": [],
-      "temporary_validation": "Manual-check the planned array; final output scaling is not implemented."
+      "required_item": "industrialcivilizationcore:tracking_solar_array",
+      "runtime_advancement": true
     },
     {
       "id": "orbital_research_complete",
       "title": "Orbital Research Archive",
       "category": "possession",
-      "icon": "industrialcivilizationcore:placeholder_orbital_research_archive",
+      "icon": "industrialcivilizationcore:orbital_research_archive",
       "prerequisites": [
         "orbital_operational_data"
       ],
@@ -100,9 +103,7 @@
         "Demonstrate the capability: Orbital Research Archive."
       ],
       "automation_paths": [],
-      "required_item": "industrialcivilizationcore:placeholder_orbital_research_archive",
-      "placeholder_id": "orbital_research_archive",
-      "temporary_validation": "Obtain the test archive. Final validation requires powered research, experiments, sustained environment, eclipse survival, and telemetry transmission."
+      "required_item": "industrialcivilizationcore:orbital_research_archive"
     },
     {
       "id": "moon_access",
@@ -119,7 +120,7 @@
         "Use the Orbital Research Archive to authorize lunar navigation, descent, and environmental systems."
       ],
       "automation_paths": [],
-      "temporary_validation": "The quest dependency is authoritative; destination-level runtime enforcement remains future work."
+      "runtime_advancement": true
     }
   ]
 }

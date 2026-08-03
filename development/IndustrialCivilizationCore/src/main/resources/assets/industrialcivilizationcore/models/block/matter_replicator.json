@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "industrialcivilizationcore:blocks/matter_replicator"
+  }
+}

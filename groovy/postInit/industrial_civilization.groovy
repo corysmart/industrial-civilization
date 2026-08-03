@@ -88,7 +88,7 @@ event_manager.listen { ItemTooltipEvent event ->
         event.toolTip << 'Consumes 50,000 FE per Martian Desh analysis'
     }
     if (event.itemStack in item('industrialcivilizationcore:material_pattern_record')) {
-        event.toolTip << 'AI Age — Not Yet Available'
+        event.toolTip << 'Lite Matter input for Artificial Industrial Intelligence Core synthesis'
     }
 }
 

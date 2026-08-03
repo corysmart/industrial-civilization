@@ -34,7 +34,7 @@
         "Complete atmospheric, subsurface, radiation-computation, water-recovery, semiconductor, and robotics studies as implemented."
       ],
       "automation_paths": [],
-      "temporary_validation": "Manual-check representative studies until Martian Research Station modules exist."
+      "runtime_advancement": true
     },
     {
       "id": "autonomous_resource_response",
@@ -51,7 +51,7 @@
         "Detect missing materials and automatically replenish or reschedule production."
       ],
       "automation_paths": [],
-      "temporary_validation": "Manual-check the ComputerCraft behavior and preserve the program."
+      "runtime_advancement": true
     },
     {
       "id": "autonomous_power_response",
@@ -68,7 +68,7 @@
         "Detect power interruption, shed load safely, and restore production automatically."
       ],
       "automation_paths": [],
-      "temporary_validation": "Manual-check the controlled outage and recovery."
+      "runtime_advancement": true
     },
     {
       "id": "unattended_martian_production",
@@ -86,13 +86,13 @@
         "Complete local production without direct crafting while habitat and telemetry remain stable."
       ],
       "automation_paths": [],
-      "temporary_validation": "Manual-check the sustained run until utilization telemetry exists."
+      "runtime_advancement": true
     },
     {
       "id": "martian_autonomy_complete",
       "title": "Martian Autonomy Archive",
       "category": "possession",
-      "icon": "industrialcivilizationcore:placeholder_martian_autonomy_archive",
+      "icon": "industrialcivilizationcore:martian_autonomy_archive",
       "prerequisites": [
         "unattended_martian_production"
       ],
@@ -103,9 +103,7 @@
         "Demonstrate the capability: Martian Autonomy Archive."
       ],
       "automation_paths": [],
-      "required_item": "industrialcivilizationcore:placeholder_martian_autonomy_archive",
-      "placeholder_id": "martian_autonomy_archive",
-      "temporary_validation": "Obtain the test archive. Final validation requires autonomous mining, queues, local processing, fault response, sustained habitat, and research transmission."
+      "required_item": "industrialcivilizationcore:martian_autonomy_archive"
     }
   ]
 }

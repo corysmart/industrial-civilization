@@ -1,7 +1,17 @@
 {
   "schema_version": 1,
-  "privacy": "future_opt_in_aggregate_only",
-  "implemented": false,
+  "privacy": "local_only_no_transmission",
+  "implemented": "partial",
+  "implemented_fields": [
+    "manual_crafts",
+    "blocks_mined_manually",
+    "autocrafting_operations",
+    "machine_utilization",
+    "eu_generated",
+    "eu_consumed",
+    "launches",
+    "cargo_transported"
+  ],
   "fields": [
     {
       "id": "milestone_completion_time",

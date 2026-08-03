@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["namespace", "asset_policy", "blocks", "items"],
+  "properties": {
+    "blocks": {"type": "array", "items": {"type": "object", "required": ["id", "system"]}},
+    "items": {"type": "array", "items": {"type": "object", "required": ["id", "system"]}}
+  }
+}

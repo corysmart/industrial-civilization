@@ -31,6 +31,13 @@ def stack(ref):
 
 
 def task_for(ms):
+    if ms.get("runtime_advancement"):
+        advancement = ms["id"] if ms["runtime_advancement"] is True else ms["runtime_advancement"]
+        return {
+            "advancement_id:8": f"industrialcivilizationcore:{advancement}",
+            "index:3": 0,
+            "taskID:8": "bq_standard:advancement",
+        }
     if "required_item" not in ms:
         return {"index:3": 0, "taskID:8": "bq_standard:checkbox"}
     return {
@@ -176,7 +183,7 @@ def main():
             "hardcore:1": 0,
             "home_image:8": "industrialcivilizationcore:textures/gui/quest_home_v2.png",
             "party_enable:1": 1,
-            "pack_version:3": 3,
+            "pack_version:3": 4,
             "home_offset_x:3": -128,
             "home_offset_y:3": 0,
         }},

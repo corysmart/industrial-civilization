@@ -138,8 +138,8 @@ for path in jars:
     except Exception as exc:
         ok(False, f"JAR integrity {path.relative_to(ROOT)}: {exc}")
 
-core_build = ROOT / "development/IndustrialCivilizationCore/build/libs/IndustrialCivilizationCore-0.1.0.jar"
-core_live = ROOT / "mods/IndustrialCivilizationCore-0.1.0.jar"
+core_build = ROOT / "development/IndustrialCivilizationCore/build/libs/IndustrialCivilizationCore-0.2.0.jar"
+core_live = ROOT / "mods/IndustrialCivilizationCore-0.2.0.jar"
 ok(core_build.is_file() and core_live.is_file() and digest(core_build) == digest(core_live), "custom build output equals live JAR")
 core_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/IndustrialCivilizationCore.java").read_text()
 ok("public IndustrialCivilizationCore()" in core_source and "private IndustrialCivilizationCore()" not in core_source,
@@ -208,10 +208,12 @@ with zipfile.ZipFile(core_live) as zf:
     for expected in (
         "com/industrialcivilization/core/IndustrialCivilizationCore.class",
         "com/industrialcivilization/core/TileMolecularAnalyzer.class",
-        "com/industrialcivilization/core/ItemTestPlaceholder.class",
+        "com/industrialcivilization/core/TileIndustrialMachine.class",
+        "com/industrialcivilization/core/TileFactoryControlTerminal.class",
         "mcmod.info",
         "assets/industrialcivilizationcore/blockstates/molecular_analyzer.json",
-        "assets/industrialcivilizationcore/models/item/test_placeholder.json",
+        "assets/industrialcivilizationcore/textures/gui/industrial_machine.png",
+        "assets/industrialcivilizationcore/models/item/artificial_industrial_intelligence_core.json",
     ):
         ok(expected in names, f"custom JAR resource {expected}")
     info = json.loads(zf.read("mcmod.info").decode())

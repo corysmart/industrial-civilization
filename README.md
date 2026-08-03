@@ -19,10 +19,17 @@ The authoritative Phase 2 progression is the machine-readable `progression/`
 tree. Regenerate its Better Questing projection and documentation with:
 
 ```sh
+python3 tools/generate_ic2_assets.py
+python3 tools/generate_runtime_advancements.py
 python3 tools/generate_objectives.py
 python3 tools/generate_progression_docs.py
+python3 tools/validate_runtime_content.py
 python3 tools/validate_progression.py
 python3 tools/static_validate.py
 ```
 
-These checks are static and never start Minecraft, Forge, Technic, or a server.
+The asset generator derives every custom registry object's original 16×16 sprite,
+block model, and the shared IC2-styled machine GUI from
+`progression/runtime-content.json`. The runtime-content harness checks those
+assets and the Java/Groovy integration without starting Minecraft, Forge,
+Technic, or a server.

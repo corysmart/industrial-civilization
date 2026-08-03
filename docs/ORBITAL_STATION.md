@@ -4,4 +4,4 @@
 
 Earth orbit is the first mandatory space destination. A Tier 1 launch grants orbit—not unrestricted Moon access. The functional station requires pressure, oxygen, storage, safe arrival/docking, communications, a computer, research equipment, solar generation, and eclipse storage.
 
-Long-term benefits are orbital solar, microgravity/vacuum manufacturing, research, cargo transfer, fuel storage, Moon/Mars logistics, shipbuilding, and future power transmission. Standard IC2 solar targets 8–10× Earth output in orbit; tracking arrays target 15–25×. Those output multipliers are design targets, not implemented runtime behavior.
+Long-term benefits are orbital solar, microgravity/vacuum manufacturing, research, cargo transfer, fuel storage, Moon/Mars logistics, shipbuilding, and future power transmission. The real Environmental Solar Array generates 8 EU/t on Earth, 32 EU/t on the Moon, 16 EU/t on Mars with a deterministic dust-cycle derating, and 96 EU/t in orbit. The Advanced Tracking Solar Array reaches 192 EU/t in orbit. Both expose generation and lifetime-output telemetry to ComputerCraft.

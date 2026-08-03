@@ -5,7 +5,7 @@
 1. In Technic Launcher, select the customized Tekkit 2 instance at `/Users/cory/Library/Application Support/technic/modpacks/tekkit-2`.
 2. Confirm Java 8 and allocate at least 4 GiB if available (the old metadata requests 3 GiB; Techguns, Custom NPCs, AE2, and Better Questing increase load).
 3. Launch once and wait at the title screen. Do not open the pre-existing `New World` save.
-4. Confirm the menu label reads `Industrial Civilization v0.1.0` and inspect Loaded Mods for 159 JAR files / the expected mod IDs, including GroovyScript 1.4.3.
+4. Confirm the menu label reads `Industrial Civilization v0.2.0` and inspect Loaded Mods for 159 JAR files / the expected mod IDs, including GroovyScript 1.4.3.
 5. Open a disposable world, run `/gs reload --clean`, and confirm chat reports a successful reload with no errors. Review `logs/groovy.log` if it does not.
 6. Confirm the welcome chat identifies **F6** as the Industrial Civilization Guide key. Press F6 and verify the Industrial Civilization home banner renders without magenta missing-texture panels, then open the ten-quest tutorial/reference line.
 7. Open Options → Controls and confirm the Conflicts section is empty. On macOS, spot-check F6 (guide), Option+Y (Techguns reload), Command+R (GroovyScript reload), Option+R (inventory sort), and Command+[/]/;/0/' (Waila).

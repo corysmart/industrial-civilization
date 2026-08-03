@@ -87,7 +87,7 @@
       "id": "research_station",
       "title": "Research Station",
       "category": "possession",
-      "icon": "industrialcivilizationcore:placeholder_research_station",
+      "icon": "industrialcivilizationcore:research_station",
       "prerequisites": [
         "orbital_power",
         "orbital_communications"
@@ -99,15 +99,13 @@
         "Demonstrate the capability: Research Station."
       ],
       "automation_paths": [],
-      "required_item": "industrialcivilizationcore:placeholder_research_station",
-      "placeholder_id": "research_station",
-      "temporary_validation": "Obtain the test Research Station item. Final validation requires the modular powered station platform."
+      "required_item": "industrialcivilizationcore:research_station"
     },
     {
       "id": "orbital_experiment_module",
       "title": "Orbital Experiment Module",
       "category": "possession",
-      "icon": "industrialcivilizationcore:placeholder_orbital_experiment_module",
+      "icon": "industrialcivilizationcore:orbital_experiment_module",
       "prerequisites": [
         "research_station"
       ],
@@ -118,9 +116,7 @@
         "Demonstrate the capability: Orbital Experiment Module."
       ],
       "automation_paths": [],
-      "required_item": "industrialcivilizationcore:placeholder_orbital_experiment_module",
-      "placeholder_id": "orbital_experiment_module",
-      "temporary_validation": "Obtain the test experiment module. Final validation requires a real environment-aware module."
+      "required_item": "industrialcivilizationcore:orbital_experiment_module"
     },
     {
       "id": "functional_orbital_station",

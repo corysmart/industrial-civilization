@@ -49,7 +49,10 @@ public final class TileMolecularAnalyzer extends TileEntity implements IPeripher
         }
         analysesCompleted++;
         markDirty();
-        player.getEntityData().setBoolean("industrialcivilization.lite_matter_complete", true);
+        ProgressionState.record(player, "lite_matter_complete");
+        RuntimeAdvancements.grant(player, "analyzer_power");
+        RuntimeAdvancements.grant(player, "comparative_molecular_analysis");
+        RuntimeAdvancements.grant(player, "lite_matter_complete");
         player.sendStatusMessage(new TextComponentTranslation(
             "message.industrialcivilization.analyzer.complete"), false);
         return true;

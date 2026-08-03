@@ -40,7 +40,7 @@ ADDED = {
         "source": "https://www.curseforge.com/minecraft/mc-mods/groovyscript/files/7925117",
         "redistribution": "LGPL-3.0; source and license terms are linked from the upstream project.",
     },
-    "IndustrialCivilizationCore-0.1.0.jar": {
+    "IndustrialCivilizationCore-0.2.0.jar": {
         "source": "development/IndustrialCivilizationCore",
         "redistribution": "First-party pack integration source included in this instance.",
     },

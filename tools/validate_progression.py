@@ -36,6 +36,7 @@ pacing = read_json(PROG / "pacing.json")
 profiles = read_json(PROG / "optimization-profiles.json")
 placeholders = read_json(PROG / "placeholder-registry.json")
 telemetry = read_json(PROG / "telemetry-schema.json")
+runtime_content = read_json(PROG / "runtime-content.json")
 schemas = {path.name: read_json(path) for path in sorted((PROG / "schemas").glob("*.json"))}
 
 # Lightweight, dependency-free validation against the checked-in schemas.
@@ -58,9 +59,11 @@ for side_path in side_paths:
 for name, required in (("pacing", ["canonical_profile", "ai_age_target_hours", "milestones"]),
                        ("optimization profiles", ["profiles"]),
                        ("placeholder registry", ["namespace", "config", "entries"]),
-                       ("telemetry", ["implemented", "fields"])):
+                       ("telemetry", ["implemented", "fields"]),
+                       ("runtime content", ["namespace", "asset_policy", "blocks", "items"])):
     data = {"pacing": pacing, "optimization profiles": profiles,
-            "placeholder registry": placeholders, "telemetry": telemetry}[name]
+            "placeholder registry": placeholders, "telemetry": telemetry,
+            "runtime content": runtime_content}[name]
     check(all(key in data for key in required), f"{name} schema required fields")
 
 check(len(chapters) == 16, "exactly 16 canonical chapters")
@@ -152,14 +155,16 @@ check(previous == {"optimized": 20, "average": 40, "poor": 80}, "pacing endpoint
 
 placeholder_entries = {entry.get("id"): entry for entry in placeholders.get("entries", [])}
 used_placeholders = {ms.get("placeholder_id") for ms in milestones if ms.get("placeholder_id")}
-check(used_placeholders == set(placeholder_entries), "quest placeholders and registry entries are one-to-one")
+check(not used_placeholders, "no canonical milestone still uses placeholder fulfillment")
+check(placeholders.get("status") == "replaced", "placeholder registry is marked replaced")
 for pid, entry in placeholder_entries.items():
-    check(entry.get("milestone_id") in by_id, f"placeholder {pid} has a stable milestone")
-    check(bool(entry.get("final_target")), f"placeholder {pid} has a final target")
-    check(bool(entry.get("represents")), f"placeholder {pid} states what it represents")
-    check(entry.get("display_name", "").startswith("[TEST PLACEHOLDER]"), f"placeholder {pid} is visibly temporary")
-    check(entry.get("temporary_recipe") in (["minecraft:paper", "minecraft:redstone"], ["minecraft:iron_ingot", "minecraft:redstone"]), f"placeholder {pid} follows simple recipe convention")
-check((ROOT / placeholders.get("config", "missing")).is_file(), "central placeholder toggle exists")
+    check(entry.get("milestone_id") in by_id, f"replacement {pid} retains its stable milestone")
+    check(entry.get("replacement_status") == "implemented", f"replacement {pid} is implemented")
+    check(bool(entry.get("runtime_item")), f"replacement {pid} has a runtime registry object")
+    check(bool(entry.get("implementation")), f"replacement {pid} documents real behavior")
+    milestone = by_id[entry["milestone_id"]]
+    check(milestone.get("required_item") == entry.get("runtime_item"), f"replacement {pid} fulfills its canonical quest")
+check((ROOT / placeholders.get("config", "missing")).is_file(), "runtime progression config exists")
 
 branch_members = [mid for branch in graph.get("optional_branches", {}).values() for mid in branch]
 optional_ids = {ms["id"] for ms in milestones if ms.get("optional")}
@@ -180,8 +185,11 @@ for jar in (ROOT / "mods").glob("*.jar"):
                     asset_paths[domain].add(path)
     except zipfile.BadZipFile:
         pass
-custom_ids = {"molecular_analyzer", "material_pattern_record"}
-custom_ids.update(entry["placeholder_item"].split(":", 1)[1] for entry in placeholder_entries.values())
+asset_root = ROOT / "development/IndustrialCivilizationCore/src/main/resources/assets/industrialcivilizationcore"
+custom_ids = {path.stem for path in (asset_root / "models/item").glob("*.json")}
+custom_ids.update(path.stem for path in (asset_root / "blockstates").glob("*.json"))
+declared_custom_ids = {entry["id"] for kind in ("blocks", "items") for entry in runtime_content[kind]}
+check(declared_custom_ids == custom_ids, "runtime content registry exactly matches custom models")
 
 
 def item_exists(ref):
@@ -209,25 +217,30 @@ for ms in milestones:
     check(item_exists(ms["icon"]), f"quest icon exists: {ms['id']} -> {ms['icon']}")
     if ms.get("required_item"):
         check(item_exists(ms["required_item"]), f"quest item exists: {ms['id']} -> {ms['required_item']}")
+    if ms.get("runtime_advancement"):
+        advancement = ms["id"] if ms["runtime_advancement"] is True else ms["runtime_advancement"]
+        advancement_path = asset_root / "advancements" / f"{advancement}.json"
+        check(advancement_path.is_file(), f"runtime advancement exists: {ms['id']} -> {advancement}")
 
 lang_path = ROOT / "development/IndustrialCivilizationCore/src/main/resources/assets/industrialcivilizationcore/lang/en_us.lang"
 lang = lang_path.read_text(encoding="utf-8")
-java = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/IndustrialCivilizationCore.java").read_text(encoding="utf-8")
+java_sources = "\n".join(path.read_text(encoding="utf-8") for path in
+    (ROOT / "development/IndustrialCivilizationCore/src/main/java").rglob("*.java"))
 for entry in placeholder_entries.values():
-    item_id = entry["placeholder_item"].split(":", 1)[1]
-    check(f'placeholder("{item_id}")' in java, f"placeholder item registered: {item_id}")
-    check(f"item.industrialcivilizationcore.{item_id}.name=" in lang, f"placeholder name localized: {item_id}")
-    check(f"item.industrialcivilizationcore.{item_id}.represents=" in lang, f"placeholder purpose localized: {item_id}")
-check("test_placeholder" in java and (lang_path.parent.parent / "models/item/test_placeholder.json").is_file(), "all placeholders have a shared item model")
+    item_id = entry["runtime_item"].split(":", 1)[1]
+    check(item_id in java_sources, f"runtime replacement registered: {item_id}")
+    localized = (f"item.industrialcivilizationcore.{item_id}.name=" in lang
+        or f"tile.industrialcivilizationcore.{item_id}.name=" in lang)
+    check(localized, f"runtime replacement localized: {item_id}")
+    check((asset_root / "models/item" / f"{item_id}.json").is_file(), f"runtime replacement model exists: {item_id}")
 
-placeholder_script = (ROOT / "groovy/postInit/industrial_civilization_placeholders.groovy").read_text(encoding="utf-8")
+content_script = (ROOT / "groovy/postInit/industrial_civilization_content.groovy").read_text(encoding="utf-8")
 main_script = (ROOT / "groovy/postInit/industrial_civilization.groovy").read_text(encoding="utf-8")
-check("enableTestingPlaceholders=true" in placeholder_script, "placeholder script reads central enable toggle")
-for entry in placeholder_entries.values():
-    item_id = entry["placeholder_item"].split(":", 1)[1]
-    check(item_id in placeholder_script, f"placeholder recipe exists: {item_id}")
+check("placeholder_" not in java_sources and "[TEST PLACEHOLDER]" not in lang, "placeholder registrations and labels are removed")
+for machine_id in ("research_station", "orbital_experiment_module", "electric_fabricator", "programmable_assembler", "robotic_manufacturing_cell"):
+    check(machine_id in content_script, f"real machine has a construction recipe: {machine_id}")
 check("startsWith('appliedenergistics2:')" in main_script and ".removeAll()" in main_script, "all original AE2 crafting recipes are removed")
-check("aiCore" in placeholder_script and "ai_gated_ae2_" in placeholder_script, "testing AE2 recipes require the AI Core")
+check("aiCore" in content_script and "ai_gated_ae2_" in content_script, "real AE2 recipes require the durable AI Core")
 
 # Generated quest database must be a lossless projection of milestone IDs/order.
 quests = read_json(ROOT / "config/betterquesting/DefaultQuests.json")
@@ -242,13 +255,18 @@ for index, ms in enumerate(milestones):
     check(props.get("name:8") == ms["title"], f"generated quest title matches {ms['id']}")
     check(quest.get("preRequisites:11") == [id_order[p] for p in ms["prerequisites"]], f"generated prerequisites match {ms['id']}")
     task = quest.get("tasks:9", {}).get("0:10", {})
-    expected_task = "bq_standard:retrieval" if ms.get("required_item") else "bq_standard:checkbox"
+    expected_task = ("bq_standard:advancement" if ms.get("runtime_advancement")
+                     else "bq_standard:retrieval" if ms.get("required_item")
+                     else "bq_standard:checkbox")
     check(task.get("taskID:8") == expected_task, f"generated task type matches {ms['id']}")
+    if ms.get("runtime_advancement"):
+        advancement = ms["id"] if ms["runtime_advancement"] is True else ms["runtime_advancement"]
+        check(task.get("advancement_id:8") == f"industrialcivilizationcore:{advancement}",
+              f"generated runtime advancement matches {ms['id']}")
     check(props.get("visibility:8") == "ALWAYS", f"quest is aspirationally visible from the start: {ms['id']}")
     check(props.get("questlogic:8") == ms.get("prerequisite_logic", "AND"), f"generated prerequisite logic matches {ms['id']}")
-    if ms.get("placeholder_id"):
-        check("TEMPORARY VALIDATION:" in props.get("desc:8", ""), f"placeholder quest explains temporary validation: {ms['id']}")
-check(quests.get("questSettings:10", {}).get("betterquesting:10", {}).get("pack_version:3") == 3, "Better Questing pack version includes visible side paths")
+check(not any(ms.get("placeholder_id") for ms in milestones), "generated projection has no placeholder milestones")
+check(quests.get("questSettings:10", {}).get("betterquesting:10", {}).get("pack_version:3") == 4, "Better Questing pack version includes runtime replacements")
 
 placements = []
 for line in quest_lines.values():
@@ -265,11 +283,14 @@ required_telemetry = {"milestone_completion_time", "chapter_time", "manual_craft
  "eu_generated", "eu_consumed", "reactor_efficiency", "launches", "cargo_transported",
  "moon_resources_imported", "moon_resources_produced", "mars_resources_imported", "mars_resources_produced",
  "computercraft_programs_used", "ae_unlock_time"}
-check(required_telemetry == telemetry_ids and telemetry.get("implemented") is False, "future telemetry schema is complete and non-invasive")
+check(required_telemetry == telemetry_ids
+      and telemetry.get("implemented") == "partial"
+      and telemetry.get("privacy") == "local_only_no_transmission",
+      "telemetry schema is complete and partial runtime counters remain local-only")
 
 if errors:
     print(f"FAILED: {len(errors)} of {len(errors) + len(checks)} checks")
     for message in errors:
         print(f"  - {message}")
     sys.exit(1)
-print(f"PASS: {len(checks)} progression checks; {len(chapters)} chapters; {len(graph.get('optional_branches', {}))} side paths; {len(milestones)} milestones; {len(placeholder_entries)} placeholders")
+print(f"PASS: {len(checks)} progression checks; {len(chapters)} chapters; {len(graph.get('optional_branches', {}))} side paths; {len(milestones)} milestones; {len(placeholder_entries)} runtime replacements; 0 placeholders")

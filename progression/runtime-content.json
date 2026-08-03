@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "namespace": "industrialcivilizationcore",
+  "asset_policy": {
+    "native_texture_size": 16,
+    "style": "original IC2-adjacent industrial pixel art",
+    "palette": ["pale blue-gray metal", "dark inset panels", "cyan instrumentation", "copper/orange high-energy accents"],
+    "concept_reference": "docs/art/industrial_content_concept.png",
+    "review_sheet": "docs/art/industrial_content_sprite_review.png",
+    "generator": "tools/generate_ic2_assets.py",
+    "validator": "tools/validate_runtime_content.py"
+  },
+  "blocks": [
+    {"id": "molecular_analyzer", "system": "Lite Matter analysis"},
+    {"id": "research_station", "system": "environment-aware research"},
+    {"id": "orbital_experiment_module", "system": "off-world experiment data"},
+    {"id": "electric_fabricator", "system": "fixed EU manufacturing"},
+    {"id": "programmable_assembler", "system": "queued programmable manufacturing"},
+    {"id": "robotic_manufacturing_cell", "system": "high-tier dimension-aware synthesis"},
+    {"id": "factory_control_terminal", "system": "criminal factory salvage encounter"},
+    {"id": "environmental_solar_array", "system": "dimension-scaled solar power"},
+    {"id": "tracking_solar_array", "system": "advanced orbital tracking power"},
+    {"id": "matter_replicator", "system": "UU-Matter and controlled replication"},
+    {"id": "fusion_research_core", "system": "orbital antimatter research"},
+    {"id": "interplanetary_cargo_controller", "system": "cross-dimensional cargo channels"},
+    {"id": "orbital_megastructure_controller", "system": "orbital megastructure validation"},
+    {"id": "autonomous_colony_beacon", "system": "Moon/Mars colony certification"}
+  ],
+  "items": [
+    {"id": "material_pattern_record", "system": "Lite Matter record"},
+    {"id": "orbital_research_archive", "system": "Moon authorization"},
+    {"id": "lunar_engineering_archive", "system": "Quantum authorization"},
+    {"id": "lunar_quantum_component", "system": "Mars readiness"},
+    {"id": "mars_mission_authorization", "system": "Mars authorization"},
+    {"id": "martian_autonomy_archive", "system": "AI prerequisite"},
+    {"id": "artificial_industrial_intelligence_core", "system": "AE2 authorization"},
+    {"id": "blank_data_cartridge", "system": "research input"},
+    {"id": "research_data", "system": "environment-tagged data"},
+    {"id": "precision_frame", "system": "fabricated component"},
+    {"id": "control_processor", "system": "programmable component"},
+    {"id": "underworld_dossier", "system": "factory lead"},
+    {"id": "criminal_network_ledger", "system": "encounter proof"},
+    {"id": "factory_restoration_certificate", "system": "industrial bypass proof"},
+    {"id": "recovered_factory_control_system", "system": "programmable bypass proof"},
+    {"id": "uu_matter_capsule", "system": "matter feedstock"},
+    {"id": "controlled_replication_record", "system": "single-use replicated Desh output"},
+    {"id": "contained_antimatter_capsule", "system": "fusion output"},
+    {"id": "interplanetary_cargo_network_key", "system": "cargo authorization"},
+    {"id": "megastructure_control_record", "system": "orbital construction proof"},
+    {"id": "autonomous_colony_charter", "system": "colony proof"},
+    {"id": "civilization_scale_ai_core", "system": "open-ended capstone"}
+  ]
+}

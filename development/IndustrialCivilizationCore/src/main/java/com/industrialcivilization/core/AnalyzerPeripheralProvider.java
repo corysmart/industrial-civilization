@@ -21,6 +21,6 @@ public final class AnalyzerPeripheralProvider implements IPeripheralProvider {
     @Override
     public IPeripheral getPeripheral(World world, BlockPos pos, EnumFacing side) {
         TileEntity tile = world.getTileEntity(pos);
-        return tile instanceof TileMolecularAnalyzer ? (TileMolecularAnalyzer) tile : null;
+        return tile instanceof IPeripheral ? (IPeripheral) tile : null;
     }
 }

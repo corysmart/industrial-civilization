@@ -8,25 +8,34 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.Teleporter;
+import net.minecraft.world.WorldServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.client.settings.KeyModifier;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.event.world.BlockEvent;
 import org.apache.logging.log4j.Logger;
 
 @Mod(
@@ -39,7 +48,11 @@ import org.apache.logging.log4j.Logger;
 public final class IndustrialCivilizationCore {
     public static final String MODID = "industrialcivilizationcore";
     public static final String NAME = "Industrial Civilization Core";
-    public static final String VERSION = "0.1.0";
+    public static final String VERSION = "0.2.0";
+    public static final int GUI_INDUSTRIAL_MACHINE = 1;
+    public static boolean ENFORCE_SPACE_GATES = true;
+    @Mod.Instance(MODID)
+    public static IndustrialCivilizationCore INSTANCE;
     public static final String QUEST_HOME_IMAGE = MODID + ":textures/gui/quest_home_v2.png";
     public static final int QUEST_HOME_OFFSET_X = -128;
     public static final int QUEST_HOME_OFFSET_Y = 0;
@@ -54,34 +67,99 @@ public final class IndustrialCivilizationCore {
         .setRegistryName(MODID, "material_pattern_record")
         .setUnlocalizedName(MODID + ".material_pattern_record")
         .setMaxStackSize(1);
-    public static final ItemTestPlaceholder[] TEST_PLACEHOLDERS = {
-        placeholder("placeholder_research_station"),
-        placeholder("placeholder_orbital_experiment_module"),
-        placeholder("placeholder_orbital_research_archive"),
-        placeholder("placeholder_lunar_engineering_archive"),
-        placeholder("placeholder_lunar_quantum_component"),
-        placeholder("placeholder_mars_mission_authorization"),
-        placeholder("placeholder_martian_autonomy_archive"),
-        placeholder("placeholder_ai_core"),
-        placeholder("placeholder_electric_fabricator"),
-        placeholder("placeholder_programmable_assembler"),
-        placeholder("placeholder_robotic_manufacturing_cell")
+    public static final BlockIndustrialMachine RESEARCH_STATION = machine(IndustrialMachineKind.RESEARCH_STATION);
+    public static final BlockIndustrialMachine ORBITAL_EXPERIMENT_MODULE = machine(IndustrialMachineKind.EXPERIMENT_MODULE);
+    public static final BlockIndustrialMachine ELECTRIC_FABRICATOR = machine(IndustrialMachineKind.ELECTRIC_FABRICATOR);
+    public static final BlockIndustrialMachine PROGRAMMABLE_ASSEMBLER = machine(IndustrialMachineKind.PROGRAMMABLE_ASSEMBLER);
+    public static final BlockIndustrialMachine ROBOTIC_MANUFACTURING_CELL = machine(IndustrialMachineKind.ROBOTIC_CELL);
+    public static final BlockIndustrialMachine MATTER_REPLICATOR = machine(IndustrialMachineKind.MATTER_REPLICATOR);
+    public static final BlockIndustrialMachine FUSION_RESEARCH_CORE = machine(IndustrialMachineKind.FUSION_RESEARCH_CORE);
+    public static final BlockIndustrialMachine INTERPLANETARY_CARGO_CONTROLLER = machine(IndustrialMachineKind.CARGO_CONTROLLER);
+    public static final BlockIndustrialMachine ORBITAL_MEGASTRUCTURE_CONTROLLER = machine(IndustrialMachineKind.MEGASTRUCTURE_CONTROLLER);
+    public static final BlockIndustrialMachine AUTONOMOUS_COLONY_BEACON = machine(IndustrialMachineKind.COLONY_BEACON);
+    public static final BlockFactoryControlTerminal FACTORY_CONTROL_TERMINAL = new BlockFactoryControlTerminal();
+    public static final BlockEnvironmentalSolarArray ENVIRONMENTAL_SOLAR_ARRAY =
+        new BlockEnvironmentalSolarArray("environmental_solar_array", false);
+    public static final BlockEnvironmentalSolarArray TRACKING_SOLAR_ARRAY =
+        new BlockEnvironmentalSolarArray("tracking_solar_array", true);
+    public static final BlockIndustrialMachine[] INDUSTRIAL_MACHINES = {
+        RESEARCH_STATION, ORBITAL_EXPERIMENT_MODULE, ELECTRIC_FABRICATOR,
+        PROGRAMMABLE_ASSEMBLER, ROBOTIC_MANUFACTURING_CELL, MATTER_REPLICATOR,
+        FUSION_RESEARCH_CORE, INTERPLANETARY_CARGO_CONTROLLER,
+        ORBITAL_MEGASTRUCTURE_CONTROLLER, AUTONOMOUS_COLONY_BEACON
+    };
+    public static final ItemIndustrialArtifact ORBITAL_RESEARCH_ARCHIVE = artifact("orbital_research_archive");
+    public static final ItemIndustrialArtifact LUNAR_ENGINEERING_ARCHIVE = artifact("lunar_engineering_archive");
+    public static final ItemIndustrialArtifact LUNAR_QUANTUM_COMPONENT = artifact("lunar_quantum_component");
+    public static final ItemIndustrialArtifact MARS_MISSION_AUTHORIZATION = artifact("mars_mission_authorization");
+    public static final ItemIndustrialArtifact MARTIAN_AUTONOMY_ARCHIVE = artifact("martian_autonomy_archive");
+    public static final ItemIndustrialArtifact AI_CORE = artifact("artificial_industrial_intelligence_core");
+    public static final ItemIndustrialArtifact BLANK_DATA_CARTRIDGE = artifact("blank_data_cartridge", false);
+    public static final ItemIndustrialArtifact RESEARCH_DATA = artifact("research_data", false);
+    public static final ItemIndustrialArtifact PRECISION_FRAME = artifact("precision_frame", false);
+    public static final ItemIndustrialArtifact CONTROL_PROCESSOR = artifact("control_processor", false);
+    public static final ItemIndustrialArtifact UNDERWORLD_DOSSIER = artifact("underworld_dossier");
+    public static final ItemIndustrialArtifact CRIMINAL_NETWORK_LEDGER = artifact("criminal_network_ledger");
+    public static final ItemIndustrialArtifact FACTORY_RESTORATION_CERTIFICATE = artifact("factory_restoration_certificate");
+    public static final ItemIndustrialArtifact RECOVERED_FACTORY_CONTROL_SYSTEM = artifact("recovered_factory_control_system");
+    public static final ItemIndustrialArtifact UU_MATTER_CAPSULE = artifact("uu_matter_capsule");
+    public static final ItemIndustrialArtifact REPLICATION_RECORD = artifact("controlled_replication_record");
+    public static final ItemIndustrialArtifact ANTIMATTER_CAPSULE = artifact("contained_antimatter_capsule");
+    public static final ItemIndustrialArtifact CARGO_NETWORK_KEY = artifact("interplanetary_cargo_network_key");
+    public static final ItemIndustrialArtifact MEGASTRUCTURE_CONTROL_RECORD = artifact("megastructure_control_record");
+    public static final ItemIndustrialArtifact AUTONOMOUS_COLONY_CHARTER = artifact("autonomous_colony_charter");
+    public static final ItemIndustrialArtifact CIVILIZATION_SCALE_AI_CORE = artifact("civilization_scale_ai_core");
+    public static final ItemIndustrialArtifact[] ARTIFACTS = {
+        ORBITAL_RESEARCH_ARCHIVE, LUNAR_ENGINEERING_ARCHIVE, LUNAR_QUANTUM_COMPONENT,
+        MARS_MISSION_AUTHORIZATION, MARTIAN_AUTONOMY_ARCHIVE, AI_CORE,
+        BLANK_DATA_CARTRIDGE, RESEARCH_DATA, PRECISION_FRAME, CONTROL_PROCESSOR,
+        UNDERWORLD_DOSSIER, CRIMINAL_NETWORK_LEDGER, FACTORY_RESTORATION_CERTIFICATE,
+        RECOVERED_FACTORY_CONTROL_SYSTEM, UU_MATTER_CAPSULE, REPLICATION_RECORD,
+        ANTIMATTER_CAPSULE, CARGO_NETWORK_KEY, MEGASTRUCTURE_CONTROL_RECORD,
+        AUTONOMOUS_COLONY_CHARTER, CIVILIZATION_SCALE_AI_CORE
     };
 
-    private static ItemTestPlaceholder placeholder(String id) {
-        return new ItemTestPlaceholder(id);
+    private static BlockIndustrialMachine machine(IndustrialMachineKind kind) {
+        return new BlockIndustrialMachine(kind);
+    }
+
+    private static ItemIndustrialArtifact artifact(String id) {
+        return new ItemIndustrialArtifact(id);
+    }
+
+    private static ItemIndustrialArtifact artifact(String id, boolean activatesMilestone) {
+        return new ItemIndustrialArtifact(id, activatesMilestone);
     }
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         LOGGER = event.getModLog();
+        Configuration runtime = new Configuration(new java.io.File(
+            event.getModConfigurationDirectory(), "industrialcivilization/runtime.cfg"));
+        runtime.load();
+        ENFORCE_SPACE_GATES = runtime.getBoolean("enforceSpaceResearchGates", "progression",
+            true, "Return unauthorized players to Earth when entering the Moon or Mars.");
+        if (runtime.hasChanged()) runtime.save();
         GameRegistry.registerTileEntity(TileMolecularAnalyzer.class,
             new ResourceLocation(MODID, "molecular_analyzer"));
+        GameRegistry.registerTileEntity(TileIndustrialMachine.class,
+            new ResourceLocation(MODID, "industrial_machine"));
+        GameRegistry.registerTileEntity(TileFactoryControlTerminal.class,
+            new ResourceLocation(MODID, "factory_control_terminal"));
+        GameRegistry.registerTileEntity(TileEnvironmentalSolarArray.class,
+            new ResourceLocation(MODID, "environmental_solar_array"));
+        GameRegistry.registerWorldGenerator(new AbandonedFactoryWorldGenerator(), 50);
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
         AnalyzerPeripheralProvider.register();
+        NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, new IndustrialGuiHandler());
+    }
+
+    @EventHandler
+    public void serverStarting(FMLServerStartingEvent event) {
+        event.registerServerCommand(new CommandIndustrialStatus());
     }
 
     @Mod.EventBusSubscriber(modid = MODID)
@@ -89,14 +167,28 @@ public final class IndustrialCivilizationCore {
         @SubscribeEvent
         public static void registerBlocks(RegistryEvent.Register<Block> event) {
             event.getRegistry().register(MOLECULAR_ANALYZER);
+            event.getRegistry().registerAll(INDUSTRIAL_MACHINES);
+            event.getRegistry().register(FACTORY_CONTROL_TERMINAL);
+            event.getRegistry().register(ENVIRONMENTAL_SOLAR_ARRAY);
+            event.getRegistry().register(TRACKING_SOLAR_ARRAY);
         }
 
         @SubscribeEvent
         public static void registerItems(RegistryEvent.Register<Item> event) {
             event.getRegistry().register(MATERIAL_PATTERN_RECORD);
-            event.getRegistry().registerAll(TEST_PLACEHOLDERS);
+            event.getRegistry().registerAll(ARTIFACTS);
             event.getRegistry().register(new ItemBlock(MOLECULAR_ANALYZER)
                 .setRegistryName(MOLECULAR_ANALYZER.getRegistryName()));
+            for (BlockIndustrialMachine machine : INDUSTRIAL_MACHINES) {
+                event.getRegistry().register(new ItemBlock(machine)
+                    .setRegistryName(machine.getRegistryName()));
+            }
+            event.getRegistry().register(new ItemBlock(FACTORY_CONTROL_TERMINAL)
+                .setRegistryName(FACTORY_CONTROL_TERMINAL.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(ENVIRONMENTAL_SOLAR_ARRAY)
+                .setRegistryName(ENVIRONMENTAL_SOLAR_ARRAY.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(TRACKING_SOLAR_ARRAY)
+                .setRegistryName(TRACKING_SOLAR_ARRAY.getRegistryName()));
         }
 
         @SubscribeEvent(priority = EventPriority.HIGHEST)
@@ -133,19 +225,75 @@ public final class IndustrialCivilizationCore {
 
         @SubscribeEvent
         public static void changedDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
+            ProgressionState.increment(event.player, "dimension_transfers", 1);
             String destination = event.player.world.provider.getDimensionType().getName().toLowerCase();
             if (destination.contains("moon")) {
-                event.player.getEntityData().setBoolean("industrialcivilization.moon_visited", true);
+                if (ENFORCE_SPACE_GATES && !ProgressionState.has(event.player, "orbital_research_archive")) {
+                    denyDestination(event, "message.industrialcivilization.gate.moon");
+                    return;
+                }
+                ProgressionState.record(event.player, "moon_visited");
+                RuntimeAdvancements.grant(event.player, "moon_access");
                 LOGGER.info("progression moon_visited player={}", event.player.getName());
             } else if (destination.contains("mars")) {
-                boolean moonFirst = event.player.getEntityData().getBoolean("industrialcivilization.moon_visited");
-                event.player.getEntityData().setBoolean("industrialcivilization.mars_visited", true);
-                event.player.getEntityData().setBoolean("industrialcivilization.moon_before_mars", moonFirst);
+                boolean authorized = ProgressionState.has(event.player, "lunar_quantum_component")
+                    && ProgressionState.has(event.player, "mars_mission_authorization");
+                if (ENFORCE_SPACE_GATES && !authorized) {
+                    denyDestination(event, "message.industrialcivilization.gate.mars");
+                    return;
+                }
+                boolean moonFirst = ProgressionState.has(event.player, "moon_visited");
+                ProgressionState.record(event.player, "mars_visited");
+                RuntimeAdvancements.grant(event.player, "mars_access");
+                if (moonFirst) ProgressionState.record(event.player, "moon_before_mars");
                 LOGGER.info("progression mars_visited player={} moon_before_mars={}", event.player.getName(), moonFirst);
                 if (!moonFirst) {
                     event.player.sendStatusMessage(new TextComponentTranslation(
                         "message.industrialcivilization.sequence_violation"), false);
                 }
+            }
+        }
+
+        @SubscribeEvent
+        public static void playerTick(TickEvent.PlayerTickEvent event) {
+            if (event.phase != TickEvent.Phase.END || event.player.world.isRemote
+                    || event.player.ticksExisted % 20 != 0) return;
+            for (ItemStack stack : event.player.inventory.mainInventory) {
+                if (!stack.isEmpty() && stack.getItem() instanceof ItemIndustrialArtifact) {
+                    String id = ((ItemIndustrialArtifact) stack.getItem()).getArtifactId();
+                    if (!ProgressionState.has(event.player, id)) {
+                        ProgressionState.increment(event.player, "artifacts_recorded", 1);
+                    }
+                    ProgressionState.record(event.player, id);
+                }
+            }
+            if (ProgressionState.has(event.player, "artificial_industrial_intelligence_core")
+                    && ProgressionState.has(event.player, "lite_matter_complete")) {
+                ProgressionState.record(event.player, "ai_age");
+            }
+            ProgressionState.increment(event.player, "active_ticks", 20);
+        }
+
+        @SubscribeEvent
+        public static void itemCrafted(PlayerEvent.ItemCraftedEvent event) {
+            if (!event.player.world.isRemote) ProgressionState.increment(event.player, "manual_crafts", 1);
+        }
+
+        @SubscribeEvent
+        public static void blockBroken(BlockEvent.BreakEvent event) {
+            if (event.getPlayer() != null && !event.getWorld().isRemote) {
+                ProgressionState.increment(event.getPlayer(), "blocks_mined_manual", 1);
+            }
+        }
+
+        private static void denyDestination(PlayerEvent.PlayerChangedDimensionEvent event, String message) {
+            event.player.sendMessage(new TextComponentTranslation(message));
+            LOGGER.warn("Blocked unauthorized dimension entry player={} destination={}",
+                event.player.getName(), event.player.world.provider.getDimensionType().getName());
+            if (event.player instanceof EntityPlayerMP) {
+                EntityPlayerMP player = (EntityPlayerMP) event.player;
+                WorldServer earth = player.getServer().getWorld(0);
+                player.getServer().getPlayerList().transferPlayerToDimension(player, 0, new Teleporter(earth));
             }
         }
     }
@@ -246,10 +394,24 @@ public final class IndustrialCivilizationCore {
             ModelLoader.setCustomModelResourceLocation(
                 MATERIAL_PATTERN_RECORD, 0,
                 new ModelResourceLocation(MATERIAL_PATTERN_RECORD.getRegistryName(), "inventory"));
-            for (ItemTestPlaceholder placeholder : TEST_PLACEHOLDERS) {
+            for (BlockIndustrialMachine machine : INDUSTRIAL_MACHINES) {
                 ModelLoader.setCustomModelResourceLocation(
-                    placeholder, 0,
-                    new ModelResourceLocation(MODID + ":test_placeholder", "inventory"));
+                    Item.getItemFromBlock(machine), 0,
+                    new ModelResourceLocation(machine.getRegistryName(), "inventory"));
+            }
+            ModelLoader.setCustomModelResourceLocation(
+                Item.getItemFromBlock(FACTORY_CONTROL_TERMINAL), 0,
+                new ModelResourceLocation(FACTORY_CONTROL_TERMINAL.getRegistryName(), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(
+                Item.getItemFromBlock(ENVIRONMENTAL_SOLAR_ARRAY), 0,
+                new ModelResourceLocation(ENVIRONMENTAL_SOLAR_ARRAY.getRegistryName(), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(
+                Item.getItemFromBlock(TRACKING_SOLAR_ARRAY), 0,
+                new ModelResourceLocation(TRACKING_SOLAR_ARRAY.getRegistryName(), "inventory"));
+            for (ItemIndustrialArtifact artifact : ARTIFACTS) {
+                ModelLoader.setCustomModelResourceLocation(
+                    artifact, 0,
+                    new ModelResourceLocation(artifact.getRegistryName(), "inventory"));
             }
         }
 

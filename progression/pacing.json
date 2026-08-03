@@ -119,7 +119,7 @@
         "average": 10,
         "poor": 20
       },
-      "raw_resource_requirements": "Computers, monitors, machine placeholders",
+      "raw_resource_requirements": "Computers, monitors, Electric Fabricator, Programmable Assembler, and control processors",
       "machine_throughput": "Queued multi-step line",
       "power_requirements": "MV",
       "expected_manual_steps": "Initial setup and verification only; routine repetition should be automated.",

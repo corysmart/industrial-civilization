@@ -1,27 +1,21 @@
 <!-- Generated from progression/*.json by tools/generate_progression_docs.py. -->
 
-# Placeholder System
+# Placeholder Replacement Status
 
-Every missing runtime system has a visibly named `[TEST PLACEHOLDER]` item with a stable registry ID, explanatory tooltip, final target, and replacement contract. Recipes live only in `groovy/postInit/industrial_civilization_placeholders.groovy` and are controlled by `config/industrialcivilization/placeholders.cfg`:
+All eleven Phase 2 test placeholders have been removed. Their stable milestone IDs were preserved while their fulfillment mechanisms were replaced with real runtime content. No `[TEST PLACEHOLDER]` item, two-item shortcut recipe, shared placeholder model, or placeholder enable toggle remains.
 
-```properties
-enableTestingPlaceholders=true
-```
+| Former placeholder | Stable milestone | Runtime object | Implemented behavior |
+|---|---|---|---|
+| `research_station` | `research_station` | `industrialcivilizationcore:research_station` | EU and FE energy sink; four-slot inventory; environment-aware archive recipes; IC2-styled GUI; ComputerCraft peripheral |
+| `orbital_experiment_module` | `orbital_experiment_module` | `industrialcivilizationcore:orbital_experiment_module` | powered environment detection; orbit/Moon/Mars tagged data; automation-compatible inventory |
+| `orbital_research_archive` | `orbital_research_complete` | `industrialcivilizationcore:orbital_research_archive` | orbit-only Research Station output; persistent Moon-access gate |
+| `lunar_engineering_archive` | `lunar_research_complete` | `industrialcivilizationcore:lunar_engineering_archive` | Moon-only Research Station output; requires orbital archive and lunar experiment data |
+| `lunar_quantum_component` | `lunar_quantum_component` | `industrialcivilizationcore:lunar_quantum_component` | Moon-only Robotic Cell output; Mars gate prerequisite |
+| `mars_mission_authorization` | `mars_mission_authorization` | `industrialcivilizationcore:mars_mission_authorization` | Earth Research Station synthesis; persistent Mars-access gate |
+| `martian_autonomy_archive` | `martian_autonomy_complete` | `industrialcivilizationcore:martian_autonomy_archive` | Mars-only Research Station output; requires Martian data and programmable control |
+| `ai_core` | `artificial_industrial_intelligence_core` | `industrialcivilizationcore:artificial_industrial_intelligence_core` | Robotic Cell synthesis; Martian archive and Lite Matter inputs; durable AE2 authorization catalyst |
+| `electric_fabricator` | `electric_fabricator` | `industrialcivilizationcore:electric_fabricator` | 32 EU/t fixed recipes; 160-tick processing; sided automation |
+| `programmable_assembler` | `programmable_assembler` | `industrialcivilizationcore:programmable_assembler` | 128 EU/t recipes; selectable programs; ComputerCraft queues |
+| `robotic_manufacturing_cell` | `robotic_manufacturing_cell` | `industrialcivilizationcore:robotic_manufacturing_cell` | 512 EU/t high-tier synthesis; dimension-aware recipes; ComputerCraft queues |
 
-Set it to `false` to remove every temporary recipe and AI-gated AE2 recipe without deleting the canonical graph. Research artifacts use Paper + Redstone; machine artifacts use Iron Ingot + Redstone.
-
-| ID | Quest milestone | Test item | Final target | Recipe |
-|---|---|---|---|---|
-| `research_station` | `research_station` | `industrialcivilizationcore:placeholder_research_station` | `industrial_civilization:research_station` | minecraft:paper + minecraft:redstone |
-| `orbital_experiment_module` | `orbital_experiment_module` | `industrialcivilizationcore:placeholder_orbital_experiment_module` | `industrial_civilization:orbital_experiment_module` | minecraft:paper + minecraft:redstone |
-| `orbital_research_archive` | `orbital_research_complete` | `industrialcivilizationcore:placeholder_orbital_research_archive` | `industrial_civilization:orbital_research_archive` | minecraft:paper + minecraft:redstone |
-| `lunar_engineering_archive` | `lunar_research_complete` | `industrialcivilizationcore:placeholder_lunar_engineering_archive` | `industrial_civilization:lunar_engineering_archive` | minecraft:paper + minecraft:redstone |
-| `lunar_quantum_component` | `lunar_quantum_component` | `industrialcivilizationcore:placeholder_lunar_quantum_component` | `industrial_civilization:lunar_quantum_component` | minecraft:paper + minecraft:redstone |
-| `mars_mission_authorization` | `mars_mission_authorization` | `industrialcivilizationcore:placeholder_mars_mission_authorization` | `industrial_civilization:mars_mission_authorization` | minecraft:paper + minecraft:redstone |
-| `martian_autonomy_archive` | `martian_autonomy_complete` | `industrialcivilizationcore:placeholder_martian_autonomy_archive` | `industrial_civilization:martian_autonomy_archive` | minecraft:paper + minecraft:redstone |
-| `ai_core` | `artificial_industrial_intelligence_core` | `industrialcivilizationcore:placeholder_ai_core` | `industrial_civilization:artificial_industrial_intelligence_core` | minecraft:iron_ingot + minecraft:redstone |
-| `electric_fabricator` | `electric_fabricator` | `industrialcivilizationcore:placeholder_electric_fabricator` | `industrial_civilization:electric_fabricator` | minecraft:iron_ingot + minecraft:redstone |
-| `programmable_assembler` | `programmable_assembler` | `industrialcivilizationcore:placeholder_programmable_assembler` | `industrial_civilization:programmable_assembler` | minecraft:iron_ingot + minecraft:redstone |
-| `robotic_manufacturing_cell` | `robotic_manufacturing_cell` | `industrialcivilizationcore:placeholder_robotic_manufacturing_cell` | `industrial_civilization:robotic_manufacturing_cell` | minecraft:iron_ingot + minecraft:redstone |
-
-When a final implementation arrives, keep `milestone_id`, replace only `placeholder_item`/temporary validation with the runtime condition, and mark `replacement_status` accordingly.
+The historical contract remains machine-readable in `progression/placeholder-registry.json` with status `replaced`, which prevents future work from accidentally reintroducing temporary fulfillment.

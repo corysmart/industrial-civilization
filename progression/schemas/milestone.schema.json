@@ -39,6 +39,12 @@
         "AND",
         "OR"
       ]
+    },
+    "runtime_advancement": {
+      "oneOf": [
+        {"type": "boolean"},
+        {"type": "string", "pattern": "^[a-z0-9_]+$"}
+      ]
     }
   }
 }

@@ -34,7 +34,8 @@
       "final_validation": [
         "Build a Tier 2 spacecraft and travel to Mars with mission authorization."
       ],
-      "automation_paths": []
+      "automation_paths": [],
+      "runtime_advancement": "mars_access"
     },
     {
       "id": "martian_habitat",
@@ -56,7 +57,7 @@
       "id": "martian_power",
       "title": "Reliable Martian Power",
       "category": "operation",
-      "icon": "minecraft:daylight_detector",
+      "icon": "industrialcivilizationcore:environmental_solar_array",
       "prerequisites": [
         "martian_habitat"
       ],
@@ -66,7 +67,9 @@
       "final_validation": [
         "Maintain local generation and storage through dust-related solar fluctuation; nuclear backup is encouraged."
       ],
-      "automation_paths": []
+      "automation_paths": [],
+      "required_item": "industrialcivilizationcore:environmental_solar_array",
+      "runtime_advancement": true
     },
     {
       "id": "martian_mining",

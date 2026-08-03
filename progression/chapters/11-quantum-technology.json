@@ -42,7 +42,7 @@
       "id": "robotic_manufacturing_cell",
       "title": "Robotic Manufacturing Cell",
       "category": "possession",
-      "icon": "industrialcivilizationcore:placeholder_robotic_manufacturing_cell",
+      "icon": "industrialcivilizationcore:robotic_manufacturing_cell",
       "prerequisites": [
         "extreme_voltage_industry"
       ],
@@ -53,15 +53,13 @@
         "Demonstrate the capability: Robotic Manufacturing Cell."
       ],
       "automation_paths": [],
-      "required_item": "industrialcivilizationcore:placeholder_robotic_manufacturing_cell",
-      "placeholder_id": "robotic_manufacturing_cell",
-      "temporary_validation": "Obtain the test cell. Final validation requires high-throughput ComputerCraft queues, physical logistics, and 0.5\u20132 second ordinary operations."
+      "required_item": "industrialcivilizationcore:robotic_manufacturing_cell"
     },
     {
       "id": "lunar_quantum_component",
       "title": "Lunar Quantum Component",
       "category": "possession",
-      "icon": "industrialcivilizationcore:placeholder_lunar_quantum_component",
+      "icon": "industrialcivilizationcore:lunar_quantum_component",
       "prerequisites": [
         "robotic_manufacturing_cell",
         "lunar_research_complete"
@@ -73,9 +71,7 @@
         "Demonstrate the capability: Lunar Quantum Component."
       ],
       "automation_paths": [],
-      "required_item": "industrialcivilizationcore:placeholder_lunar_quantum_component",
-      "placeholder_id": "lunar_quantum_component",
-      "temporary_validation": "Obtain the test component. Final validation requires a functional Moon-only vacuum/low-gravity manufacturing process."
+      "required_item": "industrialcivilizationcore:lunar_quantum_component"
     },
     {
       "id": "nanosuit_and_tools",
@@ -147,7 +143,7 @@
       "id": "mars_mission_authorization",
       "title": "Mars Mission Authorization",
       "category": "possession",
-      "icon": "industrialcivilizationcore:placeholder_mars_mission_authorization",
+      "icon": "industrialcivilizationcore:mars_mission_authorization",
       "prerequisites": [
         "quantum_technology_complete",
         "orbital_research_complete",
@@ -160,9 +156,7 @@
         "Demonstrate the capability: Mars Mission Authorization."
       ],
       "automation_paths": [],
-      "required_item": "industrialcivilizationcore:placeholder_mars_mission_authorization",
-      "placeholder_id": "mars_mission_authorization",
-      "temporary_validation": "Obtain the test authorization. Final validation requires Orbital and Lunar archives, Quantum completion, and Tier 2 mission readiness."
+      "required_item": "industrialcivilizationcore:mars_mission_authorization"
     }
   ]
 }

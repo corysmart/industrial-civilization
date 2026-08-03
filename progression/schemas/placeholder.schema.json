@@ -4,6 +4,20 @@
   "required": [
     "namespace",
     "config",
+    "status",
     "entries"
-  ]
+  ],
+  "properties": {
+    "status": { "enum": ["active", "replaced"] },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "milestone_id", "runtime_item", "display_name", "replacement_status", "implementation"],
+        "properties": {
+          "replacement_status": { "enum": ["implemented"] }
+        }
+      }
+    }
+  }
 }

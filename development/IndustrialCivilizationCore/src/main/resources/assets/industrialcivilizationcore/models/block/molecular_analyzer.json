@@ -1,4 +1,6 @@
 {
   "parent": "block/cube_all",
-  "textures": { "all": "minecraft:blocks/iron_block" }
+  "textures": {
+    "all": "industrialcivilizationcore:blocks/molecular_analyzer"
+  }
 }

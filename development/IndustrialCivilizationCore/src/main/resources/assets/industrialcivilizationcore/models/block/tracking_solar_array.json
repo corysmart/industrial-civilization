@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "industrialcivilizationcore:blocks/tracking_solar_array"
+  }
+}

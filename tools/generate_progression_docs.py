@@ -38,7 +38,7 @@ Canonical order:
 
 {chr(10).join(chapter_table)}
 
-The model contains **{len(chapters)} numbered chapters**, **{len(graph['optional_branches'])} independent side paths**, **{len(milestones)} milestones**, and **{len(placeholders['entries'])} explicit placeholders**. Every objective uses `ALWAYS` visibility: future goals are aspirationally visible even while locked. The AI Age begins the endgame; it is not a victory screen.
+The model contains **{len(chapters)} numbered chapters**, **{len(graph['optional_branches'])} independent side paths**, **{len(milestones)} milestones**, and **zero test placeholders**. The original {len(placeholders['entries'])} placeholder contracts retain their stable milestone IDs and now point to real runtime blocks, artifacts, machine processes, and gates. Every objective uses `ALWAYS` visibility: future goals are aspirationally visible even while locked. The AI Age begins the endgame; it is not a victory screen.
 """)
 (PROG / "progression-overview.md").write_text((DOCS / "PROGRESSION_OVERVIEW.md").read_text(), encoding="utf-8")
 
@@ -111,32 +111,25 @@ write("ANTI_GRIND_RULES.md", "Anti-Grind Rules", """
 7. Rewards are information, access, research artifacts, or small test items—not free high-tier infrastructure.
 """)
 
-placeholder_rows = ["| ID | Quest milestone | Test item | Final target | Recipe |", "|---|---|---|---|---|"]
+placeholder_rows = ["| Former placeholder | Stable milestone | Runtime object | Implemented behavior |", "|---|---|---|---|"]
 for p in placeholders["entries"]:
-    ingredients = " + ".join(p["temporary_recipe"])
-    placeholder_rows.append(f"| `{p['id']}` | `{p['milestone_id']}` | `{p['placeholder_item']}` | `{p['final_target']}` | {ingredients} |")
-write("PLACEHOLDER_SYSTEM.md", "Placeholder System", f"""
-Every missing runtime system has a visibly named `[TEST PLACEHOLDER]` item with a stable registry ID, explanatory tooltip, final target, and replacement contract. Recipes live only in `groovy/postInit/industrial_civilization_placeholders.groovy` and are controlled by `config/industrialcivilization/placeholders.cfg`:
-
-```properties
-enableTestingPlaceholders=true
-```
-
-Set it to `false` to remove every temporary recipe and AI-gated AE2 recipe without deleting the canonical graph. Research artifacts use Paper + Redstone; machine artifacts use Iron Ingot + Redstone.
+    placeholder_rows.append(f"| `{p['id']}` | `{p['milestone_id']}` | `{p['runtime_item']}` | {'; '.join(p['implementation'])} |")
+write("PLACEHOLDER_SYSTEM.md", "Placeholder Replacement Status", f"""
+All eleven Phase 2 test placeholders have been removed. Their stable milestone IDs were preserved while their fulfillment mechanisms were replaced with real runtime content. No `[TEST PLACEHOLDER]` item, two-item shortcut recipe, shared placeholder model, or placeholder enable toggle remains.
 
 {chr(10).join(placeholder_rows)}
 
-When a final implementation arrives, keep `milestone_id`, replace only `placeholder_item`/temporary validation with the runtime condition, and mark `replacement_status` accordingly.
+The historical contract remains machine-readable in `progression/placeholder-registry.json` with status `replaced`, which prevents future work from accidentally reintroducing temporary fulfillment.
 """)
 
 write("QUEST_IMPLEMENTATION.md", "Quest Implementation", f"""
 Better Questing 3 reads `config/betterquesting/DefaultQuests.json`. Run `python3 tools/generate_objectives.py` after canonical edits; never hand-edit generated quests. The current projection has {len(chapters) + len(graph['optional_branches'])} quest lines ({len(chapters)} numbered chapters and {len(graph['optional_branches'])} independent side paths) and {len(milestones)} quests.
 
-Possession milestones use Standard Expansion `bq_standard:retrieval` tasks with NBT ignored, group detection enabled, and consumption disabled. Construction, operation, mastery, research, and transitions use manual checkboxes where no reliable runtime trigger exists. Each such quest lists final validation; placeholder-backed quests add a conspicuous `TEMPORARY VALIDATION` section. All quests use `ALWAYS` visibility and locked progress, so players can browse the whole civilization plan without completing locked objectives early.
+Possession milestones use Standard Expansion `bq_standard:retrieval` tasks with NBT ignored, group detection enabled, and consumption disabled. Real machine blocks and artifacts now fulfill the former placeholder quests. Construction and broad infrastructure/mastery goals still use manual checkboxes where no reliable cross-mod runtime trigger exists. All quests use `ALWAYS` visibility and locked progress, so players can browse the whole civilization plan without completing locked objectives early.
 
-Quest IDs are deterministic from chapter/side-path order and milestone order. Cross-line prerequisites use the same global numeric map. `pack_version` is 3. Import/update the default pack through Better Questing when a world retains the older database.
+Quest IDs are deterministic from chapter/side-path order and milestone order. Cross-line prerequisites use the same global numeric map. `pack_version` is 4. Import/update the default pack through Better Questing when a world retains the older database.
 
-The quest graph documents gates but does not yet intercept Galacticraft destination selection. Runtime destination and operation enforcement remains future work.
+The integration mod persists research artifacts on each player and returns unauthorized arrivals to Earth. Moon entry requires the Orbital Research Archive. Mars entry requires the Lunar Quantum Component and Mars Mission Authorization. `config/industrialcivilization/runtime.cfg` provides an explicit creative-testing bypass.
 """)
 
 write("AUTOCRAFTING_PROGRESSION.md", "Autocrafting Progression", """
@@ -153,25 +146,25 @@ AE2 perfects autocrafting; it does not introduce it. Smelting, macerating, refin
 """)
 
 write("RESEARCH_PROGRESSION.md", "Research Progression", """
-One future modular Research Station should combine environment, infrastructure, experiment modules, samples, operational data, power, data storage, and ComputerCraft reporting. It must never be merely a generic powered progress bar.
+The modular Research Station and Environmental Experiment Module are real EU/FE-powered machines with four-slot automation inventories, IC2-styled GUIs, persistent progress, environment recognition, and ComputerCraft peripherals.
 
 - Orbit produces the Orbital Research Archive from sustained station operation and experiments.
 - The Moon produces the Lunar Engineering Archive from local industry and lunar science.
 - Mars produces the Martian Autonomy Archive from autonomous colony behavior and research.
 
-Target APIs are documented by the canonical quest descriptions: environment/status discovery, available experiments, requirements, progress, operational data, missing infrastructure, output archive, start, and cancel. Placeholder possession temporarily stands in only for the final combined conditions.
+Experiment modules fill data cartridges only in orbit, on the Moon, or on Mars. Research Station recipes validate the data's recorded environment and prerequisite archive or controller. ComputerCraft exposes status, energy, capacity, progress, environment, recipe selection, queues, and completed-operation count.
 """)
 
 write("ORBITAL_STATION.md", "Orbital Station", """
 Earth orbit is the first mandatory space destination. A Tier 1 launch grants orbit—not unrestricted Moon access. The functional station requires pressure, oxygen, storage, safe arrival/docking, communications, a computer, research equipment, solar generation, and eclipse storage.
 
-Long-term benefits are orbital solar, microgravity/vacuum manufacturing, research, cargo transfer, fuel storage, Moon/Mars logistics, shipbuilding, and future power transmission. Standard IC2 solar targets 8–10× Earth output in orbit; tracking arrays target 15–25×. Those output multipliers are design targets, not implemented runtime behavior.
+Long-term benefits are orbital solar, microgravity/vacuum manufacturing, research, cargo transfer, fuel storage, Moon/Mars logistics, shipbuilding, and future power transmission. The real Environmental Solar Array generates 8 EU/t on Earth, 32 EU/t on the Moon, 16 EU/t on Mars with a deterministic dust-cycle derating, and 96 EU/t in orbit. The Advanced Tracking Solar Array reaches 192 EU/t in orbit. Both expose generation and lifetime-output telemetry to ComputerCraft.
 """)
 
 write("ORBITAL_RESEARCH.md", "Orbital Research", """
-The final program combines vacuum materials, solar radiation, telescope, microgravity manufacturing, life-support endurance, communications, and eclipse tests with station/oxygen/energy/solar/manufacturing/transmission uptime. The temporary Orbital Research Archive recipe is only a questline test mechanism.
+The final program combines a powered experiment run in orbit with Research Station processing. The resulting real Orbital Research Archive is persistent proof and the runtime Moon-access key.
 
-`orbital_research_complete` is the sole research gate for `moon_access`. Static validation proves the dependency; destination-level enforcement is not yet implemented.
+`orbital_research_complete` is the sole research gate for `moon_access`. The dependency is statically validated and destination entry is enforced by the integration mod.
 """)
 
 write("LUNAR_PROGRAM.md", "Lunar Program", """
@@ -193,7 +186,7 @@ The Lunar Quantum Component preserves a mandatory Moon-manufacturing dependency.
 """)
 
 write("MARS_PROGRAM.md", "Mars Program", """
-Mars requires Quantum completion plus `placeholder_mars_mission_authorization` during testing. The colony requires pressure, oxygen, water, radiation protection, communications, dust-resilient power, storage, automated mining, local manufacturing, research equipment, and return/cargo capability.
+Mars requires a Moon-manufactured Lunar Quantum Component plus a real Mars Mission Authorization produced by a powered Earth Research Station. Unauthorized arrivals are returned to Earth. The colony still requires pressure, oxygen, water, radiation protection, communications, dust-resilient power, storage, automated mining, local manufacturing, research equipment, and return/cargo capability.
 
 The existing real Mars Sample is Galacticraft Desh: registry `galacticraftplanets:item_basic_mars`, metadata `2`. It is obtained through existing Galacticraft Mars progression (no replacement recipe was added), is required after Martian mining, and is consumed as the Analyzer's input while producing a durable Material Pattern Record.
 """)
@@ -201,7 +194,7 @@ The existing real Mars Sample is Galacticraft Desh: registry `galacticraftplanet
 write("MARTIAN_AUTONOMY.md", "Martian Autonomy", """
 The autonomy program demonstrates automated mining, queued manufacturing, local Martian processing, missing-material response, power-interruption response, sustained habitat, unattended production, and telemetry transmission. Mature programmable factories finish quickly; manual imports and intervention produce the intended pacing spread.
 
-The temporary Martian Autonomy Archive represents the combined final proof and is a hard AI Age prerequisite.
+Martian experiment data plus an Industrial Control Processor produces the real Martian Autonomy Archive in a Mars-based Research Station. It is a hard AI Age prerequisite.
 """)
 
 write("LITE_MATTER_ENGINEERING.md", "Lite Matter Engineering", """
@@ -213,31 +206,39 @@ Current limitations: one Martian material, FE rather than native EU semantics, n
 write("AI_AGE.md", "AI Age", """
 The AI Age begins at approximately 20 optimized, 40 average, or 80 inefficient hours. It requires Orbital Research Archive + Lunar Engineering Archive + Quantum completion + Martian Autonomy Archive + Lite Matter completion.
 
-The `[TEST PLACEHOLDER] Artificial Industrial Intelligence Core` represents the future manufactured core. The main integration script removes every original AE2 crafting recipe. Only while `enableTestingPlaceholders=true`, a small set of AE2 entry recipes is restored, and every recipe physically requires the placeholder AI Core. Turning the toggle off removes both placeholder acquisition and AE2 testing entry recipes.
+The Artificial Industrial Intelligence Core is manufactured in the Robotic Cell from a Control Processor, the Martian Autonomy Archive, and the real Material Pattern Record produced by Lite Matter analysis. It is a durable crafting authorization catalyst: original AE2 crafting recipes remain removed, and the curated AE2 foundation recipes physically require the real AI Core and a Control Processor.
 
 AI entry begins intelligent inventory awareness, routing, dependency resolution, scheduling, AE2, UU-Matter research, replication research, and autonomous interplanetary coordination. It is the beginning of the endgame.
 """)
 
 write("POST_AI_ENDGAME.md", "Post-AI Endgame", """
-Post-AI progression branches into AI Logistics, AI Manufacturing, Advanced Matter Engineering, Fusion and Antimatter, Orbital Megastructures, Interplanetary Colonization, Defense, Autonomous Research, and Civilization Infrastructure. These branches may proceed in parallel and none gates AI entry.
+Post-AI progression branches into AI Logistics, AI Manufacturing, Advanced Matter Engineering, Fusion and Antimatter, Orbital Megastructures, Interplanetary Colonization, Defense, Autonomous Research, and Civilization Infrastructure. These branches may proceed in parallel and none gates AI entry. Matter Replicator, Fusion Research Core, Cargo Controller, Megastructure Controller, and Colony Beacon machines provide real energy-, inventory-, and environment-constrained fulfillment.
 
-The continuing loop is Explore → Research → Automate → Scale → Establish Colony → Connect Logistics → Unlock Materials → Build Megaproject → Expand Farther. Repetition must add scale or systems, not repeat identical manual crafting. UU-Matter and replication remain storyboard/manual milestones in this phase; no free-matter placeholder recipe exists.
+The Matter Replicator consumes millions of EU and real research/manufacturing inputs to create stabilized UU-Matter. A second full operation creates one consumable authorized replication capsule, which releases exactly one recorded Martian Desh sample. Fusion/antimatter and megastructure processes require orbit; colony certification requires the Moon or Mars. The final Civilization-Scale AI Core combines replication, megastructure, and autonomous-colony records.
+
+The continuing loop is Explore → Research → Automate → Scale → Establish Colony → Connect Logistics → Unlock Materials → Build Megaproject → Expand Farther. Repetition must add scale or systems, not repeat identical manual crafting.
 """)
 
 fields = "\n".join(f"- `{f['id']}`: `{f['type']}`" for f in telemetry["fields"])
 write("TELEMETRY_SCHEMA.md", "Telemetry Schema", f"""
-Telemetry is **not implemented**. `progression/telemetry-schema.json` prepares a future opt-in, aggregate-only implementation for pacing validation. It defines:
+The integration mod now persists a minimal local-only telemetry foundation: active ticks, manual crafts, manually broken blocks, dimension transfers, synchronized artifacts, per-machine completed operations, stored energy, current progress, cargo transfers, and solar generation. Players can inspect their personal counters with `/ic_status`; machines expose operational counters through ComputerCraft. Nothing is transmitted off the computer.
+
+`progression/telemetry-schema.json` defines the complete future pacing dataset:
 
 {fields}
 
-The goal is to compare real engineering behavior with 20/40/80 targets, not surveil players or enforce timers.
+Fields not yet attributable reliably across inherited mods—automatic mining, all EU network generation/consumption, reactor efficiency, and imported/locally produced resource totals—remain schema-only. The goal is to compare real engineering behavior with 20/40/80 targets, not surveil players or enforce timers.
 """)
 
 checklist = [
 "Quest book opens with F6.", "All 16 numbered chapters and all 5 independent side-path tabs appear.",
 "Every future quest is visible for aspirational browsing, but locked quests cannot be opened or progressed.",
 "Numbered chapter tabs contain no optional side-path objectives.", "Early quests are reachable.",
-"Placeholder recipes work when enabled.", "Electrification chapter completes.", "Automation chapter opens.",
+"All former placeholder registry objects are absent from HEI and every replacement has a distinct sprite.",
+"The Electric Fabricator processes a fixed recipe using EU or FE.",
+"The Programmable Assembler accepts ComputerCraft recipe selection and queues.",
+"The Robotic Manufacturing Cell enforces Moon-only Quantum-component synthesis.",
+"Electrification chapter completes.", "Automation chapter opens.",
 "The Factions and Salvage path can start independently of the numbered chapters.",
 "Resolving the criminal network can reveal and restore the abandoned factory.",
 "Industrial Capacity Secured accepts either built Heavy Industry or the restored abandoned factory.",
@@ -249,7 +250,7 @@ checklist = [
 "Mars unlocks after Quantum Technology and authorization.", "Existing Galacticraft Desh metadata 2 Mars Sample is recognized.",
 "Existing Molecular Analyzer is recognized.", "Martian Autonomy follows Mars Settlement.",
 "AI Age remains locked before Martian Autonomy and Lite Matter Engineering.",
-"Placeholder AI Core unlocks the supplied AE2 entry recipes only in testing mode.",
+"The real AI Core is synthesized from Martian Autonomy, Lite Matter, and programmable manufacturing outputs and acts as a durable AE2 recipe catalyst.",
 "AI Age is presented as the beginning of the endgame.", "Post-AI branches are visible but do not block AI entry.",
 "No circular or impossible dependencies are visible."
 ]
@@ -257,13 +258,12 @@ write("MANUAL_QUEST_TEST_CHECKLIST.md", "Manual Quest Test Checklist", "Do not u
 
 write("KNOWN_LIMITATIONS.md", "Known Limitations", """
 - Static validation cannot prove Better Questing GUI rendering, retrieval-task runtime behavior, or existing-world import behavior.
-- Galacticraft destination selection is not runtime-locked by archives/authorization yet; the quest graph is authoritative but enforcement is future integration work.
-- Construction, environment, operation, sustained uptime, telemetry, research, and mastery checks use explicit manual checkboxes until APIs exist.
-- Research Station, experiment module, three archives, three manufacturing tiers, lunar Quantum component, Mars authorization, and AI Core are test placeholders.
-- Orbital/lunar/Mars solar multipliers, dust, darkness, pressure, radiation, and cargo automation are design targets, not new runtime mechanics in this phase.
+- Space gates are enforced after Galacticraft transfers the player; unauthorized players briefly enter the destination before being returned to Earth because Galacticraft's selection GUI has no stable public cancellation hook in this pack version.
+- Broad construction, habitat completeness, sustained uptime, cross-mod telemetry, and mastery checks still use explicit manual checkboxes where no reliable common API exists.
+- Solar multipliers, Martian dust derating, and cross-dimensional cargo channels are implemented. Galacticraft remains responsible for oxygen/pressure and its existing environmental survival behavior; richer radiation and habitat-integrity simulation remains future work.
 - The real Analyzer currently accepts only Martian Desh metadata 2, consumes 50,000 FE, and does not yet perform Earth/lunar comparative research.
-- Temporary AE2 entry covers a small test set; original AE2 recipes stay removed. Cable/terminal and complete AE2 progression still require final AI Age recipe work.
-- UU-Matter, replication, fusion, antimatter, megastructures, autonomous expansion, and civilization-scale AI remain storyboard/manual endgame milestones.
+- AI-authorized AE2 covers a curated foundation set; original AE2 recipes stay removed. A complete balanced recipe reconstruction for every AE2 part remains future balance work.
+- Matter, fusion, logistics, megastructure, colony, and civilization-scale AI machines implement concrete capstone proofs; their broad physical build-scale and balance still require full playthrough tuning.
 - Quest updates may require importing Better Questing defaults in existing worlds. Back up world quest data first.
 """)
 

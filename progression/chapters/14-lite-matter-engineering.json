@@ -50,7 +50,8 @@
       "final_validation": [
         "Supply the existing Analyzer with at least 50,000 FE for a Desh analysis."
       ],
-      "automation_paths": []
+      "automation_paths": [],
+      "runtime_advancement": true
     },
     {
       "id": "material_pattern_record",
@@ -85,7 +86,7 @@
         "Record planned Earth, lunar, and Martian material comparisons without enabling arbitrary transmutation."
       ],
       "automation_paths": [],
-      "temporary_validation": "Manual-check the research storyboard; the current Analyzer implements only Martian Desh."
+      "runtime_advancement": true
     },
     {
       "id": "advanced_material_recovery",
@@ -118,7 +119,7 @@
         "Demonstrate molecular analysis, durable pattern records, and advanced recovery without UU-Matter or replication."
       ],
       "automation_paths": [],
-      "temporary_validation": "Manual-check the broader characterization boundary; the real Martian analysis is automatic."
+      "runtime_advancement": true
     }
   ]
 }

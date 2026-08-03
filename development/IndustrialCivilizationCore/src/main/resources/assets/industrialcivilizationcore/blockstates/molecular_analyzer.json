@@ -1,5 +1,7 @@
 {
   "variants": {
-    "normal": { "model": "industrialcivilizationcore:molecular_analyzer" }
+    "normal": {
+      "model": "industrialcivilizationcore:molecular_analyzer"
+    }
   }
 }

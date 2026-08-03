@@ -2,10 +2,10 @@
 
 # Research Progression
 
-One future modular Research Station should combine environment, infrastructure, experiment modules, samples, operational data, power, data storage, and ComputerCraft reporting. It must never be merely a generic powered progress bar.
+The modular Research Station and Environmental Experiment Module are real EU/FE-powered machines with four-slot automation inventories, IC2-styled GUIs, persistent progress, environment recognition, and ComputerCraft peripherals.
 
 - Orbit produces the Orbital Research Archive from sustained station operation and experiments.
 - The Moon produces the Lunar Engineering Archive from local industry and lunar science.
 - Mars produces the Martian Autonomy Archive from autonomous colony behavior and research.
 
-Target APIs are documented by the canonical quest descriptions: environment/status discovery, available experiments, requirements, progress, operational data, missing infrastructure, output archive, start, and cancel. Placeholder possession temporarily stands in only for the final combined conditions.
+Experiment modules fill data cartridges only in orbit, on the Moon, or on Mars. Research Station recipes validate the data's recorded environment and prerequisite archive or controller. ComputerCraft exposes status, energy, capacity, progress, environment, recipe selection, queues, and completed-operation count.

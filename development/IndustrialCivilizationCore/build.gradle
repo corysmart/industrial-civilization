@@ -9,7 +9,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'java'
 
-version = '0.1.0'
+version = '0.2.0'
 group = 'com.industrialcivilization'
 archivesBaseName = 'IndustrialCivilizationCore'
 sourceCompatibility = targetCompatibility = '1.8'
@@ -22,6 +22,7 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2860'
     compileOnly files('../../mods/cc-tweaked-1.12.2-1.89.2.jar')
     compileOnly files('../../mods/BetterQuesting-3.5.329.jar')
+    compileOnly files('../../mods/IC2Classic-1.12.2-1.5.11.jar')
 }
 
 processResources {

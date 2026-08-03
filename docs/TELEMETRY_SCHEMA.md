@@ -2,7 +2,9 @@
 
 # Telemetry Schema
 
-Telemetry is **not implemented**. `progression/telemetry-schema.json` prepares a future opt-in, aggregate-only implementation for pacing validation. It defines:
+The integration mod now persists a minimal local-only telemetry foundation: active ticks, manual crafts, manually broken blocks, dimension transfers, synchronized artifacts, per-machine completed operations, stored energy, current progress, cargo transfers, and solar generation. Players can inspect their personal counters with `/ic_status`; machines expose operational counters through ComputerCraft. Nothing is transmitted off the computer.
+
+`progression/telemetry-schema.json` defines the complete future pacing dataset:
 
 - `milestone_completion_time`: `map<string,seconds>`
 - `chapter_time`: `map<string,seconds>`
@@ -24,4 +26,4 @@ Telemetry is **not implemented**. `progression/telemetry-schema.json` prepares a
 - `computercraft_programs_used`: `integer`
 - `ae_unlock_time`: `seconds`
 
-The goal is to compare real engineering behavior with 20/40/80 targets, not surveil players or enforce timers.
+Fields not yet attributable reliably across inherited mods—automatic mining, all EU network generation/consumption, reactor efficiency, and imported/locally produced resource totals—remain schema-only. The goal is to compare real engineering behavior with 20/40/80 targets, not surveil players or enforce timers.

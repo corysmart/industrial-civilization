@@ -55,7 +55,7 @@
       "id": "lunar_power",
       "title": "Lunar Power Through Darkness",
       "category": "operation",
-      "icon": "minecraft:daylight_detector",
+      "icon": "industrialcivilizationcore:environmental_solar_array",
       "prerequisites": [
         "lunar_habitat"
       ],
@@ -65,7 +65,9 @@
       "final_validation": [
         "Provide generation and storage capable of maintaining the base through a lunar darkness cycle."
       ],
-      "automation_paths": []
+      "automation_paths": [],
+      "required_item": "industrialcivilizationcore:environmental_solar_array",
+      "runtime_advancement": true
     },
     {
       "id": "lunar_mining",

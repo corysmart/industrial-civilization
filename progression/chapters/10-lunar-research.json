@@ -34,7 +34,7 @@
         "Complete regolith, metallurgy, radiation, seismic, isotope, habitat, mining, communications, and precision-manufacturing studies as implemented."
       ],
       "automation_paths": [],
-      "temporary_validation": "Manual-check representative studies until Research Station modules exist."
+      "runtime_advancement": true
     },
     {
       "id": "lunar_darkness_mastery",
@@ -51,7 +51,7 @@
         "Maintain habitation and industry through a full lunar darkness challenge."
       ],
       "automation_paths": [],
-      "temporary_validation": "Manual-check the operational run until uptime telemetry exists."
+      "runtime_advancement": true
     },
     {
       "id": "lunar_precision_manufacturing",
@@ -68,13 +68,13 @@
         "Manufacture a precision component locally and transmit production telemetry."
       ],
       "automation_paths": [],
-      "temporary_validation": "Manual-check the local process until environment-aware recipes exist."
+      "runtime_advancement": true
     },
     {
       "id": "lunar_research_complete",
       "title": "Lunar Engineering Archive",
       "category": "possession",
-      "icon": "industrialcivilizationcore:placeholder_lunar_engineering_archive",
+      "icon": "industrialcivilizationcore:lunar_engineering_archive",
       "prerequisites": [
         "lunar_darkness_mastery",
         "lunar_precision_manufacturing"
@@ -86,9 +86,7 @@
         "Demonstrate the capability: Lunar Engineering Archive."
       ],
       "automation_paths": [],
-      "required_item": "industrialcivilizationcore:placeholder_lunar_engineering_archive",
-      "placeholder_id": "lunar_engineering_archive",
-      "temporary_validation": "Obtain the test archive. Final validation requires local materials, automated mining, precision manufacture, sustained habitat, and off-world telemetry."
+      "required_item": "industrialcivilizationcore:lunar_engineering_archive"
     },
     {
       "id": "quantum_research_access",

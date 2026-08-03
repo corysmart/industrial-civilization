@@ -1,4 +1,6 @@
 {
   "parent": "item/generated",
-  "textures": { "layer0": "minecraft:items/paper" }
+  "textures": {
+    "layer0": "industrialcivilizationcore:items/material_pattern_record"
+  }
 }

@@ -44,7 +44,7 @@
       "id": "artificial_industrial_intelligence_core",
       "title": "Artificial Industrial Intelligence Core",
       "category": "possession",
-      "icon": "industrialcivilizationcore:placeholder_ai_core",
+      "icon": "industrialcivilizationcore:artificial_industrial_intelligence_core",
       "prerequisites": [
         "ai_prerequisite_audit"
       ],
@@ -55,15 +55,13 @@
         "Demonstrate the capability: Artificial Industrial Intelligence Core."
       ],
       "automation_paths": [],
-      "required_item": "industrialcivilizationcore:placeholder_ai_core",
-      "placeholder_id": "ai_core",
-      "temporary_validation": "Obtain the test AI Core. Final validation requires the five canonical research/capability inputs and future AI-core manufacturing."
+      "required_item": "industrialcivilizationcore:artificial_industrial_intelligence_core"
     },
     {
       "id": "ai_age_entry",
       "title": "Enter the AI Age",
       "category": "transition",
-      "icon": "industrialcivilizationcore:placeholder_ai_core",
+      "icon": "industrialcivilizationcore:artificial_industrial_intelligence_core",
       "prerequisites": [
         "artificial_industrial_intelligence_core"
       ],
@@ -87,10 +85,10 @@
       "optional": false,
       "capability": "Applied Energistics Entry",
       "final_validation": [
-        "In testing-placeholder mode, use the AI-gated recipes to bring a basic AE2 network online. With placeholders disabled, AE2 remains locked pending the final AI Core."
+        "Use the real AI Core as a durable authorization catalyst and bring an AE2 Controller online."
       ],
       "automation_paths": [],
-      "temporary_validation": "The AI Core is consumed by every temporary AE2 entry recipe; recipes do not exist when testing placeholders are disabled."
+      "required_item": "appliedenergistics2:controller"
     }
   ]
 }

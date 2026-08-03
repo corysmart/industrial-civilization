@@ -55,7 +55,7 @@
       "id": "electric_fabricator",
       "title": "Electric Fabricator",
       "category": "possession",
-      "icon": "industrialcivilizationcore:placeholder_electric_fabricator",
+      "icon": "industrialcivilizationcore:electric_fabricator",
       "prerequisites": [
         "factory_telemetry"
       ],
@@ -66,15 +66,13 @@
         "Demonstrate the capability: Electric Fabricator."
       ],
       "automation_paths": [],
-      "required_item": "industrialcivilizationcore:placeholder_electric_fabricator",
-      "placeholder_id": "electric_fabricator",
-      "temporary_validation": "Obtain the clearly labeled test placeholder. Final validation requires an EU-powered 160-tick fixed-recipe fabricator."
+      "required_item": "industrialcivilizationcore:electric_fabricator"
     },
     {
       "id": "programmable_assembler",
       "title": "Programmable Assembler",
       "category": "possession",
-      "icon": "industrialcivilizationcore:placeholder_programmable_assembler",
+      "icon": "industrialcivilizationcore:programmable_assembler",
       "prerequisites": [
         "electric_fabricator"
       ],
@@ -85,9 +83,7 @@
         "Demonstrate the capability: Programmable Assembler."
       ],
       "automation_paths": [],
-      "required_item": "industrialcivilizationcore:placeholder_programmable_assembler",
-      "placeholder_id": "programmable_assembler",
-      "temporary_validation": "Obtain the clearly labeled test placeholder. Final validation requires a multi-program ComputerCraft-controlled assembler."
+      "required_item": "industrialcivilizationcore:programmable_assembler"
     },
     {
       "id": "production_queue",
@@ -104,7 +100,7 @@
         "Queue a production order and report progress and missing ingredients."
       ],
       "automation_paths": [],
-      "temporary_validation": "Manual-check the storyboard behavior until the assembler peripheral exists."
+      "runtime_advancement": true
     },
     {
       "id": "multi_step_manufacturing",
@@ -121,7 +117,7 @@
         "Complete a multi-step product with automatic routing, monitored buffers, and no routine hand-crafting."
       ],
       "automation_paths": [],
-      "temporary_validation": "Manual-check the physical line and document its inputs and outputs."
+      "runtime_advancement": true
     },
     {
       "id": "programmable_manufacturing",
@@ -139,7 +135,7 @@
         "Operate monitored, queued production that can identify shortages and recover from replenishment."
       ],
       "automation_paths": [],
-      "temporary_validation": "Manual-check the combined system until final peripheral APIs exist."
+      "runtime_advancement": true
     },
     {
       "id": "programmable_capacity_access",

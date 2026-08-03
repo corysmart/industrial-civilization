@@ -2,6 +2,6 @@
 
 # Orbital Research
 
-The final program combines vacuum materials, solar radiation, telescope, microgravity manufacturing, life-support endurance, communications, and eclipse tests with station/oxygen/energy/solar/manufacturing/transmission uptime. The temporary Orbital Research Archive recipe is only a questline test mechanism.
+The final program combines a powered experiment run in orbit with Research Station processing. The resulting real Orbital Research Archive is persistent proof and the runtime Moon-access key.
 
-`orbital_research_complete` is the sole research gate for `moon_access`. Static validation proves the dependency; destination-level enforcement is not yet implemented.
+`orbital_research_complete` is the sole research gate for `moon_access`. The dependency is statically validated and destination entry is enforced by the integration mod.

@@ -27,4 +27,4 @@ Early Survival and Workshop → Electrification → Automated Industry → Heavy
 | 15 | AI Age | Enter—not finish—the endgame by creating an industrial AI core from all major research eras. | `ai_age_entry` |
 | 16 | Continuously Expanding Post-AI Civilization | Branch into scale, matter engineering, megastructures, autonomy, and new colonies without blocking AI entry. | `continuous_civilization` |
 
-The model contains **16 numbered chapters**, **5 independent side paths**, **115 milestones**, and **11 explicit placeholders**. Every objective uses `ALWAYS` visibility: future goals are aspirationally visible even while locked. The AI Age begins the endgame; it is not a victory screen.
+The model contains **16 numbered chapters**, **5 independent side paths**, **115 milestones**, and **zero test placeholders**. The original 11 placeholder contracts retain their stable milestone IDs and now point to real runtime blocks, artifacts, machine processes, and gates. Every objective uses `ALWAYS` visibility: future goals are aspirationally visible even while locked. The AI Age begins the endgame; it is not a victory screen.

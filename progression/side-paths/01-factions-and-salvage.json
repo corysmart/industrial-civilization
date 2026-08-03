@@ -9,7 +9,7 @@
       "id": "underworld_lead",
       "title": "Rumors of the Industrial Underworld",
       "category": "transition",
-      "icon": "minecraft:paper",
+      "icon": "industrialcivilizationcore:underworld_dossier",
       "prerequisites": [],
       "critical": false,
       "optional": true,
@@ -18,13 +18,13 @@
         "Obtain a credible lead from exploration, trade, radio traffic, or a faction encounter."
       ],
       "automation_paths": [],
-      "temporary_validation": "Manual-check when the narrative opportunity occurs; final NPC dialogue and discovery triggers are future work."
+      "required_item": "industrialcivilizationcore:underworld_dossier"
     },
     {
       "id": "criminal_network_defeated",
       "title": "Break the Criminal Industrial Network",
       "category": "mastery",
-      "icon": "techguns:m4",
+      "icon": "industrialcivilizationcore:criminal_network_ledger",
       "prerequisites": [
         "underworld_lead",
         "faction_contacts"
@@ -37,13 +37,13 @@
         "Resolve the criminal leadership through combat, negotiation, evidence, or faction support."
       ],
       "automation_paths": [],
-      "temporary_validation": "Manual-check the resolved encounter until CustomNPCs faction state can be detected."
+      "required_item": "industrialcivilizationcore:criminal_network_ledger"
     },
     {
       "id": "abandoned_factory_discovered",
       "title": "Discover an Abandoned Factory",
       "category": "construction",
-      "icon": "minecraft:iron_door",
+      "icon": "industrialcivilizationcore:factory_control_terminal",
       "prerequisites": [
         "criminal_network_defeated"
       ],
@@ -54,13 +54,13 @@
         "Secure the site, survey intact machines, and verify that the factory is not an unlimited free-resource cache."
       ],
       "automation_paths": [],
-      "temporary_validation": "Manual-check a suitable discovered or role-played site until world structures and NPC ownership exist."
+      "required_item": "industrialcivilizationcore:criminal_network_ledger"
     },
     {
       "id": "abandoned_factory_operational",
       "title": "Restore the Abandoned Factory",
       "category": "operation",
-      "icon": "minecraft:anvil",
+      "icon": "industrialcivilizationcore:factory_restoration_certificate",
       "prerequisites": [
         "abandoned_factory_discovered"
       ],
@@ -73,13 +73,13 @@
         "Accept that the recovered layout may be inefficient and require later improvement."
       ],
       "automation_paths": [],
-      "temporary_validation": "Manual-check the restored site. Completion unlocks Industrial Capacity Secured without requiring the Chapter 4 build route."
+      "required_item": "industrialcivilizationcore:factory_restoration_certificate"
     },
     {
       "id": "recovered_factory_control_system",
       "title": "Recover the Factory Control System",
       "category": "operation",
-      "icon": "computercraft:computer",
+      "icon": "industrialcivilizationcore:recovered_factory_control_system",
       "prerequisites": [
         "abandoned_factory_operational"
       ],
@@ -92,7 +92,7 @@
         "Queue and complete one controlled production order."
       ],
       "automation_paths": [],
-      "temporary_validation": "Manual-check the recovered controller. Completion unlocks Programmable Capacity Secured without requiring the Chapter 5 build route."
+      "required_item": "industrialcivilizationcore:recovered_factory_control_system"
     }
   ]
 }
