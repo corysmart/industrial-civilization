@@ -270,6 +270,9 @@ ok(quest_home in (ROOT / "tools/generate_objectives.py").read_text(), "quest gen
 ok("QUEST_HOME_IMAGE" in core_source and "QUEST_HOME_OFFSET_X = -128" in core_source
    and "migrateQuestHomeImage" in core_source,
    "existing Better Questing worlds migrate to pack-owned home layout")
+ok("GuiIngameMenu" in core_source and "button.id == 5" in core_source
+   and "PresetGUIs.HOME" in core_source and "gui.industrialcivilization.quest_guide" in core_source,
+   "pause-menu Advancements button opens the Better Questing guide")
 
 ok(not (ROOT / "scripts/industrial_civilization.zs").exists(), "obsolete non-reloadable integration script removed")
 run_config = json.loads((ROOT / "groovy/runConfig.json").read_text())

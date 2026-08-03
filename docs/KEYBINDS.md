@@ -8,6 +8,11 @@ The layout was derived from Forge's live `KeyBinding.conflicts` results, not onl
 |---|---|
 | Industrial Civilization / Better Questing guide | F6 |
 | CustomNPC quest log | F8 |
+
+The in-game pause menu's former **Advancements** button is also replaced with
+**Quest Guide** and opens the same Better Questing home screen. Vanilla
+advancements remain available internally as invisible completion signals for
+automatic quest objectives, but they are not a player-facing progression UI.
 | IC2 Classic mode switch | F10 |
 | IC2 Classic armor modifier (`ALT Key`) | Backslash |
 | IC2 Classic boost | Option+H |

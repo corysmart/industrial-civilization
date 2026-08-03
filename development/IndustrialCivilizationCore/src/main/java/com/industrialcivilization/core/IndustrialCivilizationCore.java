@@ -1,11 +1,16 @@
 package com.industrialcivilization.core;
 
 import betterquesting.api.properties.NativeProps;
+import betterquesting.api2.client.gui.themes.gui_args.GArgsNone;
+import betterquesting.api2.client.gui.themes.presets.PresetGUIs;
+import betterquesting.client.themes.ThemeRegistry;
 import betterquesting.handlers.SaveLoadHandler;
 import betterquesting.storage.QuestSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiIngameMenu;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -18,6 +23,7 @@ import net.minecraft.world.WorldServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -413,6 +419,25 @@ public final class IndustrialCivilizationCore {
                     artifact, 0,
                     new ModelResourceLocation(artifact.getRegistryName(), "inventory"));
             }
+        }
+
+        /** Make the pause menu use the pack's authoritative quest system. */
+        @SubscribeEvent(priority = EventPriority.LOWEST)
+        public static void renameAdvancementsButton(GuiScreenEvent.InitGuiEvent.Post event) {
+            if (!(event.getGui() instanceof GuiIngameMenu)) return;
+            event.getButtonList().stream()
+                .filter(button -> button.id == 5)
+                .findFirst()
+                .ifPresent(button -> button.displayString =
+                    I18n.format("gui.industrialcivilization.quest_guide"));
+        }
+
+        @SubscribeEvent(priority = EventPriority.HIGHEST)
+        public static void openQuestGuideFromPauseMenu(GuiScreenEvent.ActionPerformedEvent.Pre event) {
+            if (!(event.getGui() instanceof GuiIngameMenu) || event.getButton().id != 5) return;
+            event.setCanceled(true);
+            Minecraft.getMinecraft().displayGuiScreen(ThemeRegistry.INSTANCE.getGui(
+                PresetGUIs.HOME, new GArgsNone(event.getGui())));
         }
 
         @SubscribeEvent
