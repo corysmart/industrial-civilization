@@ -76,6 +76,12 @@ for directory in (ROOT / "config", ROOT / "scripts", ROOT / "groovy", ROOT / "re
             ok(not any(term in content for term in ("projecte", "viewemc", "ic2cuumatter")),
                f"no removed-system reference in {path.relative_to(ROOT)}")
 
+for path in sorted((ROOT / "groovy").rglob("*.groovy")):
+    source = path.read_text(errors="ignore")
+    ok("getResourceDomain()" not in source and "getResourcePath()" not in source
+       and ".resourceDomain" not in source and ".resourcePath" not in source,
+       f"Groovy registry checks avoid unavailable MCP ResourceLocation methods in {path.relative_to(ROOT)}")
+
 added_hashes = {
     "ICBM-classic-1.12.2-6.5.5.jar": "65533f69c3fe745385f51ff831c6c16adc8c963999093b44743961c8afe8d3d7",
     "appliedenergistics2-rv6-stable-7.jar": "e7f7fbf6caaf6206dbd958fb8f9185f874a405289e62ae3e97209b455a89fb1a",

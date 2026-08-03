@@ -5186,8 +5186,8 @@
     },
     {
       "file": "groovy/postInit/industrial_icbm.groovy",
-      "sha256": "12c288a7371f48f19240e34e5d1c4ca623a709c5dd55151bbc81d6c0787c8d43",
-      "size": 2904
+      "sha256": "b07dc7a841262f477092a0401bffd7465d461bf27020816ec30c5a0078004fd4",
+      "size": 3120
     },
     {
       "file": "groovy/runConfig.json",

@@ -42,7 +42,10 @@ crafting.addShaped('industrial_civilization:icbm_cruise_launcher', item('icbmcla
 
 event_manager.listen { ItemTooltipEvent event ->
     def id = event.itemStack?.item?.registryName
-    if (id != null && id.getResourceDomain() == 'icbmclassic') {
+    // Groovy executes against the obfuscated runtime, where MCP-named
+    // ResourceLocation accessors are not guaranteed to exist. Its
+    // string representation is stable on both development and live clients.
+    if (id != null && id.toString().startsWith('icbmclassic:')) {
         event.toolTip << 'IC2 EU infrastructure required (8 converted power units per EU)'
         event.toolTip << 'Industrial Civilization: military/nuclear progression rules apply'
     }

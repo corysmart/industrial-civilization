@@ -37,6 +37,7 @@ Technic test target: `/Users/cory/Library/Application Support/technic/modpacks/t
 - Runtime-content harness: 557 checks across textures, models, recipes, energy contracts, gates, and integrations.
 - Final mod manifest expects 162 JARs and records exact hashes and redistribution notes.
 - Village suppression retains Minecraft's required `MapGenVillage` runtime type while rejecting all spawn candidates, preventing the new-world constructor crash found during the first fresh-world test.
+- Groovy tooltip handlers use mapping-independent registry strings rather than MCP-only `ResourceLocation` accessors, preventing CraftingTableIV's join-time recipe rebuild from crashing after world spawn.
 
 ## Requires a restart and fresh-world playtest
 
