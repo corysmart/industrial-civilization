@@ -484,6 +484,7 @@
     "progression/chapters/14-lite-matter-engineering.json",
     "progression/chapters/15-ai-age.json",
     "progression/chapters/16-post-ai-civilization.json",
+    "progression/objective-detection.json",
     "progression/optimization-profiles.json",
     "progression/pacing.json",
     "progression/placeholder-registry.json",
@@ -550,7 +551,7 @@
     "cache/z-tekkit2-configs-1.2.6.zip"
   ],
   "counts": {
-    "added": 513,
+    "added": 514,
     "modified": 12,
     "removed": 11
   }

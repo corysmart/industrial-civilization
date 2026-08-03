@@ -26,13 +26,50 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Industrial Starter Materials",
-          "desc:8": "Category: Possession\n\nIndustrial Starter Materials\n\nFinal validation will require:\n- Obtain coal, iron, copper, tin, and rubber."
+          "desc:8": "Category: Possession\n\nIndustrial Starter Materials\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Obtain coal, iron, copper, tin, and rubber."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "minecraft:coal",
+              "Count:3": 8,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "minecraft:iron_ingot",
+              "Count:3": 8,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "2:10": {
+              "id:8": "ic2:blockmetal",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "3:10": {
+              "id:8": "ic2:blockmetal",
+              "Count:3": 1,
+              "Damage:2": 1,
+              "OreDict:8": ""
+            },
+            "4:10": {
+              "id:8": "ic2:itemmisc",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -64,13 +101,32 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Copper and Iron Storage",
-          "desc:8": "Category: Construction\n\nCopper and Iron Storage\n\nFinal validation will require:\n- Build practical storage using Copper and Iron Chests; higher chest tiers are outside progression."
+          "desc:8": "Category: Construction\n\nCopper and Iron Storage\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Build practical storage using Copper and Iron Chests; higher chest tiers are outside progression."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "ironchest:iron_chest",
+              "Count:3": 1,
+              "Damage:2": 3,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "ironchest:iron_chest",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -102,13 +158,32 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Workshop Defense",
-          "desc:8": "Category: Possession\n\nWorkshop Defense\n\nFinal validation will require:\n- Obtain a basic defensive weapon and ammunition.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "Category: Possession\n\nWorkshop Defense\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Obtain a basic defensive weapon and ammunition.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "techguns:pistol",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "techguns:pistolmagazine",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -140,13 +215,38 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Manual Production Area",
-          "desc:8": "Category: Construction\n\nManual Production Area\n\nFinal validation will require:\n- Arrange crafting, furnaces, storage, and safe lighting as a usable workshop."
+          "desc:8": "Category: Construction\n\nManual Production Area\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Arrange crafting, furnaces, storage, and safe lighting as a usable workshop."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "minecraft:crafting_table",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "minecraft:furnace",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "2:10": {
+              "id:8": "minecraft:chest",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -179,13 +279,38 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Secure Workshop",
-          "desc:8": "Category: Mastery\n\nSecure Workshop\n\nFinal validation will require:\n- Maintain a lit, enclosed workshop with storage and materials prepared for an IC2 Generator."
+          "desc:8": "Category: Mastery\n\nSecure Workshop\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Maintain a lit, enclosed workshop with storage and materials prepared for an IC2 Generator."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "minecraft:iron_door",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "minecraft:torch",
+              "Count:3": 16,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "2:10": {
+              "id:8": "minecraft:chest",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -217,13 +342,26 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "First IC2 Generator",
-          "desc:8": "Category: Construction\n\nFirst IC2 Generator\n\nFinal validation will require:\n- Build and fuel an IC2 Generator."
+          "desc:8": "Category: Construction\n\nFirst IC2 Generator\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Build and fuel an IC2 Generator."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "ic2:blockgenerator",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -255,13 +393,32 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Safe Low-Voltage Network",
-          "desc:8": "Category: Construction\n\nSafe Low-Voltage Network\n\nFinal validation will require:\n- Connect generation, storage, and machines at safe voltage."
+          "desc:8": "Category: Construction\n\nSafe Low-Voltage Network\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Connect generation, storage, and machines at safe voltage."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "ic2:itemcable",
+              "Count:3": 8,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "ic2:blockelectric",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -293,13 +450,26 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Electric Processing Suite",
-          "desc:8": "Category: Operation\n\nElectric Processing Suite\n\nFinal validation will require:\n- Successfully operate a Macerator, Electric Furnace, Extractor, and Compressor."
+          "desc:8": "Category: Operation\n\nElectric Processing Suite\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Successfully operate a Macerator, Electric Furnace, Extractor, and Compressor."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "ic2:blockmachinelv",
+              "Count:3": 4,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -331,13 +501,26 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Demonstrated Ore Doubling",
-          "desc:8": "Category: Operation\n\nDemonstrated Ore Doubling\n\nFinal validation will require:\n- Macerate and smelt ore for at least twice the direct-smelting output."
+          "desc:8": "Category: Operation\n\nDemonstrated Ore Doubling\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Macerate and smelt ore for at least twice the direct-smelting output."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "minecraft:iron_ore",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -369,13 +552,32 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Electric Tools",
-          "desc:8": "Category: Possession\n\nElectric Tools\n\nFinal validation will require:\n- Build and charge basic IC2 electric tools.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "Category: Possession\n\nElectric Tools\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Build and charge basic IC2 electric tools.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "ic2:itemtooldrill",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "ic2:itemtoolwrenchelectric",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -407,13 +609,26 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Voltage and Safety",
-          "desc:8": "Category: Mastery\n\nVoltage and Safety\n\nFinal validation will require:\n- Explain or demonstrate voltage tiers, transformer placement, and insulation."
+          "desc:8": "Category: Mastery\n\nVoltage and Safety\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Explain or demonstrate voltage tiers, transformer placement, and insulation."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "minecraft:redstone_torch",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -446,13 +661,38 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Stable Electrical Workshop",
-          "desc:8": "Category: Mastery\n\nStable Electrical Workshop\n\nFinal validation will require:\n- Operate the full processing suite without cable loss or recurring power collapse."
+          "desc:8": "Category: Mastery\n\nStable Electrical Workshop\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Operate the full processing suite without cable loss or recurring power collapse."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "ic2:blockmachinelv",
+              "Count:3": 4,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "ic2:blockelectric",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            },
+            "2:10": {
+              "id:8": "ic2:itemcable",
+              "Count:3": 16,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -484,13 +724,38 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Automated Ore Processing",
-          "desc:8": "Category: Operation\n\nAutomated Ore Processing\n\nFinal validation will require:\n- Route raw ore through processing into organized output without hand transfer."
+          "desc:8": "Category: Operation\n\nAutomated Ore Processing\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Route raw ore through processing into organized output without hand transfer."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "minecraft:hopper",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "ic2:blockmachinelv",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            },
+            "2:10": {
+              "id:8": "minecraft:chest",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -522,13 +787,26 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Quarry Extraction",
-          "desc:8": "Category: Operation\n\nQuarry Extraction\n\nFinal validation will require:\n- Build and run a BuildCraft Quarry."
+          "desc:8": "Category: Operation\n\nQuarry Extraction\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Build and run a BuildCraft Quarry."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "buildcraftbuilders:quarry",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -560,13 +838,32 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Physical Logistics Network",
-          "desc:8": "Category: Construction\n\nPhysical Logistics Network\n\nFinal validation will require:\n- Route Quarry output with BuildCraft pipes, ProjectRed tubes, Logistics Pipes, or rail."
+          "desc:8": "Category: Construction\n\nPhysical Logistics Network\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Route Quarry output with BuildCraft pipes, ProjectRed tubes, Logistics Pipes, or rail."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "minecraft:hopper",
+              "Count:3": 4,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "minecraft:chest",
+              "Count:3": 2,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -598,13 +895,26 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Loaded Industrial Area",
-          "desc:8": "Category: Operation\n\nLoaded Industrial Area\n\nFinal validation will require:\n- Keep the automated industrial area loaded using an appropriate chunk-loading system.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "Category: Operation\n\nLoaded Industrial Area\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Keep the automated industrial area loaded using an appropriate chunk-loading system.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "minecraft:clock",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -636,13 +946,26 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Remote Factory Control",
-          "desc:8": "Category: Operation\n\nRemote Factory Control\n\nFinal validation will require:\n- Start or stop a production subsystem using wireless redstone.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "Category: Operation\n\nRemote Factory Control\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Start or stop a production subsystem using wireless redstone.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "minecraft:lever",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -674,13 +997,38 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Early Autocrafting",
-          "desc:8": "Category: Operation\n\nEarly Autocrafting\n\nFinal validation will require:\n- Use a fixed-recipe automatic crafting table with physical ingredient routing for a repeated recipe."
+          "desc:8": "Category: Operation\n\nEarly Autocrafting\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Use a fixed-recipe automatic crafting table with physical ingredient routing for a repeated recipe."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "minecraft:crafting_table",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "minecraft:hopper",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "2:10": {
+              "id:8": "minecraft:chest",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -713,13 +1061,26 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Automation Throughput Demonstration",
-          "desc:8": "Category: Mastery\n\nAutomation Throughput Demonstration\n\nFinal validation will require:\n- Demonstrate sustained throughput above manual production."
+          "desc:8": "Category: Mastery\n\nAutomation Throughput Demonstration\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Demonstrate sustained throughput above manual production."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "minecraft:minecart",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -751,13 +1112,26 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Automated Railcraft Steel",
-          "desc:8": "Category: Operation\n\nAutomated Railcraft Steel\n\nFinal validation will require:\n- Produce Railcraft steel in a repeatable industrial process."
+          "desc:8": "Category: Operation\n\nAutomated Railcraft Steel\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Produce Railcraft steel in a repeatable industrial process."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "railcraft:ingot_steel",
+              "Count:3": 8,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -789,13 +1163,32 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Oil Refining and Fluid Storage",
-          "desc:8": "Category: Operation\n\nOil Refining and Fluid Storage\n\nFinal validation will require:\n- Refine oil and buffer fuel at industrial scale."
+          "desc:8": "Category: Operation\n\nOil Refining and Fluid Storage\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Refine oil and buffer fuel at industrial scale."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "buildcraftfactory:distiller",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "buildcraftfactory:tank",
+              "Count:3": 4,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -827,13 +1220,32 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Advanced IC2 Processing",
-          "desc:8": "Category: Operation\n\nAdvanced IC2 Processing\n\nFinal validation will require:\n- Operate advanced IC2 machines on an appropriately transformed network."
+          "desc:8": "Category: Operation\n\nAdvanced IC2 Processing\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Operate advanced IC2 machines on an appropriately transformed network."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "ic2:blockmachinemv",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "ic2:blockelectric",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -866,13 +1278,26 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Industrial Freight",
-          "desc:8": "Category: Operation\n\nIndustrial Freight\n\nFinal validation will require:\n- Move bulk materials or fuel using rail or an equivalent logistics trunk.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "Category: Operation\n\nIndustrial Freight\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Move bulk materials or fuel using rail or an equivalent logistics trunk.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "minecraft:minecart",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -904,13 +1329,32 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Industrial Armament",
-          "desc:8": "Category: Operation\n\nIndustrial Armament\n\nFinal validation will require:\n- Manufacture a firearm and ammunition through the factory.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "Category: Operation\n\nIndustrial Armament\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Manufacture a firearm and ammunition through the factory.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "techguns:m4",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "techguns:assaultriflemagazine",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -942,13 +1386,26 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Human Factions",
-          "desc:8": "Category: Mastery\n\nHuman Factions\n\nFinal validation will require:\n- Trade with a friendly settlement, survive a hostile encounter, and approach an ambiguous armed faction.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "Category: Mastery\n\nHuman Factions\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Trade with a friendly settlement, survive a hostile encounter, and approach an ambiguous armed faction.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "minecraft:skull",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -980,13 +1437,32 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Industrial Containment",
-          "desc:8": "Category: Construction\n\nIndustrial Containment\n\nFinal validation will require:\n- Build an MFFS defensive, restricted-area, or containment installation.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "Category: Construction\n\nIndustrial Containment\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Build an MFFS defensive, restricted-area, or containment installation.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "modularforcefieldsystem:projector",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "modularforcefieldsystem:capacitor",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -1020,13 +1496,44 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Heavy Industrial Complex",
-          "desc:8": "Category: Mastery\n\nHeavy Industrial Complex\n\nFinal validation will require:\n- Sustain steel, refined fuel, advanced processing, powered storage, and bulk logistics."
+          "desc:8": "Category: Mastery\n\nHeavy Industrial Complex\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Sustain steel, refined fuel, advanced processing, powered storage, and bulk logistics."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "railcraft:ingot_steel",
+              "Count:3": 16,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "buildcraftfactory:distiller",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "2:10": {
+              "id:8": "ic2:blockmachinemv",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            },
+            "3:10": {
+              "id:8": "minecraft:minecart",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -1059,13 +1566,26 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Industrial Capacity Secured",
-          "desc:8": "Category: Transition\n\nGain heavy industrial capacity by building it or restoring a captured abandoned factory.\n\nFinal validation will require:\n- Complete the Heavy Industrial Complex construction route OR restore the side-path abandoned factory to safe operation.\n\nTEMPORARY VALIDATION:\nCheck this transition after either prerequisite route completes. The restored-factory route intentionally bypasses Chapter 4 construction quests."
+          "desc:8": "Category: Transition\n\nGain heavy industrial capacity by building it or restoring a captured abandoned factory.\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Complete the Heavy Industrial Complex construction route OR restore the side-path abandoned factory to safe operation.\n\nTEMPORARY VALIDATION:\nCheck this transition after either prerequisite route completes. The restored-factory route intentionally bypasses Chapter 4 construction quests."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "minecraft:anvil",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -1097,13 +1617,26 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Computer Online",
-          "desc:8": "Category: Operation\n\nComputer Online\n\nFinal validation will require:\n- Boot a ComputerCraft computer and save a working factory-control program."
+          "desc:8": "Category: Operation\n\nComputer Online\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Boot a ComputerCraft computer and save a working factory-control program."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "computercraft:computer",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -1135,13 +1668,32 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Factory Telemetry",
-          "desc:8": "Category: Operation\n\nFactory Telemetry\n\nFinal validation will require:\n- Monitor energy storage, one machine, and a fuel or fluid tank."
+          "desc:8": "Category: Operation\n\nFactory Telemetry\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Monitor energy storage, one machine, and a fuel or fluid tank."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "computercraft:computer",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "minecraft:comparator",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -1173,7 +1725,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Electric Fabricator",
-          "desc:8": "Category: Possession\n\nElectric Fabricator\n\nFinal validation will require:\n- Demonstrate the capability: Electric Fabricator."
+          "desc:8": "Category: Possession\n\nElectric Fabricator\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Demonstrate the capability: Electric Fabricator."
         }
       },
       "tasks:9": {
@@ -1224,7 +1776,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Programmable Assembler",
-          "desc:8": "Category: Possession\n\nProgrammable Assembler\n\nFinal validation will require:\n- Demonstrate the capability: Programmable Assembler."
+          "desc:8": "Category: Possession\n\nProgrammable Assembler\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Demonstrate the capability: Programmable Assembler."
         }
       },
       "tasks:9": {
@@ -1275,7 +1827,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Queued Production Order",
-          "desc:8": "Category: Operation\n\nQueued Production Order\n\nFinal validation will require:\n- Queue a production order and report progress and missing ingredients."
+          "desc:8": "Category: Operation\n\nQueued Production Order\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Queue a production order and report progress and missing ingredients."
         }
       },
       "tasks:9": {
@@ -1314,7 +1866,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Automated Multi-Step Manufacturing",
-          "desc:8": "Category: Mastery\n\nAutomated Multi-Step Manufacturing\n\nFinal validation will require:\n- Complete a multi-step product with automatic routing, monitored buffers, and no routine hand-crafting."
+          "desc:8": "Category: Mastery\n\nAutomated Multi-Step Manufacturing\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Complete a multi-step product with automatic routing, monitored buffers, and no routine hand-crafting."
         }
       },
       "tasks:9": {
@@ -1354,7 +1906,7 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Programmable Manufacturing",
-          "desc:8": "Category: Mastery\n\nProgrammable Manufacturing\n\nFinal validation will require:\n- Operate monitored, queued production that can identify shortages and recover from replenishment."
+          "desc:8": "Category: Mastery\n\nProgrammable Manufacturing\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Operate monitored, queued production that can identify shortages and recover from replenishment."
         }
       },
       "tasks:9": {
@@ -1394,13 +1946,26 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Programmable Capacity Secured",
-          "desc:8": "Category: Transition\n\nGain programmable manufacturing by building it or recovering the abandoned factory control system.\n\nFinal validation will require:\n- Complete the programmable manufacturing route OR restore and audit the captured factory control system.\n\nTEMPORARY VALIDATION:\nCheck this transition after either prerequisite route completes. The recovered-control route intentionally bypasses Chapter 5 construction quests."
+          "desc:8": "Category: Transition\n\nGain programmable manufacturing by building it or recovering the abandoned factory control system.\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Complete the programmable manufacturing route OR restore and audit the captured factory control system.\n\nTEMPORARY VALIDATION:\nCheck this transition after either prerequisite route completes. The recovered-control route intentionally bypasses Chapter 5 construction quests."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "computercraft:computer",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -1432,13 +1997,26 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "IC2 Nuclear Reactor",
-          "desc:8": "Category: Construction\n\nIC2 Nuclear Reactor\n\nFinal validation will require:\n- Build a complete IC2 nuclear reactor and safe support area."
+          "desc:8": "Category: Construction\n\nIC2 Nuclear Reactor\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Build a complete IC2 nuclear reactor and safe support area."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "ic2:blocknuclearreactor",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -1470,13 +2048,26 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Sustained Nuclear Output",
-          "desc:8": "Category: Operation\n\nSustained Nuclear Output\n\nFinal validation will require:\n- Produce useful sustained power with a stable reactor design."
+          "desc:8": "Category: Operation\n\nSustained Nuclear Output\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Produce useful sustained power with a stable reactor design."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "minecraft:redstone_block",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -1508,13 +2099,38 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Reactor Telemetry",
-          "desc:8": "Category: Operation\n\nReactor Telemetry\n\nFinal validation will require:\n- Monitor heat, output, and operating state."
+          "desc:8": "Category: Operation\n\nReactor Telemetry\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Monitor heat, output, and operating state."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "ic2:blocknuclearreactor",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "computercraft:computer",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "2:10": {
+              "id:8": "minecraft:comparator",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -1546,13 +2162,32 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Remote Emergency Shutdown",
-          "desc:8": "Category: Operation\n\nRemote Emergency Shutdown\n\nFinal validation will require:\n- Trigger a verified remote shutdown and confirm output ceases."
+          "desc:8": "Category: Operation\n\nRemote Emergency Shutdown\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Trigger a verified remote shutdown and confirm output ceases."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "ic2:blocknuclearreactor",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "minecraft:lever",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -1584,13 +2219,32 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Nuclear Containment",
-          "desc:8": "Category: Construction\n\nNuclear Containment\n\nFinal validation will require:\n- Use MFFS or equivalent containment appropriate to the reactor risk.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "Category: Construction\n\nNuclear Containment\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Use MFFS or equivalent containment appropriate to the reactor risk.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "ic2:blocknuclearreactor",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "modularforcefieldsystem:projector",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -1623,13 +2277,38 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Monitored Nuclear Power",
-          "desc:8": "Category: Mastery\n\nMonitored Nuclear Power\n\nFinal validation will require:\n- Operate stable, monitored high-output nuclear infrastructure for advanced manufacturing."
+          "desc:8": "Category: Mastery\n\nMonitored Nuclear Power\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Operate stable, monitored high-output nuclear infrastructure for advanced manufacturing."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "ic2:blocknuclearreactor",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "computercraft:computer",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "2:10": {
+              "id:8": "modularforcefieldsystem:projector",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -1661,13 +2340,26 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Tier 1 Orbital Launch",
-          "desc:8": "Category: Transition\n\nTier 1 Orbital Launch\n\nFinal validation will require:\n- Build a Tier 1 launch system and safely reach Earth orbit; this alone does not authorize Moon access."
+          "desc:8": "Category: Transition\n\nTier 1 Orbital Launch\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Build a Tier 1 launch system and safely reach Earth orbit; this alone does not authorize Moon access."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "galacticraftcore:rocket_t1",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -1699,13 +2391,32 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Pressurized Orbital Habitat",
-          "desc:8": "Category: Construction\n\nPressurized Orbital Habitat\n\nFinal validation will require:\n- Establish pressure, oxygen, storage, and safe habitation in orbit."
+          "desc:8": "Category: Construction\n\nPressurized Orbital Habitat\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Establish pressure, oxygen, storage, and safe habitation in orbit."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "minecraft:glass",
+              "Count:3": 32,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "galacticraftcore:collector",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -1737,13 +2448,32 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Orbital Power and Eclipse Storage",
-          "desc:8": "Category: Operation\n\nOrbital Power and Eclipse Storage\n\nFinal validation will require:\n- Install IC2 solar generation and enough stored power to survive an eclipse."
+          "desc:8": "Category: Operation\n\nOrbital Power and Eclipse Storage\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Install IC2 solar generation and enough stored power to survive an eclipse."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "industrialcivilizationcore:environmental_solar_array",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "ic2:blockelectric",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -1775,13 +2505,32 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Orbital Communications and Telemetry",
-          "desc:8": "Category: Operation\n\nOrbital Communications and Telemetry\n\nFinal validation will require:\n- Bring a ComputerCraft telemetry and communications system online."
+          "desc:8": "Category: Operation\n\nOrbital Communications and Telemetry\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Bring a ComputerCraft telemetry and communications system online."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "computercraft:computer",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "galacticraftcore:telemetry",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -1814,7 +2563,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Research Station",
-          "desc:8": "Category: Possession\n\nResearch Station\n\nFinal validation will require:\n- Demonstrate the capability: Research Station."
+          "desc:8": "Category: Possession\n\nResearch Station\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Demonstrate the capability: Research Station."
         }
       },
       "tasks:9": {
@@ -1865,7 +2614,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Orbital Experiment Module",
-          "desc:8": "Category: Possession\n\nOrbital Experiment Module\n\nFinal validation will require:\n- Demonstrate the capability: Orbital Experiment Module."
+          "desc:8": "Category: Possession\n\nOrbital Experiment Module\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Demonstrate the capability: Orbital Experiment Module."
         }
       },
       "tasks:9": {
@@ -1919,13 +2668,44 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Functional Orbital Station",
-          "desc:8": "Category: Mastery\n\nFunctional Orbital Station\n\nFinal validation will require:\n- Sustain habitation, oxygen, power, storage, telemetry, research equipment, and safe arrival infrastructure.\n\nTEMPORARY VALIDATION:\nManual-check the assembled station until environment/uptime triggers exist."
+          "desc:8": "Category: Mastery\n\nFunctional Orbital Station\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Sustain habitation, oxygen, power, storage, telemetry, research equipment, and safe arrival infrastructure.\n\nTEMPORARY VALIDATION:\nManual-check the assembled station until environment/uptime triggers exist."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "industrialcivilizationcore:research_station",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "industrialcivilizationcore:orbital_experiment_module",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "2:10": {
+              "id:8": "industrialcivilizationcore:environmental_solar_array",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "3:10": {
+              "id:8": "computercraft:computer",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -1957,7 +2737,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Orbital Experiment Program",
-          "desc:8": "Category: Research\n\nOrbital Experiment Program\n\nFinal validation will require:\n- Complete vacuum materials, radiation, telescope, microgravity, life-support, communications, and eclipse experiments as implemented."
+          "desc:8": "Category: Research\n\nOrbital Experiment Program\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Complete vacuum materials, radiation, telescope, microgravity, life-support, communications, and eclipse experiments as implemented."
         }
       },
       "tasks:9": {
@@ -1996,7 +2776,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Orbital Operational Data",
-          "desc:8": "Category: Mastery\n\nOrbital Operational Data\n\nFinal validation will require:\n- Record station, oxygen, power, solar, eclipse, manufacturing, and transmission uptime."
+          "desc:8": "Category: Mastery\n\nOrbital Operational Data\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Record station, oxygen, power, solar, eclipse, manufacturing, and transmission uptime."
         }
       },
       "tasks:9": {
@@ -2035,7 +2815,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Orbital Solar Industry",
-          "desc:8": "Category: Operation\n\nOrbital Solar Industry\n\nFinal validation will require:\n- Run an automated orbital production line from enhanced orbital solar generation.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "Category: Operation\n\nOrbital Solar Industry\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Run an automated orbital production line from enhanced orbital solar generation.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
@@ -2074,7 +2854,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Advanced Tracking Solar Array",
-          "desc:8": "Category: Construction\n\nAdvanced Tracking Solar Array\n\nFinal validation will require:\n- Build an advanced tracking array targeting 15\u201325\u00d7 Earth solar output when implemented.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "Category: Construction\n\nAdvanced Tracking Solar Array\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Build an advanced tracking array targeting 15\u201325\u00d7 Earth solar output when implemented.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
@@ -2113,7 +2893,7 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Orbital Research Archive",
-          "desc:8": "Category: Possession\n\nOrbital Research Archive\n\nFinal validation will require:\n- Demonstrate the capability: Orbital Research Archive."
+          "desc:8": "Category: Possession\n\nOrbital Research Archive\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Demonstrate the capability: Orbital Research Archive."
         }
       },
       "tasks:9": {
@@ -2164,7 +2944,7 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Moon Access",
-          "desc:8": "Category: Transition\n\nMoon Access\n\nFinal validation will require:\n- Use the Orbital Research Archive to authorize lunar navigation, descent, and environmental systems."
+          "desc:8": "Category: Transition\n\nMoon Access\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Use the Orbital Research Archive to authorize lunar navigation, descent, and environmental systems."
         }
       },
       "tasks:9": {
@@ -2203,13 +2983,26 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Authorized Lunar Landing",
-          "desc:8": "Category: Transition\n\nAuthorized Lunar Landing\n\nFinal validation will require:\n- Land on the Moon only after Orbital Research completion."
+          "desc:8": "Category: Transition\n\nAuthorized Lunar Landing\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Land on the Moon only after Orbital Research completion."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "minecraft:ender_pearl",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -2241,13 +3034,32 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Lunar Habitat",
-          "desc:8": "Category: Construction\n\nLunar Habitat\n\nFinal validation will require:\n- Establish pressure, oxygen, thermal control, communications, and safe habitation."
+          "desc:8": "Category: Construction\n\nLunar Habitat\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Establish pressure, oxygen, thermal control, communications, and safe habitation."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "minecraft:glass",
+              "Count:3": 32,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "galacticraftcore:collector",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -2279,7 +3091,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Lunar Power Through Darkness",
-          "desc:8": "Category: Operation\n\nLunar Power Through Darkness\n\nFinal validation will require:\n- Provide generation and storage capable of maintaining the base through a lunar darkness cycle."
+          "desc:8": "Category: Operation\n\nLunar Power Through Darkness\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Provide generation and storage capable of maintaining the base through a lunar darkness cycle."
         }
       },
       "tasks:9": {
@@ -2318,13 +3130,32 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Automated Lunar Mining",
-          "desc:8": "Category: Operation\n\nAutomated Lunar Mining\n\nFinal validation will require:\n- Extract lunar resources automatically and deliver them to local processing."
+          "desc:8": "Category: Operation\n\nAutomated Lunar Mining\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Extract lunar resources automatically and deliver them to local processing."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "galacticraftcore:basic_item",
+              "Count:3": 1,
+              "Damage:2": 7,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "minecraft:chest",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -2356,13 +3187,26 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Local Lunar Manufacturing",
-          "desc:8": "Category: Operation\n\nLocal Lunar Manufacturing\n\nFinal validation will require:\n- Process lunar materials and manufacture a useful spacecraft or precision component locally."
+          "desc:8": "Category: Operation\n\nLocal Lunar Manufacturing\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Process lunar materials and manufacture a useful spacecraft or precision component locally."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "industrialcivilizationcore:precision_frame",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -2394,13 +3238,26 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Lunar Cargo Return",
-          "desc:8": "Category: Operation\n\nLunar Cargo Return\n\nFinal validation will require:\n- Return cargo or establish an automated Earth-orbit-Moon supply route.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "Category: Operation\n\nLunar Cargo Return\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Return cargo or establish an automated Earth-orbit-Moon supply route.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "minecraft:minecart",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -2435,13 +3292,38 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Functional Lunar Base",
-          "desc:8": "Category: Mastery\n\nFunctional Lunar Base\n\nFinal validation will require:\n- Sustain habitation, local power, mining, processing, manufacturing, research readiness, and communications.\n\nTEMPORARY VALIDATION:\nManual-check the base until environment and throughput triggers exist."
+          "desc:8": "Category: Mastery\n\nFunctional Lunar Base\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Sustain habitation, local power, mining, processing, manufacturing, research readiness, and communications.\n\nTEMPORARY VALIDATION:\nManual-check the base until environment and throughput triggers exist."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "industrialcivilizationcore:environmental_solar_array",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "industrialcivilizationcore:research_station",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "2:10": {
+              "id:8": "computercraft:computer",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -2473,7 +3355,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Lunar Science Program",
-          "desc:8": "Category: Research\n\nLunar Science Program\n\nFinal validation will require:\n- Complete regolith, metallurgy, radiation, seismic, isotope, habitat, mining, communications, and precision-manufacturing studies as implemented."
+          "desc:8": "Category: Research\n\nLunar Science Program\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Complete regolith, metallurgy, radiation, seismic, isotope, habitat, mining, communications, and precision-manufacturing studies as implemented."
         }
       },
       "tasks:9": {
@@ -2512,7 +3394,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Darkness-Cycle Habitat Mastery",
-          "desc:8": "Category: Mastery\n\nDarkness-Cycle Habitat Mastery\n\nFinal validation will require:\n- Maintain habitation and industry through a full lunar darkness challenge."
+          "desc:8": "Category: Mastery\n\nDarkness-Cycle Habitat Mastery\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Maintain habitation and industry through a full lunar darkness challenge."
         }
       },
       "tasks:9": {
@@ -2551,7 +3433,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Lunar Precision Manufacturing",
-          "desc:8": "Category: Operation\n\nLunar Precision Manufacturing\n\nFinal validation will require:\n- Manufacture a precision component locally and transmit production telemetry."
+          "desc:8": "Category: Operation\n\nLunar Precision Manufacturing\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Manufacture a precision component locally and transmit production telemetry."
         }
       },
       "tasks:9": {
@@ -2591,7 +3473,7 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Lunar Engineering Archive",
-          "desc:8": "Category: Possession\n\nLunar Engineering Archive\n\nFinal validation will require:\n- Demonstrate the capability: Lunar Engineering Archive."
+          "desc:8": "Category: Possession\n\nLunar Engineering Archive\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Demonstrate the capability: Lunar Engineering Archive."
         }
       },
       "tasks:9": {
@@ -2642,13 +3524,26 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Quantum Research Access",
-          "desc:8": "Category: Transition\n\nQuantum Research Access\n\nFinal validation will require:\n- Use the Lunar Engineering Archive to open Quantum Technology research; Mars remains locked."
+          "desc:8": "Category: Transition\n\nQuantum Research Access\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Use the Lunar Engineering Archive to open Quantum Technology research; Mars remains locked."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "industrialcivilizationcore:lunar_engineering_archive",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -2681,13 +3576,32 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Extreme-Voltage Industry",
-          "desc:8": "Category: Mastery\n\nExtreme-Voltage Industry\n\nFinal validation will require:\n- Operate high-tier generation, storage, transformation, and advanced processing safely."
+          "desc:8": "Category: Mastery\n\nExtreme-Voltage Industry\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Operate high-tier generation, storage, transformation, and advanced processing safely."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "ic2:blockmachinehv",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "ic2:blockelectric",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -2719,7 +3633,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Robotic Manufacturing Cell",
-          "desc:8": "Category: Possession\n\nRobotic Manufacturing Cell\n\nFinal validation will require:\n- Demonstrate the capability: Robotic Manufacturing Cell."
+          "desc:8": "Category: Possession\n\nRobotic Manufacturing Cell\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Demonstrate the capability: Robotic Manufacturing Cell."
         }
       },
       "tasks:9": {
@@ -2771,7 +3685,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Lunar Quantum Component",
-          "desc:8": "Category: Possession\n\nLunar Quantum Component\n\nFinal validation will require:\n- Demonstrate the capability: Lunar Quantum Component."
+          "desc:8": "Category: Possession\n\nLunar Quantum Component\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Demonstrate the capability: Lunar Quantum Component."
         }
       },
       "tasks:9": {
@@ -2822,13 +3736,44 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "NanoSuit and Powered Tools",
-          "desc:8": "Category: Possession\n\nNanoSuit and Powered Tools\n\nFinal validation will require:\n- Manufacture NanoSuit equipment and advanced charged tools."
+          "desc:8": "Category: Possession\n\nNanoSuit and Powered Tools\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Manufacture NanoSuit equipment and advanced charged tools."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "ic2:itemarmornanohelmet",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "ic2:itemarmornanochestplate",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            },
+            "2:10": {
+              "id:8": "ic2:itemarmornanolegs",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            },
+            "3:10": {
+              "id:8": "ic2:itemarmornanoboots",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -2861,13 +3806,44 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Complete Charged QuantumSuit",
-          "desc:8": "Category: Mastery\n\nComplete Charged QuantumSuit\n\nFinal validation will require:\n- Manufacture a complete QuantumSuit and demonstrate sufficient infrastructure to charge it."
+          "desc:8": "Category: Mastery\n\nComplete Charged QuantumSuit\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Manufacture a complete QuantumSuit and demonstrate sufficient infrastructure to charge it."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "ic2:itemarmorquantumhelmet",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "ic2:itemarmorquantumchestplate",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            },
+            "2:10": {
+              "id:8": "ic2:itemarmorquantumlegs",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            },
+            "3:10": {
+              "id:8": "ic2:itemarmorquantumboots",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -2900,13 +3876,38 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Mars Readiness Trial",
-          "desc:8": "Category: Operation\n\nMars Readiness Trial\n\nFinal validation will require:\n- Demonstrate thermal, radiation, power, life-support compatibility, and automated spare-part production."
+          "desc:8": "Category: Operation\n\nMars Readiness Trial\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Demonstrate thermal, radiation, power, life-support compatibility, and automated spare-part production."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "ic2:itemarmorquantumhelmet",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "industrialcivilizationcore:lunar_quantum_component",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "2:10": {
+              "id:8": "industrialcivilizationcore:mars_mission_authorization",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -2938,13 +3939,32 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Quantum Technology Complete",
-          "desc:8": "Category: Mastery\n\nQuantum Technology Complete\n\nFinal validation will require:\n- Master conventional high-tier technology and Mars-ready automated manufacturing."
+          "desc:8": "Category: Mastery\n\nQuantum Technology Complete\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Master conventional high-tier technology and Mars-ready automated manufacturing."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "industrialcivilizationcore:lunar_quantum_component",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "ic2:itemarmorquantumhelmet",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -2978,7 +3998,7 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Mars Mission Authorization",
-          "desc:8": "Category: Possession\n\nMars Mission Authorization\n\nFinal validation will require:\n- Demonstrate the capability: Mars Mission Authorization."
+          "desc:8": "Category: Possession\n\nMars Mission Authorization\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Demonstrate the capability: Mars Mission Authorization."
         }
       },
       "tasks:9": {
@@ -3029,7 +4049,7 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Authorized Tier 2 Mars Launch",
-          "desc:8": "Category: Transition\n\nAuthorized Tier 2 Mars Launch\n\nFinal validation will require:\n- Build a Tier 2 spacecraft and travel to Mars with mission authorization."
+          "desc:8": "Category: Transition\n\nAuthorized Tier 2 Mars Launch\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Build a Tier 2 spacecraft and travel to Mars with mission authorization."
         }
       },
       "tasks:9": {
@@ -3068,13 +4088,32 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Martian Habitat",
-          "desc:8": "Category: Construction\n\nMartian Habitat\n\nFinal validation will require:\n- Establish pressure, oxygen, water, radiation protection, communications, and safe habitation."
+          "desc:8": "Category: Construction\n\nMartian Habitat\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Establish pressure, oxygen, water, radiation protection, communications, and safe habitation."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "minecraft:glass",
+              "Count:3": 32,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "galacticraftcore:collector",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -3106,7 +4145,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Reliable Martian Power",
-          "desc:8": "Category: Operation\n\nReliable Martian Power\n\nFinal validation will require:\n- Maintain local generation and storage through dust-related solar fluctuation; nuclear backup is encouraged."
+          "desc:8": "Category: Operation\n\nReliable Martian Power\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Maintain local generation and storage through dust-related solar fluctuation; nuclear backup is encouraged."
         }
       },
       "tasks:9": {
@@ -3145,13 +4184,32 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Automated Martian Mining",
-          "desc:8": "Category: Operation\n\nAutomated Martian Mining\n\nFinal validation will require:\n- Mine and route Martian resources without direct labor."
+          "desc:8": "Category: Operation\n\nAutomated Martian Mining\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Mine and route Martian resources without direct labor."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "galacticraftplanets:item_basic_mars",
+              "Count:3": 1,
+              "Damage:2": 2,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "minecraft:chest",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -3183,13 +4241,32 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Local Martian Manufacturing",
-          "desc:8": "Category: Operation\n\nLocal Martian Manufacturing\n\nFinal validation will require:\n- Process Martian materials and manufacture colony components locally."
+          "desc:8": "Category: Operation\n\nLocal Martian Manufacturing\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Process Martian materials and manufacture colony components locally."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "industrialcivilizationcore:precision_frame",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "galacticraftplanets:item_basic_mars",
+              "Count:3": 1,
+              "Damage:2": 2,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -3221,7 +4298,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Martian Desh Sample",
-          "desc:8": "Category: Possession\n\nMartian Desh Sample\n\nFinal validation will require:\n- Obtain Galacticraft Desh (metadata 2), the existing real Mars Sample used by the Molecular Analyzer."
+          "desc:8": "Category: Possession\n\nMartian Desh Sample\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Obtain Galacticraft Desh (metadata 2), the existing real Mars Sample used by the Molecular Analyzer."
         }
       },
       "tasks:9": {
@@ -3272,13 +4349,26 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Martian Cargo and Return",
-          "desc:8": "Category: Operation\n\nMartian Cargo and Return\n\nFinal validation will require:\n- Establish a return or cargo route without relying on repeated emergency Earth supply trips.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "Category: Operation\n\nMartian Cargo and Return\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Establish a return or cargo route without relying on repeated emergency Earth supply trips.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "minecraft:minecart",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -3314,13 +4404,44 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Functional Martian Base",
-          "desc:8": "Category: Mastery\n\nFunctional Martian Base\n\nFinal validation will require:\n- Sustain habitat, water, power, communications, automated mining, local manufacturing, research readiness, and return capability.\n\nTEMPORARY VALIDATION:\nManual-check the base until colony telemetry triggers exist."
+          "desc:8": "Category: Mastery\n\nFunctional Martian Base\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Sustain habitat, water, power, communications, automated mining, local manufacturing, research readiness, and return capability.\n\nTEMPORARY VALIDATION:\nManual-check the base until colony telemetry triggers exist."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "industrialcivilizationcore:environmental_solar_array",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "industrialcivilizationcore:research_station",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "2:10": {
+              "id:8": "computercraft:computer",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "3:10": {
+              "id:8": "galacticraftplanets:item_basic_mars",
+              "Count:3": 1,
+              "Damage:2": 2,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -3352,7 +4473,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Martian Science Program",
-          "desc:8": "Category: Research\n\nMartian Science Program\n\nFinal validation will require:\n- Complete atmospheric, subsurface, radiation-computation, water-recovery, semiconductor, and robotics studies as implemented."
+          "desc:8": "Category: Research\n\nMartian Science Program\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Complete atmospheric, subsurface, radiation-computation, water-recovery, semiconductor, and robotics studies as implemented."
         }
       },
       "tasks:9": {
@@ -3391,7 +4512,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Autonomous Resource Response",
-          "desc:8": "Category: Operation\n\nAutonomous Resource Response\n\nFinal validation will require:\n- Detect missing materials and automatically replenish or reschedule production."
+          "desc:8": "Category: Operation\n\nAutonomous Resource Response\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Detect missing materials and automatically replenish or reschedule production."
         }
       },
       "tasks:9": {
@@ -3430,7 +4551,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Autonomous Power Response",
-          "desc:8": "Category: Operation\n\nAutonomous Power Response\n\nFinal validation will require:\n- Detect power interruption, shed load safely, and restore production automatically."
+          "desc:8": "Category: Operation\n\nAutonomous Power Response\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Detect power interruption, shed load safely, and restore production automatically."
         }
       },
       "tasks:9": {
@@ -3470,7 +4591,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Unattended Martian Production",
-          "desc:8": "Category: Mastery\n\nUnattended Martian Production\n\nFinal validation will require:\n- Complete local production without direct crafting while habitat and telemetry remain stable."
+          "desc:8": "Category: Mastery\n\nUnattended Martian Production\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Complete local production without direct crafting while habitat and telemetry remain stable."
         }
       },
       "tasks:9": {
@@ -3509,7 +4630,7 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Martian Autonomy Archive",
-          "desc:8": "Category: Possession\n\nMartian Autonomy Archive\n\nFinal validation will require:\n- Demonstrate the capability: Martian Autonomy Archive."
+          "desc:8": "Category: Possession\n\nMartian Autonomy Archive\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Demonstrate the capability: Martian Autonomy Archive."
         }
       },
       "tasks:9": {
@@ -3561,7 +4682,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Molecular Analyzer",
-          "desc:8": "Category: Possession\n\nMolecular Analyzer\n\nFinal validation will require:\n- Craft the existing Molecular Analyzer from meteorite iron, an advanced computer, steel, an IC2 MV machine block, advanced circuits, and Desh."
+          "desc:8": "Category: Possession\n\nMolecular Analyzer\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Craft the existing Molecular Analyzer from meteorite iron, an advanced computer, steel, an IC2 MV machine block, advanced circuits, and Desh."
         }
       },
       "tasks:9": {
@@ -3612,7 +4733,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Power the Analyzer",
-          "desc:8": "Category: Operation\n\nPower the Analyzer\n\nFinal validation will require:\n- Supply the Analyzer with at least 6,250 EU for a Desh analysis."
+          "desc:8": "Category: Operation\n\nPower the Analyzer\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Supply the Analyzer with at least 6,250 EU for a Desh analysis."
         }
       },
       "tasks:9": {
@@ -3652,7 +4773,7 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Martian Material Pattern Record",
-          "desc:8": "Category: Possession\n\nMartian Material Pattern Record\n\nFinal validation will require:\n- Insert Galacticraft Desh metadata 2 and complete the 6,250 EU analysis to produce a non-consumable pattern record."
+          "desc:8": "Category: Possession\n\nMartian Material Pattern Record\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Insert Galacticraft Desh metadata 2 and complete the 6,250 EU analysis to produce a non-consumable pattern record."
         }
       },
       "tasks:9": {
@@ -3703,7 +4824,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Comparative Molecular Characterization",
-          "desc:8": "Category: Research\n\nComparative Molecular Characterization\n\nFinal validation will require:\n- Record planned Earth, lunar, and Martian material comparisons without enabling arbitrary transmutation."
+          "desc:8": "Category: Research\n\nComparative Molecular Characterization\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Record planned Earth, lunar, and Martian material comparisons without enabling arbitrary transmutation."
         }
       },
       "tasks:9": {
@@ -3742,13 +4863,32 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Advanced Material Recovery",
-          "desc:8": "Category: Operation\n\nAdvanced Material Recovery\n\nFinal validation will require:\n- Demonstrate efficient recycling or high-purity recovery using existing industrial machines.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "Category: Operation\n\nAdvanced Material Recovery\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Demonstrate efficient recycling or high-purity recovery using existing industrial machines.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "ic2:blockmachinelv",
+              "Count:3": 1,
+              "Damage:2": 32767,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "industrialcivilizationcore:material_pattern_record",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -3780,7 +4920,7 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Lite Matter Engineering Complete",
-          "desc:8": "Category: Mastery\n\nLite Matter Engineering Complete\n\nFinal validation will require:\n- Demonstrate molecular analysis, durable pattern records, and advanced recovery without UU-Matter or replication."
+          "desc:8": "Category: Mastery\n\nLite Matter Engineering Complete\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Demonstrate molecular analysis, durable pattern records, and advanced recovery without UU-Matter or replication."
         }
       },
       "tasks:9": {
@@ -3823,13 +4963,44 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Civilization Capability Audit",
-          "desc:8": "Category: Mastery\n\nCivilization Capability Audit\n\nFinal validation will require:\n- Confirm Orbital and Lunar archives, Quantum completion, Martian Autonomy, and Lite Matter completion."
+          "desc:8": "Category: Mastery\n\nCivilization Capability Audit\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Confirm Orbital and Lunar archives, Quantum completion, Martian Autonomy, and Lite Matter completion."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "industrialcivilizationcore:orbital_research_archive",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "industrialcivilizationcore:lunar_engineering_archive",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "2:10": {
+              "id:8": "industrialcivilizationcore:martian_autonomy_archive",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "3:10": {
+              "id:8": "industrialcivilizationcore:material_pattern_record",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -3861,7 +5032,7 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Artificial Industrial Intelligence Core",
-          "desc:8": "Category: Possession\n\nArtificial Industrial Intelligence Core\n\nFinal validation will require:\n- Demonstrate the capability: Artificial Industrial Intelligence Core."
+          "desc:8": "Category: Possession\n\nArtificial Industrial Intelligence Core\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Demonstrate the capability: Artificial Industrial Intelligence Core."
         }
       },
       "tasks:9": {
@@ -3912,13 +5083,26 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Enter the AI Age",
-          "desc:8": "Category: Transition\n\nEnter the AI Age\n\nFinal validation will require:\n- Enter the continuously expanding endgame and authorize AI-coordinated digital industry."
+          "desc:8": "Category: Transition\n\nEnter the AI Age\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Enter the continuously expanding endgame and authorize AI-coordinated digital industry."
         }
       },
       "tasks:9": {
         "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "industrialcivilizationcore:artificial_industrial_intelligence_core",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
           "index:3": 0,
-          "taskID:8": "bq_standard:checkbox"
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -3950,7 +5134,7 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Applied Energistics Entry",
-          "desc:8": "Category: Operation\n\nApplied Energistics Entry\n\nFinal validation will require:\n- Use the real AI Core as a durable authorization catalyst and bring an AE2 Controller online."
+          "desc:8": "Category: Operation\n\nApplied Energistics Entry\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Use the real AI Core as a durable authorization catalyst and bring an AE2 Controller online."
         }
       },
       "tasks:9": {
@@ -4001,7 +5185,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "AE2 Network Crafting",
-          "desc:8": "Category: Operation\n\nAE2 Network Crafting\n\nFinal validation will require:\n- Encode and execute an ordinary multi-step crafting request while physical machine processes retain real throughput."
+          "desc:8": "Category: Operation\n\nAE2 Network Crafting\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Encode and execute an ordinary multi-step crafting request while physical machine processes retain real throughput."
         }
       },
       "tasks:9": {
@@ -4052,7 +5236,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "AI Factory Coordination",
-          "desc:8": "Category: Mastery\n\nAI Factory Coordination\n\nFinal validation will require:\n- Coordinate inventory-aware production across multiple physical machine lines."
+          "desc:8": "Category: Mastery\n\nAI Factory Coordination\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Coordinate inventory-aware production across multiple physical machine lines."
         }
       },
       "tasks:9": {
@@ -4103,7 +5287,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Cross-Planetary AI Logistics",
-          "desc:8": "Category: Mastery\n\nCross-Planetary AI Logistics\n\nFinal validation will require:\n- Coordinate automated orbital cargo, autonomous lunar industry, and autonomous Martian industry.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "Category: Mastery\n\nCross-Planetary AI Logistics\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Coordinate automated orbital cargo, autonomous lunar industry, and autonomous Martian industry.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
@@ -4154,7 +5338,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Predictive Production",
-          "desc:8": "Category: Mastery\n\nPredictive Production\n\nFinal validation will require:\n- Maintain demand forecasts, resilient buffers, and automatic shortage response.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "Category: Mastery\n\nPredictive Production\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Maintain demand forecasts, resilient buffers, and automatic shortage response.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
@@ -4205,7 +5389,7 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "UU-Matter Research",
-          "desc:8": "Category: Research\n\nUU-Matter Research\n\nFinal validation will require:\n- Complete the future AI-assisted energy-to-matter research program."
+          "desc:8": "Category: Research\n\nUU-Matter Research\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Complete the future AI-assisted energy-to-matter research program."
         }
       },
       "tasks:9": {
@@ -4256,7 +5440,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Controlled UU-Matter Production",
-          "desc:8": "Category: Operation\n\nControlled UU-Matter Production\n\nFinal validation will require:\n- Produce UU-Matter through a high-energy, time-based physical process."
+          "desc:8": "Category: Operation\n\nControlled UU-Matter Production\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Produce UU-Matter through a high-energy, time-based physical process."
         }
       },
       "tasks:9": {
@@ -4307,7 +5491,7 @@
           "autoclaim:1": 0,
           "ismain:1": 1,
           "name:8": "Controlled Matter Replication",
-          "desc:8": "Category: Mastery\n\nControlled Matter Replication\n\nFinal validation will require:\n- Replicate an authorized pattern with material, energy, and throughput constraints."
+          "desc:8": "Category: Mastery\n\nControlled Matter Replication\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Replicate an authorized pattern with material, energy, and throughput constraints."
         }
       },
       "tasks:9": {
@@ -4358,7 +5542,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Fusion and Antimatter",
-          "desc:8": "Category: Research\n\nFusion and Antimatter\n\nFinal validation will require:\n- Develop fusion power, exotic materials, and contained antimatter research.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "Category: Research\n\nFusion and Antimatter\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Develop fusion power, exotic materials, and contained antimatter research.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
@@ -4409,7 +5593,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Orbital Megastructures",
-          "desc:8": "Category: Construction\n\nOrbital Megastructures\n\nFinal validation will require:\n- Build advanced orbital solar arrays, automated shipyards, and large interplanetary vessels.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "Category: Construction\n\nOrbital Megastructures\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Build advanced orbital solar arrays, automated shipyards, and large interplanetary vessels.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
@@ -4461,7 +5645,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Autonomous Colony Expansion",
-          "desc:8": "Category: Mastery\n\nAutonomous Colony Expansion\n\nFinal validation will require:\n- Establish a new colony with self-repairing factories and connected logistics.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "Category: Mastery\n\nAutonomous Colony Expansion\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Establish a new colony with self-repairing factories and connected logistics.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
@@ -4514,7 +5698,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Civilization-Scale AI Core",
-          "desc:8": "Category: Mastery\n\nCivilization-Scale AI Core\n\nFinal validation will require:\n- Coordinate a planetary-scale manufacturing and research network.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "Category: Mastery\n\nCivilization-Scale AI Core\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Coordinate a planetary-scale manufacturing and research network.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
@@ -4565,7 +5749,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Continuously Expanding Civilization",
-          "desc:8": "Category: Mastery\n\nContinuously Expanding Civilization\n\nFinal validation will require:\n- Continue the Explore \u2192 Research \u2192 Automate \u2192 Scale \u2192 Colonize \u2192 Connect \u2192 Build loop; optional branches remain open-ended."
+          "desc:8": "Category: Mastery\n\nContinuously Expanding Civilization\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Continue the Explore \u2192 Research \u2192 Automate \u2192 Scale \u2192 Colonize \u2192 Connect \u2192 Build loop; optional branches remain open-ended."
         }
       },
       "tasks:9": {
@@ -4614,7 +5798,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Rumors of the Industrial Underworld",
-          "desc:8": "Category: Transition\n\nDiscover a settlement rumor, map fragment, radio message, or NPC lead pointing toward organized industrial crime.\n\nFinal validation will require:\n- Obtain a credible lead from exploration, trade, radio traffic, or a faction encounter.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "Category: Transition\n\nDiscover a settlement rumor, map fragment, radio message, or NPC lead pointing toward organized industrial crime.\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Obtain a credible lead from exploration, trade, radio traffic, or a faction encounter.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
@@ -4666,7 +5850,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Break the Criminal Industrial Network",
-          "desc:8": "Category: Mastery\n\nDefeat, negotiate with, expose, or dismantle the criminal NPC leadership controlling an abandoned industrial site.\n\nFinal validation will require:\n- Resolve the criminal leadership through combat, negotiation, evidence, or faction support.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "Category: Mastery\n\nDefeat, negotiate with, expose, or dismantle the criminal NPC leadership controlling an abandoned industrial site.\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Resolve the criminal leadership through combat, negotiation, evidence, or faction support.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
@@ -4717,7 +5901,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Discover an Abandoned Factory",
-          "desc:8": "Category: Construction\n\nLocate and secure a procedurally placed or authored abandoned factory instead of constructing every industrial line yourself.\n\nFinal validation will require:\n- Secure the site, survey intact machines, and verify that the factory is not an unlimited free-resource cache.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "Category: Construction\n\nLocate and secure a procedurally placed or authored abandoned factory instead of constructing every industrial line yourself.\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Secure the site, survey intact machines, and verify that the factory is not an unlimited free-resource cache.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
@@ -4768,7 +5952,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Restore the Abandoned Factory",
-          "desc:8": "Category: Operation\n\nRepair power, safety, inputs, and at least one intact production line to gain heavy industrial capacity through salvage.\n\nFinal validation will require:\n- Restore safe power and operate one useful production line.\n- Repair missing logistics and supply inputs rather than receiving free perpetual output.\n- Accept that the recovered layout may be inefficient and require later improvement.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "Category: Operation\n\nRepair power, safety, inputs, and at least one intact production line to gain heavy industrial capacity through salvage.\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Restore safe power and operate one useful production line.\n- Repair missing logistics and supply inputs rather than receiving free perpetual output.\n- Accept that the recovered layout may be inefficient and require later improvement.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
@@ -4819,7 +6003,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Recover the Factory Control System",
-          "desc:8": "Category: Operation\n\nAudit, repair, and safely operate the abandoned factory's programmable controller and production queue.\n\nFinal validation will require:\n- Bring the recovered controller online.\n- Inspect its program rather than trusting unknown automation blindly.\n- Queue and complete one controlled production order.\n\nOptional: this quest does not gate the canonical critical path."
+          "desc:8": "Category: Operation\n\nAudit, repair, and safely operate the abandoned factory's programmable controller and production queue.\n\nCompletion is detected automatically from real gameplay evidence.\n\nRequired capability:\n- Bring the recovered controller online.\n- Inspect its program rather than trusting unknown automation blindly.\n- Queue and complete one controlled production order.\n\nOptional: this quest does not gate the canonical critical path."
         }
       },
       "tasks:9": {
@@ -5956,7 +7140,7 @@
       "hardcore:1": 0,
       "home_image:8": "industrialcivilizationcore:textures/gui/quest_home_v2.png",
       "party_enable:1": 1,
-      "pack_version:3": 4,
+      "pack_version:3": 5,
       "home_offset_x:3": -128,
       "home_offset_y:3": 0
     }

@@ -6,6 +6,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PROGRESSION = ROOT / "progression"
 OUT = ROOT / "config" / "betterquesting" / "DefaultQuests.json"
+DETECTION = json.loads((PROGRESSION / "objective-detection.json").read_text(encoding="utf-8"))
 
 
 def load_chapters():
@@ -20,14 +21,33 @@ def load_side_paths():
 
 def split_item(ref):
     parts = ref.split(":")
+    if len(parts) == 3 and parts[-1] == "*":
+        return ":".join(parts[:2]), 32767
     if len(parts) == 3 and parts[-1].isdigit():
         return ":".join(parts[:2]), int(parts[-1])
     return ref, 0
 
 
-def stack(ref):
+def stack(ref, count=1, ore_dict=""):
     item_id, damage = split_item(ref)
-    return {"id:8": item_id, "Count:3": 1, "Damage:2": damage, "OreDict:8": ""}
+    return {"id:8": item_id, "Count:3": count, "Damage:2": damage, "OreDict:8": ore_dict}
+
+
+def retrieval_task(items):
+    required = {}
+    for index, value in enumerate(items):
+        spec = value if isinstance(value, dict) else {"item": value}
+        required[f"{index}:10"] = stack(spec["item"], spec.get("count", 1), spec.get("ore_dict", ""))
+    return {
+        "partialMatch:1": 1,
+        "ignoreNBT:1": 1,
+        "consume:1": 0,
+        "groupDetect:1": 1,
+        "autoConsume:1": 0,
+        "requiredItems:9": required,
+        "index:3": 0,
+        "taskID:8": "bq_standard:retrieval",
+    }
 
 
 def task_for(ms):
@@ -38,18 +58,13 @@ def task_for(ms):
             "index:3": 0,
             "taskID:8": "bq_standard:advancement",
         }
-    if "required_item" not in ms:
-        return {"index:3": 0, "taskID:8": "bq_standard:checkbox"}
-    return {
-        "partialMatch:1": 1,
-        "ignoreNBT:1": 1,
-        "consume:1": 0,
-        "groupDetect:1": 1,
-        "autoConsume:1": 0,
-        "requiredItems:9": {"0:10": stack(ms["required_item"])},
-        "index:3": 0,
-        "taskID:8": "bq_standard:retrieval",
-    }
+    if "required_item" in ms:
+        return retrieval_task([ms["required_item"]])
+    # Cross-mod capabilities without a reliable Forge event use tangible
+    # inventory evidence. Every formerly manual quest is therefore detected
+    # by Better Questing itself and never asks the player to self-certify.
+    evidence = DETECTION.get("overrides", {}).get(ms["id"], [ms["icon"]])
+    return retrieval_task(evidence)
 
 
 def description(ms):
@@ -58,7 +73,9 @@ def description(ms):
         "",
         ms["capability"],
         "",
-        "Final validation will require:",
+        "Completion is detected automatically from real gameplay evidence.",
+        "",
+        "Required capability:",
     ]
     lines.extend(f"- {value}" for value in ms["final_validation"])
     if ms.get("temporary_validation"):
@@ -183,7 +200,7 @@ def main():
             "hardcore:1": 0,
             "home_image:8": "industrialcivilizationcore:textures/gui/quest_home_v2.png",
             "party_enable:1": 1,
-            "pack_version:3": 4,
+            "pack_version:3": 5,
             "home_offset_x:3": -128,
             "home_offset_y:3": 0,
         }},

@@ -125,9 +125,9 @@ The historical contract remains machine-readable in `progression/placeholder-reg
 write("QUEST_IMPLEMENTATION.md", "Quest Implementation", f"""
 Better Questing 3 reads `config/betterquesting/DefaultQuests.json`. Run `python3 tools/generate_objectives.py` after canonical edits; never hand-edit generated quests. The current projection has {len(chapters) + len(graph['optional_branches'])} quest lines ({len(chapters)} numbered chapters and {len(graph['optional_branches'])} independent side paths) and {len(milestones)} quests.
 
-Possession milestones use Standard Expansion `bq_standard:retrieval` tasks with NBT ignored, group detection enabled, and consumption disabled. Real machine blocks and artifacts now fulfill the former placeholder quests. Construction and broad infrastructure/mastery goals still use manual checkboxes where no reliable cross-mod runtime trigger exists. All quests use `ALWAYS` visibility and locked progress, so players can browse the whole civilization plan without completing locked objectives early.
+Every quest completes automatically. Native machine operations and dimension events use hidden advancement tasks; item, construction, and cross-mod capability objectives use non-consuming Standard Expansion retrieval tasks, including multi-item evidence sets from `progression/objective-detection.json`. There are no manual checkbox tasks. All quests use `ALWAYS` visibility and locked progress, so players can browse the whole civilization plan without completing locked objectives early.
 
-Quest IDs are deterministic from chapter/side-path order and milestone order. Cross-line prerequisites use the same global numeric map. `pack_version` is 4. Import/update the default pack through Better Questing when a world retains the older database.
+Quest IDs are deterministic from chapter/side-path order and milestone order. Cross-line prerequisites use the same global numeric map. `pack_version` is 5. Import/update the default pack through Better Questing when a world retains the older database.
 
 The integration mod persists research artifacts on each player and returns unauthorized arrivals to Earth. Moon entry requires the Orbital Research Archive. Mars entry requires the Lunar Quantum Component and Mars Mission Authorization. `config/industrialcivilization/runtime.cfg` provides an explicit creative-testing bypass.
 """)
@@ -232,6 +232,7 @@ Fields not yet attributable reliably across inherited mods—automatic mining, a
 
 checklist = [
 "Quest book opens with F6.", "All 16 numbered chapters and all 5 independent side-path tabs appear.",
+"Every objective completes automatically from item evidence or a hooked runtime event; no manual checkbox task appears.",
 "Every future quest is visible for aspirational browsing, but locked quests cannot be opened or progressed.",
 "Numbered chapter tabs contain no optional side-path objectives.", "Early quests are reachable.",
 "All former placeholder registry objects are absent from HEI and every replacement has a distinct sprite.",
@@ -259,7 +260,7 @@ write("MANUAL_QUEST_TEST_CHECKLIST.md", "Manual Quest Test Checklist", "Do not u
 write("KNOWN_LIMITATIONS.md", "Known Limitations", """
 - Static validation cannot prove Better Questing GUI rendering, retrieval-task runtime behavior, or existing-world import behavior.
 - Space gates are enforced after Galacticraft transfers the player; unauthorized players briefly enter the destination before being returned to Earth because Galacticraft's selection GUI has no stable public cancellation hook in this pack version.
-- Broad construction, habitat completeness, sustained uptime, cross-mod telemetry, and mastery checks still use explicit manual checkboxes where no reliable common API exists.
+- Cross-mod systems without stable runtime events use tangible, non-consuming inventory evidence. This detects real ownership but cannot always prove that a large structure remains assembled after completion.
 - Solar multipliers, Martian dust derating, and cross-dimensional cargo channels are implemented. Galacticraft remains responsible for oxygen/pressure and its existing environmental survival behavior; richer radiation and habitat-integrity simulation remains future work.
 - The real Analyzer currently accepts only Martian Desh metadata 2, consumes 6,250 EU, and does not yet perform Earth/lunar comparative research.
 - AI-authorized AE2 covers a curated foundation set; original AE2 recipes stay removed. A complete balanced recipe reconstruction for every AE2 part remains future balance work.

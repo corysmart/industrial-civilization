@@ -35,6 +35,7 @@ graph = read_json(PROG / "progression-graph.json")
 pacing = read_json(PROG / "pacing.json")
 profiles = read_json(PROG / "optimization-profiles.json")
 placeholders = read_json(PROG / "placeholder-registry.json")
+objective_detection = read_json(PROG / "objective-detection.json")
 telemetry = read_json(PROG / "telemetry-schema.json")
 runtime_content = read_json(PROG / "runtime-content.json")
 schemas = {path.name: read_json(path) for path in sorted((PROG / "schemas").glob("*.json"))}
@@ -190,6 +191,10 @@ custom_ids = {path.stem for path in (asset_root / "models/item").glob("*.json")}
 custom_ids.update(path.stem for path in (asset_root / "blockstates").glob("*.json"))
 declared_custom_ids = {entry["id"] for kind in ("blocks", "items") for entry in runtime_content[kind]}
 check(declared_custom_ids == custom_ids, "runtime content registry exactly matches custom models")
+ic2_lang = zipfile.ZipFile(ROOT / "mods/IC2Classic-1.12.2-1.5.11.jar").read(
+    "assets/ic2/lang/en_us.lang").decode("utf-8")
+ic2_registry_paths = {match.group(1).lower() for match in re.finditer(
+    r"^(?:tile|item)\.([A-Za-z0-9_]+)\.name=", ic2_lang, re.MULTILINE)}
 
 
 def item_exists(ref):
@@ -201,6 +206,8 @@ def item_exists(ref):
         return True
     if domain == "industrialcivilizationcore":
         return path in custom_ids
+    if domain == "ic2":
+        return path.lower() in ic2_registry_paths
     # Galacticraft's metadata-backed item_basic registries deliberately use
     # descriptive model filenames (for example ingot_desh) rather than the
     # registry path. This exact metadata-2 item is verified elsewhere against
@@ -221,6 +228,16 @@ for ms in milestones:
         advancement = ms["id"] if ms["runtime_advancement"] is True else ms["runtime_advancement"]
         advancement_path = asset_root / "advancements" / f"{advancement}.json"
         check(advancement_path.is_file(), f"runtime advancement exists: {ms['id']} -> {advancement}")
+
+detection_overrides = objective_detection.get("overrides", {})
+check(set(detection_overrides) <= set(by_id), "objective detection overrides reference real milestones")
+for milestone_id, evidence in detection_overrides.items():
+    check(bool(evidence), f"objective evidence is nonempty: {milestone_id}")
+    for value in evidence:
+        spec = value if isinstance(value, dict) else {"item": value}
+        check(item_exists(spec.get("item", "")),
+              f"objective evidence item exists: {milestone_id} -> {spec.get('item')}")
+        check(0 < spec.get("count", 1) <= 127, f"objective evidence count is valid: {milestone_id}")
 
 lang_path = ROOT / "development/IndustrialCivilizationCore/src/main/resources/assets/industrialcivilizationcore/lang/en_us.lang"
 lang = lang_path.read_text(encoding="utf-8")
@@ -256,8 +273,7 @@ for index, ms in enumerate(milestones):
     check(quest.get("preRequisites:11") == [id_order[p] for p in ms["prerequisites"]], f"generated prerequisites match {ms['id']}")
     task = quest.get("tasks:9", {}).get("0:10", {})
     expected_task = ("bq_standard:advancement" if ms.get("runtime_advancement")
-                     else "bq_standard:retrieval" if ms.get("required_item")
-                     else "bq_standard:checkbox")
+                     else "bq_standard:retrieval")
     check(task.get("taskID:8") == expected_task, f"generated task type matches {ms['id']}")
     if ms.get("runtime_advancement"):
         advancement = ms["id"] if ms["runtime_advancement"] is True else ms["runtime_advancement"]
@@ -266,7 +282,9 @@ for index, ms in enumerate(milestones):
     check(props.get("visibility:8") == "ALWAYS", f"quest is aspirationally visible from the start: {ms['id']}")
     check(props.get("questlogic:8") == ms.get("prerequisite_logic", "AND"), f"generated prerequisite logic matches {ms['id']}")
 check(not any(ms.get("placeholder_id") for ms in milestones), "generated projection has no placeholder milestones")
-check(quests.get("questSettings:10", {}).get("betterquesting:10", {}).get("pack_version:3") == 4, "Better Questing pack version includes runtime replacements")
+check(not any(quest.get("tasks:9", {}).get("0:10", {}).get("taskID:8") == "bq_standard:checkbox"
+              for quest in quest_db.values()), "generated quest projection contains no manual checkbox tasks")
+check(quests.get("questSettings:10", {}).get("betterquesting:10", {}).get("pack_version:3") == 5, "Better Questing pack version includes automatic objective detection")
 
 placements = []
 for line in quest_lines.values():
