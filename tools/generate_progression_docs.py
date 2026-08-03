@@ -200,7 +200,7 @@ Martian experiment data plus an Industrial Control Processor produces the real M
 """)
 
 write("LITE_MATTER_ENGINEERING.md", "Lite Matter Engineering", """
-The existing `industrialcivilizationcore:molecular_analyzer` is preserved. Its existing recipe combines Galacticraft raw meteoric iron, a ComputerCraft advanced computer, steel, an IC2 MV machine block, advanced circuits, and Martian Desh. The working tile is a native IC2 EU sink, accepts only Galacticraft Desh metadata 2, consumes 6,250 EU per analysis, creates `industrialcivilizationcore:material_pattern_record`, and records the current Lite Matter completion flag. Forge Energy compatibility is an invisible adapter and never changes the player-facing EU semantics.
+The existing `industrialcivilizationcore:molecular_analyzer` is preserved. Its recipe combines Galacticraft raw meteoric iron, a ComputerCraft advanced computer, steel, an IC2 MV machine block, advanced circuits, and Martian Desh. The working tile is a native IC2 EU sink and consumes 6,250 EU per analysis. It accepts an Earth Iron Ingot, lunar Meteoric Iron, and Galacticraft Desh metadata 2, creates an origin-tagged `industrialcivilizationcore:material_pattern_record`, and completes comparative characterization only after all three environments have been recorded. Forge Energy compatibility is an invisible adapter and never changes the player-facing EU semantics.
 
 Current limitations: one Martian material, no general experiment framework, and no Earth/lunar comparative analysis. Current objectives use automatic Analyzer advancements and tangible records rather than manual validation. Lite Matter includes analysis, records, recovery, engineered/high-purity materials, and early characterization; it explicitly excludes full UU-Matter, replication, magical transmutation, and an AE2 unlock by itself.
 """)
@@ -208,7 +208,9 @@ Current limitations: one Martian material, no general experiment framework, and 
 write("AI_AGE.md", "AI Age", """
 The AI Age begins at approximately 20 optimized, 40 average, or 80 inefficient hours. It requires Orbital Research Archive + Lunar Engineering Archive + Quantum completion + Martian Autonomy Archive + Lite Matter completion.
 
-The Artificial Industrial Intelligence Core is manufactured in the Robotic Cell from a Control Processor, the Martian Autonomy Archive, and the real Material Pattern Record produced by Lite Matter analysis. It is a durable crafting authorization catalyst: original AE2 crafting recipes remain removed, and the curated AE2 foundation recipes physically require the real AI Core and a Control Processor.
+The Artificial Industrial Intelligence Core is manufactured in the Robotic Cell from a Control Processor, the Martian Autonomy Archive, and the real Material Pattern Record produced by comparative Lite Matter analysis. It is a durable crafting authorization catalyst: inherited AE2 recipes are removed, twelve foundation replacements physically require the AI Core, and every remaining inherited crafting output is reconstructed through the AI-authorized catalog tier.
+
+When the server confirms the AI Core, Martian Autonomy, and Lite Matter completion together, it grants `ai_age_entry` and opens the scrolling credits once for that player. The world remains playable for post-credits branches. Technical Phase Pearls use the compatible vanilla registry ID but a custom IC2-styled name/model and an AI-Core recipe; no pre-AI chapter references pearls.
 
 AI entry begins intelligent inventory awareness, routing, dependency resolution, scheduling, AE2, UU-Matter research, replication research, and autonomous interplanetary coordination. It is the beginning of the endgame.
 """)
@@ -262,23 +264,25 @@ checklist = [
 "Existing Molecular Analyzer is recognized.", "Martian Autonomy follows Mars Settlement.",
 "AI Age remains locked before Martian Autonomy and Lite Matter Engineering.",
 "The real AI Core is synthesized from Martian Autonomy, Lite Matter, and programmable manufacturing outputs and acts as a durable AE2 recipe catalyst.",
+"Unlocking the AI Age opens the one-time scrolling credits screen without ending the world.",
+"The Technical Phase Pearl has no pre-AI quest or recipe dependency and becomes craftable only with the durable AI Core.",
+"The Galacticraft destination list permits orbit, gated Moon, and gated Mars only; unsupported bodies and the End cannot be entered, and Mars Mission Authorization unlocks the Tier 2 NASA Workbench page without a lunar dungeon.",
+"Earth Iron, lunar Meteoric Iron, and Martian Desh all produce origin-tagged Analyzer records before comparative research completes.",
+"An unshielded player in orbit, on the Moon, or on Mars takes radiation damage unless protected by an active sealed habitat or full QuantumSuit.",
+"Completing an actual IC Credit buy or sell—not merely opening a merchant—records faction trade contact.",
 "AI Age is presented as the beginning of the endgame.", "Post-AI branches are visible but do not block AI entry.",
 "No circular or impossible dependencies are visible."
 ]
 write("MANUAL_QUEST_TEST_CHECKLIST.md", "Manual Quest Test Checklist", "Do not use a valued world for the first database import. No runtime claims are made until this checklist passes.\n\n" + "\n".join(f"- [ ] {i}. {v}" for i, v in enumerate(checklist, 1)) + "\n\nCheck `logs/latest.log`, `logs/groovy.log`, and `crafttweaker.log` after the run. Record quest/task IDs and screenshots for any mismatch.")
 
-write("KNOWN_LIMITATIONS.md", "Known Limitations", """
-- Static validation cannot prove Better Questing GUI rendering, retrieval-task runtime behavior, or existing-world import behavior.
-- Space gates are enforced after Galacticraft transfers the player; unauthorized players briefly enter the destination before being returned to Earth because Galacticraft's selection GUI has no stable public cancellation hook in this pack version.
-- Cross-mod systems without stable runtime events use tangible, non-consuming inventory evidence. This detects real ownership but cannot always prove that a large structure remains assembled after completion.
-- Solar multipliers, Martian dust derating, and cross-dimensional cargo channels are implemented. Galacticraft remains responsible for oxygen/pressure and its existing environmental survival behavior; richer radiation and habitat-integrity simulation remains future work.
-- The real Analyzer currently accepts only Martian Desh metadata 2, consumes 6,250 EU, and does not yet perform Earth/lunar comparative research.
-- AI-authorized AE2 covers a curated foundation set; original AE2 recipes stay removed. A complete balanced recipe reconstruction for every AE2 part remains future balance work.
-- Matter, fusion, logistics, megastructure, colony, and civilization-scale AI machines implement concrete capstone proofs; their broad physical build-scale and balance still require full playthrough tuning.
-- Quest updates may require importing Better Questing defaults in existing worlds. Back up world quest data first.
-- Distance-based primitive settlements, abandoned factories, militia outposts, operational factories, and cities generate only in new chunks. Use a fresh world to verify the intended geography; existing village chunks are not deleted.
-- Merchant contact is credited when a player opens a merchant while holding IC Credits because Forge 1.12.2 exposes no reliable universal post-transaction event across inherited merchant implementations. The offers themselves still consume real IC Credits.
-- Generated settlements are compact, deterministic gameplay prototypes. Building scale, structure variety, spawn frequency, pathfinding, and economy prices require measured playtesting.
+write("KNOWN_LIMITATIONS.md", "Verification Boundaries", """
+No intentionally missing gameplay system remains in the current design specification. The remaining boundaries concern evidence and tuning rather than unavailable mechanics:
+
+- Static validation cannot prove Better Questing/Galacticraft GUI rendering or every third-party runtime event; the disposable-world checklist is the acceptance test.
+- Cross-mod quests without a stable event use tangible, non-consuming item evidence. This proves acquisition but not that an inherited multiblock remains assembled forever after completion.
+- Matter, fusion, logistics, megastructure, colony, vehicles, factions, settlements, and civilization-scale AI are functional; measured playthrough data is still required for final numerical balance.
+- Procedural structures generate in new chunks, which is normal Minecraft world-generation behavior. Use a fresh test world for geography acceptance.
+- Public release licensing, authorized dependency delivery, and packaging remain distribution work and do not limit private-test gameplay.
 """)
 
 print(f"Generated 25 progression documents from {len(chapters)} chapters, {len(graph['optional_branches'])} side paths, and {len(milestones)} milestones")

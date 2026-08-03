@@ -17,7 +17,7 @@ Responsibilities implemented:
 - Real AI Core synthesis and durable AE2 recipe authorization.
 - Original IC2-adjacent block, item, and GUI pixel art plus an offline asset review harness.
 
-The reloadable GroovyScript file `groovy/postInit/industrial_civilization.groovy` implements the parts that do not require Java: AE2 lockout, chest restrictions, representative firearm recipes, the cross-mod Analyzer recipe, and slice tooltips. Run `/gs reload --clean` after editing it. Galacticraft's normal Tier 1 → Moon dungeon schematic → Tier 2 route remains authoritative; the integration layer validates the observed order instead of rewriting rocket mechanics.
+The reloadable GroovyScript files implement chest restrictions, firearms, Analyzer construction, complete AI-gated AE2 catalog recipes, the Technical Phase Pearl, and tooltips. Run `/gs reload --clean` after editing them. Java owns the Galacticraft route: Tier 1 reaches orbit/Moon, Orbital Research gates Moon selection, and Mars Mission Authorization unlocks the Tier 2 NASA Workbench page because lunar dungeons are intentionally absent.
 
 Build command (does not launch Minecraft):
 

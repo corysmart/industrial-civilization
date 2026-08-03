@@ -1362,7 +1362,7 @@
     "24:10": {
       "questID:3": 24,
       "preRequisites:11": [
-        110
+        111
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -1530,7 +1530,7 @@
       "questID:3": 27,
       "preRequisites:11": [
         26,
-        113
+        114
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -1910,7 +1910,7 @@
       "questID:3": 35,
       "preRequisites:11": [
         34,
-        114
+        115
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -2976,21 +2976,9 @@
       },
       "tasks:9": {
         "0:10": {
-          "partialMatch:1": 1,
-          "ignoreNBT:1": 1,
-          "consume:1": 0,
-          "groupDetect:1": 1,
-          "autoConsume:1": 0,
-          "requiredItems:9": {
-            "0:10": {
-              "id:8": "minecraft:ender_pearl",
-              "Count:3": 1,
-              "Damage:2": 0,
-              "OreDict:8": ""
-            }
-          },
+          "advancement_id:8": "industrialcivilizationcore:lunar_landing",
           "index:3": 0,
-          "taskID:8": "bq_standard:retrieval"
+          "taskID:8": "bq_standard:advancement"
         }
       },
       "rewards:9": {}
@@ -5076,27 +5064,54 @@
       },
       "tasks:9": {
         "0:10": {
-          "partialMatch:1": 1,
-          "ignoreNBT:1": 1,
-          "consume:1": 0,
-          "groupDetect:1": 1,
-          "autoConsume:1": 0,
-          "requiredItems:9": {
-            "0:10": {
-              "id:8": "industrialcivilizationcore:artificial_industrial_intelligence_core",
-              "Count:3": 1,
-              "Damage:2": 0,
-              "OreDict:8": ""
-            }
-          },
+          "advancement_id:8": "industrialcivilizationcore:ai_age_entry",
           "index:3": 0,
-          "taskID:8": "bq_standard:retrieval"
+          "taskID:8": "bq_standard:advancement"
         }
       },
       "rewards:9": {}
     },
     "97:10": {
       "questID:3": 97,
+      "preRequisites:11": [
+        96
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "minecraft:ender_pearl",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Technical Phase Pearl",
+          "desc:8": "STORY\nThe ai age program advances one dependable system at a time. This step turns technical phase pearl from an idea into infrastructure.\n\nMISSION\nAI-authorized solid-state phase transport component\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Manufacture a Technical Phase Pearl only after the AI Age has unlocked.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "advancement_id:8": "industrialcivilizationcore:technical_phase_pearl",
+          "index:3": 0,
+          "taskID:8": "bq_standard:advancement"
+        }
+      },
+      "rewards:9": {}
+    },
+    "98:10": {
+      "questID:3": 98,
       "preRequisites:11": [
         96
       ],
@@ -5146,10 +5161,10 @@
       },
       "rewards:9": {}
     },
-    "98:10": {
-      "questID:3": 98,
+    "99:10": {
+      "questID:3": 99,
       "preRequisites:11": [
-        97
+        98
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5197,10 +5212,10 @@
       },
       "rewards:9": {}
     },
-    "99:10": {
-      "questID:3": 99,
+    "100:10": {
+      "questID:3": 100,
       "preRequisites:11": [
-        98
+        99
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5248,10 +5263,10 @@
       },
       "rewards:9": {}
     },
-    "100:10": {
-      "questID:3": 100,
+    "101:10": {
+      "questID:3": 101,
       "preRequisites:11": [
-        99
+        100
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5299,10 +5314,10 @@
       },
       "rewards:9": {}
     },
-    "101:10": {
-      "questID:3": 101,
+    "102:10": {
+      "questID:3": 102,
       "preRequisites:11": [
-        99
+        100
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5350,10 +5365,10 @@
       },
       "rewards:9": {}
     },
-    "102:10": {
-      "questID:3": 102,
+    "103:10": {
+      "questID:3": 103,
       "preRequisites:11": [
-        99
+        100
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5401,10 +5416,10 @@
       },
       "rewards:9": {}
     },
-    "103:10": {
-      "questID:3": 103,
+    "104:10": {
+      "questID:3": 104,
       "preRequisites:11": [
-        102
+        103
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5452,10 +5467,10 @@
       },
       "rewards:9": {}
     },
-    "104:10": {
-      "questID:3": 104,
+    "105:10": {
+      "questID:3": 105,
       "preRequisites:11": [
-        103
+        104
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5503,10 +5518,10 @@
       },
       "rewards:9": {}
     },
-    "105:10": {
-      "questID:3": 105,
+    "106:10": {
+      "questID:3": 106,
       "preRequisites:11": [
-        102
+        103
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5554,10 +5569,10 @@
       },
       "rewards:9": {}
     },
-    "106:10": {
-      "questID:3": 106,
+    "107:10": {
+      "questID:3": 107,
       "preRequisites:11": [
-        100
+        101
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5605,11 +5620,11 @@
       },
       "rewards:9": {}
     },
-    "107:10": {
-      "questID:3": 107,
+    "108:10": {
+      "questID:3": 108,
       "preRequisites:11": [
-        100,
-        101
+        101,
+        102
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5657,12 +5672,12 @@
       },
       "rewards:9": {}
     },
-    "108:10": {
-      "questID:3": 108,
+    "109:10": {
+      "questID:3": 109,
       "preRequisites:11": [
-        104,
-        106,
-        107
+        105,
+        107,
+        108
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5710,10 +5725,10 @@
       },
       "rewards:9": {}
     },
-    "109:10": {
-      "questID:3": 109,
+    "110:10": {
+      "questID:3": 110,
       "preRequisites:11": [
-        104
+        105
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5761,8 +5776,8 @@
       },
       "rewards:9": {}
     },
-    "110:10": {
-      "questID:3": 110,
+    "111:10": {
+      "questID:3": 111,
       "preRequisites:11": [],
       "properties:10": {
         "betterquesting:10": {
@@ -5810,10 +5825,10 @@
       },
       "rewards:9": {}
     },
-    "111:10": {
-      "questID:3": 111,
+    "112:10": {
+      "questID:3": 112,
       "preRequisites:11": [
-        110,
+        111,
         24
       ],
       "properties:10": {
@@ -5862,10 +5877,10 @@
       },
       "rewards:9": {}
     },
-    "112:10": {
-      "questID:3": 112,
+    "113:10": {
+      "questID:3": 113,
       "preRequisites:11": [
-        111
+        112
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5913,10 +5928,10 @@
       },
       "rewards:9": {}
     },
-    "113:10": {
-      "questID:3": 113,
+    "114:10": {
+      "questID:3": 114,
       "preRequisites:11": [
-        112
+        113
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5964,10 +5979,10 @@
       },
       "rewards:9": {}
     },
-    "114:10": {
-      "questID:3": 114,
+    "115:10": {
+      "questID:3": 115,
       "preRequisites:11": [
-        113
+        114
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6015,8 +6030,8 @@
       },
       "rewards:9": {}
     },
-    "115:10": {
-      "questID:3": 115,
+    "116:10": {
+      "questID:3": 116,
       "preRequisites:11": [
         24
       ],
@@ -6054,8 +6069,8 @@
       },
       "rewards:9": {}
     },
-    "116:10": {
-      "questID:3": 116,
+    "117:10": {
+      "questID:3": 117,
       "preRequisites:11": [
         24
       ],
@@ -6093,8 +6108,8 @@
       },
       "rewards:9": {}
     },
-    "117:10": {
-      "questID:3": 117,
+    "118:10": {
+      "questID:3": 118,
       "preRequisites:11": [
         24
       ],
@@ -6132,10 +6147,10 @@
       },
       "rewards:9": {}
     },
-    "118:10": {
-      "questID:3": 118,
+    "119:10": {
+      "questID:3": 119,
       "preRequisites:11": [
-        117
+        118
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6171,10 +6186,10 @@
       },
       "rewards:9": {}
     },
-    "119:10": {
-      "questID:3": 119,
+    "120:10": {
+      "questID:3": 120,
       "preRequisites:11": [
-        115
+        116
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6210,8 +6225,8 @@
       },
       "rewards:9": {}
     },
-    "120:10": {
-      "questID:3": 120,
+    "121:10": {
+      "questID:3": 121,
       "preRequisites:11": [
         34
       ],
@@ -6249,10 +6264,10 @@
       },
       "rewards:9": {}
     },
-    "121:10": {
-      "questID:3": 121,
+    "122:10": {
+      "questID:3": 122,
       "preRequisites:11": [
-        120
+        121
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6288,10 +6303,10 @@
       },
       "rewards:9": {}
     },
-    "122:10": {
-      "questID:3": 122,
+    "123:10": {
+      "questID:3": 123,
       "preRequisites:11": [
-        121
+        122
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6327,8 +6342,8 @@
       },
       "rewards:9": {}
     },
-    "123:10": {
-      "questID:3": 123,
+    "124:10": {
+      "questID:3": 124,
       "preRequisites:11": [
         24
       ],
@@ -6366,8 +6381,8 @@
       },
       "rewards:9": {}
     },
-    "124:10": {
-      "questID:3": 124,
+    "125:10": {
+      "questID:3": 125,
       "preRequisites:11": [
         34
       ],
@@ -6405,10 +6420,10 @@
       },
       "rewards:9": {}
     },
-    "125:10": {
-      "questID:3": 125,
+    "126:10": {
+      "questID:3": 126,
       "preRequisites:11": [
-        124
+        125
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6462,10 +6477,10 @@
       },
       "rewards:9": {}
     },
-    "126:10": {
-      "questID:3": 126,
+    "127:10": {
+      "questID:3": 127,
       "preRequisites:11": [
-        125
+        126
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6513,10 +6528,10 @@
       },
       "rewards:9": {}
     },
-    "127:10": {
-      "questID:3": 127,
+    "128:10": {
+      "questID:3": 128,
       "preRequisites:11": [
-        126
+        127
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -7351,6 +7366,13 @@
           "y:3": 0,
           "id:3": 97,
           "sizeY:3": 24
+        },
+        "98:10": {
+          "sizeX:3": 24,
+          "x:3": 192,
+          "y:3": 0,
+          "id:3": 98,
+          "sizeY:3": 24
         }
       },
       "lineID:3": 14,
@@ -7366,46 +7388,46 @@
     },
     "15:10": {
       "quests:9": {
-        "98:10": {
-          "sizeX:3": 24,
-          "x:3": 0,
-          "y:3": 0,
-          "id:3": 98,
-          "sizeY:3": 24
-        },
         "99:10": {
           "sizeX:3": 24,
-          "x:3": 48,
+          "x:3": 0,
           "y:3": 0,
           "id:3": 99,
           "sizeY:3": 24
         },
-        "102:10": {
+        "100:10": {
           "sizeX:3": 24,
-          "x:3": 96,
+          "x:3": 48,
           "y:3": 0,
-          "id:3": 102,
+          "id:3": 100,
           "sizeY:3": 24
         },
         "103:10": {
           "sizeX:3": 24,
-          "x:3": 144,
+          "x:3": 96,
           "y:3": 0,
           "id:3": 103,
           "sizeY:3": 24
         },
         "104:10": {
           "sizeX:3": 24,
-          "x:3": 192,
+          "x:3": 144,
           "y:3": 0,
           "id:3": 104,
           "sizeY:3": 24
         },
-        "109:10": {
+        "105:10": {
+          "sizeX:3": 24,
+          "x:3": 192,
+          "y:3": 0,
+          "id:3": 105,
+          "sizeY:3": 24
+        },
+        "110:10": {
           "sizeX:3": 24,
           "x:3": 240,
           "y:3": 0,
-          "id:3": 109,
+          "id:3": 110,
           "sizeY:3": 24
         }
       },
@@ -7485,39 +7507,39 @@
           "id:3": 24,
           "sizeY:3": 24
         },
-        "116:10": {
-          "sizeX:3": 24,
-          "x:3": 112,
-          "y:3": 0,
-          "id:3": 116,
-          "sizeY:3": 24
-        },
         "117:10": {
           "sizeX:3": 24,
-          "x:3": 168,
+          "x:3": 112,
           "y:3": 0,
           "id:3": 117,
           "sizeY:3": 24
         },
         "118:10": {
           "sizeX:3": 24,
-          "x:3": 224,
+          "x:3": 168,
           "y:3": 0,
           "id:3": 118,
           "sizeY:3": 24
         },
-        "115:10": {
+        "119:10": {
+          "sizeX:3": 24,
+          "x:3": 224,
+          "y:3": 0,
+          "id:3": 119,
+          "sizeY:3": 24
+        },
+        "116:10": {
           "sizeX:3": 24,
           "x:3": 280,
           "y:3": 0,
-          "id:3": 115,
+          "id:3": 116,
           "sizeY:3": 24
         },
-        "119:10": {
+        "120:10": {
           "sizeX:3": 24,
           "x:3": 0,
           "y:3": 64,
-          "id:3": 119,
+          "id:3": 120,
           "sizeY:3": 24
         },
         "25:10": {
@@ -7534,39 +7556,39 @@
           "id:3": 40,
           "sizeY:3": 24
         },
-        "110:10": {
-          "sizeX:3": 24,
-          "x:3": 168,
-          "y:3": 64,
-          "id:3": 110,
-          "sizeY:3": 24
-        },
         "111:10": {
           "sizeX:3": 24,
-          "x:3": 224,
+          "x:3": 168,
           "y:3": 64,
           "id:3": 111,
           "sizeY:3": 24
         },
         "112:10": {
           "sizeX:3": 24,
-          "x:3": 280,
+          "x:3": 224,
           "y:3": 64,
           "id:3": 112,
           "sizeY:3": 24
         },
         "113:10": {
           "sizeX:3": 24,
-          "x:3": 0,
-          "y:3": 128,
+          "x:3": 280,
+          "y:3": 64,
           "id:3": 113,
           "sizeY:3": 24
         },
         "114:10": {
           "sizeX:3": 24,
-          "x:3": 56,
+          "x:3": 0,
           "y:3": 128,
           "id:3": 114,
+          "sizeY:3": 24
+        },
+        "115:10": {
+          "sizeX:3": 24,
+          "x:3": 56,
+          "y:3": 128,
+          "id:3": 115,
           "sizeY:3": 24
         }
       },
@@ -7632,11 +7654,11 @@
           "id:3": 81,
           "sizeY:3": 24
         },
-        "100:10": {
+        "101:10": {
           "sizeX:3": 24,
           "x:3": 168,
           "y:3": 0,
-          "id:3": 100,
+          "id:3": 101,
           "sizeY:3": 24
         }
       },
@@ -7653,39 +7675,39 @@
     },
     "20:10": {
       "quests:9": {
-        "120:10": {
-          "sizeX:3": 24,
-          "x:3": 0,
-          "y:3": 0,
-          "id:3": 120,
-          "sizeY:3": 24
-        },
         "121:10": {
           "sizeX:3": 24,
-          "x:3": 56,
+          "x:3": 0,
           "y:3": 0,
           "id:3": 121,
           "sizeY:3": 24
         },
         "122:10": {
           "sizeX:3": 24,
-          "x:3": 112,
+          "x:3": 56,
           "y:3": 0,
           "id:3": 122,
           "sizeY:3": 24
         },
         "123:10": {
           "sizeX:3": 24,
-          "x:3": 168,
+          "x:3": 112,
           "y:3": 0,
           "id:3": 123,
           "sizeY:3": 24
         },
         "124:10": {
           "sizeX:3": 24,
-          "x:3": 224,
+          "x:3": 168,
           "y:3": 0,
           "id:3": 124,
+          "sizeY:3": 24
+        },
+        "125:10": {
+          "sizeX:3": 24,
+          "x:3": 224,
+          "y:3": 0,
+          "id:3": 125,
           "sizeY:3": 24
         }
       },
@@ -7702,25 +7724,25 @@
     },
     "21:10": {
       "quests:9": {
-        "125:10": {
-          "sizeX:3": 24,
-          "x:3": 0,
-          "y:3": 0,
-          "id:3": 125,
-          "sizeY:3": 24
-        },
         "126:10": {
           "sizeX:3": 24,
-          "x:3": 56,
+          "x:3": 0,
           "y:3": 0,
           "id:3": 126,
           "sizeY:3": 24
         },
         "127:10": {
           "sizeX:3": 24,
-          "x:3": 112,
+          "x:3": 56,
           "y:3": 0,
           "id:3": 127,
+          "sizeY:3": 24
+        },
+        "128:10": {
+          "sizeX:3": 24,
+          "x:3": 112,
+          "y:3": 0,
+          "id:3": 128,
           "sizeY:3": 24
         }
       },
@@ -7737,39 +7759,39 @@
     },
     "22:10": {
       "quests:9": {
-        "101:10": {
+        "102:10": {
           "sizeX:3": 24,
           "x:3": 0,
           "y:3": 0,
-          "id:3": 101,
-          "sizeY:3": 24
-        },
-        "105:10": {
-          "sizeX:3": 24,
-          "x:3": 56,
-          "y:3": 0,
-          "id:3": 105,
+          "id:3": 102,
           "sizeY:3": 24
         },
         "106:10": {
           "sizeX:3": 24,
-          "x:3": 112,
+          "x:3": 56,
           "y:3": 0,
           "id:3": 106,
           "sizeY:3": 24
         },
         "107:10": {
           "sizeX:3": 24,
-          "x:3": 168,
+          "x:3": 112,
           "y:3": 0,
           "id:3": 107,
           "sizeY:3": 24
         },
         "108:10": {
           "sizeX:3": 24,
-          "x:3": 224,
+          "x:3": 168,
           "y:3": 0,
           "id:3": 108,
+          "sizeY:3": 24
+        },
+        "109:10": {
+          "sizeX:3": 24,
+          "x:3": 224,
+          "y:3": 0,
+          "id:3": 109,
           "sizeY:3": 24
         }
       },

@@ -7,7 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
 
-/** Awards hidden runtime criteria consumed by Better Questing advancement tasks. */
+/** Awards runtime criteria shared by the visible advancement tree and Better Questing. */
 public final class RuntimeAdvancements {
     public static void grant(EntityPlayer player, String milestone) {
         if (!(player instanceof EntityPlayerMP)) return;

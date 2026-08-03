@@ -1,6 +1,6 @@
 # AI Age Lock
 
-AE2 rv6-stable-7 is installed so IDs, future compatibility, and pack direction are visible, but `groovy/postInit/industrial_civilization.groovy` removes every crafting-table recipe whose registry namespace is `appliedenergistics2`:
+AE2 rv6-stable-7 is fully reconstructed behind the AI Age. The reloadable content script captures every inherited AE2 crafting output, removes the original recipes, and adds AI-authorized replacements. The twelve foundation components use the durable Artificial Industrial Intelligence Core, an Industrial Control Processor, iron, and redstone. Every additional catalog output also consumes an AE2 Energy Acceptor and an IC2 advanced circuit, preserving the foundation tier while keeping the complete mod accessible.
 
 ```groovy
 crafting.streamRecipes()
@@ -8,6 +8,4 @@ crafting.streamRecipes()
     .removeAll()
 ```
 
-This removes every AE2 crafting recipe, a conservative hard lock that prevents processors, terminals, controllers, storage cells, and all alternative entry points. The objective database supplies only a locked-era teaser; it grants nothing. Removing ProjectE and the IC2 UU-Matter add-on also prevents the intended future matter/replication systems from leaking into the slice.
-
-Future unlock work should replace the blanket removal with a researched AI Age component produced only after validated Lite Matter records, restore a curated processor/controller chain, and then separately design UU-Matter, replication, and exotic-material progression. None of that is implemented here.
+The AI Core is manufactured only after Martian Autonomy and comparative Lite Matter research. Its container-item behavior returns it after crafting, making it an authorization key rather than a consumable. This prevents all pre-AI AE2 entry points while avoiding inaccessible late-catalog parts.

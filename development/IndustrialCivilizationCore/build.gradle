@@ -24,6 +24,7 @@ dependencies {
     compileOnly files('../../mods/BetterQuesting-3.5.329.jar')
     compileOnly files('../../mods/IC2Classic-1.12.2-1.5.11.jar')
     compileOnly files('../../mods/vehicle-mod-1.4.0-1.12.2.jar')
+    compileOnly files('../../mods/Galacticraft-1.12.2-4.0.7-technic-ic2c.jar')
 }
 
 processResources {

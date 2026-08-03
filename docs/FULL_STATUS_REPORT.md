@@ -7,8 +7,8 @@ Technic test target: `/Users/cory/Library/Application Support/technic/modpacks/t
 ## Completed implementation
 
 - Private Git source project with reproducible manifests, hashes, generated quests/assets, offline Forge build, and validation harnesses.
-- 16 numbered chapters, 7 independent visible side paths, and 128 automatic Better Questing milestones. Locked future lines remain visible, no secret/manual objectives are used, and Mac/no-numpad controls are embedded in quest descriptions.
-- A visible vanilla advancement tree mirrors all 128 quests in progression order. Pause > Advancements opens that tree; F6 remains the detailed Better Questing tutorial.
+- 16 numbered chapters, 7 independent visible side paths, and 129 automatic Better Questing milestones. Locked future lines remain visible, no secret/manual objectives are used, and Mac/no-numpad controls are embedded in quest descriptions.
+- A visible vanilla advancement tree mirrors all 129 quests in progression order. Pause > Advancements opens that tree; F6 remains the detailed Better Questing tutorial.
 - Eighteen first-party IC2-styled blocks and twenty-three first-party items, with distinct world textures, 64×64 NEI sprites, models, names, recipes, tooltips, and a dedicated creative tab.
 - IC2-native EU machines for fabrication, programmable assembly, research, off-world experimentation, robotic manufacturing, matter replication, fusion, cargo, megastructures, colonies, vehicle construction, and armament production. Forge Energy is hidden compatibility plumbing at 8 FE = 1 EU.
 - Earth → orbit → Moon → quantum → Mars → autonomy → Lite Matter → AI/AE2 progression gates, real environment-tagged research, concrete post-AI artifacts, and automatic runtime detection.
@@ -25,12 +25,15 @@ Technic test target: `/Users/cory/Library/Application Support/technic/modpacks/t
 - Vanilla Earth skeletons become neutral Territorial Militia rifle patrols. Firearm possession, local player aggression, or three persistent outpost takedowns trigger accurate ranged hostility; arrows affect militia reputation, traps do not, and patrol-only penalties can never reach global hostility. Honorable Civil Defense is a separate city/factory faction driven only by Civil Defense, Riverside, and Survey standing.
 - Moon villages, dungeons, and non-player living mobs are suppressed; six Apollo heritage flags remain. Mars allows only Galacticraft mobs until AI, after which new terrain can gain settlements, outposts, cities, roads, and utilities.
 - ICBM Classic 6.5.5 is installed for private testing, with duplicate parts normalized, IC2 MV/HV launch hardware, strategic-payload shortcut locks, and IC2 power-bridge guidance.
+- The End and portal activation are disabled. Natural Ender Pearls are suppressed and the compatible item is globally presented as an IC2-styled Technical Phase Pearl manufactured only after AI entry; no pre-AI recipe or quest requires it.
+- Galacticraft's actionable destination list now contains only currently reachable pack destinations, with server-side transfer denial retained as a backstop.
+- AI entry opens the scrolling credits exactly once per player without ending the post-AI world. Space radiation, sealed-habitat/QuantumSuit protection, three-origin Analyzer research, actual-trade faction credit, and complete AI-gated AE2 catalog reconstruction are implemented.
 - Material canonicalization is documented in `docs/ITEM_UNIFICATION_AUDIT.md` and checked by `tools/audit_item_unification.py`.
 
 ## Current automated evidence
 
 - Offline Forge 1.12.2 build succeeds on Java 8.
-- Progression validator: 3,418 checks, 128 milestones, 0 placeholders.
+- Progression validator: 3,444 checks, 129 milestones, 0 placeholders.
 - Runtime-content harness: 557 checks across textures, models, recipes, energy contracts, gates, and integrations.
 - Final mod manifest expects 162 JARs and records exact hashes and redistribution notes.
 

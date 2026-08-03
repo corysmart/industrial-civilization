@@ -25,6 +25,7 @@ PALETTE = {
 RUNTIME_CONTENT = json.loads((ROOT / "progression/runtime-content.json").read_text())
 BLOCK_IDS = [entry["id"] for entry in RUNTIME_CONTENT["blocks"]]
 ITEM_IDS = [entry["id"] for entry in RUNTIME_CONTENT["items"]]
+SPECIAL_ITEM_IDS = ["technical_phase_pearl"]
 
 
 def pixel_canvas():
@@ -209,7 +210,14 @@ def capsule(d, antimatter=False):
 
 def make_item(item_id, index):
     image = pixel_canvas(); d = ImageDraw.Draw(image)
-    if item_id == "industrial_credit":
+    if item_id == "technical_phase_pearl":
+        d.ellipse((2, 2, 13, 13), fill=PALETTE["dark"], outline=PALETTE["metal"])
+        d.ellipse((4, 4, 11, 11), fill=PALETTE["panel"], outline=PALETTE["cyan"])
+        d.ellipse((6, 6, 9, 9), fill=PALETTE["cyan2"])
+        d.line((3, 7, 5, 7), fill=PALETTE["copper"], width=2)
+        d.line((10, 7, 12, 7), fill=PALETTE["copper"], width=2)
+        d.point((7, 3), fill=PALETTE["orange"]); d.point((8, 12), fill=PALETTE["orange"])
+    elif item_id == "industrial_credit":
         d.ellipse((2, 2, 13, 13), fill=PALETTE["copper_dark"], outline=PALETTE["dark"])
         d.ellipse((3, 3, 12, 12), fill=PALETTE["copper"], outline=PALETTE["orange"])
         d.ellipse((5, 5, 10, 10), fill=PALETTE["metal"], outline=PALETTE["light"])
@@ -262,7 +270,7 @@ def make_item(item_id, index):
 
 
 def make_items():
-    for index, item_id in enumerate(ITEM_IDS):
+    for index, item_id in enumerate(ITEM_IDS + SPECIAL_ITEM_IDS):
         make_item(item_id, index).save(ITEMS / f"{item_id}.png")
 
 
@@ -346,6 +354,11 @@ def make_nei_sprites():
             output.save(ITEMS / f"{item_id}.png")
         else:
             inventory_sprite(atlas_cell(item_atlas, index + 2, 6, 4)).save(ITEMS / f"{item_id}.png")
+    for index, item_id in enumerate(SPECIAL_ITEM_IDS, len(ITEM_IDS)):
+        source = make_item(item_id, index).resize((48, 48), Image.Resampling.NEAREST)
+        output = Image.new("RGBA", (64, 64), (0, 0, 0, 0))
+        output.alpha_composite(source, (8, 8))
+        output.save(ITEMS / f"{item_id}.png")
 
 
 def slot(draw, x, y):
@@ -398,7 +411,7 @@ def write_models():
         (ASSETS / "blockstates" / f"{block_id}.json").write_text(json.dumps({
             "variants": {"normal": {"model": f"industrialcivilizationcore:{block_id}"}}
         }, indent=2) + "\n")
-    for item_id in ITEM_IDS:
+    for item_id in ITEM_IDS + SPECIAL_ITEM_IDS:
         (ASSETS / "models/item" / f"{item_id}.json").write_text(json.dumps({
             "parent": "item/generated",
             "textures": {"layer0": f"industrialcivilizationcore:items/{item_id}"}
@@ -407,7 +420,7 @@ def write_models():
 
 def contact_sheet():
     entries = [("block", x, Image.open(NEI_BLOCKS / f"{x}.png")) for x in BLOCK_IDS]
-    entries += [("item", x, Image.open(ITEMS / f"{x}.png")) for x in ITEM_IDS]
+    entries += [("item", x, Image.open(ITEMS / f"{x}.png")) for x in ITEM_IDS + SPECIAL_ITEM_IDS]
     width, cell_h = 960, 164
     sheet = Image.new("RGB", (width, ((len(entries) + 5) // 6) * cell_h), "#182329")
     d = ImageDraw.Draw(sheet); font = ImageFont.load_default()
@@ -439,7 +452,7 @@ def block_face_sheet():
 def main():
     for path in (BLOCKS, ITEMS, NEI_BLOCKS, GUI, DOCS): path.mkdir(parents=True, exist_ok=True)
     make_blocks(); make_items(); make_nei_sprites(); make_gui(); write_models(); contact_sheet(); block_face_sheet()
-    print(f"Generated {len(BLOCK_IDS) * 3} block-face textures, {len(BLOCK_IDS) + len(ITEM_IDS)} concept-faithful NEI sprites, GUI, models, and review sheets")
+    print(f"Generated {len(BLOCK_IDS) * 3} block-face textures, {len(BLOCK_IDS) + len(ITEM_IDS) + len(SPECIAL_ITEM_IDS)} concept-faithful NEI sprites, GUI, models, and review sheets")
 
 
 if __name__ == "__main__":

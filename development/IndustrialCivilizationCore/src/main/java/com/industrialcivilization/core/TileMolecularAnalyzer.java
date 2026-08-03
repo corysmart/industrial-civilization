@@ -10,6 +10,7 @@ import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.api.energy.tile.IEnergySink;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -49,7 +50,8 @@ public final class TileMolecularAnalyzer extends TileEntity implements IPeripher
 
     public boolean analyze(EntityPlayer player, EnumHand hand) {
         ItemStack sample = player.getHeldItem(hand);
-        if (!isMartianDesh(sample)) {
+        SampleProfile profile = profile(sample);
+        if (profile == null) {
             player.sendStatusMessage(new TextComponentTranslation(
                 "message.industrialcivilization.analyzer.invalid_sample"), true);
             return true;
@@ -64,9 +66,9 @@ public final class TileMolecularAnalyzer extends TileEntity implements IPeripher
         if (!player.capabilities.isCreativeMode) sample.shrink(1);
         ItemStack record = new ItemStack(IndustrialCivilizationCore.MATERIAL_PATTERN_RECORD);
         NBTTagCompound data = new NBTTagCompound();
-        data.setString("Sample", "galacticraftplanets:item_basic_mars:2");
-        data.setString("Origin", "Mars");
-        data.setString("Classification", "Desh alloy / scientific pattern");
+        data.setString("Sample", profile.registry);
+        data.setString("Origin", profile.origin);
+        data.setString("Classification", profile.classification);
         data.setBoolean("Replicable", false);
         record.setTagCompound(data);
         if (!player.inventory.addItemStackToInventory(record)) {
@@ -74,10 +76,14 @@ public final class TileMolecularAnalyzer extends TileEntity implements IPeripher
         }
         analysesCompleted++;
         markDirty();
-        ProgressionState.record(player, "lite_matter_complete");
+        ProgressionState.record(player, "analysis_" + profile.origin.toLowerCase());
         RuntimeAdvancements.grant(player, "analyzer_power");
-        RuntimeAdvancements.grant(player, "comparative_molecular_analysis");
-        RuntimeAdvancements.grant(player, "lite_matter_complete");
+        if (ProgressionState.has(player, "analysis_earth")
+                && ProgressionState.has(player, "analysis_moon")
+                && ProgressionState.has(player, "analysis_mars")) {
+            RuntimeAdvancements.grant(player, "comparative_molecular_analysis");
+            RuntimeAdvancements.grant(player, "lite_matter_complete");
+        }
         player.sendStatusMessage(new TextComponentTranslation(
             "message.industrialcivilization.analyzer.complete"), false);
         return true;
@@ -89,6 +95,35 @@ public final class TileMolecularAnalyzer extends TileEntity implements IPeripher
             && "galacticraftplanets:item_basic_mars".equals(
                 stack.getItem().getRegistryName().toString())
             && stack.getMetadata() == 2;
+    }
+
+    private static SampleProfile profile(ItemStack stack) {
+        if (stack.isEmpty() || stack.getItem().getRegistryName() == null) return null;
+        String registry = stack.getItem().getRegistryName().toString();
+        if (stack.getItem() == Items.IRON_INGOT) {
+            return new SampleProfile("minecraft:iron_ingot", "Earth",
+                "Terrestrial refined iron baseline");
+        }
+        if ("galacticraftcore:meteoric_iron_raw".equals(registry)) {
+            return new SampleProfile(registry, "Moon",
+                "Lunar-recovered meteoric iron pattern");
+        }
+        if (isMartianDesh(stack)) {
+            return new SampleProfile("galacticraftplanets:item_basic_mars:2", "Mars",
+                "Desh alloy / scientific pattern");
+        }
+        return null;
+    }
+
+    private static final class SampleProfile {
+        final String registry;
+        final String origin;
+        final String classification;
+        SampleProfile(String registry, String origin, String classification) {
+            this.registry = registry;
+            this.origin = origin;
+            this.classification = classification;
+        }
     }
 
     private int storedFe() {

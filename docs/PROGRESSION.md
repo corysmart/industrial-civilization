@@ -8,11 +8,11 @@ The intended optimized 3–6 hour vertical slice is:
 4. Armed Survival — industrially manufacture the representative Techguns set.
 5. Human Factions — resolve neutral, hostile, and uncertain human contacts.
 6. Nuclear Power — standard IC2 reactor accelerated by monitoring and an external SCRAM circuit.
-7. Moon Program — oxygen equipment, Tier 1 rocket, launch pad, Moon base, dungeon/Tier 2 schematic path, meteoric iron.
+7. Moon Program — oxygen equipment, Tier 1 rocket, launch pad, structure-free Moon base, meteoric iron, and research authorization that unlocks the Tier 2 NASA Workbench page.
 8. Mars Program — Tier 2 rocket, Mars outpost, Desh recovery, Earth return.
 9. Lite Matter Engineering — build/power the Molecular Analyzer and record Desh composition.
 10. AI Age — locked teaser only.
 
-This original vertical-slice outline has been expanded into the 128-quest Phase 2 graph: 16 critical-route chapters and 7 independent optional paths. Every objective now completes from automatic runtime advancements or non-consuming item evidence; no manual checkbox objectives remain. The visible vanilla advancement tree mirrors that order while Better Questing remains the detailed tutorial and story interface. Factory quality—not arbitrary component inflation—is the pacing lever.
+This original vertical-slice outline has been expanded into the 129-quest Phase 2 graph: 16 critical-route chapters and 7 independent optional paths. Every objective now completes from automatic runtime advancements or non-consuming item evidence; no manual checkbox objectives remain. The visible vanilla advancement tree mirrors that order while Better Questing remains the detailed tutorial and story interface. Factory quality—not arbitrary component inflation—is the pacing lever.
 
 The intended passive chest ceiling is Iron Chest. Gold, Diamond, Crystal, and Obsidian Chest recipes are removed and hidden; powered machines, warehouses, pipes, and logistics handle larger storage.

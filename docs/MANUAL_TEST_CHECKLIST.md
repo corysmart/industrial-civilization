@@ -20,7 +20,7 @@
 - Park the Passenger Carrier, verify its 54-slot inventory, mobile crafting grid, 64,000 mB tank, and item/fluid transfers through a Vehicle Service Dock.
 - Expose a Car Workshop to rain, verify it rusts and stops, then repair it at a Repair Bench for exactly one IC2 Machine Block.
 - In a fresh world, verify dirt-to-paved regional roads, real IC2 utility spines/outlets, and a live specialty-item exchange between two loaded city cargo controllers.
-- Confirm ProjectE/EMC searches return no active items and AE2 recipes are absent.
+- Confirm ProjectE/EMC searches return no active items. Before AI, AE2 recipes must be absent; after AI, the twelve foundation recipes and captured full catalog must appear.
 - Confirm Gold, Diamond, Crystal, and Obsidian Chest recipes are absent; Copper/Iron remain.
 - Confirm pistol, combat shotgun, M4, and ammunition recipes resolve without missing ingredients.
 - Place/energize Techguns Ammo Press and one representative gun; verify reload/fire behavior in a safe test area.
@@ -29,8 +29,10 @@
 - Mine a flat stone wall with IC2 Mining Drill metadata 0 and Diamond Drill metadata 1; verify perpendicular 3×3 and 9×9 areas, per-block EU use, normal drops, and sneaking precision mode.
 - Use the NPC Wand to instantiate the three faction blueprints; verify neutral trade, hostile ranged combat, warning/trespass hostility, and persistence after reload.
 - Verify IC2 energy values and reactor metadata through Plethora; test SCRAM with no fuel first.
-- Verify Galacticraft Tier 1 selection cannot directly choose Mars and that Moon dungeon progression supplies the Tier 2 path.
-- Give test-only Moon meteoric iron and Mars Desh only after independently validating the travel order; craft the Analyzer, charge it from IC2 EU, consume exactly 6,250 EU to analyze a second Desh ingot, and inspect the pattern record.
+- Verify Galacticraft's map permits only currently reachable orbit/Moon/Mars destinations, never the End/Venus/Asteroids. Confirm Mars Mission Authorization directly unlocks the Tier 2 Rocket NASA Workbench page without a Moon dungeon.
+- Craft the Analyzer, charge it from IC2 EU, and consume exactly 6,250 EU each for Earth Iron, lunar Meteoric Iron, and Martian Desh. Inspect all three origin-tagged records and confirm comparative research completes only after the set.
+- In orbit/Moon/Mars, confirm radiation begins damaging an exposed player after 30 seconds, then stops inside a roofed room served by an active sealed Oxygen Sealer or while wearing a full IC2 QuantumSuit.
+- Reach AI entry and confirm scrolling credits open once without ending the world. Craft the custom-rendered Technical Phase Pearl afterward and verify its quest/advancement completes; no chapter before AI may require a pearl or eye.
 - Attach a wired modem to the Analyzer and call all documented methods.
 
 If startup fails, return `logs/latest.log`, the newest file in `crash-reports/`, and the visible Technic error.

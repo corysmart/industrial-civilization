@@ -14,6 +14,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.inventory.ContainerMerchant;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -30,6 +31,7 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -422,20 +424,44 @@ public final class FactionSystem {
         int rep = reputation(player, faction);
         configureTrades(villager, player,
             rep >= COMPANION_REPUTATION ? 2 : rep >= FRIENDLY_REPUTATION ? 1 : 0);
-        long day = event.getWorld().getTotalWorldTime() / 24000L;
-        String contactKey = "trade_contact_" + player.getUniqueID().toString();
-        if (tag.getLong(contactKey) != day + 1 && player.getHeldItem(event.getHand()).getItem()
-                == IndustrialCivilizationCore.INDUSTRIAL_CREDIT) {
-            tag.setLong(contactKey, day + 1);
-            ProgressionState.increment(player, "faction_trade_contacts", 1);
-            adjustReputation(player, faction, 3, "trade contact");
-            checkFactionContacts(player);
-            if (ProgressionState.counter(player, "faction_trade_contacts") >= 2
-                    && !ProgressionState.has(player, "underworld_lead")) {
-                give(player, IndustrialCivilizationCore.UNDERWORLD_DOSSIER, 1);
-                ProgressionState.record(player, "underworld_lead");
+        NBTTagCompound progress = ProgressionState.data(player);
+        progress.setString("pending_trade_faction", faction);
+        progress.setInteger("pending_trade_credits", creditCount(player));
+    }
+
+    /** Credit a contact only after a real buy or sell changes the IC Credit balance. */
+    @SubscribeEvent
+    public static void merchantClosed(PlayerContainerEvent.Close event) {
+        if (event.getEntityPlayer().world.isRemote || !(event.getContainer() instanceof ContainerMerchant)) return;
+        EntityPlayer player = event.getEntityPlayer();
+        NBTTagCompound progress = ProgressionState.data(player);
+        String faction = progress.getString("pending_trade_faction");
+        int before = progress.getInteger("pending_trade_credits");
+        progress.removeTag("pending_trade_faction");
+        progress.removeTag("pending_trade_credits");
+        if (faction.isEmpty() || before == creditCount(player)) return;
+        long day = player.world.getTotalWorldTime() / 24000L + 1L;
+        String contactKey = "trade_contact_day_" + faction;
+        if (progress.getLong(contactKey) == day) return;
+        progress.setLong(contactKey, day);
+        ProgressionState.increment(player, "faction_trade_contacts", 1);
+        adjustReputation(player, faction, 3, "completed IC Credit trade");
+        checkFactionContacts(player);
+        if (ProgressionState.counter(player, "faction_trade_contacts") >= 2
+                && !ProgressionState.has(player, "underworld_lead")) {
+            give(player, IndustrialCivilizationCore.UNDERWORLD_DOSSIER, 1);
+            ProgressionState.record(player, "underworld_lead");
+        }
+    }
+
+    private static int creditCount(EntityPlayer player) {
+        int count = 0;
+        for (ItemStack stack : player.inventory.mainInventory) {
+            if (!stack.isEmpty() && stack.getItem() == IndustrialCivilizationCore.INDUSTRIAL_CREDIT) {
+                count += stack.getCount();
             }
         }
+        return count;
     }
 
     private static void cancel(PlayerInteractEvent.EntityInteract event) {

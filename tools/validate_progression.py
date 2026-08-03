@@ -190,7 +190,10 @@ asset_root = ROOT / "development/IndustrialCivilizationCore/src/main/resources/a
 custom_ids = {path.stem for path in (asset_root / "models/item").glob("*.json")}
 custom_ids.update(path.stem for path in (asset_root / "blockstates").glob("*.json"))
 declared_custom_ids = {entry["id"] for kind in ("blocks", "items") for entry in runtime_content[kind]}
-check(declared_custom_ids == custom_ids, "runtime content registry exactly matches custom models")
+special_compatibility_models = {"technical_phase_pearl"}
+check(declared_custom_ids == custom_ids - special_compatibility_models
+      and special_compatibility_models <= custom_ids,
+      "runtime content registry plus declared compatibility models exactly match custom models")
 ic2_lang = zipfile.ZipFile(ROOT / "mods/IC2Classic-1.12.2-1.5.11.jar").read(
     "assets/ic2/lang/en_us.lang").decode("utf-8")
 ic2_registry_paths = {match.group(1).lower() for match in re.finditer(
@@ -262,8 +265,18 @@ main_script = (ROOT / "groovy/postInit/industrial_civilization.groovy").read_tex
 check("placeholder_" not in java_sources and "[TEST PLACEHOLDER]" not in lang, "placeholder registrations and labels are removed")
 for machine_id in ("research_station", "orbital_experiment_module", "electric_fabricator", "programmable_assembler", "robotic_manufacturing_cell"):
     check(machine_id in content_script, f"real machine has a construction recipe: {machine_id}")
-check("startsWith('appliedenergistics2:')" in main_script and ".removeAll()" in main_script, "all original AE2 crafting recipes are removed")
-check("aiCore" in content_script and "ai_gated_ae2_" in content_script, "real AE2 recipes require the durable AI Core")
+check("startsWith('appliedenergistics2:')" in content_script and ".removeAll()" in content_script,
+      "all original AE2 crafting recipes are replaced after catalog capture")
+check("aiCore" in content_script and "ai_gated_ae2_" in content_script
+      and "ai_catalog_" in content_script and "ae2Catalog" in content_script,
+      "the complete captured AE2 catalog requires the durable AI Core")
+pre_ai_text = "\n".join(json.dumps(chapter) for chapter in chapters if chapter["number"] < 15)
+check("ender_pearl" not in pre_ai_text and "ender_eye" not in pre_ai_text,
+      "Technical Phase Pearls and Ender Eyes are absent from every pre-AI quest")
+phase_pearl = by_id["technical_phase_pearl"]
+check("ai_age_entry" in ancestors("technical_phase_pearl")
+      and phase_pearl.get("required_item") == "minecraft:ender_pearl",
+      "Technical Phase Pearl is an AI-only compatibility item")
 
 # Generated quest database must be a lossless projection of milestone IDs/order.
 quests = read_json(ROOT / "config/betterquesting/DefaultQuests.json")

@@ -42,8 +42,14 @@ Do not use a valued world for the first database import. No runtime claims are m
 - [ ] 36. Martian Autonomy follows Mars Settlement.
 - [ ] 37. AI Age remains locked before Martian Autonomy and Lite Matter Engineering.
 - [ ] 38. The real AI Core is synthesized from Martian Autonomy, Lite Matter, and programmable manufacturing outputs and acts as a durable AE2 recipe catalyst.
-- [ ] 39. AI Age is presented as the beginning of the endgame.
-- [ ] 40. Post-AI branches are visible but do not block AI entry.
-- [ ] 41. No circular or impossible dependencies are visible.
+- [ ] 39. Unlocking the AI Age opens the one-time scrolling credits screen without ending the world.
+- [ ] 40. The Technical Phase Pearl has no pre-AI quest or recipe dependency and becomes craftable only with the durable AI Core.
+- [ ] 41. The Galacticraft destination list permits orbit, gated Moon, and gated Mars only; unsupported bodies and the End cannot be entered, and Mars Mission Authorization unlocks the Tier 2 NASA Workbench page without a lunar dungeon.
+- [ ] 42. Earth Iron, lunar Meteoric Iron, and Martian Desh all produce origin-tagged Analyzer records before comparative research completes.
+- [ ] 43. An unshielded player in orbit, on the Moon, or on Mars takes radiation damage unless protected by an active sealed habitat or full QuantumSuit.
+- [ ] 44. Completing an actual IC Credit buy or sell—not merely opening a merchant—records faction trade contact.
+- [ ] 45. AI Age is presented as the beginning of the endgame.
+- [ ] 46. Post-AI branches are visible but do not block AI entry.
+- [ ] 47. No circular or impossible dependencies are visible.
 
 Check `logs/latest.log`, `logs/groovy.log`, and `crafttweaker.log` after the run. Record quest/task IDs and screenshots for any mismatch.

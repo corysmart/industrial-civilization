@@ -61,7 +61,6 @@
     "functional_martian_base": ["industrialcivilizationcore:environmental_solar_array", "industrialcivilizationcore:research_station", "computercraft:computer", "galacticraftplanets:item_basic_mars:2"],
     "advanced_material_recovery": ["ic2:blockmachinelv:*", "industrialcivilizationcore:material_pattern_record"],
     "ai_prerequisite_audit": ["industrialcivilizationcore:orbital_research_archive", "industrialcivilizationcore:lunar_engineering_archive", "industrialcivilizationcore:martian_autonomy_archive", "industrialcivilizationcore:material_pattern_record"],
-    "ai_age_entry": ["industrialcivilizationcore:artificial_industrial_intelligence_core"],
     "predictive_production": ["industrialcivilizationcore:artificial_industrial_intelligence_core", "industrialcivilizationcore:control_processor"]
   }
 }

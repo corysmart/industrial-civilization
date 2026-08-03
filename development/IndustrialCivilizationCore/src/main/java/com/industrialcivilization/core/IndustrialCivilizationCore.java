@@ -5,6 +5,8 @@ import betterquesting.handlers.SaveLoadHandler;
 import betterquesting.storage.QuestSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.resources.I18n;
@@ -19,11 +21,15 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -163,6 +169,9 @@ public final class IndustrialCivilizationCore {
         ENFORCE_SPACE_GATES = runtime.getBoolean("enforceSpaceResearchGates", "progression",
             true, "Return unauthorized players to Earth when entering the Moon or Mars.");
         if (runtime.hasChanged()) runtime.save();
+        // Preserve vanilla/mod recipe compatibility while making every pearl a
+        // visibly technical, AI-manufactured phase component.
+        Items.ENDER_PEARL.setUnlocalizedName(MODID + ".technical_phase_pearl");
         GameRegistry.registerTileEntity(TileMolecularAnalyzer.class,
             new ResourceLocation(MODID, "molecular_analyzer"));
         GameRegistry.registerTileEntity(TileIndustrialMachine.class,
@@ -177,6 +186,7 @@ public final class IndustrialCivilizationCore {
         MinecraftForge.TERRAIN_GEN_BUS.register(new VillageSuppressionHandler());
         MinecraftForge.TERRAIN_GEN_BUS.register(new MoonPurityHandler());
         FactionNetwork.init();
+        ProgressionNetwork.init();
     }
 
     @EventHandler
@@ -267,8 +277,20 @@ public final class IndustrialCivilizationCore {
 
         @SubscribeEvent
         public static void changedDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
-            ProgressionState.increment(event.player, "dimension_transfers", 1);
+            if (event.toDim == 1) {
+                denyDestination(event, "message.industrialcivilization.gate.end");
+                return;
+            }
             String destination = event.player.world.provider.getDimensionType().getName().toLowerCase();
+            String provider = event.player.world.provider.getClass().getName().toLowerCase();
+            boolean supportedSpace = destination.contains("moon") || destination.contains("mars")
+                || destination.contains("orbit") || destination.contains("space station")
+                || destination.contains("overworld");
+            if (provider.startsWith("micdoodle8.mods.galacticraft") && !supportedSpace) {
+                denyDestination(event, "message.industrialcivilization.gate.space_destination");
+                return;
+            }
+            ProgressionState.increment(event.player, "dimension_transfers", 1);
             if (destination.contains("moon")) {
                 if (ENFORCE_SPACE_GATES && !ProgressionState.has(event.player, "orbital_research_archive")) {
                     denyDestination(event, "message.industrialcivilization.gate.moon");
@@ -276,6 +298,7 @@ public final class IndustrialCivilizationCore {
                 }
                 ProgressionState.record(event.player, "moon_visited");
                 RuntimeAdvancements.grant(event.player, "moon_access");
+                RuntimeAdvancements.grant(event.player, "lunar_landing");
                 LOGGER.info("progression moon_visited player={}", event.player.getName());
             } else if (destination.contains("mars")) {
                 boolean authorized = ProgressionState.has(event.player, "lunar_quantum_component")
@@ -309,9 +332,34 @@ public final class IndustrialCivilizationCore {
                     ProgressionState.record(event.player, id);
                 }
             }
-            if (ProgressionState.has(event.player, "artificial_industrial_intelligence_core")
-                    && ProgressionState.has(event.player, "lite_matter_complete")) {
+            if (event.player instanceof EntityPlayerMP
+                    && ProgressionState.has(event.player, "mars_mission_authorization")
+                    && !ProgressionState.has(event.player, "tier2_schematic_unlocked")) {
+                micdoodle8.mods.galacticraft.api.recipe.ISchematicPage tier2 =
+                    micdoodle8.mods.galacticraft.api.recipe.SchematicRegistry
+                        .getMatchingRecipeForItemStack(new ItemStack(
+                            micdoodle8.mods.galacticraft.core.GCItems.schematic, 1, 1));
+                if (tier2 != null) {
+                    micdoodle8.mods.galacticraft.api.recipe.SchematicRegistry.addUnlockedPage(
+                        (EntityPlayerMP) event.player, tier2);
+                    ProgressionState.record(event.player, "tier2_schematic_unlocked");
+                    event.player.sendStatusMessage(new TextComponentTranslation(
+                        "message.industrialcivilization.schematic.tier2"), false);
+                }
+            }
+            boolean aiReady = ProgressionState.has(event.player, "artificial_industrial_intelligence_core")
+                && ProgressionState.has(event.player, "lite_matter_complete")
+                && ProgressionState.has(event.player, "martian_autonomy_complete");
+            if (aiReady) {
                 ProgressionState.record(event.player, "ai_age");
+                RuntimeAdvancements.grant(event.player, "ai_age_entry");
+                if (!ProgressionState.has(event.player, "ai_credits_shown")
+                        && event.player instanceof EntityPlayerMP) {
+                    ProgressionState.record(event.player, "ai_credits_shown");
+                    ProgressionNetwork.showCredits((EntityPlayerMP) event.player);
+                }
+            } else if (!event.player.capabilities.isCreativeMode) {
+                removePrematurePhasePearls(event.player);
             }
             FactionSystem.updatePlaystyleReputation(event.player);
             ProgressionState.increment(event.player, "active_ticks", 20);
@@ -319,7 +367,13 @@ public final class IndustrialCivilizationCore {
 
         @SubscribeEvent
         public static void itemCrafted(PlayerEvent.ItemCraftedEvent event) {
-            if (!event.player.world.isRemote) ProgressionState.increment(event.player, "manual_crafts", 1);
+            if (!event.player.world.isRemote) {
+                ProgressionState.increment(event.player, "manual_crafts", 1);
+                if (event.crafting.getItem() == Items.ENDER_PEARL
+                        && ProgressionState.has(event.player, "ai_age_entry")) {
+                    RuntimeAdvancements.grant(event.player, "technical_phase_pearl");
+                }
+            }
         }
 
         @SubscribeEvent
@@ -327,6 +381,42 @@ public final class IndustrialCivilizationCore {
             if (event.getPlayer() != null && !event.getWorld().isRemote) {
                 ProgressionState.increment(event.getPlayer(), "blocks_mined_manual", 1);
             }
+        }
+
+        /** Endermen and inherited mobs cannot bypass AI manufacturing. */
+        @SubscribeEvent
+        public static void suppressNaturalPhasePearls(LivingDropsEvent event) {
+            event.getDrops().removeIf(drop -> drop.getItem().getItem() == Items.ENDER_PEARL);
+        }
+
+        /** The End is outside this pack's progression and its portal cannot be armed. */
+        @SubscribeEvent
+        public static void disableEndPortal(PlayerInteractEvent.RightClickBlock event) {
+            if (event.getWorld().getBlockState(event.getPos()).getBlock() != Blocks.END_PORTAL_FRAME) return;
+            event.setCanceled(true);
+            event.setCancellationResult(EnumActionResult.FAIL);
+            if (!event.getWorld().isRemote) {
+                event.getEntityPlayer().sendStatusMessage(new TextComponentTranslation(
+                    "message.industrialcivilization.gate.end"), false);
+            }
+        }
+
+        private static void removePrematurePhasePearls(net.minecraft.entity.player.EntityPlayer player) {
+            boolean removed = false;
+            for (ItemStack stack : player.inventory.mainInventory) {
+                if (!stack.isEmpty() && stack.getItem() == Items.ENDER_PEARL) {
+                    stack.setCount(0);
+                    removed = true;
+                }
+            }
+            for (ItemStack stack : player.inventory.offHandInventory) {
+                if (!stack.isEmpty() && stack.getItem() == Items.ENDER_PEARL) {
+                    stack.setCount(0);
+                    removed = true;
+                }
+            }
+            if (removed) player.sendStatusMessage(new TextComponentTranslation(
+                "message.industrialcivilization.phase_pearl.locked"), false);
         }
 
         private static void denyDestination(PlayerEvent.PlayerChangedDimensionEvent event, String message) {
@@ -442,6 +532,9 @@ public final class IndustrialCivilizationCore {
             ModelLoader.setCustomModelResourceLocation(
                 INDUSTRIAL_CREDIT, 0,
                 new ModelResourceLocation(INDUSTRIAL_CREDIT.getRegistryName(), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(
+                Items.ENDER_PEARL, 0,
+                new ModelResourceLocation(MODID + ":technical_phase_pearl", "inventory"));
             for (BlockIndustrialMachine machine : INDUSTRIAL_MACHINES) {
                 ModelLoader.setCustomModelResourceLocation(
                     Item.getItemFromBlock(machine), 0,
@@ -472,6 +565,9 @@ public final class IndustrialCivilizationCore {
         /** Keep the vanilla Advancements screen and reserve Statistics for factions. */
         @SubscribeEvent(priority = EventPriority.LOWEST)
         public static void renameFactionDirectoryButton(GuiScreenEvent.InitGuiEvent.Post event) {
+            if (event.getGui() instanceof micdoodle8.mods.galacticraft.core.client.gui.screen.GuiCelestialSelection) {
+                ProgressionNetwork.requestSpaceAccess();
+            }
             if (!(event.getGui() instanceof GuiIngameMenu)) return;
             event.getButtonList().stream()
                 .filter(button -> button.id == 6)
@@ -487,6 +583,41 @@ public final class IndustrialCivilizationCore {
                 event.setCanceled(true);
                 Minecraft.getMinecraft().displayGuiScreen(new GuiFactionDirectory(event.getGui()));
             }
+        }
+
+        @SubscribeEvent
+        public static void explainTechnicalPhasePearl(ItemTooltipEvent event) {
+            if (event.getItemStack().getItem() == Items.ENDER_PEARL) {
+                event.getToolTip().add(I18n.format(
+                    "item.industrialcivilizationcore.technical_phase_pearl.tooltip"));
+            }
+        }
+
+        /** Narrow Galacticraft's own travel whitelist; bodies may still render as aspirations. */
+        public static void applySpaceAccess(boolean moon, boolean mars) {
+            if (!(Minecraft.getMinecraft().currentScreen instanceof
+                    micdoodle8.mods.galacticraft.core.client.gui.screen.GuiCelestialSelection)) return;
+            micdoodle8.mods.galacticraft.core.client.gui.screen.GuiCelestialSelection gui =
+                (micdoodle8.mods.galacticraft.core.client.gui.screen.GuiCelestialSelection)
+                    Minecraft.getMinecraft().currentScreen;
+            if (gui.possibleBodies == null) return;
+            java.util.List<micdoodle8.mods.galacticraft.api.galaxies.CelestialBody> allowed =
+                new java.util.ArrayList<>();
+            for (micdoodle8.mods.galacticraft.api.galaxies.CelestialBody body : gui.possibleBodies) {
+                if (allowedSpaceBody(body, moon, mars)) allowed.add(body);
+            }
+            gui.possibleBodies = allowed;
+        }
+
+        private static boolean allowedSpaceBody(
+                micdoodle8.mods.galacticraft.api.galaxies.CelestialBody body,
+                boolean moon, boolean mars) {
+            if (body instanceof micdoodle8.mods.galacticraft.api.galaxies.Satellite) return true;
+            String name = body.getUnlocalizedName().toLowerCase();
+            if (body.getDimensionID() == 0 || name.contains("earth") || name.contains("overworld")) return true;
+            if (name.contains("moon")) return moon;
+            if (name.contains("mars")) return mars;
+            return false;
         }
 
         @SubscribeEvent

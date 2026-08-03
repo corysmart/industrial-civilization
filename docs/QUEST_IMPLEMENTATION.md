@@ -2,7 +2,7 @@
 
 # Quest Implementation
 
-Better Questing 3 reads `config/betterquesting/DefaultQuests.json`. Run `python3 tools/generate_objectives.py` after canonical edits; never hand-edit generated quests. The current projection has 23 quest lines (16 numbered chapters and 7 independent side paths) and 128 quests.
+Better Questing 3 reads `config/betterquesting/DefaultQuests.json`. Run `python3 tools/generate_objectives.py` after canonical edits; never hand-edit generated quests. The current projection has 23 quest lines (16 numbered chapters and 7 independent side paths) and 129 quests.
 
 Every quest completes automatically. Native machine operations and dimension events use advancement-backed tasks; item, construction, and cross-mod capability objectives use non-consuming Standard Expansion retrieval tasks, including multi-item evidence sets from `progression/objective-detection.json`. There are no manual checkbox tasks. All quests use `ALWAYS` visibility and locked progress, so players can browse the whole civilization plan without completing locked objectives early.
 

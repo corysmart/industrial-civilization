@@ -89,6 +89,18 @@ crafting.addShaped('industrial_civilization:tracking_solar_array',
 // foundation recipes; subsequent processors, terminals, storage components,
 // buses, and crafting CPUs build from these outputs through the same key.
 def aiCore = item('industrialcivilizationcore:artificial_industrial_intelligence_core')
+
+// The End is disabled. Its supernatural drop is replaced globally (while
+// retaining the vanilla registry ID for inherited recipe compatibility) by an
+// AI-authorized, IC2-built phase component. The durable AI Core is returned by
+// its container-item behavior.
+crafting.removeByOutput(item('minecraft:ender_pearl'))
+crafting.addShaped('industrial_civilization:technical_phase_pearl', item('minecraft:ender_pearl') * 2, [
+    [item('industrialcivilizationcore:control_processor'), item('ic2:itemmisc:452'), item('industrialcivilizationcore:control_processor')],
+    [item('minecraft:diamond'), aiCore, item('minecraft:diamond')],
+    [item('ic2:itemmisc:452'), item('ic2:blockmachinehv'), item('ic2:itemmisc:452')]
+])
+
 def ae2Foundation = [
     'energy_acceptor': item('appliedenergistics2:energy_acceptor'),
     'controller': item('appliedenergistics2:controller'),
@@ -104,6 +116,25 @@ def ae2Foundation = [
     'export_bus': item('appliedenergistics2:part:260')
 ]
 
+// Capture the complete inherited output catalog before removing its recipes.
+// Every craftable AE2 output is reconstructed behind the durable AI Core; the
+// explicit foundation remains cheaper, while the rest consumes an Energy
+// Acceptor to prevent a flat one-step bypass of the foundation tier.
+def ae2Catalog = [:]
+crafting.streamRecipes()
+    .filter { recipe -> recipe.registryName?.toString()?.startsWith('appliedenergistics2:') }
+    .each { recipe ->
+        def stack = recipe.recipeOutput
+        if (stack != null && !stack.empty && stack.item?.registryName != null) {
+            def registry = stack.item.registryName.toString()
+            def key = "${registry}:${stack.metadata}"
+            ae2Catalog[key] = [registry: registry, metadata: stack.metadata, count: stack.count]
+        }
+    }
+crafting.streamRecipes()
+    .filter { recipe -> recipe.registryName?.toString()?.startsWith('appliedenergistics2:') }
+    .removeAll()
+
 ae2Foundation.each { id, output ->
     crafting.addShapeless("industrial_civilization:ai_gated_ae2_${id}", output, [
         aiCore, item('industrialcivilizationcore:control_processor'),
@@ -111,4 +142,15 @@ ae2Foundation.each { id, output ->
     ])
 }
 
-log.info("[industrial-civilization] Loaded real machine recipes and ${ae2Foundation.size()} AI-authorized AE2 foundation recipes")
+def reconstructed = 0
+ae2Catalog.each { key, entry ->
+    def safeId = "${entry.registry.replace(':', '_').replace('/', '_')}_${entry.metadata}"
+    def output = item("${entry.registry}:${entry.metadata}") * Math.max(1, entry.count as int)
+    crafting.addShapeless("industrial_civilization:ai_catalog_${safeId}", output, [
+        aiCore, item('industrialcivilizationcore:control_processor'),
+        item('appliedenergistics2:energy_acceptor'), item('ic2:itemmisc:452')
+    ])
+    reconstructed++
+}
+
+log.info("[industrial-civilization] Loaded real machine recipes, ${ae2Foundation.size()} foundation recipes, and ${reconstructed} AI-authorized AE2 catalog recipes")

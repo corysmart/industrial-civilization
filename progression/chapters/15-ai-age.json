@@ -71,7 +71,26 @@
       "final_validation": [
         "Enter the continuously expanding endgame and authorize AI-coordinated digital industry."
       ],
-      "automation_paths": []
+      "automation_paths": [],
+      "runtime_advancement": true
+    },
+    {
+      "id": "technical_phase_pearl",
+      "title": "Technical Phase Pearl",
+      "category": "possession",
+      "icon": "minecraft:ender_pearl",
+      "prerequisites": [
+        "ai_age_entry"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "AI-authorized solid-state phase transport component",
+      "final_validation": [
+        "Manufacture a Technical Phase Pearl only after the AI Age has unlocked."
+      ],
+      "automation_paths": [],
+      "required_item": "minecraft:ender_pearl",
+      "runtime_advancement": true
     },
     {
       "id": "ae2_entry",

@@ -19,7 +19,7 @@ The design has four pillars:
 ## Player-facing rules
 
 - F6 opens the Better Questing guide. Pause > Advancements opens Minecraft's advancement screen, whose Industrial Civilization tab mirrors the intended progression.
-- All 128 quests use aspirational `ALWAYS` visibility. Locked future lines remain visible; secret objectives are not used.
+- All 129 quests use aspirational `ALWAYS` visibility. Locked future lines remain visible; secret objectives are not used.
 - Every quest completes automatically through a runtime advancement or non-consuming inventory evidence. There are no manual checkbox tasks.
 - Every modded quest includes the relevant Mac/no-numpad controls and operating instructions in its description.
 - Every node picture is the actual required item, first evidence item, or an explicit real machine/artifact/vehicle override. Symbolic storyboard pictures are not emitted.
@@ -136,7 +136,7 @@ All twelve processing machines are IC2 EU sinks with sided inventories (inputs o
 | Criminal Network Ledger | Criminal encounter resolution | Proof that the network was investigated/defeated |
 | Factory Restoration Certificate | Staged abandoned-factory repair | Alternate heavy-industrial capacity proof |
 | Recovered Factory Control System | Factory terminal audit/repair | Programmable bypass proof and cargo-controller ingredient |
-| Artificial Industrial Intelligence Core | Robotic Cell: processor + Martian archive + pattern record | Durable crafting key for curated AE2 foundation recipes and post-AI machines |
+| Artificial Industrial Intelligence Core | Robotic Cell: processor + Martian archive + pattern record | Durable crafting key for the complete reconstructed AE2 catalog and post-AI machines; triggers one-time credits when all AI gates are met |
 | UU-Matter Capsule | Matter Replicator: processor + pattern record + glowstone | Controlled post-AI matter feedstock |
 | Controlled Replication Record | Matter Replicator: UU capsule + pattern record + processor | Right-click consumes record and releases one replicated Desh sample |
 | Contained Antimatter Capsule | Fusion Core in orbit: UU capsule + AI Core + processor | Megastructure program input |
@@ -151,11 +151,11 @@ Research artifacts that carry progression knowledge must be held and right-click
 
 - **IC2 Classic:** visible power system, voltage tiers, generators, storage, processing, reactor, electric tools, Nano/Quantum equipment.
 - **ComputerCraft/Computronics:** monitoring and first-party peripheral control. Machine methods expose status, energy, capacity, progress, environment, recipes, queues, completion counts, and cargo channels.
-- **Galacticraft:** rockets, Moon/Mars dimensions, habitats, oxygen, cargo hardware, and normal Tier 1 → Moon schematic → Tier 2 progression. First-party gates validate entry rather than replacing the travel UI.
+- **Galacticraft:** rockets, Moon/Mars dimensions, habitats, oxygen, and cargo hardware. The travel map retains its visual astronomy but its actionable destination whitelist is narrowed to orbit, research-gated Moon, and Quantum/authorization-gated Mars. Because the Moon intentionally has no dungeons/inorganic structures, Mars Mission Authorization directly unlocks the Tier 2 NASA Workbench page; server transfer checks remain a backstop.
 - **Railcraft/BuildCraft/ProjectRed/MFFS/Techguns:** freight, extraction/logistics, wireless control, containment/defense, and industrial armament.
 - **ICBM Classic:** private-test strategic weapons dependency. Duplicate steel, circuits, wire, and battery parts are hidden and uncraftable; launch hardware uses IC2 MV/HV blocks, circuits/cable, steel, computers, and first-party processors. Runtime power comes from the pack's 8:1 IC2 conversion bridge. Native nuclear, antimatter, and red-matter shortcuts are disabled.
 - **Onysd Vehicles:** real driving physics and chassis. The pack curates six roles and extends the minibus into a 54-slot, 64,000-mB mobile workshop that interfaces with BuildCraft while parked.
-- **AE2:** installed but ordinary recipes removed. After AI, twelve curated foundation outputs require the durable AI Core, Control Processor, iron, and redstone; broader AE2 remains future balance work.
+- **AE2:** every inherited crafting output is captured and reconstructed behind the AI Age. Twelve foundation outputs use the durable AI Core directly; the remaining catalog additionally consumes an Energy Acceptor and IC2 advanced circuit.
 - **Better Questing + Standard Expansion:** player-facing tutorial, story, automatic tasks, and aspirational map.
 - **GroovyScript:** reloadable recipe locks, HEI filtering, firearm/analyzer recipes, and tooltips. Java owns persistent state and runtime behavior.
 
@@ -197,12 +197,15 @@ Quest/config changes can be loaded into an existing test world with `/bq_admin d
 
 ## Implemented now
 
-- 16 chapters, 7 independent side paths, 128 automatic quests, full aspirational visibility, no manual checkbox tasks.
-- A visible 129-node vanilla advancement tree (root plus every quest) mirrors critical-route order and branches optional objectives from their real prerequisites.
+- 16 chapters, 7 independent side paths, 129 automatic quests, full aspirational visibility, no manual checkbox tasks.
+- A visible 130-node vanilla advancement tree (root plus every quest) mirrors critical-route order and branches optional objectives from their real prerequisites.
 - Story/mission/proof/control descriptions and actual objective icons for the entire generated quest set.
 - Five era-specific quest backgrounds and IC2-styled custom block/item/GUI art.
 - Eighteen first-party blocks, twenty-two progression artifacts, and the IC Credit currency with real construction/production paths.
-- EU-native machines, environment-aware research, Moon/Mars gates, solar multipliers/dust behavior, cargo channels, salvage route, AI synthesis, curated AE2 unlock, and concrete post-AI proofs.
+- EU-native machines, environment-aware research, pre-selection Moon/Mars gates, solar multipliers/dust behavior, cargo channels, salvage route, AI synthesis, complete AI-gated AE2 catalog, and concrete post-AI proofs.
+- The End and portal activation are disabled. Natural pearls are suppressed; the compatible pearl registry item becomes a custom-rendered Technical Phase Pearl with an AI-only IC2 recipe and no pre-AI dependencies.
+- AI entry grants its advancement and opens the credits once per player, then returns to the still-playable post-credits world.
+- Space radiation requires a powered sealed Oxygen Sealer habitat or full IC2 QuantumSuit, and the Analyzer now performs real Earth/Moon/Mars comparison.
 - Stone-tier axe and better whole-tree behavior, IC2 chainsaw whole-tree behavior, 3×3 drill, 9×9 diamond drill, proportional durability/EU cost, and Sneak precision override.
 - Static/runtime-content/progression/energy validation harnesses and private Git version control.
 
@@ -215,14 +218,10 @@ Quest/config changes can be loaded into an existing test world with `/bq_admin d
 3. Complete a measured critical-route playthrough, record resource/power bottlenecks, and tune toward the intended 3–6 hour test route without adding arbitrary microcrafts.
 4. Exercise every custom machine GUI/peripheral method and cross-dimensional cargo channel under chunk unload/reload and save/restart.
 
-### Known implementation gaps
+### Verification and release boundaries
 
-- Galacticraft handles oxygen/pressure; richer habitat integrity and radiation simulation are not implemented. Unauthorized dimension entry is corrected after transfer because this Galacticraft fork offers no stable pre-transfer cancellation hook.
-- The Analyzer accepts only Martian Desh metadata 2. Earth/lunar comparative material studies and a general experiment framework remain future content.
-- Procedural settlements, trade prices, NPC pathfinding, reputation pacing, faction combat, and companion behavior need a fresh-world measured playtest and balance pass.
-- AE2 has a curated foundation set, not a fully reconstructed balanced recipe tree for every part.
-- Matter, fusion, logistics, megastructure, colony, and civilization-scale AI have concrete machine proofs, but their physical scale, throughput, and resource balance need full-playthrough tuning.
-- Static validation cannot prove Better Questing GUI rendering, existing-world import behavior, or every third-party runtime event.
-- Public release work is intentionally deferred: third-party licenses, authorized download links/Technic Solder, distribution packaging, and compatibility migration testing are not complete.
+- Procedural settlements, trade prices, NPC pathfinding, reputation pacing, faction combat, vehicle handling, and capstone throughput require measured playtesting for final numerical tuning; their gameplay paths are implemented.
+- Static validation cannot prove Better Questing/Galacticraft GUI rendering or every third-party runtime event, so the disposable-world checklist remains authoritative.
+- Public release work is intentionally deferred: third-party licenses, authorized download links/Technic Solder, and distribution packaging are not gameplay features and remain separate release work.
 
 This document describes the current build, not aspirational functionality disguised as complete. When runtime behavior or canonical progression changes, update the machine-readable source and regenerate the projections before changing this document.

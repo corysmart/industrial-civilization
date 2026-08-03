@@ -238,12 +238,16 @@ with zipfile.ZipFile(core_live) as zf:
         "com/industrialcivilization/core/TileMolecularAnalyzer.class",
         "com/industrialcivilization/core/TileIndustrialMachine.class",
         "com/industrialcivilization/core/TileFactoryControlTerminal.class",
+        "com/industrialcivilization/core/ProgressionNetwork.class",
+        "com/industrialcivilization/core/SpaceSurvivalSystem.class",
         "mcmod.info",
         "assets/industrialcivilizationcore/blockstates/molecular_analyzer.json",
         "assets/industrialcivilizationcore/textures/gui/industrial_machine.png",
         "assets/industrialcivilizationcore/models/item/artificial_industrial_intelligence_core.json",
         "assets/industrialcivilizationcore/models/item/industrial_credit.json",
         "assets/industrialcivilizationcore/textures/items/industrial_credit.png",
+        "assets/industrialcivilizationcore/models/item/technical_phase_pearl.json",
+        "assets/industrialcivilizationcore/textures/items/technical_phase_pearl.png",
         "assets/industrialcivilizationcore/advancements/faction_contacts.json",
         "assets/industrialcivilizationcore/advancements/faction_membership.json",
         "assets/industrialcivilizationcore/advancements/faction_companion.json",
@@ -276,7 +280,7 @@ for path in sorted((ROOT / "config").rglob("*.json")) + sorted((ROOT / "developm
 
 quests = json.loads((ROOT / "config/betterquesting/DefaultQuests.json").read_text())
 ok(quests.get("format:8") == "2.0.0", "Better Questing schema version")
-ok(len(quests.get("questDatabase:9", {})) == 128, "128 Phase 2 capability milestones")
+ok(len(quests.get("questDatabase:9", {})) == 129, "129 Phase 2 capability milestones")
 ok(len(quests.get("questLines:9", {})) == 23, "16 chapter and 7 independent side-path tabs")
 names = [q["properties:10"]["betterquesting:10"]["name:8"] for q in quests["questDatabase:9"].values()]
 ordered_gates = ["Orbital Research Archive", "Authorized Lunar Landing", "Lunar Engineering Archive",
@@ -321,10 +325,34 @@ ok("GuiIngameMenu" in core_source and "button.id == 5" not in core_source
 ok("button.id == 6" in core_source and "GuiFactionDirectory" in core_source
    and "gui.industrialcivilization.factions" in core_source,
    "pause-menu Statistics button opens the faction directory")
+progression_network_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/ProgressionNetwork.java").read_text()
+space_survival_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/SpaceSurvivalSystem.java").read_text()
+analyzer_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/TileMolecularAnalyzer.java").read_text()
+ok("GuiWinGame(false" in progression_network_source and "ai_credits_shown" in core_source
+   and 'RuntimeAdvancements.grant(event.player, "ai_age_entry")' in core_source,
+   "AI entry opens one-time credits and leaves the post-AI world playable")
+ok("GuiCelestialSelection" in core_source and "gui.possibleBodies = allowed" in core_source
+   and "SpaceAccessRequest" in progression_network_source and "event.toDim == 1" in core_source
+   and "Blocks.END_PORTAL_FRAME" in core_source and "SchematicRegistry.addUnlockedPage" in core_source
+   and "tier2_schematic_unlocked" in core_source,
+   "Galacticraft map selection and server transfers exclude locked/unsupported destinations and the End")
+ok("suppressNaturalPhasePearls" in core_source and "removePrematurePhasePearls" in core_source
+   and 'RuntimeAdvancements.grant(event.player, "technical_phase_pearl")' in core_source,
+   "natural pearls are suppressed and only an AI-age craft completes the technical pearl")
+ok('new SampleProfile("minecraft:iron_ingot", "Earth"' in analyzer_source
+   and '"galacticraftcore:meteoric_iron_raw"' in analyzer_source
+   and '"analysis_mars"' in analyzer_source and '"comparative_molecular_analysis"' in analyzer_source,
+   "Analyzer requires real Earth, Moon, and Mars comparative samples")
+ok("TileEntityOxygenSealer" in space_survival_source and "fullQuantumSuit" in space_survival_source
+   and "radiation_exposure" in space_survival_source,
+   "space radiation is protected by active sealed habitats or a full IC2 QuantumSuit")
+ok("PlayerContainerEvent.Close" in faction_source and "ContainerMerchant" in faction_source
+   and '"completed IC Credit trade"' in faction_source,
+   "faction trade contact requires a completed IC Credit transaction")
 
 advancement_dir = ROOT / "development/IndustrialCivilizationCore/src/main/resources/assets/industrialcivilizationcore/advancements"
 advancement_files = sorted(advancement_dir.glob("*.json"))
-ok(len(advancement_files) == 129, "visible advancement tree covers all 128 quests plus its root")
+ok(len(advancement_files) == 130, "visible advancement tree covers all 129 quests plus its root")
 advancements = {path.stem: json.loads(path.read_text()) for path in advancement_files}
 ok("root" in advancements and "parent" not in advancements.get("root", {}),
    "Industrial Civilization advancement root exists")
@@ -336,7 +364,8 @@ for advancement_id, advancement in advancements.items():
         ok(str(advancement.get("parent", "")).startswith("industrialcivilizationcore:"),
            f"ordered in-pack advancement parent {advancement_id}")
 for advancement_id in ("civil_defense_contact", "territorial_militia_contact", "militia_outpost_takedown",
-                       "icbm_launch_control", "icbm_radar_defense", "icbm_conventional_missile"):
+                       "icbm_launch_control", "icbm_radar_defense", "icbm_conventional_missile",
+                       "technical_phase_pearl"):
     ok(advancement_id in advancements, f"optional-path advancement {advancement_id}")
 ok("new CreativeTabs(MODID)" in core_source
    and core_source.count(".setCreativeTab(CREATIVE_TAB)") >= 7,
@@ -354,7 +383,13 @@ run_config = json.loads((ROOT / "groovy/runConfig.json").read_text())
 ok(run_config["packId"] == "industrial_civilization", "stable GroovyScript pack ID")
 ok(run_config["loaders"]["postInit"] == ["postInit/"], "reloadable postInit loader configured")
 script = (ROOT / "groovy/postInit/industrial_civilization.groovy").read_text()
-ok("startsWith('appliedenergistics2:')" in script and ".removeAll()" in script, "AE2 hard recipe lock")
+content_script = (ROOT / "groovy/postInit/industrial_civilization_content.groovy").read_text()
+ok("startsWith('appliedenergistics2:')" in content_script and ".removeAll()" in content_script
+   and "ae2Catalog" in content_script and "ai_catalog_" in content_script,
+   "complete AE2 catalog is captured and reconstructed behind AI authorization")
+ok("technical_phase_pearl" in content_script and "aiCore" in content_script
+   and "crafting.removeByOutput(item('minecraft:ender_pearl'))" in content_script,
+   "Technical Phase Pearl has one AI-authorized manufacturing source")
 for item in ("techguns:pistol", "techguns:combatshotgun", "techguns:m4", "industrialcivilizationcore:molecular_analyzer"):
     ok(item in script, f"integration recipe reference {item}")
 for item in ("techguns:itemshared:2", "techguns:itemshared:11", "techguns:itemshared:13", "computercraft:computer:16384"):

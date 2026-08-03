@@ -5,12 +5,6 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent
 import net.minecraftforge.fml.common.FMLCommonHandler
 import net.minecraft.client.Minecraft
 
-// AI Age hard lock. AE2 stays installed for future compatibility, but none of
-// its ordinary crafting-table recipes are currently craftable.
-crafting.streamRecipes()
-    .filter { recipe -> recipe.registryName?.toString()?.startsWith('appliedenergistics2:') }
-    .removeAll()
-
 // Intended storage progression stops at Iron Chests. Higher registered
 // variants remain internal for save compatibility but are uncraftable and
 // absent from the HEI ingredient sidebar.
