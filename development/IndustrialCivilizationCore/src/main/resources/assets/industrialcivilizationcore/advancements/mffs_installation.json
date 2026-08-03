@@ -1,0 +1,40 @@
+{
+  "parent": "industrialcivilizationcore:advanced_ic2",
+  "display": {
+    "icon": {
+      "item": "minecraft:beacon"
+    },
+    "title": {
+      "text": "04.07 \u2014 Industrial Containment"
+    },
+    "description": {
+      "text": "Industrial Containment"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modularforcefieldsystem:projector"
+          }
+        ]
+      }
+    },
+    "evidence_2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modularforcefieldsystem:capacitor"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:martian_manufacturing",
+  "display": {
+    "icon": {
+      "item": "minecraft:minecart"
+    },
+    "title": {
+      "text": "12.07 \u2014 Martian Cargo and Return"
+    },
+    "description": {
+      "text": "Martian Cargo and Return"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:minecart"
+          }
+        ]
+      }
+    }
+  }
+}

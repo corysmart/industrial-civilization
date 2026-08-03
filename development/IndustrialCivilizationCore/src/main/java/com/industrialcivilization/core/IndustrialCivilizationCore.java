@@ -1,9 +1,6 @@
 package com.industrialcivilization.core;
 
 import betterquesting.api.properties.NativeProps;
-import betterquesting.api2.client.gui.themes.gui_args.GArgsNone;
-import betterquesting.api2.client.gui.themes.presets.PresetGUIs;
-import betterquesting.client.themes.ThemeRegistry;
 import betterquesting.handlers.SaveLoadHandler;
 import betterquesting.storage.QuestSettings;
 import net.minecraft.block.Block;
@@ -472,15 +469,10 @@ public final class IndustrialCivilizationCore {
             }
         }
 
-        /** Make the pause menu use the pack's authoritative quest system. */
+        /** Keep the vanilla Advancements screen and reserve Statistics for factions. */
         @SubscribeEvent(priority = EventPriority.LOWEST)
-        public static void renameAdvancementsButton(GuiScreenEvent.InitGuiEvent.Post event) {
+        public static void renameFactionDirectoryButton(GuiScreenEvent.InitGuiEvent.Post event) {
             if (!(event.getGui() instanceof GuiIngameMenu)) return;
-            event.getButtonList().stream()
-                .filter(button -> button.id == 5)
-                .findFirst()
-                .ifPresent(button -> button.displayString =
-                    I18n.format("gui.industrialcivilization.quest_guide"));
             event.getButtonList().stream()
                 .filter(button -> button.id == 6)
                 .findFirst()
@@ -489,17 +481,12 @@ public final class IndustrialCivilizationCore {
         }
 
         @SubscribeEvent(priority = EventPriority.HIGHEST)
-        public static void openQuestGuideFromPauseMenu(GuiScreenEvent.ActionPerformedEvent.Pre event) {
+        public static void openFactionDirectoryFromPauseMenu(GuiScreenEvent.ActionPerformedEvent.Pre event) {
             if (!(event.getGui() instanceof GuiIngameMenu)) return;
             if (event.getButton().id == 6) {
                 event.setCanceled(true);
                 Minecraft.getMinecraft().displayGuiScreen(new GuiFactionDirectory(event.getGui()));
-                return;
             }
-            if (event.getButton().id != 5) return;
-            event.setCanceled(true);
-            Minecraft.getMinecraft().displayGuiScreen(ThemeRegistry.INSTANCE.getGui(
-                PresetGUIs.HOME, new GArgsNone(event.getGui())));
         }
 
         @SubscribeEvent

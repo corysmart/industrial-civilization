@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:criminal_network_defeated",
+  "display": {
+    "icon": {
+      "item": "industrialcivilizationcore:factory_control_terminal"
+    },
+    "title": {
+      "text": "S1.03 \u2014 Discover an Abandoned Factory"
+    },
+    "description": {
+      "text": "Locate and secure a procedurally placed or authored abandoned factory instead of constructing every industrial line yourself."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "industrialcivilizationcore:criminal_network_ledger"
+          }
+        ]
+      }
+    }
+  }
+}

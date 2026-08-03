@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:heavy_industry",
+  "display": {
+    "icon": {
+      "item": "minecraft:anvil"
+    },
+    "title": {
+      "text": "04.09 \u2014 Industrial Capacity Secured"
+    },
+    "description": {
+      "text": "Gain heavy industrial capacity by building it or restoring a captured abandoned factory."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:anvil"
+          }
+        ]
+      }
+    }
+  }
+}

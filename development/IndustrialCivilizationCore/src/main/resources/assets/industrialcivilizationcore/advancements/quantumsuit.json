@@ -1,0 +1,60 @@
+{
+  "parent": "industrialcivilizationcore:lunar_quantum_component",
+  "display": {
+    "icon": {
+      "item": "minecraft:diamond_chestplate"
+    },
+    "title": {
+      "text": "11.05 \u2014 Complete Charged QuantumSuit"
+    },
+    "description": {
+      "text": "Complete Charged QuantumSuit"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ic2:itemarmorquantumhelmet"
+          }
+        ]
+      }
+    },
+    "evidence_2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ic2:itemarmorquantumchestplate"
+          }
+        ]
+      }
+    },
+    "evidence_3": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ic2:itemarmorquantumlegs"
+          }
+        ]
+      }
+    },
+    "evidence_4": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ic2:itemarmorquantumboots"
+          }
+        ]
+      }
+    }
+  }
+}

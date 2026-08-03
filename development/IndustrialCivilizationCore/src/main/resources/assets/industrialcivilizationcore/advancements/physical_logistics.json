@@ -1,0 +1,40 @@
+{
+  "parent": "industrialcivilizationcore:automated_ore_processing",
+  "display": {
+    "icon": {
+      "item": "minecraft:hopper"
+    },
+    "title": {
+      "text": "03.03 \u2014 Physical Logistics Network"
+    },
+    "description": {
+      "text": "Physical Logistics Network"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:hopper"
+          }
+        ]
+      }
+    },
+    "evidence_2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:chest"
+          }
+        ]
+      }
+    }
+  }
+}

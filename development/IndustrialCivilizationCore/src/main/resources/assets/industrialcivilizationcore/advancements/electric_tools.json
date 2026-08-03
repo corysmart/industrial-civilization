@@ -1,0 +1,40 @@
+{
+  "parent": "industrialcivilizationcore:low_voltage_network",
+  "display": {
+    "icon": {
+      "item": "minecraft:diamond_pickaxe"
+    },
+    "title": {
+      "text": "02.05 \u2014 Electric Tools"
+    },
+    "description": {
+      "text": "Electric Tools"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ic2:itemtooldrill"
+          }
+        ]
+      }
+    },
+    "evidence_2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ic2:itemtoolwrenchelectric"
+          }
+        ]
+      }
+    }
+  }
+}

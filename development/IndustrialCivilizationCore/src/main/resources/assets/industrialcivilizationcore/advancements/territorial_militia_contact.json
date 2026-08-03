@@ -1,0 +1,23 @@
+{
+  "parent": "industrialcivilizationcore:faction_contacts",
+  "display": {
+    "icon": {
+      "item": "techguns:boltaction"
+    },
+    "title": {
+      "text": "S1.08 \u2014 Encounter the Territorial Militia"
+    },
+    "description": {
+      "text": "Encounter the evil but conditionally neutral Territorial Militia at a patrol, outpost, criminal armament factory, or abandoned factory."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "runtime": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

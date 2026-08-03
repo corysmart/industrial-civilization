@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:lunar_mining",
+  "display": {
+    "icon": {
+      "item": "minecraft:anvil"
+    },
+    "title": {
+      "text": "09.05 \u2014 Local Lunar Manufacturing"
+    },
+    "description": {
+      "text": "Local Lunar Manufacturing"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "industrialcivilizationcore:precision_frame"
+          }
+        ]
+      }
+    }
+  }
+}

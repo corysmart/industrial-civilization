@@ -1,0 +1,40 @@
+{
+  "parent": "industrialcivilizationcore:quantum_research_access",
+  "display": {
+    "icon": {
+      "item": "minecraft:redstone_block"
+    },
+    "title": {
+      "text": "11.01 \u2014 Extreme-Voltage Industry"
+    },
+    "description": {
+      "text": "Extreme-Voltage Industry"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ic2:blockmachinehv"
+          }
+        ]
+      }
+    },
+    "evidence_2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ic2:blockelectric"
+          }
+        ]
+      }
+    }
+  }
+}

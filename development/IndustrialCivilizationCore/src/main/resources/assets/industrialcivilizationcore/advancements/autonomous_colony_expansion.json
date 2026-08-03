@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:cross_planetary_logistics",
+  "display": {
+    "icon": {
+      "item": "industrialcivilizationcore:autonomous_colony_charter"
+    },
+    "title": {
+      "text": "16.10 \u2014 Autonomous Colony Expansion"
+    },
+    "description": {
+      "text": "Autonomous Colony Expansion"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "industrialcivilizationcore:autonomous_colony_charter"
+          }
+        ]
+      }
+    }
+  }
+}

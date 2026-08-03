@@ -1,0 +1,41 @@
+{
+  "parent": "industrialcivilizationcore:martian_mining",
+  "display": {
+    "icon": {
+      "item": "minecraft:anvil"
+    },
+    "title": {
+      "text": "12.05 \u2014 Local Martian Manufacturing"
+    },
+    "description": {
+      "text": "Local Martian Manufacturing"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "industrialcivilizationcore:precision_frame"
+          }
+        ]
+      }
+    },
+    "evidence_2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "galacticraftplanets:item_basic_mars",
+            "data": 2
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "parent": "industrialcivilizationcore:faction_contacts",
+  "display": {
+    "icon": {
+      "item": "industrialcivilizationcore:industrial_credit"
+    },
+    "title": {
+      "text": "S1.07 \u2014 Meet Honorable Civil Defense"
+    },
+    "description": {
+      "text": "Meet Civil Defense at an industrial city or honorable operational factory and verify that its attitude follows civilized reputation rather than weapon possession."
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "runtime": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

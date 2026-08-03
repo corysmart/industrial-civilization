@@ -1,4 +1,20 @@
 {
+  "parent": "industrialcivilizationcore:faction_contacts",
+  "display": {
+    "icon": {
+      "item": "industrialcivilizationcore:interplanetary_cargo_controller"
+    },
+    "title": {
+      "text": "S1.14 \u2014 Connect the Nation Exchange"
+    },
+    "description": {
+      "text": "Witness two loaded city cargo controllers exchange a locally specialized product over the shared nation channel."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
   "criteria": {
     "runtime": {
       "trigger": "minecraft:impossible"

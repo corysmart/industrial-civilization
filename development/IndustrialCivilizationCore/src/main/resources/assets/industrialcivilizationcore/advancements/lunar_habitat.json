@@ -1,0 +1,40 @@
+{
+  "parent": "industrialcivilizationcore:lunar_landing",
+  "display": {
+    "icon": {
+      "item": "minecraft:glass"
+    },
+    "title": {
+      "text": "09.02 \u2014 Lunar Habitat"
+    },
+    "description": {
+      "text": "Lunar Habitat"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:glass"
+          }
+        ]
+      }
+    },
+    "evidence_2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "galacticraftcore:collector"
+          }
+        ]
+      }
+    }
+  }
+}

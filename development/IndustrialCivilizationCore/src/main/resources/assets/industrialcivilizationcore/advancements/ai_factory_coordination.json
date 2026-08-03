@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:ae2_autocrafting",
+  "display": {
+    "icon": {
+      "item": "industrialcivilizationcore:interplanetary_cargo_controller"
+    },
+    "title": {
+      "text": "16.02 \u2014 AI Factory Coordination"
+    },
+    "description": {
+      "text": "AI Factory Coordination"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "industrialcivilizationcore:interplanetary_cargo_controller"
+          }
+        ]
+      }
+    }
+  }
+}

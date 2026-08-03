@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:abandoned_factory_discovered",
+  "display": {
+    "icon": {
+      "item": "industrialcivilizationcore:factory_restoration_certificate"
+    },
+    "title": {
+      "text": "S1.04 \u2014 Restore the Abandoned Factory"
+    },
+    "description": {
+      "text": "Repair power, safety, inputs, and at least one intact production line to gain heavy industrial capacity through salvage."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "industrialcivilizationcore:factory_restoration_certificate"
+          }
+        ]
+      }
+    }
+  }
+}

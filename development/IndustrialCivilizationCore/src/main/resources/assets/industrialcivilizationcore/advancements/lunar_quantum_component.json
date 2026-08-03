@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:robotic_manufacturing_cell",
+  "display": {
+    "icon": {
+      "item": "industrialcivilizationcore:lunar_quantum_component"
+    },
+    "title": {
+      "text": "11.03 \u2014 Lunar Quantum Component"
+    },
+    "description": {
+      "text": "Lunar Quantum Component"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "industrialcivilizationcore:lunar_quantum_component"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "parent": "industrialcivilizationcore:orbital_habitat",
+  "display": {
+    "icon": {
+      "item": "minecraft:daylight_detector"
+    },
+    "title": {
+      "text": "07.03 \u2014 Orbital Power and Eclipse Storage"
+    },
+    "description": {
+      "text": "Orbital Power and Eclipse Storage"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "industrialcivilizationcore:environmental_solar_array"
+          }
+        ]
+      }
+    },
+    "evidence_2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ic2:blockelectric"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,4 +1,20 @@
 {
+  "parent": "industrialcivilizationcore:underworld_lead",
+  "display": {
+    "icon": {
+      "item": "minecraft:skull"
+    },
+    "title": {
+      "text": "04.06 \u2014 Human Factions"
+    },
+    "description": {
+      "text": "Human Factions"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
   "criteria": {
     "runtime": {
       "trigger": "minecraft:impossible"

@@ -1,4 +1,20 @@
 {
+  "parent": "industrialcivilizationcore:martian_habitat",
+  "display": {
+    "icon": {
+      "item": "industrialcivilizationcore:environmental_solar_array"
+    },
+    "title": {
+      "text": "12.03 \u2014 Reliable Martian Power"
+    },
+    "description": {
+      "text": "Reliable Martian Power"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
   "criteria": {
     "runtime": {
       "trigger": "minecraft:impossible"

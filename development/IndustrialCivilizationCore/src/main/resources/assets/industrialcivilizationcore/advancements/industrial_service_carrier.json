@@ -1,4 +1,20 @@
 {
+  "parent": "industrialcivilizationcore:regional_mobility",
+  "display": {
+    "icon": {
+      "item": "vehicle:vehicle_crate"
+    },
+    "title": {
+      "text": "S1.13 \u2014 Industrial Service Carrier"
+    },
+    "description": {
+      "text": "Build the top-tier mobile support vehicle with onboard crafting, 54 cargo slots, a 64,000 mB tank, and a parked BuildCraft pipe interface."
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
   "criteria": {
     "runtime": {
       "trigger": "minecraft:impossible"

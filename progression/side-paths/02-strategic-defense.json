@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "id": "strategic_defense",
+  "number": 2,
+  "title": "Side Path — Strategic Defense",
+  "purpose": "Extend IC2 heavy industry into radar, launch control, conventional missiles, and defensive deterrence without bypassing nuclear or AI progression.",
+  "milestones": [
+    {
+      "id": "icbm_launch_control",
+      "title": "Build an IC2 Launch-Control Site",
+      "category": "construction",
+      "icon": "icbmclassic:launcherbase",
+      "prerequisites": ["advanced_armament_factory"],
+      "critical": false,
+      "optional": true,
+      "capability": "Construct an ICBM launcher base and control screen from IC2 MV/HV infrastructure, steel, computers, and control processors.",
+      "final_validation": [
+        "Craft an ICBM Launcher Pad and Launcher Screen using the IC2 integration recipes.",
+        "Supply converted IC2 EU through the installed 8:1 compatibility bridge.",
+        "Place the site far enough from settlements to operate safely."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "icbm_radar_defense",
+      "title": "Commission Missile-Defense Radar",
+      "category": "operation",
+      "icon": "icbmclassic:radarstation",
+      "prerequisites": ["icbm_launch_control"],
+      "critical": false,
+      "optional": true,
+      "capability": "Add an IC2-powered radar station that detects missile threats and supports defensive launch decisions.",
+      "final_validation": [
+        "Craft and place an ICBM Radar Station.",
+        "Connect it to the launch-control site and converted IC2 EU.",
+        "Configure detection and trigger ranges without targeting civilian settlements."
+      ],
+      "automation_paths": [],
+      "required_item": "icbmclassic:radarstation"
+    },
+    {
+      "id": "icbm_conventional_missile",
+      "title": "Field a Conventional Missile",
+      "category": "mastery",
+      "icon": "icbmclassic:missile",
+      "prerequisites": ["icbm_radar_defense"],
+      "critical": false,
+      "optional": true,
+      "capability": "Assemble a non-nuclear conventional missile and verify launch control without unlocking nuclear, antimatter, or red-matter shortcuts.",
+      "final_validation": [
+        "Assemble one conventional ICBM missile through the permitted industrial component chain.",
+        "Load it into the IC2-powered launcher and verify target controls in a safe test range.",
+        "Confirm strategic nuclear and exotic payload crafting remains locked behind later controlled programs."
+      ],
+      "automation_paths": [],
+      "required_item": "icbmclassic:missile"
+    }
+  ]
+}

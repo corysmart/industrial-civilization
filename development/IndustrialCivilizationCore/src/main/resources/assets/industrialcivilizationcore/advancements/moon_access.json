@@ -1,4 +1,20 @@
 {
+  "parent": "industrialcivilizationcore:orbital_research_complete",
+  "display": {
+    "icon": {
+      "item": "galacticraftcore:rocket_t1"
+    },
+    "title": {
+      "text": "08.06 \u2014 Moon Access"
+    },
+    "description": {
+      "text": "Moon Access"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
   "criteria": {
     "runtime": {
       "trigger": "minecraft:impossible"

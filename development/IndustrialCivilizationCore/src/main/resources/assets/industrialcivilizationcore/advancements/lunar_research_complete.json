@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:functional_lunar_base",
+  "display": {
+    "icon": {
+      "item": "industrialcivilizationcore:lunar_engineering_archive"
+    },
+    "title": {
+      "text": "10.04 \u2014 Lunar Engineering Archive"
+    },
+    "description": {
+      "text": "Lunar Engineering Archive"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "industrialcivilizationcore:lunar_engineering_archive"
+          }
+        ]
+      }
+    }
+  }
+}

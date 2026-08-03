@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:automated_ore_processing",
+  "display": {
+    "icon": {
+      "item": "minecraft:diamond_pickaxe"
+    },
+    "title": {
+      "text": "03.02 \u2014 Quarry Extraction"
+    },
+    "description": {
+      "text": "Quarry Extraction"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "buildcraftbuilders:quarry"
+          }
+        ]
+      }
+    }
+  }
+}

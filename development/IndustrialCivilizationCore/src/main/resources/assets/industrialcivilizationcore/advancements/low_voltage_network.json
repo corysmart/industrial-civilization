@@ -1,0 +1,40 @@
+{
+  "parent": "industrialcivilizationcore:first_ic2_generator",
+  "display": {
+    "icon": {
+      "item": "minecraft:repeater"
+    },
+    "title": {
+      "text": "02.02 \u2014 Safe Low-Voltage Network"
+    },
+    "description": {
+      "text": "Safe Low-Voltage Network"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ic2:itemcable"
+          }
+        ]
+      }
+    },
+    "evidence_2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ic2:blockelectric"
+          }
+        ]
+      }
+    }
+  }
+}

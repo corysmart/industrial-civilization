@@ -1637,8 +1637,8 @@
     {
       "file": "mods/IndustrialCivilizationCore-0.2.0.jar",
       "filename": "IndustrialCivilizationCore-0.2.0.jar",
-      "size": 480242,
-      "sha256": "5280117f771ea7173d7e3175451faf087cc9a827e8bba3b2fcd8bb3a903da7bf",
+      "size": 539681,
+      "sha256": "19de211aadb93b1ff70194d08537bff3df83eba2a0960369fa5d702db14c6595",
       "classification": "KEEP",
       "mods": [
         {
@@ -3931,8 +3931,8 @@
     },
     {
       "file": "config/betterquesting/DefaultQuests.json",
-      "sha256": "db34286d5b1ec31e632bec7069f5476fa9d31f920c9a3ef68f91844c31ba2c7a",
-      "size": 343076
+      "sha256": "8743ca14cf323085eddab138540cd21b93785530197d2b6330ce9111d47477f6",
+      "size": 360626
     },
     {
       "file": "config/blockcraftery.cfg",

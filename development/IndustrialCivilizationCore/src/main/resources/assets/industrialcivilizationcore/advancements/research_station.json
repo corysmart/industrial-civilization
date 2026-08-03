@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:orbital_power",
+  "display": {
+    "icon": {
+      "item": "industrialcivilizationcore:research_station"
+    },
+    "title": {
+      "text": "07.05 \u2014 Research Station"
+    },
+    "description": {
+      "text": "Research Station"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "industrialcivilizationcore:research_station"
+          }
+        ]
+      }
+    }
+  }
+}

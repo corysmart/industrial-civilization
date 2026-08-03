@@ -7,15 +7,15 @@
 3. Launch once and wait at the title screen. Do not open the pre-existing `New World` save.
 4. Confirm the menu label reads `Industrial Civilization v0.2.0` and inspect Loaded Mods for 162 JAR files / the expected mod IDs, including Onysd Vehicles 1.4.0, Obfuscate 0.4.2, and ICBM Classic 6.5.5.
 5. Open a disposable world, run `/gs reload --clean`, and confirm chat reports a successful reload with no errors. Review `logs/groovy.log` if it does not.
-6. Confirm the welcome chat identifies **F6** as the Industrial Civilization Guide key. Press F6 and verify the Industrial Civilization home banner renders without magenta missing-texture panels, then inspect the 16 chapters and 6 side-path tabs.
-7. Open the in-game pause menu. Confirm **Quest Guide** appears instead of **Advancements** and opens the same Better Questing home screen.
+6. Confirm the welcome chat identifies **F6** as the Industrial Civilization Guide key. Press F6 and verify the Industrial Civilization home banner renders without magenta missing-texture panels, then inspect the 16 chapters and 7 side-path tabs.
+7. Open the in-game pause menu. Confirm **Advancements** opens the vanilla advancement screen, then verify its Industrial Civilization tab contains the visible, ordered progression tree. F6 remains the Better Questing guide.
 8. Open Options → Controls and confirm the Conflicts section is empty. On macOS, spot-check F6 (guide), Option+Y (Techguns reload), Command+R (GroovyScript reload), Option+R (inventory sort), and Command+[/]/;/0/' (Waila).
 9. Enter Creative inventory and locate the **Industrial Civilization** tab. Confirm all 18 custom blocks and all 23 custom items appear. Use the tab-page arrows to confirm **Applied Energistics 2** and Onysd Vehicles are also present; all namespaces must appear in the Search tab.
 
 ## Disposable world
 
 - Create a new disposable survival world.
-- Open the quest UI and confirm all 16 chapters and 6 independent side-path tabs appear in order.
+- Open the quest UI and confirm all 16 chapters and 7 independent side-path tabs appear in order, including Factions & Salvage and Strategic Defense.
 - Place and roof the Car Workshop, manufacture each of the six curated vehicle crates, then drive each vehicle with W/A/S/D and test Option+K horn/Option+L seat cycling.
 - Park the Passenger Carrier, verify its 54-slot inventory, mobile crafting grid, 64,000 mB tank, and item/fluid transfers through a Vehicle Service Dock.
 - Expose a Car Workshop to rain, verify it rusts and stops, then repair it at a Repair Bench for exactly one IC2 Machine Block.

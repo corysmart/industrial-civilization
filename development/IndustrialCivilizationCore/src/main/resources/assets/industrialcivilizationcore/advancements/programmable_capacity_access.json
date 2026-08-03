@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:programmable_manufacturing",
+  "display": {
+    "icon": {
+      "item": "computercraft:computer"
+    },
+    "title": {
+      "text": "05.08 \u2014 Programmable Capacity Secured"
+    },
+    "description": {
+      "text": "Gain programmable manufacturing by building it or recovering the abandoned factory control system."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "computercraft:computer"
+          }
+        ]
+      }
+    }
+  }
+}

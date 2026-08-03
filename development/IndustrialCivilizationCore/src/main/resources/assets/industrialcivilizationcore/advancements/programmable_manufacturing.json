@@ -1,4 +1,20 @@
 {
+  "parent": "industrialcivilizationcore:industrial_capacity_access",
+  "display": {
+    "icon": {
+      "item": "computercraft:computer"
+    },
+    "title": {
+      "text": "05.07 \u2014 Programmable Manufacturing"
+    },
+    "description": {
+      "text": "Programmable Manufacturing"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
   "criteria": {
     "runtime": {
       "trigger": "minecraft:impossible"

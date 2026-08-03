@@ -26,6 +26,7 @@ STORY_OPENINGS = {
     "ai_age": "Earth industry, orbital experiments, lunar quantum engineering, and Martian autonomy finally describe one connected civilization. An industrial intelligence can now be built to coordinate that history, but creating it begins the endgame rather than ending it.",
     "post_ai_civilization": "The AI core removes the limit of human scheduling, not the limits of matter, energy, or distance. From here the civilization branches outward: logistics, replication, fusion, megastructures, and colonies become parallel programs with no final horizon.",
     "factions_and_salvage": "Not every industrial route begins at a crafting table. Settlements, criminal networks, and abandoned factories preserve fragments of the old world; diplomacy or force can recover them, but inherited machinery carries inherited risks.",
+    "strategic_defense": "Heavy industry has made long-range force possible. Strategic defense asks whether radar, launch control, and missiles can protect civilization without allowing dangerous payloads to bypass the scientific progression that makes them governable.",
     "field_engineering": "Civilization is built between major breakthroughs as much as at them. Field engineering rewards the tools, remote controls, and recovery practices that keep ambitious systems from becoming fragile ones.",
     "orbital_power": "A station that merely survives is still dependent on Earth. Orbital power engineering exploits constant sunlight and active tracking to make the platform an industrial contributor.",
     "cargo_logistics": "Separate worlds become one civilization only when material can move between them predictably. Cargo logistics turns launches into scheduled infrastructure instead of heroic one-off expeditions.",
@@ -50,6 +51,7 @@ STORY_TRANSITIONS = {
     "ai_age": "The AI core is online and AE2 foundation technology is authorized. The civilization has reached an opening, not an ending.",
     "post_ai_civilization": "There is no victory screen here. Each completed program creates the capacity—and the obligation—to begin another.",
     "factions_and_salvage": "The recovered infrastructure offers alternate access to industrial capacity, but it cannot replace the scientific gates ahead.",
+    "strategic_defense": "A controlled conventional deterrent now exists. Nuclear and exotic payloads remain separate scientific responsibilities, not automatic upgrades.",
     "field_engineering": "The field toolkit is resilient enough for expansion, but it remains an optional advantage rather than a scientific gate.",
     "orbital_power": "Orbital generation can now carry real production loads and support later off-world industry.",
     "cargo_logistics": "The cargo network makes distance routine; future colonies can be supplied as systems rather than emergencies.",
@@ -71,6 +73,7 @@ CHAPTER_ERAS = {
     **{name: "mars" for name in ("mars_settlement", "martian_autonomy", "lite_matter_engineering")},
     **{name: "post_ai" for name in ("ai_age", "post_ai_civilization")},
     "factions_and_salvage": "earth",
+    "strategic_defense": "earth",
 }
 
 # Better Questing quest pictures are ItemStacks. These exceptions replace old
@@ -219,6 +222,8 @@ def controls_for(ms):
         controls.append("Galacticraft: right-click a fueled rocket to mount it, Space begins launch, and W/A/S/D steer supported vehicles. Command+I opens the spaceship inventory. Right-click machines/cargo loaders to open them; use the standard Galacticraft wrench on configurable connections.")
     if any(word in haystack for word in ("techguns", "firearm", "armament", "pistol", "shotgun", "rifle", "defensive")):
         controls.append("Techguns: Option+Y forces a reload; right-click aims/uses the weapon and left-click fires.")
+    if any(word in haystack for word in ("icbm", "missile", "launcher", "radar")):
+        controls.append("ICBM: right-click the Launcher Screen and Radar Station to configure targets, ranges, and firing groups. Supply their converted IC2 EU network before arming; test conventional payloads only in a remote range.")
     if any(word in haystack for word in ("vehicle", "car workshop", "mobility", "service carrier")):
         controls.append("Vehicles: use W/A/S/D to drive, Option+K for the horn, and Option+L to cycle seats. Sneak-right-click the parked Industrial Service Carrier for its 54-slot cargo hold; hold a Crafting Table while doing so for its mobile crafting grid. Fluid containers interact by right-clicking the parked carrier. Park within four blocks of a Vehicle Service Dock to expose cargo and its 64,000 mB tank to BuildCraft pipes.")
     if any(word in haystack for word in ("car workshop", "gun factory", "rust", "repair bench")):
@@ -350,12 +355,14 @@ def main():
 
     # Side paths are first-class quest lines, not hidden nodes inside the
     # numbered chapters. A quest appears in exactly one visual line.
+    side_path_by_id = {path["id"]: path for path in side_paths}
     branch_titles = {
         "field_engineering": ("Side Path — Field Engineering", "Optional tools, resilience, remote control, and recovery capabilities."),
-        "factions_and_salvage": (side_paths[0]["title"], side_paths[0]["purpose"]),
+        "factions_and_salvage": (side_path_by_id["factions_and_salvage"]["title"], side_path_by_id["factions_and_salvage"]["purpose"]),
         "orbital_power": ("Side Path — Orbital Power", "Optional orbital generation and tracking-array development."),
         "cargo_logistics": ("Side Path — Cargo Logistics", "Optional freight and interplanetary cargo mastery."),
         "mobility_and_nations": ("Side Path — Mobility and Nations", "Optional road travel, industrial vehicles, city exchange, and advanced workshop infrastructure."),
+        "strategic_defense": (side_path_by_id["strategic_defense"]["title"], side_path_by_id["strategic_defense"]["purpose"]),
         "post_ai_parallel": ("Side Path — Post-AI Horizons", "Parallel civilization-scale endgame projects."),
     }
     branch_eras = {
@@ -364,6 +371,7 @@ def main():
         "orbital_power": "orbit",
         "cargo_logistics": "post_ai",
         "mobility_and_nations": "earth",
+        "strategic_defense": "earth",
         "post_ai_parallel": "post_ai",
     }
     for branch_index, (branch_id, branch_milestones) in enumerate(graph["optional_branches"].items()):

@@ -2,6 +2,10 @@
   "schema_version": 1,
   "policy": "Every milestone uses automatic Better Questing retrieval or a runtime advancement. Overrides define multi-item evidence for cross-mod capabilities; an unlisted milestone uses its real registered icon item as evidence.",
   "overrides": {
+    "icbm_launch_control": [
+      "icbmclassic:launcherbase",
+      "icbmclassic:launcherscreen"
+    ],
     "first_resources": [
       {"item": "minecraft:coal", "count": 8},
       {"item": "minecraft:iron_ingot", "count": 8},

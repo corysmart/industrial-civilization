@@ -112,6 +112,57 @@
       "runtime_advancement": true
     },
     {
+      "id": "civil_defense_contact",
+      "title": "Meet Honorable Civil Defense",
+      "category": "mastery",
+      "icon": "industrialcivilizationcore:industrial_credit",
+      "prerequisites": ["faction_contacts"],
+      "critical": false,
+      "optional": true,
+      "capability": "Meet Civil Defense at an industrial city or honorable operational factory and verify that its attitude follows civilized reputation rather than weapon possession.",
+      "final_validation": [
+        "Discover a Civil Defense officer at a city or non-criminal factory.",
+        "Confirm the faction directory lists Civil Defense separately from the Territorial Militia.",
+        "Verify that carrying a gun alone does not provoke Civil Defense."
+      ],
+      "automation_paths": [],
+      "runtime_advancement": true
+    },
+    {
+      "id": "territorial_militia_contact",
+      "title": "Encounter the Territorial Militia",
+      "category": "transition",
+      "icon": "techguns:boltaction",
+      "prerequisites": ["faction_contacts"],
+      "critical": false,
+      "optional": true,
+      "capability": "Encounter the evil but conditionally neutral Territorial Militia at a patrol, outpost, criminal armament factory, or abandoned factory.",
+      "final_validation": [
+        "Discover the Territorial Militia without beginning combat.",
+        "Use Pause > Factions & Settlements to inspect its separate reputation and territory.",
+        "Understand that any holstered firearm can provoke patrols and outpost militia."
+      ],
+      "automation_paths": [],
+      "runtime_advancement": true
+    },
+    {
+      "id": "militia_outpost_takedown",
+      "title": "Dismantle a Militia Outpost",
+      "category": "mastery",
+      "icon": "minecraft:iron_bars",
+      "prerequisites": ["territorial_militia_contact"],
+      "critical": false,
+      "optional": true,
+      "capability": "Dismantle enough of one registered Territorial Militia outpost to remove it from operation while accepting the resulting militia hostility risk.",
+      "final_validation": [
+        "Break sixteen structural blocks inside one generated militia outpost.",
+        "Receive the recorded-outpost-takedown notice.",
+        "Remember that three distinct takedowns trigger organized militia hostility."
+      ],
+      "automation_paths": [],
+      "runtime_advancement": true
+    },
+    {
       "id": "faction_companion",
       "title": "Trusted Faction Companion",
       "category": "mastery",

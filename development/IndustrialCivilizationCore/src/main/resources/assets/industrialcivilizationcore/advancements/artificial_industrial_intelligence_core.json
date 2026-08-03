@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:lite_matter_complete",
+  "display": {
+    "icon": {
+      "item": "industrialcivilizationcore:artificial_industrial_intelligence_core"
+    },
+    "title": {
+      "text": "15.02 \u2014 Artificial Industrial Intelligence Core"
+    },
+    "description": {
+      "text": "Artificial Industrial Intelligence Core"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "industrialcivilizationcore:artificial_industrial_intelligence_core"
+          }
+        ]
+      }
+    }
+  }
+}

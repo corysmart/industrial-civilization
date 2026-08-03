@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:cross_planetary_logistics",
+  "display": {
+    "icon": {
+      "item": "industrialcivilizationcore:megastructure_control_record"
+    },
+    "title": {
+      "text": "16.09 \u2014 Orbital Megastructures"
+    },
+    "description": {
+      "text": "Orbital Megastructures"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "industrialcivilizationcore:megastructure_control_record"
+          }
+        ]
+      }
+    }
+  }
+}

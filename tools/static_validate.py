@@ -247,6 +247,13 @@ with zipfile.ZipFile(core_live) as zf:
         "assets/industrialcivilizationcore/advancements/faction_contacts.json",
         "assets/industrialcivilizationcore/advancements/faction_membership.json",
         "assets/industrialcivilizationcore/advancements/faction_companion.json",
+        "assets/industrialcivilizationcore/advancements/root.json",
+        "assets/industrialcivilizationcore/advancements/civil_defense_contact.json",
+        "assets/industrialcivilizationcore/advancements/territorial_militia_contact.json",
+        "assets/industrialcivilizationcore/advancements/militia_outpost_takedown.json",
+        "assets/industrialcivilizationcore/advancements/icbm_launch_control.json",
+        "assets/industrialcivilizationcore/advancements/icbm_radar_defense.json",
+        "assets/industrialcivilizationcore/advancements/icbm_conventional_missile.json",
     ):
         ok(expected in names, f"custom JAR resource {expected}")
     info = json.loads(zf.read("mcmod.info").decode())
@@ -269,8 +276,8 @@ for path in sorted((ROOT / "config").rglob("*.json")) + sorted((ROOT / "developm
 
 quests = json.loads((ROOT / "config/betterquesting/DefaultQuests.json").read_text())
 ok(quests.get("format:8") == "2.0.0", "Better Questing schema version")
-ok(len(quests.get("questDatabase:9", {})) == 122, "122 Phase 2 capability milestones")
-ok(len(quests.get("questLines:9", {})) == 22, "16 chapter and 6 independent side-path tabs")
+ok(len(quests.get("questDatabase:9", {})) == 128, "128 Phase 2 capability milestones")
+ok(len(quests.get("questLines:9", {})) == 23, "16 chapter and 7 independent side-path tabs")
 names = [q["properties:10"]["betterquesting:10"]["name:8"] for q in quests["questDatabase:9"].values()]
 ordered_gates = ["Orbital Research Archive", "Authorized Lunar Landing", "Lunar Engineering Archive",
                  "Quantum Technology Complete", "Mars Mission Authorization", "Authorized Tier 2 Mars Launch",
@@ -308,12 +315,29 @@ ok(quest_home in (ROOT / "tools/generate_objectives.py").read_text(), "quest gen
 ok("QUEST_HOME_IMAGE" in core_source and "QUEST_HOME_OFFSET_X = -128" in core_source
    and "migrateQuestHomeImage" in core_source,
    "existing Better Questing worlds migrate to pack-owned home layout")
-ok("GuiIngameMenu" in core_source and "button.id == 5" in core_source
-   and "PresetGUIs.HOME" in core_source and "gui.industrialcivilization.quest_guide" in core_source,
-   "pause-menu Advancements button opens the Better Questing guide")
+ok("GuiIngameMenu" in core_source and "button.id == 5" not in core_source
+   and "PresetGUIs.HOME" not in core_source,
+   "pause-menu vanilla Advancements button and screen are restored")
 ok("button.id == 6" in core_source and "GuiFactionDirectory" in core_source
    and "gui.industrialcivilization.factions" in core_source,
    "pause-menu Statistics button opens the faction directory")
+
+advancement_dir = ROOT / "development/IndustrialCivilizationCore/src/main/resources/assets/industrialcivilizationcore/advancements"
+advancement_files = sorted(advancement_dir.glob("*.json"))
+ok(len(advancement_files) == 129, "visible advancement tree covers all 128 quests plus its root")
+advancements = {path.stem: json.loads(path.read_text()) for path in advancement_files}
+ok("root" in advancements and "parent" not in advancements.get("root", {}),
+   "Industrial Civilization advancement root exists")
+for advancement_id, advancement in advancements.items():
+    display = advancement.get("display", {})
+    ok(bool(display) and display.get("hidden") is False,
+       f"visible advancement display {advancement_id}")
+    if advancement_id != "root":
+        ok(str(advancement.get("parent", "")).startswith("industrialcivilizationcore:"),
+           f"ordered in-pack advancement parent {advancement_id}")
+for advancement_id in ("civil_defense_contact", "territorial_militia_contact", "militia_outpost_takedown",
+                       "icbm_launch_control", "icbm_radar_defense", "icbm_conventional_missile"):
+    ok(advancement_id in advancements, f"optional-path advancement {advancement_id}")
 ok("new CreativeTabs(MODID)" in core_source
    and core_source.count(".setCreativeTab(CREATIVE_TAB)") >= 7,
    "all custom blocks and items are assigned to the Industrial Civilization creative tab")

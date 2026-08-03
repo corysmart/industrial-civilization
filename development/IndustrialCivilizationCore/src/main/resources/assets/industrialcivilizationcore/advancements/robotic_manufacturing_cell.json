@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:extreme_voltage_industry",
+  "display": {
+    "icon": {
+      "item": "industrialcivilizationcore:robotic_manufacturing_cell"
+    },
+    "title": {
+      "text": "11.02 \u2014 Robotic Manufacturing Cell"
+    },
+    "description": {
+      "text": "Robotic Manufacturing Cell"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "industrialcivilizationcore:robotic_manufacturing_cell"
+          }
+        ]
+      }
+    }
+  }
+}

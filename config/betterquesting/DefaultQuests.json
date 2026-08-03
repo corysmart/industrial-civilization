@@ -6057,6 +6057,123 @@
     "116:10": {
       "questID:3": 116,
       "preRequisites:11": [
+        24
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "industrialcivilizationcore:industrial_credit",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Meet Honorable Civil Defense",
+          "desc:8": "STORY\nThe side path \u2014 factions and salvage program advances one dependable system at a time. This step turns meet honorable civil defense from an idea into infrastructure.\n\nMISSION\nMeet Civil Defense at an industrial city or honorable operational factory and verify that its attitude follows civilized reputation rather than weapon possession.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Discover a Civil Defense officer at a city or non-criminal factory.\n- Confirm the faction directory lists Civil Defense separately from the Territorial Militia.\n- Verify that carrying a gun alone does not provoke Civil Defense.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Industrial Civilization machines: right-click to open the IC2-styled EU/inventory screen. Put recipe inputs in the three left slots and take output from the right slot. Matching inputs run automatically; ComputerCraft is required only for explicit recipe selection, queues, telemetry, or cargo channels.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "advancement_id:8": "industrialcivilizationcore:civil_defense_contact",
+          "index:3": 0,
+          "taskID:8": "bq_standard:advancement"
+        }
+      },
+      "rewards:9": {}
+    },
+    "117:10": {
+      "questID:3": 117,
+      "preRequisites:11": [
+        24
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "techguns:boltaction",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Encounter the Territorial Militia",
+          "desc:8": "STORY\nThe side path \u2014 factions and salvage program advances one dependable system at a time. This step turns encounter the territorial militia from an idea into infrastructure.\n\nMISSION\nEncounter the evil but conditionally neutral Territorial Militia at a patrol, outpost, criminal armament factory, or abandoned factory.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Discover the Territorial Militia without beginning combat.\n- Use Pause > Factions & Settlements to inspect its separate reputation and territory.\n- Understand that any holstered firearm can provoke patrols and outpost militia.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Techguns: Option+Y forces a reload; right-click aims/uses the weapon and left-click fires.\n- Factions: Pause > Factions & Settlements shows reputation, attitude, membership rules, known settlement types, and trades. Normal right-click opens IC Credit trades; sneak-right-click requests membership. Trusted members at 60 reputation can recruit a companion by holding 8 IC Credits while sneak-right-clicking.\n- Custom NPCs: F8 opens the separate NPC quest log when an authored encounter uses it.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "advancement_id:8": "industrialcivilizationcore:territorial_militia_contact",
+          "index:3": 0,
+          "taskID:8": "bq_standard:advancement"
+        }
+      },
+      "rewards:9": {}
+    },
+    "118:10": {
+      "questID:3": 118,
+      "preRequisites:11": [
+        117
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "minecraft:iron_bars",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Dismantle a Militia Outpost",
+          "desc:8": "STORY\nThe side path \u2014 factions and salvage program advances one dependable system at a time. This step turns dismantle a militia outpost from an idea into infrastructure.\n\nMISSION\nDismantle enough of one registered Territorial Militia outpost to remove it from operation while accepting the resulting militia hostility risk.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Break sixteen structural blocks inside one generated militia outpost.\n- Receive the recorded-outpost-takedown notice.\n- Remember that three distinct takedowns trigger organized militia hostility.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "advancement_id:8": "industrialcivilizationcore:militia_outpost_takedown",
+          "index:3": 0,
+          "taskID:8": "bq_standard:advancement"
+        }
+      },
+      "rewards:9": {}
+    },
+    "119:10": {
+      "questID:3": 119,
+      "preRequisites:11": [
         115
       ],
       "properties:10": {
@@ -6093,8 +6210,8 @@
       },
       "rewards:9": {}
     },
-    "117:10": {
-      "questID:3": 117,
+    "120:10": {
+      "questID:3": 120,
       "preRequisites:11": [
         34
       ],
@@ -6132,10 +6249,10 @@
       },
       "rewards:9": {}
     },
-    "118:10": {
-      "questID:3": 118,
+    "121:10": {
+      "questID:3": 121,
       "preRequisites:11": [
-        117
+        120
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6171,10 +6288,10 @@
       },
       "rewards:9": {}
     },
-    "119:10": {
-      "questID:3": 119,
+    "122:10": {
+      "questID:3": 122,
       "preRequisites:11": [
-        118
+        121
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6210,8 +6327,8 @@
       },
       "rewards:9": {}
     },
-    "120:10": {
-      "questID:3": 120,
+    "123:10": {
+      "questID:3": 123,
       "preRequisites:11": [
         24
       ],
@@ -6249,8 +6366,8 @@
       },
       "rewards:9": {}
     },
-    "121:10": {
-      "questID:3": 121,
+    "124:10": {
+      "questID:3": 124,
       "preRequisites:11": [
         34
       ],
@@ -6284,6 +6401,165 @@
           "advancement_id:8": "industrialcivilizationcore:advanced_armament_factory",
           "index:3": 0,
           "taskID:8": "bq_standard:advancement"
+        }
+      },
+      "rewards:9": {}
+    },
+    "125:10": {
+      "questID:3": 125,
+      "preRequisites:11": [
+        124
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "icbmclassic:launcherbase",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Build an IC2 Launch-Control Site",
+          "desc:8": "STORY\nHeavy industry has made long-range force possible. Strategic defense asks whether radar, launch control, and missiles can protect civilization without allowing dangerous payloads to bypass the scientific progression that makes them governable.\n\nMISSION\nConstruct an ICBM launcher base and control screen from IC2 MV/HV infrastructure, steel, computers, and control processors.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Craft an ICBM Launcher Pad and Launcher Screen using the IC2 integration recipes.\n- Supply converted IC2 EU through the installed 8:1 compatibility bridge.\n- Place the site far enough from settlements to operate safely.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- ComputerCraft: right-click a computer to open it; type help for built-in help; hold Control+T to terminate a running program. Use peripheral.getNames() and peripheral.wrap(side) to find attached machines.\n- ICBM: right-click the Launcher Screen and Radar Station to configure targets, ranges, and firing groups. Supply their converted IC2 EU network before arming; test conventional payloads only in a remote range.\n- IC2 equipment: F10 changes supported modes. Backslash is the armor modifier, Option+H toggles boost, and Option+O expands the armor HUD. Sneak while mining/chopping to suppress pack-added area or whole-tree behavior.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "icbmclassic:launcherbase",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "icbmclassic:launcherscreen",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
+          "index:3": 0,
+          "taskID:8": "bq_standard:retrieval"
+        }
+      },
+      "rewards:9": {}
+    },
+    "126:10": {
+      "questID:3": 126,
+      "preRequisites:11": [
+        125
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "icbmclassic:radarstation",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Commission Missile-Defense Radar",
+          "desc:8": "STORY\nThe side path \u2014 strategic defense program advances one dependable system at a time. This step turns commission missile-defense radar from an idea into infrastructure.\n\nMISSION\nAdd an IC2-powered radar station that detects missile threats and supports defensive launch decisions.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Craft and place an ICBM Radar Station.\n- Connect it to the launch-control site and converted IC2 EU.\n- Configure detection and trigger ranges without targeting civilian settlements.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Techguns: Option+Y forces a reload; right-click aims/uses the weapon and left-click fires.\n- ICBM: right-click the Launcher Screen and Radar Station to configure targets, ranges, and firing groups. Supply their converted IC2 EU network before arming; test conventional payloads only in a remote range.\n- IC2 equipment: F10 changes supported modes. Backslash is the armor modifier, Option+H toggles boost, and Option+O expands the armor HUD. Sneak while mining/chopping to suppress pack-added area or whole-tree behavior.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "icbmclassic:radarstation",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
+          "index:3": 0,
+          "taskID:8": "bq_standard:retrieval"
+        }
+      },
+      "rewards:9": {}
+    },
+    "127:10": {
+      "questID:3": 127,
+      "preRequisites:11": [
+        126
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "icbmclassic:missile",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Field a Conventional Missile",
+          "desc:8": "STORY\nThe side path \u2014 strategic defense program reaches its decisive proof. A controlled conventional deterrent now exists. Nuclear and exotic payloads remain separate scientific responsibilities, not automatic upgrades.\n\nMISSION\nAssemble a non-nuclear conventional missile and verify launch control without unlocking nuclear, antimatter, or red-matter shortcuts.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Assemble one conventional ICBM missile through the permitted industrial component chain.\n- Load it into the IC2-powered launcher and verify target controls in a safe test range.\n- Confirm strategic nuclear and exotic payload crafting remains locked behind later controlled programs.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- ICBM: right-click the Launcher Screen and Radar Station to configure targets, ranges, and firing groups. Supply their converted IC2 EU network before arming; test conventional payloads only in a remote range.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "icbmclassic:missile",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
+          "index:3": 0,
+          "taskID:8": "bq_standard:retrieval"
         }
       },
       "rewards:9": {}
@@ -7209,66 +7485,87 @@
           "id:3": 24,
           "sizeY:3": 24
         },
-        "115:10": {
-          "sizeX:3": 24,
-          "x:3": 112,
-          "y:3": 0,
-          "id:3": 115,
-          "sizeY:3": 24
-        },
         "116:10": {
           "sizeX:3": 24,
-          "x:3": 168,
+          "x:3": 112,
           "y:3": 0,
           "id:3": 116,
           "sizeY:3": 24
         },
-        "25:10": {
+        "117:10": {
+          "sizeX:3": 24,
+          "x:3": 168,
+          "y:3": 0,
+          "id:3": 117,
+          "sizeY:3": 24
+        },
+        "118:10": {
           "sizeX:3": 24,
           "x:3": 224,
           "y:3": 0,
+          "id:3": 118,
+          "sizeY:3": 24
+        },
+        "115:10": {
+          "sizeX:3": 24,
+          "x:3": 280,
+          "y:3": 0,
+          "id:3": 115,
+          "sizeY:3": 24
+        },
+        "119:10": {
+          "sizeX:3": 24,
+          "x:3": 0,
+          "y:3": 64,
+          "id:3": 119,
+          "sizeY:3": 24
+        },
+        "25:10": {
+          "sizeX:3": 24,
+          "x:3": 56,
+          "y:3": 64,
           "id:3": 25,
           "sizeY:3": 24
         },
         "40:10": {
           "sizeX:3": 24,
-          "x:3": 280,
-          "y:3": 0,
+          "x:3": 112,
+          "y:3": 64,
           "id:3": 40,
           "sizeY:3": 24
         },
         "110:10": {
           "sizeX:3": 24,
-          "x:3": 0,
+          "x:3": 168,
           "y:3": 64,
           "id:3": 110,
           "sizeY:3": 24
         },
         "111:10": {
           "sizeX:3": 24,
-          "x:3": 56,
+          "x:3": 224,
           "y:3": 64,
           "id:3": 111,
           "sizeY:3": 24
         },
         "112:10": {
           "sizeX:3": 24,
-          "x:3": 112,
+          "x:3": 280,
           "y:3": 64,
           "id:3": 112,
           "sizeY:3": 24
         },
         "113:10": {
           "sizeX:3": 24,
-          "x:3": 168,
-          "y:3": 64,
+          "x:3": 0,
+          "y:3": 128,
           "id:3": 113,
           "sizeY:3": 24
         },
         "114:10": {
           "sizeX:3": 24,
-          "x:3": 224,
-          "y:3": 64,
+          "x:3": 56,
+          "y:3": 128,
           "id:3": 114,
           "sizeY:3": 24
         }
@@ -7356,39 +7653,39 @@
     },
     "20:10": {
       "quests:9": {
-        "117:10": {
-          "sizeX:3": 24,
-          "x:3": 0,
-          "y:3": 0,
-          "id:3": 117,
-          "sizeY:3": 24
-        },
-        "118:10": {
-          "sizeX:3": 24,
-          "x:3": 56,
-          "y:3": 0,
-          "id:3": 118,
-          "sizeY:3": 24
-        },
-        "119:10": {
-          "sizeX:3": 24,
-          "x:3": 112,
-          "y:3": 0,
-          "id:3": 119,
-          "sizeY:3": 24
-        },
         "120:10": {
           "sizeX:3": 24,
-          "x:3": 168,
+          "x:3": 0,
           "y:3": 0,
           "id:3": 120,
           "sizeY:3": 24
         },
         "121:10": {
           "sizeX:3": 24,
-          "x:3": 224,
+          "x:3": 56,
           "y:3": 0,
           "id:3": 121,
+          "sizeY:3": 24
+        },
+        "122:10": {
+          "sizeX:3": 24,
+          "x:3": 112,
+          "y:3": 0,
+          "id:3": 122,
+          "sizeY:3": 24
+        },
+        "123:10": {
+          "sizeX:3": 24,
+          "x:3": 168,
+          "y:3": 0,
+          "id:3": 123,
+          "sizeY:3": 24
+        },
+        "124:10": {
+          "sizeX:3": 24,
+          "x:3": 224,
+          "y:3": 0,
+          "id:3": 124,
           "sizeY:3": 24
         }
       },
@@ -7404,6 +7701,41 @@
       "order:3": 20
     },
     "21:10": {
+      "quests:9": {
+        "125:10": {
+          "sizeX:3": 24,
+          "x:3": 0,
+          "y:3": 0,
+          "id:3": 125,
+          "sizeY:3": 24
+        },
+        "126:10": {
+          "sizeX:3": 24,
+          "x:3": 56,
+          "y:3": 0,
+          "id:3": 126,
+          "sizeY:3": 24
+        },
+        "127:10": {
+          "sizeX:3": 24,
+          "x:3": 112,
+          "y:3": 0,
+          "id:3": 127,
+          "sizeY:3": 24
+        }
+      },
+      "lineID:3": 21,
+      "properties:10": {
+        "betterquesting:10": {
+          "name:8": "Side Path \u2014 Strategic Defense",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_earth.png",
+          "bg_size:3": 512,
+          "desc:8": "Extend IC2 heavy industry into radar, launch control, conventional missiles, and defensive deterrence without bypassing nuclear or AI progression. Side paths are visible from the start and may create alternate progression routes."
+        }
+      },
+      "order:3": 21
+    },
+    "22:10": {
       "quests:9": {
         "101:10": {
           "sizeX:3": 24,
@@ -7441,7 +7773,7 @@
           "sizeY:3": 24
         }
       },
-      "lineID:3": 21,
+      "lineID:3": 22,
       "properties:10": {
         "betterquesting:10": {
           "name:8": "Side Path \u2014 Post-AI Horizons",
@@ -7450,7 +7782,7 @@
           "desc:8": "Parallel civilization-scale endgame projects. Side paths are visible from the start and may create alternate progression routes."
         }
       },
-      "order:3": 21
+      "order:3": 22
     }
   },
   "questSettings:10": {

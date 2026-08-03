@@ -1,4 +1,20 @@
 {
+  "parent": "industrialcivilizationcore:car_workshop_deployed",
+  "display": {
+    "icon": {
+      "item": "vehicle:vehicle_crate"
+    },
+    "title": {
+      "text": "S1.12 \u2014 Motorize the Frontier"
+    },
+    "description": {
+      "text": "Manufacture one purpose-built road vehicle: compact car, off-roader, passenger carrier, tractor, utility cart, or scout ATV."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
   "criteria": {
     "runtime": {
       "trigger": "minecraft:impossible"

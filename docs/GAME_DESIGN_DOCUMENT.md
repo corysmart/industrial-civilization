@@ -18,12 +18,12 @@ The design has four pillars:
 
 ## Player-facing rules
 
-- F6 opens the Better Questing guide, and the pause-menu Quest Guide button opens the same UI.
-- All 122 quests use aspirational `ALWAYS` visibility. Locked future lines remain visible; secret objectives are not used.
+- F6 opens the Better Questing guide. Pause > Advancements opens Minecraft's advancement screen, whose Industrial Civilization tab mirrors the intended progression.
+- All 128 quests use aspirational `ALWAYS` visibility. Locked future lines remain visible; secret objectives are not used.
 - Every quest completes automatically through a runtime advancement or non-consuming inventory evidence. There are no manual checkbox tasks.
 - Every modded quest includes the relevant Mac/no-numpad controls and operating instructions in its description.
 - Every node picture is the actual required item, first evidence item, or an explicit real machine/artifact/vehicle override. Symbolic storyboard pictures are not emitted.
-- Numbered chapters contain the critical route. Six independent side-path tabs can be pursued whenever their prerequisites or discoveries permit.
+- Numbered chapters contain the critical route. Seven independent side-path tabs can be pursued whenever their prerequisites or discoveries permit, including faction/discovery objectives and strategic ICBM defense.
 - Pause > Factions & Settlements is the complete in-game directory for faction reputation, attitude, membership rules, settlement types, products, and NPC interaction instructions.
 
 ## Complete progression flow
@@ -197,7 +197,8 @@ Quest/config changes can be loaded into an existing test world with `/bq_admin d
 
 ## Implemented now
 
-- 16 chapters, 6 independent side paths, 122 automatic quests, full aspirational visibility, no manual checkbox tasks.
+- 16 chapters, 7 independent side paths, 128 automatic quests, full aspirational visibility, no manual checkbox tasks.
+- A visible 129-node vanilla advancement tree (root plus every quest) mirrors critical-route order and branches optional objectives from their real prerequisites.
 - Story/mission/proof/control descriptions and actual objective icons for the entire generated quest set.
 - Five era-specific quest backgrounds and IC2-styled custom block/item/GUI art.
 - Eighteen first-party blocks, twenty-two progression artifacts, and the IC Credit currency with real construction/production paths.

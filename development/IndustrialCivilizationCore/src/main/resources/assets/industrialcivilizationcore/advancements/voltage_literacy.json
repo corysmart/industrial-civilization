@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:electric_processing",
+  "display": {
+    "icon": {
+      "item": "minecraft:redstone_torch"
+    },
+    "title": {
+      "text": "02.06 \u2014 Voltage and Safety"
+    },
+    "description": {
+      "text": "Voltage and Safety"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:redstone_torch"
+          }
+        ]
+      }
+    }
+  }
+}

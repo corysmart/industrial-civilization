@@ -1,0 +1,40 @@
+{
+  "parent": "industrialcivilizationcore:railcraft_steel",
+  "display": {
+    "icon": {
+      "item": "techguns:m4"
+    },
+    "title": {
+      "text": "04.05 \u2014 Industrial Armament"
+    },
+    "description": {
+      "text": "Industrial Armament"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "techguns:m4"
+          }
+        ]
+      }
+    },
+    "evidence_2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "techguns:assaultriflemagazine"
+          }
+        ]
+      }
+    }
+  }
+}

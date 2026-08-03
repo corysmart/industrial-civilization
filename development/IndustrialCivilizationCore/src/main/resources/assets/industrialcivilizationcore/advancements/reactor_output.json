@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:nuclear_reactor",
+  "display": {
+    "icon": {
+      "item": "minecraft:redstone_block"
+    },
+    "title": {
+      "text": "06.02 \u2014 Sustained Nuclear Output"
+    },
+    "description": {
+      "text": "Sustained Nuclear Output"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:redstone_block"
+          }
+        ]
+      }
+    }
+  }
+}

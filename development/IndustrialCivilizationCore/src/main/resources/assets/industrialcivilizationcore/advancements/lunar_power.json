@@ -1,4 +1,20 @@
 {
+  "parent": "industrialcivilizationcore:lunar_habitat",
+  "display": {
+    "icon": {
+      "item": "industrialcivilizationcore:environmental_solar_array"
+    },
+    "title": {
+      "text": "09.03 \u2014 Lunar Power Through Darkness"
+    },
+    "description": {
+      "text": "Lunar Power Through Darkness"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
   "criteria": {
     "runtime": {
       "trigger": "minecraft:impossible"

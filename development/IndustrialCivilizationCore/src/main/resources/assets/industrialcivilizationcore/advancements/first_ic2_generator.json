@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:secure_workshop",
+  "display": {
+    "icon": {
+      "item": "minecraft:redstone"
+    },
+    "title": {
+      "text": "02.01 \u2014 First IC2 Generator"
+    },
+    "description": {
+      "text": "First IC2 Generator"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ic2:blockgenerator"
+          }
+        ]
+      }
+    }
+  }
+}

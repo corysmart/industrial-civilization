@@ -1,4 +1,20 @@
 {
+  "parent": "industrialcivilizationcore:lunar_science_program",
+  "display": {
+    "icon": {
+      "item": "minecraft:clock"
+    },
+    "title": {
+      "text": "10.02 \u2014 Darkness-Cycle Habitat Mastery"
+    },
+    "description": {
+      "text": "Darkness-Cycle Habitat Mastery"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
   "criteria": {
     "runtime": {
       "trigger": "minecraft:impossible"

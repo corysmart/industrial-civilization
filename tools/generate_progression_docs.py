@@ -125,7 +125,9 @@ The historical contract remains machine-readable in `progression/placeholder-reg
 write("QUEST_IMPLEMENTATION.md", "Quest Implementation", f"""
 Better Questing 3 reads `config/betterquesting/DefaultQuests.json`. Run `python3 tools/generate_objectives.py` after canonical edits; never hand-edit generated quests. The current projection has {len(chapters) + len(graph['optional_branches'])} quest lines ({len(chapters)} numbered chapters and {len(graph['optional_branches'])} independent side paths) and {len(milestones)} quests.
 
-Every quest completes automatically. Native machine operations and dimension events use hidden advancement tasks; item, construction, and cross-mod capability objectives use non-consuming Standard Expansion retrieval tasks, including multi-item evidence sets from `progression/objective-detection.json`. There are no manual checkbox tasks. All quests use `ALWAYS` visibility and locked progress, so players can browse the whole civilization plan without completing locked objectives early.
+Every quest completes automatically. Native machine operations and dimension events use advancement-backed tasks; item, construction, and cross-mod capability objectives use non-consuming Standard Expansion retrieval tasks, including multi-item evidence sets from `progression/objective-detection.json`. There are no manual checkbox tasks. All quests use `ALWAYS` visibility and locked progress, so players can browse the whole civilization plan without completing locked objectives early.
+
+The generator also emits one visible vanilla advancement per quest plus an Industrial Civilization root. Critical milestones form the intended chapter-order spine, while optional milestones branch from their real prerequisites. Pause > Advancements opens this vanilla tree; F6 remains the detailed Better Questing story, tutorial, and controls interface.
 
 Quest IDs are deterministic from chapter/side-path order and milestone order. Cross-line prerequisites use the same global numeric map. `pack_version` is 6. Every generated description contains story, mission, automatic proof, and contextual Mac/no-numpad controls. Quest pictures use real required/evidence objects, and each line uses an era-specific pack-owned background. Import/update the default pack through Better Questing when a world retains the older database.
 
@@ -241,7 +243,10 @@ checklist = [
 "The Robotic Manufacturing Cell enforces Moon-only Quantum-component synthesis.",
 "Electrification chapter completes.", "Automation chapter opens.",
 "The Factions and Salvage path can start independently of the numbered chapters.",
-"Pause > Factions & Settlements displays all five factions, reputation, attitude, membership eligibility, settlement types, and products.",
+"Pause > Advancements opens the vanilla screen and its Industrial Civilization tab contains the ordered root plus one visible advancement for every quest.",
+"Pause > Factions & Settlements displays all six factions, reputation, attitude, membership eligibility, settlement types, and products.",
+"Civil Defense contact, Territorial Militia contact, and a registered militia-outpost takedown complete their separate optional objectives.",
+"The Strategic Defense path detects ICBM launch control, radar defense, and a conventional missile without unlocking prohibited strategic-payload shortcuts.",
 "Every village and settlement merchant accepts IC Credits rather than emeralds.",
 "Sneak-right-click joins an eligible faction, while reputation 60 plus eight IC Credits can recruit a friendly companion.",
 "Hostile faction members attack, guards defend their settlement, and companions follow and defend their owner.",

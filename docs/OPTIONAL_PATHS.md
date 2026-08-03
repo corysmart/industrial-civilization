@@ -16,6 +16,9 @@ Optional objectives live in independent Better Questing tabs, never inside numbe
 
 - `industrial_armament` — Industrial Armament
 - `faction_contacts` — Human Factions
+- `civil_defense_contact` — Meet Honorable Civil Defense
+- `territorial_militia_contact` — Encounter the Territorial Militia
+- `militia_outpost_takedown` — Dismantle a Militia Outpost
 - `faction_membership` — Join an Industrial Faction
 - `faction_companion` — Trusted Faction Companion
 - `mffs_installation` — Industrial Containment
@@ -45,6 +48,12 @@ Optional objectives live in independent Better Questing tabs, never inside numbe
 - `industrial_service_carrier` — Industrial Service Carrier
 - `nation_trade_network` — Connect the Nation Exchange
 - `advanced_armament_factory` — Commission an Advanced Armament Factory
+
+## Strategic Defense
+
+- `icbm_launch_control` — Build an IC2 Launch-Control Site
+- `icbm_radar_defense` — Commission Missile-Defense Radar
+- `icbm_conventional_missile` — Field a Conventional Missile
 
 ## Post Ai Parallel
 

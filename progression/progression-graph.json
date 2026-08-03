@@ -84,6 +84,9 @@
     "factions_and_salvage": [
       "industrial_armament",
       "faction_contacts",
+      "civil_defense_contact",
+      "territorial_militia_contact",
+      "militia_outpost_takedown",
       "faction_membership",
       "faction_companion",
       "mffs_installation",
@@ -110,6 +113,11 @@
       "industrial_service_carrier",
       "nation_trade_network",
       "advanced_armament_factory"
+    ],
+    "strategic_defense": [
+      "icbm_launch_control",
+      "icbm_radar_defense",
+      "icbm_conventional_missile"
     ],
     "post_ai_parallel": [
       "predictive_production",

@@ -1,0 +1,42 @@
+{
+  "parent": "industrialcivilizationcore:first_resources",
+  "display": {
+    "icon": {
+      "item": "ironchest:iron_chest"
+    },
+    "title": {
+      "text": "01.02 \u2014 Copper and Iron Storage"
+    },
+    "description": {
+      "text": "Copper and Iron Storage"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ironchest:iron_chest",
+            "data": 3
+          }
+        ]
+      }
+    },
+    "evidence_2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ironchest:iron_chest",
+            "data": 0
+          }
+        ]
+      }
+    }
+  }
+}

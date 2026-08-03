@@ -1,0 +1,40 @@
+{
+  "parent": "industrialcivilizationcore:reactor_telemetry",
+  "display": {
+    "icon": {
+      "item": "minecraft:lever"
+    },
+    "title": {
+      "text": "06.04 \u2014 Remote Emergency Shutdown"
+    },
+    "description": {
+      "text": "Remote Emergency Shutdown"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ic2:blocknuclearreactor"
+          }
+        ]
+      }
+    },
+    "evidence_2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:lever"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:controlled_replication",
+  "display": {
+    "icon": {
+      "item": "industrialcivilizationcore:civilization_scale_ai_core"
+    },
+    "title": {
+      "text": "16.12 \u2014 Continuously Expanding Civilization"
+    },
+    "description": {
+      "text": "Continuously Expanding Civilization"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "industrialcivilizationcore:civilization_scale_ai_core"
+          }
+        ]
+      }
+    }
+  }
+}

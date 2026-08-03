@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:physical_logistics",
+  "display": {
+    "icon": {
+      "item": "minecraft:clock"
+    },
+    "title": {
+      "text": "03.04 \u2014 Loaded Industrial Area"
+    },
+    "description": {
+      "text": "Loaded Industrial Area"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:clock"
+          }
+        ]
+      }
+    }
+  }
+}

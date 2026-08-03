@@ -1,0 +1,31 @@
+{
+  "parent": "industrialcivilizationcore:martian_mining",
+  "display": {
+    "icon": {
+      "item": "galacticraftplanets:item_basic_mars"
+    },
+    "title": {
+      "text": "12.06 \u2014 Martian Desh Sample"
+    },
+    "description": {
+      "text": "Martian Desh Sample"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "galacticraftplanets:item_basic_mars",
+            "data": 2
+          }
+        ]
+      }
+    }
+  }
+}

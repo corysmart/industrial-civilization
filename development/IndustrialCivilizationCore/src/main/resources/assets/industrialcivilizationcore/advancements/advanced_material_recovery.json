@@ -1,0 +1,40 @@
+{
+  "parent": "industrialcivilizationcore:comparative_molecular_analysis",
+  "display": {
+    "icon": {
+      "item": "minecraft:hopper"
+    },
+    "title": {
+      "text": "14.05 \u2014 Advanced Material Recovery"
+    },
+    "description": {
+      "text": "Advanced Material Recovery"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ic2:blockmachinelv"
+          }
+        ]
+      }
+    },
+    "evidence_2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "industrialcivilizationcore:material_pattern_record"
+          }
+        ]
+      }
+    }
+  }
+}

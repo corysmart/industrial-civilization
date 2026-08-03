@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:lunar_research_complete",
+  "display": {
+    "icon": {
+      "item": "minecraft:nether_star"
+    },
+    "title": {
+      "text": "10.05 \u2014 Quantum Research Access"
+    },
+    "description": {
+      "text": "Quantum Research Access"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "industrialcivilizationcore:lunar_engineering_archive"
+          }
+        ]
+      }
+    }
+  }
+}

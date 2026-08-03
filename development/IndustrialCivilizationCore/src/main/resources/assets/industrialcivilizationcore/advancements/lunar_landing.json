@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:moon_access",
+  "display": {
+    "icon": {
+      "item": "minecraft:ender_pearl"
+    },
+    "title": {
+      "text": "09.01 \u2014 Authorized Lunar Landing"
+    },
+    "description": {
+      "text": "Authorized Lunar Landing"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:ender_pearl"
+          }
+        ]
+      }
+    }
+  }
+}

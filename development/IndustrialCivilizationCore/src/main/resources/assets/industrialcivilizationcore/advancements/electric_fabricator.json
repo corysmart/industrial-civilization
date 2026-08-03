@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:factory_telemetry",
+  "display": {
+    "icon": {
+      "item": "industrialcivilizationcore:electric_fabricator"
+    },
+    "title": {
+      "text": "05.03 \u2014 Electric Fabricator"
+    },
+    "description": {
+      "text": "Electric Fabricator"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "industrialcivilizationcore:electric_fabricator"
+          }
+        ]
+      }
+    }
+  }
+}

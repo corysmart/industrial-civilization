@@ -1,4 +1,20 @@
 {
+  "parent": "industrialcivilizationcore:material_pattern_record",
+  "display": {
+    "icon": {
+      "item": "minecraft:book"
+    },
+    "title": {
+      "text": "14.04 \u2014 Comparative Molecular Characterization"
+    },
+    "description": {
+      "text": "Comparative Molecular Characterization"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
   "criteria": {
     "runtime": {
       "trigger": "minecraft:impossible"

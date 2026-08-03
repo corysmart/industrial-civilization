@@ -1,0 +1,40 @@
+{
+  "parent": "industrialcivilizationcore:early_autocrafting",
+  "display": {
+    "icon": {
+      "item": "minecraft:bucket"
+    },
+    "title": {
+      "text": "04.02 \u2014 Oil Refining and Fluid Storage"
+    },
+    "description": {
+      "text": "Oil Refining and Fluid Storage"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "buildcraftfactory:distiller"
+          }
+        ]
+      }
+    },
+    "evidence_2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "buildcraftfactory:tank"
+          }
+        ]
+      }
+    }
+  }
+}

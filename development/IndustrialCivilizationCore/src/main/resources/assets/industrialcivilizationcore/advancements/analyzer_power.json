@@ -1,4 +1,20 @@
 {
+  "parent": "industrialcivilizationcore:molecular_analyzer",
+  "display": {
+    "icon": {
+      "item": "minecraft:redstone_block"
+    },
+    "title": {
+      "text": "14.02 \u2014 Power the Analyzer"
+    },
+    "description": {
+      "text": "Power the Analyzer"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
   "criteria": {
     "runtime": {
       "trigger": "minecraft:impossible"

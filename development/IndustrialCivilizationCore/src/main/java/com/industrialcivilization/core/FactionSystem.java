@@ -501,6 +501,7 @@ public final class FactionSystem {
                     ProgressionState.increment(event.getPlayer(), "militia_outposts_taken_down", 1);
                     adjustReputation(event.getPlayer(), "territorial_militia", -8,
                         "dismantled militia outpost");
+                    RuntimeAdvancements.grant(event.getPlayer(), "militia_outpost_takedown");
                     event.getPlayer().sendStatusMessage(new net.minecraft.util.text.TextComponentString(
                         "The Territorial Militia records this outpost as dismantled."), false);
                 }
@@ -586,6 +587,11 @@ public final class FactionSystem {
         String key = "known_faction_" + faction;
         if (data.getBoolean(key)) return;
         data.setBoolean(key, true);
+        if ("civil_defense".equals(faction)) {
+            RuntimeAdvancements.grant(player, "civil_defense_contact");
+        } else if ("territorial_militia".equals(faction)) {
+            RuntimeAdvancements.grant(player, "territorial_militia_contact");
+        }
         player.sendStatusMessage(new TextComponentTranslation(
             "message.industrialcivilization.faction.discovered", definition(faction).name), false);
         if (player instanceof EntityPlayerMP) FactionNetwork.sendSnapshot((EntityPlayerMP) player);

@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:low_voltage_network",
+  "display": {
+    "icon": {
+      "item": "minecraft:furnace"
+    },
+    "title": {
+      "text": "02.03 \u2014 Electric Processing Suite"
+    },
+    "description": {
+      "text": "Electric Processing Suite"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ic2:blockmachinelv"
+          }
+        ]
+      }
+    }
+  }
+}

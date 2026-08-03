@@ -1,0 +1,50 @@
+{
+  "parent": "industrialcivilizationcore:reactor_output",
+  "display": {
+    "icon": {
+      "item": "computercraft:computer"
+    },
+    "title": {
+      "text": "06.03 \u2014 Reactor Telemetry"
+    },
+    "description": {
+      "text": "Reactor Telemetry"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ic2:blocknuclearreactor"
+          }
+        ]
+      }
+    },
+    "evidence_2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "computercraft:computer"
+          }
+        ]
+      }
+    },
+    "evidence_3": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:comparator"
+          }
+        ]
+      }
+    }
+  }
+}

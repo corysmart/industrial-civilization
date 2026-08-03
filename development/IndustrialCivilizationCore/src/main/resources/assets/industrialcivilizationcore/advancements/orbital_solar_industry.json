@@ -1,4 +1,20 @@
 {
+  "parent": "industrialcivilizationcore:orbital_operational_data",
+  "display": {
+    "icon": {
+      "item": "industrialcivilizationcore:environmental_solar_array"
+    },
+    "title": {
+      "text": "08.03 \u2014 Orbital Solar Industry"
+    },
+    "description": {
+      "text": "Orbital Solar Industry"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
   "criteria": {
     "runtime": {
       "trigger": "minecraft:impossible"

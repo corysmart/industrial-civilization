@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:icbm_radar_defense",
+  "display": {
+    "icon": {
+      "item": "icbmclassic:missile"
+    },
+    "title": {
+      "text": "S2.03 \u2014 Field a Conventional Missile"
+    },
+    "description": {
+      "text": "Assemble a non-nuclear conventional missile and verify launch control without unlocking nuclear, antimatter, or red-matter shortcuts."
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "icbmclassic:missile"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "parent": "industrialcivilizationcore:orbital_habitat",
+  "display": {
+    "icon": {
+      "item": "computercraft:computer"
+    },
+    "title": {
+      "text": "07.04 \u2014 Orbital Communications and Telemetry"
+    },
+    "description": {
+      "text": "Orbital Communications and Telemetry"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "computercraft:computer"
+          }
+        ]
+      }
+    },
+    "evidence_2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "galacticraftcore:telemetry"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,4 +1,20 @@
 {
+  "parent": "industrialcivilizationcore:production_queue",
+  "display": {
+    "icon": {
+      "item": "minecraft:hopper"
+    },
+    "title": {
+      "text": "05.06 \u2014 Automated Multi-Step Manufacturing"
+    },
+    "description": {
+      "text": "Automated Multi-Step Manufacturing"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
   "criteria": {
     "runtime": {
       "trigger": "minecraft:impossible"

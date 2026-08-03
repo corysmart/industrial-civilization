@@ -1,4 +1,20 @@
 {
+  "parent": "industrialcivilizationcore:programmable_manufacturing",
+  "display": {
+    "icon": {
+      "item": "industrialcivilizationcore:gun_factory"
+    },
+    "title": {
+      "text": "S1.15 \u2014 Commission an Advanced Armament Factory"
+    },
+    "description": {
+      "text": "Deploy a covered Gun Factory and use its IC2-powered production program for a shotgun or automatic rifle instead of hand crafting advanced firearms."
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
   "criteria": {
     "runtime": {
       "trigger": "minecraft:impossible"

@@ -157,9 +157,10 @@ public final class PlanetaryEcologySystem {
         EntityPlayer target = null;
         double closest = Double.MAX_VALUE;
         for (EntityPlayer player : patrol.world.playerEntities) {
-            ProgressionState.data(player).setBoolean("known_faction_territorial_militia", true);
             double distance = patrol.getDistanceSq(player);
-            if (distance > 36.0D * 36.0D || distance >= closest) continue;
+            if (distance > 36.0D * 36.0D) continue;
+            FactionSystem.discoverFaction(player, "territorial_militia");
+            if (distance >= closest) continue;
             if (isPatrolHostileTo(patrol, player)) { target = player; closest = distance; }
         }
         patrol.setAttackTarget(target);

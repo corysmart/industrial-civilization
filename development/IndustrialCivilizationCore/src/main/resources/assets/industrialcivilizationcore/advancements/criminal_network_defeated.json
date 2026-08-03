@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:underworld_lead",
+  "display": {
+    "icon": {
+      "item": "industrialcivilizationcore:criminal_network_ledger"
+    },
+    "title": {
+      "text": "S1.02 \u2014 Break the Criminal Industrial Network"
+    },
+    "description": {
+      "text": "Defeat, negotiate with, expose, or dismantle the criminal NPC leadership controlling an abandoned industrial site."
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "industrialcivilizationcore:criminal_network_ledger"
+          }
+        ]
+      }
+    }
+  }
+}

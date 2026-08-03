@@ -1,4 +1,20 @@
 {
+  "parent": "industrialcivilizationcore:orbital_experiments",
+  "display": {
+    "icon": {
+      "item": "minecraft:filled_map"
+    },
+    "title": {
+      "text": "08.02 \u2014 Orbital Operational Data"
+    },
+    "description": {
+      "text": "Orbital Operational Data"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
   "criteria": {
     "runtime": {
       "trigger": "minecraft:impossible"

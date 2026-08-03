@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:ai_factory_coordination",
+  "display": {
+    "icon": {
+      "item": "industrialcivilizationcore:artificial_industrial_intelligence_core"
+    },
+    "title": {
+      "text": "16.04 \u2014 Predictive Production"
+    },
+    "description": {
+      "text": "Predictive Production"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "industrialcivilizationcore:artificial_industrial_intelligence_core"
+          }
+        ]
+      }
+    }
+  }
+}
