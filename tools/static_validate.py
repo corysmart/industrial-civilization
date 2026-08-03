@@ -416,6 +416,12 @@ ok("showOnlyPackAdvancementTabs" in client_source
 worldgen_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/CivilizationWorldGenerator.java").read_text()
 ok("if (!roadChunk && structure == 0) return;" in worldgen_source,
    "empty civilization chunks avoid terrain height work")
+terrain_gui = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/GuiTerrainWarmup.java").read_text()
+ok("doesGuiPauseGame()" in terrain_gui and "return false" in terrain_gui
+   and "hasNoChunkUpdates()" in terrain_gui and "TIMEOUT_MS = 60000L" in terrain_gui,
+   "terrain warmup screen waits for chunks and renderer without pausing or trapping the player")
+ok("holdTerrainLoadingScreen" in client_source and "terrainWarmupWorld != minecraft.world" in client_source,
+   "terrain warmup runs after every world or dimension transition")
 jei_config = (ROOT / "config/jei/jei.cfg").read_text()
 ok("S:tooltipSearchMode=ENABLED" in jei_config,
    "HEI retains full tooltip search despite its one-time startup indexing cost")

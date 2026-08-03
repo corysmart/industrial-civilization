@@ -527,6 +527,8 @@ public final class IndustrialCivilizationCore {
             key("keybind.railcraft.loco.whistle", 49, KeyModifier.ALT, 40, KeyModifier.ALT)
         };
         private static boolean keyBindingsChecked;
+        private static net.minecraft.client.multiplayer.WorldClient terrainWarmupWorld;
+        private static boolean terrainWarmupShown;
 
         @SubscribeEvent
         public static void registerModels(ModelRegistryEvent event) {
@@ -687,6 +689,26 @@ public final class IndustrialCivilizationCore {
                 LOGGER.info("Applied {} conflict-free inherited keybind migrations", changes);
             }
             keyBindingsChecked = true;
+        }
+
+        /** Delay player control until visible chunks and their render meshes are ready. */
+        @SubscribeEvent
+        public static void holdTerrainLoadingScreen(TickEvent.ClientTickEvent event) {
+            if (event.phase != TickEvent.Phase.END) return;
+            Minecraft minecraft = Minecraft.getMinecraft();
+            if (minecraft.world == null || minecraft.player == null) {
+                terrainWarmupWorld = null;
+                terrainWarmupShown = false;
+                return;
+            }
+            if (terrainWarmupWorld != minecraft.world) {
+                terrainWarmupWorld = minecraft.world;
+                terrainWarmupShown = false;
+            }
+            if (!terrainWarmupShown && minecraft.currentScreen == null) {
+                terrainWarmupShown = true;
+                minecraft.displayGuiScreen(new GuiTerrainWarmup());
+            }
         }
 
         private static KeyMigration key(String description, int oldCode, KeyModifier oldModifier,
