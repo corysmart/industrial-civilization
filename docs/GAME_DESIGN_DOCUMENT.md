@@ -69,7 +69,7 @@ Quest tasks use two mechanisms:
 - `bq_standard:advancement` for first-party machine operations and dimension/environment events implemented by IndustrialCivilizationCore.
 - `bq_standard:retrieval` for non-consuming ownership/construction evidence across other mods.
 
-The generator also owns story openings/transitions, contextual control blocks, evidence-driven icons, five era backgrounds, and `pack_version` 6. Existing worlds must import the new Better Questing default after backup; new worlds receive it directly.
+The generator also owns story openings/transitions, contextual control blocks, evidence-driven icons, five era backgrounds, and `pack_version` 7. Each quest tab begins at the center of its artwork and expands through deterministic rotated rings or ellipses, giving connector paths varied wheel, arc, diamond, and orbital geometry. Existing worlds must import the new Better Questing default after backup; new worlds receive it directly.
 
 ## Controls taught in quests
 

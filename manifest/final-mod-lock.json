@@ -3931,8 +3931,8 @@
     },
     {
       "file": "config/betterquesting/DefaultQuests.json",
-      "sha256": "3384005365be450bb0bb1c1da07b1b0c285fb720760d19588356f9bfcb53e2a1",
-      "size": 361790
+      "sha256": "ef92bef313218938dfd1115bf951b9378363de5385edb895f0962d8098665197",
+      "size": 362128
     },
     {
       "file": "config/blockcraftery.cfg",

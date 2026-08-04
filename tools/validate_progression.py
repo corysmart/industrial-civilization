@@ -317,7 +317,7 @@ for index, ms in enumerate(milestones):
 check(not any(ms.get("placeholder_id") for ms in milestones), "generated projection has no placeholder milestones")
 check(not any(quest.get("tasks:9", {}).get("0:10", {}).get("taskID:8") == "bq_standard:checkbox"
               for quest in quest_db.values()), "generated quest projection contains no manual checkbox tasks")
-check(quests.get("questSettings:10", {}).get("betterquesting:10", {}).get("pack_version:3") == 6, "Better Questing pack version includes story, controls, and accurate pictures")
+check(quests.get("questSettings:10", {}).get("betterquesting:10", {}).get("pack_version:3") == 7, "Better Questing pack version includes centered radial quest maps")
 
 expected_backgrounds = {
     "industrialcivilizationcore:textures/gui/quest_bg_earth_ui.png",
@@ -336,7 +336,17 @@ for resource in expected_backgrounds:
 
 placements = []
 for line in quest_lines.values():
-    placements.extend(entry.get("id:3") for entry in line.get("quests:9", {}).values())
+    entries = list(line.get("quests:9", {}).values())
+    placements.extend(entry.get("id:3") for entry in entries)
+    if entries:
+        check((entries[0].get("x:3"), entries[0].get("y:3")) == (244, 244),
+              "quest line opens at the 512px artwork center")
+        check(all(72 <= entry.get("x:3", -1) <= 416 and 92 <= entry.get("y:3", -1) <= 396
+                  for entry in entries),
+              "radial quest layout remains inside the readable artwork area")
+        if len(entries) >= 4:
+            check(len({entry.get("y:3") for entry in entries}) >= 3,
+                  "quest connector geometry varies vertically instead of forming a top-edge row")
 check(len(placements) == len(milestones) and len(set(placements)) == len(milestones), "every quest appears in exactly one chapter or side-path tab")
 for chapter in chapters:
     line = quest_lines.get(f"{chapter['number'] - 1}:10", {})

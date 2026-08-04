@@ -1,12 +1,41 @@
 #!/usr/bin/env python3
 """Generate Better Questing 3 data deterministically from progression/*.json."""
 import json
+import math
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PROGRESSION = ROOT / "progression"
 OUT = ROOT / "config" / "betterquesting" / "DefaultQuests.json"
 DETECTION = json.loads((PROGRESSION / "objective-detection.json").read_text(encoding="utf-8"))
+
+CANVAS_CENTER = 256
+QUEST_NODE_SIZE = 24
+
+
+def radial_position(index, total, line_seed):
+    """Center the opening quest, then distribute progression over two rings."""
+    center = CANVAS_CENTER - QUEST_NODE_SIZE // 2
+    if index == 0:
+        return center, center
+    remaining = total - 1
+    if remaining <= 6:
+        ring, slot, capacity = 1, index - 1, remaining
+    elif index <= 6:
+        ring, slot, capacity = 1, index - 1, 6
+    else:
+        ring, slot, capacity = 2, index - 7, remaining - 6
+    radius = 78 if ring == 1 else 160
+    # Each tab receives a distinct rotation, direction, and ellipse. Connector
+    # lines therefore form wheels, arcs, diamonds, and orbital-looking loops
+    # without sacrificing the centered start or deterministic generation.
+    rotation = math.radians((line_seed * 37) % 360)
+    direction = -1 if line_seed % 2 else 1
+    angle = rotation + direction * (2 * math.pi * slot / max(1, capacity))
+    y_scale = (0.72, 0.80, 0.88)[line_seed % 3]
+    x = round(CANVAS_CENTER + math.cos(angle) * radius - QUEST_NODE_SIZE / 2)
+    y = round(CANVAS_CENTER + math.sin(angle) * radius * y_scale - QUEST_NODE_SIZE / 2)
+    return x, y
 
 STORY_OPENINGS = {
     "survival_workshop": "You arrive with tools, hunger, and a blank map. Before there can be a civilization, there must be one defensible room where useful materials stop being loot and become inventory.",
@@ -316,7 +345,8 @@ def main():
     quest_lines = {}
     for chapter in chapters:
         line_quests = {}
-        critical_column = 0
+        visible_milestones = [ms for ms in chapter["milestones"] if not ms["optional"]]
+        visible_index = 0
         for index, ms in enumerate(chapter["milestones"]):
             qid = ids[ms["id"]]
             branch_id = branch_by_mid.get(ms["id"])
@@ -329,8 +359,8 @@ def main():
             quest_database[f"{qid}:10"] = quest(qid, ms, ids, line, story_index, story_total)
             if ms["optional"]:
                 continue
-            x, y = critical_column * 48, 0
-            critical_column += 1
+            x, y = radial_position(visible_index, len(visible_milestones), chapter["number"] - 1)
+            visible_index += 1
             line_quests[f"{qid}:10"] = {
                 "sizeX:3": 24, "x:3": x, "y:3": y,
                 "id:3": qid, "sizeY:3": 24,
@@ -380,8 +410,9 @@ def main():
         line_quests = {}
         for index, mid in enumerate(branch_milestones):
             qid = ids[mid]
+            x, y = radial_position(index, len(branch_milestones), 100 + branch_index)
             line_quests[f"{qid}:10"] = {
-                "sizeX:3": 24, "x:3": (index % 6) * 56, "y:3": (index // 6) * 64,
+                "sizeX:3": 24, "x:3": x, "y:3": y,
                 "id:3": qid, "sizeY:3": 24,
             }
         quest_lines[f"{line_id}:10"] = {
@@ -410,7 +441,7 @@ def main():
             "hardcore:1": 0,
             "home_image:8": "industrialcivilizationcore:textures/gui/quest_home_v2.png",
             "party_enable:1": 1,
-            "pack_version:3": 6,
+            "pack_version:3": 7,
             "home_offset_x:3": -128,
             "home_offset_y:3": 0,
         }},
