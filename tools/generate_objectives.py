@@ -370,6 +370,7 @@ def main():
             "quests:9": line_quests,
             "lineID:3": line_id,
             "properties:10": {"betterquesting:10": {
+                "visibility:8": "ALWAYS",
                 "name:8": f"{chapter['number']:02d} — {chapter['title']}",
                 "bg_image:8": ERA_BACKGROUNDS[CHAPTER_ERAS[chapter["id"]]],
                 "bg_size:3": 512,
@@ -419,6 +420,7 @@ def main():
             "quests:9": line_quests,
             "lineID:3": line_id,
             "properties:10": {"betterquesting:10": {
+                "visibility:8": "ALWAYS",
                 "name:8": title,
                 "bg_image:8": ERA_BACKGROUNDS[branch_eras[branch_id]],
                 "bg_size:3": 512,

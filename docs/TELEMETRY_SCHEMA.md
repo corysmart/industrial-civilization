@@ -2,7 +2,7 @@
 
 # Telemetry Schema
 
-The integration mod now persists a minimal local-only telemetry foundation: active ticks, manual crafts, manually broken blocks, dimension transfers, synchronized artifacts, per-machine completed operations, stored energy, current progress, cargo transfers, and solar generation. Players can inspect their personal counters with `/ic_status`; machines expose operational counters through ComputerCraft. Nothing is transmitted off the computer.
+The integration mod persists local-only telemetry: first milestone completion time and evidence source, active ticks, manual crafts, manually broken blocks, dimension transfers, synchronized artifacts, per-machine completed operations, stored energy, current progress, cargo transfers, solar generation, and sustained off-world habitat samples. Players can inspect personal counters with `/ic_status`; machines expose operational counters through ComputerCraft. Nothing is transmitted off the computer.
 
 `progression/telemetry-schema.json` defines the complete future pacing dataset:
 
@@ -26,4 +26,4 @@ The integration mod now persists a minimal local-only telemetry foundation: acti
 - `computercraft_programs_used`: `integer`
 - `ae_unlock_time`: `seconds`
 
-Fields not yet attributable reliably across inherited mods—automatic mining, all EU network generation/consumption, reactor efficiency, and imported/locally produced resource totals—remain schema-only. The goal is to compare real engineering behavior with 20/40/80 targets, not surveil players or enforce timers.
+Complex orbital, lunar and Mars base quests now require sustained runtime evidence rather than inventory ownership: Galacticraft breathable air, nearby communications, operating local manufacturing, automated mining, local power and dimension-specific requirements. Fields not yet attributable reliably across inherited mods—automatic mining totals, all EU network generation/consumption, reactor efficiency, chapter rollups and complete imported/locally produced resource totals—remain schema-only. The goal is pacing analysis and reliable quest completion, not surveillance or fixed timers.

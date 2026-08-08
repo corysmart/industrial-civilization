@@ -3,6 +3,7 @@
   "privacy": "local_only_no_transmission",
   "implemented": "partial",
   "implemented_fields": [
+    "milestone_completion_time",
     "manual_crafts",
     "blocks_mined_manually",
     "autocrafting_operations",

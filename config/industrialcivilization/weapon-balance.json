@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "scope": "Player-fired Techguns damage after upstream calculation",
+  "damage_multipliers": {"pistol": 0.90, "shotgun": 0.84, "rifle_or_m4": 0.78, "other": 0.85},
+  "condition_multiplier": "0.70 + 0.30 * max(0.35, condition_fraction)",
+  "design": "A creative exploration or automation acquisition remains valid. Industrial manufacture supplies reliability, ammunition and replacement scale rather than exclusive permission."
+}

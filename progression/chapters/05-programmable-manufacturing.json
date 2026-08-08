@@ -154,7 +154,7 @@
         "Complete the programmable manufacturing route OR restore and audit the captured factory control system."
       ],
       "automation_paths": [],
-      "temporary_validation": "Check this transition after either prerequisite route completes. The recovered-control route intentionally bypasses Chapter 5 construction quests."
+      "runtime_advancement": true
     }
   ]
 }

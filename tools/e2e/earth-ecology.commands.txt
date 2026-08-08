@@ -1,0 +1,4 @@
+# Disposable real-client ecology regression contract.
+/ic_test scenario earth_ecology
+/ic_test assert earth_ecology
+/ic_test snapshot 64

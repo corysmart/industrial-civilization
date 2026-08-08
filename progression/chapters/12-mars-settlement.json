@@ -51,7 +51,8 @@
       "final_validation": [
         "Establish pressure, oxygen, water, radiation protection, communications, and safe habitation."
       ],
-      "automation_paths": []
+      "automation_paths": [],
+      "runtime_advancement": true
     },
     {
       "id": "martian_power",
@@ -85,7 +86,8 @@
       "final_validation": [
         "Mine and route Martian resources without direct labor."
       ],
-      "automation_paths": []
+      "automation_paths": [],
+      "runtime_advancement": true
     },
     {
       "id": "martian_manufacturing",
@@ -101,7 +103,8 @@
       "final_validation": [
         "Process Martian materials and manufacture colony components locally."
       ],
-      "automation_paths": []
+      "automation_paths": [],
+      "runtime_advancement": true
     },
     {
       "id": "mars_sample",
@@ -155,7 +158,7 @@
         "Sustain habitat, water, power, communications, automated mining, local manufacturing, research readiness, and return capability."
       ],
       "automation_paths": [],
-      "temporary_validation": "Manual-check the base until colony telemetry triggers exist."
+      "runtime_advancement": true
     }
   ]
 }

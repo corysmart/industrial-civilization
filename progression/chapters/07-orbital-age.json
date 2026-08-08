@@ -33,7 +33,8 @@
       "final_validation": [
         "Build a Tier 1 launch system and safely reach Earth orbit; this alone does not authorize Moon access."
       ],
-      "automation_paths": []
+      "automation_paths": [],
+      "runtime_advancement": true
     },
     {
       "id": "orbital_habitat",
@@ -49,7 +50,8 @@
       "final_validation": [
         "Establish pressure, oxygen, storage, and safe habitation in orbit."
       ],
-      "automation_paths": []
+      "automation_paths": [],
+      "runtime_advancement": true
     },
     {
       "id": "orbital_power",
@@ -81,7 +83,8 @@
       "final_validation": [
         "Bring a ComputerCraft telemetry and communications system online."
       ],
-      "automation_paths": []
+      "automation_paths": [],
+      "runtime_advancement": true
     },
     {
       "id": "research_station",
@@ -136,7 +139,7 @@
         "Sustain habitation, oxygen, power, storage, telemetry, research equipment, and safe arrival infrastructure."
       ],
       "automation_paths": [],
-      "temporary_validation": "Manual-check the assembled station until environment/uptime triggers exist."
+      "runtime_advancement": true
     }
   ]
 }

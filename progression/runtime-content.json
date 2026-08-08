@@ -33,7 +33,19 @@
     {"id": "car_workshop", "system": "covered multiblock vehicle manufacturing"},
     {"id": "gun_factory", "system": "covered multiblock advanced firearm manufacturing"},
     {"id": "repair_bench", "system": "rain-rust workshop repair"},
-    {"id": "vehicle_service_dock", "system": "parked service vehicle BuildCraft interface"}
+    {"id": "vehicle_service_dock", "system": "parked service vehicle BuildCraft interface"},
+    {"id": "steel_frame", "system": "placeable workshop architecture"},
+    {"id": "steel_casing", "system": "placeable workshop architecture"},
+    {"id": "machine_casing", "system": "placeable workshop architecture"},
+    {"id": "reinforced_plate", "system": "placeable workshop architecture"},
+    {"id": "grated_plate", "system": "placeable workshop architecture"},
+    {"id": "industrial_floor", "system": "placeable workshop architecture"},
+    {"id": "hazard_stripe", "system": "placeable workshop architecture"},
+    {"id": "workshop_cable_block", "system": "placeable workshop architecture"},
+    {"id": "workshop_cable_cover", "system": "placeable workshop architecture"},
+    {"id": "reinforced_glass_panel", "system": "placeable workshop architecture"},
+    {"id": "tool_wall", "system": "placeable workshop architecture"},
+    {"id": "drawer_cabinet", "system": "placeable workshop architecture"}
   ],
   "items": [
     {"id": "material_pattern_record", "system": "Lite Matter record"},

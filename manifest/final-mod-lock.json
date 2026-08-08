@@ -1637,8 +1637,8 @@
     {
       "file": "mods/IndustrialCivilizationCore-0.2.0.jar",
       "filename": "IndustrialCivilizationCore-0.2.0.jar",
-      "size": 2765862,
-      "sha256": "413ef639dc71508b62eaf4b1a4c1aed94f40e82021bf5d55bfb10a7ba5bf4b79",
+      "size": 2880539,
+      "sha256": "60fc684f381f0eb1ad35baf2ace45d96f50841e91dfe14735a1ccb9669b0013a",
       "classification": "KEEP",
       "mods": [
         {
@@ -3931,8 +3931,8 @@
     },
     {
       "file": "config/betterquesting/DefaultQuests.json",
-      "sha256": "ef92bef313218938dfd1115bf951b9378363de5385edb895f0962d8098665197",
-      "size": 362128
+      "sha256": "2fc63d4e7b91a486362e02008da6dff1ba30687de94c94607c8059b53d6ac7d3",
+      "size": 355614
     },
     {
       "file": "config/blockcraftery.cfg",
@@ -4365,6 +4365,11 @@
       "size": 1397
     },
     {
+      "file": "config/industrialcivilization/economy-balance.json",
+      "sha256": "f1c9619996c8a3ec58a107e0e3ee085d7f0e052f4b83f63302505779adbf85a0",
+      "size": 799
+    },
+    {
       "file": "config/industrialcivilization/faction-system.json",
       "sha256": "baa6e37ecd1c9bc72124b8b40f6ec32ea1bb28768db2c33ea57216966c1a281b",
       "size": 2983
@@ -4386,8 +4391,13 @@
     },
     {
       "file": "config/industrialcivilization/runtime.cfg",
-      "sha256": "215762c98884d1cd9b472762ab94abea11dde4d486b64f0ae297d51124084bca",
-      "size": 204
+      "sha256": "4c794f33a8d4bf32e21d91309336ed0cb421d95ba7d3f168cef44f40ddfedb58",
+      "size": 1025
+    },
+    {
+      "file": "config/industrialcivilization/weapon-balance.json",
+      "sha256": "cc5c093ec0855336dd02aed1bdd400a70e257cb38bf4359818cc994efc46c9ca",
+      "size": 455
     },
     {
       "file": "config/industrialforegoing.cfg",
@@ -5061,8 +5071,8 @@
     },
     {
       "file": "config/teamreborn/mainmenuscale/config.cfg",
-      "sha256": "09f649e2cc24ca802304129cd0f86e9b199f6163f2bc43ea24d4557927401227",
-      "size": 402
+      "sha256": "fc46cfe7eeb7236fe91acb8f23b709a57b86c663a25161adecaa97ff9fb03e41",
+      "size": 401
     },
     {
       "file": "config/teamreborn/reborncore/client.cfg",
@@ -5176,8 +5186,8 @@
     },
     {
       "file": "groovy/postInit/industrial_civilization.groovy",
-      "sha256": "b481f19cad5ec9c70647504db8534bd51ab42e6abf81744f5d939c7f9fcc2e2d",
-      "size": 6480
+      "sha256": "833d2d2e8bb43b504bf823c5e6c0d6bf5d2ab8386e6d802557b419ebadc852ef",
+      "size": 10065
     },
     {
       "file": "groovy/postInit/industrial_civilization_content.groovy",
@@ -5216,8 +5226,8 @@
     },
     {
       "file": "resources/industrialcivilizationcore/textures/gui/quest_bg_earth_ui.png",
-      "sha256": "0dd12a0d3e7490be66c25de650d25e583e6c134ac23a5ffb713b9846d27f9c4c",
-      "size": 181521
+      "sha256": "427d4712e01fb3d40f3c45f9a40b9a4a640da65a012242cdf0d592d95d4f1505",
+      "size": 261791
     },
     {
       "file": "resources/industrialcivilizationcore/textures/gui/quest_bg_mars.png",
@@ -5226,8 +5236,8 @@
     },
     {
       "file": "resources/industrialcivilizationcore/textures/gui/quest_bg_mars_ui.png",
-      "sha256": "8e287a8ab587131654ed9c41c9da8d1d73905b690c4991b7995486cb5aef82ea",
-      "size": 274794
+      "sha256": "6dfd5bf1bb8f07b1436304a72a0e224723dcf2e2a0859d006ad21a66c3ee5a82",
+      "size": 374103
     },
     {
       "file": "resources/industrialcivilizationcore/textures/gui/quest_bg_moon.png",
@@ -5236,8 +5246,8 @@
     },
     {
       "file": "resources/industrialcivilizationcore/textures/gui/quest_bg_moon_ui.png",
-      "sha256": "c0d490eea320aeb6bd7760b462667c317f11689982170b792d913baf347e2726",
-      "size": 244996
+      "sha256": "bdba4e7b3daada9a685d9036f14f7e6df62367895edd46c2008b79a19daa95c2",
+      "size": 345803
     },
     {
       "file": "resources/industrialcivilizationcore/textures/gui/quest_bg_orbit.png",
@@ -5246,8 +5256,8 @@
     },
     {
       "file": "resources/industrialcivilizationcore/textures/gui/quest_bg_orbit_ui.png",
-      "sha256": "f4586d72b30dc76d9a2628da0ffc97b798a64dd62cd5d825c5f91ad916aa9667",
-      "size": 192917
+      "sha256": "488f5562523347e2287439d254a567430910a784befb0b57a0dc298664cac26f",
+      "size": 280963
     },
     {
       "file": "resources/industrialcivilizationcore/textures/gui/quest_bg_post_ai.png",
@@ -5256,8 +5266,8 @@
     },
     {
       "file": "resources/industrialcivilizationcore/textures/gui/quest_bg_post_ai_ui.png",
-      "sha256": "914b6fad5c20d31f19f3fb8827b6b59e6370a26887ec152610b7b56b04221ad1",
-      "size": 256120
+      "sha256": "c70bd55437dcf04e879f822ba152e8978f21e5cdca1ec1e90ae1333e1ddc3c69",
+      "size": 352423
     },
     {
       "file": "resources/industrialcivilizationcore/textures/gui/quest_home.png",

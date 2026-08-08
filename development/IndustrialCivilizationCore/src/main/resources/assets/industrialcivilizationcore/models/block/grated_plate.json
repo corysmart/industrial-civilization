@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "industrialcivilizationcore:blocks/grated_plate",
+    "north": "industrialcivilizationcore:blocks/grated_plate",
+    "south": "industrialcivilizationcore:blocks/grated_plate_side",
+    "east": "industrialcivilizationcore:blocks/grated_plate_side",
+    "west": "industrialcivilizationcore:blocks/grated_plate_side",
+    "up": "industrialcivilizationcore:blocks/grated_plate_top",
+    "down": "industrialcivilizationcore:blocks/grated_plate_side"
+  }
+}

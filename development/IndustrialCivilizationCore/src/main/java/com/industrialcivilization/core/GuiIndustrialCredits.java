@@ -8,6 +8,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.io.IOException;
+import java.util.List;
 
 /** The pack's post-AI credits, shown without ending or deleting the playable world. */
 @SideOnly(Side.CLIENT)
@@ -24,7 +25,9 @@ public final class GuiIndustrialCredits extends GuiScreen {
     public void initGui() {
         openedAt = System.currentTimeMillis();
         buttonList.clear();
-        buttonList.add(new GuiButton(0, width / 2 - 100, height - 28, 200, 20,
+        int buttonWidth = Math.max(80, Math.min(200, width - 24));
+        buttonList.add(new GuiButton(0, width / 2 - buttonWidth / 2,
+            Math.max(4, height - 28), buttonWidth, 20,
             I18n.format("gui.done")));
     }
 
@@ -60,14 +63,21 @@ public final class GuiIndustrialCredits extends GuiScreen {
     }
 
     private int line(String text, int y, int color, float scale) {
+        int logicalWidth = Math.max(40, (int) ((width - 24) / scale));
+        List<String> lines = fontRenderer.listFormattedStringToWidth(text, logicalWidth);
         if (y > -30 && y < height + 30) {
             net.minecraft.client.renderer.GlStateManager.pushMatrix();
             net.minecraft.client.renderer.GlStateManager.scale(scale, scale, 1.0F);
-            drawCenteredString(fontRenderer, text, (int) (width / (2.0F * scale)),
-                (int) (y / scale), color);
+            int center = (int) (width / (2.0F * scale));
+            int lineY = (int) (y / scale);
+            for (int index = 0; index < lines.size(); index++) {
+                drawCenteredString(fontRenderer, lines.get(index), center,
+                    lineY + index * (fontRenderer.FONT_HEIGHT + 2), color);
+            }
             net.minecraft.client.renderer.GlStateManager.popMatrix();
         }
-        return y + (int) (18 * scale);
+        int wrappedHeight = lines.size() * (fontRenderer.FONT_HEIGHT + 2);
+        return y + Math.max((int) (18 * scale), (int) (wrappedHeight * scale));
     }
 
     @Override

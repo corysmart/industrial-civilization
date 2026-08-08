@@ -168,7 +168,7 @@
         "Complete the Heavy Industrial Complex construction route OR restore the side-path abandoned factory to safe operation."
       ],
       "automation_paths": [],
-      "temporary_validation": "Check this transition after either prerequisite route completes. The restored-factory route intentionally bypasses Chapter 4 construction quests."
+      "runtime_advancement": true
     }
   ]
 }

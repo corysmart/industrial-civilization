@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "driver": "HeadlessMC HMC-Specifics Forge 1.12.2",
+  "pack_source": "/Users/cory/Library/Application Support/technic/modpacks/tekkit-2",
+  "checks": [
+    {"id": "title", "action": "render", "expect": "Industrial Civilization"},
+    {"id": "quest_key", "action": "key f6", "expect_gui_contains": "betterquesting"},
+    {"id": "quest_home", "action": "render", "expect": "Quests"},
+    {"id": "pause", "action": "menu", "expect": "Advancements"},
+    {"id": "world_join", "action": "create disposable flat world", "expect_gui": "none"},
+    {"id": "status", "action": "/ic_status", "expect": "Industrial Civilization telemetry"},
+    {"id": "inventory", "action": "menu -inventory", "expect": "Industrial Civilization"},
+    {"id": "screenshot", "action": "key f2", "expect": "Saved screenshot"}
+  ],
+  "runtime_only_scenarios": [
+    "protected and modded tree harvesting",
+    "horizontal and vertical drill planes with partial EU",
+    "irregular and cross-chunk breathable rooms",
+    "moving vehicle breathable-air transitions",
+    "settlement material-bill upgrades",
+    "post-AI existing Mars chunk conversion"
+  ]
+}

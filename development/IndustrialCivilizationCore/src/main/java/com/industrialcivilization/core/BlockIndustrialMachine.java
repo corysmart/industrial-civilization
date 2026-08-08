@@ -3,8 +3,10 @@ package com.industrialcivilization.core;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -31,6 +33,16 @@ public final class BlockIndustrialMachine extends BlockContainer {
     @Override
     public TileEntity createNewTileEntity(World world, int metadata) {
         return new TileIndustrialMachine();
+    }
+
+    @Override
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state,
+            EntityLivingBase placer, ItemStack stack) {
+        super.onBlockPlacedBy(world, pos, state, placer, stack);
+        TileEntity tile = world.getTileEntity(pos);
+        if (tile instanceof TileIndustrialMachine) {
+            ((TileIndustrialMachine) tile).setWorkshopFacing(placer.getHorizontalFacing());
+        }
     }
 
     @Override

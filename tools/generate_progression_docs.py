@@ -13,11 +13,54 @@ pacing = json.loads((PROG / "pacing.json").read_text())
 profiles = json.loads((PROG / "optimization-profiles.json").read_text())
 placeholders = json.loads((PROG / "placeholder-registry.json").read_text())
 telemetry = json.loads((PROG / "telemetry-schema.json").read_text())
+detection = json.loads((PROG / "objective-detection.json").read_text())
 milestones = ([m for c in chapters for m in c["milestones"]] +
               [m for p in side_paths for m in p["milestones"]])
 by_id = {m["id"]: m for m in milestones}
 
 NOTICE = "<!-- Generated from progression/*.json by tools/generate_progression_docs.py. -->\n\n"
+
+RUNTIME_TEST_ACTIONS = {
+    "faction_contacts": "Find and approach members of the Frontier Cooperative, Survey Detachment 7, and Ashline Raiders so all three factions are discovered. Complete at least one real IC Credit trade; merely opening a merchant is insufficient.",
+    "industrial_capacity_access": "Complete Heavy Industrial Complex on the main construction route. Remain in the world for at least five seconds so the route-transition telemetry can grant the advancement. Do not use the abandoned-factory side-route during this main-line run.",
+    "production_queue": "Place and power a Programmable Assembler, attach a ComputerCraft computer, wrap the assembler peripheral, select `control_processor`, and queue five operations. Supply the required Precision Frames, Blank Data Cartridges, and Redstone. The first completed operation grants this quest.",
+    "multi_step_manufacturing": "Leave the same five-control-processor queue running with routed inputs and output space. The third completed operation grants this quest.",
+    "programmable_manufacturing": "Keep telemetry attached and let the fifth queued Control Processor finish. Confirm the assembler reports completed operations and can recover after one deliberately removed ingredient is restored.",
+    "programmable_capacity_access": "After Programmable Manufacturing completes, remain in the world for at least five seconds so the validated main-route transition is recorded. Do not use the recovered-control-system side-route.",
+    "tier1_orbital_launch": "Build and fuel a Galacticraft Tier 1 rocket, launch it, and arrive in an Earth-orbit space-station dimension. Wait up to five seconds after arrival for telemetry sampling.",
+    "orbital_habitat": "In orbit, build a sealed room with a working Galacticraft breathable-air system. Stand inside breathable air until the next five-second telemetry sample. Merely carrying oxygen equipment must not complete this quest.",
+    "orbital_communications": "While standing inside the orbital breathable room, place a ComputerCraft computer or recognized telemetry block within 32 blocks. Wait for the next five-second sample.",
+    "functional_orbital_station": "Within 32 blocks of the player, maintain breathable air, a recognized computer/telemetry block, a Research Station, an Orbital Experiment Module, and a powered block or charged Environmental Solar Array. Keep the habitat stable for 24 five-second samples—two continuous minutes.",
+    "orbital_experiments": "In orbit, power an Orbital Experiment Module, insert one Blank Data Cartridge, and complete the `record_orbital_data` operation. Take or leave the resulting orbit-tagged Research Data in the output slot.",
+    "orbital_operational_data": "The same completed `record_orbital_data` operation grants this evidence. Verify both quests complete from the machine operation, not from a spawned Research Data item.",
+    "orbital_solar_industry": "In orbit, place an Environmental Solar Array with clear sky, connect an IC2 load or storage block, and right-click the array once to attribute operation to the tester. Let it generate at least 10,000 EU.",
+    "orbital_tracking_array": "In orbit, repeat the previous test with the Advanced Tracking Solar Array. Right-click it once and let lifetime generation reach at least 10,000 EU.",
+    "moon_access": "Produce or spawn the Orbital Research Archive only after its quest unlocks, keep it in inventory for at least one second so authorization records, then use Galacticraft travel to enter the Moon. Confirm travel is denied before the archive and accepted afterward.",
+    "lunar_landing": "Complete an authorized Moon transfer after Moon Access. Confirm this arrives through Galacticraft travel rather than a dimension command; wait for the advancement task to update.",
+    "lunar_habitat": "On the Moon, build a sealed room with working breathable air and stand inside it until the next five-second sample.",
+    "lunar_power": "On the Moon, place an Environmental Solar Array with clear sky, connect storage/load, right-click it for attribution, and accumulate at least 10,000 EU generation.",
+    "lunar_mining": "While inside the breathable lunar habitat, keep a recognized quarry or automated miner within 32 blocks until the next five-second sample.",
+    "lunar_manufacturing": "Inside the lunar habitat, run at least one operation in a nearby Electric Fabricator, Programmable Assembler, or Robotic Manufacturing Cell. The machine must have a completed-operation count above zero.",
+    "functional_lunar_base": "Maintain breathable air, recognized communications, automated mining, a locally operated manufacturing machine, and power within 32 blocks. Keep all conditions stable for 24 five-second samples—two continuous minutes.",
+    "lunar_science_program": "On the Moon, power an Orbital Experiment Module, insert a Blank Data Cartridge, and complete `record_lunar_data` to create Moon-tagged Research Data.",
+    "lunar_darkness_mastery": "On the Moon, right-click an unobstructed Environmental Solar Array to attribute it to the tester, then leave it loaded through 12,000 nighttime ticks while the habitat remains usable. Do not use `/time set day` during the interval.",
+    "lunar_precision_manufacturing": "After Lunar Science, use a lunar Research Station to complete `lunar_archive` with Moon-tagged Research Data plus the Orbital Research Archive. The resulting Lunar Engineering Archive is intentionally manufactured before its retrieval quest unlocks. Then use a powered lunar Robotic Manufacturing Cell to complete `lunar_quantum_component` with one Control Processor, that Lunar Engineering Archive, and one raw Meteoric Iron.",
+    "tier2_mars_launch": "Hold both the Lunar Quantum Component and Mars Mission Authorization long enough for authorization to record, unlock the Tier 2 schematic page, build/fuel a Tier 2 rocket, and travel to Mars. Confirm Mars rejects entry before either authorization item is recorded.",
+    "martian_habitat": "On Mars, build a sealed room with working breathable air and stand inside it until the next five-second sample.",
+    "martian_power": "On Mars, place an Environmental Solar Array with clear sky, connect storage/load, right-click it for attribution, and accumulate at least 10,000 EU despite the deterministic dust derating.",
+    "martian_mining": "While inside the breathable Martian habitat, keep a recognized quarry or automated miner within 32 blocks until the next five-second sample.",
+    "martian_manufacturing": "Inside the Martian habitat, run at least one operation in a nearby Electric Fabricator, Programmable Assembler, or Robotic Manufacturing Cell.",
+    "functional_martian_base": "Keep Galacticraft Desh metadata 2 in inventory and maintain breathable air, communications, automated mining, local manufacturing, and power within 32 blocks for 24 five-second samples—two continuous minutes.",
+    "martian_science_program": "On Mars, power an Orbital Experiment Module, insert a Blank Data Cartridge, and complete `record_martian_data` to create Mars-tagged Research Data.",
+    "autonomous_resource_response": "On Mars, power a Research Station and complete `martian_autonomy` using Mars-tagged Research Data and one Control Processor. This implemented operation grants the resource-response evidence.",
+    "autonomous_power_response": "The same completed `martian_autonomy` operation currently grants the power-response evidence. During the mechanics check, interrupt and restore power and confirm the installation recovers safely.",
+    "unattended_martian_production": "The same completed `martian_autonomy` operation grants unattended-production evidence after both response quests are satisfied. Confirm the output is a Martian Autonomy Archive.",
+    "analyzer_power": "Place and supply the Molecular Analyzer with at least 6,250 EU. Insert one supported sample and complete an analysis; the first successful analysis grants this quest.",
+    "comparative_molecular_analysis": "Complete three successful Analyzer runs using an Earth Iron Ingot, lunar raw Meteoric Iron, and Galacticraft Desh metadata 2. Verify each resulting Material Pattern Record carries the correct origin tag.",
+    "lite_matter_complete": "The third distinct Earth/Moon/Mars Analyzer origin grants this completion together with comparative analysis. Confirm spawned pattern records alone do not grant it.",
+    "ai_age_entry": "After the prerequisite audit, obtain the AI Core and keep it in inventory for at least one second. The player must already have the Lite Matter completion record and the canonical Martian Autonomy Archive record. Confirm the scrolling credits appear once and return to the playable world.",
+    "technical_phase_pearl": "After AI Age Entry, craft the Technical Phase Pearl through its real recipe with the durable AI Core catalyst. Spawning an Ender Pearl must not complete this quest; a real crafting event must.",
+}
 
 
 def write(name, title, body):
@@ -225,13 +268,154 @@ The continuing loop is Explore → Research → Automate → Scale → Establish
 
 fields = "\n".join(f"- `{f['id']}`: `{f['type']}`" for f in telemetry["fields"])
 write("TELEMETRY_SCHEMA.md", "Telemetry Schema", f"""
-The integration mod now persists a minimal local-only telemetry foundation: active ticks, manual crafts, manually broken blocks, dimension transfers, synchronized artifacts, per-machine completed operations, stored energy, current progress, cargo transfers, and solar generation. Players can inspect their personal counters with `/ic_status`; machines expose operational counters through ComputerCraft. Nothing is transmitted off the computer.
+The integration mod persists local-only telemetry: first milestone completion time and evidence source, active ticks, manual crafts, manually broken blocks, dimension transfers, synchronized artifacts, per-machine completed operations, stored energy, current progress, cargo transfers, solar generation, and sustained off-world habitat samples. Players can inspect personal counters with `/ic_status`; machines expose operational counters through ComputerCraft. Nothing is transmitted off the computer.
 
 `progression/telemetry-schema.json` defines the complete future pacing dataset:
 
 {fields}
 
-Fields not yet attributable reliably across inherited mods—automatic mining, all EU network generation/consumption, reactor efficiency, and imported/locally produced resource totals—remain schema-only. The goal is to compare real engineering behavior with 20/40/80 targets, not surveil players or enforce timers.
+Complex orbital, lunar and Mars base quests now require sustained runtime evidence rather than inventory ownership: Galacticraft breathable air, nearby communications, operating local manufacturing, automated mining, local power and dimension-specific requirements. Fields not yet attributable reliably across inherited mods—automatic mining totals, all EU network generation/consumption, reactor efficiency, chapter rollups and complete imported/locally produced resource totals—remain schema-only. The goal is pacing analysis and reliable quest completion, not surveillance or fixed timers.
+""")
+
+def evidence_for(milestone):
+    if milestone.get("required_item"):
+        return [milestone["required_item"]]
+    return detection.get("overrides", {}).get(milestone["id"], [milestone["icon"]])
+
+
+def evidence_text(value):
+    spec = value if isinstance(value, dict) else {"item": value}
+    count = spec.get("count", 1)
+    amount = f"{count}× " if count != 1 else ""
+    ore = f"; ore dictionary `{spec['ore_dict']}`" if spec.get("ore_dict") else ""
+    return f"{amount}`{spec['item']}`{ore}"
+
+
+main_milestones = [m for chapter in chapters for m in chapter["milestones"]]
+main_ids = {m["id"] for m in main_milestones}
+main_successors = {mid: [] for mid in main_ids}
+for candidate in main_milestones:
+    for prerequisite in candidate["prerequisites"]:
+        if prerequisite in main_successors:
+            main_successors[prerequisite].append(candidate["id"])
+
+runtime_ids = {m["id"] for m in main_milestones if m.get("runtime_advancement")}
+missing_runtime_steps = sorted(runtime_ids - set(RUNTIME_TEST_ACTIONS))
+if missing_runtime_steps:
+    raise RuntimeError("Missing main-quest runtime test actions: " + ", ".join(missing_runtime_steps))
+
+test_sections = []
+test_number = 0
+for chapter in chapters:
+    chapter_steps = []
+    for milestone in chapter["milestones"]:
+        test_number += 1
+        prerequisites = milestone["prerequisites"]
+        logic = milestone.get("prerequisite_logic", "AND")
+        prerequisite_text = "none; this is the opening quest" if not prerequisites else (
+            f" {logic} ".join(f"`{value}`" for value in prerequisites))
+        if milestone.get("runtime_advancement"):
+            mode = "Runtime advancement"
+            action = RUNTIME_TEST_ACTIONS[milestone["id"]]
+            negative = "Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task."
+        else:
+            mode = "Non-consuming inventory retrieval"
+            required = ", ".join(evidence_text(value) for value in evidence_for(milestone))
+            action = ("Before this quest unlocks, keep its matching evidence out of the player inventory. "
+                      f"After it unlocks, obtain or Creative-give all of the following at the same time: {required}. "
+                      "Wait at least two seconds for Better Questing inventory detection; the items must remain unconsumed.")
+            negative = "Confirm the quest did not gain progress while locked and that removing/re-adding the evidence works without a manual checkbox or claim button."
+        successors = main_successors[milestone["id"]]
+        if successors:
+            expected = ("The quest completes in F6 and its matching vanilla advancement is complete. "
+                        "These direct main-line successors become eligible after their other prerequisites are satisfied: "
+                        + ", ".join(f"`{value}`" for value in successors) + ".")
+        else:
+            expected = "The quest completes in F6 and its matching vanilla advancement is complete; no numbered main-line quest directly depends on it."
+        if milestone["id"] == chapter["completion_milestone"]:
+            expected += f" This is the declared completion milestone for Chapter {chapter['number']}."
+        validation = " ".join(milestone["final_validation"])
+        chapter_steps.append(f"""### {test_number}. {milestone['title']} (`{milestone['id']}`)
+
+- **Prerequisites:** {prerequisite_text}.
+- **Detection mode:** {mode}.
+- **Exact test action:** {action}
+- **Negative assertion:** {negative}
+- **Expected quest result:** {expected}
+- **Gameplay assertion:** {validation}
+- **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
+""")
+    entry_check = ("Confirm this opening quest is available immediately in the fresh world and every later chapter is visible but locked."
+                   if chapter["number"] == 1 else
+                   "Before completing this chapter's opening quest, confirm the chapter is visible for browsing but its locked quest cannot be opened or progressed. After the previous chapter's completion milestone is satisfied, confirm the opening quest becomes available without a reload.")
+    test_sections.append(f"""## Chapter {chapter['number']:02d} — {chapter['title']}
+
+**Chapter purpose:** {chapter['purpose']}
+
+**Entry check:** {entry_check}
+
+{chr(10).join(chapter_steps)}
+**Chapter exit check:** Confirm `{chapter['completion_milestone']}` is complete, the next numbered chapter is visible and correctly unlocked when applicable, and unrelated later chapters remain locked.
+""")
+
+write("MAIN_QUESTLINE_TEST_PLAN.md", "Main Questline Creative Progression Test Plan", f"""
+## Scope and pass condition
+
+This plan tests only the **16 numbered chapters and their {len(main_milestones)} main-line quests**. Independent faction, vehicle, salvage, weapon, and strategic-defense side quests are excluded. The two main transition quests that support a side-route must be tested through their numbered-chapter construction route in this run.
+
+A pass requires every quest to complete from its declared automatic evidence, every prerequisite boundary to behave correctly, every matching vanilla advancement to agree with Better Questing, and every broader gameplay assertion to be checked separately. Inventory evidence proves acquisition only; it does not prove that the represented structure or machine genuinely works.
+
+Current main-line detection split: **{len(main_milestones) - len(runtime_ids)} non-consuming inventory tasks** and **{len(runtime_ids)} runtime-advancement tasks**.
+
+## Test-world preparation
+
+1. Fully quit Minecraft and restart the Technic pack so the latest integration JAR and generated quest database are loaded.
+2. Create a new disposable Creative world with cheats enabled. Do not use a valued survival world and do not reuse a player whose advancements already contain Industrial Civilization progress.
+3. Let the world warmup overlay finish. Open F6 and verify 16 numbered chapter tabs appear, the first quest is centered, all future chapters remain aspirationally visible, and locked quests cannot be opened or progressed.
+4. Open Pause → Advancements and verify the Industrial Civilization root and ordered quest nodes exist. Return to the world and use F6 as the primary guide.
+5. Do not use `/advancement grant`, Better Questing editing/complete commands, `/ic_test`, NBT editors, or the runtime space-gate bypass. Creative item giving is allowed only for the inventory-evidence steps listed below.
+6. Create a labeled staging area with chests for quest evidence, IC2 power sources/storage, Industrial Civilization machines, ComputerCraft computers, Galacticraft launch/habitat equipment, and sample materials.
+7. Keep the player's inventory free of evidence for quests that have not unlocked. After an inventory quest completes, return its evidence to the staging chest unless an upcoming runtime step requires it. This prevents a newly unlocked retrieval task from completing before its negative assertion can be observed.
+8. Use Creative search or `/give @p <namespace:item> <count> <metadata>` for listed evidence. A trailing `:*` means any metadata accepted by the quest; prefer the exact machine or tool described by the quest.
+9. Allow at least two seconds for inventory tasks and up to five seconds for ordinary runtime telemetry. Sustained off-world base mastery requires 24 five-second samples, or two continuous minutes.
+10. After every action, compare F6 and Pause → Advancements. Record the quest ID, evidence used, result, unexpected unlocks, and screenshots. Run `/ic_status` when runtime evidence appears delayed.
+
+## Global negative-gate checks
+
+- Moon travel must fail before the Orbital Research Archive is recorded.
+- Quantum Technology must remain locked before the Lunar Engineering Archive quest completes.
+- Mars travel must fail without both the Lunar Quantum Component and Mars Mission Authorization.
+- AI Age Entry must remain incomplete until the AI Core, Martian Autonomy, and Lite Matter runtime records all exist.
+- The Technical Phase Pearl must have no usable pre-AI acquisition route and must not complete from a Creative-spawned pearl.
+- Future visible quests must not accumulate progress while locked.
+
+## Ordered quest procedure
+
+{chr(10).join(test_sections)}
+## End-of-run acceptance
+
+1. Confirm all {len(main_milestones)} numbered-chapter quests are complete in F6 and exactly their matching main-line advancements are complete.
+2. Confirm unfinished independent side-path tabs do not prevent completion of the numbered route.
+3. Confirm AI entry displayed the Industrial Civilization credits containing `corysmart` exactly once and returned control to the same playable world.
+4. Confirm Chapter 16 completion does not show a victory/end screen or disable continued play.
+5. Save and quit, reload the same world, and verify all quest, advancement, authorization, artifact, machine-operation, and AI-credit state persists.
+6. Inspect `logs/latest.log`, `logs/groovy.log`, and `crafttweaker.log`. Record every error with the current quest ID and attach screenshots plus `/ic_status` output where relevant.
+
+## Failure record template
+
+```text
+Quest title / ID:
+Chapter:
+Expected prerequisite state:
+Evidence or runtime action performed:
+F6 result:
+Advancement result:
+/ic_status result:
+Unexpected unlocks or early progress:
+Reload persistence result:
+Relevant log lines:
+Screenshot filenames:
+```
 """)
 
 checklist = [
@@ -273,16 +457,32 @@ checklist = [
 "AI Age is presented as the beginning of the endgame.", "Post-AI branches are visible but do not block AI entry.",
 "No circular or impossible dependencies are visible."
 ]
+checklist.extend([
+"Orbital, lunar, and Mars habitat quests trigger only while the player is actually inside Galacticraft breathable air.",
+"Functional off-world bases require two continuous minutes of stable habitat samples plus their placed/operating infrastructure.",
+"A primitive settlement absorbs nearby stockpile items, pays an exact material bill, and constructs each physical upgrade without a random roll.",
+"Already-generated Mars chunks receive deterministic civilization processing after an AI-age player loads them.",
+"Apollo 11, 12, 14, 15, 16, and 17 markers show mission, landing date, coordinates, flag and heritage designation.",
+"Faction villagers, militia patrols, and robbers use their Industrial Civilization faction skins.",
+"World warmup remains visible at least 15 seconds and releases by 30 seconds.",
+"Stone axe/chainsaw trees and 3x3/9x9 drills process at most 12 extra blocks per tick while preserving protection, drops, enchantments and per-block tool payment.",
+"Radiation correctly follows players in vehicles and other moving entities as their AABB enters or leaves breathable air."
+])
 write("MANUAL_QUEST_TEST_CHECKLIST.md", "Manual Quest Test Checklist", "Do not use a valued world for the first database import. No runtime claims are made until this checklist passes.\n\n" + "\n".join(f"- [ ] {i}. {v}" for i, v in enumerate(checklist, 1)) + "\n\nCheck `logs/latest.log`, `logs/groovy.log`, and `crafttweaker.log` after the run. Record quest/task IDs and screenshots for any mismatch.")
 
 write("KNOWN_LIMITATIONS.md", "Verification Boundaries", """
-No intentionally missing gameplay system remains in the current design specification. The remaining boundaries concern evidence and tuning rather than unavailable mechanics:
+The build is a private alpha. Implemented code is not considered gameplay-validated until the disposable-world checklist passes:
 
-- Static validation cannot prove Better Questing/Galacticraft GUI rendering or every third-party runtime event; the disposable-world checklist is the acceptance test.
-- Cross-mod quests without a stable event use tangible, non-consuming item evidence. This proves acquisition but not that an inherited multiblock remains assembled forever after completion.
-- Matter, fusion, logistics, megastructure, colony, vehicles, factions, settlements, and civilization-scale AI are functional; measured playthrough data is still required for final numerical balance.
-- Procedural structures generate in new chunks, which is normal Minecraft world-generation behavior. Use a fresh test world for geography acceptance.
-- Public release licensing, authorized dependency delivery, and packaging remain distribution work and do not limit private-test gameplay.
+- The critical orbital/lunar/Mars base milestones now have sustained runtime telemetry. Many simpler inherited-mod quests still use tangible, non-consuming item evidence; that proves acquisition, not permanent assembly or provenance.
+- Static and JUnit validation cannot prove Better Questing/Galacticraft GUI rendering, Forge event ordering, third-party protection integrations, entity behavior or performance.
+- Settlement upgrades are deterministic and material-backed, but production rates, construction bills, trade circulation and weapon multipliers need measured economic playthroughs.
+- Existing loaded Mars chunks can transform after AI. Unloaded chunks wait until an AI-age player loads them; this deliberately avoids an unbounded background rewrite.
+- Apollo positions use documented latitude/longitude projected at 24 blocks per degree. Galacticraft terrain is not a geographic lunar simulation, and the block monuments are interpretive heritage markers.
+- Faction skins are initial 1.12-compatible texture variants. They still need in-game lighting/model review and more role-specific differentiation.
+- Tool and habitat rule tests cover deterministic boundaries; actual claims, modded trees, unusual seals, moving vehicles and mass block drops remain runtime scenarios.
+- HeadlessMC is a viable Forge 1.12.2 launch/UI driver, but the repository cannot yet assemble the third-party pack in public CI because mod JARs are intentionally not committed and redistribution rights are unresolved.
+- Workshop review art and an exact placement contract now exist outside the game. Several decorative blocks/models pictured in the visual target are not implemented yet.
+- Public release licensing, authorized dependency delivery, Technic packaging, multiplayer QA and full-campaign balance remain open.
 """)
 
-print(f"Generated 25 progression documents from {len(chapters)} chapters, {len(graph['optional_branches'])} side paths, and {len(milestones)} milestones")
+print(f"Generated 26 progression documents from {len(chapters)} chapters, {len(graph['optional_branches'])} side paths, and {len(milestones)} milestones")

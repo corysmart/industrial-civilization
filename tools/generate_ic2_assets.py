@@ -105,6 +105,26 @@ def block_pattern(block_id):
     def dock(d, a):
         d.rectangle((4, 5, 7, 10), outline=a); d.rectangle((9, 5, 11, 10), outline=PALETTE["copper"])
         d.line((7, 7, 9, 7), fill=PALETTE["cyan2"])
+    def component(d, a):
+        if "hazard" in block_id:
+            for n in range(-8, 24, 6): d.line((n, 13, n + 10, 3), fill=PALETTE["orange"], width=3)
+        elif "grated" in block_id:
+            for n in range(4, 12, 2): d.line((n, 3, n, 12), fill=PALETTE["dark"])
+            for n in range(4, 12, 2): d.line((3, n, 12, n), fill=PALETTE["shadow"])
+        elif "glass" in block_id:
+            d.rectangle((3, 3, 12, 12), fill="#42666f", outline=PALETTE["cyan2"])
+            d.line((4, 4, 10, 4), fill=PALETTE["light"])
+        elif "tool_wall" in block_id:
+            d.line((5, 5, 5, 10), fill=PALETTE["orange"]); d.line((8, 4, 8, 9), fill=PALETTE["copper"])
+            d.line((10, 6, 10, 11), fill=PALETTE["light"])
+        elif "drawer" in block_id:
+            for y in (4, 7, 10): d.rectangle((4, y, 11, y + 1), outline=PALETTE["dark"]); d.point((8, y), fill=PALETTE["copper"])
+        elif "cable" in block_id:
+            d.line((3, 8, 12, 8), fill=PALETTE["copper"], width=3); d.point((5, 8), fill=PALETTE["cyan"]); d.point((10, 8), fill=PALETTE["cyan"])
+        elif "frame" in block_id:
+            d.rectangle((3, 3, 12, 12), outline=PALETTE["dark"], width=2); d.line((3, 3, 12, 12), fill=PALETTE["copper_dark"])
+        else:
+            d.rectangle((4, 4, 11, 11), outline=PALETTE["dark"]); d.point((4, 4), fill=PALETTE["copper"]); d.point((11, 11), fill=a)
     return {
         "molecular_analyzer": analyzer, "research_station": station,
         "orbital_experiment_module": experiment, "electric_fabricator": fabricator,
@@ -117,6 +137,10 @@ def block_pattern(block_id):
         "environmental_solar_array": solar, "tracking_solar_array": solar,
         "car_workshop": workshop, "gun_factory": armament,
         "repair_bench": repair, "vehicle_service_dock": dock,
+        **{name: component for name in ("steel_frame", "steel_casing", "machine_casing",
+            "reinforced_plate", "grated_plate", "industrial_floor", "hazard_stripe",
+            "workshop_cable_block", "workshop_cable_cover", "reinforced_glass_panel",
+            "tool_wall", "drawer_cabinet")},
     }[block_id]
 
 

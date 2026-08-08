@@ -1,0 +1,4 @@
+# Declarative scenario contract. ClientE2ERunner issues these after the disposable world settles.
+/ic_test scenario workshop_adjacency
+/ic_test assert workshop_adjacency
+/ic_test snapshot 64

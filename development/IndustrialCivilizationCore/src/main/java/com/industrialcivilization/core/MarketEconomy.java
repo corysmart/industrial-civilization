@@ -3,11 +3,14 @@ package com.industrialcivilization.core;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.oredict.OreDictionary;
 
 /** Shared progression and condition rules for Earth-only industrial markets. */
 @Mod.EventBusSubscriber(modid = IndustrialCivilizationCore.MODID)
@@ -28,7 +31,7 @@ public final class MarketEconomy {
 
     /** A market can never sell at the player's current stage or beyond. */
     public static int marketStage(EntityPlayer player, int settlementCapacity) {
-        return Math.max(0, Math.min(settlementCapacity, playerStage(player) - 1));
+        return GameplayRules.marketStage(playerStage(player), settlementCapacity);
     }
 
     public static ItemStack newCondition(ItemStack stack) {
@@ -57,9 +60,42 @@ public final class MarketEconomy {
     }
 
     public static int usedValue(int newPrice, int condition) {
-        // A pristine used item returns at most 32%; severe damage pushes this near scrap value.
-        double health = Math.max(0.05D, Math.min(1.0D, condition / (double) NEW_CONDITION));
-        return Math.max(1, (int) Math.floor(newPrice * 0.32D * health));
+        return GameplayRules.usedValue(newPrice, condition);
+    }
+
+    /** Loot worth risking a robbery for; mundane survival supplies do not count. */
+    public static boolean carriesRobberLoot(EntityPlayer player) {
+        for (net.minecraft.inventory.Slot slot : player.inventoryContainer.inventorySlots) {
+            if (isRobberLoot(slot.getStack())) return true;
+        }
+        return false;
+    }
+
+    public static boolean isRobberLoot(ItemStack stack) {
+        if (stack.isEmpty() || stack.getItem().getRegistryName() == null) return false;
+        ResourceLocation id = stack.getItem().getRegistryName();
+        String domain = id.getResourceDomain();
+        String path = id.getResourcePath();
+        if (domain.equals(IndustrialCivilizationCore.MODID) || domain.equals("ic2")
+                || domain.startsWith("buildcraft") || domain.startsWith("projectred")
+                || domain.equals("railcraft") || domain.equals("appliedenergistics2")
+                || domain.equals("logisticspipes") || domain.equals("computercraft")
+                || domain.equals("cctweaked") || domain.startsWith("galacticraft")
+                || domain.equals("techguns") || domain.equals("vehicle")
+                || domain.equals("icbmclassic") || domain.equals("modularforcefieldsystem")) {
+            return true;
+        }
+        if (domain.equals("minecraft") && (path.startsWith("iron_")
+                || path.startsWith("diamond_") || path.startsWith("golden_")
+                || path.equals("diamond") || path.equals("emerald")
+                || path.equals("gold_ingot") || path.equals("iron_ingot"))) return true;
+        for (int oreId : OreDictionary.getOreIDs(stack)) {
+            String ore = OreDictionary.getOreName(oreId);
+            if (ore.startsWith("ingot") || ore.startsWith("gem") || ore.startsWith("block")
+                    || ore.startsWith("plate") || ore.startsWith("gear")
+                    || ore.toLowerCase(java.util.Locale.ROOT).contains("circuit")) return true;
+        }
+        return false;
     }
 
     @SubscribeEvent
@@ -71,6 +107,24 @@ public final class MarketEconomy {
         NBTTagCompound tag = weapon.getTagCompound();
         tag.setInteger(CONDITION, Math.max(0, tag.getInteger(CONDITION) - 4));
         tag.setBoolean(USED, true);
+    }
+
+    /** Curated player-weapon envelope; exploration finds remain useful, not dominant. */
+    @SubscribeEvent
+    public static void balanceWeaponDamage(LivingHurtEvent event) {
+        if (event.getEntityLiving().world.isRemote
+                || !(event.getSource().getTrueSource() instanceof EntityPlayer)) return;
+        ItemStack weapon = ((EntityPlayer) event.getSource().getTrueSource()).getHeldItemMainhand();
+        if (weapon.isEmpty() || weapon.getItem().getRegistryName() == null
+                || !"techguns".equals(weapon.getItem().getRegistryName().getResourceDomain())) return;
+        String path = weapon.getItem().getRegistryName().getResourcePath();
+        float scale = path.contains("m4") || path.contains("rifle") ? 0.78F
+            : path.contains("shotgun") ? 0.84F : path.contains("pistol") ? 0.90F : 0.85F;
+        if (isConditioned(weapon)) {
+            float health = Math.max(0.35F, condition(weapon) / (float) NEW_CONDITION);
+            scale *= 0.70F + 0.30F * health;
+        }
+        event.setAmount(event.getAmount() * scale);
     }
 
     @SubscribeEvent

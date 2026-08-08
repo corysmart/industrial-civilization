@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "policy": "Earth markets are useful stage-minus-one suppliers, never a substitute for current-stage factories.",
+  "reputation_discount": {"friendly_credits": 1, "trusted_credits": 2, "high_price_cap": 4},
+  "used_resale": {"maximum_fraction": 0.32, "minimum_condition_fraction": 0.05},
+  "settlement_cycle_ticks": 1200,
+  "settlement_upgrade_bills": [
+    {"to_tier": 1, "wood": 64, "stone": 32, "food": 32},
+    {"to_tier": 2, "wood": 128, "stone": 192, "iron": 48, "food": 64},
+    {"to_tier": 3, "stone": 384, "iron": 192, "circuits": 32, "fuel": 64, "credits": 128}
+  ],
+  "vehicle_new_prices": {"golf_cart": 72, "atv": 88, "smart_car": 96, "tractor": 104, "off_roader": 112, "mini_bus": 128},
+  "weapon_new_prices": {"pistol": 36, "combat_shotgun": 72, "m4": 112}
+}

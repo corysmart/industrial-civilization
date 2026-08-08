@@ -1,6 +1,6 @@
 # Industrial Civilization — Full Status Report
 
-Status date: 2026-08-03  
+Status date: 2026-08-08
 Source authority: `/Users/cory/Documents/tekkit-3`  
 Technic test target: `/Users/cory/Library/Application Support/technic/modpacks/tekkit-2`
 
@@ -9,10 +9,14 @@ Technic test target: `/Users/cory/Library/Application Support/technic/modpacks/t
 - Private Git source project with reproducible manifests, hashes, generated quests/assets, offline Forge build, and validation harnesses.
 - 16 numbered chapters, 7 independent visible side paths, and 129 automatic Better Questing milestones. Locked future lines remain visible, no secret/manual objectives are used, and Mac/no-numpad controls are embedded in quest descriptions.
 - A visible vanilla advancement tree mirrors all 129 quests in progression order. Pause > Advancements opens that tree; F6 remains the detailed Better Questing tutorial.
-- Eighteen first-party IC2-styled blocks and twenty-three first-party items, with distinct world textures, 64×64 NEI sprites, models, names, recipes, tooltips, and a dedicated creative tab.
+- Thirty first-party IC2-styled blocks and twenty-three first-party items. Twelve workshop architecture blocks are independently craftable/placeable and are used by controller deployment.
+- Quest telemetry records immutable first-completion time/evidence source. Functional orbital, lunar and Mars bases require sustained breathable habitat plus real nearby operating systems instead of manual validation or inventory-only proof.
+- Settlements persist deterministic material/credit stockpiles, absorb bounded real inventory inputs, run calculated production, pay explicit construction bills, and physically expand one building stage at a time.
+- Existing loaded Mars chunks receive bounded deterministic post-AI civilization processing. Apollo markers use the six real crewed landing coordinates, dates and mission plaques.
+- All six factions plus robbers and militia patrols have first-pass faction-readable entity skins.
 - IC2-native EU machines for fabrication, programmable assembly, research, off-world experimentation, robotic manufacturing, matter replication, fusion, cargo, megastructures, colonies, vehicle construction, and armament production. Forge Energy is hidden compatibility plumbing at 8 FE = 1 EU.
 - Earth → orbit → Moon → quantum → Mars → autonomy → Lite Matter → AI/AE2 progression gates, real environment-tagged research, concrete post-AI artifacts, and automatic runtime detection.
-- Whole-tree Stone Axe-or-better and IC2 Chainsaw behavior, IC2 Drill 3×3, Diamond Drill 9×9, per-block durability/EU cost, protection-aware harvesting, and Sneak precision mode.
+- Whole-tree Stone Axe-or-better and IC2 Chainsaw behavior, IC2 Drill 3×3, Diamond Drill 9×9, per-block durability/EU cost, protection-aware harvesting, Sneak precision mode, 512-log trees and a 12-block/tick bounded queue.
 - Six factions, IC Credit merchants, reputation, membership, hostility, settlement guards, companions, a pause-menu faction directory, primitive settlements, abandoned factories, militia outposts, operational factories, and cities.
 - Nation infrastructure: dirt-to-paved regional roads, IC2 utility spines/outlet spaces, solar power, BuildCraft transport holders, city specialties, and loaded city cargo exchange.
 - Onysd Vehicles plus Obfuscate integrated under source-available licenses. Six curated vehicle roles are manufactured in the Car Workshop. The Passenger Carrier adds 54 item slots, 64,000 mB tank storage, mobile crafting, and parked BuildCraft item/fluid access.
@@ -21,9 +25,9 @@ Technic test target: `/Users/cory/Library/Application Support/technic/modpacks/t
 - Pistol production moved to the Programmable Assembler; combat shotgun and M4 production moved to the covered Gun Factory.
 - Earth stores now carry faction-specific vehicles/firearms with stage-minus-one stock ceilings, 36–128-credit retail, condition-scaled resale capped at 32%, and substantially heavier steel/electronics build costs.
 - Vehicles have persistent mileage wear, low-condition penalties, zero-condition immobilization, and IC2 machine-block repairs. Machine/market guns wear on attacks and use the IC2 Repair Bench.
-- Vanilla Earth zombies become escalating robbers with door breaking, theft, recoverable stolen drops, guns, squads, and late-stage explosives.
-- Vanilla Earth skeletons become neutral Territorial Militia rifle patrols. Firearm possession, local player aggression, or three persistent outpost takedowns trigger accurate ranged hostility; arrows affect militia reputation, traps do not, and patrol-only penalties can never reach global hostility. Honorable Civil Defense is a separate city/factory faction driven only by Civil Defense, Riverside, and Survey standing.
-- Moon villages, dungeons, and non-player living mobs are suppressed; six Apollo heritage flags remain. Mars allows only Galacticraft mobs until AI, after which new terrain can gain settlements, outposts, cities, roads, and utilities.
+- Twenty-five percent of eligible vanilla Earth zombie attempts become registered independent human-rendered escalating robbers, capped at four within 64 blocks before squad additions. They naturally despawn, use opaque skins and human audio, break doors, steal recoverable items, and gain guns, rarer squads, and late-stage explosives. Both rate and local cap are configurable.
+- Vanilla Earth skeleton attempts become registered independent human-rendered Territorial Militia patrols only within 128 blocks of a registered militia outpost, capped at six nearby and naturally despawning. Firearm possession, local player aggression, or three persistent outpost takedowns trigger accurate ranged hostility; arrows affect militia reputation, traps do not, and patrol-only penalties can never reach global hostility. Creative lists only the named Robber and Territorial Militia replacement eggs; every vanilla hostile egg is hidden. Other vanilla Earth hostiles are suppressed and their required industrial materials remain available through settlement specialties. Honorable Civil Defense is a separate city/factory faction driven only by Civil Defense, Riverside, and Survey standing.
+- Moon villages, dungeons, and non-player living mobs are suppressed; six historically mapped Apollo heritage markers remain. Mars allows only Galacticraft mobs until AI, after which both new and already-generated loaded chunks can gain settlements, outposts, cities, roads, and utilities.
 - ICBM Classic 6.5.5 is installed for private testing, with duplicate parts normalized, IC2 MV/HV launch hardware, strategic-payload shortcut locks, and IC2 power-bridge guidance.
 - The End and portal activation are disabled. Natural Ender Pearls are suppressed and the compatible item is globally presented as an IC2-styled Technical Phase Pearl manufactured only after AI entry; no pre-AI recipe or quest requires it.
 - Galacticraft's actionable destination list now contains only currently reachable pack destinations, with server-side transfer denial retained as a backstop.
@@ -33,8 +37,9 @@ Technic test target: `/Users/cory/Library/Application Support/technic/modpacks/t
 ## Current automated evidence
 
 - Offline Forge 1.12.2 build succeeds on Java 8.
-- Progression validator: 3,444 checks, 129 milestones, 0 placeholders.
-- Runtime-content harness: 557 checks across textures, models, recipes, energy contracts, gates, and integrations.
+- Progression validator: 3,539 checks, 129 milestones, 0 placeholders.
+- Runtime-content harness: 773 checks across textures, models, recipes, energy contracts, gates, and integrations.
+- Static validator: 1,371 checks. Energy interoperability: 20 checks. Java/JUnit/Forge build succeeds with 36 deterministic rule tests, including Earth hostile-mob policy, robber-density, outpost-bound patrol, and canonical AI-entry prerequisite coverage.
 - Final mod manifest expects 162 JARs and records exact hashes and redistribution notes.
 - Village suppression retains Minecraft's required `MapGenVillage` runtime type while rejecting all spawn candidates, preventing the new-world constructor crash found during the first fresh-world test.
 - Groovy tooltip handlers use mapping-independent registry strings rather than MCP-only `ResourceLocation` accessors, preventing CraftingTableIV's join-time recipe rebuild from crashing after world spawn.

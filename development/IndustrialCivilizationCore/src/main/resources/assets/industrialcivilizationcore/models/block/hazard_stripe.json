@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "industrialcivilizationcore:blocks/hazard_stripe",
+    "north": "industrialcivilizationcore:blocks/hazard_stripe",
+    "south": "industrialcivilizationcore:blocks/hazard_stripe_side",
+    "east": "industrialcivilizationcore:blocks/hazard_stripe_side",
+    "west": "industrialcivilizationcore:blocks/hazard_stripe_side",
+    "up": "industrialcivilizationcore:blocks/hazard_stripe_top",
+    "down": "industrialcivilizationcore:blocks/hazard_stripe_side"
+  }
+}

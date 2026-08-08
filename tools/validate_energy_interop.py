@@ -79,6 +79,10 @@ for path in player_files:
           f"player-facing energy language is EU-only: {path.relative_to(ROOT)}")
 gui = (JAVA / "GuiIndustrialMachine.java").read_text()
 check('drawString("EU "' in gui, "custom machine GUI labels energy in EU")
+check("trimStringToWidth" in gui and "TITLE_LEFT = 32" in gui,
+      "machine GUI keeps long titles clear of the energy meter at small GUI scales")
+check("STATUS_RIGHT - fontRenderer.getStringWidth(operations)" in gui,
+      "machine operation status remains right-aligned as its value grows")
 
 if errors:
     print(f"ENERGY INTEROP FAILED: {len(errors)} of {len(errors) + len(checks)} checks")

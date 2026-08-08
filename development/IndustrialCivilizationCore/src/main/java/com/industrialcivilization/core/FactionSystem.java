@@ -258,6 +258,7 @@ public final class FactionSystem {
         addPurchase(offers, Items.COAL, 16, 1, reputationDiscount);
         addSale(offers, Items.BREAD, 4, 1, reputationDiscount);
         addSale(offers, Items.IRON_INGOT, 1, 3, reputationDiscount);
+        addSale(offers, Items.STRING, 8, 2, reputationDiscount);
         if ("steel".equals(specialty)) {
             addExternalSale(offers, "railcraft:ingot_steel", 0, 2, 8, reputationDiscount);
             addPurchase(offers, Items.IRON_INGOT, 6, 3, reputationDiscount);
@@ -265,13 +266,16 @@ public final class FactionSystem {
             addExternalSale(offers, "ic2:itemmisc", 451, 1, 10, reputationDiscount);
             addExternalSale(offers, "ic2:itemmisc", 452, 1, 24, reputationDiscount);
             addSale(offers, Items.REDSTONE, 8, 3, reputationDiscount);
+            addSale(offers, Items.SLIME_BALL, 2, 4, reputationDiscount);
         } else if ("fuel".equals(specialty)) {
             addSale(offers, Items.COAL, 16, 4, reputationDiscount);
             addSale(offers, Items.BLAZE_POWDER, 4, 8, reputationDiscount);
+            addSale(offers, Items.GUNPOWDER, 4, 4, reputationDiscount);
         } else if ("armaments".equals(specialty)) {
             addExternalSale(offers, "techguns:itemshared", 11, 1, 8, reputationDiscount);
             addExternalSale(offers, "techguns:itemshared", 2, 8, 6, reputationDiscount);
             addSale(offers, Items.IRON_SWORD, 1, 7, reputationDiscount);
+            addSale(offers, Items.GUNPOWDER, 8, 6, reputationDiscount);
         } else if ("research".equals(specialty)) {
             addSale(offers, IndustrialCivilizationCore.BLANK_DATA_CARTRIDGE, 1, 8, reputationDiscount);
             addSale(offers, Items.PAPER, 16, 2, reputationDiscount);
@@ -439,7 +443,9 @@ public final class FactionSystem {
         int before = progress.getInteger("pending_trade_credits");
         progress.removeTag("pending_trade_faction");
         progress.removeTag("pending_trade_credits");
-        if (faction.isEmpty() || before == creditCount(player)) return;
+        int after = creditCount(player);
+        if (faction.isEmpty() || before == after) return;
+        SettlementEconomySystem.recordTrade(player, after - before);
         long day = player.world.getTotalWorldTime() / 24000L + 1L;
         String contactKey = "trade_contact_day_" + faction;
         if (progress.getLong(contactKey) == day) return;

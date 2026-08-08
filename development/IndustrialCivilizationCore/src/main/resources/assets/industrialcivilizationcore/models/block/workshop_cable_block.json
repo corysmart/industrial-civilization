@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "industrialcivilizationcore:blocks/workshop_cable_block",
+    "north": "industrialcivilizationcore:blocks/workshop_cable_block",
+    "south": "industrialcivilizationcore:blocks/workshop_cable_block_side",
+    "east": "industrialcivilizationcore:blocks/workshop_cable_block_side",
+    "west": "industrialcivilizationcore:blocks/workshop_cable_block_side",
+    "up": "industrialcivilizationcore:blocks/workshop_cable_block_top",
+    "down": "industrialcivilizationcore:blocks/workshop_cable_block_side"
+  }
+}

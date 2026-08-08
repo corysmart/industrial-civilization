@@ -25,6 +25,7 @@ dependencies {
     compileOnly files('../../mods/IC2Classic-1.12.2-1.5.11.jar')
     compileOnly files('../../mods/vehicle-mod-1.4.0-1.12.2.jar')
     compileOnly files('../../mods/Galacticraft-1.12.2-4.0.7-technic-ic2c.jar')
+    testImplementation 'junit:junit:4.13.2'
 }
 
 processResources {

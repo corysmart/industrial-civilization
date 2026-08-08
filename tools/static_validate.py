@@ -154,12 +154,56 @@ core_build = ROOT / "development/IndustrialCivilizationCore/build/libs/Industria
 core_live = ROOT / "mods/IndustrialCivilizationCore-0.2.0.jar"
 ok(core_build.is_file() and core_live.is_file() and digest(core_build) == digest(core_live), "custom build output equals live JAR")
 core_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/IndustrialCivilizationCore.java").read_text()
+ok("openQuestGuideAtFirstChapter" in core_source
+   and "QuestLineDatabase.INSTANCE.getValue(0)" in core_source,
+   "Better Questing home opens with the first chapter selected instead of a black canvas")
+ok("clampQuestBackgroundZoom" in core_source
+   and "QUEST_CANVAS" in core_source
+   and "GameplayRules.questMinimumZoom" in core_source
+   and "GameplayRules.questBoundedScroll" in core_source
+   and "NativeProps.BG_SIZE" in core_source,
+   "Better Questing zoom and panning stop at the quest backdrop edges")
 ecology_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/PlanetaryEcologySystem.java").read_text()
+robber_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/EntityRobber.java").read_text()
+ok("BASE_MOVEMENT_SPEED = 0.20D" in robber_source
+   and "EntityAIAttackMelee(this, 0.95D, false)" in robber_source,
+   "robbers use a deliberately slower, escapable pursuit speed")
+ok("MarketEconomy.carriesRobberLoot(player)" in ecology_source
+   and "robberTargetsPlayer" in ecology_source
+   and "EntityAINearestAttackableTarget" not in robber_source,
+   "robbers proactively attack only players carrying technical or valuable loot")
+patrol_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/EntityMilitiaPatrol.java").read_text()
+render_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/ClientRenderRegistration.java").read_text()
 faction_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/FactionSystem.java").read_text()
 ok("public IndustrialCivilizationCore()" in core_source and "private IndustrialCivilizationCore()" not in core_source,
    "Forge-instantiable public @Mod constructor")
-ok("EntitySkeleton.class" in ecology_source and "IndustrialMilitiaPatrol" in ecology_source,
+ok("GameplayRules.aiAgeReady" in core_source
+   and 'ProgressionState.has(event.player, "martian_autonomy_archive")' in core_source,
+   "AI entry consumes the canonical Martian Autonomy Archive record")
+ok("instanceof EntitySkeleton" in ecology_source and "EntityMilitiaPatrol" in ecology_source,
    "Earth skeleton militia patrol replacement")
+ok('militiaPatrolRadius", "ecology", 128' in core_source
+   and 'militiaPatrolLocalCap", "ecology", 6' in core_source
+   and "MilitiaOutpostRegistry.nearby" in ecology_source
+   and "militiaPatrolSpawnAllowed" in ecology_source
+   and "FORCE_PATROL_REPLACEMENT" in ecology_source
+   and 'setBoolean("PersistenceRequired", false)' in patrol_source,
+   "militia patrols are bounded to registered outposts with a local cap and deterministic test bypass")
+ok("extends EntityMob" in robber_source and "extends EntityMob" in patrol_source
+   and "ENTITY_PLAYER_HURT" in robber_source and "ENTITY_PLAYER_DEATH" in robber_source
+   and "ENTITY_PLAYER_HURT" in patrol_source and "ENTITY_PLAYER_DEATH" in patrol_source
+   and 'texture("ashline_raiders")' in render_source,
+   "replacement mobs use independent human bodies, opaque skins, and non-monster audio")
+ok('robberSpawnPercent", "ecology", 25' in core_source
+   and 'robberLocalCap", "ecology", 4' in core_source
+   and "robberSpawnAllowed" in ecology_source
+   and "enablePersistence()" not in ecology_source.split("private static void configureRobber", 1)[1].split("@SubscribeEvent", 1)[0]
+   and "nextInt(8)" in ecology_source,
+   "Robber ecology uses a 25% conversion rate, local cap, natural despawning, and reduced squads")
+ok("removeVanillaHostileSpawnEggs" in core_source
+   and "IMob.class.isAssignableFrom(entry.getEntityClass())" in core_source
+   and "EntityList.ENTITY_EGGS.keySet().removeIf" in core_source,
+   "Creative hides vanilla hostile spawn eggs in favor of Industrial identities")
 ok("isArmedWithGun" in ecology_source and "techguns.api.guns.IGenericGun" in ecology_source,
    "inventory-wide standard and exotic firearm detection")
 ok("isExplosion()" in ecology_source and "militia_patrol_trap_kills" in ecology_source,
@@ -325,7 +369,7 @@ ok(quest_home in (ROOT / "tools/generate_objectives.py").read_text(), "quest gen
 ok("QUEST_HOME_IMAGE" in core_source and "QUEST_HOME_OFFSET_X = -128" in core_source
    and "migrateQuestHomeImage" in core_source,
    "existing Better Questing worlds migrate to pack-owned home layout")
-ok("GuiIngameMenu" in core_source and "button.id == 5" not in core_source
+ok("GuiIngameMenu" in core_source and "if (button.id == 5) advancements = button;" in core_source
    and "PresetGUIs.HOME" not in core_source,
    "pause-menu vanilla Advancements button and screen are restored")
 ok("button.id == 6" in core_source and "GuiFactionDirectory" in core_source
@@ -409,7 +453,8 @@ ok("appliedenergistics2:" not in jei_blacklist
 ok(not (ROOT / "scripts/industrial_civilization.zs").exists(), "obsolete non-reloadable integration script removed")
 faction_gui = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/GuiFactionDirectory.java").read_text()
 ok("visibleLineCount()" in faction_gui and "handleMouseInput()" in faction_gui
-   and "Math.min(520" in faction_gui,
+   and "Math.min(520" in faction_gui and "width - 16" in faction_gui
+   and "panelWidth - 12" in faction_gui,
    "faction directory is responsive and scrolls long descriptions")
 client_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/IndustrialCivilizationCore.java").read_text()
 ok("showOnlyPackAdvancementTabs" in client_source
@@ -420,9 +465,16 @@ ok("if (!roadChunk && structure == 0) return;" in worldgen_source,
    "empty civilization chunks avoid terrain height work")
 terrain_gui = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/GuiTerrainWarmup.java").read_text()
 ok("doesGuiPauseGame()" in terrain_gui and "return false" in terrain_gui
-   and "MINIMUM_WARMUP_MS = 8000L" in terrain_gui and "TIMEOUT_MS = 30000L" in terrain_gui
-   and "Math.min(4, mc.gameSettings.renderDistanceChunks)" in terrain_gui,
+   and "MINIMUM_WARMUP_MS = 15000L" in terrain_gui and "TIMEOUT_MS = 30000L" in terrain_gui
+   and "Math.min(4, mc.gameSettings.renderDistanceChunks)" in terrain_gui
+   and "drawWrappedCentered" in terrain_gui and "width - 32" in terrain_gui,
    "terrain warmup waits for a bounded playable area and post-join initialization without trapping the player")
+credits_gui = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/GuiIndustrialCredits.java").read_text()
+ok("listFormattedStringToWidth" in credits_gui and "width - 24" in credits_gui,
+   "AI credits wrap long lines and bound their Done button to the viewport")
+main_menu_scale = (ROOT / "config/teamreborn/mainmenuscale/config.cfg").read_text()
+ok("I:GUI_SCALE=2" in main_menu_scale and "I:HIGH_RES_SCALE=2" in main_menu_scale,
+   "branded main menu uses a small-window-safe GUI scale")
 icbm_script = (ROOT / "groovy/postInit/industrial_icbm.groovy").read_text()
 ok("crafting.streamRecipes()" in icbm_script and "output.item == part.item" in icbm_script
    and "duplicateParts.each { part -> crafting.removeByOutput(part) }" not in icbm_script,

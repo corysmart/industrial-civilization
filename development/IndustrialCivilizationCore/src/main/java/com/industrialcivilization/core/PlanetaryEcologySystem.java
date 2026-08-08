@@ -10,6 +10,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.monster.EntitySkeleton;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntityTippedArrow;
 import net.minecraft.entity.player.EntityPlayer;
@@ -42,6 +43,8 @@ public final class PlanetaryEcologySystem {
     private static final String STOLEN = "IndustrialStolenItems";
     private static final String PATROL = "IndustrialMilitiaPatrol";
     private static final String PATROL_AGGRESSOR = "IndustrialPatrolAggressor";
+    static final String FORCE_ROBBER_REPLACEMENT = "IndustrialForceRobberReplacement";
+    static final String FORCE_PATROL_REPLACEMENT = "IndustrialForcePatrolReplacement";
 
     @SubscribeEvent
     public static void joined(EntityJoinWorldEvent event) {
@@ -61,16 +64,81 @@ public final class PlanetaryEcologySystem {
             if (!galacticraft && !postAiCitizen) event.setCanceled(true);
             return;
         }
-        if (event.getWorld().provider.getDimension() == 0
-                && event.getEntity().getClass() == EntityZombie.class) {
-            configureRobber((EntityZombie) event.getEntity(), nearestStage(event.getEntity()));
-        } else if (event.getWorld().provider.getDimension() == 0
-                && event.getEntity().getClass() == EntitySkeleton.class) {
-            configurePatrol((EntitySkeleton) event.getEntity());
+        if (event.getWorld().provider.getDimension() != 0) return;
+        if (event.getEntity() instanceof EntityRobber
+                || event.getEntity() instanceof EntityMilitiaPatrol) return;
+        if (event.getEntity() instanceof EntityZombie) {
+            replaceWithRobber(event, (EntityZombie) event.getEntity());
+            return;
+        }
+        if (event.getEntity() instanceof EntitySkeleton) {
+            replaceWithPatrol(event, (EntitySkeleton) event.getEntity());
+            return;
+        }
+        if (event.getEntity() instanceof IMob && isVanilla(event.getEntity())) {
+            event.setCanceled(true);
         }
     }
 
-    private static void configurePatrol(EntitySkeleton patrol) {
+    private static void replaceWithRobber(EntityJoinWorldEvent event, EntityZombie original) {
+        if (!shouldCreateRobber(original)) {
+            event.setCanceled(true);
+            return;
+        }
+        EntityRobber robber = new EntityRobber(event.getWorld());
+        copyPlacement(original, robber);
+        configureRobber(robber, nearestStage(original));
+        event.setCanceled(true);
+        event.getWorld().spawnEntity(robber);
+    }
+
+    private static boolean shouldCreateRobber(EntityZombie original) {
+        boolean forced = original.getEntityData().getBoolean(FORCE_ROBBER_REPLACEMENT);
+        AxisAlignedBB area = original.getEntityBoundingBox().grow(64.0D, 24.0D, 64.0D);
+        int nearby = original.world.getEntitiesWithinAABB(EntityRobber.class, area).size();
+        return GameplayRules.robberSpawnAllowed(original.world.rand.nextInt(100),
+            IndustrialCivilizationCore.ROBBER_SPAWN_PERCENT, nearby,
+            IndustrialCivilizationCore.ROBBER_LOCAL_CAP, forced);
+    }
+
+    private static void replaceWithPatrol(EntityJoinWorldEvent event, EntitySkeleton original) {
+        if (!shouldCreatePatrol(original)) {
+            event.setCanceled(true);
+            return;
+        }
+        EntityMilitiaPatrol patrol = new EntityMilitiaPatrol(event.getWorld());
+        copyPlacement(original, patrol);
+        configurePatrol(patrol);
+        event.setCanceled(true);
+        event.getWorld().spawnEntity(patrol);
+    }
+
+    private static boolean shouldCreatePatrol(EntitySkeleton original) {
+        boolean forced = original.getEntityData().getBoolean(FORCE_PATROL_REPLACEMENT);
+        if (forced) return true;
+        int radius = IndustrialCivilizationCore.MILITIA_PATROL_RADIUS;
+        boolean nearOutpost = MilitiaOutpostRegistry.nearby(
+            original.world, original.getPosition(), radius) != null;
+        AxisAlignedBB area = original.getEntityBoundingBox().grow(radius, 64.0D, radius);
+        int nearby = original.world.getEntitiesWithinAABB(EntityMilitiaPatrol.class, area).size();
+        return GameplayRules.militiaPatrolSpawnAllowed(nearOutpost, nearby,
+            IndustrialCivilizationCore.MILITIA_PATROL_LOCAL_CAP, forced);
+    }
+
+    private static void copyPlacement(EntityLivingBase original, EntityLivingBase replacement) {
+        replacement.setLocationAndAngles(original.posX, original.posY, original.posZ,
+            original.rotationYaw, original.rotationPitch);
+        replacement.rotationYawHead = original.rotationYawHead;
+        replacement.renderYawOffset = original.renderYawOffset;
+    }
+
+    private static boolean isVanilla(Entity entity) {
+        ResourceLocation key = EntityList.getKey(entity);
+        return key != null && GameplayRules.suppressVanillaEarthHostile(
+            key.getResourceDomain(), key.getResourcePath());
+    }
+
+    private static void configurePatrol(EntityMilitiaPatrol patrol) {
         NBTTagCompound tag = patrol.getEntityData();
         // AI task lists are reconstructed on entity load, so neutral targeting
         // must be removed on both first conversion and every subsequent load.
@@ -79,7 +147,6 @@ public final class PlanetaryEcologySystem {
         tag.setBoolean(PATROL, true);
         patrol.setCustomNameTag("Territorial Militia Patrol Rifleman");
         patrol.setAlwaysRenderNameTag(false);
-        patrol.enablePersistence();
         ItemStack rifle = external("techguns:boltaction");
         if (rifle.isEmpty()) rifle = external("techguns:m4");
         if (rifle.isEmpty()) rifle = new ItemStack(Items.BOW);
@@ -103,22 +170,20 @@ public final class PlanetaryEcologySystem {
         return player == null ? 1 : MarketEconomy.playerStage(player);
     }
 
-    private static void configureRobber(EntityZombie robber, int stage) {
+    private static void configureRobber(EntityRobber robber, int stage) {
         NBTTagCompound tag = robber.getEntityData();
         if (tag.getBoolean(ROBBER)) return;
         int tier = Math.max(1, Math.min(7, stage));
         tag.setBoolean(ROBBER, true);
         tag.setInteger(ROBBER_TIER, tier);
         robber.setCustomNameTag(tier >= 5 ? "Armed Robber" : tier >= 3 ? "Organized Robber" : "Robber");
-        robber.setBreakDoorsAItask(true);
-        robber.enablePersistence();
         ItemStack weapon = tier >= 5 ? external("techguns:m4")
             : tier >= 3 ? external("techguns:pistol") : new ItemStack(Items.IRON_SWORD);
         if (weapon.isEmpty()) weapon = new ItemStack(tier >= 3 ? Items.BOW : Items.IRON_SWORD);
         robber.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, weapon);
-        if (tier >= 4 && !tag.getBoolean("IndustrialSquadMember") && robber.world.rand.nextInt(4) == 0) {
+        if (tier >= 4 && !tag.getBoolean("IndustrialSquadMember") && robber.world.rand.nextInt(8) == 0) {
             for (int index = 0; index < 2; index++) {
-                EntityZombie member = new EntityZombie(robber.world);
+                EntityRobber member = new EntityRobber(robber.world);
                 member.setPosition(robber.posX + index + 1, robber.posY, robber.posZ + index);
                 member.getEntityData().setBoolean("IndustrialSquadMember", true);
                 configureRobber(member, tier);
@@ -129,12 +194,22 @@ public final class PlanetaryEcologySystem {
 
     @SubscribeEvent
     public static void robberTick(LivingEvent.LivingUpdateEvent event) {
-        if (!(event.getEntityLiving() instanceof EntityZombie) || event.getEntityLiving().world.isRemote) return;
-        EntityZombie robber = (EntityZombie) event.getEntityLiving();
+        if (!(event.getEntityLiving() instanceof EntityRobber) || event.getEntityLiving().world.isRemote) return;
+        EntityRobber robber = (EntityRobber) event.getEntityLiving();
         if (!robber.getEntityData().getBoolean(ROBBER)) return;
         int tier = robber.getEntityData().getInteger(ROBBER_TIER);
-        EntityPlayer target = robber.world.getClosestPlayerToEntity(robber, tier >= 3 ? 28.0D : 12.0D);
-        if (target != null) robber.setAttackTarget(target);
+        double range = tier >= 3 ? 28.0D : 12.0D;
+        EntityPlayer target = closestRobberTarget(robber, range);
+        EntityPlayer retaliatingAgainst = robber.getRevengeTarget() instanceof EntityPlayer
+            ? (EntityPlayer) robber.getRevengeTarget() : null;
+        if (retaliatingAgainst != null && robber.getDistanceSq(retaliatingAgainst) <= range * range) {
+            target = retaliatingAgainst;
+        }
+        if (target != null) {
+            robber.setAttackTarget(target);
+        } else if (robber.getAttackTarget() instanceof EntityPlayer) {
+            robber.setAttackTarget(null);
+        }
         if (target != null && tier >= 3 && robber.ticksExisted % Math.max(25, 70 - tier * 7) == 0
                 && robber.getDistanceSq(target) > 25.0D && robber.canEntityBeSeen(target)) {
             target.attackEntityFrom(DamageSource.causeMobDamage(robber), 2.0F + tier * 0.65F);
@@ -150,8 +225,8 @@ public final class PlanetaryEcologySystem {
 
     @SubscribeEvent
     public static void patrolTick(LivingEvent.LivingUpdateEvent event) {
-        if (!(event.getEntityLiving() instanceof EntitySkeleton) || event.getEntityLiving().world.isRemote) return;
-        EntitySkeleton patrol = (EntitySkeleton) event.getEntityLiving();
+        if (!(event.getEntityLiving() instanceof EntityMilitiaPatrol) || event.getEntityLiving().world.isRemote) return;
+        EntityMilitiaPatrol patrol = (EntityMilitiaPatrol) event.getEntityLiving();
         if (!patrol.getEntityData().getBoolean(PATROL)) return;
         patrol.extinguish();
         EntityPlayer target = null;
@@ -186,7 +261,23 @@ public final class PlanetaryEcologySystem {
         }
     }
 
-    private static boolean isPatrolHostileTo(EntitySkeleton patrol, EntityPlayer player) {
+    private static EntityPlayer closestRobberTarget(EntityRobber robber, double range) {
+        EntityPlayer nearest = null;
+        double nearestDistance = range * range;
+        for (EntityPlayer player : robber.world.playerEntities) {
+            if (player.isSpectator() || player.capabilities.isCreativeMode
+                    || !GameplayRules.robberTargetsPlayer(
+                        MarketEconomy.carriesRobberLoot(player), false)) continue;
+            double distance = robber.getDistanceSq(player);
+            if (distance <= nearestDistance) {
+                nearest = player;
+                nearestDistance = distance;
+            }
+        }
+        return nearest;
+    }
+
+    private static boolean isPatrolHostileTo(EntityMilitiaPatrol patrol, EntityPlayer player) {
         NBTTagCompound tag = patrol.getEntityData();
         return isArmedWithGun(player)
             || ProgressionState.counter(player, "militia_outposts_taken_down") >= 3
@@ -228,18 +319,18 @@ public final class PlanetaryEcologySystem {
 
     @SubscribeEvent
     public static void patrolAttacked(LivingAttackEvent event) {
-        if (!(event.getEntityLiving() instanceof EntitySkeleton)
+        if (!(event.getEntityLiving() instanceof EntityMilitiaPatrol)
                 || !event.getEntityLiving().getEntityData().getBoolean(PATROL)
                 || !(event.getSource().getTrueSource() instanceof EntityPlayer)
                 || event.getSource().isExplosion()) return;
-        EntitySkeleton patrol = (EntitySkeleton) event.getEntityLiving();
+        EntityMilitiaPatrol patrol = (EntityMilitiaPatrol) event.getEntityLiving();
         EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
         if (!patrol.getEntityData().hasUniqueId(PATROL_AGGRESSOR)) {
             boolean arrow = event.getSource().getImmediateSource() instanceof EntityArrow;
             FactionSystem.adjustMilitiaPatrolReputation(player, arrow ? -1 : -2,
                 arrow ? "shot militia patrol" : "attacked militia patrol");
         }
-        for (EntitySkeleton member : patrol.world.getEntitiesWithinAABB(EntitySkeleton.class,
+        for (EntityMilitiaPatrol member : patrol.world.getEntitiesWithinAABB(EntityMilitiaPatrol.class,
                 patrol.getEntityBoundingBox().grow(24.0D), candidate ->
                     candidate.getEntityData().getBoolean(PATROL))) {
             member.getEntityData().setUniqueId(PATROL_AGGRESSOR, player.getUniqueID());
@@ -247,7 +338,7 @@ public final class PlanetaryEcologySystem {
         }
     }
 
-    private static void steal(EntityZombie robber) {
+    private static void steal(EntityRobber robber) {
         BlockPos center = robber.getPosition();
         for (BlockPos pos : BlockPos.getAllInBoxMutable(center.add(-2, -1, -2), center.add(2, 2, 2))) {
             TileEntity tile = robber.world.getTileEntity(pos);
@@ -272,7 +363,7 @@ public final class PlanetaryEcologySystem {
         }
     }
 
-    private static void remember(EntityZombie robber, ItemStack stack) {
+    private static void remember(EntityRobber robber, ItemStack stack) {
         if (stack.isEmpty()) return;
         NBTTagCompound data = robber.getEntityData();
         NBTTagList stolen = data.getTagList(STOLEN, 10);
@@ -282,7 +373,7 @@ public final class PlanetaryEcologySystem {
 
     @SubscribeEvent
     public static void robberDied(LivingDeathEvent event) {
-        if (!(event.getEntityLiving() instanceof EntityZombie)
+        if (!(event.getEntityLiving() instanceof EntityRobber)
                 || !event.getEntityLiving().getEntityData().getBoolean(ROBBER)) return;
         NBTTagList stolen = event.getEntityLiving().getEntityData().getTagList(STOLEN, 10);
         for (int index = 0; index < stolen.tagCount(); index++) {
@@ -293,7 +384,7 @@ public final class PlanetaryEcologySystem {
 
     @SubscribeEvent
     public static void patrolDied(LivingDeathEvent event) {
-        if (!(event.getEntityLiving() instanceof EntitySkeleton)
+        if (!(event.getEntityLiving() instanceof EntityMilitiaPatrol)
                 || !event.getEntityLiving().getEntityData().getBoolean(PATROL)) return;
         if (!(event.getSource().getTrueSource() instanceof EntityPlayer) || event.getSource().isExplosion()) {
             EntityPlayer nearby = event.getEntityLiving().world.getClosestPlayerToEntity(event.getEntityLiving(), 48.0D);

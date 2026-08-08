@@ -149,8 +149,9 @@ check("gui.industrialcivilization.factions" in directory_source and "membershipR
       "pause-menu faction directory explains relationships and membership")
 
 tool_source = (JAVA / "ToolAreaHandler.java").read_text()
-check("TREE_LIMIT = 96" in tool_source and "isLeaves" in tool_source,
-      "tree felling is leaf-gated and safety-capped")
+check("TREE_LIMIT = 512" in tool_source and "isLeaves" in tool_source
+      and "BLOCKS_PER_TICK = 12" in tool_source and "HARVEST_QUEUES" in tool_source,
+      "tree felling is leaf-gated, large-tree capable and tick-budgeted")
 check('getHarvestLevel(stack, "axe"' in tool_source and '"itemtoolchainsaw"' in tool_source,
       "stone-tier axes and the IC2 chainsaw use the tree-felling path")
 check('stack.getMetadata() == 1 ? 4' in tool_source and 'stack.getMetadata() == 0 ? 1' in tool_source,

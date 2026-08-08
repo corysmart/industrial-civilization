@@ -10,6 +10,10 @@ import net.minecraft.util.ResourceLocation;
 /** Awards runtime criteria shared by the visible advancement tree and Better Questing. */
 public final class RuntimeAdvancements {
     public static void grant(EntityPlayer player, String milestone) {
+        grant(player, milestone, "runtime_event");
+    }
+
+    public static void grant(EntityPlayer player, String milestone, String evidenceSource) {
         if (!(player instanceof EntityPlayerMP)) return;
         EntityPlayerMP serverPlayer = (EntityPlayerMP) player;
         Advancement advancement = serverPlayer.getServer().getAdvancementManager()
@@ -19,12 +23,20 @@ public final class RuntimeAdvancements {
         for (String criterion : progress.getRemaningCriteria()) {
             serverPlayer.getAdvancements().grantCriterion(advancement, criterion);
         }
-        ProgressionState.record(player, milestone);
+        ProgressionState.record(player, milestone, evidenceSource);
     }
 
     public static EntityPlayerMP playerFor(TileIndustrialMachine tile, UUID id) {
         if (id == null || tile.getWorld() == null || tile.getWorld().getMinecraftServer() == null) return null;
         return tile.getWorld().getMinecraftServer().getPlayerList().getPlayerByUUID(id);
+    }
+
+    public static boolean completed(EntityPlayer player, String milestone) {
+        if (!(player instanceof EntityPlayerMP)) return false;
+        EntityPlayerMP serverPlayer = (EntityPlayerMP) player;
+        Advancement advancement = serverPlayer.getServer().getAdvancementManager()
+            .getAdvancement(new ResourceLocation(IndustrialCivilizationCore.MODID, milestone));
+        return advancement != null && serverPlayer.getAdvancements().getProgress(advancement).isDone();
     }
 
     private RuntimeAdvancements() {}

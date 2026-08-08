@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "industrialcivilizationcore:blocks/steel_frame",
+    "north": "industrialcivilizationcore:blocks/steel_frame",
+    "south": "industrialcivilizationcore:blocks/steel_frame_side",
+    "east": "industrialcivilizationcore:blocks/steel_frame_side",
+    "west": "industrialcivilizationcore:blocks/steel_frame_side",
+    "up": "industrialcivilizationcore:blocks/steel_frame_top",
+    "down": "industrialcivilizationcore:blocks/steel_frame_side"
+  }
+}

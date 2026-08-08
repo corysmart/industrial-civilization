@@ -10,6 +10,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,6 +29,7 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -36,9 +39,11 @@ public final class ToolAreaHandler {
     private static final String HIT_POS = "ic_area_hit_pos";
     private static final String HIT_FACE = "ic_area_hit_face";
     private static final String HIT_TICK = "ic_area_hit_tick";
-    private static final int TREE_LIMIT = 96;
-    private static final int TREE_RADIUS = 8;
+    private static final int TREE_LIMIT = 512;
+    private static final int TREE_RADIUS = 16;
+    private static final int BLOCKS_PER_TICK = 12;
     private static final Set<UUID> ACTIVE_PLAYERS = new HashSet<>();
+    private static final Map<UUID, HarvestQueue> HARVEST_QUEUES = new ConcurrentHashMap<>();
 
     @SubscribeEvent
     public static void rememberMiningFace(PlayerInteractEvent.LeftClickBlock event) {
@@ -64,6 +69,40 @@ public final class ToolAreaHandler {
 
         int radius = drillRadius(tool);
         if (radius > 0) minePlane((EntityPlayerMP) player, event.getPos(), tool, radius);
+    }
+
+    /** Bounded work queue prevents 9x9 drills and huge trees from freezing a server tick. */
+    @SubscribeEvent
+    public static void processHarvestQueue(TickEvent.PlayerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END || !(event.player instanceof EntityPlayerMP)
+                || event.player.world.isRemote) return;
+        EntityPlayerMP player = (EntityPlayerMP) event.player;
+        HarvestQueue queue = HARVEST_QUEUES.get(player.getUniqueID());
+        if (queue == null) return;
+        UUID id = player.getUniqueID();
+        ACTIVE_PLAYERS.add(id);
+        try {
+            int worked = 0;
+            while (worked < BLOCKS_PER_TICK && !queue.targets.isEmpty()) {
+                ItemStack current = player.getHeldItemMainhand();
+                if (!sameTool(current, queue.tool) || !canPay(current)) {
+                    queue.targets.clear();
+                    break;
+                }
+                BlockPos target = queue.targets.remove(0);
+                if (!player.world.isBlockLoaded(target)) continue;
+                if (queue.requireDrill && (!(current.getItem() instanceof IMiningDrill)
+                        || !((IMiningDrill) current.getItem()).canMineBlock(current,
+                            player.world.getBlockState(target), player.world, target))) continue;
+                // Forge protection events, enchantments, drops and tool payment
+                // all remain owned by the normal server harvest path.
+                player.interactionManager.tryHarvestBlock(target);
+                worked++;
+            }
+        } finally {
+            ACTIVE_PLAYERS.remove(id);
+            if (queue.targets.isEmpty()) HARVEST_QUEUES.remove(id);
+        }
     }
 
     @SubscribeEvent
@@ -180,25 +219,32 @@ public final class ToolAreaHandler {
 
     private static void harvest(EntityPlayerMP player, List<BlockPos> targets,
                                 ItemStack initialTool, boolean requireDrill) {
-        UUID id = player.getUniqueID();
-        ACTIVE_PLAYERS.add(id);
-        try {
-            for (BlockPos target : targets) {
-                ItemStack current = player.getHeldItemMainhand();
-                if (current.isEmpty() || current.getItem() != initialTool.getItem()
-                        || current.getMetadata() != initialTool.getMetadata()) break;
-                if (current.getItem() instanceof ItemElectricTool) {
-                    int cost = ((ItemElectricTool) current.getItem()).getEnergyCost(current);
-                    if (!ElectricItem.manager.canUse(current, cost)) break;
-                } else if (current.isItemStackDamageable()
-                        && current.getItemDamage() >= current.getMaxDamage() - 1) break;
-                if (requireDrill && (!(current.getItem() instanceof IMiningDrill)
-                        || !((IMiningDrill) current.getItem()).canMineBlock(current,
-                            player.world.getBlockState(target), player.world, target))) continue;
-                player.interactionManager.tryHarvestBlock(target);
-            }
-        } finally {
-            ACTIVE_PLAYERS.remove(id);
+        if (targets.isEmpty()) return;
+        HARVEST_QUEUES.put(player.getUniqueID(), new HarvestQueue(targets, initialTool, requireDrill));
+    }
+
+    private static boolean sameTool(ItemStack current, ItemStack expected) {
+        return !current.isEmpty() && current.getItem() == expected.getItem()
+            && current.getMetadata() == expected.getMetadata();
+    }
+
+    private static boolean canPay(ItemStack current) {
+        if (current.getItem() instanceof ItemElectricTool) {
+            int cost = ((ItemElectricTool) current.getItem()).getEnergyCost(current);
+            return ElectricItem.manager.canUse(current, cost);
+        }
+        return !current.isItemStackDamageable()
+            || current.getItemDamage() < current.getMaxDamage() - 1;
+    }
+
+    private static final class HarvestQueue {
+        final List<BlockPos> targets;
+        final ItemStack tool;
+        final boolean requireDrill;
+        HarvestQueue(List<BlockPos> targets, ItemStack tool, boolean requireDrill) {
+            this.targets = new ArrayList<>(targets);
+            this.tool = tool.copy();
+            this.requireDrill = requireDrill;
         }
     }
 

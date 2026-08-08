@@ -329,6 +329,9 @@ expected_backgrounds = {
 actual_backgrounds = {line.get("properties:10", {}).get("betterquesting:10", {}).get("bg_image:8", "")
                       for line in quest_lines.values()}
 check(actual_backgrounds == expected_backgrounds, "quest lines use all five era-specific backgrounds")
+check(all(line.get("properties:10", {}).get("betterquesting:10", {}).get("visibility:8") == "ALWAYS"
+          for line in quest_lines.values()),
+      "all chapter and side-path quest lines are aspirationally visible from the start")
 for resource in expected_backgrounds:
     filename = resource.rsplit("/", 1)[-1]
     check((ROOT / "resources/industrialcivilizationcore/textures/gui" / filename).is_file(),

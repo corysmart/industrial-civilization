@@ -5,6 +5,9 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
 public final class GuiIndustrialMachine extends GuiContainer {
+    private static final int TITLE_LEFT = 32;
+    private static final int TITLE_WIDTH = 136;
+    private static final int STATUS_RIGHT = 168;
     private static final ResourceLocation TEXTURE = new ResourceLocation(
         IndustrialCivilizationCore.MODID, "textures/gui/industrial_machine.png");
     private final TileIndustrialMachine tile;
@@ -18,9 +21,14 @@ public final class GuiIndustrialMachine extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        fontRenderer.drawString(tile.getDisplayName().getUnformattedText(), 8, 6, 0x25333A);
+        String title = fontRenderer.trimStringToWidth(
+            tile.getDisplayName().getUnformattedText(), TITLE_WIDTH);
+        int titleX = TITLE_LEFT + (TITLE_WIDTH - fontRenderer.getStringWidth(title)) / 2;
+        fontRenderer.drawString(title, titleX, 6, 0x25333A);
         fontRenderer.drawString("EU " + tile.getEnergyStored() + "/" + tile.getCapacity(), 8, 65, 0x25333A);
-        fontRenderer.drawString("Ops " + tile.getCompletedOperations(), 112, 65, 0x25333A);
+        String operations = "Ops " + tile.getCompletedOperations();
+        fontRenderer.drawString(operations,
+            STATUS_RIGHT - fontRenderer.getStringWidth(operations), 65, 0x25333A);
         fontRenderer.drawString("Inventory", 8, 73, 0x404B50);
     }
 

@@ -51,5 +51,14 @@ Do not use a valued world for the first database import. No runtime claims are m
 - [ ] 45. AI Age is presented as the beginning of the endgame.
 - [ ] 46. Post-AI branches are visible but do not block AI entry.
 - [ ] 47. No circular or impossible dependencies are visible.
+- [ ] 48. Orbital, lunar, and Mars habitat quests trigger only while the player is actually inside Galacticraft breathable air.
+- [ ] 49. Functional off-world bases require two continuous minutes of stable habitat samples plus their placed/operating infrastructure.
+- [ ] 50. A primitive settlement absorbs nearby stockpile items, pays an exact material bill, and constructs each physical upgrade without a random roll.
+- [ ] 51. Already-generated Mars chunks receive deterministic civilization processing after an AI-age player loads them.
+- [ ] 52. Apollo 11, 12, 14, 15, 16, and 17 markers show mission, landing date, coordinates, flag and heritage designation.
+- [ ] 53. Faction villagers, militia patrols, and robbers use their Industrial Civilization faction skins.
+- [ ] 54. World warmup remains visible at least 15 seconds and releases by 30 seconds.
+- [ ] 55. Stone axe/chainsaw trees and 3x3/9x9 drills process at most 12 extra blocks per tick while preserving protection, drops, enchantments and per-block tool payment.
+- [ ] 56. Radiation correctly follows players in vehicles and other moving entities as their AABB enters or leaves breathable air.
 
 Check `logs/latest.log`, `logs/groovy.log`, and `crafttweaker.log` after the run. Record quest/task IDs and screenshots for any mismatch.

@@ -1,5 +1,6 @@
 package com.industrialcivilization.core;
 
+import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -44,7 +45,12 @@ public final class SpaceSurvivalSystem {
             || name.contains("space station");
     }
 
-    private static boolean protectedByHabitat(EntityPlayer player) {
+    /** Shared by radiation and quest telemetry so both systems use one truth. */
+    public static boolean protectedByHabitat(EntityPlayer player) {
+        // Galacticraft's own breathable-air query understands irregular room
+        // topology, connected sealed volumes and its configured modded seals.
+        // It also tests the player's moving AABB rather than a guessed room ID.
+        if (OxygenUtil.isAABBInBreathableAirBlock(player)) return true;
         if (player.world.canSeeSky(player.getPosition())) return false;
         BlockPos center = player.getPosition();
         for (BlockPos position : BlockPos.getAllInBoxMutable(center.add(-10, -6, -10),
@@ -62,11 +68,12 @@ public final class SpaceSurvivalSystem {
         return false;
     }
 
-    private static boolean fullQuantumSuit(EntityPlayer player) {
+    public static boolean fullQuantumSuit(EntityPlayer player) {
         int pieces = 0;
         for (ItemStack stack : player.inventory.armorInventory) {
             if (!stack.isEmpty() && stack.getItem().getRegistryName() != null
-                    && stack.getItem().getRegistryName().toString().startsWith("ic2:itemarmorquantum")) {
+                    && stack.getItem().getRegistryName().toString().startsWith("ic2:itemarmorquantum")
+                    && (!stack.isItemStackDamageable() || stack.getItemDamage() < stack.getMaxDamage())) {
                 pieces++;
             }
         }

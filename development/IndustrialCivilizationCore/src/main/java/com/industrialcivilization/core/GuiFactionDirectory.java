@@ -33,13 +33,13 @@ public final class GuiFactionDirectory extends GuiScreen {
     @Override
     public void initGui() {
         buttonList.clear();
-        int panelWidth = Math.min(520, Math.max(300, width - 16));
-        int panelHeight = Math.min(330, Math.max(190, height - 16));
+        int panelWidth = Math.max(1, Math.min(520, width - 16));
+        int panelHeight = Math.max(1, Math.min(330, height - 16));
         left = (width - panelWidth) / 2;
         right = left + panelWidth;
         top = (height - panelHeight) / 2;
         bottom = top + panelHeight;
-        int listWidth = Math.min(155, Math.max(105, panelWidth / 3));
+        int listWidth = Math.min(155, Math.max(82, panelWidth / 3));
         divider = left + listWidth;
         detailLeft = divider + 10;
         detailWidth = right - detailLeft - 10;
@@ -48,7 +48,7 @@ public final class GuiFactionDirectory extends GuiScreen {
 
         int count = FactionSystem.DEFINITIONS.length;
         int available = Math.max(90, panelHeight - 62);
-        int buttonHeight = Math.min(20, Math.max(14, (available - (count - 1) * 3) / count));
+        int buttonHeight = Math.min(20, Math.max(10, (available - (count - 1) * 3) / count));
         int listTop = top + 28;
         for (int index = 0; index < count; index++) {
             buttonList.add(new GuiButton(100 + index, left + 6,
@@ -57,7 +57,8 @@ public final class GuiFactionDirectory extends GuiScreen {
         }
         buttonList.add(new GuiButton(SCROLL_UP, right - 45, top + 25, 18, 16, "\u25b2"));
         buttonList.add(new GuiButton(SCROLL_DOWN, right - 25, top + 25, 18, 16, "\u25bc"));
-        buttonList.add(new GuiButton(DONE, right - 106, bottom - 27, 100, 20,
+        int doneWidth = Math.max(60, Math.min(100, panelWidth - 12));
+        buttonList.add(new GuiButton(DONE, right - doneWidth - 6, bottom - 27, doneWidth, 20,
             I18n.format("gui.done")));
         clampScroll();
         FactionNetwork.requestSnapshot();

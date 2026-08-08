@@ -1,7 +1,12 @@
 package com.industrialcivilization.core;
 
 import betterquesting.api.properties.NativeProps;
+import betterquesting.api.questing.IQuestLine;
+import betterquesting.client.gui2.GuiHome;
+import betterquesting.client.gui2.GuiQuestLines;
+import betterquesting.api2.client.gui.panels.lists.CanvasQuestLine;
 import betterquesting.handlers.SaveLoadHandler;
+import betterquesting.questing.QuestLineDatabase;
 import betterquesting.storage.QuestSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -9,6 +14,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiIngameMenu;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.advancements.GuiAdvancementTab;
 import net.minecraft.client.gui.advancements.GuiScreenAdvancements;
 import net.minecraft.client.resources.I18n;
@@ -16,6 +22,8 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -26,6 +34,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
@@ -33,6 +42,7 @@ import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -41,6 +51,9 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -69,6 +82,12 @@ public final class IndustrialCivilizationCore {
     public static final int GUI_VEHICLE_STORAGE = 2;
     public static final int GUI_VEHICLE_CRAFTING = 3;
     public static boolean ENFORCE_SPACE_GATES = true;
+    public static boolean TEST_BRIDGE_ENABLED = false;
+    public static String E2E_AUTO_SCENARIO = "";
+    public static int ROBBER_SPAWN_PERCENT = 25;
+    public static int ROBBER_LOCAL_CAP = 4;
+    public static int MILITIA_PATROL_RADIUS = 128;
+    public static int MILITIA_PATROL_LOCAL_CAP = 6;
     @Mod.Instance(MODID)
     public static IndustrialCivilizationCore INSTANCE;
     public static final String QUEST_HOME_IMAGE = MODID + ":textures/gui/quest_home_v2.png";
@@ -113,6 +132,23 @@ public final class IndustrialCivilizationCore {
         new BlockEnvironmentalSolarArray("tracking_solar_array", true);
     public static final BlockRepairBench REPAIR_BENCH = new BlockRepairBench();
     public static final BlockVehicleServiceDock VEHICLE_SERVICE_DOCK = new BlockVehicleServiceDock();
+    public static final BlockWorkshopComponent STEEL_FRAME = component("steel_frame");
+    public static final BlockWorkshopComponent STEEL_CASING = component("steel_casing");
+    public static final BlockWorkshopComponent MACHINE_CASING = component("machine_casing");
+    public static final BlockWorkshopComponent REINFORCED_PLATE = component("reinforced_plate");
+    public static final BlockWorkshopComponent GRATED_PLATE = component("grated_plate");
+    public static final BlockWorkshopComponent INDUSTRIAL_FLOOR = component("industrial_floor");
+    public static final BlockWorkshopComponent HAZARD_STRIPE = component("hazard_stripe");
+    public static final BlockWorkshopComponent CABLE_BLOCK = component("workshop_cable_block");
+    public static final BlockWorkshopComponent CABLE_COVER = component("workshop_cable_cover");
+    public static final BlockWorkshopComponent GLASS_PANEL = component("reinforced_glass_panel");
+    public static final BlockWorkshopComponent TOOL_WALL = component("tool_wall");
+    public static final BlockWorkshopComponent DRAWER_CABINET = component("drawer_cabinet");
+    public static final BlockWorkshopComponent[] WORKSHOP_COMPONENTS = {
+        STEEL_FRAME, STEEL_CASING, MACHINE_CASING, REINFORCED_PLATE,
+        GRATED_PLATE, INDUSTRIAL_FLOOR, HAZARD_STRIPE, CABLE_BLOCK,
+        CABLE_COVER, GLASS_PANEL, TOOL_WALL, DRAWER_CABINET
+    };
     public static final BlockIndustrialMachine[] INDUSTRIAL_MACHINES = {
         RESEARCH_STATION, ORBITAL_EXPERIMENT_MODULE, ELECTRIC_FABRICATOR,
         PROGRAMMABLE_ASSEMBLER, CAR_WORKSHOP, GUN_FACTORY,
@@ -155,6 +191,10 @@ public final class IndustrialCivilizationCore {
         return new BlockIndustrialMachine(kind);
     }
 
+    private static BlockWorkshopComponent component(String id) {
+        return new BlockWorkshopComponent(id);
+    }
+
     private static ItemIndustrialArtifact artifact(String id) {
         return new ItemIndustrialArtifact(id);
     }
@@ -166,11 +206,28 @@ public final class IndustrialCivilizationCore {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         LOGGER = event.getModLog();
+        if (event.getSide() == Side.CLIENT) ClientRenderRegistration.register();
         Configuration runtime = new Configuration(new java.io.File(
             event.getModConfigurationDirectory(), "industrialcivilization/runtime.cfg"));
         runtime.load();
         ENFORCE_SPACE_GATES = runtime.getBoolean("enforceSpaceResearchGates", "progression",
             true, "Return unauthorized players to Earth when entering the Moon or Mars.");
+        ROBBER_SPAWN_PERCENT = runtime.getInt("robberSpawnPercent", "ecology", 25, 0, 100,
+            "Percent of ordinary Earth zombie spawn attempts converted into Robbers.");
+        ROBBER_LOCAL_CAP = runtime.getInt("robberLocalCap", "ecology", 4, 1, 16,
+            "Maximum naturally converted Robbers within 64 blocks before new attempts are rejected.");
+        MILITIA_PATROL_RADIUS = runtime.getInt("militiaPatrolRadius", "ecology", 128, 16, 512,
+            "Maximum distance from a registered militia outpost where patrols may naturally appear.");
+        MILITIA_PATROL_LOCAL_CAP = runtime.getInt("militiaPatrolLocalCap", "ecology", 6, 1, 24,
+            "Maximum naturally converted militia patrols within the configured outpost patrol radius.");
+        TEST_BRIDGE_ENABLED = runtime.getBoolean("enableTestBridge", "testing", false,
+            "Enable /ic_test deterministic scenarios and snapshots. Use only in disposable development worlds.");
+        E2E_AUTO_SCENARIO = runtime.getString("autoScenario", "testing", "",
+            "Automatically run this scenario in a disposable client world. Leave blank during normal play.").trim();
+        if (event.getSide() == Side.CLIENT && !E2E_AUTO_SCENARIO.isEmpty()) {
+            FMLCommonHandler.instance().bus().register(new ClientE2ERunner());
+            LOGGER.info("IC_E2E|RUNNER_ARMED|scenario={}", E2E_AUTO_SCENARIO);
+        }
         if (runtime.hasChanged()) runtime.save();
         // Preserve vanilla/mod recipe compatibility while making every pearl a
         // visibly technical, AI-manufactured phase component.
@@ -185,6 +242,10 @@ public final class IndustrialCivilizationCore {
             new ResourceLocation(MODID, "environmental_solar_array"));
         GameRegistry.registerTileEntity(TileVehicleServiceDock.class,
             new ResourceLocation(MODID, "vehicle_service_dock"));
+        EntityRegistry.registerModEntity(new ResourceLocation(MODID, "robber"),
+            EntityRobber.class, "robber", 1, this, 80, 3, true, 0x273029, 0x8A3C28);
+        EntityRegistry.registerModEntity(new ResourceLocation(MODID, "militia_patrol"),
+            EntityMilitiaPatrol.class, "militia_patrol", 2, this, 96, 2, true, 0x3A3025, 0x7D6B43);
         GameRegistry.registerWorldGenerator(new CivilizationWorldGenerator(), 50);
         MinecraftForge.TERRAIN_GEN_BUS.register(new VillageSuppressionHandler());
         MinecraftForge.TERRAIN_GEN_BUS.register(new MoonPurityHandler());
@@ -194,13 +255,24 @@ public final class IndustrialCivilizationCore {
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
+        removeVanillaHostileSpawnEggs();
         AnalyzerPeripheralProvider.register();
         NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, new IndustrialGuiHandler());
+    }
+
+    /** Creative exposes Industrial identities, never the vanilla monsters they replace. */
+    private static void removeVanillaHostileSpawnEggs() {
+        EntityList.ENTITY_EGGS.keySet().removeIf(id -> {
+            if (!"minecraft".equals(id.getResourceDomain())) return false;
+            EntityEntry entry = ForgeRegistries.ENTITIES.getValue(id);
+            return entry != null && IMob.class.isAssignableFrom(entry.getEntityClass());
+        });
     }
 
     @EventHandler
     public void serverStarting(FMLServerStartingEvent event) {
         event.registerServerCommand(new CommandIndustrialStatus());
+        if (TEST_BRIDGE_ENABLED) event.registerServerCommand(new CommandIndustrialTest());
     }
 
     @Mod.EventBusSubscriber(modid = MODID)
@@ -214,6 +286,7 @@ public final class IndustrialCivilizationCore {
             event.getRegistry().register(TRACKING_SOLAR_ARRAY);
             event.getRegistry().register(REPAIR_BENCH);
             event.getRegistry().register(VEHICLE_SERVICE_DOCK);
+            event.getRegistry().registerAll(WORKSHOP_COMPONENTS);
         }
 
         @SubscribeEvent
@@ -244,6 +317,11 @@ public final class IndustrialCivilizationCore {
             event.getRegistry().register(new ItemBlock(VEHICLE_SERVICE_DOCK)
                 .setCreativeTab(CREATIVE_TAB)
                 .setRegistryName(VEHICLE_SERVICE_DOCK.getRegistryName()));
+            for (BlockWorkshopComponent component : WORKSHOP_COMPONENTS) {
+                event.getRegistry().register(new ItemBlock(component)
+                    .setCreativeTab(CREATIVE_TAB)
+                    .setRegistryName(component.getRegistryName()));
+            }
         }
 
         @SubscribeEvent(priority = EventPriority.HIGHEST)
@@ -350,9 +428,10 @@ public final class IndustrialCivilizationCore {
                         "message.industrialcivilization.schematic.tier2"), false);
                 }
             }
-            boolean aiReady = ProgressionState.has(event.player, "artificial_industrial_intelligence_core")
-                && ProgressionState.has(event.player, "lite_matter_complete")
-                && ProgressionState.has(event.player, "martian_autonomy_complete");
+            boolean aiReady = GameplayRules.aiAgeReady(
+                ProgressionState.has(event.player, "artificial_industrial_intelligence_core"),
+                ProgressionState.has(event.player, "lite_matter_complete"),
+                ProgressionState.has(event.player, "martian_autonomy_archive"));
             if (aiReady) {
                 ProgressionState.record(event.player, "ai_age");
                 RuntimeAdvancements.grant(event.player, "ai_age_entry");
@@ -382,7 +461,7 @@ public final class IndustrialCivilizationCore {
         @SubscribeEvent
         public static void blockBroken(BlockEvent.BreakEvent event) {
             if (event.getPlayer() != null && !event.getWorld().isRemote) {
-                ProgressionState.increment(event.getPlayer(), "blocks_mined_manual", 1);
+                ProgressionState.increment(event.getPlayer(), "blocks_mined_manually", 1);
             }
         }
 
@@ -440,6 +519,12 @@ public final class IndustrialCivilizationCore {
             GuiScreenAdvancements.class, "tabs", "field_191947_i");
         private static final java.lang.reflect.Field SELECTED_ADVANCEMENT_TAB = ReflectionHelper.findField(
             GuiScreenAdvancements.class, "selectedTab", "field_191940_s");
+        private static final java.lang.reflect.Field SELECTED_QUEST_LINE = ReflectionHelper.findField(
+            GuiQuestLines.class, "selectedLine");
+        private static final java.lang.reflect.Field SELECTED_QUEST_LINE_ID = ReflectionHelper.findField(
+            GuiQuestLines.class, "selectedLineId");
+        private static final java.lang.reflect.Field QUEST_CANVAS = ReflectionHelper.findField(
+            GuiQuestLines.class, "cvQuest");
         private static final KeyMigration[] KEY_MIGRATIONS = {
             // Tutorial and interface access.
             key("key.betterquesting.quests", 41, KeyModifier.NONE, 64, KeyModifier.NONE),
@@ -564,10 +649,72 @@ public final class IndustrialCivilizationCore {
             ModelLoader.setCustomModelResourceLocation(
                 Item.getItemFromBlock(VEHICLE_SERVICE_DOCK), 0,
                 new ModelResourceLocation(VEHICLE_SERVICE_DOCK.getRegistryName(), "inventory"));
+            for (BlockWorkshopComponent component : WORKSHOP_COMPONENTS) {
+                ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(component), 0,
+                    new ModelResourceLocation(component.getRegistryName(), "inventory"));
+            }
             for (ItemIndustrialArtifact artifact : ARTIFACTS) {
                 ModelLoader.setCustomModelResourceLocation(
                     artifact, 0,
                     new ModelResourceLocation(artifact.getRegistryName(), "inventory"));
+            }
+        }
+
+        /**
+         * Better Questing has no selected line in a fresh client session. Its
+         * home-screen Quests button consequently opens an empty black canvas
+         * until the player manually expands the quest-line tray. Seed that
+         * navigation state with the canonical first chapter.
+         */
+        @SubscribeEvent(priority = EventPriority.HIGHEST)
+        public static void openQuestGuideAtFirstChapter(GuiOpenEvent event) {
+            if (!(event.getGui() instanceof GuiQuestLines)
+                    || !(Minecraft.getMinecraft().currentScreen instanceof GuiHome)) return;
+            IQuestLine firstChapter = QuestLineDatabase.INSTANCE.getValue(0);
+            if (firstChapter != null) {
+                try {
+                    SELECTED_QUEST_LINE.set(event.getGui(), firstChapter);
+                    SELECTED_QUEST_LINE_ID.setInt(event.getGui(), 0);
+                } catch (IllegalAccessException exception) {
+                    LOGGER.warn("Could not select the first Better Questing chapter", exception);
+                }
+            }
+        }
+
+        /** Prevent zooming far enough to expose empty canvas beyond the backdrop. */
+        @SubscribeEvent(priority = EventPriority.HIGHEST)
+        public static void clampQuestBackgroundZoom(GuiScreenEvent.DrawScreenEvent.Pre event) {
+            if (!(event.getGui() instanceof GuiQuestLines)) return;
+            try {
+                CanvasQuestLine canvas = (CanvasQuestLine) QUEST_CANVAS.get(event.getGui());
+                if (canvas == null || canvas.getQuestLine() == null) return;
+                int backgroundSize = canvas.getQuestLine().getProperty(NativeProps.BG_SIZE);
+                int viewportWidth = canvas.getTransform().getWidth();
+                int viewportHeight = canvas.getTransform().getHeight();
+                float oldZoom = canvas.getZoom();
+                float minimumZoom = GameplayRules.questMinimumZoom(
+                    viewportWidth, viewportHeight, backgroundSize);
+                if (oldZoom + 0.0001F < minimumZoom) {
+                    int centerX = canvas.getScrollX()
+                        + Math.round(viewportWidth / (2.0F * oldZoom));
+                    int centerY = canvas.getScrollY()
+                        + Math.round(viewportHeight / (2.0F * oldZoom));
+                    canvas.setZoom(minimumZoom);
+                    canvas.setScrollX(centerX
+                        - Math.round(viewportWidth / (2.0F * minimumZoom)));
+                    canvas.setScrollY(centerY
+                        - Math.round(viewportHeight / (2.0F * minimumZoom)));
+                    canvas.refreshScrollBounds();
+                }
+                int boundedX = GameplayRules.questBoundedScroll(canvas.getScrollX(),
+                    viewportWidth, backgroundSize, canvas.getZoom());
+                int boundedY = GameplayRules.questBoundedScroll(canvas.getScrollY(),
+                    viewportHeight, backgroundSize, canvas.getZoom());
+                if (canvas.getScrollX() != boundedX) canvas.setScrollX(boundedX);
+                if (canvas.getScrollY() != boundedY) canvas.setScrollY(boundedY);
+                canvas.updatePanelScroll();
+            } catch (IllegalAccessException exception) {
+                LOGGER.warn("Could not enforce Better Questing background bounds", exception);
             }
         }
 
@@ -578,11 +725,56 @@ public final class IndustrialCivilizationCore {
                 ProgressionNetwork.requestSpaceAccess();
             }
             if (!(event.getGui() instanceof GuiIngameMenu)) return;
-            event.getButtonList().stream()
-                .filter(button -> button.id == 6)
-                .findFirst()
-                .ifPresent(button -> button.displayString =
-                    I18n.format("gui.industrialcivilization.factions"));
+            GuiButton advancements = null;
+            GuiButton factions = null;
+            int maxBottom = 0;
+            for (GuiButton button : event.getButtonList()) {
+                if (button.id == 5) advancements = button;
+                if (button.id == 6) factions = button;
+                maxBottom = Math.max(maxBottom, button.y + button.height);
+            }
+            if (advancements == null || factions == null) return;
+            factions.displayString = I18n.format("gui.industrialcivilization.factions");
+            int left = Math.min(advancements.x, factions.x);
+            int right = Math.max(advancements.x + advancements.width, factions.x + factions.width);
+            int rowY = Math.min(advancements.y, factions.y);
+            int rowStep = Math.max(24, Math.max(advancements.height, factions.height) + 4);
+            if (maxBottom + rowStep <= event.getGui().height - 4) {
+                for (GuiButton button : event.getButtonList()) {
+                    if (button != advancements && button != factions && button.y > rowY) {
+                        button.y += rowStep;
+                    }
+                }
+                advancements.x = left;
+                advancements.y = rowY;
+                advancements.width = right - left;
+                factions.x = left;
+                factions.y = rowY + rowStep;
+                factions.width = right - left;
+            } else {
+                fitPauseMenuPair(advancements, factions, left, right);
+            }
+        }
+
+        private static void fitPauseMenuPair(GuiButton advancements, GuiButton factions,
+                int left, int right) {
+            int gap = 4;
+            int available = right - left - gap;
+            int advancementsNeed = Minecraft.getMinecraft().fontRenderer
+                .getStringWidth(advancements.displayString) + 12;
+            int factionsNeed = Minecraft.getMinecraft().fontRenderer
+                .getStringWidth(factions.displayString) + 12;
+            if (advancementsNeed + factionsNeed > available) {
+                factions.displayString = I18n.format("gui.industrialcivilization.factions.short");
+                factionsNeed = Minecraft.getMinecraft().fontRenderer
+                    .getStringWidth(factions.displayString) + 12;
+            }
+            int factionWidth = Math.max(available / 2, factionsNeed);
+            factionWidth = Math.min(factionWidth, Math.max(1, available - advancementsNeed));
+            advancements.x = left;
+            advancements.width = available - factionWidth;
+            factions.x = advancements.x + advancements.width + gap;
+            factions.width = factionWidth;
         }
 
         /** Galacticraft's standalone tutorial tree is replaced by the pack progression tree. */

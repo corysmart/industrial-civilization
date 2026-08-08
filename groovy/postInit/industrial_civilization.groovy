@@ -60,6 +60,46 @@ crafting.addShaped('industrial_civilization:vehicle_service_dock', item('industr
     [ore('ingotSteel'), item('ic2:blockmachinelv'), ore('ingotSteel')]
 ])
 
+// Every block shown on the workshop architecture board is a normal,
+// independently craftable building block. Auto-deployment uses these exact
+// registry objects; players may instead build or decorate with them directly.
+crafting.addShaped('industrial_civilization:workshop_steel_frame', item('industrialcivilizationcore:steel_frame') * 4, [
+    [ore('ingotSteel'), null, ore('ingotSteel')], [ore('ingotSteel'), ore('ingotSteel'), ore('ingotSteel')]
+])
+crafting.addShaped('industrial_civilization:workshop_steel_casing', item('industrialcivilizationcore:steel_casing') * 4, [
+    [ore('ingotSteel'), ore('plateIron'), ore('ingotSteel')], [ore('plateIron'), null, ore('plateIron')], [ore('ingotSteel'), ore('plateIron'), ore('ingotSteel')]
+])
+crafting.addShaped('industrial_civilization:workshop_machine_casing', item('industrialcivilizationcore:machine_casing') * 2, [
+    [ore('plateIron'), item('ic2:itemmisc:451'), ore('plateIron')], [ore('ingotSteel'), item('ic2:blockmachinelv'), ore('ingotSteel')]
+])
+crafting.addShaped('industrial_civilization:workshop_reinforced_plate', item('industrialcivilizationcore:reinforced_plate') * 6, [
+    [ore('plateIron'), ore('ingotSteel'), ore('plateIron')], [ore('plateIron'), ore('ingotSteel'), ore('plateIron')]
+])
+crafting.addShaped('industrial_civilization:workshop_grated_plate', item('industrialcivilizationcore:grated_plate') * 6, [
+    [item('minecraft:iron_bars'), ore('plateIron'), item('minecraft:iron_bars')], [ore('plateIron'), item('minecraft:iron_bars'), ore('plateIron')]
+])
+crafting.addShaped('industrial_civilization:workshop_industrial_floor', item('industrialcivilizationcore:industrial_floor') * 8, [
+    [item('minecraft:stone_slab'), item('industrialcivilizationcore:reinforced_plate'), item('minecraft:stone_slab')], [item('minecraft:stone_slab'), item('industrialcivilizationcore:reinforced_plate'), item('minecraft:stone_slab')]
+])
+crafting.addShaped('industrial_civilization:workshop_hazard_stripe', item('industrialcivilizationcore:hazard_stripe') * 8, [
+    [item('industrialcivilizationcore:industrial_floor'), item('minecraft:dye:11')], [item('minecraft:dye'), item('industrialcivilizationcore:industrial_floor')]
+])
+crafting.addShaped('industrial_civilization:workshop_cable_block', item('industrialcivilizationcore:workshop_cable_block') * 4, [
+    [ore('plateIron'), item('ic2:itemcable'), ore('plateIron')], [item('ic2:itemcable'), item('ic2:itemmisc:451'), item('ic2:itemcable')]
+])
+crafting.addShaped('industrial_civilization:workshop_cable_cover', item('industrialcivilizationcore:workshop_cable_cover') * 6, [
+    [ore('plateIron'), item('industrialcivilizationcore:workshop_cable_block'), ore('plateIron')]
+])
+crafting.addShaped('industrial_civilization:workshop_glass_panel', item('industrialcivilizationcore:reinforced_glass_panel') * 6, [
+    [ore('ingotSteel'), item('minecraft:glass_pane'), ore('ingotSteel')], [item('minecraft:glass_pane'), item('minecraft:glass_pane'), item('minecraft:glass_pane')]
+])
+crafting.addShaped('industrial_civilization:workshop_tool_wall', item('industrialcivilizationcore:tool_wall') * 2, [
+    [item('minecraft:shears'), item('minecraft:iron_pickaxe'), item('ic2:itemtoolwrench')], [ore('plateIron'), item('industrialcivilizationcore:steel_casing'), ore('plateIron')]
+])
+crafting.addShaped('industrial_civilization:workshop_drawer_cabinet', item('industrialcivilizationcore:drawer_cabinet') * 2, [
+    [item('minecraft:chest'), ore('plateIron'), item('minecraft:chest')], [ore('ingotSteel'), item('industrialcivilizationcore:steel_casing'), ore('ingotSteel')]
+])
+
 // Firearms above simple black-powder weapons are machine products. The pistol
 // is printed by the Programmable Assembler; shotgun and M4 require the Gun Factory.
 crafting.removeByOutput(item('techguns:pistol'))

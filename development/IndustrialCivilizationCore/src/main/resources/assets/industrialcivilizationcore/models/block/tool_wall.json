@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "industrialcivilizationcore:blocks/tool_wall",
+    "north": "industrialcivilizationcore:blocks/tool_wall",
+    "south": "industrialcivilizationcore:blocks/tool_wall_side",
+    "east": "industrialcivilizationcore:blocks/tool_wall_side",
+    "west": "industrialcivilizationcore:blocks/tool_wall_side",
+    "up": "industrialcivilizationcore:blocks/tool_wall_top",
+    "down": "industrialcivilizationcore:blocks/tool_wall_side"
+  }
+}

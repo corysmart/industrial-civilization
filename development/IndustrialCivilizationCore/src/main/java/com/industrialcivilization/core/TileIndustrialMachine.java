@@ -47,6 +47,7 @@ public final class TileIndustrialMachine extends TileEntity
     private boolean rusted;
     private boolean nationManaged;
     private String nationProduct = "";
+    private EnumFacing workshopFacing = EnumFacing.NORTH;
     private static final Set<TileIndustrialMachine> LOADED_CARGO_CONTROLLERS =
         Collections.newSetFromMap(new WeakHashMap<TileIndustrialMachine, Boolean>());
 
@@ -87,6 +88,11 @@ public final class TileIndustrialMachine extends TileEntity
     public int getEnergyStored() { return (int) energy; }
     public void setLastUser(EntityPlayer player) { lastUser = player.getUniqueID(); markDirty(); }
     public boolean isRusted() { return rusted; }
+    public EnumFacing getWorkshopFacing() { return workshopFacing; }
+    public void setWorkshopFacing(EnumFacing facing) {
+        workshopFacing = facing != null && facing.getAxis().isHorizontal() ? facing : EnumFacing.NORTH;
+        markDirty();
+    }
     public boolean repairRust() {
         if (!rusted) return false;
         rusted = false;
@@ -209,6 +215,7 @@ public final class TileIndustrialMachine extends TileEntity
         compound.setBoolean("Rusted", rusted);
         compound.setBoolean("NationManaged", nationManaged);
         compound.setString("NationProduct", nationProduct);
+        compound.setInteger("WorkshopFacing", workshopFacing.getHorizontalIndex());
         if (lastUser != null) compound.setUniqueId("LastUser", lastUser);
         for (int i = 0; i < inventory.size(); i++) {
             if (!inventory.get(i).isEmpty()) compound.setTag("Slot" + i, inventory.get(i).serializeNBT());
@@ -228,6 +235,8 @@ public final class TileIndustrialMachine extends TileEntity
         rusted = compound.getBoolean("Rusted");
         nationManaged = compound.getBoolean("NationManaged");
         nationProduct = compound.getString("NationProduct");
+        workshopFacing = compound.hasKey("WorkshopFacing", 3)
+            ? EnumFacing.getHorizontal(compound.getInteger("WorkshopFacing")) : EnumFacing.NORTH;
         lastUser = compound.hasUniqueId("LastUser") ? compound.getUniqueId("LastUser") : null;
         for (int i = 0; i < inventory.size(); i++) {
             inventory.set(i, compound.hasKey("Slot" + i, 10)

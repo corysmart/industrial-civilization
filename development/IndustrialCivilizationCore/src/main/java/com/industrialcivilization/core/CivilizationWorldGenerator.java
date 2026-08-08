@@ -4,6 +4,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -27,7 +28,7 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
         if (world.provider.getDimension() != 0) {
             if (isMoon(world)) generateLunarHeritageFlags(chunkX, chunkZ, world);
             if (isMars(world) && aiAgeUnlocked(world)) generateMartianCivilization(
-                random, chunkX, chunkZ, world);
+                deterministicRandom(world, chunkX, chunkZ), chunkX, chunkZ, world);
             return;
         }
         BlockPos spawn = world.getSpawnPoint();
@@ -86,18 +87,47 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
         return world.provider.getDimensionType().getName().toLowerCase(java.util.Locale.ROOT).contains("moon");
     }
 
-    /** Six compact heritage markers represent the six Apollo surface flag sites. */
-    private static void generateLunarHeritageFlags(int chunkX, int chunkZ, World world) {
-        int[][] sites = {{96, 0}, {192, 80}, {-160, 144}, {320, -96}, {-288, -160}, {64, 352}};
-        for (int[] site : sites) {
-            if (Math.floorDiv(site[0], 16) != chunkX || Math.floorDiv(site[1], 16) != chunkZ) continue;
-            BlockPos ground = world.getTopSolidOrLiquidBlock(new BlockPos(site[0], 0, site[1])).down();
+    /**
+     * Equirectangular 24-block/degree interpretation of NASA landing
+     * coordinates. These are respectful scale markers, not claims that
+     * Galacticraft terrain reproduces the real lunar surface.
+     */
+    public static void generateLunarHeritageFlags(int chunkX, int chunkZ, World world) {
+        Object[][] sites = {
+            {"Apollo 11", "1969-07-20", 0.67408D, 23.47297D},
+            {"Apollo 12", "1969-11-19", -3.0128D, -23.4219D},
+            {"Apollo 14", "1971-02-05", -3.6453D, -17.4714D},
+            {"Apollo 15", "1971-07-30", 26.1322D, 3.6339D},
+            {"Apollo 16", "1972-04-21", -8.9734D, 15.5011D},
+            {"Apollo 17", "1972-12-11", 20.1908D, 30.7717D}
+        };
+        for (Object[] site : sites) {
+            int siteX = (int) Math.round((Double) site[3] * 24.0D);
+            int siteZ = (int) Math.round(-(Double) site[2] * 24.0D);
+            if (Math.floorDiv(siteX, 16) != chunkX || Math.floorDiv(siteZ, 16) != chunkZ) continue;
+            BlockPos ground = world.getTopSolidOrLiquidBlock(new BlockPos(siteX, 0, siteZ)).down();
             if (ground.getY() < 10) return;
+            // Non-loot basalt/iron memorial pad makes the site legible without
+            // pretending an intact lander is naturally present.
+            for (int dx=-2;dx<=5;dx++) for (int dz=-2;dz<=2;dz++)
+                set(world, ground.add(dx, 0, dz), Blocks.STONE.getDefaultState());
             for (int y = 1; y <= 5; y++) set(world, ground.add(0, y, 0), Blocks.IRON_BARS.getDefaultState());
-            // Small block-art United States flag; these are markers, not loot structures.
+            // All six crewed Apollo sites carried United States flags.
             for (int dx = 1; dx <= 4; dx++) for (int dy = 0; dy <= 2; dy++) {
                 int color = dx <= 2 && dy >= 1 ? 11 : ((dy & 1) == 0 ? 14 : 0);
                 set(world, ground.add(dx, 5 - dy, 0), Blocks.WOOL.getStateFromMeta(color));
+            }
+            BlockPos plaque = ground.add(-1, 1, 0);
+            set(world, plaque, Blocks.STANDING_SIGN.getDefaultState());
+            TileEntity plaqueTile = world.getTileEntity(plaque);
+            if (plaqueTile instanceof net.minecraft.tileentity.TileEntitySign) {
+                net.minecraft.tileentity.TileEntitySign sign = (net.minecraft.tileentity.TileEntitySign) plaqueTile;
+                sign.signText[0] = new net.minecraft.util.text.TextComponentString((String) site[0]);
+                sign.signText[1] = new net.minecraft.util.text.TextComponentString((String) site[1]);
+                sign.signText[2] = new net.minecraft.util.text.TextComponentString(
+                    String.format(java.util.Locale.ROOT, "%.3f %.3f", (Double) site[2], (Double) site[3]));
+                sign.signText[3] = new net.minecraft.util.text.TextComponentString("Heritage Site");
+                sign.markDirty();
             }
             return;
         }
@@ -108,6 +138,21 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
             if (ProgressionState.has(player, "ai_age") || MarketEconomy.playerStage(player) >= 7) return true;
         }
         return false;
+    }
+
+    public static boolean hasAiAgePlayer(World world) { return aiAgeUnlocked(world); }
+
+    /** Same seed and chunk always produce the same post-AI Mars decision. */
+    public static void generatePostAiMarsChunk(World world, int chunkX, int chunkZ) {
+        if (isMars(world) && aiAgeUnlocked(world)) generateMartianCivilization(
+            deterministicRandom(world, chunkX, chunkZ), chunkX, chunkZ, world);
+    }
+
+    private static Random deterministicRandom(World world, int chunkX, int chunkZ) {
+        long seed = world.getSeed() ^ 0x4D415253434956L;
+        seed ^= (long) chunkX * 341873128712L;
+        seed ^= (long) chunkZ * 132897987541L;
+        return new Random(seed);
     }
 
     /** Mars remains untouched until an AI-age player generates new terrain. */
@@ -145,6 +190,7 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
     }
 
     private static void buildPrimitiveSettlement(World world, BlockPos origin) {
+        SettlementEconomySystem.register(world, origin, "primitive", "food", 0);
         platform(world, origin, Blocks.COBBLESTONE.getDefaultState());
         // A deliberately primitive cluster: two timber shelters, a well, a
         // small crop plot and a crossroads. It does not contain free machines.
@@ -170,6 +216,7 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
     }
 
     private static void buildMilitiaOutpost(World world, BlockPos origin) {
+        SettlementEconomySystem.register(world, origin, "militia_outpost", "armaments", 2);
         MilitiaOutpostRegistry.record(world, origin);
         platform(world, origin, Blocks.STONEBRICK.getDefaultState());
         for (int i = 0; i < 15; i++) {
@@ -198,6 +245,7 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
     }
 
     private static void buildOperationalFactory(World world, BlockPos origin, String specialty) {
+        SettlementEconomySystem.register(world, origin, "operational_factory", specialty, 2);
         platform(world, origin, Blocks.STONEBRICK.getDefaultState());
         industrialShell(world, origin.add(1, 1, 1), specialty);
         Block machine = "research".equals(specialty) ? IndustrialCivilizationCore.RESEARCH_STATION
@@ -222,6 +270,7 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
     }
 
     private static void buildIndustrialCity(World world, BlockPos origin) {
+        SettlementEconomySystem.register(world, origin, "industrial_city", "general", 3);
         platform(world, origin, Blocks.STONEBRICK.getDefaultState());
         building(world, origin.add(1, 1, 1), 5, 5, Blocks.BRICK_BLOCK.getDefaultState(), 6);
         building(world, origin.add(9, 1, 1), 5, 5, Blocks.STONEBRICK.getDefaultState(), 8);
@@ -338,6 +387,35 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
                     || x == width - 1 || z == depth - 1;
                 set(world, origin.add(x, y, z), shell ? wall : Blocks.AIR.getDefaultState());
             }
+        }
+    }
+
+    /** Applies exactly one paid construction stage; no random upgrade roll. */
+    public static void applySettlementUpgrade(World world, BlockPos origin, int tier) {
+        if (tier == 1) {
+            // Timber market hall and material receiving yard.
+            building(world, origin.add(16, 1, 1), 7, 7, Blocks.PLANKS.getDefaultState(), 4);
+            set(world, origin.add(19, 2, 1), Blocks.AIR.getDefaultState());
+            set(world, origin.add(18, 2, 4), Blocks.CHEST.getDefaultState());
+            set(world, origin.add(20, 2, 4), Blocks.CRAFTING_TABLE.getDefaultState());
+        } else if (tier == 2) {
+            // Masonry works hall and first electrified service spine.
+            building(world, origin.add(16, 1, 9), 9, 7, Blocks.STONEBRICK.getDefaultState(), 5);
+            set(world, origin.add(20, 2, 9), Blocks.AIR.getDefaultState());
+            set(world, origin.add(19, 2, 12), Blocks.FURNACE.getDefaultState());
+            set(world, origin.add(21, 2, 12), IndustrialCivilizationCore.ELECTRIC_FABRICATOR.getDefaultState());
+            installUtilitySpine(world, origin.add(15, 0, 8), false);
+        } else if (tier == 3) {
+            // Civic exchange: the final primitive-settlement upgrade consumes
+            // steel/electronics/fuel/credits and joins the nation cargo grid.
+            building(world, origin.add(1, 1, 16), 11, 9, Blocks.BRICK_BLOCK.getDefaultState(), 7);
+            set(world, origin.add(6, 2, 16), Blocks.AIR.getDefaultState());
+            BlockPos exchange = origin.add(6, 2, 20);
+            set(world, exchange, IndustrialCivilizationCore.INTERPLANETARY_CARGO_CONTROLLER.getDefaultState());
+            TileEntity tile = world.getTileEntity(exchange);
+            if (tile instanceof TileIndustrialMachine)
+                ((TileIndustrialMachine) tile).seedNationExchange("earth_nation_exchange", "minecraft:bread");
+            installUtilitySpine(world, origin.add(0, 0, 15), true);
         }
     }
 

@@ -34,6 +34,9 @@
 /development/IndustrialCivilizationCore/.gradle/
 /development/IndustrialCivilizationCore/.gradle-user-home/
 /development/IndustrialCivilizationCore/build/
+/.gradle-user-home/
+/.headlessmc/
+/HeadlessMC/
 
 # Editor and temporary files
 .idea/
@@ -41,3 +44,5 @@
 *.swp
 *.tmp
 *.next
+__pycache__/
+*.pyc

@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "industrialcivilizationcore:blocks/machine_casing",
+    "north": "industrialcivilizationcore:blocks/machine_casing",
+    "south": "industrialcivilizationcore:blocks/machine_casing_side",
+    "east": "industrialcivilizationcore:blocks/machine_casing_side",
+    "west": "industrialcivilizationcore:blocks/machine_casing_side",
+    "up": "industrialcivilizationcore:blocks/machine_casing_top",
+    "down": "industrialcivilizationcore:blocks/machine_casing_side"
+  }
+}
