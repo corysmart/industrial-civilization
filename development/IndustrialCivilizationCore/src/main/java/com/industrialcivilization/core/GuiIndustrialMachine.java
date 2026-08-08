@@ -20,6 +20,17 @@ public final class GuiIndustrialMachine extends GuiContainer {
     }
 
     @Override
+    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+        // GuiContainer does not provide the standard dimmed world background or
+        // hovered-slot tooltip by itself. Vanilla container screens add both in
+        // their concrete GUI class, and HEI also relies on BackgroundDrawnEvent
+        // firing here to lay out its side panels correctly on narrow screens.
+        drawDefaultBackground();
+        super.drawScreen(mouseX, mouseY, partialTicks);
+        renderHoveredToolTip(mouseX, mouseY);
+    }
+
+    @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         String title = fontRenderer.trimStringToWidth(
             tile.getDisplayName().getUnformattedText(), TITLE_WIDTH);
