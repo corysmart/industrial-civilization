@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Industrial Civilization UI Simulator</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <aside>
+    <h1>Industrial Civilization</h1>
+    <p class="subtitle">UI simulator · hot reload enabled</p>
+    <label>Screen<select id="screen">
+      <option value="machine">Industrial Machine</option>
+      <option value="factions">Factions & Settlements</option>
+      <option value="warmup">Terrain Warmup</option>
+      <option value="credits">AI Age Credits</option>
+      <option value="quests">Quest Canvas</option>
+    </select></label>
+    <label>Display<select id="display">
+      <option value="1184x666">Mac test window · 1184×666</option>
+      <option value="854x480">Minimum window · 854×480</option>
+      <option value="1280x720">HD · 1280×720</option>
+      <option value="1920x1080">Full HD · 1920×1080</option>
+      <option value="2560x1600">Retina · 2560×1600</option>
+    </select></label>
+    <label>GUI scale<select id="scale">
+      <option value="0">Auto</option><option value="1">1×</option>
+      <option value="2" selected>2×</option><option value="3">3×</option><option value="4">4×</option>
+    </select></label>
+    <section id="machine-controls">
+      <label>Machine<select id="machine"></select></label>
+      <label>Energy <input id="energy" type="range" min="0" max="100" value="73"></label>
+      <label>Completed operations <input id="operations" type="number" min="0" value="12345"></label>
+      <label><input id="hei" type="checkbox" checked> HEI side panels</label>
+    </section>
+    <section id="faction-controls" hidden><label>Faction<select id="faction"></select></label></section>
+    <section id="quest-controls" hidden><label>Quest line<select id="quest-line"></select></label><label>Zoom <input id="quest-zoom" type="range" min="50" max="150" value="100"></label></section>
+    <button id="audit">Run layout audit</button>
+    <div id="status">Loading real pack assets…</div>
+    <pre id="audit-output"></pre>
+  </aside>
+  <main><div id="viewport"><canvas id="ui"></canvas></div><div id="metrics"></div></main>
+  <script src="/app.js"></script>
+</body>
+</html>

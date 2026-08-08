@@ -36,8 +36,10 @@ public final class GuiIndustrialMachine extends GuiContainer {
             tile.getDisplayName().getUnformattedText(), TITLE_WIDTH);
         int titleX = TITLE_LEFT + (TITLE_WIDTH - fontRenderer.getStringWidth(title)) / 2;
         fontRenderer.drawString(title, titleX, 6, 0x25333A);
-        fontRenderer.drawString("EU " + tile.getEnergyStored() + "/" + tile.getCapacity(), 8, 65, 0x25333A);
-        String operations = "Ops " + tile.getCompletedOperations();
+        String energy = "EU " + IndustrialUiText.compactNumber(tile.getEnergyStored())
+            + "/" + IndustrialUiText.compactNumber(tile.getCapacity());
+        fontRenderer.drawString(energy, 8, 65, 0x25333A);
+        String operations = "Ops " + IndustrialUiText.compactNumber(tile.getCompletedOperations());
         fontRenderer.drawString(operations,
             STATUS_RIGHT - fontRenderer.getStringWidth(operations), 65, 0x25333A);
         fontRenderer.drawString("Inventory", 8, 73, 0x404B50);

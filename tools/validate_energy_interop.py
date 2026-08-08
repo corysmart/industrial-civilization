@@ -78,7 +78,8 @@ for path in player_files:
     check(re.search(r"\bFE\b|Forge Energy|Redstone Flux", path.read_text()) is None,
           f"player-facing energy language is EU-only: {path.relative_to(ROOT)}")
 gui = (JAVA / "GuiIndustrialMachine.java").read_text()
-check('drawString("EU "' in gui, "custom machine GUI labels energy in EU")
+check('String energy = "EU "' in gui and "IndustrialUiText.compactNumber" in gui,
+      "custom machine GUI labels compact machine energy in EU")
 check("trimStringToWidth" in gui and "TITLE_LEFT = 32" in gui,
       "machine GUI keeps long titles clear of the energy meter at small GUI scales")
 check("STATUS_RIGHT - fontRenderer.getStringWidth(operations)" in gui,

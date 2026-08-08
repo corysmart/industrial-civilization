@@ -37,3 +37,16 @@ block model, and the shared IC2-styled machine GUI from
 `progression/runtime-content.json`. The runtime-content harness checks those
 assets and the Java/Groovy integration without starting Minecraft, Forge,
 Technic, or a server.
+
+Custom UI work can be previewed without restarting Minecraft. The hot-reloading
+simulator renders all first-party screens and the Better Questing canvas using
+the real pack data, textures, and Minecraft bitmap font:
+
+```sh
+python3 tools/ui_simulator/server.py
+open http://127.0.0.1:43127
+```
+
+Run its display-size/GUI-scale matrix and generate review screenshots with
+`python3 tools/ui_simulator/audit.py --screenshots`. See
+`tools/ui_simulator/README.md` for details.

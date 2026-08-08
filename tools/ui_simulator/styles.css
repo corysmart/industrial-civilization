@@ -1,0 +1,19 @@
+:root { color-scheme: dark; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; display: grid; grid-template-columns: 300px 1fr; background: #11181c; color: #dce8e8; }
+aside { padding: 20px; border-right: 1px solid #33464b; background: #172126; overflow: auto; }
+h1 { margin: 0; font-size: 18px; color: #f0b35a; }
+.subtitle { margin: 4px 0 22px; color: #89a2a5; font-size: 12px; }
+label { display: grid; gap: 6px; margin: 12px 0; color: #a9c9c6; font-size: 12px; }
+select, input, button { width: 100%; color: #e8eeee; background: #253238; border: 1px solid #53686d; border-radius: 3px; padding: 8px; }
+input[type=checkbox] { width: auto; }
+button { margin-top: 16px; cursor: pointer; background: #355b5e; }
+#status { margin-top: 14px; font-size: 11px; line-height: 1.4; color: #8fa6a9; }
+#status.fail { color: #ff8275; }
+#status.pass { color: #70e0c0; }
+#audit-output { white-space: pre-wrap; font-size: 10px; color: #c3d2d3; }
+main { min-width: 0; display: grid; place-items: center; padding: 24px; overflow: auto; }
+#viewport { max-width: 100%; max-height: calc(100vh - 70px); overflow: auto; border: 1px solid #5b6b70; box-shadow: 0 12px 50px #000a; background: #000; }
+canvas { display: block; image-rendering: pixelated; image-rendering: crisp-edges; }
+#metrics { position: fixed; right: 16px; bottom: 12px; padding: 6px 10px; background: #10181cdd; color: #9fb4b5; font-size: 11px; }
+@media (max-width: 800px) { body { grid-template-columns: 230px 1fr; } aside { padding: 12px; } main { padding: 10px; } }
