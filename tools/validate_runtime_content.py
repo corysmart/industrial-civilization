@@ -94,6 +94,20 @@ check(gui.getpixel((15, 60))[:3] == (123, 137, 142)
       and gui.getpixel((15, 61))[:3] == (123, 137, 142),
       "energy gauge housing leaves two dark-panel pixels below it")
 check(gui.getpixel((176, 49))[3] == 255, "progress overlay strip exists")
+
+title_logo = Image.open(ASSETS / "textures/mainmenu/industrial_civilization_logo.png").convert("RGBA")
+check(title_logo.size == (512, 256), "main-menu title card remains 512x256")
+check(all(title_logo.getpixel(point)[3] == 0 for point in ((0, 0), (511, 0), (0, 255), (511, 255))),
+      "main-menu title card exterior matte is transparent")
+check(title_logo.getpixel((256, 128))[3] == 255,
+      "main-menu title card preserves its opaque plaque interior")
+
+quest_home = Image.open(ROOT / "resources/industrialcivilizationcore/textures/gui/quest_home_v2.png").convert("RGBA")
+check(quest_home.size == (512, 512), "Better Questing home atlas remains 512x512")
+check(quest_home.getpixel((0, 0))[3] == 255,
+      "Better Questing home backdrop remains opaque")
+check(all(quest_home.getpixel(point)[3] == 0 for point in ((0, 256), (511, 256), (0, 511), (511, 511))),
+      "Better Questing title layer uses the transparent plaque cutout")
 check(gui.getpixel((128, 42))[:3] == (231, 130, 50)
       and gui.getpixel((129, 42))[:3] == (101, 114, 120),
       "process arrow ends before the output item-slot border")

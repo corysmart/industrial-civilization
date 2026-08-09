@@ -1637,8 +1637,8 @@
     {
       "file": "mods/IndustrialCivilizationCore-0.2.0.jar",
       "filename": "IndustrialCivilizationCore-0.2.0.jar",
-      "size": 2881757,
-      "sha256": "f24050ed4243d1037cd6fa83e381fb289d9c8592236bfb02e5c549bec1ae7429",
+      "size": 2901760,
+      "sha256": "376302cac3ed4a97ad7513049267d18b327ceba922348971c9079141a57fcddd",
       "classification": "KEEP",
       "mods": [
         {
@@ -5276,8 +5276,8 @@
     },
     {
       "file": "resources/industrialcivilizationcore/textures/gui/quest_home_v2.png",
-      "sha256": "9e0aaac77bac6e3f1ce9247025d91c291305c77c326356a6fb9c76f50de0c5fe",
-      "size": 429094
+      "sha256": "462233043bbb135d42e652e7187775c92cb725e29cf3b835e5d936300f583191",
+      "size": 449925
     },
     {
       "file": "resources/industrialcivilizationcore/textures/icons/16x16.png",
@@ -5316,8 +5316,8 @@
     },
     {
       "file": "resources/industrialcivilizationcore/textures/mainmenu/industrial_civilization_logo.png",
-      "sha256": "43b5b2c84dbacab6909d70b7af47ce3db63acf80e06f0afdd18b20139a54d56c",
-      "size": 193883
+      "sha256": "f4d4066cfd6778f1c28aacf68bdd1cfe828e585f7cfe8b6272ef45d7d7204082",
+      "size": 213876
     },
     {
       "file": "resources/industrialcivilizationcore/textures/mainmenu/speaker.png",
