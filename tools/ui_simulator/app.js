@@ -63,7 +63,7 @@ function drawText(text, x, y, color = "#ffffff", scale = 1) {
     const g = glyphMetrics(ch);
     if (g.fallback) {
       ctx.fillStyle = color; ctx.font = `${8 * scale}px monospace`; ctx.fillText(ch, dx, y + 7 * scale);
-    } else {
+    } else if (ch !== " ") {
       glyphContext.clearRect(0, 0, 8, 8);
       glyphContext.globalCompositeOperation = "source-over";
       glyphContext.drawImage(fontImage, g.sx, g.sy, 8, 8, 0, 0, 8, 8);
@@ -71,7 +71,13 @@ function drawText(text, x, y, color = "#ffffff", scale = 1) {
       glyphContext.fillStyle = color;
       glyphContext.fillRect(0, 0, 8, 8);
       glyphContext.globalCompositeOperation = "source-over";
-      ctx.drawImage(glyphCanvas, 0, 0, 8, 8, dx, Math.round(y), 8 * scale, 8 * scale);
+      // FontRenderer renders only charWidth - 1 source pixels, stretched across
+      // charWidth display pixels. Drawing the whole 8-pixel cell causes the
+      // next glyph to overwrite it and is why the first simulator build looked
+      // like every word had been crushed together.
+      const sourceWidth = Math.max(1, g.width - 1);
+      ctx.drawImage(glyphCanvas, 0, 0, sourceWidth, 8,
+        dx, Math.round(y), g.width * scale, 8 * scale);
     }
     dx += g.width * scale;
   }
@@ -135,6 +141,24 @@ function compactNumber(value) {
     ? scaled.toFixed(1) + suffixes[suffix] : String(nearest) + suffixes[suffix];
 }
 
+function renderHeiPanel(x, y, w, h, label, populated) {
+  rect(x, y, w, h, "rgba(35,41,45,.92)", "#8b989b");
+  centered(label, x + w / 2, y + 7, "#ddd");
+  const searchHeight = 14;
+  rect(x + 4, y + h - searchHeight - 4, w - 8, searchHeight, "#111719", "#9aa5a8");
+  drawText(populated ? "Search..." : "No bookmarks", x + 8, y + h - searchHeight - 1, "#9aa5a8");
+  if (!populated) return;
+  const slot = 18, columns = Math.max(1, Math.floor((w - 8) / slot));
+  const rows = Math.max(1, Math.floor((h - 42) / slot));
+  const palette = ["#7f9ca4", "#c47f39", "#6e8f55", "#b8b7af", "#8d6ba8", "#a9554d", "#c4ae45"];
+  for (let row = 0; row < rows; row++) for (let column = 0; column < columns; column++) {
+    const sx = x + 4 + column * slot, sy = y + 22 + row * slot;
+    rect(sx, sy, 16, 16, "#5a6062", "#aeb5b6");
+    const color = palette[(row * columns + column) % palette.length];
+    rect(sx + 4, sy + 4, 8, 8, color, "#263034");
+  }
+}
+
 function machineLayout(d, machine, energyPercent, operations, auditScreen = "machine") {
   const gui = {x: Math.floor((d.width - 176) / 2), y: Math.floor((d.height - 166) / 2), w: 176, h: 166};
   if (!contained(gui, {x: 0, y: 0, w: d.width, h: d.height})) issue(auditScreen, "176×166 machine panel does not fit the logical viewport", gui);
@@ -158,8 +182,8 @@ function renderMachine(d, machineOverride, auditScreen) {
   if ($("hei").checked) {
     const gap = 4;
     const leftW = Math.max(0, gui.x - gap), rightX = gui.x + gui.w + gap;
-    if (leftW >= 64) { rect(2, 18, leftW - 4, d.height - 36, "#23292ddd", "#8b989b"); centered("Bookmarks", leftW / 2, 25, "#ddd"); }
-    if (d.width - rightX >= 64) { rect(rightX, 18, d.width - rightX - 2, d.height - 36, "#23292ddd", "#8b989b"); centered("HEI Items", (rightX + d.width) / 2, 25, "#ddd"); }
+    if (leftW >= 64) renderHeiPanel(2, 18, leftW - 4, d.height - 36, "Bookmarks", false);
+    if (d.width - rightX >= 64) renderHeiPanel(rightX, 18, d.width - rightX - 2, d.height - 36, "HEI Items", true);
   }
   ctx.drawImage(machineTexture, 0, 0, 176, 166, gui.x, gui.y, 176, 166);
   const energyHeight = Math.floor(48 * state.energy / machine.capacity);
