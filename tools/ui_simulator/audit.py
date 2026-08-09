@@ -87,11 +87,11 @@ def run_audit(base_url: str, chrome: Path, profile: Path) -> dict:
 def capture(base_url: str, chrome: Path, profile: Path, output: Path) -> None:
     output.mkdir(parents=True, exist_ok=True)
     screens = {
+        "machine-fusion-core.png": "screen=machine&machine=fusion_research_core&display=854x480&scale=2",
+        "machine-programmable-assembler.png": "screen=machine&machine=programmable_assembler&display=1184x666&scale=2",
         "main-menu-mac-window.png": "screen=mainmenu&display=1184x666&scale=2",
         "main-menu-small-window.png": "screen=mainmenu&display=854x480&scale=2",
         "pause-menu-small-window.png": "screen=pause&display=854x480&scale=2",
-        "machine-programmable-assembler.png": "screen=machine&machine=programmable_assembler&display=1184x666&scale=2",
-        "machine-fusion-core.png": "screen=machine&machine=fusion_research_core&display=854x480&scale=2",
         "factions-small-window.png": "screen=factions&faction=ashline_raiders&display=854x480&scale=2",
         "terrain-warmup-small-window.png": "screen=warmup&display=854x480&scale=2",
         "ai-credits-small-window.png": "screen=credits&display=854x480&scale=2",

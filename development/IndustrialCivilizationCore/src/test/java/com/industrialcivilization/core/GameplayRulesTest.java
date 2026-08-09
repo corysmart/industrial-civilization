@@ -4,6 +4,17 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class GameplayRulesTest {
+    @Test public void machineGuiUsesNativeScaleAtMinimumWindow() {
+        assertEquals(1.0F, GameplayRules.machineGuiScale(427, 240), 0.0001F);
+    }
+    @Test public void machineGuiKeepsItsScreenShareOnLargeWindow() {
+        assertEquals(1.386F, GameplayRules.machineGuiScale(592, 333), 0.001F);
+    }
+    @Test public void machineGuiScaleUsesConstrainingScreenDimension() {
+        assertEquals(1.0F, GameplayRules.machineGuiScale(900, 240), 0.0001F);
+        assertEquals(1.0F, GameplayRules.machineGuiScale(427, 600), 0.0001F);
+    }
+
     @Test public void mainMenuTitleKeepsSmallWindowMinimum() {
         assertEquals(160, GameplayRules.mainMenuTitleWidth(427, 240));
     }

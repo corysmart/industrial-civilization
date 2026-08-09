@@ -2,6 +2,12 @@ package com.industrialcivilization.core;
 
 /** Pure deterministic rules shared with the headless mechanics test suite. */
 public final class GameplayRules {
+    public static float machineGuiScale(int screenWidth, int screenHeight) {
+        float widthScale = Math.max(0, screenWidth) / 427.0F;
+        float heightScale = Math.max(0, screenHeight) / 240.0F;
+        return Math.max(1.0F, Math.min(widthScale, heightScale));
+    }
+
     public static int mainMenuTitleWidth(int screenWidth, int screenHeight) {
         int proportional = Math.round(Math.max(0, screenWidth) * 0.40F);
         int widthLimit = Math.max(160, screenWidth - 32);

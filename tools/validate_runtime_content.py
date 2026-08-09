@@ -129,9 +129,13 @@ check(gui.getpixel((153, 46))[:3] == (231, 130, 50)
 source = "\n".join(path.read_text() for path in JAVA.glob("*.java"))
 machine_gui_source = (JAVA / "GuiIndustrialMachine.java").read_text()
 machine_container_source = (JAVA / "ContainerIndustrialMachine.java").read_text()
-check("xSize = 208" in machine_gui_source and "ySize = 190" in machine_gui_source
+check("BASE_WIDTH = 208" in machine_gui_source and "BASE_HEIGHT = 190" in machine_gui_source
       and "TITLE_WIDTH = 184" in machine_gui_source,
       "machine GUI uses the enlarged breathing-room workspace")
+check("machineGuiScale(width, height)" in machine_gui_source
+      and "GlStateManager.scale(interfaceScale" in machine_gui_source
+      and "toVirtualX" in machine_gui_source and "toVirtualY" in machine_gui_source,
+      "machine GUI scales responsively while preserving mouse hit testing")
 check("24 + col * 18, 100 + row * 18" in machine_container_source
       and "24 + col * 18, 167" in machine_container_source,
       "player inventory remains centered inside the enlarged workspace")

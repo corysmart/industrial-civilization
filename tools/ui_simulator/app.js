@@ -304,7 +304,9 @@ function renderSpaceMap(d, auditScreen = "spacemap") {
 }
 
 function machineLayout(d, machine, energyPercent, operations, auditScreen = "machine") {
-  const gui = {x: Math.floor((d.width - 208) / 2), y: Math.floor((d.height - 190) / 2), w: 208, h: 190};
+  const scale = Math.max(1, Math.min(d.width / 427, d.height / 240));
+  const gui = {x: Math.floor((d.width - 208 * scale) / 2), y: Math.floor((d.height - 190 * scale) / 2),
+    w: 208 * scale, h: 190 * scale};
   if (!contained(gui, {x: 0, y: 0, w: d.width, h: d.height})) issue(auditScreen, "208×190 machine panel does not fit the logical viewport", gui);
   const title = data.lang[`tile.industrialcivilizationcore.${machine.id}.name`] || machine.id;
   const shownTitle = trim(title, 184);
@@ -326,7 +328,7 @@ function machineLayout(d, machine, energyPercent, operations, auditScreen = "mac
   if (gaugeTopClearance < 8 || gaugeBottomClearance < 8) issue(auditScreen, `${machine.id}: energy gauge lacks dark-panel edge clearance`, {x: gui.x + 19, y: gui.y + 20, w: 12, h: 62});
   if (overlap(energyBox, energyMeter)) issue(auditScreen, `${machine.id}: energy text overlaps the energy meter`, {x: gui.x + 19, y: gui.y + 29, w: 12, h: 40});
   if (overlap(progressFill, inputSlot) || overlap(progressFill, outputSlot)) issue(auditScreen, `${machine.id}: progress connector overlaps an item slot`, {x: gui.x + 107, y: gui.y + 38, w: 66, h: 18});
-  return {gui, title: shownTitle, titleX: 12 + (184 - textWidth(shownTitle)) / 2,
+  return {gui, scale, title: shownTitle, titleX: 12 + (184 - textWidth(shownTitle)) / 2,
     energyText, operationsText, energyBox, opsBox, energy, progress: .62};
 }
 
@@ -334,20 +336,24 @@ function renderMachine(d, machineOverride, auditScreen) {
   worldBackground(d.width, d.height, true);
   const machine = machineOverride || data.machines.find(m => m.id === $("machine").value) || data.machines[0];
   const state = machineLayout(d, machine, Number($("energy").value), Number($("operations").value), auditScreen);
-  const {gui} = state;
+  const {gui, scale} = state;
   if ($("hei").checked) {
     const gap = 4;
     const leftW = Math.max(0, gui.x - gap), rightX = gui.x + gui.w + gap;
     if (leftW >= 64) renderHeiPanel(2, 18, leftW - 4, d.height - 36, "Bookmarks", false);
     if (d.width - rightX >= 64) renderHeiPanel(rightX, 18, d.width - rightX - 2, d.height - 36, "HEI Items", true);
   }
-  ctx.drawImage(machineTexture, 0, 0, 208, 190, gui.x, gui.y, 208, 190);
+  ctx.save();
+  ctx.translate(gui.x, gui.y);
+  ctx.scale(scale, scale);
+  ctx.drawImage(machineTexture, 0, 0, 208, 190, 0, 0, 208, 190);
   const energyHeight = Math.floor(36 * state.energy / machine.capacity);
-  if (energyHeight > 0) ctx.drawImage(machineTexture, 208, 36 - energyHeight, 8, energyHeight, gui.x + 21, gui.y + 67 - energyHeight, 8, energyHeight);
-  ctx.drawImage(machineTexture, 208, 49, Math.floor(23 * state.progress), 16, gui.x + 125, gui.y + 39, Math.floor(23 * state.progress), 16);
-  drawText(state.title, gui.x + state.titleX, gui.y + 6, "#25333a");
-  drawText(state.energyText, gui.x + state.energyBox.x, gui.y + 69, "#d7e0e3");
-  drawText(state.operationsText, gui.x + state.opsBox.x, gui.y + 69, "#d7e0e3");
+  if (energyHeight > 0) ctx.drawImage(machineTexture, 208, 36 - energyHeight, 8, energyHeight, 21, 67 - energyHeight, 8, energyHeight);
+  ctx.drawImage(machineTexture, 208, 49, Math.floor(23 * state.progress), 16, 125, 39, Math.floor(23 * state.progress), 16);
+  drawText(state.title, state.titleX, 6, "#25333a");
+  drawText(state.energyText, state.energyBox.x, 69, "#d7e0e3");
+  drawText(state.operationsText, state.opsBox.x, 69, "#d7e0e3");
+  ctx.restore();
 }
 
 function factionDetail(faction, width) {
