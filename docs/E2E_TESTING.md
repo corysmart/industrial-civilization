@@ -2,10 +2,12 @@
 
 ## UI simulation without a Minecraft restart
 
-The hot-reloading UI simulator is the fast feedback path for every first-party
-screen and the customized Better Questing canvas. It consumes repository Java
-data, localization, quest JSON and textures, plus Minecraft 1.12.2's installed
-bitmap font.
+The hot-reloading UI simulator is the fast feedback path for the branded main
+menu, injected pause menu, every first-party screen, Better Questing home and
+canvas, the Industrial Civilization advancements filter, and Galacticraft
+space-map restrictions. It consumes repository Java data, localization, quest
+JSON, Custom Main Menu configuration and textures, plus Minecraft 1.12.2's
+installed bitmap font.
 
 ```sh
 python3 tools/ui_simulator/server.py
@@ -13,11 +15,11 @@ open http://127.0.0.1:43127
 python3 tools/ui_simulator/audit.py --screenshots
 ```
 
-The audit covers five display sizes, GUI scales 1–4 and Auto, every custom
-machine, every faction and every quest line. It rejects clipped panels,
-overlapping machine status labels, undersized detail columns, and quest nodes
-or backgrounds outside their legal canvas. Review PNGs are written under
-`docs/ui-simulator/`.
+The 1,200-check audit covers ten screen families, five display sizes, GUI scales
+1–4 and Auto, every custom machine, every faction and every quest line. It
+rejects clipped panels, overlapping labels or buttons, undersized detail
+columns, and quest nodes or backgrounds outside their legal canvas. Eleven
+review PNGs are written under `docs/ui-simulator/`.
 
 Minecraft 1.12.2 predates Mojang's GameTest framework. There is therefore no
 drop-in simulator that can faithfully emulate this 162-mod Forge client.

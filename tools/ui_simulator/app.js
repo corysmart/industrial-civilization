@@ -4,7 +4,7 @@ const $ = id => document.getElementById(id);
 const canvas = $("ui");
 const ctx = canvas.getContext("2d", {alpha: false});
 ctx.imageSmoothingEnabled = false;
-let data, fontImage, machineTexture, menuImage, stamp;
+let data, fontImage, machineTexture, menuImage, menuLogo, menuButton, questHomeImage, stamp;
 const questImages = new Map();
 const issues = [];
 const glyphCache = new Map();
@@ -12,7 +12,9 @@ const glyphCache = new Map();
 function image(url) {
   return new Promise((resolve, reject) => {
     const img = new Image();
-    img.onload = () => resolve(img); img.onerror = reject; img.src = url + "?t=" + Date.now();
+    img.onload = () => resolve(img);
+    img.onerror = () => reject(new Error(`Unable to load simulator asset: ${url}`));
+    img.src = url + "?t=" + Date.now();
   });
 }
 
@@ -157,6 +159,116 @@ function renderHeiPanel(x, y, w, h, label, populated) {
     const color = palette[(row * columns + column) % palette.length];
     rect(sx + 4, sy + 4, 8, 8, color, "#263034");
   }
+}
+
+function anchoredBox(d, entry) {
+  let x = entry.posX || 0, y = entry.posY || 0;
+  const alignment = entry.alignment || "top_left";
+  if (alignment.includes("center")) x += d.width / 2;
+  else if (alignment.includes("right")) x += d.width;
+  if (alignment.includes("bottom")) y += d.height;
+  return {x, y, w: entry.width || 0, h: entry.height || 0};
+}
+
+function mainMenuLayout(d, auditScreen = "mainmenu") {
+  const title = anchoredBox(d, data.mainMenu.images.title);
+  const versionLabel = data.mainMenu.labels.industrialcivilization;
+  const version = {x: versionLabel.posX || 0, y: versionLabel.posY || 0,
+    w: textWidth(versionLabel.text), h: 8};
+  const buttons = Object.entries(data.mainMenu.buttons)
+    .filter(([id]) => id !== "replay" && id !== "modslabel" && id !== "speaker")
+    .map(([id, entry]) => ({id, entry, box: anchoredBox(d, entry)}));
+  const viewport = {x: 0, y: 0, w: d.width, h: d.height};
+  if (!contained(title, viewport)) issue(auditScreen, "Main-menu logo clips the viewport", title);
+  if (overlap(title, version)) issue(auditScreen, "Main-menu version label overlaps the logo", version);
+  for (const buttonEntry of buttons) {
+    if (!contained(buttonEntry.box, viewport)) issue(auditScreen, `Main-menu ${buttonEntry.id} button clips the viewport`, buttonEntry.box);
+    if (overlap(title, buttonEntry.box)) issue(auditScreen, `Main-menu logo overlaps the ${buttonEntry.id} button`, buttonEntry.box);
+  }
+  for (let i = 0; i < buttons.length; i++) for (let j = i + 1; j < buttons.length; j++) {
+    if (overlap(buttons[i].box, buttons[j].box)) issue(auditScreen, `Main-menu ${buttons[i].id} and ${buttons[j].id} buttons overlap`, buttons[i].box);
+  }
+  return {title, buttons, version};
+}
+
+function renderMainMenu(d, auditScreen = "mainmenu") {
+  ctx.drawImage(menuImage, 0, 0, d.width, d.height);
+  const layout = mainMenuLayout(d, auditScreen);
+  ctx.drawImage(menuLogo, layout.title.x, layout.title.y, layout.title.w, layout.title.h);
+  drawText(data.mainMenu.labels.industrialcivilization.text,
+    layout.version.x, layout.version.y, "#fff");
+  const labels = {singleplayer: "Singleplayer", multiplayer: "Multiplayer", options: "Options...", quit: "Quit Game", mods: "Loaded Mods", languagebutton: "Language..."};
+  for (const {id, box} of layout.buttons) {
+    ctx.drawImage(menuButton, 0, 0, 200, 20, box.x, box.y, box.w, box.h);
+    centered(labels[id] || id, box.x + box.w / 2, box.y + Math.max(2, (box.h - 8) / 2), "#fff");
+  }
+  drawText("192 mods loaded and active", 2, d.height - 9, "#fff");
+  const copyright = "Copyright Mojang AB. Do not distribute!";
+  drawText(copyright, d.width - textWidth(copyright) - 2, d.height - 9, "#fff");
+}
+
+function pauseLayout(d, auditScreen = "pause") {
+  const width = Math.min(200, d.width - 24), x = (d.width - width) / 2;
+  const start = Math.max(30, d.height / 2 - 92), step = 24;
+  const rows = [
+    {label: "Back to Game", x, y: start, w: width, h: 20},
+    {label: "Advancements", x, y: start + step, w: width, h: 20},
+    {label: "Factions & Settlements", x, y: start + step * 2, w: width, h: 20},
+    {label: "Open to LAN", x, y: start + step * 3, w: width, h: 20},
+    {label: "Options...", x, y: start + step * 4, w: (width - 4) / 2, h: 20},
+    {label: "Mod Options...", x: x + (width + 4) / 2, y: start + step * 4, w: (width - 4) / 2, h: 20},
+    {label: "Save and Quit to Title", x, y: start + step * 5, w: width, h: 20},
+  ];
+  const viewport = {x: 0, y: 0, w: d.width, h: d.height};
+  for (const row of rows) {
+    if (!contained(row, viewport)) issue(auditScreen, `Pause-menu ${row.label} button clips the viewport`, row);
+    if (textWidth(row.label) > row.w - 8) issue(auditScreen, `Pause-menu ${row.label} text does not fit`, row);
+  }
+  return rows;
+}
+
+function renderPause(d, auditScreen = "pause") {
+  worldBackground(d.width, d.height, true);
+  centered("Game Menu", d.width / 2, Math.max(8, d.height / 2 - 116), "#fff");
+  pauseLayout(d, auditScreen).forEach(row => button(row.x, row.y, row.w, row.h, row.label));
+}
+
+function renderAdvancements(d, auditScreen = "advancements") {
+  worldBackground(d.width, d.height, true);
+  const panel = {x: Math.max(8, (d.width - Math.min(400, d.width - 16)) / 2), y: Math.max(20, (d.height - Math.min(240, d.height - 40)) / 2), w: Math.min(400, d.width - 16), h: Math.min(240, d.height - 40)};
+  rect(panel.x, panel.y, panel.w, panel.h, "#c6c6c6", "#202020");
+  rect(panel.x + 7, panel.y + 24, panel.w - 14, panel.h - 32, "#332f2a", "#fff");
+  button(panel.x + 8, panel.y - 18, Math.min(132, panel.w - 16), 20, "Industrial Civilization");
+  centered("Industrial Civilization Advancements", panel.x + panel.w / 2, panel.y + 8, "#303030");
+  const nodes = [[.18,.50],[.38,.50],[.58,.38],[.58,.62],[.78,.50]];
+  ctx.strokeStyle = "#a9b5b4"; ctx.lineWidth = 2;
+  for (let index = 1; index < nodes.length; index++) { ctx.beginPath(); ctx.moveTo(panel.x + 12 + nodes[index - 1][0] * (panel.w - 24), panel.y + 30 + nodes[index - 1][1] * (panel.h - 44)); ctx.lineTo(panel.x + 12 + nodes[index][0] * (panel.w - 24), panel.y + 30 + nodes[index][1] * (panel.h - 44)); ctx.stroke(); }
+  nodes.forEach((node, index) => rect(panel.x + node[0] * (panel.w - 24), panel.y + 26 + node[1] * (panel.h - 44), 18, 18, index ? "#737a7b" : "#c7a44b", "#eee"));
+  if (!contained(panel, {x:0,y:0,w:d.width,h:d.height})) issue(auditScreen, "Advancements panel clips viewport", panel);
+}
+
+function renderQuestHome(d, auditScreen = "questhome") {
+  worldBackground(d.width, d.height, true);
+  const panel = {x: 8, y: 8, w: d.width - 16, h: d.height - 16};
+  rect(panel.x, panel.y, panel.w, panel.h, "#c6c6c6", "#202020");
+  const buttonHeight = 24, imageBox = {x: panel.x + 6, y: panel.y + 6, w: panel.w - 12, h: panel.h - buttonHeight - 14};
+  const scale = Math.max(imageBox.w / questHomeImage.width, imageBox.h / questHomeImage.height);
+  const iw = questHomeImage.width * scale, ih = questHomeImage.height * scale;
+  ctx.save(); ctx.beginPath(); ctx.rect(imageBox.x, imageBox.y, imageBox.w, imageBox.h); ctx.clip();
+  ctx.drawImage(questHomeImage, imageBox.x + (imageBox.w - iw) / 2, imageBox.y + (imageBox.h - ih) / 2, iw, ih); ctx.restore();
+  const labels = ["Exit", "Quests", "Party", "Theme"], bw = (panel.w - 12) / labels.length;
+  labels.forEach((label, index) => button(panel.x + 6 + index * bw, panel.y + panel.h - buttonHeight - 5, bw, buttonHeight, label));
+  if (imageBox.w < 100 || imageBox.h < 80) issue(auditScreen, "Quest-home artwork viewport is too small", imageBox);
+}
+
+function renderSpaceMap(d, auditScreen = "spacemap") {
+  rect(0, 0, d.width, d.height, "#03050b");
+  for (let i = 0; i < 100; i++) rect((i * 83) % d.width, (i * 47) % d.height, 1, 1, i % 4 ? "#777" : "#fff");
+  centered("Industrial Civilization Space Program", d.width / 2, 8, "#fff");
+  const bodies = [{name:"Earth",x:.22,color:"#4b7cb5",allowed:true},{name:"Moon",x:.50,color:"#b8b8ac",allowed:true},{name:"Mars",x:.78,color:"#b45d3d",allowed:false}];
+  bodies.forEach(body => { const x=d.width*body.x,y=d.height*.48; ctx.beginPath();ctx.arc(x,y,Math.max(12,d.width*.035),0,Math.PI*2);ctx.fillStyle=body.color;ctx.fill();centered(body.name,x,y+Math.max(17,d.width*.045),body.allowed?"#fff":"#777"); if(!body.allowed) centered("LOCKED",x,y-4,"#ff776d"); });
+  const status = {x:d.width/2-100,y:d.height-30,w:200,h:20}; button(status.x,status.y,status.w,status.h,"Travel only to authorized bodies");
+  if (!contained(status,{x:0,y:0,w:d.width,h:d.height})) issue(auditScreen,"Space-map status clips viewport",status);
 }
 
 function machineLayout(d, machine, energyPercent, operations, auditScreen = "machine") {
@@ -324,11 +436,16 @@ async function render() {
   const d = dimensions(); canvas.width = d.width; canvas.height = d.height; ctx.imageSmoothingEnabled = false;
   const screen = $("screen").value;
   $("machine-controls").hidden = screen !== "machine"; $("faction-controls").hidden = screen !== "factions"; $("quest-controls").hidden = screen !== "quests";
-  if (screen === "machine") renderMachine(d);
+  if (screen === "mainmenu") renderMainMenu(d);
+  else if (screen === "pause") renderPause(d);
+  else if (screen === "machine") renderMachine(d);
   else if (screen === "factions") renderFactions(d);
   else if (screen === "warmup") renderWarmup(d);
   else if (screen === "credits") renderCredits(d);
-  else await renderQuests(d);
+  else if (screen === "questhome") renderQuestHome(d);
+  else if (screen === "quests") await renderQuests(d);
+  else if (screen === "advancements") renderAdvancements(d);
+  else renderSpaceMap(d);
   const availableW = Math.max(320, window.innerWidth - 350), availableH = Math.max(240, window.innerHeight - 100);
   const previewScale = Math.min(d.factor, availableW / d.width, availableH / d.height);
   canvas.style.width = Math.floor(d.width * previewScale) + "px"; canvas.style.height = Math.floor(d.height * previewScale) + "px";
@@ -344,6 +461,8 @@ async function audit() {
   for (const [displayWidth, displayHeight] of presets) for (const requested of [0,1,2,3,4]) {
     const factor = minecraftScale(displayWidth, displayHeight, requested);
     const d = {displayWidth, displayHeight,factor,width:Math.ceil(displayWidth/factor),height:Math.ceil(displayHeight/factor)};
+    mainMenuLayout(d, `mainmenu@${displayWidth}x${displayHeight}/g${requested}`);
+    pauseLayout(d, `pause@${displayWidth}x${displayHeight}/g${requested}`);
     for (const machine of data.machines) machineLayout(d, machine, 100, 999999999, `machine/${machine.id}@${displayWidth}x${displayHeight}/g${requested}`);
     for (const faction of data.factions) auditFactionLayout(d, faction, `factions/${faction.id}@${displayWidth}x${displayHeight}/g${requested}`);
     auditWarmupLayout(d, `warmup@${displayWidth}x${displayHeight}/g${requested}`);
@@ -351,7 +470,7 @@ async function audit() {
     for (const line of data.questLines) auditQuestLayout(d, line, `quests/${line.id}@${displayWidth}x${displayHeight}/g${requested}`);
   }
   $("hei").checked = originalHei;
-  const report = {passed: issues.length === 0, checks: presets.length * 5 * (data.machines.length + data.factions.length + data.questLines.length + 2), issues};
+  const report = {passed: issues.length === 0, checks: presets.length * 5 * (data.machines.length + data.factions.length + data.questLines.length + 7), issues};
   $("audit-output").textContent = JSON.stringify(report, null, 2);
   $("status").className = report.passed ? "pass" : "fail";
   $("status").textContent = report.passed ? `PASS · ${report.checks} layout states` : `FAIL · ${issues.length} layout issue(s)`;
@@ -360,9 +479,11 @@ async function audit() {
 }
 
 async function init() {
-  [data, fontImage, machineTexture, menuImage] = await Promise.all([
+  [data, fontImage, machineTexture, menuImage, menuLogo, menuButton, questHomeImage] = await Promise.all([
     fetch("/api/data").then(r => r.json()), image("/assets/minecraft/ascii.png"),
-    image("/assets/industrial_machine.png"), image("/assets/mainmenu.png")]);
+    image("/assets/industrial_machine.png"), image("/assets/mainmenu.png"),
+    image("/assets/mainmenu-logo.png"), image("/assets/mainmenu-button.png"),
+    image("/assets/quest-home.png")]);
   for (const machine of data.machines) { const option = document.createElement("option"); option.value = machine.id; option.textContent = data.lang[`tile.industrialcivilizationcore.${machine.id}.name`] || machine.id; $("machine").append(option); }
   $("machine").value = "programmable_assembler";
   for (const faction of data.factions) { const option = document.createElement("option"); option.value = faction.id; option.textContent = faction.name; $("faction").append(option); }

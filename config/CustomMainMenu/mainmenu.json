@@ -2,10 +2,10 @@
 	"images": {
 		"title": {
 			"image": "industrialcivilizationcore:textures/mainmenu/industrial_civilization_logo.png",
-			"posX": -180,
-			"posY": 12,
-			"width": 360,
-			"height": 180,
+			"posX": -80,
+			"posY": 14,
+			"width": 160,
+			"height": 80,
 			"imageWidth": 512,
 			"imageHeight": 256,
 			"alignment": "top_center"
@@ -167,7 +167,7 @@
 			"alignment": "bottom_right"
 		},
 		"industrialcivilization": {
-			"text": "Industrial Civilization v0.2.0 — Earth Industry to Interplanetary Civilization",
+			"text": "Industrial Civilization v0.2.0",
 			"posX": 1,
 			"posY": 2,
 			"color": -1,

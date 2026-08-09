@@ -81,12 +81,20 @@ def parse_quests() -> list[dict]:
     return sorted(result, key=lambda line: line["order"])
 
 
+def parse_main_menu() -> dict:
+    return json.loads((ROOT / "config/CustomMainMenu/mainmenu.json").read_text(encoding="utf-8"))
+
+
 def source_stamp() -> int:
     watched = [HERE / "index.html", HERE / "styles.css", HERE / "app.js", QUESTS,
+               ROOT / "config/CustomMainMenu/mainmenu.json",
                JAVA / "GuiIndustrialMachine.java", JAVA / "GuiFactionDirectory.java",
                JAVA / "GuiTerrainWarmup.java", JAVA / "GuiIndustrialCredits.java",
                JAVA / "IndustrialMachineKind.java", JAVA / "FactionSystem.java",
-               RESOURCES / "lang/en_us.lang", RESOURCES / "textures/gui/industrial_machine.png"]
+               RESOURCES / "lang/en_us.lang", RESOURCES / "textures/gui/industrial_machine.png",
+               PACK_RESOURCES / "textures/mainmenu/industrial_civilization_background.png",
+               PACK_RESOURCES / "textures/mainmenu/industrial_civilization_logo.png",
+               PACK_RESOURCES / "textures/gui/quest_home_v2.png"]
     return max(int(path.stat().st_mtime_ns) for path in watched if path.exists())
 
 
@@ -110,7 +118,8 @@ class Handler(BaseHTTPRequestHandler):
         path = unquote(urlparse(self.path).path)
         if path == "/api/data":
             self.send_json({"lang": parse_lang(), "machines": parse_machines(),
-                            "factions": parse_factions(), "questLines": parse_quests()})
+                            "factions": parse_factions(), "questLines": parse_quests(),
+                            "mainMenu": parse_main_menu()})
             return
         if path == "/api/stamp":
             self.send_json({"stamp": source_stamp()})
@@ -124,7 +133,10 @@ class Handler(BaseHTTPRequestHandler):
             return
         asset_map = {
             "/assets/industrial_machine.png": RESOURCES / "textures/gui/industrial_machine.png",
-            "/assets/mainmenu.png": RESOURCES / "textures/mainmenu/industrial_civilization_background.png",
+            "/assets/mainmenu.png": PACK_RESOURCES / "textures/mainmenu/industrial_civilization_background.png",
+            "/assets/mainmenu-logo.png": PACK_RESOURCES / "textures/mainmenu/industrial_civilization_logo.png",
+            "/assets/mainmenu-button.png": PACK_RESOURCES / "textures/mainmenu/btn.png",
+            "/assets/quest-home.png": PACK_RESOURCES / "textures/gui/quest_home_v2.png",
         }
         if path.startswith("/assets/quest/"):
             name = Path(path).name
