@@ -8,6 +8,8 @@ public final class GuiIndustrialMachine extends GuiContainer {
     private static final int TITLE_LEFT = 32;
     private static final int TITLE_WIDTH = 136;
     private static final int STATUS_RIGHT = 168;
+    private static final int STATUS_Y = 63;
+    private static final int INVENTORY_LABEL_Y = 73;
     private static final ResourceLocation TEXTURE = new ResourceLocation(
         IndustrialCivilizationCore.MODID, "textures/gui/industrial_machine.png");
     private final TileIndustrialMachine tile;
@@ -38,11 +40,14 @@ public final class GuiIndustrialMachine extends GuiContainer {
         fontRenderer.drawString(title, titleX, 6, 0x25333A);
         String energy = "EU " + IndustrialUiText.compactNumber(tile.getEnergyStored())
             + "/" + IndustrialUiText.compactNumber(tile.getCapacity());
-        fontRenderer.drawString(energy, 8, 65, 0x25333A);
+        // Minecraft's bitmap font is nine pixels tall. Drawing this at y=65
+        // reaches through y=73 and collides with the inventory label below.
+        // Keep a full blank pixel between the two rows at every GUI scale.
+        fontRenderer.drawString(energy, 8, STATUS_Y, 0x25333A);
         String operations = "Ops " + IndustrialUiText.compactNumber(tile.getCompletedOperations());
         fontRenderer.drawString(operations,
-            STATUS_RIGHT - fontRenderer.getStringWidth(operations), 65, 0x25333A);
-        fontRenderer.drawString("Inventory", 8, 73, 0x404B50);
+            STATUS_RIGHT - fontRenderer.getStringWidth(operations), STATUS_Y, 0x25333A);
+        fontRenderer.drawString("Inventory", 8, INVENTORY_LABEL_Y, 0x404B50);
     }
 
     @Override
