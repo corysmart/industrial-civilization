@@ -282,11 +282,14 @@ function machineLayout(d, machine, energyPercent, operations, auditScreen = "mac
   const energyBox = {x: 29, y: 53, w: textWidth(energyText), h: 9};
   const opsBox = {x: 164 - textWidth(operationsText), y: 53, w: textWidth(operationsText), h: 9};
   const darkProcessPanel = {x: 8, y: 17, w: 160, h: 46};
-  const energyMeter = {x: 15, y: 18, w: 12, h: 44};
+  const energyMeter = {x: 15, y: 20, w: 12, h: 40};
   if (overlap(energyBox, opsBox)) issue(auditScreen, `${machine.id}: energy and operation labels overlap`, {x: gui.x + 29, y: gui.y + 53, w: 135, h: 9});
   if (!contained(energyBox, darkProcessPanel) || !contained(opsBox, darkProcessPanel)) issue(auditScreen, `${machine.id}: status text escapes the dark process panel`, {x: gui.x + 8, y: gui.y + 17, w: 160, h: 46});
-  if (!contained(energyMeter, darkProcessPanel)) issue(auditScreen, `${machine.id}: energy gauge escapes the dark process panel`, {x: gui.x + 15, y: gui.y + 18, w: 12, h: 44});
-  if (overlap(energyBox, energyMeter)) issue(auditScreen, `${machine.id}: energy text overlaps the energy meter`, {x: gui.x + 16, y: gui.y + 10, w: 10, h: 50});
+  if (!contained(energyMeter, darkProcessPanel)) issue(auditScreen, `${machine.id}: energy gauge escapes the dark process panel`, {x: gui.x + 15, y: gui.y + 20, w: 12, h: 40});
+  const gaugeTopClearance = energyMeter.y - darkProcessPanel.y;
+  const gaugeBottomClearance = darkProcessPanel.y + darkProcessPanel.h - energyMeter.y - energyMeter.h;
+  if (gaugeTopClearance < 3 || gaugeBottomClearance < 3) issue(auditScreen, `${machine.id}: energy gauge lacks dark-panel edge clearance`, {x: gui.x + 15, y: gui.y + 17, w: 12, h: 46});
+  if (overlap(energyBox, energyMeter)) issue(auditScreen, `${machine.id}: energy text overlaps the energy meter`, {x: gui.x + 15, y: gui.y + 20, w: 12, h: 40});
   return {gui, title: shownTitle, titleX: 32 + (136 - textWidth(shownTitle)) / 2,
     energyText, operationsText, energyBox, opsBox, energy, progress: .62};
 }
@@ -303,8 +306,8 @@ function renderMachine(d, machineOverride, auditScreen) {
     if (d.width - rightX >= 64) renderHeiPanel(rightX, 18, d.width - rightX - 2, d.height - 36, "HEI Items", true);
   }
   ctx.drawImage(machineTexture, 0, 0, 176, 166, gui.x, gui.y, 176, 166);
-  const energyHeight = Math.floor(40 * state.energy / machine.capacity);
-  if (energyHeight > 0) ctx.drawImage(machineTexture, 176, 40 - energyHeight, 8, energyHeight, gui.x + 17, gui.y + 60 - energyHeight, 8, energyHeight);
+  const energyHeight = Math.floor(36 * state.energy / machine.capacity);
+  if (energyHeight > 0) ctx.drawImage(machineTexture, 176, 36 - energyHeight, 8, energyHeight, gui.x + 17, gui.y + 58 - energyHeight, 8, energyHeight);
   ctx.drawImage(machineTexture, 176, 49, Math.floor(24 * state.progress), 16, gui.x + 104, gui.y + 35, Math.floor(24 * state.progress), 16);
   drawText(state.title, gui.x + state.titleX, gui.y + 6, "#25333a");
   drawText(state.energyText, gui.x + state.energyBox.x, gui.y + 53, "#d7e0e3");

@@ -11,8 +11,8 @@ public final class GuiIndustrialMachine extends GuiContainer {
     private static final int STATUS_RIGHT = 164;
     private static final int STATUS_Y = 53;
     private static final int STATUS_COLOR = 0xD7E0E3;
-    private static final int ENERGY_BAR_HEIGHT = 40;
-    private static final int ENERGY_BAR_BOTTOM = 60;
+    private static final int ENERGY_BAR_HEIGHT = 36;
+    private static final int ENERGY_BAR_BOTTOM = 58;
     private static final ResourceLocation TEXTURE = new ResourceLocation(
         IndustrialCivilizationCore.MODID, "textures/gui/industrial_machine.png");
     private final TileIndustrialMachine tile;
