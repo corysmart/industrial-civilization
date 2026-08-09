@@ -4,6 +4,21 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class GameplayRulesTest {
+    @Test public void mainMenuTitleKeepsSmallWindowMinimum() {
+        assertEquals(160, GameplayRules.mainMenuTitleWidth(427, 240));
+    }
+    @Test public void mainMenuTitleGrowsOnLargeWindows() {
+        assertEquals(237, GameplayRules.mainMenuTitleWidth(592, 333));
+        assertEquals(384, GameplayRules.mainMenuTitleWidth(960, 540));
+    }
+    @Test public void questHomeTitleKeepsSmallWindowMinimum() {
+        assertEquals(256, GameplayRules.questHomeTitleWidth(395, 176));
+    }
+    @Test public void questHomeTitleGrowsOnLargeWindows() {
+        assertEquals(364, GameplayRules.questHomeTitleWidth(560, 269));
+        assertEquals(603, GameplayRules.questHomeTitleWidth(928, 476));
+    }
+
     @Test public void questZoomStopsWhenBackgroundReachesViewportEdges() {
         assertEquals(0.75F, GameplayRules.questMinimumZoom(384, 300, 512), 0.0001F);
         assertEquals(1.25F, GameplayRules.questMinimumZoom(640, 400, 512), 0.0001F);

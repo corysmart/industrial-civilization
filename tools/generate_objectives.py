@@ -436,7 +436,7 @@ def main():
         "questSettings:10": {"betterquesting:10": {
             "livesdef:3": 3,
             "pack_name:8": "Industrial Civilization — Phase 2",
-            "home_anchor_y:5": 0.0,
+            "home_anchor_y:5": 0.5,
             "livesmax:3": 10,
             "home_anchor_x:5": 0.5,
             "editmode:1": 0,
@@ -445,7 +445,7 @@ def main():
             "party_enable:1": 1,
             "pack_version:3": 7,
             "home_offset_x:3": -128,
-            "home_offset_y:3": 0,
+            "home_offset_y:3": -64,
         }},
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)

@@ -4,6 +4,10 @@ import betterquesting.api.properties.NativeProps;
 import betterquesting.api.questing.IQuestLine;
 import betterquesting.client.gui2.GuiHome;
 import betterquesting.client.gui2.GuiQuestLines;
+import betterquesting.api2.client.gui.misc.GuiTransform;
+import betterquesting.api2.client.gui.panels.CanvasTextured;
+import betterquesting.api2.client.gui.panels.IGuiCanvas;
+import betterquesting.api2.client.gui.panels.IGuiPanel;
 import betterquesting.api2.client.gui.panels.lists.CanvasQuestLine;
 import betterquesting.handlers.SaveLoadHandler;
 import betterquesting.questing.QuestLineDatabase;
@@ -13,11 +17,14 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.advancements.GuiAdvancementTab;
 import net.minecraft.client.gui.advancements.GuiScreenAdvancements;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.creativetab.CreativeTabs;
@@ -91,8 +98,9 @@ public final class IndustrialCivilizationCore {
     @Mod.Instance(MODID)
     public static IndustrialCivilizationCore INSTANCE;
     public static final String QUEST_HOME_IMAGE = MODID + ":textures/gui/quest_home_v2.png";
+    public static final float QUEST_HOME_ANCHOR_Y = 0.5F;
     public static final int QUEST_HOME_OFFSET_X = -128;
-    public static final int QUEST_HOME_OFFSET_Y = 0;
+    public static final int QUEST_HOME_OFFSET_Y = -64;
     public static Logger LOGGER;
     public static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MODID) {
         @Override
@@ -333,11 +341,16 @@ public final class IndustrialCivilizationCore {
 
         private static void migrateQuestHomeImage() {
             String current = QuestSettings.INSTANCE.getProperty(NativeProps.HOME_IMAGE);
+            float currentAnchorY = QuestSettings.INSTANCE.getProperty(NativeProps.HOME_ANC_Y);
             int currentOffsetX = QuestSettings.INSTANCE.getProperty(NativeProps.HOME_OFF_X);
             int currentOffsetY = QuestSettings.INSTANCE.getProperty(NativeProps.HOME_OFF_Y);
             boolean changed = false;
             if (!QUEST_HOME_IMAGE.equals(current)) {
                 QuestSettings.INSTANCE.setProperty(NativeProps.HOME_IMAGE, QUEST_HOME_IMAGE);
+                changed = true;
+            }
+            if (Float.compare(currentAnchorY, QUEST_HOME_ANCHOR_Y) != 0) {
+                QuestSettings.INSTANCE.setProperty(NativeProps.HOME_ANC_Y, QUEST_HOME_ANCHOR_Y);
                 changed = true;
             }
             if (currentOffsetX != QUEST_HOME_OFFSET_X) {
@@ -350,9 +363,9 @@ public final class IndustrialCivilizationCore {
             }
             if (changed) {
                 SaveLoadHandler.INSTANCE.markDirty();
-                LOGGER.info("Migrated Better Questing home layout from '{}',({}, {}) to '{}',({}, {})",
-                    current, currentOffsetX, currentOffsetY,
-                    QUEST_HOME_IMAGE, QUEST_HOME_OFFSET_X, QUEST_HOME_OFFSET_Y);
+                LOGGER.info("Migrated Better Questing home layout from '{}',({}, {}, {}) to '{}',({}, {}, {})",
+                    current, currentAnchorY, currentOffsetX, currentOffsetY,
+                    QUEST_HOME_IMAGE, QUEST_HOME_ANCHOR_Y, QUEST_HOME_OFFSET_X, QUEST_HOME_OFFSET_Y);
             }
         }
 
@@ -614,6 +627,8 @@ public final class IndustrialCivilizationCore {
         private static boolean keyBindingsChecked;
         private static net.minecraft.client.multiplayer.WorldClient terrainWarmupWorld;
         private static boolean terrainWarmupShown;
+        private static final ResourceLocation MAIN_MENU_LOGO = new ResourceLocation(
+            MODID, "textures/mainmenu/industrial_civilization_logo.png");
 
         @SubscribeEvent
         public static void registerModels(ModelRegistryEvent event) {
@@ -658,6 +673,61 @@ public final class IndustrialCivilizationCore {
                     artifact, 0,
                     new ModelResourceLocation(artifact.getRegistryName(), "inventory"));
             }
+        }
+
+        /** Draw the title responsively because Custom Main Menu only supports fixed image sizes. */
+        @SubscribeEvent(priority = EventPriority.LOWEST)
+        public static void drawResponsiveMainMenuTitle(GuiScreenEvent.DrawScreenEvent.Post event) {
+            if (!(event.getGui() instanceof GuiMainMenu)) return;
+            int width = GameplayRules.mainMenuTitleWidth(event.getGui().width, event.getGui().height);
+            int height = width / 2;
+            int x = (event.getGui().width - width) / 2;
+            int y = 14;
+            Minecraft.getMinecraft().getTextureManager().bindTexture(MAIN_MENU_LOGO);
+            GlStateManager.enableBlend();
+            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+            Gui.drawScaledCustomSizeModalRect(x, y, 0.0F, 0.0F, 512, 256,
+                width, height, 512.0F, 256.0F);
+        }
+
+        /**
+         * Better Questing fixes the home title at 256x128. Resize its deepest
+         * textured panel after initialization so large windows use their space,
+         * while retaining that native size at the minimum supported window.
+         */
+        @SubscribeEvent(priority = EventPriority.LOWEST)
+        public static void resizeAndCenterQuestHomeTitle(GuiScreenEvent.InitGuiEvent.Post event) {
+            if (!(event.getGui() instanceof GuiHome)) return;
+            IGuiPanel title = findQuestHomeTitle((GuiHome) event.getGui());
+            if (title == null || !(title.getTransform() instanceof GuiTransform)) {
+                LOGGER.warn("Could not locate Better Questing home title panel for responsive layout");
+                return;
+            }
+            GuiTransform transform = (GuiTransform) title.getTransform();
+            int backdropWidth = transform.getParent().getWidth();
+            int backdropHeight = transform.getParent().getHeight();
+            int width = GameplayRules.questHomeTitleWidth(backdropWidth, backdropHeight);
+            int height = width / 2;
+            transform.getAnchor().set(0.5F, 0.5F, 0.5F, 0.5F);
+            int left = -width / 2;
+            int top = -height / 2;
+            transform.getPadding().setPadding(left, top, -width - left, -height - top);
+        }
+
+        private static IGuiPanel findQuestHomeTitle(GuiHome home) {
+            for (IGuiPanel root : home.getChildren()) {
+                if (!(root instanceof IGuiCanvas)) continue;
+                for (IGuiPanel content : ((IGuiCanvas) root).getChildren()) {
+                    if (!(content instanceof IGuiCanvas)) continue;
+                    for (IGuiPanel backdrop : ((IGuiCanvas) content).getChildren()) {
+                        if (!(backdrop instanceof CanvasTextured) || !(backdrop instanceof IGuiCanvas)) continue;
+                        for (IGuiPanel child : ((IGuiCanvas) backdrop).getChildren()) {
+                            if (child instanceof CanvasTextured) return child;
+                        }
+                    }
+                }
+            }
+            return null;
         }
 
         /**

@@ -1,16 +1,5 @@
 {
-	"images": {
-		"title": {
-			"image": "industrialcivilizationcore:textures/mainmenu/industrial_civilization_logo.png",
-			"posX": -80,
-			"posY": 14,
-			"width": 160,
-			"height": 80,
-			"imageWidth": 512,
-			"imageHeight": 256,
-			"alignment": "top_center"
-		}
-	},
+	"images": {},
 	"buttons": {
 		"replay": {
 			"text": "replaymod.gui.replayviewer",

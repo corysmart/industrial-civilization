@@ -170,8 +170,23 @@ function anchoredBox(d, entry) {
   return {x, y, w: entry.width || 0, h: entry.height || 0};
 }
 
+function mainMenuTitleWidth(d) {
+  const proportional = Math.round(Math.max(0, d.width) * 0.40);
+  const widthLimit = Math.max(160, d.width - 32);
+  const heightLimit = Math.max(160, Math.max(80, d.height - 160) * 2);
+  return Math.max(160, Math.min(proportional, widthLimit, heightLimit));
+}
+
+function questHomeTitleWidth(backdrop) {
+  const proportional = Math.floor(Math.max(0, backdrop.w) * 0.65);
+  const widthLimit = Math.max(256, backdrop.w - 16);
+  const heightLimit = Math.max(256, Math.max(128, backdrop.h - 16) * 2);
+  return Math.max(256, Math.min(proportional, widthLimit, heightLimit));
+}
+
 function mainMenuLayout(d, auditScreen = "mainmenu") {
-  const title = anchoredBox(d, data.mainMenu.images.title);
+  const titleWidth = mainMenuTitleWidth(d);
+  const title = {x: (d.width - titleWidth) / 2, y: 14, w: titleWidth, h: titleWidth / 2};
   const versionLabel = data.mainMenu.labels.industrialcivilization;
   const version = {x: versionLabel.posX || 0, y: versionLabel.posY || 0,
     w: textWidth(versionLabel.text), h: 8};
@@ -252,9 +267,9 @@ function questHomeLayout(d, auditScreen = "questhome") {
   const content = {x: panel.x + 8, y: panel.y + 8, w: panel.w - 16, h: panel.h - 16};
   const buttonHeight = 32;
   const backdrop = {x: content.x, y: content.y, w: content.w, h: content.h - buttonHeight};
-  const settings = data.questHome || {anchorX: .5, anchorY: 0, offsetX: -128, offsetY: 0};
-  const title = {x: backdrop.x + backdrop.w * settings.anchorX + settings.offsetX,
-    y: backdrop.y + backdrop.h * settings.anchorY + settings.offsetY, w: 256, h: 128};
+  const titleWidth = questHomeTitleWidth(backdrop);
+  const title = {x: backdrop.x + (backdrop.w - titleWidth) / 2,
+    y: backdrop.y + (backdrop.h - titleWidth / 2) / 2, w: titleWidth, h: titleWidth / 2};
   if (!contained(backdrop, panel)) issue(auditScreen, "Better Questing home backdrop clips its panel", backdrop);
   if (!contained(title, backdrop)) issue(auditScreen, "Better Questing anchored title clips its backdrop", title);
   return {panel, content, backdrop, title, buttonHeight};

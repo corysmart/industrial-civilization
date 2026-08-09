@@ -2,6 +2,20 @@ package com.industrialcivilization.core;
 
 /** Pure deterministic rules shared with the headless mechanics test suite. */
 public final class GameplayRules {
+    public static int mainMenuTitleWidth(int screenWidth, int screenHeight) {
+        int proportional = Math.round(Math.max(0, screenWidth) * 0.40F);
+        int widthLimit = Math.max(160, screenWidth - 32);
+        int heightLimit = Math.max(160, Math.max(80, screenHeight - 160) * 2);
+        return Math.max(160, Math.min(proportional, Math.min(widthLimit, heightLimit)));
+    }
+
+    public static int questHomeTitleWidth(int backdropWidth, int backdropHeight) {
+        int proportional = (int) (Math.max(0, backdropWidth) * 0.65F);
+        int widthLimit = Math.max(256, backdropWidth - 16);
+        int heightLimit = Math.max(256, Math.max(128, backdropHeight - 16) * 2);
+        return Math.max(256, Math.min(proportional, Math.min(widthLimit, heightLimit)));
+    }
+
     public static float questMinimumZoom(int viewportWidth, int viewportHeight,
             int backgroundSize) {
         if (backgroundSize <= 0) return 1.0F;

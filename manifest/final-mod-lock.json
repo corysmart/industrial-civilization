@@ -1637,8 +1637,8 @@
     {
       "file": "mods/IndustrialCivilizationCore-0.2.0.jar",
       "filename": "IndustrialCivilizationCore-0.2.0.jar",
-      "size": 2903097,
-      "sha256": "8073ec4a95e088cba181c9e4bdb8aa92c377450168630a0fa442ecd0bb115ac4",
+      "size": 2904847,
+      "sha256": "151fed7f8f37d87165ef5cac20c5584841db037d063ba1607c60cae8b773b81c",
       "classification": "KEEP",
       "mods": [
         {
@@ -3726,8 +3726,8 @@
     },
     {
       "file": "config/CustomMainMenu/mainmenu.json",
-      "sha256": "0e8eeaa253fa1e2c56a0a96aab974f64251f8562ef7e60a2d941b7e599650d09",
-      "size": 4258
+      "sha256": "1703d9c11a3b2754deacd43879d66eb60be5f84899116c69dbbd9ab7e542c708",
+      "size": 4007
     },
     {
       "file": "config/Elec's Mods/craftingtableiv.cfg",
@@ -3931,8 +3931,8 @@
     },
     {
       "file": "config/betterquesting/DefaultQuests.json",
-      "sha256": "2fc63d4e7b91a486362e02008da6dff1ba30687de94c94607c8059b53d6ac7d3",
-      "size": 355614
+      "sha256": "3c328f55a911c5997f8ec4072295a8c79726640c4c1070cbeec9e7c1da1f7eeb",
+      "size": 355616
     },
     {
       "file": "config/blockcraftery.cfg",

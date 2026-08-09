@@ -355,8 +355,8 @@ quest_settings = quests["questSettings:10"]["betterquesting:10"]
 ok(quest_settings.get("home_image:8") == quest_home, "pack-owned Better Questing home image configured")
 ok(quest_settings.get("home_anchor_x:5") == 0.5, "Better Questing title uses centered horizontal anchor")
 ok(quest_settings.get("home_offset_x:3") == -128, "Better Questing 256px title is centered on anchor")
-ok(quest_settings.get("home_anchor_y:5") == 0.0 and quest_settings.get("home_offset_y:3") == 0,
-   "Better Questing title uses top vertical anchor")
+ok(quest_settings.get("home_anchor_y:5") == 0.5 and quest_settings.get("home_offset_y:3") == -64,
+   "Better Questing title uses centered vertical anchor")
 quest_home_file = ROOT / "resources/industrialcivilizationcore/textures/gui/quest_home_v2.png"
 ok(quest_home_file.is_file(), "Better Questing home image exists")
 if quest_home_file.is_file():
@@ -366,9 +366,12 @@ if quest_home_file.is_file():
     height = int.from_bytes(png[20:24], "big") if len(png) >= 24 else 0
     ok((width, height) == (512, 512), "Better Questing home atlas is 512x512")
 ok(quest_home in (ROOT / "tools/generate_objectives.py").read_text(), "quest generator preserves home image")
-ok("QUEST_HOME_IMAGE" in core_source and "QUEST_HOME_OFFSET_X = -128" in core_source
+ok("QUEST_HOME_IMAGE" in core_source and "QUEST_HOME_ANCHOR_Y = 0.5F" in core_source
+   and "QUEST_HOME_OFFSET_X = -128" in core_source and "QUEST_HOME_OFFSET_Y = -64" in core_source
    and "migrateQuestHomeImage" in core_source,
    "existing Better Questing worlds migrate to pack-owned home layout")
+ok("resizeAndCenterQuestHomeTitle" in core_source and "questHomeTitleWidth" in core_source,
+   "Better Questing title grows responsively and remains centered")
 ok("GuiIngameMenu" in core_source and "if (button.id == 5) advancements = button;" in core_source
    and "PresetGUIs.HOME" not in core_source,
    "pause-menu vanilla Advancements button and screen are restored")
@@ -393,6 +396,9 @@ ok("Industrial Civilization" in main_menu_text and "Tekkit 2" not in main_menu_t
    and main_menu.get("other", {}).get("background", {}).get("image")
        == "industrialcivilizationcore:textures/mainmenu/industrial_civilization_background.png",
    "main menu uses pack-owned Industrial Civilization branding and background")
+ok(not main_menu.get("images") and "drawResponsiveMainMenuTitle" in core_source
+   and "mainMenuTitleWidth" in core_source,
+   "first-party renderer scales the main-menu title responsively")
 ok("slice" not in main_menu_text.lower(),
    "main menu contains no internal development-slice terminology")
 ok("S:title=Industrial Civilization" in random_patches

@@ -108,6 +108,12 @@ check(all(title_logo.getpixel(point)[3] >= 250 for point in ((60, 20), (30, 128)
 check(title_logo.getpixel((256, 128))[3] == 255,
       "main-menu title card preserves its opaque plaque interior")
 
+gameplay_rules = (JAVA / "GameplayRules.java").read_text()
+check("mainMenuTitleWidth" in gameplay_rules and "questHomeTitleWidth" in gameplay_rules,
+      "title cards use deterministic responsive sizing rules")
+check("resizeAndCenterQuestHomeTitle" in (JAVA / "IndustrialCivilizationCore.java").read_text(),
+      "Better Questing title receives its responsive centered runtime layout")
+
 quest_home = Image.open(ROOT / "resources/industrialcivilizationcore/textures/gui/quest_home_v2.png").convert("RGBA")
 check(quest_home.size == (512, 512), "Better Questing home atlas remains 512x512")
 check(quest_home.getpixel((0, 0))[3] == 255,
