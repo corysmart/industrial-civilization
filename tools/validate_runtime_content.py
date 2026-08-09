@@ -94,6 +94,9 @@ check(gui.getpixel((15, 60))[:3] == (123, 137, 142)
       and gui.getpixel((15, 61))[:3] == (123, 137, 142),
       "energy gauge housing leaves two dark-panel pixels below it")
 check(gui.getpixel((176, 49))[3] == 255, "progress overlay strip exists")
+check(gui.getpixel((128, 42))[:3] == (231, 130, 50)
+      and gui.getpixel((129, 42))[:3] == (101, 114, 120),
+      "process arrow ends before the output item-slot border")
 
 source = "\n".join(path.read_text() for path in JAVA.glob("*.java"))
 check("ItemTestPlaceholder" not in source, "runtime registrations do not reference placeholder items")
