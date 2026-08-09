@@ -104,7 +104,6 @@ def source_stamp() -> int:
                JAVA / "IndustrialMachineKind.java", JAVA / "FactionSystem.java",
                RESOURCES / "lang/en_us.lang", RESOURCES / "textures/gui/industrial_machine.png",
                PACK_RESOURCES / "textures/mainmenu/industrial_civilization_background.png",
-               PACK_RESOURCES / "textures/mainmenu/industrial_civilization_logo.png",
                PACK_RESOURCES / "textures/gui/quest_home_v2.png"]
     return max(int(path.stat().st_mtime_ns) for path in watched if path.exists())
 
@@ -146,7 +145,6 @@ class Handler(BaseHTTPRequestHandler):
         asset_map = {
             "/assets/industrial_machine.png": RESOURCES / "textures/gui/industrial_machine.png",
             "/assets/mainmenu.png": PACK_RESOURCES / "textures/mainmenu/industrial_civilization_background.png",
-            "/assets/mainmenu-logo.png": PACK_RESOURCES / "textures/mainmenu/industrial_civilization_logo.png",
             "/assets/mainmenu-button.png": PACK_RESOURCES / "textures/mainmenu/btn.png",
             "/assets/quest-home.png": PACK_RESOURCES / "textures/gui/quest_home_v2.png",
         }

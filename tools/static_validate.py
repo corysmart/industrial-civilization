@@ -396,10 +396,8 @@ ok("Industrial Civilization" in main_menu_text and "Tekkit 2" not in main_menu_t
    and main_menu.get("other", {}).get("background", {}).get("image")
        == "industrialcivilizationcore:textures/mainmenu/industrial_civilization_background.png",
    "main menu uses pack-owned Industrial Civilization branding and background")
-ok(not main_menu.get("images") and "drawResponsiveMainMenuTitle" in core_source
-   and "mainMenuTitleWidth" in core_source
-   and 'lumien.custommainmenu.gui.GuiCustom' in core_source,
-   "first-party renderer scales the main-menu title responsively")
+ok(not main_menu.get("images") and "drawResponsiveMainMenuTitle" not in core_source,
+   "main menu intentionally leaves the background unobstructed by a title card")
 ok("slice" not in main_menu_text.lower(),
    "main menu contains no internal development-slice terminology")
 ok("S:title=Industrial Civilization" in random_patches

@@ -8,13 +8,6 @@ public final class GameplayRules {
         return Math.max(1.0F, Math.min(widthScale, heightScale));
     }
 
-    public static int mainMenuTitleWidth(int screenWidth, int screenHeight) {
-        int proportional = Math.round(Math.max(0, screenWidth) * 0.40F);
-        int widthLimit = Math.max(160, screenWidth - 32);
-        int heightLimit = Math.max(160, Math.max(80, screenHeight - 160) * 2);
-        return Math.max(160, Math.min(proportional, Math.min(widthLimit, heightLimit)));
-    }
-
     public static int questHomeTitleWidth(int backdropWidth, int backdropHeight) {
         int proportional = (int) (Math.max(0, backdropWidth) * 0.65F);
         int widthLimit = Math.max(256, backdropWidth - 16);

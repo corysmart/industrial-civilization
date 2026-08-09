@@ -15,13 +15,6 @@ public class GameplayRulesTest {
         assertEquals(1.0F, GameplayRules.machineGuiScale(427, 600), 0.0001F);
     }
 
-    @Test public void mainMenuTitleKeepsSmallWindowMinimum() {
-        assertEquals(160, GameplayRules.mainMenuTitleWidth(427, 240));
-    }
-    @Test public void mainMenuTitleGrowsOnLargeWindows() {
-        assertEquals(237, GameplayRules.mainMenuTitleWidth(592, 333));
-        assertEquals(384, GameplayRules.mainMenuTitleWidth(960, 540));
-    }
     @Test public void questHomeTitleKeepsSmallWindowMinimum() {
         assertEquals(256, GameplayRules.questHomeTitleWidth(395, 176));
     }

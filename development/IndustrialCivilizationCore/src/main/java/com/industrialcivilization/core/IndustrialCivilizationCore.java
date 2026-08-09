@@ -17,14 +17,11 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.advancements.GuiAdvancementTab;
 import net.minecraft.client.gui.advancements.GuiScreenAdvancements;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.creativetab.CreativeTabs;
@@ -627,10 +624,6 @@ public final class IndustrialCivilizationCore {
         private static boolean keyBindingsChecked;
         private static net.minecraft.client.multiplayer.WorldClient terrainWarmupWorld;
         private static boolean terrainWarmupShown;
-        private static final ResourceLocation MAIN_MENU_LOGO = new ResourceLocation(
-            MODID, "textures/mainmenu/industrial_civilization_logo.png");
-        private static final String CUSTOM_MAIN_MENU_SCREEN =
-            "lumien.custommainmenu.gui.GuiCustom";
 
         @SubscribeEvent
         public static void registerModels(ModelRegistryEvent event) {
@@ -675,22 +668,6 @@ public final class IndustrialCivilizationCore {
                     artifact, 0,
                     new ModelResourceLocation(artifact.getRegistryName(), "inventory"));
             }
-        }
-
-        /** Draw the title responsively because Custom Main Menu only supports fixed image sizes. */
-        @SubscribeEvent(priority = EventPriority.LOWEST)
-        public static void drawResponsiveMainMenuTitle(GuiScreenEvent.DrawScreenEvent.Post event) {
-            if (!(event.getGui() instanceof GuiMainMenu)
-                    && !CUSTOM_MAIN_MENU_SCREEN.equals(event.getGui().getClass().getName())) return;
-            int width = GameplayRules.mainMenuTitleWidth(event.getGui().width, event.getGui().height);
-            int height = width / 2;
-            int x = (event.getGui().width - width) / 2;
-            int y = 14;
-            Minecraft.getMinecraft().getTextureManager().bindTexture(MAIN_MENU_LOGO);
-            GlStateManager.enableBlend();
-            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-            Gui.drawScaledCustomSizeModalRect(x, y, 0.0F, 0.0F, 512, 256,
-                width, height, 512.0F, 256.0F);
         }
 
         /**

@@ -4,7 +4,7 @@ const $ = id => document.getElementById(id);
 const canvas = $("ui");
 const ctx = canvas.getContext("2d", {alpha: false});
 ctx.imageSmoothingEnabled = false;
-let data, fontImage, machineTexture, menuImage, menuLogo, menuButton, questHomeImage, stamp;
+let data, fontImage, machineTexture, menuImage, menuButton, questHomeImage, stamp;
 const questImages = new Map();
 const issues = [];
 const glyphCache = new Map();
@@ -170,13 +170,6 @@ function anchoredBox(d, entry) {
   return {x, y, w: entry.width || 0, h: entry.height || 0};
 }
 
-function mainMenuTitleWidth(d) {
-  const proportional = Math.round(Math.max(0, d.width) * 0.40);
-  const widthLimit = Math.max(160, d.width - 32);
-  const heightLimit = Math.max(160, Math.max(80, d.height - 160) * 2);
-  return Math.max(160, Math.min(proportional, widthLimit, heightLimit));
-}
-
 function questHomeTitleWidth(backdrop) {
   const proportional = Math.floor(Math.max(0, backdrop.w) * 0.65);
   const widthLimit = Math.max(256, backdrop.w - 16);
@@ -185,8 +178,6 @@ function questHomeTitleWidth(backdrop) {
 }
 
 function mainMenuLayout(d, auditScreen = "mainmenu") {
-  const titleWidth = mainMenuTitleWidth(d);
-  const title = {x: (d.width - titleWidth) / 2, y: 14, w: titleWidth, h: titleWidth / 2};
   const versionLabel = data.mainMenu.labels.industrialcivilization;
   const version = {x: versionLabel.posX || 0, y: versionLabel.posY || 0,
     w: textWidth(versionLabel.text), h: 8};
@@ -194,22 +185,18 @@ function mainMenuLayout(d, auditScreen = "mainmenu") {
     .filter(([id]) => id !== "replay" && id !== "modslabel" && id !== "speaker")
     .map(([id, entry]) => ({id, entry, box: anchoredBox(d, entry)}));
   const viewport = {x: 0, y: 0, w: d.width, h: d.height};
-  if (!contained(title, viewport)) issue(auditScreen, "Main-menu logo clips the viewport", title);
-  if (overlap(title, version)) issue(auditScreen, "Main-menu version label overlaps the logo", version);
   for (const buttonEntry of buttons) {
     if (!contained(buttonEntry.box, viewport)) issue(auditScreen, `Main-menu ${buttonEntry.id} button clips the viewport`, buttonEntry.box);
-    if (overlap(title, buttonEntry.box)) issue(auditScreen, `Main-menu logo overlaps the ${buttonEntry.id} button`, buttonEntry.box);
   }
   for (let i = 0; i < buttons.length; i++) for (let j = i + 1; j < buttons.length; j++) {
     if (overlap(buttons[i].box, buttons[j].box)) issue(auditScreen, `Main-menu ${buttons[i].id} and ${buttons[j].id} buttons overlap`, buttons[i].box);
   }
-  return {title, buttons, version};
+  return {buttons, version};
 }
 
 function renderMainMenu(d, auditScreen = "mainmenu") {
   ctx.drawImage(menuImage, 0, 0, d.width, d.height);
   const layout = mainMenuLayout(d, auditScreen);
-  ctx.drawImage(menuLogo, layout.title.x, layout.title.y, layout.title.w, layout.title.h);
   drawText(data.mainMenu.labels.industrialcivilization.text,
     layout.version.x, layout.version.y, "#fff");
   const labels = {singleplayer: "Singleplayer", multiplayer: "Multiplayer", options: "Options...", quit: "Quit Game", mods: "Loaded Mods", languagebutton: "Language..."};
@@ -529,10 +516,10 @@ async function audit() {
 }
 
 async function init() {
-  [data, fontImage, machineTexture, menuImage, menuLogo, menuButton, questHomeImage] = await Promise.all([
+  [data, fontImage, machineTexture, menuImage, menuButton, questHomeImage] = await Promise.all([
     fetch("/api/data").then(r => r.json()), image("/assets/minecraft/ascii.png"),
     image("/assets/industrial_machine.png"), image("/assets/mainmenu.png"),
-    image("/assets/mainmenu-logo.png"), image("/assets/mainmenu-button.png"),
+    image("/assets/mainmenu-button.png"),
     image("/assets/quest-home.png")]);
   for (const machine of data.machines) { const option = document.createElement("option"); option.value = machine.id; option.textContent = data.lang[`tile.industrialcivilizationcore.${machine.id}.name`] || machine.id; $("machine").append(option); }
   $("machine").value = "programmable_assembler";
