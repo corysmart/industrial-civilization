@@ -247,18 +247,35 @@ function renderAdvancements(d, auditScreen = "advancements") {
   if (!contained(panel, {x:0,y:0,w:d.width,h:d.height})) issue(auditScreen, "Advancements panel clips viewport", panel);
 }
 
+function questHomeLayout(d, auditScreen = "questhome") {
+  const panel = {x: 8, y: 8, w: d.width - 16, h: d.height - 16};
+  const content = {x: panel.x + 8, y: panel.y + 8, w: panel.w - 16, h: panel.h - 16};
+  const buttonHeight = 32;
+  const backdrop = {x: content.x, y: content.y, w: content.w, h: content.h - buttonHeight};
+  const settings = data.questHome || {anchorX: .5, anchorY: 0, offsetX: -128, offsetY: 0};
+  const title = {x: backdrop.x + backdrop.w * settings.anchorX + settings.offsetX,
+    y: backdrop.y + backdrop.h * settings.anchorY + settings.offsetY, w: 256, h: 128};
+  if (!contained(backdrop, panel)) issue(auditScreen, "Better Questing home backdrop clips its panel", backdrop);
+  if (!contained(title, backdrop)) issue(auditScreen, "Better Questing anchored title clips its backdrop", title);
+  return {panel, content, backdrop, title, buttonHeight};
+}
+
 function renderQuestHome(d, auditScreen = "questhome") {
   worldBackground(d.width, d.height, true);
-  const panel = {x: 8, y: 8, w: d.width - 16, h: d.height - 16};
+  const {panel, content, backdrop, title, buttonHeight} = questHomeLayout(d, auditScreen);
   rect(panel.x, panel.y, panel.w, panel.h, "#c6c6c6", "#202020");
-  const buttonHeight = 24, imageBox = {x: panel.x + 6, y: panel.y + 6, w: panel.w - 12, h: panel.h - buttonHeight - 14};
-  const scale = Math.max(imageBox.w / questHomeImage.width, imageBox.h / questHomeImage.height);
-  const iw = questHomeImage.width * scale, ih = questHomeImage.height * scale;
-  ctx.save(); ctx.beginPath(); ctx.rect(imageBox.x, imageBox.y, imageBox.w, imageBox.h); ctx.clip();
-  ctx.drawImage(questHomeImage, imageBox.x + (imageBox.w - iw) / 2, imageBox.y + (imageBox.h - ih) / 2, iw, ih); ctx.restore();
-  const labels = ["Exit", "Quests", "Party", "Theme"], bw = (panel.w - 12) / labels.length;
-  labels.forEach((label, index) => button(panel.x + 6 + index * bw, panel.y + panel.h - buttonHeight - 5, bw, buttonHeight, label));
-  if (imageBox.w < 100 || imageBox.h < 80) issue(auditScreen, "Quest-home artwork viewport is too small", imageBox);
+  const halfHeight = questHomeImage.height / 2;
+  ctx.save(); ctx.beginPath(); ctx.rect(backdrop.x, backdrop.y, backdrop.w, backdrop.h); ctx.clip();
+  // GuiHome renders the atlas as two independent 256×128 textures: the upper
+  // half stretches across the canvas and the lower half remains a 2:1 title
+  // card positioned by the configured anchor and offsets.
+  ctx.drawImage(questHomeImage, 0, 0, questHomeImage.width, halfHeight,
+    backdrop.x, backdrop.y, backdrop.w, backdrop.h);
+  ctx.drawImage(questHomeImage, 0, halfHeight, questHomeImage.width, halfHeight,
+    title.x, title.y, title.w, title.h);
+  ctx.restore();
+  const labels = ["Exit", "Quests", "Party", "Theme"], bw = content.w / labels.length;
+  labels.forEach((label, index) => button(content.x + index * bw, content.y + content.h - buttonHeight, bw, buttonHeight, label));
 }
 
 function renderSpaceMap(d, auditScreen = "spacemap") {
@@ -478,6 +495,7 @@ async function audit() {
     for (const faction of data.factions) auditFactionLayout(d, faction, `factions/${faction.id}@${displayWidth}x${displayHeight}/g${requested}`);
     auditWarmupLayout(d, `warmup@${displayWidth}x${displayHeight}/g${requested}`);
     auditCreditsLayout(d, `credits@${displayWidth}x${displayHeight}/g${requested}`);
+    questHomeLayout(d, `questhome@${displayWidth}x${displayHeight}/g${requested}`);
     for (const line of data.questLines) auditQuestLayout(d, line, `quests/${line.id}@${displayWidth}x${displayHeight}/g${requested}`);
   }
   $("hei").checked = originalHei;

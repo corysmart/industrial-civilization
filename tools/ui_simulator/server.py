@@ -81,6 +81,17 @@ def parse_quests() -> list[dict]:
     return sorted(result, key=lambda line: line["order"])
 
 
+def parse_quest_home() -> dict:
+    data = json.loads(QUESTS.read_text(encoding="utf-8"))
+    settings = data["questSettings:10"]["betterquesting:10"]
+    return {
+        "anchorX": settings.get("home_anchor_x:5", 0.5),
+        "anchorY": settings.get("home_anchor_y:5", 0.0),
+        "offsetX": settings.get("home_offset_x:3", -128),
+        "offsetY": settings.get("home_offset_y:3", 0),
+    }
+
+
 def parse_main_menu() -> dict:
     return json.loads((ROOT / "config/CustomMainMenu/mainmenu.json").read_text(encoding="utf-8"))
 
@@ -119,6 +130,7 @@ class Handler(BaseHTTPRequestHandler):
         if path == "/api/data":
             self.send_json({"lang": parse_lang(), "machines": parse_machines(),
                             "factions": parse_factions(), "questLines": parse_quests(),
+                            "questHome": parse_quest_home(),
                             "mainMenu": parse_main_menu()})
             return
         if path == "/api/stamp":
