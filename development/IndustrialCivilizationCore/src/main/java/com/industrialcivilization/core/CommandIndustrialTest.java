@@ -156,8 +156,10 @@ public final class CommandIndustrialTest extends CommandBase {
         root.addProperty("schema", 1);
         root.addProperty("player", player.getName());
         root.addProperty("dimension", player.dimension);
+        root.addProperty("dimension_type", player.world.provider.getDimensionType().getName());
         root.addProperty("position", coordinates(player.getPosition()));
         root.addProperty("radius", radius);
+        root.addProperty("habitat_detector_active", SpaceSurvivalSystem.protectedByHabitat(player));
         root.addProperty("ai_age", ProgressionState.has(player, "ai_age"));
         root.addProperty("active_ticks", ProgressionState.counter(player, "active_ticks"));
         int[] workshops = WorkshopSystem.inspect(player.world, player.getPosition(), radius);

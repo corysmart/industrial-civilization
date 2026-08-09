@@ -1,10 +1,9 @@
 package com.industrialcivilization.core;
 
-import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.common.Mod;
@@ -47,23 +46,19 @@ public final class SpaceSurvivalSystem {
 
     /** Shared by radiation and quest telemetry so both systems use one truth. */
     public static boolean protectedByHabitat(EntityPlayer player) {
-        // Galacticraft's own breathable-air query understands irregular room
-        // topology, connected sealed volumes and its configured modded seals.
-        // It also tests the player's moving AABB rather than a guessed room ID.
-        if (OxygenUtil.isAABBInBreathableAirBlock(player)) return true;
-        if (player.world.canSeeSky(player.getPosition())) return false;
+        // Galacticraft's detector samples oxygen around its own block every 50
+        // ticks and changes to metadata 1 only while that search is positive.
+        // The station contract intentionally trusts this fixed instrumentation
+        // point instead of the player's changing zero-gravity collision box.
         BlockPos center = player.getPosition();
         for (BlockPos position : BlockPos.getAllInBoxMutable(center.add(-10, -6, -10),
                 center.add(10, 6, 10))) {
-            TileEntity tile = player.world.getTileEntity(position);
-            if (tile == null || !"TileEntityOxygenSealer".equals(tile.getClass().getSimpleName())) continue;
-            try {
-                boolean active = tile.getClass().getField("active").getBoolean(tile);
-                boolean sealed = tile.getClass().getField("sealed").getBoolean(tile);
-                if (active && sealed) return true;
-            } catch (ReflectiveOperationException ignored) {
-                IndustrialCivilizationCore.LOGGER.warn("Could not read Galacticraft sealer state", ignored);
-            }
+            if (!player.world.isBlockLoaded(position)) continue;
+            net.minecraft.block.state.IBlockState state = player.world.getBlockState(position);
+            ResourceLocation registryName = state.getBlock().getRegistryName();
+            if (registryName != null
+                    && GameplayRules.activeOxygenDetector(registryName.toString(),
+                        state.getBlock().getMetaFromState(state))) return true;
         }
         return false;
     }

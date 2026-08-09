@@ -1637,8 +1637,8 @@
     {
       "file": "mods/IndustrialCivilizationCore-0.2.0.jar",
       "filename": "IndustrialCivilizationCore-0.2.0.jar",
-      "size": 2905322,
-      "sha256": "8787e71bf0c94518e8d27bd9a378c78ea045967947345e22fb2cdb0426ad8d2a",
+      "size": 2905261,
+      "sha256": "d410f87a43a0b9ccbaa00d8825d42d9dc7f90169cc871823453130d767f78136",
       "classification": "KEEP",
       "mods": [
         {
@@ -3931,7 +3931,7 @@
     },
     {
       "file": "config/betterquesting/DefaultQuests.json",
-      "sha256": "3c328f55a911c5997f8ec4072295a8c79726640c4c1070cbeec9e7c1da1f7eeb",
+      "sha256": "22b003952fa278111836bf1facd9f76319c30350d63f0207e5e0ee9d56baeb5d",
       "size": 355616
     },
     {
@@ -5186,8 +5186,8 @@
     },
     {
       "file": "groovy/postInit/industrial_civilization.groovy",
-      "sha256": "833d2d2e8bb43b504bf823c5e6c0d6bf5d2ab8386e6d802557b419ebadc852ef",
-      "size": 10065
+      "sha256": "d8f060d232057622da58cee34824fca013149f51411d82bc167d0579083d196f",
+      "size": 10598
     },
     {
       "file": "groovy/postInit/industrial_civilization_content.groovy",

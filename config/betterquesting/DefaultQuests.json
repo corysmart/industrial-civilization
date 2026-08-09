@@ -7583,7 +7583,7 @@
       "hardcore:1": 0,
       "home_image:8": "industrialcivilizationcore:textures/gui/quest_home_v2.png",
       "party_enable:1": 1,
-      "pack_version:3": 7,
+      "pack_version:3": 8,
       "home_offset_x:3": -128,
       "home_offset_y:3": -64
     }

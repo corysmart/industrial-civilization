@@ -416,9 +416,13 @@ ok('new SampleProfile("minecraft:iron_ingot", "Earth"' in analyzer_source
    and '"galacticraftcore:meteoric_iron_raw"' in analyzer_source
    and '"analysis_mars"' in analyzer_source and '"comparative_molecular_analysis"' in analyzer_source,
    "Analyzer requires real Earth, Moon, and Mars comparative samples")
-ok("TileEntityOxygenSealer" in space_survival_source and "fullQuantumSuit" in space_survival_source
-   and "radiation_exposure" in space_survival_source,
-   "space radiation is protected by active sealed habitats or a full IC2 QuantumSuit")
+ok('"galacticraftcore:oxygen_detector"' in
+       (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/GameplayRules.java").read_text()
+   and "activeOxygenDetector" in space_survival_source
+   and "getMetaFromState" in space_survival_source
+   and "OxygenUtil.isAABBInBreathableAirBlock" not in space_survival_source
+   and "fullQuantumSuit" in space_survival_source and "radiation_exposure" in space_survival_source,
+   "space habitat protection requires an active Galacticraft Oxygen Detector or a full IC2 QuantumSuit")
 ok("new MapGenVillage()" in village_suppression_source
    and "canSpawnStructureAtCoords" in village_suppression_source
    and "new MapGenBase()" not in village_suppression_source,

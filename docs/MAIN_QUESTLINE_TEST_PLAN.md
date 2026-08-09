@@ -522,7 +522,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 
 - **Prerequisites:** `tier1_orbital_launch`.
 - **Detection mode:** Runtime advancement.
-- **Exact test action:** In orbit, build a sealed room with a working Galacticraft breathable-air system. Stand inside breathable air until the next five-second telemetry sample. Merely carrying oxygen equipment must not complete this quest.
+- **Exact test action:** In orbit, build a sealed room with a working Galacticraft breathable-air system and place an Oxygen Detector inside it. Wait for the detector to emit redstone, then remain within 10 blocks until the next five-second telemetry sample. Merely carrying oxygen equipment or running a sealer without an active detector must not complete this quest.
 - **Negative assertion:** Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `orbital_power`, `orbital_communications`, `functional_orbital_station`.
 - **Gameplay assertion:** Establish pressure, oxygen, storage, and safe habitation in orbit.
@@ -542,7 +542,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 
 - **Prerequisites:** `orbital_habitat`.
 - **Detection mode:** Runtime advancement.
-- **Exact test action:** While standing inside the orbital breathable room, place a ComputerCraft computer or recognized telemetry block within 32 blocks. Wait for the next five-second sample.
+- **Exact test action:** While within 10 blocks of the active orbital Oxygen Detector, place a ComputerCraft computer or recognized telemetry block within 32 blocks. Wait for the next five-second sample.
 - **Negative assertion:** Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `research_station`, `functional_orbital_station`.
 - **Gameplay assertion:** Bring a ComputerCraft telemetry and communications system online.
@@ -572,7 +572,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 
 - **Prerequisites:** `orbital_habitat` AND `orbital_power` AND `orbital_communications` AND `orbital_experiment_module`.
 - **Detection mode:** Runtime advancement.
-- **Exact test action:** Within 32 blocks of the player, maintain breathable air, a recognized computer/telemetry block, a Research Station, an Orbital Experiment Module, and a powered block or charged Environmental Solar Array. Keep the habitat stable for 24 five-second samples—two continuous minutes.
+- **Exact test action:** Within 10 blocks of an active Oxygen Detector and 32 blocks of the other infrastructure, maintain recognized computer/telemetry, a Research Station, an Orbital Experiment Module, and a powered block or charged Environmental Solar Array. Keep the habitat stable for 24 five-second samples—two continuous minutes.
 - **Negative assertion:** Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `orbital_experiments`. This is the declared completion milestone for Chapter 7.
 - **Gameplay assertion:** Sustain habitation, oxygen, power, storage, telemetry, research equipment, and safe arrival infrastructure.
@@ -668,7 +668,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 
 - **Prerequisites:** `lunar_landing`.
 - **Detection mode:** Runtime advancement.
-- **Exact test action:** On the Moon, build a sealed room with working breathable air and stand inside it until the next five-second sample.
+- **Exact test action:** On the Moon, build a sealed room, place an Oxygen Detector inside it, and wait for the detector to emit redstone. Remain within 10 blocks until the next five-second sample.
 - **Negative assertion:** Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `lunar_power`, `functional_lunar_base`.
 - **Gameplay assertion:** Establish pressure, oxygen, thermal control, communications, and safe habitation.
@@ -718,7 +718,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 
 - **Prerequisites:** `lunar_habitat` AND `lunar_power` AND `lunar_mining` AND `lunar_manufacturing`.
 - **Detection mode:** Runtime advancement.
-- **Exact test action:** Maintain breathable air, recognized communications, automated mining, a locally operated manufacturing machine, and power within 32 blocks. Keep all conditions stable for 24 five-second samples—two continuous minutes.
+- **Exact test action:** Maintain an active Oxygen Detector within 10 blocks plus recognized communications, automated mining, a locally operated manufacturing machine, and power within 32 blocks. Keep all conditions stable for 24 five-second samples—two continuous minutes.
 - **Negative assertion:** Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `lunar_science_program`. This is the declared completion milestone for Chapter 9.
 - **Gameplay assertion:** Sustain habitation, local power, mining, processing, manufacturing, research readiness, and communications.
@@ -892,7 +892,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 
 - **Prerequisites:** `tier2_mars_launch`.
 - **Detection mode:** Runtime advancement.
-- **Exact test action:** On Mars, build a sealed room with working breathable air and stand inside it until the next five-second sample.
+- **Exact test action:** On Mars, build a sealed room, place an Oxygen Detector inside it, and wait for the detector to emit redstone. Remain within 10 blocks until the next five-second sample.
 - **Negative assertion:** Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `martian_power`, `functional_martian_base`.
 - **Gameplay assertion:** Establish pressure, oxygen, water, radiation protection, communications, and safe habitation.
@@ -952,7 +952,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 
 - **Prerequisites:** `martian_habitat` AND `martian_power` AND `martian_mining` AND `martian_manufacturing` AND `mars_sample`.
 - **Detection mode:** Runtime advancement.
-- **Exact test action:** Keep Galacticraft Desh metadata 2 in inventory and maintain breathable air, communications, automated mining, local manufacturing, and power within 32 blocks for 24 five-second samples—two continuous minutes.
+- **Exact test action:** Keep Galacticraft Desh metadata 2 in inventory and maintain an active Oxygen Detector within 10 blocks plus communications, automated mining, local manufacturing, and power within 32 blocks for 24 five-second samples—two continuous minutes.
 - **Negative assertion:** Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `martian_science_program`. This is the declared completion milestone for Chapter 12.
 - **Gameplay assertion:** Sustain habitat, water, power, communications, automated mining, local manufacturing, research readiness, and return capability.

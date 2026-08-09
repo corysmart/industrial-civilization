@@ -84,6 +84,10 @@ public final class GameplayRules {
         return true;
     }
 
+    public static boolean activeOxygenDetector(String registryName, int metadata) {
+        return "galacticraftcore:oxygen_detector".equals(registryName) && metadata == 1;
+    }
+
     public static int marketStage(int playerStage, int settlementCapacity) {
         return Math.max(0, Math.min(settlementCapacity, playerStage - 1));
     }

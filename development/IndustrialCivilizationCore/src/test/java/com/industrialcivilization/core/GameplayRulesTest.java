@@ -125,6 +125,16 @@ public class GameplayRulesTest {
     @Test public void malformedArmorSetDoesNotProtect() {
         assertFalse(GameplayRules.completeArmor(new boolean[]{true,true,true}));
     }
+    @Test public void activeGalacticraftOxygenDetectorProvesTheHabitat() {
+        assertTrue(GameplayRules.activeOxygenDetector(
+            "galacticraftcore:oxygen_detector", 1));
+    }
+    @Test public void inactiveOrUnrelatedBlocksCannotSatisfyTheHabitatGate() {
+        assertFalse(GameplayRules.activeOxygenDetector(
+            "galacticraftcore:oxygen_detector", 0));
+        assertFalse(GameplayRules.activeOxygenDetector("minecraft:air", 1));
+        assertFalse(GameplayRules.activeOxygenDetector(null, 1));
+    }
     @Test public void roomScanRejectsUnloadedCoordinates() {
         assertFalse(GameplayRules.scanCoordinateAllowed(0,0,0,false));
     }
