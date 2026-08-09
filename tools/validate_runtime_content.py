@@ -83,6 +83,12 @@ check(gui.size == (256, 256), "machine GUI atlas is 256x256")
 check(gui.getpixel((0, 0))[3] == 255, "machine GUI window is opaque")
 check(gui.getpixel((200, 200))[3] == 0, "unused GUI atlas area is transparent")
 check(gui.getpixel((176, 0))[3] == 255, "energy overlay strip exists")
+check(gui.getpixel((15, 17))[:3] == (58, 72, 77)
+      and gui.getpixel((15, 18))[:3] == (23, 36, 42),
+      "energy gauge housing begins inside—not above—the dark process panel")
+check(gui.getpixel((17, 20))[:3] == (82, 99, 106)
+      and gui.getpixel((17, 59))[:3] == (82, 99, 106),
+      "energy gauge interior is vertically contained by the process panel")
 check(gui.getpixel((176, 49))[3] == 255, "progress overlay strip exists")
 
 source = "\n".join(path.read_text() for path in JAVA.glob("*.java"))

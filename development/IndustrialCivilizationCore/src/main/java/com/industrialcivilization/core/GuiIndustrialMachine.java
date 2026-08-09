@@ -11,6 +11,8 @@ public final class GuiIndustrialMachine extends GuiContainer {
     private static final int STATUS_RIGHT = 164;
     private static final int STATUS_Y = 53;
     private static final int STATUS_COLOR = 0xD7E0E3;
+    private static final int ENERGY_BAR_HEIGHT = 40;
+    private static final int ENERGY_BAR_BOTTOM = 60;
     private static final ResourceLocation TEXTURE = new ResourceLocation(
         IndustrialCivilizationCore.MODID, "textures/gui/industrial_machine.png");
     private final TileIndustrialMachine tile;
@@ -57,9 +59,9 @@ public final class GuiIndustrialMachine extends GuiContainer {
         drawTexturedModalRect(left, top, 0, 0, xSize, ySize);
 
         int energyHeight = tile.getCapacity() <= 0 ? 0
-            : (int) (48L * tile.getEnergyStored() / tile.getCapacity());
-        drawTexturedModalRect(left + 17, top + 59 - energyHeight,
-            176, 48 - energyHeight, 8, energyHeight);
+            : (int) ((long) ENERGY_BAR_HEIGHT * tile.getEnergyStored() / tile.getCapacity());
+        drawTexturedModalRect(left + 17, top + ENERGY_BAR_BOTTOM - energyHeight,
+            176, ENERGY_BAR_HEIGHT - energyHeight, 8, energyHeight);
         int progressWidth = tile.getDuration() <= 0 ? 0
             : 24 * tile.getProgress() / tile.getDuration();
         drawTexturedModalRect(left + 104, top + 35, 176, 49, progressWidth, 16);

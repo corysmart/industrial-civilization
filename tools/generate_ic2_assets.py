@@ -399,13 +399,15 @@ def make_gui():
     for x in (44, 66, 88, 130): slot(d, x - 1, 34)
     d.line((105, 42, 126, 42), fill=PALETTE["dark"], width=2)
     d.polygon([(126, 39), (132, 42), (126, 45)], fill=PALETTE["orange"])
-    d.rectangle((15, 10, 26, 60), fill=PALETTE["dark"])
-    d.rectangle((17, 12, 24, 58), fill="#52636a")
+    # Keep the complete gauge housing inside the dark process panel. The old
+    # 50px housing began at y=10 and visibly protruded into the light header.
+    d.rectangle((15, 18, 26, 61), fill=PALETTE["dark"])
+    d.rectangle((17, 20, 24, 59), fill="#52636a")
     for row in range(3):
         for col in range(9): slot(d, 7 + col * 18, 83 + row * 18)
     for col in range(9): slot(d, 7 + col * 18, 141)
-    d.rectangle((176, 0, 183, 47), fill=PALETTE["cyan"])
-    for y in range(0, 48, 4): d.line((176, y, 183, y), fill=PALETTE["cyan2"])
+    d.rectangle((176, 0, 183, 39), fill=PALETTE["cyan"])
+    for y in range(0, 40, 4): d.line((176, y, 183, y), fill=PALETTE["cyan2"])
     d.rectangle((176, 49, 199, 64), fill=PALETTE["orange"])
     d.line((176, 49, 199, 49), fill="#ffc06b")
     image.save(GUI / "industrial_machine.png")
