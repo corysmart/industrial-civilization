@@ -304,9 +304,9 @@ function machineLayout(d, machine, energyPercent, operations, auditScreen = "mac
   const opsBox = {x: 190 - textWidth(operationsText), y: 69, w: textWidth(operationsText), h: 9};
   const darkProcessPanel = {x: 12, y: 20, w: 184, h: 62};
   const energyMeter = {x: 19, y: 29, w: 12, h: 40};
-  const inputSlot = {x: 107, y: 38, w: 18, h: 18};
+  const inputSlot = {x: 98, y: 34, w: 22, h: 22};
   const progressFill = {x: 125, y: 39, w: 23, h: 16};
-  const outputSlot = {x: 155, y: 38, w: 18, h: 18};
+  const outputSlot = {x: 158, y: 34, w: 22, h: 22};
   if (overlap(energyBox, opsBox)) issue(auditScreen, `${machine.id}: energy and operation labels overlap`, {x: gui.x + 37, y: gui.y + 69, w: 153, h: 9});
   if (!contained(energyBox, darkProcessPanel) || !contained(opsBox, darkProcessPanel)) issue(auditScreen, `${machine.id}: status text escapes the dark process panel`, {x: gui.x + 12, y: gui.y + 20, w: 184, h: 62});
   if (!contained(energyMeter, darkProcessPanel)) issue(auditScreen, `${machine.id}: energy gauge escapes the dark process panel`, {x: gui.x + 19, y: gui.y + 29, w: 12, h: 40});
@@ -314,7 +314,7 @@ function machineLayout(d, machine, energyPercent, operations, auditScreen = "mac
   const gaugeBottomClearance = darkProcessPanel.y + darkProcessPanel.h - energyMeter.y - energyMeter.h;
   if (gaugeTopClearance < 8 || gaugeBottomClearance < 8) issue(auditScreen, `${machine.id}: energy gauge lacks dark-panel edge clearance`, {x: gui.x + 19, y: gui.y + 20, w: 12, h: 62});
   if (overlap(energyBox, energyMeter)) issue(auditScreen, `${machine.id}: energy text overlaps the energy meter`, {x: gui.x + 19, y: gui.y + 29, w: 12, h: 40});
-  if (overlap(progressFill, inputSlot) || overlap(progressFill, outputSlot)) issue(auditScreen, `${machine.id}: progress connector overlaps an item slot`, {x: gui.x + 107, y: gui.y + 38, w: 66, h: 18});
+  if (overlap(progressFill, inputSlot) || overlap(progressFill, outputSlot)) issue(auditScreen, `${machine.id}: progress connector overlaps an item slot`, {x: gui.x + 98, y: gui.y + 34, w: 82, h: 22});
   return {gui, scale, title: shownTitle, titleX: 12 + (184 - textWidth(shownTitle)) / 2,
     energyText, operationsText, energyBox, opsBox, energy, progress: .62};
 }

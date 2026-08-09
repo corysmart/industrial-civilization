@@ -96,6 +96,15 @@ check(gui.getpixel((19, 69))[:3] == (123, 137, 142)
       and gui.getpixel((19, 80))[:3] == (123, 137, 142),
       "energy gauge housing has generous dark-panel clearance below it")
 check(gui.getpixel((208, 49))[3] == 255, "progress overlay strip exists")
+check(gui.getpixel((42, 34))[:3] == (101, 114, 120)
+      and gui.getpixel((43, 35))[:3] == (45, 55, 59)
+      and gui.getpixel((45, 37))[:3] == (169, 181, 184)
+      and gui.getpixel((63, 55))[:3] == (101, 114, 120),
+      "machine process slots use enlarged 22x22 IC2 frames")
+check(gui.getpixel((120, 46))[:3] == (23, 36, 42)
+      and gui.getpixel((157, 46))[:3] == (231, 130, 50)
+      and gui.getpixel((158, 46))[:3] == (101, 114, 120),
+      "machine process connector keeps clearance from enlarged output slot")
 
 title_logo = Image.open(ASSETS / "textures/mainmenu/industrial_civilization_logo.png").convert("RGBA")
 title_mask = Image.open(ROOT / "resources/industrialcivilizationcore/textures/mainmenu/industrial_civilization_logo_mask.png").convert("L")
@@ -122,10 +131,6 @@ check(quest_home.getpixel((0, 0))[3] == 255,
       "Better Questing home backdrop remains opaque")
 check(all(quest_home.getpixel(point)[3] == 0 for point in ((0, 256), (511, 256), (0, 511), (511, 511))),
       "Better Questing title layer uses the transparent plaque cutout")
-check(gui.getpixel((153, 46))[:3] == (231, 130, 50)
-      and gui.getpixel((154, 46))[:3] == (123, 137, 142),
-      "process arrow ends before the output item-slot border")
-
 source = "\n".join(path.read_text() for path in JAVA.glob("*.java"))
 machine_gui_source = (JAVA / "GuiIndustrialMachine.java").read_text()
 machine_container_source = (JAVA / "ContainerIndustrialMachine.java").read_text()
@@ -139,6 +144,10 @@ check("machineGuiScale(width, height)" in machine_gui_source
 check("24 + col * 18, 100 + row * 18" in machine_container_source
       and "24 + col * 18, 167" in machine_container_source,
       "player inventory remains centered inside the enlarged workspace")
+check("new Slot(tile, 0, 45, 37)" in machine_container_source
+      and "new Slot(tile, 2, 101, 37)" in machine_container_source
+      and "new SlotOutput(tile, 3, 161, 37)" in machine_container_source,
+      "machine item coordinates remain centered in enlarged process slots")
 check("ItemTestPlaceholder" not in source, "runtime registrations do not reference placeholder items")
 check("EnergyTileLoadEvent" in source and "IEnergySink" in source, "machines register with the IC2 EU network")
 check("CapabilityEnergy.ENERGY" in source, "machines also expose Forge Energy input")

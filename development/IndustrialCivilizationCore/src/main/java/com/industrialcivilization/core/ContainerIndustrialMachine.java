@@ -13,10 +13,10 @@ public final class ContainerIndustrialMachine extends Container {
 
     public ContainerIndustrialMachine(InventoryPlayer playerInventory, TileIndustrialMachine tile) {
         this.tile = tile;
-        addSlotToContainer(new Slot(tile, 0, 56, 39));
-        addSlotToContainer(new Slot(tile, 1, 82, 39));
-        addSlotToContainer(new Slot(tile, 2, 108, 39));
-        addSlotToContainer(new SlotOutput(tile, 3, 156, 39));
+        addSlotToContainer(new Slot(tile, 0, 45, 37));
+        addSlotToContainer(new Slot(tile, 1, 73, 37));
+        addSlotToContainer(new Slot(tile, 2, 101, 37));
+        addSlotToContainer(new SlotOutput(tile, 3, 161, 37));
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 9; col++) {
                 addSlotToContainer(new Slot(playerInventory, col + row * 9 + 9,

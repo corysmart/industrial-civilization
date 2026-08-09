@@ -385,10 +385,12 @@ def make_nei_sprites():
         output.save(ITEMS / f"{item_id}.png")
 
 
-def slot(draw, x, y):
-    draw.rectangle((x, y, x + 17, y + 17), fill="#657278")
-    draw.rectangle((x + 1, y + 1, x + 16, y + 16), fill="#2d373b")
-    draw.rectangle((x + 2, y + 2, x + 15, y + 15), fill="#a9b5b8")
+def slot(draw, x, y, size=18):
+    draw.rectangle((x, y, x + size - 1, y + size - 1), fill="#657278")
+    draw.rectangle((x + 1, y + 1, x + size - 2, y + size - 2), fill="#2d373b")
+    inset = 3 if size > 18 else 2
+    draw.rectangle((x + inset, y + inset, x + size - inset - 1,
+                    y + size - inset - 1), fill="#a9b5b8")
 
 
 def make_gui():
@@ -396,9 +398,9 @@ def make_gui():
     d.rectangle((0, 0, 207, 189), fill="#aeb8ba", outline="#1c2529")
     d.rectangle((3, 3, 204, 186), outline="#e8eeee")
     d.rectangle((12, 20, 195, 81), fill="#7b898e", outline="#3a484d")
-    for x in (56, 82, 108, 156): slot(d, x - 1, 38)
-    d.line((125, 46, 147, 46), fill=PALETTE["dark"], width=2)
-    d.polygon([(148, 43), (153, 46), (148, 49)], fill=PALETTE["orange"])
+    for x in (42, 70, 98, 158): slot(d, x, 34, 22)
+    d.line((120, 46, 151, 46), fill=PALETTE["dark"], width=2)
+    d.polygon([(152, 43), (157, 46), (152, 49)], fill=PALETTE["orange"])
     d.rectangle((19, 29, 30, 68), fill=PALETTE["dark"])
     d.rectangle((21, 31, 28, 66), fill="#52636a")
     for row in range(3):
