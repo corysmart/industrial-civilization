@@ -3,29 +3,23 @@
 
 from pathlib import Path
 
-from PIL import Image, ImageChops, ImageDraw
+from PIL import Image, ImageChops
 
 
 ROOT = Path(__file__).resolve().parents[1]
 PACK_LOGO = ROOT / "resources/industrialcivilizationcore/textures/mainmenu/industrial_civilization_logo.png"
 MOD_LOGO = ROOT / "development/IndustrialCivilizationCore/src/main/resources/assets/industrialcivilizationcore/textures/mainmenu/industrial_civilization_logo.png"
 QUEST_HOME = ROOT / "resources/industrialcivilizationcore/textures/gui/quest_home_v2.png"
-
-# Native-pixel outline of the plaque's outer metal silhouette. The mask keeps
-# every original plaque pixel while discarding only the rectangular matte that
-# surrounded it in the 512x256 source canvas.
-PLAQUE_OUTLINE = [
-    (29, 15), (483, 15), (502, 38), (502, 218),
-    (483, 240), (29, 240), (10, 218), (10, 38),
-]
+PLAQUE_MASK = ROOT / "resources/industrialcivilizationcore/textures/mainmenu/industrial_civilization_logo_mask.png"
 
 
 def plaque_cutout(source: Image.Image) -> Image.Image:
     image = source.convert("RGBA")
     if image.size != (512, 256):
         raise ValueError(f"expected 512x256 title card, got {image.size}")
-    mask = Image.new("L", image.size, 0)
-    ImageDraw.Draw(mask).polygon(PLAQUE_OUTLINE, fill=255)
+    mask = Image.open(PLAQUE_MASK).convert("L")
+    if mask.size != image.size:
+        raise ValueError(f"expected 512x256 title-card mask, got {mask.size}")
     alpha = ImageChops.multiply(image.getchannel("A"), mask)
     image.putalpha(alpha)
     return image

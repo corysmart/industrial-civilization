@@ -96,9 +96,15 @@ check(gui.getpixel((15, 60))[:3] == (123, 137, 142)
 check(gui.getpixel((176, 49))[3] == 255, "progress overlay strip exists")
 
 title_logo = Image.open(ASSETS / "textures/mainmenu/industrial_civilization_logo.png").convert("RGBA")
+title_mask = Image.open(ROOT / "resources/industrialcivilizationcore/textures/mainmenu/industrial_civilization_logo_mask.png").convert("L")
 check(title_logo.size == (512, 256), "main-menu title card remains 512x256")
+check(title_mask.size == title_logo.size, "main-menu title-card silhouette mask matches the source canvas")
 check(all(title_logo.getpixel(point)[3] == 0 for point in ((0, 0), (511, 0), (0, 255), (511, 255))),
       "main-menu title card exterior matte is transparent")
+check(all(title_logo.getpixel(point)[3] == 0 for point in ((10, 128), (501, 128), (256, 5), (256, 245))),
+      "main-menu title card removes the rectangular matte along every edge")
+check(all(title_logo.getpixel(point)[3] >= 250 for point in ((60, 20), (30, 128), (480, 128), (256, 220))),
+      "main-menu title card preserves the exterior metal frame")
 check(title_logo.getpixel((256, 128))[3] == 255,
       "main-menu title card preserves its opaque plaque interior")
 
