@@ -115,6 +115,8 @@ check("mainMenuTitleWidth" in gameplay_rules and "questHomeTitleWidth" in gamepl
       "title cards use deterministic responsive sizing rules")
 check("resizeAndCenterQuestHomeTitle" in (JAVA / "IndustrialCivilizationCore.java").read_text(),
       "Better Questing title receives its responsive centered runtime layout")
+check("lumien.custommainmenu.gui.GuiCustom" in (JAVA / "IndustrialCivilizationCore.java").read_text(),
+      "responsive title renderer recognizes the live Custom Main Menu screen")
 
 quest_home = Image.open(ROOT / "resources/industrialcivilizationcore/textures/gui/quest_home_v2.png").convert("RGBA")
 check(quest_home.size == (512, 512), "Better Questing home atlas remains 512x512")

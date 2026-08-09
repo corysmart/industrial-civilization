@@ -629,6 +629,8 @@ public final class IndustrialCivilizationCore {
         private static boolean terrainWarmupShown;
         private static final ResourceLocation MAIN_MENU_LOGO = new ResourceLocation(
             MODID, "textures/mainmenu/industrial_civilization_logo.png");
+        private static final String CUSTOM_MAIN_MENU_SCREEN =
+            "lumien.custommainmenu.gui.GuiCustom";
 
         @SubscribeEvent
         public static void registerModels(ModelRegistryEvent event) {
@@ -678,7 +680,8 @@ public final class IndustrialCivilizationCore {
         /** Draw the title responsively because Custom Main Menu only supports fixed image sizes. */
         @SubscribeEvent(priority = EventPriority.LOWEST)
         public static void drawResponsiveMainMenuTitle(GuiScreenEvent.DrawScreenEvent.Post event) {
-            if (!(event.getGui() instanceof GuiMainMenu)) return;
+            if (!(event.getGui() instanceof GuiMainMenu)
+                    && !CUSTOM_MAIN_MENU_SCREEN.equals(event.getGui().getClass().getName())) return;
             int width = GameplayRules.mainMenuTitleWidth(event.getGui().width, event.getGui().height);
             int height = width / 2;
             int x = (event.getGui().width - width) / 2;
