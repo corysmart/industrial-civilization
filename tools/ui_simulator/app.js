@@ -279,11 +279,13 @@ function machineLayout(d, machine, energyPercent, operations, auditScreen = "mac
   const energy = Math.round(machine.capacity * energyPercent / 100);
   const energyText = `EU ${compactNumber(energy)}/${compactNumber(machine.capacity)}`;
   const operationsText = `Ops ${compactNumber(operations)}`;
-  const energyBox = {x: 8, y: 68, w: textWidth(energyText), h: 8};
-  const opsBox = {x: 168 - textWidth(operationsText), y: 68, w: textWidth(operationsText), h: 8};
-  const slotGrid = {x: 7, y: 83, w: 162, h: 76};
-  if (overlap(energyBox, opsBox)) issue(auditScreen, `${machine.id}: energy and operation labels overlap`, {x: gui.x + energyBox.x, y: gui.y + 68, w: 160, h: 8});
-  if (overlap(energyBox, slotGrid) || overlap(opsBox, slotGrid)) issue(auditScreen, `${machine.id}: status row vertically overlaps the inventory slots`, {x: gui.x + 7, y: gui.y + 68, w: 162, h: 91});
+  const energyBox = {x: 29, y: 53, w: textWidth(energyText), h: 9};
+  const opsBox = {x: 164 - textWidth(operationsText), y: 53, w: textWidth(operationsText), h: 9};
+  const darkProcessPanel = {x: 8, y: 16, w: 160, h: 46};
+  const energyMeter = {x: 16, y: 10, w: 10, h: 50};
+  if (overlap(energyBox, opsBox)) issue(auditScreen, `${machine.id}: energy and operation labels overlap`, {x: gui.x + 29, y: gui.y + 53, w: 135, h: 9});
+  if (!contained(energyBox, darkProcessPanel) || !contained(opsBox, darkProcessPanel)) issue(auditScreen, `${machine.id}: status text escapes the dark process panel`, {x: gui.x + 8, y: gui.y + 16, w: 160, h: 46});
+  if (overlap(energyBox, energyMeter)) issue(auditScreen, `${machine.id}: energy text overlaps the energy meter`, {x: gui.x + 16, y: gui.y + 10, w: 10, h: 50});
   return {gui, title: shownTitle, titleX: 32 + (136 - textWidth(shownTitle)) / 2,
     energyText, operationsText, energyBox, opsBox, energy, progress: .62};
 }
@@ -304,8 +306,8 @@ function renderMachine(d, machineOverride, auditScreen) {
   if (energyHeight > 0) ctx.drawImage(machineTexture, 176, 48 - energyHeight, 8, energyHeight, gui.x + 17, gui.y + 59 - energyHeight, 8, energyHeight);
   ctx.drawImage(machineTexture, 176, 49, Math.floor(24 * state.progress), 16, gui.x + 104, gui.y + 35, Math.floor(24 * state.progress), 16);
   drawText(state.title, gui.x + state.titleX, gui.y + 6, "#25333a");
-  drawText(state.energyText, gui.x + state.energyBox.x, gui.y + 68, "#25333a");
-  drawText(state.operationsText, gui.x + state.opsBox.x, gui.y + 68, "#25333a");
+  drawText(state.energyText, gui.x + state.energyBox.x, gui.y + 53, "#d7e0e3");
+  drawText(state.operationsText, gui.x + state.opsBox.x, gui.y + 53, "#d7e0e3");
 }
 
 function factionDetail(faction, width) {

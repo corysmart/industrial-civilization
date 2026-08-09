@@ -7,8 +7,10 @@ import net.minecraft.util.ResourceLocation;
 public final class GuiIndustrialMachine extends GuiContainer {
     private static final int TITLE_LEFT = 32;
     private static final int TITLE_WIDTH = 136;
-    private static final int STATUS_RIGHT = 168;
-    private static final int STATUS_Y = 68;
+    private static final int STATUS_LEFT = 29;
+    private static final int STATUS_RIGHT = 164;
+    private static final int STATUS_Y = 53;
+    private static final int STATUS_COLOR = 0xD7E0E3;
     private static final ResourceLocation TEXTURE = new ResourceLocation(
         IndustrialCivilizationCore.MODID, "textures/gui/industrial_machine.png");
     private final TileIndustrialMachine tile;
@@ -39,13 +41,12 @@ public final class GuiIndustrialMachine extends GuiContainer {
         fontRenderer.drawString(title, titleX, 6, 0x25333A);
         String energy = "EU " + IndustrialUiText.compactNumber(tile.getEnergyStored())
             + "/" + IndustrialUiText.compactNumber(tile.getCapacity());
-        // Reserve this entire strip for one normal-height status row. Trying to
-        // fit a second "Inventory" row here either overlaps or mangles the
-        // bitmap font; the slot grid already makes its purpose unambiguous.
-        fontRenderer.drawString(energy, 8, STATUS_Y, 0x25333A);
+        // The status row belongs inside the dark process display. Its left edge
+        // clears the energy meter and its baseline stays above the panel border.
+        fontRenderer.drawString(energy, STATUS_LEFT, STATUS_Y, STATUS_COLOR);
         String operations = "Ops " + IndustrialUiText.compactNumber(tile.getCompletedOperations());
         fontRenderer.drawString(operations,
-            STATUS_RIGHT - fontRenderer.getStringWidth(operations), STATUS_Y, 0x25333A);
+            STATUS_RIGHT - fontRenderer.getStringWidth(operations), STATUS_Y, STATUS_COLOR);
     }
 
     @Override
