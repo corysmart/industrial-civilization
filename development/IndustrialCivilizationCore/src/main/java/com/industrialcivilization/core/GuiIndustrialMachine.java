@@ -1,6 +1,7 @@
 package com.industrialcivilization.core;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
@@ -8,7 +9,8 @@ public final class GuiIndustrialMachine extends GuiContainer {
     private static final int TITLE_LEFT = 32;
     private static final int TITLE_WIDTH = 136;
     private static final int STATUS_RIGHT = 168;
-    private static final int STATUS_Y = 63;
+    private static final int STATUS_Y = 65;
+    private static final float STATUS_SCALE = 0.75F;
     private static final int INVENTORY_LABEL_Y = 73;
     private static final ResourceLocation TEXTURE = new ResourceLocation(
         IndustrialCivilizationCore.MODID, "textures/gui/industrial_machine.png");
@@ -40,14 +42,21 @@ public final class GuiIndustrialMachine extends GuiContainer {
         fontRenderer.drawString(title, titleX, 6, 0x25333A);
         String energy = "EU " + IndustrialUiText.compactNumber(tile.getEnergyStored())
             + "/" + IndustrialUiText.compactNumber(tile.getCapacity());
-        // Minecraft's bitmap font is nine pixels tall. Drawing this at y=65
-        // reaches through y=73 and collides with the inventory label below.
-        // Keep a full blank pixel between the two rows at every GUI scale.
-        fontRenderer.drawString(energy, 8, STATUS_Y, 0x25333A);
+        // The normal nine-pixel font is too tall for this compact status strip.
+        // Render the entire status row at 75% instead of merely moving it.
+        drawStatusString(energy, 8, STATUS_Y, 0x25333A);
         String operations = "Ops " + IndustrialUiText.compactNumber(tile.getCompletedOperations());
-        fontRenderer.drawString(operations,
-            STATUS_RIGHT - fontRenderer.getStringWidth(operations), STATUS_Y, 0x25333A);
+        int operationsWidth = Math.round(fontRenderer.getStringWidth(operations) * STATUS_SCALE);
+        drawStatusString(operations, STATUS_RIGHT - operationsWidth, STATUS_Y, 0x25333A);
         fontRenderer.drawString("Inventory", 8, INVENTORY_LABEL_Y, 0x404B50);
+    }
+
+    private void drawStatusString(String text, int x, int y, int color) {
+        GlStateManager.pushMatrix();
+        GlStateManager.scale(STATUS_SCALE, STATUS_SCALE, 1.0F);
+        fontRenderer.drawString(text,
+            Math.round(x / STATUS_SCALE), Math.round(y / STATUS_SCALE), color);
+        GlStateManager.popMatrix();
     }
 
     @Override

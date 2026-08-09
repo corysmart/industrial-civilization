@@ -279,14 +279,16 @@ function machineLayout(d, machine, energyPercent, operations, auditScreen = "mac
   const energy = Math.round(machine.capacity * energyPercent / 100);
   const energyText = `EU ${compactNumber(energy)}/${compactNumber(machine.capacity)}`;
   const operationsText = `Ops ${compactNumber(operations)}`;
-  const energyBox = {x: 8, y: 63, w: textWidth(energyText), h: 9};
-  const opsBox = {x: 168 - textWidth(operationsText), y: 63, w: textWidth(operationsText), h: 9};
-  const statusRow = {x: 8, y: 63, w: 160, h: 9};
+  const statusScale = .75;
+  const statusHeight = 8 * statusScale;
+  const energyBox = {x: 8, y: 65, w: textWidth(energyText) * statusScale, h: statusHeight};
+  const opsBox = {x: 168 - textWidth(operationsText) * statusScale, y: 65, w: textWidth(operationsText) * statusScale, h: statusHeight};
+  const statusRow = {x: 8, y: 65, w: 160, h: statusHeight};
   const inventoryRow = {x: 8, y: 73, w: textWidth("Inventory"), h: 9};
-  if (overlap(energyBox, opsBox)) issue(auditScreen, `${machine.id}: energy and operation labels overlap`, {x: gui.x + energyBox.x, y: gui.y + 63, w: 160, h: 9});
-  if (overlap(statusRow, inventoryRow)) issue(auditScreen, `${machine.id}: status row vertically overlaps the inventory label`, {x: gui.x + 8, y: gui.y + 63, w: 160, h: 19});
+  if (overlap(energyBox, opsBox)) issue(auditScreen, `${machine.id}: energy and operation labels overlap`, {x: gui.x + energyBox.x, y: gui.y + 65, w: 160, h: statusHeight});
+  if (overlap(statusRow, inventoryRow)) issue(auditScreen, `${machine.id}: status row vertically overlaps the inventory label`, {x: gui.x + 8, y: gui.y + 65, w: 160, h: 17});
   return {gui, title: shownTitle, titleX: 32 + (136 - textWidth(shownTitle)) / 2,
-    energyText, operationsText, energyBox, opsBox, energy, progress: .62};
+    energyText, operationsText, energyBox, opsBox, statusScale, energy, progress: .62};
 }
 
 function renderMachine(d, machineOverride, auditScreen) {
@@ -305,8 +307,8 @@ function renderMachine(d, machineOverride, auditScreen) {
   if (energyHeight > 0) ctx.drawImage(machineTexture, 176, 48 - energyHeight, 8, energyHeight, gui.x + 17, gui.y + 59 - energyHeight, 8, energyHeight);
   ctx.drawImage(machineTexture, 176, 49, Math.floor(24 * state.progress), 16, gui.x + 104, gui.y + 35, Math.floor(24 * state.progress), 16);
   drawText(state.title, gui.x + state.titleX, gui.y + 6, "#25333a");
-  drawText(state.energyText, gui.x + state.energyBox.x, gui.y + 63, "#25333a");
-  drawText(state.operationsText, gui.x + state.opsBox.x, gui.y + 63, "#25333a");
+  drawText(state.energyText, gui.x + state.energyBox.x, gui.y + 65, "#25333a", state.statusScale);
+  drawText(state.operationsText, gui.x + state.opsBox.x, gui.y + 65, "#25333a", state.statusScale);
   drawText("Inventory", gui.x + 8, gui.y + 73, "#404b50");
 }
 
