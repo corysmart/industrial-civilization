@@ -5,15 +5,15 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
 public final class GuiIndustrialMachine extends GuiContainer {
-    private static final int TITLE_LEFT = 32;
-    private static final int TITLE_WIDTH = 136;
-    private static final int STATUS_LEFT = 29;
-    private static final int STATUS_RIGHT = 164;
-    private static final int STATUS_Y = 53;
+    private static final int TITLE_LEFT = 12;
+    private static final int TITLE_WIDTH = 184;
+    private static final int STATUS_LEFT = 37;
+    private static final int STATUS_RIGHT = 190;
+    private static final int STATUS_Y = 69;
     private static final int STATUS_COLOR = 0xD7E0E3;
     private static final int ENERGY_BAR_HEIGHT = 36;
-    private static final int ENERGY_BAR_BOTTOM = 58;
-    private static final int PROGRESS_LEFT = 105;
+    private static final int ENERGY_BAR_BOTTOM = 67;
+    private static final int PROGRESS_LEFT = 125;
     private static final int PROGRESS_WIDTH = 23;
     private static final ResourceLocation TEXTURE = new ResourceLocation(
         IndustrialCivilizationCore.MODID, "textures/gui/industrial_machine.png");
@@ -22,8 +22,8 @@ public final class GuiIndustrialMachine extends GuiContainer {
     public GuiIndustrialMachine(InventoryPlayer inventory, TileIndustrialMachine tile) {
         super(new ContainerIndustrialMachine(inventory, tile));
         this.tile = tile;
-        xSize = 176;
-        ySize = 166;
+        xSize = 208;
+        ySize = 190;
     }
 
     @Override
@@ -62,11 +62,11 @@ public final class GuiIndustrialMachine extends GuiContainer {
 
         int energyHeight = tile.getCapacity() <= 0 ? 0
             : (int) ((long) ENERGY_BAR_HEIGHT * tile.getEnergyStored() / tile.getCapacity());
-        drawTexturedModalRect(left + 17, top + ENERGY_BAR_BOTTOM - energyHeight,
-            176, ENERGY_BAR_HEIGHT - energyHeight, 8, energyHeight);
+        drawTexturedModalRect(left + 21, top + ENERGY_BAR_BOTTOM - energyHeight,
+            208, ENERGY_BAR_HEIGHT - energyHeight, 8, energyHeight);
         int progressWidth = tile.getDuration() <= 0 ? 0
             : PROGRESS_WIDTH * tile.getProgress() / tile.getDuration();
-        drawTexturedModalRect(left + PROGRESS_LEFT, top + 35,
-            176, 49, progressWidth, 16);
+        drawTexturedModalRect(left + PROGRESS_LEFT, top + 39,
+            208, 49, progressWidth, 16);
     }
 }

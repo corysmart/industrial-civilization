@@ -81,19 +81,21 @@ for block_id in sorted(block_ids):
 gui = Image.open(ASSETS / "textures/gui/industrial_machine.png")
 check(gui.size == (256, 256), "machine GUI atlas is 256x256")
 check(gui.getpixel((0, 0))[3] == 255, "machine GUI window is opaque")
+check(gui.getpixel((207, 189))[3] == 255 and gui.getpixel((207, 190))[3] == 0,
+      "machine workspace uses the enlarged 208x190 canvas")
 check(gui.getpixel((200, 200))[3] == 0, "unused GUI atlas area is transparent")
-check(gui.getpixel((176, 0))[3] == 255, "energy overlay strip exists")
-check(gui.getpixel((15, 18))[:3] == (123, 137, 142)
-      and gui.getpixel((15, 19))[:3] == (123, 137, 142)
-      and gui.getpixel((15, 20))[:3] == (23, 36, 42),
-      "energy gauge housing leaves two dark-panel pixels above it")
-check(gui.getpixel((17, 22))[:3] == (82, 99, 106)
-      and gui.getpixel((17, 57))[:3] == (82, 99, 106),
+check(gui.getpixel((208, 0))[3] == 255, "energy overlay strip exists")
+check(gui.getpixel((19, 21))[:3] == (123, 137, 142)
+      and gui.getpixel((19, 28))[:3] == (123, 137, 142)
+      and gui.getpixel((19, 29))[:3] == (23, 36, 42),
+      "energy gauge housing has generous dark-panel clearance above it")
+check(gui.getpixel((21, 31))[:3] == (82, 99, 106)
+      and gui.getpixel((21, 66))[:3] == (82, 99, 106),
       "energy gauge interior is vertically contained by the process panel")
-check(gui.getpixel((15, 60))[:3] == (123, 137, 142)
-      and gui.getpixel((15, 61))[:3] == (123, 137, 142),
-      "energy gauge housing leaves two dark-panel pixels below it")
-check(gui.getpixel((176, 49))[3] == 255, "progress overlay strip exists")
+check(gui.getpixel((19, 69))[:3] == (123, 137, 142)
+      and gui.getpixel((19, 80))[:3] == (123, 137, 142),
+      "energy gauge housing has generous dark-panel clearance below it")
+check(gui.getpixel((208, 49))[3] == 255, "progress overlay strip exists")
 
 title_logo = Image.open(ASSETS / "textures/mainmenu/industrial_civilization_logo.png").convert("RGBA")
 title_mask = Image.open(ROOT / "resources/industrialcivilizationcore/textures/mainmenu/industrial_civilization_logo_mask.png").convert("L")
@@ -120,11 +122,19 @@ check(quest_home.getpixel((0, 0))[3] == 255,
       "Better Questing home backdrop remains opaque")
 check(all(quest_home.getpixel(point)[3] == 0 for point in ((0, 256), (511, 256), (0, 511), (511, 511))),
       "Better Questing title layer uses the transparent plaque cutout")
-check(gui.getpixel((128, 42))[:3] == (231, 130, 50)
-      and gui.getpixel((129, 42))[:3] == (101, 114, 120),
+check(gui.getpixel((153, 46))[:3] == (231, 130, 50)
+      and gui.getpixel((154, 46))[:3] == (123, 137, 142),
       "process arrow ends before the output item-slot border")
 
 source = "\n".join(path.read_text() for path in JAVA.glob("*.java"))
+machine_gui_source = (JAVA / "GuiIndustrialMachine.java").read_text()
+machine_container_source = (JAVA / "ContainerIndustrialMachine.java").read_text()
+check("xSize = 208" in machine_gui_source and "ySize = 190" in machine_gui_source
+      and "TITLE_WIDTH = 184" in machine_gui_source,
+      "machine GUI uses the enlarged breathing-room workspace")
+check("24 + col * 18, 100 + row * 18" in machine_container_source
+      and "24 + col * 18, 167" in machine_container_source,
+      "player inventory remains centered inside the enlarged workspace")
 check("ItemTestPlaceholder" not in source, "runtime registrations do not reference placeholder items")
 check("EnergyTileLoadEvent" in source and "IEnergySink" in source, "machines register with the IC2 EU network")
 check("CapabilityEnergy.ENERGY" in source, "machines also expose Forge Energy input")

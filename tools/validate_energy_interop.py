@@ -80,7 +80,7 @@ for path in player_files:
 gui = (JAVA / "GuiIndustrialMachine.java").read_text()
 check('String energy = "EU "' in gui and "IndustrialUiText.compactNumber" in gui,
       "custom machine GUI labels compact machine energy in EU")
-check("trimStringToWidth" in gui and "TITLE_LEFT = 32" in gui,
+check("trimStringToWidth" in gui and "TITLE_LEFT = 12" in gui and "TITLE_WIDTH = 184" in gui,
       "machine GUI keeps long titles clear of the energy meter at small GUI scales")
 check("STATUS_RIGHT - fontRenderer.getStringWidth(operations)" in gui,
       "machine operation status remains right-aligned as its value grows")

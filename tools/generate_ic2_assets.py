@@ -393,23 +393,21 @@ def slot(draw, x, y):
 
 def make_gui():
     image = Image.new("RGBA", (256, 256), (0, 0, 0, 0)); d = ImageDraw.Draw(image)
-    d.rectangle((0, 0, 175, 165), fill="#aeb8ba", outline="#1c2529")
-    d.rectangle((3, 3, 172, 162), outline="#e8eeee")
-    d.rectangle((8, 17, 167, 62), fill="#7b898e", outline="#3a484d")
-    for x in (44, 66, 88, 130): slot(d, x - 1, 34)
-    d.line((105, 42, 122, 42), fill=PALETTE["dark"], width=2)
-    d.polygon([(122, 39), (128, 42), (122, 45)], fill=PALETTE["orange"])
-    # Keep the complete gauge housing inside the dark process panel. The old
-    # 50px housing began at y=10 and visibly protruded into the light header.
-    d.rectangle((15, 20, 26, 59), fill=PALETTE["dark"])
-    d.rectangle((17, 22, 24, 57), fill="#52636a")
+    d.rectangle((0, 0, 207, 189), fill="#aeb8ba", outline="#1c2529")
+    d.rectangle((3, 3, 204, 186), outline="#e8eeee")
+    d.rectangle((12, 20, 195, 81), fill="#7b898e", outline="#3a484d")
+    for x in (56, 82, 108, 156): slot(d, x - 1, 38)
+    d.line((125, 46, 147, 46), fill=PALETTE["dark"], width=2)
+    d.polygon([(148, 43), (153, 46), (148, 49)], fill=PALETTE["orange"])
+    d.rectangle((19, 29, 30, 68), fill=PALETTE["dark"])
+    d.rectangle((21, 31, 28, 66), fill="#52636a")
     for row in range(3):
-        for col in range(9): slot(d, 7 + col * 18, 83 + row * 18)
-    for col in range(9): slot(d, 7 + col * 18, 141)
-    d.rectangle((176, 0, 183, 35), fill=PALETTE["cyan"])
-    for y in range(0, 36, 4): d.line((176, y, 183, y), fill=PALETTE["cyan2"])
-    d.rectangle((176, 49, 198, 64), fill=PALETTE["orange"])
-    d.line((176, 49, 198, 49), fill="#ffc06b")
+        for col in range(9): slot(d, 23 + col * 18, 99 + row * 18)
+    for col in range(9): slot(d, 23 + col * 18, 166)
+    d.rectangle((208, 0, 215, 35), fill=PALETTE["cyan"])
+    for y in range(0, 36, 4): d.line((208, y, 215, y), fill=PALETTE["cyan2"])
+    d.rectangle((208, 49, 230, 64), fill=PALETTE["orange"])
+    d.line((208, 49, 230, 49), fill="#ffc06b")
     image.save(GUI / "industrial_machine.png")
 
 

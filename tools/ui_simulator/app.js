@@ -304,29 +304,29 @@ function renderSpaceMap(d, auditScreen = "spacemap") {
 }
 
 function machineLayout(d, machine, energyPercent, operations, auditScreen = "machine") {
-  const gui = {x: Math.floor((d.width - 176) / 2), y: Math.floor((d.height - 166) / 2), w: 176, h: 166};
-  if (!contained(gui, {x: 0, y: 0, w: d.width, h: d.height})) issue(auditScreen, "176×166 machine panel does not fit the logical viewport", gui);
+  const gui = {x: Math.floor((d.width - 208) / 2), y: Math.floor((d.height - 190) / 2), w: 208, h: 190};
+  if (!contained(gui, {x: 0, y: 0, w: d.width, h: d.height})) issue(auditScreen, "208×190 machine panel does not fit the logical viewport", gui);
   const title = data.lang[`tile.industrialcivilizationcore.${machine.id}.name`] || machine.id;
-  const shownTitle = trim(title, 136);
+  const shownTitle = trim(title, 184);
   const energy = Math.round(machine.capacity * energyPercent / 100);
   const energyText = `EU ${compactNumber(energy)}/${compactNumber(machine.capacity)}`;
   const operationsText = `Ops ${compactNumber(operations)}`;
-  const energyBox = {x: 29, y: 53, w: textWidth(energyText), h: 9};
-  const opsBox = {x: 164 - textWidth(operationsText), y: 53, w: textWidth(operationsText), h: 9};
-  const darkProcessPanel = {x: 8, y: 17, w: 160, h: 46};
-  const energyMeter = {x: 15, y: 20, w: 12, h: 40};
-  const inputSlot = {x: 87, y: 34, w: 18, h: 18};
-  const progressFill = {x: 105, y: 35, w: 23, h: 16};
-  const outputSlot = {x: 129, y: 34, w: 18, h: 18};
-  if (overlap(energyBox, opsBox)) issue(auditScreen, `${machine.id}: energy and operation labels overlap`, {x: gui.x + 29, y: gui.y + 53, w: 135, h: 9});
-  if (!contained(energyBox, darkProcessPanel) || !contained(opsBox, darkProcessPanel)) issue(auditScreen, `${machine.id}: status text escapes the dark process panel`, {x: gui.x + 8, y: gui.y + 17, w: 160, h: 46});
-  if (!contained(energyMeter, darkProcessPanel)) issue(auditScreen, `${machine.id}: energy gauge escapes the dark process panel`, {x: gui.x + 15, y: gui.y + 20, w: 12, h: 40});
+  const energyBox = {x: 37, y: 69, w: textWidth(energyText), h: 9};
+  const opsBox = {x: 190 - textWidth(operationsText), y: 69, w: textWidth(operationsText), h: 9};
+  const darkProcessPanel = {x: 12, y: 20, w: 184, h: 62};
+  const energyMeter = {x: 19, y: 29, w: 12, h: 40};
+  const inputSlot = {x: 107, y: 38, w: 18, h: 18};
+  const progressFill = {x: 125, y: 39, w: 23, h: 16};
+  const outputSlot = {x: 155, y: 38, w: 18, h: 18};
+  if (overlap(energyBox, opsBox)) issue(auditScreen, `${machine.id}: energy and operation labels overlap`, {x: gui.x + 37, y: gui.y + 69, w: 153, h: 9});
+  if (!contained(energyBox, darkProcessPanel) || !contained(opsBox, darkProcessPanel)) issue(auditScreen, `${machine.id}: status text escapes the dark process panel`, {x: gui.x + 12, y: gui.y + 20, w: 184, h: 62});
+  if (!contained(energyMeter, darkProcessPanel)) issue(auditScreen, `${machine.id}: energy gauge escapes the dark process panel`, {x: gui.x + 19, y: gui.y + 29, w: 12, h: 40});
   const gaugeTopClearance = energyMeter.y - darkProcessPanel.y;
   const gaugeBottomClearance = darkProcessPanel.y + darkProcessPanel.h - energyMeter.y - energyMeter.h;
-  if (gaugeTopClearance < 3 || gaugeBottomClearance < 3) issue(auditScreen, `${machine.id}: energy gauge lacks dark-panel edge clearance`, {x: gui.x + 15, y: gui.y + 17, w: 12, h: 46});
-  if (overlap(energyBox, energyMeter)) issue(auditScreen, `${machine.id}: energy text overlaps the energy meter`, {x: gui.x + 15, y: gui.y + 20, w: 12, h: 40});
-  if (overlap(progressFill, inputSlot) || overlap(progressFill, outputSlot)) issue(auditScreen, `${machine.id}: progress connector overlaps an item slot`, {x: gui.x + 87, y: gui.y + 34, w: 60, h: 18});
-  return {gui, title: shownTitle, titleX: 32 + (136 - textWidth(shownTitle)) / 2,
+  if (gaugeTopClearance < 8 || gaugeBottomClearance < 8) issue(auditScreen, `${machine.id}: energy gauge lacks dark-panel edge clearance`, {x: gui.x + 19, y: gui.y + 20, w: 12, h: 62});
+  if (overlap(energyBox, energyMeter)) issue(auditScreen, `${machine.id}: energy text overlaps the energy meter`, {x: gui.x + 19, y: gui.y + 29, w: 12, h: 40});
+  if (overlap(progressFill, inputSlot) || overlap(progressFill, outputSlot)) issue(auditScreen, `${machine.id}: progress connector overlaps an item slot`, {x: gui.x + 107, y: gui.y + 38, w: 66, h: 18});
+  return {gui, title: shownTitle, titleX: 12 + (184 - textWidth(shownTitle)) / 2,
     energyText, operationsText, energyBox, opsBox, energy, progress: .62};
 }
 
@@ -341,13 +341,13 @@ function renderMachine(d, machineOverride, auditScreen) {
     if (leftW >= 64) renderHeiPanel(2, 18, leftW - 4, d.height - 36, "Bookmarks", false);
     if (d.width - rightX >= 64) renderHeiPanel(rightX, 18, d.width - rightX - 2, d.height - 36, "HEI Items", true);
   }
-  ctx.drawImage(machineTexture, 0, 0, 176, 166, gui.x, gui.y, 176, 166);
+  ctx.drawImage(machineTexture, 0, 0, 208, 190, gui.x, gui.y, 208, 190);
   const energyHeight = Math.floor(36 * state.energy / machine.capacity);
-  if (energyHeight > 0) ctx.drawImage(machineTexture, 176, 36 - energyHeight, 8, energyHeight, gui.x + 17, gui.y + 58 - energyHeight, 8, energyHeight);
-  ctx.drawImage(machineTexture, 176, 49, Math.floor(23 * state.progress), 16, gui.x + 105, gui.y + 35, Math.floor(23 * state.progress), 16);
+  if (energyHeight > 0) ctx.drawImage(machineTexture, 208, 36 - energyHeight, 8, energyHeight, gui.x + 21, gui.y + 67 - energyHeight, 8, energyHeight);
+  ctx.drawImage(machineTexture, 208, 49, Math.floor(23 * state.progress), 16, gui.x + 125, gui.y + 39, Math.floor(23 * state.progress), 16);
   drawText(state.title, gui.x + state.titleX, gui.y + 6, "#25333a");
-  drawText(state.energyText, gui.x + state.energyBox.x, gui.y + 53, "#d7e0e3");
-  drawText(state.operationsText, gui.x + state.opsBox.x, gui.y + 53, "#d7e0e3");
+  drawText(state.energyText, gui.x + state.energyBox.x, gui.y + 69, "#d7e0e3");
+  drawText(state.operationsText, gui.x + state.opsBox.x, gui.y + 69, "#d7e0e3");
 }
 
 function factionDetail(faction, width) {
