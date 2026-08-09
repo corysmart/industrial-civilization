@@ -494,6 +494,10 @@ ok(run_config["packId"] == "industrial_civilization", "stable GroovyScript pack 
 ok(run_config["loaders"]["postInit"] == ["postInit/"], "reloadable postInit loader configured")
 script = (ROOT / "groovy/postInit/industrial_civilization.groovy").read_text()
 content_script = (ROOT / "groovy/postInit/industrial_civilization_content.groovy").read_text()
+ok("mods.jei.ingredient.add(mffsProgressionMachines)" in script
+   and "modularforcefieldsystem:projector" in script
+   and "modularforcefieldsystem:capacitor" in script,
+   "progression-critical MFFS machines are restored to HEI name and mod searches")
 ok("startsWith('appliedenergistics2:')" in content_script and ".removeAll()" in content_script
    and "ae2Catalog" in content_script and "ai_catalog_" in content_script,
    "complete AE2 catalog is captured and reconstructed behind AI authorization")

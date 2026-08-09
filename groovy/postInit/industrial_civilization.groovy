@@ -29,6 +29,17 @@ def lockedChestUpgrades = [
 mods.jei.ingredient.removeAndHide(lockedChests)
 mods.jei.ingredient.removeAndHide(lockedChestUpgrades)
 
+// MFFS registers its two progression-critical machine outputs and recipes, but
+// does not contribute those ItemBlocks to HEI's searchable ingredient list.
+// Re-add only the machines used by Industrial Civilization progression; this
+// keeps internal MFFS cards/debug tools hidden while making name and @mod
+// searches lead players to the real recipes.
+def mffsProgressionMachines = [
+    item('modularforcefieldsystem:projector'),
+    item('modularforcefieldsystem:capacitor')
+]
+mods.jei.ingredient.add(mffsProgressionMachines)
+
 // IC Credits can be minted only as an expensive emergency measure. Selling
 // ordinary components at neutral settlement prices is intentionally cheaper.
 crafting.addShaped('industrial_civilization:industrial_credit', item('industrialcivilizationcore:industrial_credit'), [
