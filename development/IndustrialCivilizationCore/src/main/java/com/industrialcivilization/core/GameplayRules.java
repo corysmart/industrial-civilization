@@ -92,6 +92,11 @@ public final class GameplayRules {
         return "orbit".equals(environment) ? "orbital_habitat" : environment + "_habitat";
     }
 
+    public static long nextFunctionalStableSamples(long current, boolean completeInfrastructure) {
+        if (!completeInfrastructure) return 0L;
+        return Math.min(24L, Math.max(0L, current) + 1L);
+    }
+
     public static int marketStage(int playerStage, int settlementCapacity) {
         return Math.max(0, Math.min(settlementCapacity, playerStage - 1));
     }

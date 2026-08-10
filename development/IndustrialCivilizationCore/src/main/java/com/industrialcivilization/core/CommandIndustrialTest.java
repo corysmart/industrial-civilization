@@ -160,6 +160,8 @@ public final class CommandIndustrialTest extends CommandBase {
         root.addProperty("position", coordinates(player.getPosition()));
         root.addProperty("radius", radius);
         root.addProperty("habitat_detector_active", SpaceSurvivalSystem.protectedByHabitat(player));
+        root.addProperty("functional_stable_samples",
+            ProgressionState.counter(player, environment(player) + "_functional_stable_samples"));
         root.addProperty("ai_age", ProgressionState.has(player, "ai_age"));
         root.addProperty("active_ticks", ProgressionState.counter(player, "active_ticks"));
         int[] workshops = WorkshopSystem.inspect(player.world, player.getPosition(), radius);
@@ -187,6 +189,14 @@ public final class CommandIndustrialTest extends CommandBase {
 
     private static String coordinates(BlockPos pos) {
         return pos.getX() + "," + pos.getY() + "," + pos.getZ();
+    }
+
+    private static String environment(EntityPlayerMP player) {
+        String name = player.world.provider.getDimensionType().getName().toLowerCase(java.util.Locale.ROOT);
+        if (name.contains("moon")) return "lunar";
+        if (name.contains("mars")) return "martian";
+        if (name.contains("orbit") || name.contains("space station")) return "orbit";
+        return "earth";
     }
 
     private static void emit(EntityPlayerMP player, String value) {

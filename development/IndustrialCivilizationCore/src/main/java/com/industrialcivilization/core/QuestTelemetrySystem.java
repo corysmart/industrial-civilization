@@ -28,7 +28,12 @@ public final class QuestTelemetrySystem {
 
         evaluateRouteTransitions(player);
         String environment = environment(player);
-        if ("earth".equals(environment)) return;
+        if ("earth".equals(environment)) {
+            resetFunctionalStability(player, "orbit");
+            resetFunctionalStability(player, "lunar");
+            resetFunctionalStability(player, "martian");
+            return;
+        }
 
         Evidence evidence = observeNearbyInfrastructure(player);
         boolean habitat = SpaceSurvivalSystem.protectedByHabitat(player);
@@ -46,21 +51,24 @@ public final class QuestTelemetrySystem {
 
         if ("orbit".equals(environment)) {
             RuntimeAdvancements.grant(player, "tier1_orbital_launch", "orbital_dimension_arrival");
-            if (habitat && evidence.communications && evidence.researchStation
-                    && evidence.experimentModule && evidence.power
-                    && stable(player, environment)) {
+            boolean functional = habitat && evidence.communications && evidence.researchStation
+                && evidence.experimentModule && evidence.power;
+            updateFunctionalStability(player, environment, functional);
+            if (functional && stable(player, environment)) {
                 RuntimeAdvancements.grant(player, "functional_orbital_station", "sustained_station_telemetry");
             }
         } else if ("lunar".equals(environment)) {
-            if (habitat && evidence.communications && evidence.automatedMiner
-                    && evidence.operatingManufacturing && evidence.power
-                    && stable(player, environment)) {
+            boolean functional = habitat && evidence.communications && evidence.automatedMiner
+                && evidence.operatingManufacturing && evidence.power;
+            updateFunctionalStability(player, environment, functional);
+            if (functional && stable(player, environment)) {
                 RuntimeAdvancements.grant(player, "functional_lunar_base", "sustained_lunar_base_telemetry");
             }
         } else if ("martian".equals(environment)) {
-            if (habitat && evidence.communications && evidence.automatedMiner
-                    && evidence.operatingManufacturing && evidence.power
-                    && hasDesh(player) && stable(player, environment)) {
+            boolean functional = habitat && evidence.communications && evidence.automatedMiner
+                && evidence.operatingManufacturing && evidence.power && hasDesh(player);
+            updateFunctionalStability(player, environment, functional);
+            if (functional && stable(player, environment)) {
                 RuntimeAdvancements.grant(player, "functional_martian_base", "sustained_mars_base_telemetry");
             }
         }
@@ -78,7 +86,22 @@ public final class QuestTelemetrySystem {
     }
 
     private static boolean stable(EntityPlayer player, String environment) {
-        return ProgressionState.counter(player, environment + "_habitat_stable_samples") >= REQUIRED_SAMPLES;
+        return ProgressionState.counter(player, functionalCounter(environment)) >= REQUIRED_SAMPLES;
+    }
+
+    private static void updateFunctionalStability(EntityPlayer player, String environment,
+            boolean completeInfrastructure) {
+        String counter = functionalCounter(environment);
+        ProgressionState.setCounter(player, counter, GameplayRules.nextFunctionalStableSamples(
+            ProgressionState.counter(player, counter), completeInfrastructure));
+    }
+
+    private static void resetFunctionalStability(EntityPlayer player, String environment) {
+        ProgressionState.setCounter(player, functionalCounter(environment), 0L);
+    }
+
+    private static String functionalCounter(String environment) {
+        return environment + "_functional_stable_samples";
     }
 
     private static Evidence observeNearbyInfrastructure(EntityPlayer player) {

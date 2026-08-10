@@ -38,6 +38,10 @@ public final class ProgressionState {
         return data(player).getLong(counter);
     }
 
+    public static void setCounter(EntityPlayer player, String counter, long value) {
+        data(player).setLong(counter, Math.max(0L, value));
+    }
+
     public static long completionSeconds(EntityPlayer player, String milestone) {
         return compound(data(player), COMPLETION_TIMES).getLong(milestone);
     }

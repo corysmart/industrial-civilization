@@ -142,6 +142,13 @@ public class GameplayRulesTest {
         assertEquals("lunar_habitat", GameplayRules.habitatMilestone("lunar"));
         assertEquals("martian_habitat", GameplayRules.habitatMilestone("martian"));
     }
+    @Test public void functionalStationSamplesRequireContinuousCompleteInfrastructure() {
+        assertEquals(1L, GameplayRules.nextFunctionalStableSamples(0L, true));
+        assertEquals(24L, GameplayRules.nextFunctionalStableSamples(23L, true));
+        assertEquals(24L, GameplayRules.nextFunctionalStableSamples(24L, true));
+        assertEquals(0L, GameplayRules.nextFunctionalStableSamples(23L, false));
+        assertEquals(1L, GameplayRules.nextFunctionalStableSamples(-5L, true));
+    }
     @Test public void roomScanRejectsUnloadedCoordinates() {
         assertFalse(GameplayRules.scanCoordinateAllowed(0,0,0,false));
     }

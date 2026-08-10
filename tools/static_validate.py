@@ -429,6 +429,12 @@ ok("GameplayRules.habitatMilestone(environment)" in quest_telemetry_source
        (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/GameplayRules.java").read_text()
    and 'environment + "_habitat_stable_samples"' in quest_telemetry_source,
    "orbital habitat grants its canonical advancement while preserving stable-sample counters")
+ok('environment + "_functional_stable_samples"' in quest_telemetry_source
+   and "nextFunctionalStableSamples" in quest_telemetry_source
+   and "resetFunctionalStability" in quest_telemetry_source
+   and 'functional_stable_samples' in
+       (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/CommandIndustrialTest.java").read_text(),
+   "functional off-world gates require a resettable continuous full-infrastructure sample streak")
 ok("new MapGenVillage()" in village_suppression_source
    and "canSpawnStructureAtCoords" in village_suppression_source
    and "new MapGenBase()" not in village_suppression_source,
