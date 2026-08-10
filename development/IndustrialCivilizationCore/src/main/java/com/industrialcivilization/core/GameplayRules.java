@@ -88,6 +88,10 @@ public final class GameplayRules {
         return "galacticraftcore:oxygen_detector".equals(registryName) && metadata == 1;
     }
 
+    public static String habitatMilestone(String environment) {
+        return "orbit".equals(environment) ? "orbital_habitat" : environment + "_habitat";
+    }
+
     public static int marketStage(int playerStage, int settlementCapacity) {
         return Math.max(0, Math.min(settlementCapacity, playerStage - 1));
     }

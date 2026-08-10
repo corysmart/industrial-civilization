@@ -135,6 +135,13 @@ public class GameplayRulesTest {
         assertFalse(GameplayRules.activeOxygenDetector("minecraft:air", 1));
         assertFalse(GameplayRules.activeOxygenDetector(null, 1));
     }
+    @Test public void orbitalEnvironmentUsesCanonicalHabitatMilestone() {
+        assertEquals("orbital_habitat", GameplayRules.habitatMilestone("orbit"));
+    }
+    @Test public void lunarAndMartianHabitatMilestonesRemainStable() {
+        assertEquals("lunar_habitat", GameplayRules.habitatMilestone("lunar"));
+        assertEquals("martian_habitat", GameplayRules.habitatMilestone("martian"));
+    }
     @Test public void roomScanRejectsUnloadedCoordinates() {
         assertFalse(GameplayRules.scanCoordinateAllowed(0,0,0,false));
     }

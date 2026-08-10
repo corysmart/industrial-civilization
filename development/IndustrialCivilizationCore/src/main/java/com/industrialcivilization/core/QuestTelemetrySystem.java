@@ -33,7 +33,8 @@ public final class QuestTelemetrySystem {
         Evidence evidence = observeNearbyInfrastructure(player);
         boolean habitat = SpaceSurvivalSystem.protectedByHabitat(player);
         if (habitat) {
-            RuntimeAdvancements.grant(player, environment + "_habitat", "sealed_habitat_scan");
+            RuntimeAdvancements.grant(player, GameplayRules.habitatMilestone(environment),
+                "active_oxygen_detector_scan");
             ProgressionState.increment(player, environment + "_habitat_stable_samples", 1);
         }
         if (evidence.communications && habitat && "orbit".equals(environment))

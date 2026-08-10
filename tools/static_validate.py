@@ -380,6 +380,7 @@ ok("button.id == 6" in core_source and "GuiFactionDirectory" in core_source
    "pause-menu Statistics button opens the faction directory")
 progression_network_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/ProgressionNetwork.java").read_text()
 space_survival_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/SpaceSurvivalSystem.java").read_text()
+quest_telemetry_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/QuestTelemetrySystem.java").read_text()
 analyzer_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/TileMolecularAnalyzer.java").read_text()
 credits_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/GuiIndustrialCredits.java").read_text()
 village_suppression_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/VillageSuppressionHandler.java").read_text()
@@ -423,6 +424,11 @@ ok('"galacticraftcore:oxygen_detector"' in
    and "OxygenUtil.isAABBInBreathableAirBlock" not in space_survival_source
    and "fullQuantumSuit" in space_survival_source and "radiation_exposure" in space_survival_source,
    "space habitat protection requires an active Galacticraft Oxygen Detector or a full IC2 QuantumSuit")
+ok("GameplayRules.habitatMilestone(environment)" in quest_telemetry_source
+   and '"orbit".equals(environment) ? "orbital_habitat"' in
+       (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/GameplayRules.java").read_text()
+   and 'environment + "_habitat_stable_samples"' in quest_telemetry_source,
+   "orbital habitat grants its canonical advancement while preserving stable-sample counters")
 ok("new MapGenVillage()" in village_suppression_source
    and "canSpawnStructureAtCoords" in village_suppression_source
    and "new MapGenBase()" not in village_suppression_source,
