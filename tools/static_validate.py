@@ -547,6 +547,12 @@ solar_block_source = (ROOT / "development/IndustrialCivilizationCore/src/main/ja
 ok("EnumBlockRenderType getRenderType" in solar_block_source
    and "return EnumBlockRenderType.MODEL;" in solar_block_source,
    "container-backed solar arrays opt into modeled block rendering")
+solar_tile_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/TileEnvironmentalSolarArray.java").read_text()
+ok("GameplayRules.solarMilestoneReady(generatedTotal, lastUser != null" in solar_tile_source
+   and "hasConnectedLoad()" in solar_tile_source
+   and "acceptsEnergyFrom(this, side.getOpposite())" in solar_tile_source
+   and "storage.canReceive()" in solar_tile_source,
+   "solar milestones require an attributed 10,000 EU plus a connected IC2 or FE load")
 ok("projecte" not in script.lower(), "no ProjectE in reloadable integration script")
 
 ledger = json.loads((ROOT / "bin/extractedFiles.json").read_text())

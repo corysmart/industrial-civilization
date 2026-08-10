@@ -97,6 +97,11 @@ public final class GameplayRules {
         return Math.min(24L, Math.max(0L, current) + 1L);
     }
 
+    public static boolean solarMilestoneReady(long generatedTotal, boolean attributed,
+            boolean connectedLoad) {
+        return generatedTotal >= 10000L && attributed && connectedLoad;
+    }
+
     public static int marketStage(int playerStage, int settlementCapacity) {
         return Math.max(0, Math.min(settlementCapacity, playerStage - 1));
     }

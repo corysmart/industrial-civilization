@@ -67,7 +67,8 @@ public final class TileEnvironmentalSolarArray extends TileEntity
         int generated = Math.min(getGenerationRate(), (int) (CAPACITY - energy));
         energy += generated;
         generatedTotal += generated;
-        if (generatedTotal >= 10000 && lastUser != null) {
+        if (GameplayRules.solarMilestoneReady(generatedTotal, lastUser != null,
+                hasConnectedLoad())) {
             EntityPlayerMP player = world.getMinecraftServer().getPlayerList().getPlayerByUUID(lastUser);
             if (player != null) {
                 if ("orbit".equals(environment())) RuntimeAdvancements.grant(player,
@@ -78,6 +79,23 @@ public final class TileEnvironmentalSolarArray extends TileEntity
             }
         }
         if (world.getTotalWorldTime() % 20 == 0) markDirty();
+    }
+
+    private boolean hasConnectedLoad() {
+        for (EnumFacing side : EnumFacing.values()) {
+            TileEntity adjacent = world.getTileEntity(pos.offset(side));
+            if (adjacent instanceof IEnergyAcceptor
+                    && ((IEnergyAcceptor) adjacent).acceptsEnergyFrom(this, side.getOpposite())) {
+                return true;
+            }
+            if (adjacent != null && adjacent.hasCapability(
+                    CapabilityEnergy.ENERGY, side.getOpposite())) {
+                IEnergyStorage storage = adjacent.getCapability(
+                    CapabilityEnergy.ENERGY, side.getOpposite());
+                if (storage != null && storage.canReceive()) return true;
+            }
+        }
+        return false;
     }
 
     public String environment() {

@@ -149,6 +149,12 @@ public class GameplayRulesTest {
         assertEquals(0L, GameplayRules.nextFunctionalStableSamples(23L, false));
         assertEquals(1L, GameplayRules.nextFunctionalStableSamples(-5L, true));
     }
+    @Test public void solarMilestoneRequiresGenerationAttributionAndConnectedLoad() {
+        assertTrue(GameplayRules.solarMilestoneReady(10000L, true, true));
+        assertFalse(GameplayRules.solarMilestoneReady(9999L, true, true));
+        assertFalse(GameplayRules.solarMilestoneReady(10000L, false, true));
+        assertFalse(GameplayRules.solarMilestoneReady(10000L, true, false));
+    }
     @Test public void roomScanRejectsUnloadedCoordinates() {
         assertFalse(GameplayRules.scanCoordinateAllowed(0,0,0,false));
     }
