@@ -536,7 +536,13 @@ for item in (
 ironchest_config = (ROOT / "config/ironchest.cfg").read_text()
 ok('B:"Add Shulker Boxes to Creative Menu"=false' in ironchest_config, "higher-tier Iron Chest shulkers hidden")
 ok('B:"Enable Shulker Box Recipes"=false' in ironchest_config, "higher-tier Iron Chest shulker recipes disabled")
-ok("projecte" not in (ROOT / "scripts/tekkit2.zs").read_text().lower(), "no ProjectE in inherited CraftTweaker script")
+crafttweaker = (ROOT / "scripts/tekkit2.zs").read_text()
+ok("projecte" not in crafttweaker.lower(), "no ProjectE in inherited CraftTweaker script")
+for metadata in (0, 4):
+    ok(f'recipes.removeByRecipeName("galacticraftcore:solar_{metadata}")' in crafttweaker,
+       f"duplicate Galacticraft solar recipe {metadata} is disabled")
+    ok(f'mods.jei.JEI.hide(<galacticraftcore:solar:{metadata}>)' in crafttweaker,
+       f"duplicate Galacticraft solar stack {metadata} is hidden from HEI")
 ok("projecte" not in script.lower(), "no ProjectE in reloadable integration script")
 
 ledger = json.loads((ROOT / "bin/extractedFiles.json").read_text())

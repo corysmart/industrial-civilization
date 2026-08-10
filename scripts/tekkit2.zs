@@ -71,6 +71,13 @@ recipes.removeByRecipeName("akashictome:tome");
 recipes.removeByRecipeName("irontanks:diamond_emerald_tank");
 recipes.removeByRecipeName("irontanks:diamond_emerald_upgrade");
 recipes.removeByRecipeName("galacticraftcore:basic_item_5");
+// Industrial Civilization's environment-aware arrays replace Galacticraft's
+// basic and advanced generators. Keep the inherited Galacticraft models, but
+// remove the duplicate survival recipes and HEI entries.
+recipes.removeByRecipeName("galacticraftcore:solar_0");
+recipes.removeByRecipeName("galacticraftcore:solar_4");
+mods.jei.JEI.hide(<galacticraftcore:solar:0>);
+mods.jei.JEI.hide(<galacticraftcore:solar:4>);
 recipes.removeByRecipeName("hammercore:manual");
 recipes.removeByRecipeName("hammercore:cableflux_recipescf.0");
 recipes.removeByRecipeName("hammercore:cableflux_recipescf.1");
