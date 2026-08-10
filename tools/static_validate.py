@@ -543,6 +543,10 @@ for metadata in (0, 4):
        f"duplicate Galacticraft solar recipe {metadata} is disabled")
     ok(f'mods.jei.JEI.hide(<galacticraftcore:solar:{metadata}>)' in crafttweaker,
        f"duplicate Galacticraft solar stack {metadata} is hidden from HEI")
+solar_block_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/BlockEnvironmentalSolarArray.java").read_text()
+ok("EnumBlockRenderType getRenderType" in solar_block_source
+   and "return EnumBlockRenderType.MODEL;" in solar_block_source,
+   "container-backed solar arrays opt into modeled block rendering")
 ok("projecte" not in script.lower(), "no ProjectE in reloadable integration script")
 
 ledger = json.loads((ROOT / "bin/extractedFiles.json").read_text())

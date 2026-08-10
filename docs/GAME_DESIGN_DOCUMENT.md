@@ -69,7 +69,7 @@ Quest tasks use two mechanisms:
 - `bq_standard:advancement` for first-party machine operations and dimension/environment events implemented by IndustrialCivilizationCore.
 - `bq_standard:retrieval` for non-consuming ownership/construction evidence across other mods.
 
-The generator also owns story openings/transitions, contextual control blocks, evidence-driven icons, five era backgrounds, and `pack_version` 8. Each quest tab begins at the center of its artwork and expands through deterministic rotated rings or ellipses, giving connector paths varied wheel, arc, diamond, and orbital geometry. Existing worlds must import the new Better Questing default after backup; new worlds receive it directly.
+The generator also owns story openings/transitions, contextual control blocks, evidence-driven icons, five era backgrounds, and `pack_version` 9. Each quest tab begins at the center of its artwork and expands through deterministic rotated rings or ellipses, giving connector paths varied wheel, arc, diamond, and orbital geometry. Existing worlds must import the new Better Questing default after backup; new worlds receive it directly.
 
 ## Controls taught in quests
 
@@ -218,7 +218,7 @@ Quest/config changes can be loaded into an existing test world with `/bq_admin d
 ### Required playtest verification
 
 1. Restart once and visually inspect all five quest backgrounds, representative evidence icons, wrapping/scrolling of long descriptions, and locked-node browsing.
-2. Import pack version 8 into a disposable world and verify representative retrieval and advancement tasks across Earth, orbit, Moon, Mars, AI, and a side path.
+2. Import pack version 9 into a disposable world and verify representative retrieval and advancement tasks across Earth, orbit, Moon, Mars, AI, and a side path.
 3. Complete a measured critical-route playthrough, record resource/power bottlenecks, and tune toward the intended 3–6 hour test route without adding arbitrary microcrafts.
 4. Exercise every custom machine GUI/peripheral method and cross-dimensional cargo channel under chunk unload/reload and save/restart.
 

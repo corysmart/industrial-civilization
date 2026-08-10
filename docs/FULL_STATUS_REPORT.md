@@ -49,7 +49,7 @@ Technic test target: `/Users/cory/Library/Application Support/technic/modpacks/t
 - Onysd/Obfuscate startup, rendering, vehicle crate NBT, handling/fuel behavior, all six chassis, service-carrier persistence, mobile GUIs, and BuildCraft item/fluid transfers.
 - World generation spacing, road continuity across chunk borders, utility spine safety, city-controller exchange under chunk loading, NPC pathfinding, faction economy pacing, and workshop rain/repair behavior.
 - Robber escalation/theft, Moon cleanup and heritage markers, post-AI Mars generation, equipment-condition persistence, damaged-item resale, and ICBM launch/radar power behavior.
-- Better Questing import/rendering of pack version 8, all seven side-path tabs, the complete advancement tree, new advancement detection, and control-text wrapping.
+- Better Questing import/rendering of pack version 9, all seven side-path tabs, the complete advancement tree, new advancement detection, and control-text wrapping.
 - Full critical-route resource/power pacing, cross-dimensional cargo save/reload, and multiplayer ownership behavior.
 
 ## Known gaps before a release-quality claim
