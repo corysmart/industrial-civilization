@@ -1,12 +1,3 @@
 {
-  "parent": "block/cube",
-  "textures": {
-    "particle": "industrialcivilizationcore:blocks/tracking_solar_array",
-    "north": "industrialcivilizationcore:blocks/tracking_solar_array",
-    "south": "industrialcivilizationcore:blocks/tracking_solar_array_side",
-    "east": "industrialcivilizationcore:blocks/tracking_solar_array_side",
-    "west": "industrialcivilizationcore:blocks/tracking_solar_array_side",
-    "up": "industrialcivilizationcore:blocks/tracking_solar_array_top",
-    "down": "industrialcivilizationcore:blocks/tracking_solar_array_side"
-  }
+  "parent": "galacticraftcore:block/advanced_solar_model"
 }

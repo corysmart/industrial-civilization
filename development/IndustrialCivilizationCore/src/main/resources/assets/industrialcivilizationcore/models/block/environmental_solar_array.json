@@ -1,12 +1,3 @@
 {
-  "parent": "block/cube",
-  "textures": {
-    "particle": "industrialcivilizationcore:blocks/environmental_solar_array",
-    "north": "industrialcivilizationcore:blocks/environmental_solar_array",
-    "south": "industrialcivilizationcore:blocks/environmental_solar_array_side",
-    "east": "industrialcivilizationcore:blocks/environmental_solar_array_side",
-    "west": "industrialcivilizationcore:blocks/environmental_solar_array_side",
-    "up": "industrialcivilizationcore:blocks/environmental_solar_array_top",
-    "down": "industrialcivilizationcore:blocks/environmental_solar_array_side"
-  }
+  "parent": "galacticraftcore:block/basic_solar_model"
 }

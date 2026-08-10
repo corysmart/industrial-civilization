@@ -68,9 +68,20 @@ for block_id in sorted(block_ids):
     check(nei_image.getpixel((0, 0))[3] == 0 and nei_image.getpixel((63, 63))[3] == 0,
           f"block NEI sprite has transparent corners: {block_id}")
     model_data = json.loads(block_model.read_text())
-    check(model_data.get("parent") == "block/cube", f"block uses independent cube faces: {block_id}")
-    check({"north", "south", "east", "west", "up", "down"} <= set(model_data.get("textures", {})),
-          f"block model maps every visible face: {block_id}")
+    if block_id in {"environmental_solar_array", "tracking_solar_array"}:
+        expected_parent = ("galacticraftcore:block/basic_solar_model"
+                           if block_id == "environmental_solar_array"
+                           else "galacticraftcore:block/advanced_solar_model")
+        check(model_data.get("parent") == expected_parent,
+              f"solar array inherits the matching Galacticraft model: {block_id}")
+        check(set(model_data) == {"parent"},
+              f"solar array does not override Galacticraft geometry or textures: {block_id}")
+    else:
+        check(model_data.get("parent") == "block/cube",
+              f"block uses independent cube faces: {block_id}")
+        check({"north", "south", "east", "west", "up", "down"}
+              <= set(model_data.get("textures", {})),
+              f"block model maps every visible face: {block_id}")
     for suffix in ("side", "top"):
         face = ASSETS / "textures/blocks" / f"{block_id}_{suffix}.png"
         check(face.is_file(), f"{suffix} texture exists: blocks/{block_id}")
