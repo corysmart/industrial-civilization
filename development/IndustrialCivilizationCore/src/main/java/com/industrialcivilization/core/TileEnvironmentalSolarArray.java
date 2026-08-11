@@ -55,11 +55,15 @@ public final class TileEnvironmentalSolarArray extends TileEntity
     @Override
     public void update() {
         if (world == null || world.isRemote || !world.canSeeSky(pos.up())) return;
-        if ("moon".equals(environment()) && !world.isDaytime()) {
-            lunarDarkTicks++;
-            if (lunarDarkTicks >= 12000 && lastUser != null) {
-                EntityPlayerMP player = world.getMinecraftServer().getPlayerList().getPlayerByUUID(lastUser);
-                if (player != null) RuntimeAdvancements.grant(player, "lunar_darkness_mastery");
+        if ("moon".equals(environment()) && world.getTotalWorldTime() % 20 == 0) {
+            EntityPlayerMP player = lastUser == null ? null
+                : world.getMinecraftServer().getPlayerList().getPlayerByUUID(lastUser);
+            lunarDarkTicks = GameplayRules.nextLunarDarkTicks(lunarDarkTicks,
+                !world.isDaytime(), player != null
+                    && RuntimeAdvancements.completed(player, "lunar_science_program"),
+                player != null && SpaceSurvivalSystem.protectedByHabitat(player), 20);
+            if (lunarDarkTicks >= 12000 && player != null) {
+                RuntimeAdvancements.grant(player, "lunar_darkness_mastery");
             }
         }
         boolean stellarLight = "orbit".equals(environment()) || world.isDaytime();

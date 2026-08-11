@@ -102,6 +102,15 @@ public final class GameplayRules {
         return generatedTotal >= 10000L && attributed && connectedLoad;
     }
 
+    public static long nextLunarDarkTicks(long current, boolean lunarNight,
+            boolean lunarScienceComplete, boolean habitatDetectorActive,
+            int sampledTicks) {
+        if (!lunarScienceComplete) return 0L;
+        if (!lunarNight) return Math.max(0L, current);
+        if (!habitatDetectorActive) return 0L;
+        return Math.min(12000L, Math.max(0L, current) + Math.max(0, sampledTicks));
+    }
+
     public static int marketStage(int playerStage, int settlementCapacity) {
         return Math.max(0, Math.min(settlementCapacity, playerStage - 1));
     }

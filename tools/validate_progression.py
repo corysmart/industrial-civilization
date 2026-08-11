@@ -317,7 +317,7 @@ for index, ms in enumerate(milestones):
 check(not any(ms.get("placeholder_id") for ms in milestones), "generated projection has no placeholder milestones")
 check(not any(quest.get("tasks:9", {}).get("0:10", {}).get("taskID:8") == "bq_standard:checkbox"
               for quest in quest_db.values()), "generated quest projection contains no manual checkbox tasks")
-check(quests.get("questSettings:10", {}).get("betterquesting:10", {}).get("pack_version:3") == 9, "Better Questing pack version includes the visible Galacticraft-model solar arrays")
+check(quests.get("questSettings:10", {}).get("betterquesting:10", {}).get("pack_version:3") == 10, "Better Questing pack version includes the prerequisite-safe lunar darkness gate")
 
 expected_backgrounds = {
     "industrialcivilizationcore:textures/gui/quest_bg_earth_ui.png",

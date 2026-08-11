@@ -163,6 +163,11 @@ ok("clampQuestBackgroundZoom" in core_source
    and "GameplayRules.questBoundedScroll" in core_source
    and "NativeProps.BG_SIZE" in core_source,
    "Better Questing zoom and panning stop at the quest backdrop edges")
+solar_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/TileEnvironmentalSolarArray.java").read_text()
+ok("GameplayRules.nextLunarDarkTicks" in solar_source
+   and 'RuntimeAdvancements.completed(player, "lunar_science_program")' in solar_source
+   and "SpaceSurvivalSystem.protectedByHabitat(player)" in solar_source,
+   "lunar darkness evidence requires Lunar Science and an active detector habitat")
 ecology_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/PlanetaryEcologySystem.java").read_text()
 robber_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/EntityRobber.java").read_text()
 ok("BASE_MOVEMENT_SPEED = 0.20D" in robber_source

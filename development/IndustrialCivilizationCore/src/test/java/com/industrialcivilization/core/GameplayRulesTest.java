@@ -155,6 +155,16 @@ public class GameplayRulesTest {
         assertFalse(GameplayRules.solarMilestoneReady(10000L, false, true));
         assertFalse(GameplayRules.solarMilestoneReady(10000L, true, false));
     }
+    @Test public void lunarDarknessCannotAccumulateBeforeLunarScience() {
+        assertEquals(0L, GameplayRules.nextLunarDarkTicks(11980L, true, false, true, 20));
+    }
+    @Test public void lunarDarknessRequiresAContinuouslyActiveHabitatDetector() {
+        assertEquals(0L, GameplayRules.nextLunarDarkTicks(11980L, true, true, false, 20));
+        assertEquals(12000L, GameplayRules.nextLunarDarkTicks(11980L, true, true, true, 20));
+    }
+    @Test public void daytimePreservesButDoesNotAdvanceQualifiedDarknessEvidence() {
+        assertEquals(6000L, GameplayRules.nextLunarDarkTicks(6000L, false, true, true, 20));
+    }
     @Test public void roomScanRejectsUnloadedCoordinates() {
         assertFalse(GameplayRules.scanCoordinateAllowed(0,0,0,false));
     }
