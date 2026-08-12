@@ -1,0 +1,21 @@
+{
+  "display": {
+    "icon": {
+      "item": "ic2:itemtfbpbase",
+      "data": 20
+    },
+    "title": {
+      "translate": "achievement.terraformEndCultivation"
+    },
+    "description": {
+      "translate": "achievement.terraformEndCultivation.desc"
+    },
+    "frame": "challenge"
+  },
+  "parent": "ic2:basic/buildterraformer",
+  "criteria": {
+    "mars_cultivation": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

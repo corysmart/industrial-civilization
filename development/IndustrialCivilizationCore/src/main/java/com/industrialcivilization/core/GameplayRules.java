@@ -2,6 +2,15 @@ package com.industrialcivilization.core;
 
 /** Pure deterministic rules shared with the headless mechanics test suite. */
 public final class GameplayRules {
+    public static boolean marsCultivationAchievement(String dimensionName,
+            String heldItemId, int metadata, String tileClassName) {
+        return dimensionName != null && dimensionName.toLowerCase().contains("mars")
+            && "ic2:itemtfbpbase".equals(heldItemId)
+            && metadata == 20
+            && tileClassName != null
+            && tileClassName.endsWith("TileEntityTerraformer");
+    }
+
     public static float machineGuiScale(int screenWidth, int screenHeight) {
         float widthScale = Math.max(0, screenWidth) / 427.0F;
         float heightScale = Math.max(0, screenHeight) / 240.0F;

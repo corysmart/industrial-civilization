@@ -565,6 +565,16 @@ ok("GameplayRules.solarMilestoneReady(generatedTotal, lastUser != null" in solar
    and "acceptsEnergyFrom(this, side.getOpposite())" in solar_tile_source
    and "storage.canReceive()" in solar_tile_source,
    "solar milestones require an attributed 10,000 EU plus a connected IC2 or FE load")
+ic2_paradise = json.loads((ROOT / "development/IndustrialCivilizationCore/src/main/resources/assets/ic2/advancements/basic/terraformEndCultivation.json").read_text())
+ic2_override_lang = (ROOT / "development/IndustrialCivilizationCore/src/main/resources/assets/ic2/lang/en_us.lang").read_text()
+ok(ic2_paradise["criteria"] == {"mars_cultivation": {"trigger": "minecraft:impossible"}}
+   and "awardMarsCultivationParadise" in core_source
+   and '"basic/terraformendcultivation"' in core_source
+   and "GameplayRules.marsCultivationAchievement" in core_source,
+   "IC2 Endgame Paradise is reassigned from the disabled End to a Mars Cultivation TFBP insertion")
+ok("achievement.terraformEndCultivation=Martian Paradise" in ic2_override_lang
+   and "IC2 Terraformer on Mars" in ic2_override_lang,
+   "IC2 paradise achievement title and description reference Mars")
 ok("projecte" not in script.lower(), "no ProjectE in reloadable integration script")
 
 ledger = json.loads((ROOT / "bin/extractedFiles.json").read_text())

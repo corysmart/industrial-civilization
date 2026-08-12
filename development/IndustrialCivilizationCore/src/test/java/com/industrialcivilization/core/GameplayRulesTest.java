@@ -4,6 +4,23 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class GameplayRulesTest {
+    @Test public void ic2ParadiseRequiresCultivationBlueprintInMarsTerraformer() {
+        assertTrue(GameplayRules.marsCultivationAchievement(
+            "Mars", "ic2:itemtfbpbase", 20,
+            "ic2.core.block.machine.high.TileEntityTerraformer"));
+    }
+    @Test public void ic2ParadiseRejectsEarthEndWrongBlueprintAndWrongMachine() {
+        String terraformer = "ic2.core.block.machine.high.TileEntityTerraformer";
+        assertFalse(GameplayRules.marsCultivationAchievement(
+            "Overworld", "ic2:itemtfbpbase", 20, terraformer));
+        assertFalse(GameplayRules.marsCultivationAchievement(
+            "The End", "ic2:itemtfbpbase", 20, terraformer));
+        assertFalse(GameplayRules.marsCultivationAchievement(
+            "Mars", "ic2:itemtfbpbase", 21, terraformer));
+        assertFalse(GameplayRules.marsCultivationAchievement(
+            "Mars", "ic2:itemtfbpbase", 20, "example.OtherMachine"));
+    }
+
     @Test public void machineGuiUsesNativeScaleAtMinimumWindow() {
         assertEquals(1.0F, GameplayRules.machineGuiScale(427, 240), 0.0001F);
     }

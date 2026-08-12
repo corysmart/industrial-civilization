@@ -493,6 +493,24 @@ public final class IndustrialCivilizationCore {
             }
         }
 
+        /** IC2's original End-only paradise achievement is reassigned to Mars. */
+        @SubscribeEvent(priority = EventPriority.LOWEST)
+        public static void awardMarsCultivationParadise(PlayerInteractEvent.RightClickBlock event) {
+            if (event.getWorld().isRemote || event.isCanceled()) return;
+            ItemStack held = event.getItemStack();
+            ResourceLocation heldId = held.isEmpty() ? null : held.getItem().getRegistryName();
+            TileEntity tile = event.getWorld().getTileEntity(event.getPos());
+            String dimension = event.getWorld().provider.getDimensionType().getName();
+            if (GameplayRules.marsCultivationAchievement(
+                    dimension,
+                    heldId == null ? null : heldId.toString(),
+                    held.getMetadata(),
+                    tile == null ? null : tile.getClass().getName())) {
+                RuntimeAdvancements.grant(event.getEntityPlayer(), "ic2",
+                    "basic/terraformendcultivation", "mars_cultivation_tfbp_inserted");
+            }
+        }
+
         private static void removePrematurePhasePearls(net.minecraft.entity.player.EntityPlayer player) {
             boolean removed = false;
             for (ItemStack stack : player.inventory.mainInventory) {

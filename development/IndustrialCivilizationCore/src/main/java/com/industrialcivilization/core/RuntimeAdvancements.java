@@ -14,16 +14,23 @@ public final class RuntimeAdvancements {
     }
 
     public static void grant(EntityPlayer player, String milestone, String evidenceSource) {
+        grant(player, IndustrialCivilizationCore.MODID, milestone, evidenceSource);
+    }
+
+    public static void grant(EntityPlayer player, String namespace, String path,
+            String evidenceSource) {
         if (!(player instanceof EntityPlayerMP)) return;
         EntityPlayerMP serverPlayer = (EntityPlayerMP) player;
         Advancement advancement = serverPlayer.getServer().getAdvancementManager()
-            .getAdvancement(new ResourceLocation(IndustrialCivilizationCore.MODID, milestone));
+            .getAdvancement(new ResourceLocation(namespace, path));
         if (advancement == null) return;
         AdvancementProgress progress = serverPlayer.getAdvancements().getProgress(advancement);
         for (String criterion : progress.getRemaningCriteria()) {
             serverPlayer.getAdvancements().grantCriterion(advancement, criterion);
         }
-        ProgressionState.record(player, milestone, evidenceSource);
+        ProgressionState.record(player,
+            IndustrialCivilizationCore.MODID.equals(namespace) ? path : namespace + ":" + path,
+            evidenceSource);
     }
 
     public static EntityPlayerMP playerFor(TileIndustrialMachine tile, UUID id) {
