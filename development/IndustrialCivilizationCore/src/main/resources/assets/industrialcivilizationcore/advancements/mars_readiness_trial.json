@@ -2,7 +2,7 @@
   "parent": "industrialcivilizationcore:quantumsuit",
   "display": {
     "icon": {
-      "item": "minecraft:firework_rocket"
+      "item": "minecraft:fireworks"
     },
     "title": {
       "text": "11.06 \u2014 Mars Readiness Trial"

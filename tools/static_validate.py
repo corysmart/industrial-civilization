@@ -461,6 +461,8 @@ for advancement_id, advancement in advancements.items():
     if advancement_id != "root":
         ok(str(advancement.get("parent", "")).startswith("industrialcivilizationcore:"),
            f"ordered in-pack advancement parent {advancement_id}")
+ok(advancements["mars_readiness_trial"]["display"]["icon"]["item"] == "minecraft:fireworks",
+   "Mars Readiness Trial uses the Minecraft 1.12 firework item ID")
 for advancement_id in ("civil_defense_contact", "territorial_militia_contact", "militia_outpost_takedown",
                        "icbm_launch_control", "icbm_radar_defense", "icbm_conventional_missile",
                        "technical_phase_pearl"):
