@@ -211,6 +211,15 @@ def quest_icon(ms):
     return evidence_item(evidence[0]) if evidence else ms["icon"]
 
 
+def quest_icon_stack(ms):
+    # Wildcard metadata is valid for retrieval matching but invalid for block
+    # rendering. Better Questing attempts to render Damage 32767 directly and
+    # IC2 block state containers reject it, flooding the client log.
+    icon = quest_icon(ms)
+    item_id, damage = split_item(icon)
+    return stack(item_id if damage == 32767 else icon)
+
+
 def story(ms, line, index, total):
     line_id = line["id"]
     opening = STORY_OPENINGS[line_id]
@@ -304,7 +313,7 @@ def quest(qid, ms, ids, line, index, total):
         "repeattime:3": -1,
         "visibility:8": "ALWAYS",
         "simultaneous:1": 0,
-        "icon:10": stack(quest_icon(ms)),
+        "icon:10": quest_icon_stack(ms),
         "globalshare:1": 0,
         "questlogic:8": ms.get("prerequisite_logic", "AND"),
         "partysinglereward:1": 0,
@@ -443,7 +452,7 @@ def main():
             "hardcore:1": 0,
             "home_image:8": "industrialcivilizationcore:textures/gui/quest_home_v2.png",
             "party_enable:1": 1,
-            "pack_version:3": 9,
+            "pack_version:3": 13,
             "home_offset_x:3": -128,
             "home_offset_y:3": -64,
         }},

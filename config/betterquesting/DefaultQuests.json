@@ -332,7 +332,7 @@
           "icon:10": {
             "id:8": "ic2:blockgenerator",
             "Count:3": 1,
-            "Damage:2": 32767,
+            "Damage:2": 0,
             "OreDict:8": ""
           },
           "globalshare:1": 0,
@@ -383,7 +383,7 @@
           "icon:10": {
             "id:8": "ic2:itemcable",
             "Count:3": 1,
-            "Damage:2": 32767,
+            "Damage:2": 0,
             "OreDict:8": ""
           },
           "globalshare:1": 0,
@@ -440,7 +440,7 @@
           "icon:10": {
             "id:8": "ic2:blockmachinelv",
             "Count:3": 1,
-            "Damage:2": 32767,
+            "Damage:2": 0,
             "OreDict:8": ""
           },
           "globalshare:1": 0,
@@ -542,7 +542,7 @@
           "icon:10": {
             "id:8": "ic2:itemdrills",
             "Count:3": 1,
-            "Damage:2": 32767,
+            "Damage:2": 0,
             "OreDict:8": ""
           },
           "globalshare:1": 0,
@@ -651,7 +651,7 @@
           "icon:10": {
             "id:8": "ic2:blockmachinelv",
             "Count:3": 1,
-            "Damage:2": 32767,
+            "Damage:2": 0,
             "OreDict:8": ""
           },
           "globalshare:1": 0,
@@ -1210,7 +1210,7 @@
           "icon:10": {
             "id:8": "ic2:blockmachinemv",
             "Count:3": 1,
-            "Damage:2": 32767,
+            "Damage:2": 0,
             "OreDict:8": ""
           },
           "globalshare:1": 0,
@@ -1951,7 +1951,7 @@
           "icon:10": {
             "id:8": "ic2:blockchambers",
             "Count:3": 1,
-            "Damage:2": 32767,
+            "Damage:2": 0,
             "OreDict:8": ""
           },
           "globalshare:1": 0,
@@ -2053,7 +2053,7 @@
           "icon:10": {
             "id:8": "ic2:blockchambers",
             "Count:3": 1,
-            "Damage:2": 32767,
+            "Damage:2": 0,
             "OreDict:8": ""
           },
           "globalshare:1": 0,
@@ -2116,7 +2116,7 @@
           "icon:10": {
             "id:8": "ic2:blockchambers",
             "Count:3": 1,
-            "Damage:2": 32767,
+            "Damage:2": 0,
             "OreDict:8": ""
           },
           "globalshare:1": 0,
@@ -2173,7 +2173,7 @@
           "icon:10": {
             "id:8": "ic2:blockchambers",
             "Count:3": 1,
-            "Damage:2": 32767,
+            "Damage:2": 0,
             "OreDict:8": ""
           },
           "globalshare:1": 0,
@@ -2231,7 +2231,7 @@
           "icon:10": {
             "id:8": "ic2:blockchambers",
             "Count:3": 1,
-            "Damage:2": 32767,
+            "Damage:2": 0,
             "OreDict:8": ""
           },
           "globalshare:1": 0,
@@ -3368,7 +3368,7 @@
           "icon:10": {
             "id:8": "ic2:blockmachinehv",
             "Count:3": 1,
-            "Damage:2": 32767,
+            "Damage:2": 0,
             "OreDict:8": ""
           },
           "globalshare:1": 0,
@@ -3528,7 +3528,7 @@
           "icon:10": {
             "id:8": "ic2:itemarmornanohelmet",
             "Count:3": 1,
-            "Damage:2": 32767,
+            "Damage:2": 0,
             "OreDict:8": ""
           },
           "globalshare:1": 0,
@@ -3598,7 +3598,7 @@
           "icon:10": {
             "id:8": "ic2:itemarmorquantumhelmet",
             "Count:3": 1,
-            "Damage:2": 32767,
+            "Damage:2": 0,
             "OreDict:8": ""
           },
           "globalshare:1": 0,
@@ -3668,7 +3668,7 @@
           "icon:10": {
             "id:8": "ic2:itemarmorquantumhelmet",
             "Count:3": 1,
-            "Damage:2": 32767,
+            "Damage:2": 0,
             "OreDict:8": ""
           },
           "globalshare:1": 0,
@@ -4571,7 +4571,7 @@
           "icon:10": {
             "id:8": "ic2:blockmachinelv",
             "Count:3": 1,
-            "Damage:2": 32767,
+            "Damage:2": 0,
             "OreDict:8": ""
           },
           "globalshare:1": 0,
@@ -7583,7 +7583,7 @@
       "hardcore:1": 0,
       "home_image:8": "industrialcivilizationcore:textures/gui/quest_home_v2.png",
       "party_enable:1": 1,
-      "pack_version:3": 12,
+      "pack_version:3": 13,
       "home_offset_x:3": -128,
       "home_offset_y:3": -64
     }
