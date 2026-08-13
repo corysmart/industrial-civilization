@@ -597,6 +597,16 @@ public final class IndustrialCivilizationCore {
             GuiScreenAdvancements.class, "tabs", "field_191947_i");
         private static final java.lang.reflect.Field SELECTED_ADVANCEMENT_TAB = ReflectionHelper.findField(
             GuiScreenAdvancements.class, "selectedTab", "field_191940_s");
+        private static final java.lang.reflect.Field ADVANCEMENT_TAB_PAGE = ReflectionHelper.findField(
+            GuiScreenAdvancements.class, "tabPage");
+        private static final java.lang.reflect.Field ADVANCEMENT_TAB_INSTANCE_PAGE = ReflectionHelper.findField(
+            GuiAdvancementTab.class, "page");
+        private static final java.lang.reflect.Field ADVANCEMENT_TAB_SCROLL_X = ReflectionHelper.findField(
+            GuiAdvancementTab.class, "scrollX", "field_191811_n");
+        private static final java.lang.reflect.Field ADVANCEMENT_TAB_SCROLL_Y = ReflectionHelper.findField(
+            GuiAdvancementTab.class, "scrollY", "field_191812_o");
+        private static final java.lang.reflect.Field ADVANCEMENT_TAB_CENTERED = ReflectionHelper.findField(
+            GuiAdvancementTab.class, "centered", "field_192992_s");
         private static final java.lang.reflect.Field SELECTED_QUEST_LINE = ReflectionHelper.findField(
             GuiQuestLines.class, "selectedLine");
         private static final java.lang.reflect.Field SELECTED_QUEST_LINE_ID = ReflectionHelper.findField(
@@ -909,17 +919,32 @@ public final class IndustrialCivilizationCore {
                     (java.util.Map<net.minecraft.advancements.Advancement, GuiAdvancementTab>)
                         ADVANCEMENT_TABS.get(screen);
                 GuiAdvancementTab selectedTab = (GuiAdvancementTab) SELECTED_ADVANCEMENT_TAB.get(screen);
-                boolean removedSelected = selectedTab != null
-                    && !isPackAdvancement(selectedTab.getAdvancement());
-                tabs.entrySet().removeIf(entry -> !isPackAdvancement(entry.getKey()));
-                if (removedSelected || selectedTab == null) {
-                    for (net.minecraft.advancements.Advancement root : tabs.keySet()) {
-                        if (MODID.equals(root.getId().getResourceDomain())) {
-                            screen.setSelectedTab(root);
-                            break;
-                        }
+                GuiAdvancementTab packTab = null;
+                for (GuiAdvancementTab tab : tabs.values()) {
+                    if (isPackAdvancement(tab.getAdvancement())) {
+                        packTab = tab;
+                        ADVANCEMENT_TAB_INSTANCE_PAGE.setInt(tab, 0);
+                    } else {
+                        // Preserve vanilla's complete graph while moving foreign roots to a
+                        // page the screen never renders. Removing map entries breaks child
+                        // lookup and leaves the selected IC tree visually empty.
+                        ADVANCEMENT_TAB_INSTANCE_PAGE.setInt(tab, -1);
                     }
                 }
+                if (packTab != null) {
+                    ADVANCEMENT_TAB_PAGE.setInt(null, 0);
+                    SELECTED_ADVANCEMENT_TAB.set(screen, packTab);
+                    // The unified tree is intentionally much larger than a vanilla tab. Its
+                    // geometric center is often empty, so start at the root (x=0, y=0).
+                    ADVANCEMENT_TAB_SCROLL_X.setInt(packTab, 103);
+                    ADVANCEMENT_TAB_SCROLL_Y.setInt(packTab, 43);
+                    ADVANCEMENT_TAB_CENTERED.setBoolean(packTab, true);
+                    LOGGER.info("Unified advancement GUI root={} totalRoots={} selected={} page={}",
+                        packTab.getAdvancement().getId(), tabs.size(),
+                        ((GuiAdvancementTab) SELECTED_ADVANCEMENT_TAB.get(screen)).getAdvancement().getId(),
+                        packTab.getPage());
+                }
+                event.getButtonList().removeIf(button -> button.id == 101 || button.id == 102);
             } catch (ReflectiveOperationException exception) {
                 LOGGER.warn("Could not filter foreign advancement tabs", exception);
             }
