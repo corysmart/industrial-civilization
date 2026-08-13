@@ -499,8 +499,8 @@ ok("visibleLineCount()" in faction_gui and "handleMouseInput()" in faction_gui
    "faction directory is responsive and scrolls long descriptions")
 client_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/IndustrialCivilizationCore.java").read_text()
 ok("showOnlyPackAdvancementTabs" in client_source
-   and '"galacticraftcore".equals(domain)' in client_source,
-   "Galacticraft advancement tabs are replaced by Industrial Civilization")
+   and "tabs.entrySet().removeIf(entry -> !isPackAdvancement(entry.getKey()))" in client_source,
+   "all foreign advancement tabs are replaced by Industrial Civilization")
 worldgen_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/CivilizationWorldGenerator.java").read_text()
 ok("if (!roadChunk && structure == 0) return;" in worldgen_source,
    "empty civilization chunks avoid terrain height work")
@@ -597,6 +597,9 @@ ok("display" not in continuity_source
    and "drop.getItem().getItem() == Items.TOTEM_OF_UNDYING" in core_source
    and "mods.jei.ingredient.removeAndHide([vanillaTotem])" in script,
    "AI Emergency Continuity Core wholly replaces the removed Totem and rewrites Postmortal")
+ok("tabs.entrySet().removeIf(entry -> !isPackAdvancement(entry.getKey()))" in core_source
+   and "return MODID.equals(advancement.getId().getResourceDomain())" in core_source,
+   "Advancements GUI runtime filter exposes only the unified Industrial Civilization root")
 ok("EntitySpacePirate" in ecology_source and "EntitySpaceMilitia" in ecology_source
    and "EntitySpaceCitizen" in ecology_source
    and "event.getEntity() instanceof IMob" in ecology_source

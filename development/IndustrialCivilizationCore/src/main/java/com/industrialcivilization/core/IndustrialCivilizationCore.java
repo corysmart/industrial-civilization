@@ -898,7 +898,7 @@ public final class IndustrialCivilizationCore {
             factions.width = factionWidth;
         }
 
-        /** Galacticraft's standalone tutorial tree is replaced by the pack progression tree. */
+        /** Every standalone tree is represented inside the unified IC campaign. */
         @SubscribeEvent(priority = EventPriority.LOWEST)
         @SuppressWarnings("unchecked")
         public static void showOnlyPackAdvancementTabs(GuiScreenEvent.InitGuiEvent.Post event) {
@@ -910,8 +910,8 @@ public final class IndustrialCivilizationCore {
                         ADVANCEMENT_TABS.get(screen);
                 GuiAdvancementTab selectedTab = (GuiAdvancementTab) SELECTED_ADVANCEMENT_TAB.get(screen);
                 boolean removedSelected = selectedTab != null
-                    && isGalacticraftAdvancement(selectedTab.getAdvancement());
-                tabs.entrySet().removeIf(entry -> isGalacticraftAdvancement(entry.getKey()));
+                    && !isPackAdvancement(selectedTab.getAdvancement());
+                tabs.entrySet().removeIf(entry -> !isPackAdvancement(entry.getKey()));
                 if (removedSelected || selectedTab == null) {
                     for (net.minecraft.advancements.Advancement root : tabs.keySet()) {
                         if (MODID.equals(root.getId().getResourceDomain())) {
@@ -921,13 +921,12 @@ public final class IndustrialCivilizationCore {
                     }
                 }
             } catch (ReflectiveOperationException exception) {
-                LOGGER.warn("Could not filter obsolete Galacticraft advancement tabs", exception);
+                LOGGER.warn("Could not filter foreign advancement tabs", exception);
             }
         }
 
-        private static boolean isGalacticraftAdvancement(net.minecraft.advancements.Advancement advancement) {
-            String domain = advancement.getId().getResourceDomain();
-            return "galacticraftcore".equals(domain) || "galacticraftplanets".equals(domain);
+        private static boolean isPackAdvancement(net.minecraft.advancements.Advancement advancement) {
+            return MODID.equals(advancement.getId().getResourceDomain());
         }
 
         @SubscribeEvent(priority = EventPriority.HIGHEST)
