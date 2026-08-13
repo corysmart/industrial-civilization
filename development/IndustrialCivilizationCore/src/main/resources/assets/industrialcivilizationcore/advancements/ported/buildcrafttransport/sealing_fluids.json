@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "buildcrafttransport:waterproof"
+    },
+    "title": {
+      "translate": "advancements.buildcrafttransport.sealing_fluids.title"
+    },
+    "description": {
+      "translate": "advancements.buildcrafttransport.sealing_fluids.description"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/buildcrafttransport/pipe_diversification",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

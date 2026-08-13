@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "appliedenergistics2:material",
+      "data": 15
+    },
+    "title": {
+      "translate": "achievement.ae2.Presses"
+    },
+    "description": {
+      "translate": "achievement.ae2.Presses.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/appliedenergistics2/main/root",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

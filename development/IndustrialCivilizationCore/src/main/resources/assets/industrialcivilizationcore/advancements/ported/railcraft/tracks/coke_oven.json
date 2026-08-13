@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "railcraft:coke_oven"
+    },
+    "title": {
+      "translate": "advancements.railcraft.tracks.coke_oven.name"
+    },
+    "description": {
+      "translate": "advancements.railcraft.tracks.coke_oven.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/railcraft/tracks/root",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

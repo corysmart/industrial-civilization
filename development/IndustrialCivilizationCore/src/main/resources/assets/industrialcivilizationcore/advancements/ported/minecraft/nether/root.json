@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:red_nether_brick"
+    },
+    "title": {
+      "translate": "advancements.nether.root.title"
+    },
+    "description": {
+      "translate": "advancements.nether.root.description"
+    },
+    "background": "minecraft:textures/gui/advancements/backgrounds/nether.png",
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "industrialcivilizationcore:root"
+}

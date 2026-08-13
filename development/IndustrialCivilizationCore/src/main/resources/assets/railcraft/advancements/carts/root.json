@@ -1,0 +1,37 @@
+{
+  "criteria": {
+    "get_cart": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "type": "railcraft:is_cart"
+          }
+        ]
+      }
+    },
+    "get_track": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "type": "railcraft:is_track"
+          }
+        ]
+      }
+    },
+    "step_on_track": {
+      "trigger": "minecraft:enter_block",
+      "conditions": {
+        "block": "minecraft:rail"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "get_cart",
+      "get_track",
+      "step_on_track"
+    ]
+  ]
+}

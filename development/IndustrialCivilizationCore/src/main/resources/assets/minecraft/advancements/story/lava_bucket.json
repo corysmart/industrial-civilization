@@ -1,0 +1,15 @@
+{
+  "parent": "minecraft:story/smelt_iron",
+  "criteria": {
+    "lava_bucket": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:lava_bucket"
+          }
+        ]
+      }
+    }
+  }
+}

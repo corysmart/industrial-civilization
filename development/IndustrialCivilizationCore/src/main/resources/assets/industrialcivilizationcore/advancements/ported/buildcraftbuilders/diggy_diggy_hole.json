@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "buildcraftbuilders:quarry"
+    },
+    "title": {
+      "translate": "advancements.buildcraftbuilders.diggy.title"
+    },
+    "description": {
+      "translate": "advancements.buildcraftbuilders.diggy.description"
+    },
+    "frame": "goal"
+  },
+  "parent": "industrialcivilizationcore:ported/buildcraftbuilders/shaping_the_world",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "parent": "end/kill_dragon",
+  "criteria": {
+    "dragon_egg": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:dragon_egg"
+          }
+        ]
+      }
+    }
+  }
+}

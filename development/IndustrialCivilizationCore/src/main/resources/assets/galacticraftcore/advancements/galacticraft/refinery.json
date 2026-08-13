@@ -1,0 +1,21 @@
+{
+  "criteria": {
+    "refinery": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "galacticraftcore:refinery",
+            "data": 0
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "refinery"
+    ]
+  ],
+  "parent": "galacticraftcore:galacticraft/oil"
+}

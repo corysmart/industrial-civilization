@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "ic2:blockmachinelv",
+      "data": 2
+    },
+    "title": {
+      "translate": "achievement.buildElecFurnace"
+    },
+    "description": {
+      "translate": "achievement.buildElecFurnace.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:first_ic2_generator",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

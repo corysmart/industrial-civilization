@@ -1,0 +1,13 @@
+{
+  "criteria": {
+    "create_space_station": {
+      "trigger": "galacticraftcore:create_space_station"
+    }
+  },
+  "requirements": [
+    [
+      "create_space_station"
+    ]
+  ],
+  "parent": "galacticraftcore:galacticraft/moon"
+}

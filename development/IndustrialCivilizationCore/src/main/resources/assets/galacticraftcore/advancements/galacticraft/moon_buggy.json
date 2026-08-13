@@ -1,0 +1,21 @@
+{
+  "criteria": {
+    "got_buggy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "galacticraftcore:buggy",
+            "data": 0
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "got_buggy"
+    ]
+  ],
+  "parent": "galacticraftcore:galacticraft/moon_buggy_schematic"
+}

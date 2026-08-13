@@ -1,0 +1,15 @@
+{
+  "parent": "appliedenergistics2:main/ioport",
+  "criteria": {
+    "certus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "appliedenergistics2:spatial_io_port"
+          }
+        ]
+      }
+    }
+  }
+}

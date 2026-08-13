@@ -1,0 +1,21 @@
+{
+  "display": {
+    "icon": {
+      "item": "ic2:blockelectric",
+      "data": 5
+    },
+    "title": {
+      "translate": "achievement.buildPESU"
+    },
+    "description": {
+      "translate": "achievement.buildPESU.desc"
+    },
+    "frame": "challenge"
+  },
+  "parent": "industrialcivilizationcore:first_ic2_generator",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

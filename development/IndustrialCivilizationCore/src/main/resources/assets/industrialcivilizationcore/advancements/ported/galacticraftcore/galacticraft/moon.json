@@ -1,0 +1,24 @@
+{
+  "display": {
+    "title": {
+      "translate": "advancement.galacticraft.moon.title"
+    },
+    "description": {
+      "translate": "advancement.galacticraft.moon.description"
+    },
+    "icon": {
+      "item": "galacticraftcore:basic_block_moon",
+      "data": 5
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/galacticraftcore/galacticraft/launch_rocket"
+}

@@ -2,6 +2,24 @@ package com.industrialcivilization.core;
 
 /** Pure deterministic rules shared with the headless mechanics test suite. */
 public final class GameplayRules {
+    public static boolean suppressOffWorldMonster(boolean moonOrMars, boolean monster) {
+        return moonOrMars && monster;
+    }
+
+    public static boolean spacePirateUsesNanoSuit(int roll0To99) {
+        return roll0To99 >= 0 && roll0To99 < 20;
+    }
+
+    public static boolean spacePirateTargetsPlayer(String environment,
+            boolean carriesLunarResource, boolean carriesMartianResource,
+            boolean retaliating) {
+        if (retaliating) return true;
+        if (environment == null) return false;
+        String normalized = environment.toLowerCase();
+        return normalized.contains("moon") ? carriesLunarResource
+            : normalized.contains("mars") && carriesMartianResource;
+    }
+
     public static boolean marsCultivationAchievement(String dimensionName,
             String heldItemId, int metadata, String tileClassName) {
         return dimensionName != null && dimensionName.toLowerCase().contains("mars")

@@ -1,0 +1,18 @@
+{
+  "parent": "railcraft:tracks/rock_crusher",
+  "criteria": {
+    "build": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "railcraft:firestone_raw"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 100
+  }
+}

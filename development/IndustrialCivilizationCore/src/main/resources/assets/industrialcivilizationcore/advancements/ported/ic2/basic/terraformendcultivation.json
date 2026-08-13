@@ -1,0 +1,21 @@
+{
+  "display": {
+    "icon": {
+      "item": "ic2:itemtfbpbase",
+      "data": 20
+    },
+    "title": {
+      "text": "Martian Paradise"
+    },
+    "description": {
+      "text": "Insert a Cultivation TFBP into an IC2 Terraformer on Mars"
+    },
+    "frame": "challenge"
+  },
+  "parent": "industrialcivilizationcore:first_ic2_generator",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

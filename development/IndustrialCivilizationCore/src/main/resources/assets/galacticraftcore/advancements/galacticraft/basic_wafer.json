@@ -1,0 +1,21 @@
+{
+  "criteria": {
+    "compressor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "galacticraftcore:basic_item",
+            "data": 13
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "compressor"
+    ]
+  ],
+  "parent": "galacticraftcore:galacticraft/circuit_fabricator"
+}

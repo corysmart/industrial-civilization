@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:beacon"
+    },
+    "title": {
+      "translate": "advancements.nether.create_beacon.title"
+    },
+    "description": {
+      "translate": "advancements.nether.create_beacon.description"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/minecraft/nether/find_fortress",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "ic2:blockmetal",
+      "data": 2
+    },
+    "title": {
+      "translate": "achievement.mineOre"
+    },
+    "description": {
+      "translate": "achievement.mineOre.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/ic2/basic/root",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

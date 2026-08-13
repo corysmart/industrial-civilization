@@ -1,0 +1,13 @@
+{
+  "criteria": {
+    "found_boss": {
+      "trigger": "galacticraftcore:boss_moon"
+    }
+  },
+  "requirements": [
+    [
+      "found_boss"
+    ]
+  ],
+  "parent": "galacticraftcore:galacticraft/moon"
+}

@@ -219,7 +219,8 @@ public final class FactionSystem {
 
     public static EntityVillager spawnCitizen(World world, double x, double y, double z,
             String faction, String role, String specialty, String name, int marketCapacity) {
-        EntityVillager citizen = new EntityVillager(world);
+        boolean offWorld = world.provider.getDimension() != 0;
+        EntityVillager citizen = offWorld ? new EntitySpaceCitizen(world) : new EntityVillager(world);
         citizen.setPosition(x, y, z);
         citizen.setCustomNameTag(name);
         citizen.setAlwaysRenderNameTag(true);
@@ -227,8 +228,22 @@ public final class FactionSystem {
         citizen.getEntityData().setString(ROLE, role);
         citizen.getEntityData().setString(SPECIALTY, specialty);
         citizen.getEntityData().setInteger(MARKET_CAPACITY, Math.max(0, marketCapacity));
+        if (offWorld) {
+            citizen.getEntityData().setBoolean("IndustrialAstronaut", true);
+            citizen.getEntityData().setString("IndustrialSpaceEnvironment",
+                world.provider.getDimensionType().getName().toLowerCase(java.util.Locale.ROOT));
+        }
         if ("guard".equals(role) || "raider".equals(role)) {
             citizen.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
+        }
+        if ("militia".equals(role) || "engineer".equals(role)) {
+            PlanetaryEcologySystem.equipQuantumSecurity(citizen);
+        } else if ("raider".equals(role)) {
+            PlanetaryEcologySystem.guaranteedDrops(citizen);
+        } else if ("guard".equals(role)) {
+            PlanetaryEcologySystem.guaranteedDrops(citizen);
+        } else if (offWorld) {
+            PlanetaryEcologySystem.guaranteedDrops(citizen);
         }
         configureTrades(citizen);
         world.spawnEntity(citizen);
@@ -368,6 +383,9 @@ public final class FactionSystem {
         if (event.getWorld().isRemote || !(event.getEntity() instanceof EntityVillager)) return;
         EntityVillager villager = (EntityVillager) event.getEntity();
         configureTrades(villager);
+        if (villager.getEntityData().getBoolean("IndustrialAstronaut")) {
+            PlanetaryEcologySystem.guaranteedDrops(villager);
+        }
     }
 
     @SubscribeEvent

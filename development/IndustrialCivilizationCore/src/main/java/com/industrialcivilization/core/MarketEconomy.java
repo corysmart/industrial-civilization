@@ -71,6 +71,30 @@ public final class MarketEconomy {
         return false;
     }
 
+    public static boolean carriesLunarStrategicResource(EntityPlayer player) {
+        for (ItemStack stack : player.inventory.mainInventory) {
+            if (matches(stack, "galacticraftcore", "meteoric_iron_raw")
+                    || stack.getItem() == IndustrialCivilizationCore.LUNAR_ENGINEERING_ARCHIVE
+                    || stack.getItem() == IndustrialCivilizationCore.LUNAR_QUANTUM_COMPONENT) return true;
+        }
+        return false;
+    }
+
+    public static boolean carriesMartianStrategicResource(EntityPlayer player) {
+        for (ItemStack stack : player.inventory.mainInventory) {
+            if ((matches(stack, "galacticraftplanets", "item_basic_mars") && stack.getMetadata() == 2)
+                    || stack.getItem() == IndustrialCivilizationCore.MARTIAN_AUTONOMY_ARCHIVE
+                    || stack.getItem() == IndustrialCivilizationCore.MATERIAL_PATTERN_RECORD) return true;
+        }
+        return false;
+    }
+
+    private static boolean matches(ItemStack stack, String domain, String path) {
+        if (stack.isEmpty() || stack.getItem().getRegistryName() == null) return false;
+        ResourceLocation id = stack.getItem().getRegistryName();
+        return domain.equals(id.getResourceDomain()) && path.equals(id.getResourcePath());
+    }
+
     public static boolean isRobberLoot(ItemStack stack) {
         if (stack.isEmpty() || stack.getItem().getRegistryName() == null) return false;
         ResourceLocation id = stack.getItem().getRegistryName();

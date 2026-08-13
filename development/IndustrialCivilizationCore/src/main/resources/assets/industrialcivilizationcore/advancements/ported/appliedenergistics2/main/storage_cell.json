@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "appliedenergistics2:storage_cell_64k"
+    },
+    "title": {
+      "translate": "achievement.ae2.StorageCell"
+    },
+    "description": {
+      "translate": "achievement.ae2.StorageCell.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/appliedenergistics2/main/controller",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

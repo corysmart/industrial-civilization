@@ -1,0 +1,23 @@
+{
+  "parent": "buildcraftcore:root",
+  "criteria": {
+    "oil_desert_biome": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "biome": "buildcraftenergy:oil_desert"
+      }
+    },
+    "oil_ocean_biome": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "biome": "buildcraftenergy:oil_ocean"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "oil_desert_biome",
+      "oil_ocean_biome"
+    ]
+  ]
+}

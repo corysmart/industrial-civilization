@@ -1,0 +1,11 @@
+{
+  "parent": "railcraft:carts/root",
+  "criteria": {
+    "linking": {
+      "trigger": "railcraft:cart_linking",
+      "conditions": {
+        "_comment": "This is WIP"
+      }
+    }
+  }
+}

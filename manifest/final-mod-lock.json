@@ -1635,16 +1635,16 @@
       "redistribution": "Inherited third-party binary; verify author terms before any export."
     },
     {
-      "file": "mods/IndustrialCivilizationCore-0.2.0.jar",
-      "filename": "IndustrialCivilizationCore-0.2.0.jar",
-      "size": 2909246,
-      "sha256": "a735c8b04e289146c7d1fe88cea0410a310a6dd9d9706897c1772245e93ce678",
+      "file": "mods/IndustrialCivilizationCore-0.3.0.jar",
+      "filename": "IndustrialCivilizationCore-0.3.0.jar",
+      "size": 3111374,
+      "sha256": "d20bdf3f5a96a62c811a950781a2e4c830794037f005aa838d8bad91667591b3",
       "classification": "KEEP",
       "mods": [
         {
           "id": "industrialcivilizationcore",
           "name": "Industrial Civilization Core",
-          "version": "0.2.0",
+          "version": "0.3.0",
           "minecraft": "1.12.2",
           "dependencies": [
             "computercraft",
@@ -3726,7 +3726,7 @@
     },
     {
       "file": "config/CustomMainMenu/mainmenu.json",
-      "sha256": "1703d9c11a3b2754deacd43879d66eb60be5f84899116c69dbbd9ab7e542c708",
+      "sha256": "f9d75b22089bea7cbbd8698200c3015abfafb8149a676d189d9f9b1e5c07b898",
       "size": 4007
     },
     {
@@ -5181,13 +5181,13 @@
     },
     {
       "file": "scripts/tekkit2.zs",
-      "sha256": "41840abe128128c27eaceb9503a17421200ef9dae2395c1e742ec50740ef91f8",
-      "size": 22254
+      "sha256": "03d51c2b3a83eee9ccc4cd6362241bea0b99d62c3ecb32235b05f58b1ce5dd9e",
+      "size": 22303
     },
     {
       "file": "groovy/postInit/industrial_civilization.groovy",
-      "sha256": "d8f060d232057622da58cee34824fca013149f51411d82bc167d0579083d196f",
-      "size": 10598
+      "sha256": "55c135857a019ead8bf73185b57e630c71c22157864650f439c55cd04b5c5723",
+      "size": 10951
     },
     {
       "file": "groovy/postInit/industrial_civilization_content.groovy",

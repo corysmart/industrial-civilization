@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "item": "ic2:itemtoolmininglaser"
+    },
+    "title": {
+      "translate": "itemGroup.ic2"
+    },
+    "description": {
+      "text": "IC2 Advancements & Achievements"
+    },
+    "background": "minecraft:textures/gui/advancements/backgrounds/stone.png",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "industrialcivilizationcore:first_ic2_generator"
+}

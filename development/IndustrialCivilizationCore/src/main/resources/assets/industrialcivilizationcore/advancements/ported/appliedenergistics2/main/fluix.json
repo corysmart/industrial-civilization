@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "appliedenergistics2:material",
+      "data": 7
+    },
+    "title": {
+      "translate": "achievement.ae2.Fluix"
+    },
+    "description": {
+      "translate": "achievement.ae2.Fluix.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/appliedenergistics2/main/charged_quartz",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

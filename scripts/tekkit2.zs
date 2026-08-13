@@ -78,6 +78,7 @@ recipes.removeByRecipeName("galacticraftcore:solar_0");
 recipes.removeByRecipeName("galacticraftcore:solar_4");
 mods.jei.JEI.hide(<galacticraftcore:solar:0>);
 mods.jei.JEI.hide(<galacticraftcore:solar:4>);
+mods.jei.JEI.hide(<minecraft:totem_of_undying>);
 recipes.removeByRecipeName("hammercore:manual");
 recipes.removeByRecipeName("hammercore:cableflux_recipescf.0");
 recipes.removeByRecipeName("hammercore:cableflux_recipescf.1");

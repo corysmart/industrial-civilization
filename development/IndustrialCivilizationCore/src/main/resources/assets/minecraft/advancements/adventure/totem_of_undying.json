@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:adventure/root",
+  "criteria": {
+    "ai_continuity": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

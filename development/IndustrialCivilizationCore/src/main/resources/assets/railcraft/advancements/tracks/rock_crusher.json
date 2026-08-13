@@ -1,0 +1,11 @@
+{
+  "parent": "railcraft:tracks/blast_furnace",
+  "criteria": {
+    "build": {
+      "trigger": "railcraft:multiblock_formed",
+      "conditions": {
+        "type": "railcraft:rock_crusher"
+      }
+    }
+  }
+}

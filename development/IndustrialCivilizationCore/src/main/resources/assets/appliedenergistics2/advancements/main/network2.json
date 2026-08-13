@@ -1,0 +1,8 @@
+{
+  "parent": "appliedenergistics2:main/network1",
+  "criteria": {
+    "cable": {
+      "trigger": "appliedenergistics2:network_engineer"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "railcraft:blast_furnace"
+    },
+    "title": {
+      "translate": "advancements.railcraft.tracks.blast_furnace.name"
+    },
+    "description": {
+      "translate": "advancements.railcraft.tracks.blast_furnace.desc"
+    },
+    "frame": "goal"
+  },
+  "parent": "industrialcivilizationcore:ported/railcraft/tracks/coke_oven",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

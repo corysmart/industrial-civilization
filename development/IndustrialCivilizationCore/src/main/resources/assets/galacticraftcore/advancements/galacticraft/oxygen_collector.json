@@ -1,0 +1,21 @@
+{
+  "criteria": {
+    "oxygen_collector": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "galacticraftcore:collector",
+            "data": 0
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "oxygen_collector"
+    ]
+  ],
+  "parent": "galacticraftcore:galacticraft/compressor"
+}

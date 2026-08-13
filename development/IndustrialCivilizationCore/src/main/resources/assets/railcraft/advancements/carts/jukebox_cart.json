@@ -1,0 +1,9 @@
+{
+  "parent": "railcraft:carts/root",
+  "criteria": {
+    "linking": {
+      "trigger": "railcraft:jukebox_cart_play_music",
+      "conditions": {}
+    }
+  }
+}

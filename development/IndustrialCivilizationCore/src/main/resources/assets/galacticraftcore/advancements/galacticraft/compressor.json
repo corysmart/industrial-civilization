@@ -1,0 +1,21 @@
+{
+  "criteria": {
+    "compressor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "galacticraftcore:machine",
+            "data": 12
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "compressor"
+    ]
+  ],
+  "parent": "galacticraftcore:galacticraft/basic_wafer"
+}

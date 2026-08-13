@@ -247,6 +247,7 @@ expected_recipes = {
     "printed_pistol", "city_compact", "frontier_off_roader", "passenger_carrier",
     "agricultural_tractor", "utility_cart", "scout_atv", "combat_shotgun", "automatic_rifle",
     "lunar_quantum_component", "ai_core",
+    "emergency_continuity_core",
     "uu_matter", "controlled_replication", "contained_antimatter", "cargo_network",
     "orbital_megastructure", "lunar_colony_charter", "martian_colony_charter",
     "civilization_scale_ai",

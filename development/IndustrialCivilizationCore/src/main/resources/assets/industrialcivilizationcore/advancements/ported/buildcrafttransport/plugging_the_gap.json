@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "buildcrafttransport:plug_blocker"
+    },
+    "title": {
+      "translate": "advancements.buildcrafttransport.plugging_the_gap.title"
+    },
+    "description": {
+      "translate": "advancements.buildcrafttransport.plugging_the_gap.description"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/buildcrafttransport/pipe_dream",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

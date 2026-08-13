@@ -1,0 +1,31 @@
+{
+  "parent": "ic2:basic/buildqarmor",
+  "criteria": {
+    "has_stat": {
+      "trigger": "ic2:has_stat",
+      "conditions": {
+        "stat": {
+          "type": "normal",
+          "stat": "ic2:starveWithQHelmet",
+          "amount": 1
+        }
+      }
+    },
+    "has_stat0": {
+      "trigger": "ic2:has_stat",
+      "conditions": {
+        "stat": {
+          "type": "normal",
+          "stat": "ic2:drownWithQHelmet",
+          "amount": 1
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_stat",
+      "has_stat0"
+    ]
+  ]
+}

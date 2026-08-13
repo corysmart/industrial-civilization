@@ -1,0 +1,14 @@
+{
+  "parent": "railcraft:tracks/blast_furnace",
+  "criteria": {
+    "manual": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "item": {
+          "item": "railcraft:equipment",
+          "data": 1
+        }
+      }
+    }
+  }
+}

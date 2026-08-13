@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "appliedenergistics2:quartz_growth_accelerator"
+    },
+    "title": {
+      "translate": "achievement.ae2.CrystalGrowthAccelerator"
+    },
+    "description": {
+      "translate": "achievement.ae2.CrystalGrowthAccelerator.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/appliedenergistics2/main/fluix",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

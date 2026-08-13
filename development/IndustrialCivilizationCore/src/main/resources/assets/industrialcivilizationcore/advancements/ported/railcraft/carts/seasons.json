@@ -1,0 +1,21 @@
+{
+  "display": {
+    "icon": {
+      "item": "railcraft:tool_crowbar_seasons"
+    },
+    "title": {
+      "translate": "advancements.railcraft.carts.seasons.name"
+    },
+    "description": {
+      "translate": "advancements.railcraft.carts.seasons.desc"
+    },
+    "frame": "goal",
+    "hidden": true
+  },
+  "parent": "industrialcivilizationcore:ported/railcraft/carts/surprise",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

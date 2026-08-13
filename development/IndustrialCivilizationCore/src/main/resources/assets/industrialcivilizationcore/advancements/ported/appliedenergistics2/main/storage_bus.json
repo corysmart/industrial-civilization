@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "appliedenergistics2:part",
+      "data": 220
+    },
+    "title": {
+      "translate": "achievement.ae2.StorageBus"
+    },
+    "description": {
+      "translate": "achievement.ae2.StorageBus.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/appliedenergistics2/main/interface",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

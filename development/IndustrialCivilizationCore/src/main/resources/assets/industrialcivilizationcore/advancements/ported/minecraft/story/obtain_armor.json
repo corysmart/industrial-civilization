@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:iron_chestplate"
+    },
+    "title": {
+      "translate": "advancements.story.obtain_armor.title"
+    },
+    "description": {
+      "translate": "advancements.story.obtain_armor.description"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/minecraft/story/smelt_iron",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

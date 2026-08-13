@@ -1,0 +1,16 @@
+{
+  "parent": "railcraft:tracks/coke_oven",
+  "criteria": {
+    "wooden": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "type": "railcraft:is_track",
+            "track_type": "railcraft:strap_iron"
+          }
+        ]
+      }
+    }
+  }
+}

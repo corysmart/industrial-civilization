@@ -1,0 +1,24 @@
+{
+  "display": {
+    "title": {
+      "translate": "advancement.galacticraft.fill_all_tanks.title"
+    },
+    "description": {
+      "translate": "advancement.galacticraft.fill_all_tanks.description"
+    },
+    "icon": {
+      "item": "galacticraftcore:oxygen_tank_heavy_full",
+      "data": 0
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/galacticraftcore/galacticraft/fill_tank"
+}

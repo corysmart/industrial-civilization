@@ -1,0 +1,15 @@
+{
+  "parent": "appliedenergistics2:main/controller",
+  "criteria": {
+    "network_tool": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "appliedenergistics2:network_tool"
+          }
+        ]
+      }
+    }
+  }
+}

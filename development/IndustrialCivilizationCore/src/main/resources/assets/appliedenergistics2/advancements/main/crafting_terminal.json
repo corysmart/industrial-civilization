@@ -1,0 +1,16 @@
+{
+  "parent": "appliedenergistics2:main/controller",
+  "criteria": {
+    "certus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "type": "appliedenergistics2:part",
+            "part": "CRAFTING_TERMINAL"
+          }
+        ]
+      }
+    }
+  }
+}

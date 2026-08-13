@@ -1,0 +1,13 @@
+{
+  "parent": "railcraft:tracks/regular_track",
+  "criteria": {
+    "place_signal": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "item": {
+          "item": "railcraft:signal"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "railcraft:carts/root",
+  "criteria": {
+    "linking": {
+      "trigger": "railcraft:bed_cart_sleep",
+      "conditions": {}
+    }
+  }
+}

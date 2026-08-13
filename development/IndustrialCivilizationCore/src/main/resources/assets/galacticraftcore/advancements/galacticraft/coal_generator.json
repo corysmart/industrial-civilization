@@ -1,0 +1,21 @@
+{
+  "criteria": {
+    "coal_generator": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "galacticraftcore:machine",
+            "data": 0
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "coal_generator"
+    ]
+  ],
+  "parent": "galacticraftcore:galacticraft/root"
+}

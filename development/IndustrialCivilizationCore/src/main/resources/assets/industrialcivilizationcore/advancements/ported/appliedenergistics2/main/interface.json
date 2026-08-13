@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "appliedenergistics2:interface"
+    },
+    "title": {
+      "translate": "achievement.ae2.Recursive"
+    },
+    "description": {
+      "translate": "achievement.ae2.Recursive.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/appliedenergistics2/main/cable_glass",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

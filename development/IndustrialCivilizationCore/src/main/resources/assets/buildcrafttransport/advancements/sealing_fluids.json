@@ -1,0 +1,8 @@
+{
+  "parent": "buildcrafttransport:pipe_diversification",
+  "criteria": {
+    "code_trigger": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

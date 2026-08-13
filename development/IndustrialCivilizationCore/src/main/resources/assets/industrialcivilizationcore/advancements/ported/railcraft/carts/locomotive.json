@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "railcraft:locomotive_steam_solid"
+    },
+    "title": {
+      "translate": "advancements.railcraft.carts.locomotive.name"
+    },
+    "description": {
+      "translate": "advancements.railcraft.carts.locomotive.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/railcraft/carts/link_carts",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

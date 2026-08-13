@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "buildcraftcore:list"
+    },
+    "title": {
+      "translate": "advancements.buildcraftcore.list.title"
+    },
+    "description": {
+      "translate": "advancements.buildcraftcore.list.description"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/buildcraftcore/guide",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

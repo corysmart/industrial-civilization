@@ -83,6 +83,8 @@ public final class TileFactoryControlTerminal extends TileEntity {
             criminal.getEntityData().setBoolean("IndustrialCriminal", true);
             criminal.getEntityData().setString("IndustrialFaction", "ashline_raiders");
             criminal.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
+            PlanetaryEcologySystem.equipQuantumSecurity(criminal);
+            PlanetaryEcologySystem.guaranteedDrops(criminal);
             world.spawnEntity(criminal);
         }
     }

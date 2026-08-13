@@ -1,0 +1,15 @@
+{
+  "parent": "appliedenergistics2:main/root",
+  "criteria": {
+    "compass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "appliedenergistics2:sky_compass"
+          }
+        ]
+      }
+    }
+  }
+}

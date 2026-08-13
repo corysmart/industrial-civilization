@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "ic2:blockmachinelv",
+      "data": 7
+    },
+    "title": {
+      "translate": "achievement.buildRecycler"
+    },
+    "description": {
+      "translate": "achievement.buildRecycler.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:first_ic2_generator",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

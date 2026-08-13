@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "appliedenergistics2:crafting_storage_64k"
+    },
+    "title": {
+      "translate": "achievement.ae2.CraftingCPU"
+    },
+    "description": {
+      "translate": "achievement.ae2.CraftingCPU.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/appliedenergistics2/main/pattern_terminal",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

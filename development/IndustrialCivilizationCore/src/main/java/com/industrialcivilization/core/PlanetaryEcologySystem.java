@@ -43,6 +43,8 @@ public final class PlanetaryEcologySystem {
     private static final String STOLEN = "IndustrialStolenItems";
     private static final String PATROL = "IndustrialMilitiaPatrol";
     private static final String PATROL_AGGRESSOR = "IndustrialPatrolAggressor";
+    private static final String SPACE_PIRATE = "IndustrialSpacePirate";
+    private static final String SPACE_ENVIRONMENT = "IndustrialSpaceEnvironment";
     static final String FORCE_ROBBER_REPLACEMENT = "IndustrialForceRobberReplacement";
     static final String FORCE_PATROL_REPLACEMENT = "IndustrialForcePatrolReplacement";
 
@@ -51,17 +53,15 @@ public final class PlanetaryEcologySystem {
         if (event.getWorld().isRemote || !(event.getEntity() instanceof EntityLivingBase)
                 || event.getEntity() instanceof EntityPlayer) return;
         String dimension = event.getWorld().provider.getDimensionType().getName().toLowerCase(Locale.ROOT);
-        if (dimension.contains("moon")) {
-            event.setCanceled(true);
-            return;
-        }
-        if (dimension.contains("mars")) {
-            ResourceLocation key = EntityList.getKey(event.getEntity());
-            String domain = key == null ? "" : key.getResourceDomain();
-            boolean galacticraft = domain.startsWith("galacticraft");
-            boolean postAiCitizen = event.getEntity().getEntityData().hasKey("IndustrialFaction", 8)
-                && anyAiPlayer(event.getWorld().playerEntities);
-            if (!galacticraft && !postAiCitizen) event.setCanceled(true);
+        if (dimension.contains("moon") || dimension.contains("mars")) {
+            if (event.getEntity() instanceof EntitySpacePirate
+                    || event.getEntity() instanceof EntitySpaceMilitia
+                    || event.getEntity() instanceof EntitySpaceCitizen) return;
+            if (event.getEntity() instanceof IMob) {
+                replaceWithSpacePirate(event, (EntityLivingBase) event.getEntity(), dimension);
+            } else if (!event.getEntity().getEntityData().hasKey("IndustrialFaction", 8)) {
+                event.setCanceled(true);
+            }
             return;
         }
         if (event.getWorld().provider.getDimension() != 0) return;
@@ -78,6 +78,21 @@ public final class PlanetaryEcologySystem {
         if (event.getEntity() instanceof IMob && isVanilla(event.getEntity())) {
             event.setCanceled(true);
         }
+    }
+
+    private static void replaceWithSpacePirate(EntityJoinWorldEvent event,
+            EntityLivingBase original, String environment) {
+        event.setCanceled(true);
+        AxisAlignedBB area = original.getEntityBoundingBox().grow(64.0D, 24.0D, 64.0D);
+        int nearby = original.world.getEntitiesWithinAABB(EntitySpacePirate.class, area).size();
+        if (!GameplayRules.robberSpawnAllowed(original.world.rand.nextInt(100),
+                IndustrialCivilizationCore.ROBBER_SPAWN_PERCENT, nearby,
+                IndustrialCivilizationCore.ROBBER_LOCAL_CAP, false)) return;
+        EntitySpacePirate pirate = new EntitySpacePirate(event.getWorld());
+        copyPlacement(original, pirate);
+        configureRobber(pirate, nearestStage(original));
+        configureSpacePirate(pirate, environment);
+        event.getWorld().spawnEntity(pirate);
     }
 
     private static void replaceWithRobber(EntityJoinWorldEvent event, EntityZombie original) {
@@ -138,7 +153,7 @@ public final class PlanetaryEcologySystem {
             key.getResourceDomain(), key.getResourcePath());
     }
 
-    private static void configurePatrol(EntityMilitiaPatrol patrol) {
+    static void configurePatrol(EntityMilitiaPatrol patrol) {
         NBTTagCompound tag = patrol.getEntityData();
         // AI task lists are reconstructed on entity load, so neutral targeting
         // must be removed on both first conversion and every subsequent load.
@@ -151,11 +166,8 @@ public final class PlanetaryEcologySystem {
         if (rifle.isEmpty()) rifle = external("techguns:m4");
         if (rifle.isEmpty()) rifle = new ItemStack(Items.BOW);
         patrol.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, MarketEconomy.newCondition(rifle));
-        patrol.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(Items.IRON_HELMET));
-        patrol.setItemStackToSlot(EntityEquipmentSlot.CHEST, new ItemStack(Items.CHAINMAIL_CHESTPLATE));
-        patrol.setDropChance(EntityEquipmentSlot.MAINHAND, 0.35F);
-        patrol.setDropChance(EntityEquipmentSlot.HEAD, 0.05F);
-        patrol.setDropChance(EntityEquipmentSlot.CHEST, 0.05F);
+        equipArmor(patrol, "quantum");
+        guaranteedDrops(patrol);
         // Neutral patrols must not inherit skeleton target acquisition. Movement
         // and looking tasks remain, while targeting and fire are owned below.
     }
@@ -181,6 +193,7 @@ public final class PlanetaryEcologySystem {
             : tier >= 3 ? external("techguns:pistol") : new ItemStack(Items.IRON_SWORD);
         if (weapon.isEmpty()) weapon = new ItemStack(tier >= 3 ? Items.BOW : Items.IRON_SWORD);
         robber.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, weapon);
+        guaranteedDrops(robber);
         if (tier >= 4 && !tag.getBoolean("IndustrialSquadMember") && robber.world.rand.nextInt(8) == 0) {
             for (int index = 0; index < 2; index++) {
                 EntityRobber member = new EntityRobber(robber.world);
@@ -189,6 +202,81 @@ public final class PlanetaryEcologySystem {
                 configureRobber(member, tier);
                 robber.world.spawnEntity(member);
             }
+        }
+    }
+
+    private static void configureSpacePirate(EntitySpacePirate pirate, String environment) {
+        NBTTagCompound tag = pirate.getEntityData();
+        tag.setBoolean(SPACE_PIRATE, true);
+        tag.setString(SPACE_ENVIRONMENT, environment);
+        boolean nano = GameplayRules.spacePirateUsesNanoSuit(pirate.world.rand.nextInt(100));
+        pirate.setCustomNameTag(nano ? "NanoSuit Space Pirate" : "Space Pirate");
+        equipArmor(pirate, nano ? "nano" : "astronaut");
+        guaranteedDrops(pirate);
+    }
+
+    public static EntitySpacePirate spawnSpacePirate(net.minecraft.world.World world,
+            double x, double y, double z) {
+        EntitySpacePirate pirate = new EntitySpacePirate(world);
+        pirate.setPosition(x, y, z);
+        configureRobber(pirate, 7);
+        configureSpacePirate(pirate,
+            world.provider.getDimensionType().getName().toLowerCase(Locale.ROOT));
+        world.spawnEntity(pirate);
+        return pirate;
+    }
+
+    public static void equipSpaceMilitia(EntitySpaceMilitia militia) {
+        configurePatrol(militia);
+        militia.setCustomNameTag("QuantumSuit Space Militia");
+        equipArmor(militia, "quantum");
+        guaranteedDrops(militia);
+    }
+
+    public static EntitySpaceMilitia spawnSpaceMilitia(net.minecraft.world.World world,
+            double x, double y, double z) {
+        EntitySpaceMilitia militia = new EntitySpaceMilitia(world);
+        militia.setPosition(x, y, z);
+        equipSpaceMilitia(militia);
+        world.spawnEntity(militia);
+        return militia;
+    }
+
+    public static void equipQuantumSecurity(EntityLiving security) {
+        equipArmor(security, "quantum");
+        guaranteedDrops(security);
+    }
+
+    private static void equipArmor(EntityLiving living, String tier) {
+        if ("quantum".equals(tier)) {
+            setExternal(living, EntityEquipmentSlot.HEAD, "ic2:itemarmorquantumhelmet");
+            setExternal(living, EntityEquipmentSlot.CHEST, "ic2:itemarmorquantumchestplate");
+            setExternal(living, EntityEquipmentSlot.LEGS, "ic2:itemarmorquantumlegs");
+            setExternal(living, EntityEquipmentSlot.FEET, "ic2:itemarmorquantumboots");
+        } else if ("nano".equals(tier)) {
+            setExternal(living, EntityEquipmentSlot.HEAD, "ic2:itemarmornanohelmet");
+            setExternal(living, EntityEquipmentSlot.CHEST, "ic2:itemarmornanochestplate");
+            setExternal(living, EntityEquipmentSlot.LEGS, "ic2:itemarmornanolegs");
+            setExternal(living, EntityEquipmentSlot.FEET, "ic2:itemarmornanoboots");
+        } else {
+            setExternal(living, EntityEquipmentSlot.HEAD, "galacticraftcore:oxygen_mask");
+            setExternal(living, EntityEquipmentSlot.CHEST, "galacticraftcore:oxygen_gear");
+            living.setItemStackToSlot(EntityEquipmentSlot.LEGS, new ItemStack(Items.IRON_LEGGINGS));
+            living.setItemStackToSlot(EntityEquipmentSlot.FEET, new ItemStack(Items.IRON_BOOTS));
+        }
+    }
+
+    private static void setExternal(EntityLiving living, EntityEquipmentSlot slot, String id) {
+        ItemStack stack = external(id);
+        if (!stack.isEmpty()) living.setItemStackToSlot(slot, stack);
+    }
+
+    public static void guaranteedDrops(EntityLiving living) {
+        for (EntityEquipmentSlot slot : new EntityEquipmentSlot[] {
+                EntityEquipmentSlot.MAINHAND, EntityEquipmentSlot.OFFHAND,
+                EntityEquipmentSlot.HEAD, EntityEquipmentSlot.CHEST,
+                EntityEquipmentSlot.LEGS, EntityEquipmentSlot.FEET}) {
+            living.setDropChance(slot, 2.0F);
         }
     }
 
@@ -265,9 +353,14 @@ public final class PlanetaryEcologySystem {
         EntityPlayer nearest = null;
         double nearestDistance = range * range;
         for (EntityPlayer player : robber.world.playerEntities) {
-            if (player.isSpectator() || player.capabilities.isCreativeMode
-                    || !GameplayRules.robberTargetsPlayer(
-                        MarketEconomy.carriesRobberLoot(player), false)) continue;
+            boolean spacePirate = robber.getEntityData().getBoolean(SPACE_PIRATE);
+            boolean profitable = spacePirate
+                ? GameplayRules.spacePirateTargetsPlayer(
+                    robber.getEntityData().getString(SPACE_ENVIRONMENT),
+                    MarketEconomy.carriesLunarStrategicResource(player),
+                    MarketEconomy.carriesMartianStrategicResource(player), false)
+                : GameplayRules.robberTargetsPlayer(MarketEconomy.carriesRobberLoot(player), false);
+            if (player.isSpectator() || player.capabilities.isCreativeMode || !profitable) continue;
             double distance = robber.getDistanceSq(player);
             if (distance <= nearestDistance) {
                 nearest = player;
@@ -392,6 +485,43 @@ public final class PlanetaryEcologySystem {
         } else {
             ProgressionState.increment((EntityPlayer) event.getSource().getTrueSource(),
                 "militia_patrol_direct_kills", 1);
+        }
+    }
+
+    /** Contextual salvage stays rare; issued equipment is handled by drop chances. */
+    @SubscribeEvent
+    public static void contextualHumanSalvage(LivingDeathEvent event) {
+        EntityLivingBase dead = event.getEntityLiving();
+        boolean robber = dead instanceof EntityRobber;
+        boolean patrol = dead instanceof EntityMilitiaPatrol;
+        boolean faction = dead.getEntityData().hasKey("IndustrialFaction", 8);
+        if ((!robber && !patrol && !faction) || dead.world.isRemote) return;
+        if (dead.world.rand.nextInt(4) == 0) dead.entityDropItem(
+            new ItemStack(IndustrialCivilizationCore.INDUSTRIAL_CREDIT, 1 + dead.world.rand.nextInt(3)), 0.0F);
+        if ((robber || patrol) && dead.world.rand.nextInt(8) == 0) {
+            ItemStack ammunition = external("techguns:itemshared");
+            if (!ammunition.isEmpty()) {
+                ammunition.setItemDamage(2);
+                ammunition.setCount(2 + dead.world.rand.nextInt(5));
+                dead.entityDropItem(ammunition, 0.0F);
+            }
+        }
+        if (dead.getEntityData().getBoolean(SPACE_PIRATE) && dead.world.rand.nextInt(10) == 0) {
+            ItemStack oxygen = external("galacticraftcore:oxygen_gear");
+            if (!oxygen.isEmpty()) dead.entityDropItem(oxygen, 0.0F);
+        }
+        String environment = dead.world.provider.getDimensionType().getName().toLowerCase(Locale.ROOT);
+        if (environment.contains("moon") && dead.world.rand.nextInt(16) == 0) {
+            ItemStack meteor = external("galacticraftcore:meteoric_iron_raw");
+            if (!meteor.isEmpty()) dead.entityDropItem(meteor, 0.0F);
+        } else if (environment.contains("mars") && dead.world.rand.nextInt(16) == 0) {
+            ItemStack desh = external("galacticraftplanets:item_basic_mars");
+            if (!desh.isEmpty()) {
+                desh.setItemDamage(2);
+                dead.entityDropItem(desh, 0.0F);
+            }
+        } else if (dead.world.provider.getDimension() == 0 && dead.world.rand.nextInt(12) == 0) {
+            dead.entityDropItem(new ItemStack(IndustrialCivilizationCore.PRECISION_FRAME), 0.0F);
         }
     }
 

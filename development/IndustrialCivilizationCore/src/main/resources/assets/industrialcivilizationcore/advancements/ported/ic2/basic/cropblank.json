@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "item": "ic2:itemdisplayicons",
+      "data": 8
+    },
+    "title": {
+      "translate": "achievement.cropBlank"
+    },
+    "description": {
+      "translate": "achievement.cropBlank.desc"
+    },
+    "frame": "challenge",
+    "hidden": true
+  },
+  "parent": "industrialcivilizationcore:first_ic2_generator",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

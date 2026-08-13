@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "ic2:blockmachinemv",
+      "data": 4
+    },
+    "title": {
+      "translate": "achievement.buildSingCompressor"
+    },
+    "description": {
+      "translate": "achievement.buildSingCompressor.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:first_ic2_generator",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

@@ -28,6 +28,7 @@ public final class RuntimeAdvancements {
         for (String criterion : progress.getRemaningCriteria()) {
             serverPlayer.getAdvancements().grantCriterion(advancement, criterion);
         }
+        UnifiedAdvancementSystem.synchronizePort(serverPlayer, namespace + ":" + path);
         ProgressionState.record(player,
             IndustrialCivilizationCore.MODID.equals(namespace) ? path : namespace + ":" + path,
             evidenceSource);

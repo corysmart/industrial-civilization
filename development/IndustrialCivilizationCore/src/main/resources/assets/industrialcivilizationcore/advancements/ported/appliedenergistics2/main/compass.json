@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "appliedenergistics2:sky_compass"
+    },
+    "title": {
+      "translate": "achievement.ae2.Compass"
+    },
+    "description": {
+      "translate": "achievement.ae2.Compass.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/appliedenergistics2/main/root",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

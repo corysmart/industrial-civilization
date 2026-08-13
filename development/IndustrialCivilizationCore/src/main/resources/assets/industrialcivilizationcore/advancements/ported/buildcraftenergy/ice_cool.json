@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:water_bucket"
+    },
+    "title": {
+      "translate": "advancements.buildcraftenergy.ice_cool.title"
+    },
+    "description": {
+      "translate": "advancements.buildcraftenergy.ice_cool.description"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/buildcraftenergy/powering_up",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

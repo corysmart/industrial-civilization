@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "item": "ic2:blockgenerator",
+      "data": 0
+    },
+    "title": {
+      "translate": "achievement.goCoal"
+    },
+    "description": {
+      "translate": "achievement.goCoal.desc"
+    },
+    "frame": "challenge",
+    "hidden": true
+  },
+  "parent": "industrialcivilizationcore:ported/ic2/basic/root",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

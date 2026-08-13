@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "appliedenergistics2:facade"
+    },
+    "title": {
+      "translate": "achievement.ae2.Facade"
+    },
+    "description": {
+      "translate": "achievement.ae2.Facade.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/appliedenergistics2/main/cable_glass",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

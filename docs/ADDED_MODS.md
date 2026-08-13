@@ -11,7 +11,7 @@
 | `vehicle-mod-1.4.0-1.12.2.jar` | Onysd Vehicles driving/physics base and six curated vehicle chassis | Modrinth `LuvveCaI` | Minecraft 1.12.2; LGPL-2.1-or-later source available |
 | `ICBM-classic-1.12.2-6.5.5.jar` | Strategic missiles, launch control, radar and defense hardware; duplicate parts hidden and recipes rebuilt around IC2 | CurseForge file `8177228` | Minecraft 1.12.2; All Rights Reserved; installed only for this private test environment |
 | `obfuscate-0.4.2-1.12.2.jar` | Required vehicle animation/network library | 2916310 | Minecraft 1.12.2; GPL-3.0 |
-| `IndustrialCivilizationCore-0.2.0.jar` | First-party progression, research, factory salvage, machine, gate, and UI integration | local source | Compiled against Forge 14.23.5.2860 / Java 8 |
+| `IndustrialCivilizationCore-0.3.0.jar` | First-party progression, research, factory salvage, machine, gate, and UI integration | local source | Compiled against Forge 14.23.5.2860 / Java 8 |
 
 All downloaded archives passed ZIP integrity checks before installation. Exact SHA-256 values and redistribution notes are in `manifest/final-mod-lock.json`. Techguns is All Rights Reserved and the other third-party terms vary: this assembled local instance must not be published as a binary modpack without a fresh permission review.
 

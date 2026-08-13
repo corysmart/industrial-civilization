@@ -20,7 +20,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 /** A network-registered human robber with no undead identity or audio. */
-public final class EntityRobber extends EntityMob {
+public class EntityRobber extends EntityMob {
     public static final double BASE_MOVEMENT_SPEED = 0.20D;
 
     public EntityRobber(World world) {

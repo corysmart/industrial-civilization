@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "appliedenergistics2:spatial_io_port"
+    },
+    "title": {
+      "translate": "achievement.ae2.SpatialIO"
+    },
+    "description": {
+      "translate": "achievement.ae2.SpatialIO.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/appliedenergistics2/main/ioport",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

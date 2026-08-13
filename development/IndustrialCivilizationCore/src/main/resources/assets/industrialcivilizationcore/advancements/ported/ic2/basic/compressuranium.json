@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "ic2:itemmisc",
+      "data": 55
+    },
+    "title": {
+      "translate": "achievement.compressUranium"
+    },
+    "description": {
+      "translate": "achievement.compressUranium.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:first_ic2_generator",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

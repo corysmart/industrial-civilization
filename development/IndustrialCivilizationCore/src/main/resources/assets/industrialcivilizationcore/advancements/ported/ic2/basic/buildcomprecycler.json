@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "ic2:blockmachinemv",
+      "data": 6
+    },
+    "title": {
+      "translate": "achievement.buildCompRecycler"
+    },
+    "description": {
+      "translate": "achievement.buildCompRecycler.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:first_ic2_generator",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

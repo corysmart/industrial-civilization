@@ -1,0 +1,7 @@
+{
+  "criteria": {
+    "consumed_item": {
+      "trigger": "minecraft:consume_item"
+    }
+  }
+}

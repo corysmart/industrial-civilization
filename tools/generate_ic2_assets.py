@@ -371,7 +371,7 @@ def make_nei_sprites():
     # The generated source faithfully retained the final two machine concepts
     # in cells 0-1 before the twenty-two item concepts in cells 2-23.
     for index, item_id in enumerate(ITEM_IDS):
-        if item_id == "industrial_credit":
+        if item_id in {"industrial_credit", "emergency_continuity_core"}:
             source = make_item(item_id, index).resize((48, 48), Image.Resampling.NEAREST)
             output = Image.new("RGBA", (64, 64), (0, 0, 0, 0))
             output.alpha_composite(source, (8, 8))
@@ -418,18 +418,25 @@ def write_models():
     (ASSETS / "models/item").mkdir(parents=True, exist_ok=True)
     (ASSETS / "blockstates").mkdir(parents=True, exist_ok=True)
     for block_id in BLOCK_IDS:
-        (ASSETS / "models/block" / f"{block_id}.json").write_text(json.dumps({
-            "parent": "block/cube",
-            "textures": {
-                "particle": f"industrialcivilizationcore:blocks/{block_id}",
-                "north": f"industrialcivilizationcore:blocks/{block_id}",
-                "south": f"industrialcivilizationcore:blocks/{block_id}_side",
-                "east": f"industrialcivilizationcore:blocks/{block_id}_side",
-                "west": f"industrialcivilizationcore:blocks/{block_id}_side",
-                "up": f"industrialcivilizationcore:blocks/{block_id}_top",
-                "down": f"industrialcivilizationcore:blocks/{block_id}_side"
+        if block_id in {"environmental_solar_array", "tracking_solar_array"}:
+            parent = ("galacticraftcore:block/basic_solar_model" if block_id == "environmental_solar_array"
+                else "galacticraftcore:block/advanced_solar_model")
+            block_model = {"parent": parent}
+        else:
+            block_model = {
+                "parent": "block/cube",
+                "textures": {
+                    "particle": f"industrialcivilizationcore:blocks/{block_id}",
+                    "north": f"industrialcivilizationcore:blocks/{block_id}",
+                    "south": f"industrialcivilizationcore:blocks/{block_id}_side",
+                    "east": f"industrialcivilizationcore:blocks/{block_id}_side",
+                    "west": f"industrialcivilizationcore:blocks/{block_id}_side",
+                    "up": f"industrialcivilizationcore:blocks/{block_id}_top",
+                    "down": f"industrialcivilizationcore:blocks/{block_id}_side"
+                }
             }
-        }, indent=2) + "\n")
+        (ASSETS / "models/block" / f"{block_id}.json").write_text(
+            json.dumps(block_model, indent=2) + "\n")
         (ASSETS / "models/item" / f"{block_id}.json").write_text(json.dumps({
             "parent": "item/generated",
             "textures": {"layer0": f"industrialcivilizationcore:items/nei_blocks/{block_id}"}

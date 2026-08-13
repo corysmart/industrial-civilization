@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "ic2:blockmachinelv",
+      "data": 3
+    },
+    "title": {
+      "translate": "achievement.buildMacerator"
+    },
+    "description": {
+      "translate": "achievement.buildMacerator.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:first_ic2_generator",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

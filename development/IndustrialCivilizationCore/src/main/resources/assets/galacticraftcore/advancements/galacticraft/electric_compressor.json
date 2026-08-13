@@ -1,0 +1,21 @@
+{
+  "criteria": {
+    "electric_compressor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "galacticraftcore:machine2",
+            "data": 0
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "electric_compressor"
+    ]
+  ],
+  "parent": "galacticraftcore:galacticraft/compressor"
+}

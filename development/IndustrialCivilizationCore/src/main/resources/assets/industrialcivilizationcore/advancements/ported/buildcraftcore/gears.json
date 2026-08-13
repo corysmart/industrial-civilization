@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "buildcraftcore:gear_diamond"
+    },
+    "title": {
+      "translate": "advancements.buildcraftcore.gears.title"
+    },
+    "description": {
+      "translate": "advancements.buildcraftcore.gears.description"
+    },
+    "frame": "goal"
+  },
+  "parent": "industrialcivilizationcore:ported/buildcraftcore/root",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

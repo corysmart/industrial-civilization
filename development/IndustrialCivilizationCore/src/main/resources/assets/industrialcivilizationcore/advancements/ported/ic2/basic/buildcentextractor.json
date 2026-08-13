@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "ic2:blockmachinemv",
+      "data": 3
+    },
+    "title": {
+      "translate": "achievement.buildCentExtractor"
+    },
+    "description": {
+      "translate": "achievement.buildCentExtractor.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:first_ic2_generator",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

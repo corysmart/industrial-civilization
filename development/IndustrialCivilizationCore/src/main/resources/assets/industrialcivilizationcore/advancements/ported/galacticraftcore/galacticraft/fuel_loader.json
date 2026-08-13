@@ -1,0 +1,24 @@
+{
+  "display": {
+    "title": {
+      "translate": "advancement.galacticraft.fuel_loader.title"
+    },
+    "description": {
+      "translate": "advancement.galacticraft.fuel_loader.description"
+    },
+    "icon": {
+      "item": "galacticraftcore:fuel_loader",
+      "data": 0
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/galacticraftcore/galacticraft/rocket_t1"
+}

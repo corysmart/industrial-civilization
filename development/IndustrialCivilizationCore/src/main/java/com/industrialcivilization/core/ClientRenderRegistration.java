@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RenderVillager;
+import net.minecraft.client.renderer.entity.layers.LayerBipedArmor;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -20,6 +21,12 @@ public final class ClientRenderRegistration {
             (RenderManager manager) -> new RobberRenderer(manager));
         RenderingRegistry.registerEntityRenderingHandler(EntityMilitiaPatrol.class,
             (RenderManager manager) -> new MilitiaRenderer(manager));
+        RenderingRegistry.registerEntityRenderingHandler(EntitySpacePirate.class,
+            (RenderManager manager) -> new SpacePirateRenderer(manager));
+        RenderingRegistry.registerEntityRenderingHandler(EntitySpaceMilitia.class,
+            (RenderManager manager) -> new SpaceMilitiaRenderer(manager));
+        RenderingRegistry.registerEntityRenderingHandler(EntitySpaceCitizen.class,
+            (RenderManager manager) -> new SpaceCitizenRenderer(manager));
     }
 
     private static final class FactionVillagerRenderer extends RenderVillager {
@@ -39,9 +46,45 @@ public final class ClientRenderRegistration {
     }
 
     private static final class MilitiaRenderer extends RenderBiped<EntityMilitiaPatrol> {
-        MilitiaRenderer(RenderManager manager) { super(manager, new ModelBiped(), 0.5F); }
+        MilitiaRenderer(RenderManager manager) {
+            super(manager, new ModelBiped(), 0.5F);
+            addLayer(new LayerBipedArmor(this));
+        }
         @Override protected ResourceLocation getEntityTexture(EntityMilitiaPatrol entity) {
             return texture("territorial_militia");
+        }
+    }
+
+    private static final class SpacePirateRenderer extends RenderBiped<EntitySpacePirate> {
+        SpacePirateRenderer(RenderManager manager) {
+            super(manager, new ModelBiped(), 0.5F);
+            addLayer(new LayerBipedArmor(this));
+        }
+        @Override protected ResourceLocation getEntityTexture(EntitySpacePirate entity) {
+            return new ResourceLocation("galacticraftcore", "textures/model/player.png");
+        }
+    }
+
+    private static final class SpaceMilitiaRenderer extends RenderBiped<EntitySpaceMilitia> {
+        SpaceMilitiaRenderer(RenderManager manager) {
+            super(manager, new ModelBiped(), 0.5F);
+            addLayer(new LayerBipedArmor(this));
+        }
+        @Override protected ResourceLocation getEntityTexture(EntitySpaceMilitia entity) {
+            return texture("territorial_militia");
+        }
+    }
+
+    private static final class SpaceCitizenRenderer extends RenderBiped<EntitySpaceCitizen> {
+        SpaceCitizenRenderer(RenderManager manager) {
+            super(manager, new ModelBiped(), 0.5F);
+            addLayer(new LayerBipedArmor(this));
+        }
+        @Override protected ResourceLocation getEntityTexture(EntitySpaceCitizen entity) {
+            String faction = entity.getEntityData().getString("IndustrialFaction");
+            return faction.isEmpty()
+                ? new ResourceLocation("galacticraftcore", "textures/model/player.png")
+                : texture(faction);
         }
     }
 

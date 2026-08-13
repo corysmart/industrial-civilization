@@ -1,0 +1,57 @@
+{
+  "parent": "ic2:basic/root",
+  "criteria": {
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ic2:itemmisc",
+            "data": 180
+          }
+        ]
+      }
+    },
+    "has_item_0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ic2:blockmetal",
+            "data": 0
+          }
+        ]
+      }
+    },
+    "has_item_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ic2:blockmetal",
+            "data": 1
+          }
+        ]
+      }
+    },
+    "has_item_2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ic2:blockmetal",
+            "data": 3
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_item",
+      "has_item_0",
+      "has_item_1",
+      "has_item_2"
+    ]
+  ]
+}

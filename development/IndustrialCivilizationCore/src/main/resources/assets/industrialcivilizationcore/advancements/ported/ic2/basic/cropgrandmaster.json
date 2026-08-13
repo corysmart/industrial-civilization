@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "item": "ic2:blockmachinemv",
+      "data": 11
+    },
+    "title": {
+      "translate": "achievement.cropGrandMaster"
+    },
+    "description": {
+      "translate": "achievement.cropGrandMaster.desc"
+    },
+    "frame": "challenge",
+    "hidden": true
+  },
+  "parent": "industrialcivilizationcore:first_ic2_generator",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

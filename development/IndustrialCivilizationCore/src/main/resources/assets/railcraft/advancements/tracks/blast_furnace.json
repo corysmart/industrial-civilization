@@ -1,0 +1,11 @@
+{
+  "parent": "railcraft:tracks/coke_oven",
+  "criteria": {
+    "build": {
+      "trigger": "railcraft:multiblock_formed",
+      "conditions": {
+        "type": "railcraft:blast_furnace"
+      }
+    }
+  }
+}

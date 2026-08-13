@@ -1,0 +1,24 @@
+{
+  "display": {
+    "title": {
+      "translate": "advancement.galacticraft.spin_thruster.title"
+    },
+    "description": {
+      "translate": "advancement.galacticraft.spin_thruster.description"
+    },
+    "icon": {
+      "item": "galacticraftcore:spin_thruster",
+      "data": 0
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/galacticraftcore/galacticraft/create_space_station"
+}

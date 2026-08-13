@@ -1,0 +1,16 @@
+{
+  "parent": "ic2:basic/buildgenerator",
+  "criteria": {
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ic2:blockmachinelv",
+            "data": 4
+          }
+        ]
+      }
+    }
+  }
+}

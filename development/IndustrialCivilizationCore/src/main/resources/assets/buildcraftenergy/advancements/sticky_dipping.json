@@ -1,0 +1,11 @@
+{
+  "parent": "buildcraftenergy:fine_riches",
+  "criteria": {
+    "oil": {
+      "trigger": "minecraft:enter_block",
+      "conditions": {
+        "block": "buildcraftenergy:fluid_block_oil_heat_0"
+      }
+    }
+  }
+}

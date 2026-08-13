@@ -1,0 +1,21 @@
+{
+  "criteria": {
+    "got_schematic": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "galacticraftcore:schematic",
+            "data": 0
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "got_schematic"
+    ]
+  ],
+  "parent": "galacticraftcore:galacticraft/key_t1"
+}

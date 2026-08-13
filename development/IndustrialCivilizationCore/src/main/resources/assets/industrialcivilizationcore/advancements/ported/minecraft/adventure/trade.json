@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:emerald"
+    },
+    "title": {
+      "translate": "advancements.adventure.trade.title"
+    },
+    "description": {
+      "translate": "advancements.adventure.trade.description"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/minecraft/adventure/root",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

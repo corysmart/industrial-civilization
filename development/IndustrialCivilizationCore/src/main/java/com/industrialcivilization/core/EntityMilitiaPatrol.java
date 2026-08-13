@@ -16,7 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 /** A network-registered human patrol with no undead identity or audio. */
-public final class EntityMilitiaPatrol extends EntityMob {
+public class EntityMilitiaPatrol extends EntityMob {
     public EntityMilitiaPatrol(World world) {
         super(world);
     }

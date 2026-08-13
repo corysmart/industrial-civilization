@@ -27,7 +27,7 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
             IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         if (world.provider.getDimension() != 0) {
             if (isMoon(world)) generateLunarHeritageFlags(chunkX, chunkZ, world);
-            if (isMars(world) && aiAgeUnlocked(world)) generateMartianCivilization(
+            if (isMoon(world) || isMars(world)) generateSpaceCivilization(
                 deterministicRandom(world, chunkX, chunkZ), chunkX, chunkZ, world);
             return;
         }
@@ -144,7 +144,7 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
 
     /** Same seed and chunk always produce the same post-AI Mars decision. */
     public static void generatePostAiMarsChunk(World world, int chunkX, int chunkZ) {
-        if (isMars(world) && aiAgeUnlocked(world)) generateMartianCivilization(
+        if (isMars(world) && aiAgeUnlocked(world)) generateSpaceCivilization(
             deterministicRandom(world, chunkX, chunkZ), chunkX, chunkZ, world);
     }
 
@@ -155,15 +155,24 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
         return new Random(seed);
     }
 
-    /** Mars remains untouched until an AI-age player generates new terrain. */
-    private static void generateMartianCivilization(Random random, int chunkX, int chunkZ, World world) {
+    /** Human settlements replace fantasy monster ecology on both program worlds. */
+    private static void generateSpaceCivilization(Random random, int chunkX, int chunkZ, World world) {
         BlockPos origin = surfaceOrigin(world, chunkX, chunkZ, 25, 190);
         if (origin == null) return;
         double distance = Math.sqrt((double) chunkX * chunkX + (double) chunkZ * chunkZ) * 16.0D;
-        buildRegionalRoad(world, chunkX, chunkZ, distance);
+        if (random.nextInt(12) == 0) buildRegionalRoad(world, chunkX, chunkZ, distance);
         if (random.nextInt(320) == 0) buildIndustrialCity(world, origin);
-        else if (random.nextInt(220) == 0) buildMilitiaOutpost(world, origin);
-        else if (random.nextInt(160) == 0) buildPrimitiveSettlement(world, origin);
+        else if (random.nextInt(220) == 0) buildOperationalFactory(world, origin,
+            FACTORY_SPECIALTIES[Math.floorMod(chunkX * 31 + chunkZ * 17, FACTORY_SPECIALTIES.length)]);
+        else if (random.nextInt(180) == 0) buildMilitiaOutpost(world, origin);
+        else if (random.nextInt(140) == 0) buildPrimitiveSettlement(world, origin);
+        else if (random.nextInt(110) == 0) {
+            AbandonedFactoryWorldGenerator.buildShell(world, origin);
+            PlanetaryEcologySystem.spawnSpacePirate(world, origin.getX() + 3.5,
+                origin.getY() + 1, origin.getZ() + 10.5);
+            PlanetaryEcologySystem.spawnSpacePirate(world, origin.getX() + 10.5,
+                origin.getY() + 1, origin.getZ() + 3.5);
+        }
     }
 
     private static boolean isPrimitiveSettlementChunk(World world, int chunkX, int chunkZ,
@@ -232,10 +241,17 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
         set(world, origin.add(7, 1, 0), Blocks.IRON_DOOR.getDefaultState());
         markOutpost(FactionSystem.spawnCitizen(world, origin.getX() + 7.5, origin.getY() + 2,
             origin.getZ() + 7.5, "territorial_militia", "militia", "armaments", "Militia Quartermaster", 5), origin);
-        markOutpost(FactionSystem.spawnCitizen(world, origin.getX() + 4.5, origin.getY() + 2,
-            origin.getZ() + 8.5, "territorial_militia", "guard", "armaments", "Outpost Enforcer"), origin);
-        markOutpost(FactionSystem.spawnCitizen(world, origin.getX() + 10.5, origin.getY() + 2,
-            origin.getZ() + 6.5, "territorial_militia", "guard", "armaments", "Outpost Enforcer"), origin);
+        if (world.provider.getDimension() == 0) {
+            markOutpost(FactionSystem.spawnCitizen(world, origin.getX() + 4.5, origin.getY() + 2,
+                origin.getZ() + 8.5, "territorial_militia", "militia", "armaments", "Outpost Enforcer"), origin);
+            markOutpost(FactionSystem.spawnCitizen(world, origin.getX() + 10.5, origin.getY() + 2,
+                origin.getZ() + 6.5, "territorial_militia", "militia", "armaments", "Outpost Enforcer"), origin);
+        } else {
+            PlanetaryEcologySystem.spawnSpaceMilitia(world, origin.getX() + 4.5,
+                origin.getY() + 2, origin.getZ() + 8.5);
+            PlanetaryEcologySystem.spawnSpaceMilitia(world, origin.getX() + 10.5,
+                origin.getY() + 2, origin.getZ() + 6.5);
+        }
         if ((origin.getX() ^ origin.getZ()) % 2 == 0) installUtilitySpine(world, origin, false);
     }
 

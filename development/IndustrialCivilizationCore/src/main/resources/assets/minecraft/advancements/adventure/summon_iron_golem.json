@@ -1,0 +1,13 @@
+{
+  "parent": "adventure/trade",
+  "criteria": {
+    "summoned_golem": {
+      "trigger": "minecraft:summoned_entity",
+      "conditions": {
+        "entity": {
+          "type": "minecraft:villager_golem"
+        }
+      }
+    }
+  }
+}

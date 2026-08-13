@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:story/mine_diamond",
+  "criteria": {
+    "enchanted_item": {
+      "trigger": "minecraft:enchanted_item"
+    }
+  }
+}

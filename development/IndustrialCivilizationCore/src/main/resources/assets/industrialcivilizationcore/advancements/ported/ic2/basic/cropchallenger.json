@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "item": "ic2:itemcropseed",
+      "data": 0
+    },
+    "title": {
+      "translate": "achievement.cropChallenger"
+    },
+    "description": {
+      "translate": "achievement.cropChallenger.desc"
+    },
+    "frame": "challenge",
+    "hidden": true
+  },
+  "parent": "industrialcivilizationcore:first_ic2_generator",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

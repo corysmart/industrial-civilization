@@ -1,0 +1,21 @@
+{
+  "criteria": {
+    "circuit_fabricator": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "galacticraftcore:machine2",
+            "data": 4
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "circuit_fabricator"
+    ]
+  ],
+  "parent": "galacticraftcore:galacticraft/coal_generator"
+}

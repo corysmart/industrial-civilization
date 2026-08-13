@@ -1,0 +1,21 @@
+{
+  "criteria": {
+    "fuel_loader": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "galacticraftcore:fuel_loader",
+            "data": 0
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "fuel_loader"
+    ]
+  ],
+  "parent": "galacticraftcore:galacticraft/rocket_t1"
+}

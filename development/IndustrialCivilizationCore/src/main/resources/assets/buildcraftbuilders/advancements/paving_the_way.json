@@ -1,0 +1,8 @@
+{
+  "parent": "buildcraftbuilders:architect",
+  "criteria": {
+    "code_trigger": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

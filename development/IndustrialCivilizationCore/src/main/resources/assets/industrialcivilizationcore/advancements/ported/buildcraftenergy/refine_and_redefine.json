@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "buildcraftenergy:glob_of_oil"
+    },
+    "title": {
+      "translate": "advancements.buildcraftenergy.refine_and_redefine.title"
+    },
+    "description": {
+      "translate": "advancements.buildcraftenergy.refine_and_redefine.description"
+    },
+    "frame": "challenge"
+  },
+  "parent": "industrialcivilizationcore:ported/buildcraftenergy/sticky_dipping",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

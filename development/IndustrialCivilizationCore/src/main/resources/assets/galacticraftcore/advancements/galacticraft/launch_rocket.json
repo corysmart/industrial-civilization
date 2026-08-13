@@ -1,0 +1,13 @@
+{
+  "criteria": {
+    "launched_rocket": {
+      "trigger": "galacticraftcore:launch_rocket"
+    }
+  },
+  "requirements": [
+    [
+      "launched_rocket"
+    ]
+  ],
+  "parent": "galacticraftcore:galacticraft/fuel_loader"
+}

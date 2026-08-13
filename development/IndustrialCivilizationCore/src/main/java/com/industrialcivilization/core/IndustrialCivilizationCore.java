@@ -43,6 +43,7 @@ import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -79,7 +80,7 @@ import org.apache.logging.log4j.Logger;
 public final class IndustrialCivilizationCore {
     public static final String MODID = "industrialcivilizationcore";
     public static final String NAME = "Industrial Civilization Core";
-    public static final String VERSION = "0.2.0";
+    public static final String VERSION = "0.3.0";
     /** Canonical pack conversion, matching IC2 Classic's RFPerEU setting. */
     public static final int FE_PER_EU = 8;
     public static final int GUI_INDUSTRIAL_MACHINE = 1;
@@ -182,6 +183,8 @@ public final class IndustrialCivilizationCore {
     public static final ItemIndustrialArtifact MEGASTRUCTURE_CONTROL_RECORD = artifact("megastructure_control_record");
     public static final ItemIndustrialArtifact AUTONOMOUS_COLONY_CHARTER = artifact("autonomous_colony_charter");
     public static final ItemIndustrialArtifact CIVILIZATION_SCALE_AI_CORE = artifact("civilization_scale_ai_core");
+    public static final ItemEmergencyContinuityCore EMERGENCY_CONTINUITY_CORE =
+        new ItemEmergencyContinuityCore();
     public static final ItemIndustrialArtifact[] ARTIFACTS = {
         ORBITAL_RESEARCH_ARCHIVE, LUNAR_ENGINEERING_ARCHIVE, LUNAR_QUANTUM_COMPONENT,
         MARS_MISSION_AUTHORIZATION, MARTIAN_AUTONOMY_ARCHIVE, AI_CORE,
@@ -237,6 +240,7 @@ public final class IndustrialCivilizationCore {
         // Preserve vanilla/mod recipe compatibility while making every pearl a
         // visibly technical, AI-manufactured phase component.
         Items.ENDER_PEARL.setUnlocalizedName(MODID + ".technical_phase_pearl");
+        Items.TOTEM_OF_UNDYING.setCreativeTab(null);
         GameRegistry.registerTileEntity(TileMolecularAnalyzer.class,
             new ResourceLocation(MODID, "molecular_analyzer"));
         GameRegistry.registerTileEntity(TileIndustrialMachine.class,
@@ -251,6 +255,12 @@ public final class IndustrialCivilizationCore {
             EntityRobber.class, "robber", 1, this, 80, 3, true, 0x273029, 0x8A3C28);
         EntityRegistry.registerModEntity(new ResourceLocation(MODID, "militia_patrol"),
             EntityMilitiaPatrol.class, "militia_patrol", 2, this, 96, 2, true, 0x3A3025, 0x7D6B43);
+        EntityRegistry.registerModEntity(new ResourceLocation(MODID, "space_pirate"),
+            EntitySpacePirate.class, "space_pirate", 3, this, 96, 2, true, 0xD7DDE0, 0x8A3C28);
+        EntityRegistry.registerModEntity(new ResourceLocation(MODID, "space_militia"),
+            EntitySpaceMilitia.class, "space_militia", 4, this, 96, 2, true, 0xD7DDE0, 0x486A78);
+        EntityRegistry.registerModEntity(new ResourceLocation(MODID, "space_citizen"),
+            EntitySpaceCitizen.class, "space_citizen", 5, this, 80, 3, true, 0xD7DDE0, 0x36DBE8);
         GameRegistry.registerWorldGenerator(new CivilizationWorldGenerator(), 50);
         MinecraftForge.TERRAIN_GEN_BUS.register(new VillageSuppressionHandler());
         MinecraftForge.TERRAIN_GEN_BUS.register(new MoonPurityHandler());
@@ -298,6 +308,7 @@ public final class IndustrialCivilizationCore {
         public static void registerItems(RegistryEvent.Register<Item> event) {
             event.getRegistry().register(MATERIAL_PATTERN_RECORD);
             event.getRegistry().register(INDUSTRIAL_CREDIT);
+            event.getRegistry().register(EMERGENCY_CONTINUITY_CORE);
             event.getRegistry().registerAll(ARTIFACTS);
             event.getRegistry().register(new ItemBlock(MOLECULAR_ANALYZER)
                 .setCreativeTab(CREATIVE_TAB)
@@ -334,6 +345,9 @@ public final class IndustrialCivilizationCore {
             migrateQuestHomeImage();
             event.player.sendMessage(new TextComponentTranslation(
                 "message.industrialcivilization.quest_guide"));
+            if (event.player instanceof EntityPlayerMP) {
+                UnifiedAdvancementSystem.synchronize((EntityPlayerMP) event.player);
+            }
         }
 
         private static void migrateQuestHomeImage() {
@@ -454,6 +468,9 @@ public final class IndustrialCivilizationCore {
                 removePrematurePhasePearls(event.player);
             }
             FactionSystem.updatePlaystyleReputation(event.player);
+            if (event.player instanceof EntityPlayerMP && event.player.ticksExisted % 100 == 0) {
+                UnifiedAdvancementSystem.synchronize((EntityPlayerMP) event.player);
+            }
             ProgressionState.increment(event.player, "active_ticks", 20);
         }
 
@@ -478,7 +495,40 @@ public final class IndustrialCivilizationCore {
         /** Endermen and inherited mobs cannot bypass AI manufacturing. */
         @SubscribeEvent
         public static void suppressNaturalPhasePearls(LivingDropsEvent event) {
-            event.getDrops().removeIf(drop -> drop.getItem().getItem() == Items.ENDER_PEARL);
+            event.getDrops().removeIf(drop -> drop.getItem().getItem() == Items.ENDER_PEARL
+                || drop.getItem().getItem() == Items.TOTEM_OF_UNDYING);
+        }
+
+        /** Industrial AI failover replaces the removed magical Totem of Undying. */
+        @SubscribeEvent(priority = EventPriority.HIGHEST)
+        public static void emergencyContinuity(LivingDamageEvent event) {
+            if (event.getEntityLiving().world.isRemote
+                    || !(event.getEntityLiving() instanceof net.minecraft.entity.player.EntityPlayer)
+                    || event.getAmount() < event.getEntityLiving().getHealth()) return;
+            net.minecraft.entity.player.EntityPlayer player =
+                (net.minecraft.entity.player.EntityPlayer) event.getEntityLiving();
+            int slot = -1;
+            for (int index = 0; index < player.inventory.getSizeInventory(); index++) {
+                ItemStack stack = player.inventory.getStackInSlot(index);
+                if (!stack.isEmpty() && stack.getItem() == EMERGENCY_CONTINUITY_CORE) {
+                    slot = index;
+                    break;
+                }
+            }
+            if (slot < 0) return;
+            player.inventory.decrStackSize(slot, 1);
+            event.setCanceled(true);
+            player.setHealth(1.0F);
+            player.clearActivePotions();
+            player.addPotionEffect(new net.minecraft.potion.PotionEffect(
+                net.minecraft.init.MobEffects.REGENERATION, 900, 1));
+            player.addPotionEffect(new net.minecraft.potion.PotionEffect(
+                net.minecraft.init.MobEffects.ABSORPTION, 100, 1));
+            player.world.playSound(null, player.posX, player.posY, player.posZ,
+                net.minecraft.init.SoundEvents.BLOCK_NOTE_PLING,
+                net.minecraft.util.SoundCategory.PLAYERS, 1.0F, 1.35F);
+            RuntimeAdvancements.grant(player, "minecraft", "adventure/totem_of_undying",
+                "ai_emergency_continuity_activated");
         }
 
         /** The End is outside this pack's progression and its portal cannot be armed. */
@@ -654,6 +704,9 @@ public final class IndustrialCivilizationCore {
             ModelLoader.setCustomModelResourceLocation(
                 INDUSTRIAL_CREDIT, 0,
                 new ModelResourceLocation(INDUSTRIAL_CREDIT.getRegistryName(), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(
+                EMERGENCY_CONTINUITY_CORE, 0,
+                new ModelResourceLocation(EMERGENCY_CONTINUITY_CORE.getRegistryName(), "inventory"));
             ModelLoader.setCustomModelResourceLocation(
                 Items.ENDER_PEARL, 0,
                 new ModelResourceLocation(MODID + ":technical_phase_pearl", "inventory"));

@@ -71,5 +71,6 @@
     {"id": "autonomous_colony_charter", "system": "colony proof"},
     {"id": "civilization_scale_ai_core", "system": "open-ended capstone"},
     {"id": "industrial_credit", "system": "faction and settlement currency"}
+    ,{"id": "emergency_continuity_core", "system": "AI-age lethal-event failover"}
   ]
 }

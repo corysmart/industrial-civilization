@@ -1,0 +1,9 @@
+{
+  "parent": "railcraft:carts/root",
+  "criteria": {
+    "linking": {
+      "trigger": "railcraft:surprise",
+      "conditions": {}
+    }
+  }
+}

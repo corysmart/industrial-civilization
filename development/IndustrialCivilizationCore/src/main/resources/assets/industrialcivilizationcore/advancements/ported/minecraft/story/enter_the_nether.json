@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:flint_and_steel"
+    },
+    "title": {
+      "translate": "advancements.story.enter_the_nether.title"
+    },
+    "description": {
+      "translate": "advancements.story.enter_the_nether.description"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/minecraft/story/form_obsidian",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

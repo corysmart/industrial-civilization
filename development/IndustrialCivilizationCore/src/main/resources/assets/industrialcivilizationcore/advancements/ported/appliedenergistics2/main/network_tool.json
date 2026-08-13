@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "appliedenergistics2:network_tool"
+    },
+    "title": {
+      "translate": "achievement.ae2.NetworkTool"
+    },
+    "description": {
+      "translate": "achievement.ae2.NetworkTool.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/appliedenergistics2/main/controller",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

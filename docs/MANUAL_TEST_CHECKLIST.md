@@ -5,7 +5,7 @@
 1. In Technic Launcher, select the customized Tekkit 2 instance at `/Users/cory/Library/Application Support/technic/modpacks/tekkit-2`.
 2. Confirm Java 8 and allocate at least 4 GiB if available (the old metadata requests 3 GiB; Techguns, Custom NPCs, AE2, and Better Questing increase load).
 3. Launch once and wait at the title screen. Do not open the pre-existing `New World` save.
-4. Confirm the menu label reads `Industrial Civilization v0.2.0` and inspect Loaded Mods for 162 JAR files / the expected mod IDs, including Onysd Vehicles 1.4.0, Obfuscate 0.4.2, and ICBM Classic 6.5.5.
+4. Confirm the menu label reads `Industrial Civilization v0.3.0` and inspect Loaded Mods for 162 JAR files / the expected mod IDs, including Onysd Vehicles 1.4.0, Obfuscate 0.4.2, and ICBM Classic 6.5.5.
 5. Open a disposable world, run `/gs reload --clean`, and confirm chat reports a successful reload with no errors. Review `logs/groovy.log` if it does not.
 6. Confirm the welcome chat identifies **F6** as the Industrial Civilization Guide key. Press F6 and verify the Industrial Civilization home banner renders without magenta missing-texture panels, then inspect the 16 chapters and 7 side-path tabs.
 7. Open the in-game pause menu. Confirm **Advancements** opens the vanilla advancement screen, then verify its Industrial Civilization tab contains the visible, ordered progression tree. F6 remains the Better Questing guide.

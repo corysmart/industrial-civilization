@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "appliedenergistics2:io_port"
+    },
+    "title": {
+      "translate": "achievement.ae2.IOPort"
+    },
+    "description": {
+      "translate": "achievement.ae2.IOPort.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/appliedenergistics2/main/storage_cell",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

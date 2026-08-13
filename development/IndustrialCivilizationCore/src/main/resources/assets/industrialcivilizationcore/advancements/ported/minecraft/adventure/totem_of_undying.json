@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "industrialcivilizationcore:emergency_continuity_core"
+    },
+    "title": {
+      "text": "Postmortal Continuity"
+    },
+    "description": {
+      "text": "Survive a lethal event with an AI Emergency Continuity Core"
+    },
+    "frame": "goal"
+  },
+  "parent": "industrialcivilizationcore:ported/minecraft/adventure/root",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

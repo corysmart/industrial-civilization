@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "item": "appliedenergistics2:material",
+      "data": 0
+    },
+    "title": {
+      "translate": "achievement.ae2.Root"
+    },
+    "description": {
+      "translate": "achievement.ae2.Root.desc"
+    },
+    "background": "appliedenergistics2:textures/blocks/sky_stone_brick.png",
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "industrialcivilizationcore:ai_age_entry"
+}

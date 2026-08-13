@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "appliedenergistics2:quantum_link"
+    },
+    "title": {
+      "translate": "achievement.ae2.QNB"
+    },
+    "description": {
+      "translate": "achievement.ae2.QNB.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/appliedenergistics2/main/p2p",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:shield"
+    },
+    "title": {
+      "translate": "advancements.story.deflect_arrow.title"
+    },
+    "description": {
+      "translate": "advancements.story.deflect_arrow.description"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/minecraft/story/obtain_armor",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

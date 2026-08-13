@@ -1,0 +1,24 @@
+{
+  "display": {
+    "title": {
+      "translate": "advancement.galacticraft.rocket_t1.title"
+    },
+    "description": {
+      "translate": "advancement.galacticraft.rocket_t1.description"
+    },
+    "icon": {
+      "item": "galacticraftcore:rocket_t1",
+      "data": 0
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/galacticraftcore/galacticraft/rocket_workbench"
+}

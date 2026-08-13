@@ -1,0 +1,21 @@
+{
+  "criteria": {
+    "spin_thruster": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "galacticraftcore:spin_thruster",
+            "data": 0
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "spin_thruster"
+    ]
+  ],
+  "parent": "galacticraftcore:galacticraft/create_space_station"
+}

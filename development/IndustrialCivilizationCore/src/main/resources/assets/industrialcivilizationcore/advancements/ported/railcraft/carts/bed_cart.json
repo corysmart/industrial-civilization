@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "railcraft:cart_bed"
+    },
+    "title": {
+      "translate": "advancements.railcraft.carts.bed_cart.name"
+    },
+    "description": {
+      "translate": "advancements.railcraft.carts.bed_cart.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/railcraft/carts/root",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

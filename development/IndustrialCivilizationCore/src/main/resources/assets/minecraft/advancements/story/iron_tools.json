@@ -1,0 +1,15 @@
+{
+  "parent": "minecraft:story/smelt_iron",
+  "criteria": {
+    "iron_pickaxe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:iron_pickaxe"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "railcraft:track_kit",
+      "nbt": "{railcraft:{kit:\"railcraft_buffer\"}}"
+    },
+    "title": {
+      "translate": "advancements.railcraft.tracks.track_kit.name"
+    },
+    "description": {
+      "translate": "advancements.railcraft.tracks.track_kit.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/railcraft/tracks/manual_rolling_machine",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

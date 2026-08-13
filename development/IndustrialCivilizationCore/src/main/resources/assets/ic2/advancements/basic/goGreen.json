@@ -1,0 +1,17 @@
+{
+  "parent": "ic2:basic/bitclean",
+  "criteria": {
+    "has_stat": {
+      "trigger": "ic2:has_stat",
+      "conditions": {
+        "stat": {
+          "type": "percent",
+          "baseStat": "ic2:cleanEnergy",
+          "otherStat": "ic2:dirtyEnergy",
+          "baseAmount": 100,
+          "percent": 90
+        }
+      }
+    }
+  }
+}

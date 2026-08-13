@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "railcraft:track_flex_strap_iron"
+    },
+    "title": {
+      "translate": "advancements.railcraft.tracks.wooden_track.name"
+    },
+    "description": {
+      "translate": "advancements.railcraft.tracks.wooden_track.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/railcraft/tracks/coke_oven",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

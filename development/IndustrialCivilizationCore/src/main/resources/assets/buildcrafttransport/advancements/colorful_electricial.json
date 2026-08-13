@@ -1,0 +1,8 @@
+{
+  "parent": "buildcrafttransport:logic_transportation",
+  "criteria": {
+    "code_trigger": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

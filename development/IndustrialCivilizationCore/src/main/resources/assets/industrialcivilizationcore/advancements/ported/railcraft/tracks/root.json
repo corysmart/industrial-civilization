@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "item": "railcraft:track_flex_reinforced"
+    },
+    "title": {
+      "translate": "advancements.railcraft.tracks.root.name"
+    },
+    "description": {
+      "translate": "advancements.railcraft.tracks.root.desc"
+    },
+    "background": "railcraft:textures/blocks/brick_sandy_1.png",
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "industrialcivilizationcore:early_autocrafting"
+}

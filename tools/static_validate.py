@@ -150,8 +150,8 @@ for path in jars:
     except Exception as exc:
         ok(False, f"JAR integrity {path.relative_to(ROOT)}: {exc}")
 
-core_build = ROOT / "development/IndustrialCivilizationCore/build/libs/IndustrialCivilizationCore-0.2.0.jar"
-core_live = ROOT / "mods/IndustrialCivilizationCore-0.2.0.jar"
+core_build = ROOT / "development/IndustrialCivilizationCore/build/libs/IndustrialCivilizationCore-0.3.0.jar"
+core_live = ROOT / "mods/IndustrialCivilizationCore-0.3.0.jar"
 ok(core_build.is_file() and core_live.is_file() and digest(core_build) == digest(core_live), "custom build output equals live JAR")
 core_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/IndustrialCivilizationCore.java").read_text()
 ok("openQuestGuideAtFirstChapter" in core_source
@@ -575,6 +575,34 @@ ok(ic2_paradise["criteria"] == {"mars_cultivation": {"trigger": "minecraft:impos
 ok("achievement.terraformEndCultivation=Martian Paradise" in ic2_override_lang
    and "IC2 Terraformer on Mars" in ic2_override_lang,
    "IC2 paradise achievement title and description reference Mars")
+continuity_source = json.loads((ROOT / "development/IndustrialCivilizationCore/src/main/resources/assets/minecraft/advancements/adventure/totem_of_undying.json").read_text())
+continuity_advancement = json.loads((ROOT / "development/IndustrialCivilizationCore/src/main/resources/assets/industrialcivilizationcore/advancements/ported/minecraft/adventure/totem_of_undying.json").read_text())
+ecology_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/PlanetaryEcologySystem.java").read_text()
+worldgen_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/CivilizationWorldGenerator.java").read_text()
+ok("display" not in continuity_source
+   and continuity_advancement["display"]["icon"]["item"] == "industrialcivilizationcore:emergency_continuity_core"
+   and continuity_source["criteria"] == {"ai_continuity": {"trigger": "minecraft:impossible"}}
+   and continuity_advancement["criteria"] == {"ported_source": {"trigger": "minecraft:impossible"}}
+   and "emergencyContinuity" in core_source
+   and '"adventure/totem_of_undying"' in core_source
+   and "Items.TOTEM_OF_UNDYING.setCreativeTab(null)" in core_source
+   and "drop.getItem().getItem() == Items.TOTEM_OF_UNDYING" in core_source
+   and "mods.jei.ingredient.removeAndHide([vanillaTotem])" in script,
+   "AI Emergency Continuity Core wholly replaces the removed Totem and rewrites Postmortal")
+ok("EntitySpacePirate" in ecology_source and "EntitySpaceMilitia" in ecology_source
+   and "EntitySpaceCitizen" in ecology_source
+   and "event.getEntity() instanceof IMob" in ecology_source
+   and 'domain.startsWith("galacticraft")' not in ecology_source,
+   "Moon and Mars reject monster identities and use breathable human astronaut entities")
+ok("spacePirateUsesNanoSuit" in ecology_source and 'equipArmor(pirate, nano ? "nano" : "astronaut")' in ecology_source
+   and 'equipArmor(militia, "quantum")' in ecology_source
+   and "setDropChance(slot, 2.0F)" in ecology_source
+   and "contextualHumanSalvage" in ecology_source,
+   "space gear tiers use 20-percent NanoSuit pirates, QuantumSuit security, guaranteed kit, and rare salvage")
+ok("buildOperationalFactory" in worldgen_source and "buildIndustrialCity" in worldgen_source
+   and "buildMilitiaOutpost" in worldgen_source and "buildPrimitiveSettlement" in worldgen_source
+   and "AbandonedFactoryWorldGenerator.buildShell" in worldgen_source,
+   "Moon and Mars generate cities, settlements, militia, fabrication centers, and abandoned or pirate sites")
 ok("projecte" not in script.lower(), "no ProjectE in reloadable integration script")
 
 ledger = json.loads((ROOT / "bin/extractedFiles.json").read_text())

@@ -2,7 +2,7 @@
 
 Status: Phase 2 playable development build  
 Pack: Minecraft 1.12.2 / Technic Tekkit 2  
-First-party runtime: IndustrialCivilizationCore 0.2.0  
+First-party runtime: IndustrialCivilizationCore 0.3.0
 Authoritative data: `progression/*.json`; generated quest pack: `config/betterquesting/DefaultQuests.json`
 
 ## Vision

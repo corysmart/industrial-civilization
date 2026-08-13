@@ -1,0 +1,14 @@
+{
+  "parent": "railcraft:tracks/coke_oven",
+  "criteria": {
+    "manual": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "item": {
+          "item": "railcraft:equipment",
+          "data": 0
+        }
+      }
+    }
+  }
+}

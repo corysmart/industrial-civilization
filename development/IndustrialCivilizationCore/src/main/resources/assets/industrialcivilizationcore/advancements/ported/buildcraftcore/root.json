@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "item": "buildcraftcore:gear_wood"
+    },
+    "title": {
+      "translate": "advancements.buildcraftcore.root.title"
+    },
+    "description": {
+      "translate": "advancements.buildcraftcore.root.description"
+    },
+    "background": "minecraft:textures/gui/advancements/backgrounds/adventure.png",
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "industrialcivilizationcore:early_autocrafting"
+}

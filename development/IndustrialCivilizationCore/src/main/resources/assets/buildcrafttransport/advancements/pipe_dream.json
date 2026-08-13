@@ -1,0 +1,8 @@
+{
+  "parent": "buildcraftcore:root",
+  "criteria": {
+    "code_trigger": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

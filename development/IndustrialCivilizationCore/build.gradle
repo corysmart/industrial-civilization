@@ -9,7 +9,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'java'
 
-version = '0.2.0'
+version = '0.3.0'
 group = 'com.industrialcivilization'
 archivesBaseName = 'IndustrialCivilizationCore'
 sourceCompatibility = targetCompatibility = '1.8'

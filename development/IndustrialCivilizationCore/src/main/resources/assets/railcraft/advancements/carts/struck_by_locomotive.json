@@ -1,0 +1,9 @@
+{
+  "parent": "railcraft:carts/locomotive",
+  "criteria": {
+    "struck": {
+      "trigger": "railcraft:killed_by_locomotive",
+      "conditions": {}
+    }
+  }
+}

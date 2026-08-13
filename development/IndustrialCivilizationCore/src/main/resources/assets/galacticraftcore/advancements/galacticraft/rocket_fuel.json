@@ -1,0 +1,21 @@
+{
+  "criteria": {
+    "fuel_bucket": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "galacticraftcore:bucket_fuel",
+            "data": 0
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "fuel_bucket"
+    ]
+  ],
+  "parent": "galacticraftcore:galacticraft/refinery"
+}

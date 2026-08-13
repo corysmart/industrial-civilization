@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "buildcrafttransport:pipe_diamond_wood_item"
+    },
+    "title": {
+      "translate": "advancements.buildcrafttransport.pipe_diversification.title"
+    },
+    "description": {
+      "translate": "advancements.buildcrafttransport.pipe_diversification.description"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/buildcrafttransport/pipe_dream",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

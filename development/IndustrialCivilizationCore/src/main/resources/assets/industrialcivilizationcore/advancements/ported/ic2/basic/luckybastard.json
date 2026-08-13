@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "item": "ic2:itemmisc",
+      "data": 253
+    },
+    "title": {
+      "translate": "achievement.luckyBastard"
+    },
+    "description": {
+      "translate": "achievement.luckyBastard.desc"
+    },
+    "frame": "challenge",
+    "hidden": true
+  },
+  "parent": "industrialcivilizationcore:ported/ic2/basic/root",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

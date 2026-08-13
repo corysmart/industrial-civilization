@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:story/follow_ender_eye",
+  "criteria": {
+    "entered_end": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "the_end"
+      }
+    }
+  }
+}

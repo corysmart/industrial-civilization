@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "in_oil": {
+      "trigger": "minecraft:enter_block",
+      "conditions": {
+        "block": "galacticraftcore:crude_oil_still"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "in_oil"
+    ]
+  ],
+  "parent": "galacticraftcore:galacticraft/compressor"
+}

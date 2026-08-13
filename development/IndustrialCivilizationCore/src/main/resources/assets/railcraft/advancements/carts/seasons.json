@@ -1,0 +1,9 @@
+{
+  "parent": "railcraft:carts/surprise",
+  "criteria": {
+    "set_season": {
+      "trigger": "railcraft:set_season",
+      "conditions": {}
+    }
+  }
+}

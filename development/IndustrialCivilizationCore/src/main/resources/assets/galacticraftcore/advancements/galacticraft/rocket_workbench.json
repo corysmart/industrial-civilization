@@ -1,0 +1,21 @@
+{
+  "criteria": {
+    "rocket_workbench": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "galacticraftcore:rocket_workbench",
+            "data": 0
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "rocket_workbench"
+    ]
+  ],
+  "parent": "galacticraftcore:galacticraft/compressor"
+}

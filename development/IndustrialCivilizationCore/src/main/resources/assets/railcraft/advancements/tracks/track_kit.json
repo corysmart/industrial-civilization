@@ -1,0 +1,13 @@
+{
+  "parent": "railcraft:tracks/manual_rolling_machine",
+  "criteria": {
+    "build": {
+      "trigger": "railcraft:use_track_kit",
+      "conditions": {
+        "used": {
+          "item": "railcraft:track_kit"
+        }
+      }
+    }
+  }
+}

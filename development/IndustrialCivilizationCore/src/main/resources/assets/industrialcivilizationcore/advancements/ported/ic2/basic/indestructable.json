@@ -1,0 +1,21 @@
+{
+  "display": {
+    "icon": {
+      "item": "ic2:itemarmoralloychestplate",
+      "data": 0
+    },
+    "title": {
+      "translate": "achievement.indestructable"
+    },
+    "description": {
+      "translate": "achievement.indestructable.desc"
+    },
+    "frame": "challenge"
+  },
+  "parent": "industrialcivilizationcore:ported/ic2/basic/root",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

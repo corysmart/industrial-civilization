@@ -4,6 +4,30 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class GameplayRulesTest {
+    @Test public void moonAndMarsSuppressEveryMonsterIdentity() {
+        assertTrue(GameplayRules.suppressOffWorldMonster(true, true));
+        assertFalse(GameplayRules.suppressOffWorldMonster(true, false));
+        assertFalse(GameplayRules.suppressOffWorldMonster(false, true));
+    }
+    @Test public void spacePirateNanoSuitShareIsExactlyTwentyPercent() {
+        int nano = 0;
+        for (int roll = 0; roll < 100; roll++) {
+            if (GameplayRules.spacePirateUsesNanoSuit(roll)) nano++;
+        }
+        assertEquals(20, nano);
+    }
+    @Test public void lunarPiratesOnlyTargetLunarStrategicCargoOrRetaliate() {
+        assertTrue(GameplayRules.spacePirateTargetsPlayer("Moon", true, false, false));
+        assertFalse(GameplayRules.spacePirateTargetsPlayer("Moon", false, true, false));
+        assertFalse(GameplayRules.spacePirateTargetsPlayer("Moon", false, false, false));
+        assertTrue(GameplayRules.spacePirateTargetsPlayer("Moon", false, false, true));
+    }
+    @Test public void martianPiratesOnlyTargetMartianStrategicCargoOrRetaliate() {
+        assertTrue(GameplayRules.spacePirateTargetsPlayer("Mars", false, true, false));
+        assertFalse(GameplayRules.spacePirateTargetsPlayer("Mars", true, false, false));
+        assertFalse(GameplayRules.spacePirateTargetsPlayer("Mars", false, false, false));
+    }
+
     @Test public void ic2ParadiseRequiresCultivationBlueprintInMarsTerraformer() {
         assertTrue(GameplayRules.marsCultivationAchievement(
             "Mars", "ic2:itemtfbpbase", 20,

@@ -1,0 +1,21 @@
+{
+  "criteria": {
+    "solar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "galacticraftcore:solar",
+            "data": 0
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "solar"
+    ]
+  ],
+  "parent": "galacticraftcore:galacticraft/basic_wafer"
+}

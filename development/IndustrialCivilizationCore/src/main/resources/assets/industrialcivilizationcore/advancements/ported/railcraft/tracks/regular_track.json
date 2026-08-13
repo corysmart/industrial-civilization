@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:rail"
+    },
+    "title": {
+      "translate": "advancements.railcraft.tracks.regular_track.name"
+    },
+    "description": {
+      "translate": "advancements.railcraft.tracks.regular_track.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/railcraft/tracks/manual_rolling_machine",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

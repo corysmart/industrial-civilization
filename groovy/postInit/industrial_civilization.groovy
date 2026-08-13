@@ -40,6 +40,13 @@ def mffsProgressionMachines = [
 ]
 mods.jei.ingredient.add(mffsProgressionMachines)
 
+// The magical Totem is replaced by a Robotic Manufacturing Cell product.
+// Removing it here covers recipe viewers and any inherited recipe source;
+// the core mod also suppresses drops and creative exposure.
+def vanillaTotem = item('minecraft:totem_of_undying')
+crafting.removeByOutput(vanillaTotem)
+mods.jei.ingredient.removeAndHide([vanillaTotem])
+
 // IC Credits can be minted only as an expensive emergency measure. Selling
 // ordinary components at neutral settlement prices is intentionally cheaper.
 crafting.addShaped('industrial_civilization:industrial_credit', item('industrialcivilizationcore:industrial_credit'), [

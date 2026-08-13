@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:diamond"
+    },
+    "title": {
+      "translate": "advancements.story.mine_diamond.title"
+    },
+    "description": {
+      "translate": "advancements.story.mine_diamond.description"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/minecraft/story/iron_tools",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "appliedenergistics2:charger"
+    },
+    "title": {
+      "translate": "achievement.ae2.Charger"
+    },
+    "description": {
+      "translate": "achievement.ae2.Charger.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/appliedenergistics2/main/charged_quartz",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "item": "ic2:itemmisc",
+      "data": 350
+    },
+    "title": {
+      "translate": "achievement.bitClean"
+    },
+    "description": {
+      "translate": "achievement.bitClean.desc"
+    },
+    "frame": "challenge",
+    "hidden": true
+  },
+  "parent": "industrialcivilizationcore:ported/ic2/basic/root",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:wheat"
+    },
+    "title": {
+      "translate": "advancements.husbandry.plant_seed.title"
+    },
+    "description": {
+      "translate": "advancements.husbandry.plant_seed.description"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/minecraft/husbandry/root",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

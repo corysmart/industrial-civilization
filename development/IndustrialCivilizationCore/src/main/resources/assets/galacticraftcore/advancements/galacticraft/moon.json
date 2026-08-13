@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "traveled_to_moon": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "moon.moon"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "traveled_to_moon"
+    ]
+  ],
+  "parent": "galacticraftcore:galacticraft/launch_rocket"
+}

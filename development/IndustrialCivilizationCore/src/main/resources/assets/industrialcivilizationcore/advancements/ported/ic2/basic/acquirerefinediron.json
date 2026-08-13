@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "ic2:itemmisc",
+      "data": 53
+    },
+    "title": {
+      "translate": "achievement.acquireRefinedIron"
+    },
+    "description": {
+      "translate": "achievement.acquireRefinedIron.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/ic2/basic/root",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

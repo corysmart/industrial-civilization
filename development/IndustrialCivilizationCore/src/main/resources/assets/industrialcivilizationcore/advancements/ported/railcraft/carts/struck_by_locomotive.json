@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "railcraft:armor_overalls"
+    },
+    "title": {
+      "translate": "advancements.railcraft.carts.struck.by.locomotive.name"
+    },
+    "description": {
+      "translate": "advancements.railcraft.carts.struck.by.locomotive.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/railcraft/carts/locomotive",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

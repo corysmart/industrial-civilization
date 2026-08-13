@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "buildcraftfactory:chute"
+    },
+    "title": {
+      "translate": "advancements.buildcraftfactory.retired_hopper.title"
+    },
+    "description": {
+      "translate": "advancements.buildcraftfactory.retired_hopper.description"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/buildcraftcore/wrenched",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

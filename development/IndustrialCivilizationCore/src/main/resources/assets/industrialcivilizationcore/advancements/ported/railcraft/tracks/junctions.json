@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "railcraft:track_outfitted",
+      "nbt": "{railcraft:{rail:\"railcraft_iron\",kit:\"railcraft_turnout\"}}"
+    },
+    "title": {
+      "translate": "advancements.railcraft.tracks.junctions.name"
+    },
+    "description": {
+      "translate": "advancements.railcraft.tracks.junctions.desc"
+    }
+  },
+  "parent": "industrialcivilizationcore:ported/railcraft/tracks/regular_track",
+  "criteria": {
+    "ported_source": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}
