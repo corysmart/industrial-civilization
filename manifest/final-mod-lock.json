@@ -7,7 +7,7 @@
   "forge": "14.23.5.2860",
   "java": "8",
   "mode": "final",
-  "mod_count_jars": 162,
+  "mod_count_jars": 163,
   "mods": [
     {
       "file": "mods/!configanytime-3.0.jar",
@@ -50,6 +50,19 @@
       "suspicious": [],
       "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
       "redistribution": "Inherited third-party binary; verify author terms before any export."
+    },
+    {
+      "file": "mods/!mod-director-launchwrapper-1.8.3.jar",
+      "filename": "!mod-director-launchwrapper-1.8.3.jar",
+      "size": 2917748,
+      "sha256": "19c995a1a964e8c6af4f04d5b6ad682b8f89f216afcddc7ea90602a08ed65c57",
+      "classification": "LIBRARY",
+      "mods": [],
+      "declared_dependencies": [],
+      "core_plugin": "net.jan.moddirector.launchwrapper.ModDirectorTweaker",
+      "suspicious": [],
+      "source": "https://modrinth.com/mod/mod-director/version/b8pITnja",
+      "redistribution": "MIT-licensed official ModDirector LaunchWrapper 1.8.3 binary."
     },
     {
       "file": "mods/1.12.2/ChickenASM-1.12-1.0.2.7.jar",
@@ -1581,7 +1594,7 @@
       "core_plugin": null,
       "suspicious": [],
       "source": "https://www.curseforge.com/minecraft/mc-mods/icbm/files/8177228",
-      "license": "All Rights Reserved; local private-pack testing only",
+      "license": "Code and assets have separate terms; the JAR's bundled asset license expressly permits inclusion in a modpack when shipped as the official project",
       "purpose": "Strategic missiles and defense, recipe-gated through IC2 progression"
     },
     {

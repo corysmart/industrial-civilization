@@ -173,3 +173,9 @@
 - The final implementation preserves the complete client advancement graph, moves all eight foreign roots to a non-rendered page, normalizes `industrialcivilizationcore:root` to page zero, selects it directly, removes stale page controls, and opens its viewport at the campaign root. Runtime diagnostics reported `root=industrialcivilizationcore:root totalRoots=9 selected=industrialcivilizationcore:root page=0`.
 - Final visual validation passed after a clean rebuild, deployment, and full restart: the Advancements window showed one and only one tab, its tooltip read `Industrial Civilization`, no page arrows or foreign tabs were present, and the connected achievable nodes were visibly rendered in the canvas. The deployed and repository core JAR SHA-256 is `3580dbc766d8d7775ba82b104ba75f1c2bbe537301c936001d96daf6530729da`; Java tests/build and all 1,828 static checks passed.
 - The full numbered main campaign remains validated complete. Test Bed 1 was left paused on Mars after the final UI proof.
+
+## 2026-08-13 — Hidden Technic distribution bootstrap
+
+- The hidden Technic listing `Industrial Civilization: Astra` was updated to platform version `1.2.7.2` and pointed at the full GitHub release archive. The listing remained hidden throughout the test.
+- The release archive omits the Techguns JAR and includes ModDirector plus a pinned CurseForge request for project `244201`, file `2958103`. A clean launcher update displayed the first-launch consent screen for that exact file, downloaded it, and continued normal Forge startup.
+- The installed file `techguns-1.12.2-2.0.2.0_pre3.2.jar` matched the required SHA-256 `154d3d794cfd74252f2cec979a6e72f5187bb9c21897ed4b42f45771a0e558f7`. This validates the Technic-compatible author-hosted dependency path without rehosting Techguns in the pack archive.

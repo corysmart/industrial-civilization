@@ -149,7 +149,7 @@ for archive, required_entries in archive_requirements.items():
         ok(False, f"dependency/resource archive {archive}: {exc}")
 
 jars = sorted((ROOT / "mods").rglob("*.jar"))
-ok(len(jars) == 162, "expected active JAR count 162")
+ok(len(jars) == 163, "expected active JAR count 163")
 for path in jars:
     try:
         with zipfile.ZipFile(path) as zf:
@@ -628,7 +628,7 @@ ledger = json.loads((ROOT / "bin/extractedFiles.json").read_text())
 ok(not any(any(token in entry.lower() for token in ("projecte", "viewemc", "ic2cuumatter")) for entry in ledger), "Technic extraction ledger repaired")
 
 final_lock = json.loads((ROOT / "manifest/final-mod-lock.json").read_text())
-ok(final_lock["mod_count_jars"] == 162, "final lock JAR count")
+ok(final_lock["mod_count_jars"] == 163, "final lock JAR count")
 ok(not final_lock["duplicate_detected_mod_ids"], "no duplicate declared mod IDs")
 locked = {record["file"]: record["sha256"] for record in final_lock["mods"]}
 for path in jars:
