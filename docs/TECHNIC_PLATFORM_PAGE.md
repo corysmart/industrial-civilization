@@ -1,0 +1,50 @@
+# Industrial Civilization: Astra
+
+## Overview
+
+Industrial Civilization: Astra is a progression-focused Minecraft 1.12.2 engineering pack about building a civilization, not merely collecting machines.
+
+Begin with survival workshops and practical power. Restore abandoned factories, develop transport and industry, navigate human factions, establish nuclear infrastructure, build a functioning orbital station, settle the Moon and Mars, and finally coordinate an interplanetary civilization through artificial intelligence and automated matter engineering.
+
+The 16-chapter Industrial Civilization campaign provides the intended order of play. Recipes, research records, machine telemetry, environmental systems, faction encounters, and real construction milestones enforce that progression in gameplay.
+
+Highlights:
+
+- A complete survival-to-AI main campaign with persistent world progression
+- IC2-centered power, manufacturing, nuclear engineering, and late-game matter technology
+- Galacticraft orbital, lunar, and Martian expansion with functional habitat requirements
+- Human robbers, militias, settlements, industrial cities, fabrication centers, and space factions
+- Restorable factories, drivable vehicles, logistics networks, research machines, and programmable automation
+- One unified Industrial Civilization advancement tree
+- Continued sandbox play after the main campaign is complete
+
+Version 0.3.0 is a hidden development build while redistribution and final release review remain in progress.
+
+## Help
+
+The first launch may display a ModDirector screen for an author-hosted dependency. Leave the listed file selected and continue; its cryptographic hash is verified before Minecraft starts.
+
+Recommended setup:
+
+- Use 64-bit Java 8.
+- Allocate at least 6 GB of memory; 8 GB is recommended.
+- Expect the first startup to take several minutes while 192 mods initialize.
+- Back up an important world before installing a future development update.
+- Follow the Industrial Civilization quest book rather than an upstream mod's standalone advancement order.
+
+Source, documentation, and issue reporting: https://github.com/corysmart/industrial-civilization
+
+## Permissions & Licensing
+
+Industrial Civilization's original code, scripts, configuration, quests, writing, and artwork are maintained in the public project repository. Third-party mods remain the property of their respective authors and are distributed under their individual licenses and modpack permissions.
+
+The pack archive contains official, unmodified third-party binaries only where their terms permit modpack inclusion. Techguns is not rehosted in the GitHub pack archive; ModDirector retrieves the pinned official CurseForge file during first launch and verifies SHA-256 before use. ICBM Classic is included under the modpack permission contained in its distributed license.
+
+This Technic listing remains hidden and is for internal development testing until the complete redistribution review is resolved. Do not mirror or publicly redistribute this development archive.
+
+## Resource files
+
+- `technic-assets/icon.png` — 50×50 launcher icon
+- `technic-assets/logo.png` — 370×220 launcher/platform logo
+- `technic-assets/background.png` — 900×600 launcher background
+

@@ -50,7 +50,7 @@ for name in ("baseline-mod-lock.json", "technical-baseline-mod-lock.json", "fina
 pack_version = json.loads((ROOT / "manifest/pack-version.json").read_text())
 technic_version = json.loads((ROOT / "bin/version").read_text())
 ok(pack_version == {
-       "industrial_civilization_version": "1.2.7",
+       "industrial_civilization_version": "0.3.0",
        "technic_base_version": "1.2.6",
        "core_version": "0.3.0",
    } and technic_version["version"] == pack_version["technic_base_version"],
