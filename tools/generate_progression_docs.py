@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate human-readable Phase 2 design documents from canonical JSON."""
+"""Generate human-readable campaign design documents from canonical JSON."""
 import json
 from pathlib import Path
 
@@ -158,7 +158,7 @@ placeholder_rows = ["| Former placeholder | Stable milestone | Runtime object | 
 for p in placeholders["entries"]:
     placeholder_rows.append(f"| `{p['id']}` | `{p['milestone_id']}` | `{p['runtime_item']}` | {'; '.join(p['implementation'])} |")
 write("PLACEHOLDER_SYSTEM.md", "Placeholder Replacement Status", f"""
-All eleven Phase 2 test placeholders have been removed. Their stable milestone IDs were preserved while their fulfillment mechanisms were replaced with real runtime content. No `[TEST PLACEHOLDER]` item, two-item shortcut recipe, shared placeholder model, or placeholder enable toggle remains.
+All eleven early test placeholders have been removed. Their stable milestone IDs were preserved while their fulfillment mechanisms were replaced with real runtime content. No `[TEST PLACEHOLDER]` item, two-item shortcut recipe, shared placeholder model, or placeholder enable toggle remains.
 
 {chr(10).join(placeholder_rows)}
 
@@ -274,7 +274,7 @@ The integration mod persists local-only telemetry: first milestone completion ti
 
 {fields}
 
-Complex orbital, lunar and Mars base quests now require sustained runtime evidence rather than inventory ownership: Galacticraft breathable air, nearby communications, operating local manufacturing, automated mining, local power and dimension-specific requirements. Fields not yet attributable reliably across inherited mods—automatic mining totals, all EU network generation/consumption, reactor efficiency, chapter rollups and complete imported/locally produced resource totals—remain schema-only. The goal is pacing analysis and reliable quest completion, not surveillance or fixed timers.
+Complex orbital, lunar and Mars base quests now require sustained runtime evidence rather than inventory ownership: a nearby active Galacticraft Oxygen Detector, communications, operating local manufacturing, automated mining, local power, and dimension-specific requirements. Player oxygen exposure or a running sealer alone is not habitat quest evidence. Fields not yet attributable reliably across inherited mods—automatic mining totals, all EU network generation/consumption, reactor efficiency, chapter rollups and complete imported/locally produced resource totals—remain schema-only. The goal is pacing analysis and reliable quest completion, not surveillance or fixed timers.
 """)
 
 def evidence_for(milestone):
@@ -458,7 +458,7 @@ checklist = [
 "No circular or impossible dependencies are visible."
 ]
 checklist.extend([
-"Orbital, lunar, and Mars habitat quests trigger only while the player is actually inside Galacticraft breathable air.",
+"Orbital, lunar, and Mars habitat quests trigger only after a nearby Galacticraft Oxygen Detector becomes active from breathable air; oxygen affecting the player or a running sealer alone is insufficient.",
 "Functional off-world bases require two continuous minutes of stable habitat samples plus their placed/operating infrastructure.",
 "A primitive settlement absorbs nearby stockpile items, pays an exact material bill, and constructs each physical upgrade without a random roll.",
 "Already-generated Mars chunks receive deterministic civilization processing after an AI-age player loads them.",
@@ -468,10 +468,10 @@ checklist.extend([
 "Stone axe/chainsaw trees and 3x3/9x9 drills process at most 12 extra blocks per tick while preserving protection, drops, enchantments and per-block tool payment.",
 "Radiation correctly follows players in vehicles and other moving entities as their AABB enters or leaves breathable air."
 ])
-write("MANUAL_QUEST_TEST_CHECKLIST.md", "Manual Quest Test Checklist", "Do not use a valued world for the first database import. No runtime claims are made until this checklist passes.\n\n" + "\n".join(f"- [ ] {i}. {v}" for i, v in enumerate(checklist, 1)) + "\n\nCheck `logs/latest.log`, `logs/groovy.log`, and `crafttweaker.log` after the run. Record quest/task IDs and screenshots for any mismatch.")
+write("MANUAL_QUEST_TEST_CHECKLIST.md", "Manual Quest Test Checklist", "Use this checklist for release regressions and dedicated side-path acceptance. The numbered campaign's completed 0.3.0 evidence is recorded in `MAIN_QUESTLINE_LIVE_TEST_LOG.md`; rerun affected checks after progression or runtime changes. Do not use a valued world for a quest-database migration.\n\n" + "\n".join(f"- [ ] {i}. {v}" for i, v in enumerate(checklist, 1)) + "\n\nCheck `logs/latest.log`, `logs/groovy.log`, and `crafttweaker.log` after the run. Record quest/task IDs and screenshots for any mismatch.")
 
 write("KNOWN_LIMITATIONS.md", "Verification Boundaries", """
-The build is a private alpha. Implemented code is not considered gameplay-validated until the disposable-world checklist passes:
+The build is a hidden internal alpha. The numbered 16-chapter campaign passed live acceptance, but targeted systems and side paths still retain these verification boundaries:
 
 - The critical orbital/lunar/Mars base milestones now have sustained runtime telemetry. Many simpler inherited-mod quests still use tangible, non-consuming item evidence; that proves acquisition, not permanent assembly or provenance.
 - Static and JUnit validation cannot prove Better Questing/Galacticraft GUI rendering, Forge event ordering, third-party protection integrations, entity behavior or performance.
@@ -480,9 +480,9 @@ The build is a private alpha. Implemented code is not considered gameplay-valida
 - Apollo positions use documented latitude/longitude projected at 24 blocks per degree. Galacticraft terrain is not a geographic lunar simulation, and the block monuments are interpretive heritage markers.
 - Faction skins are initial 1.12-compatible texture variants. They still need in-game lighting/model review and more role-specific differentiation.
 - Tool and habitat rule tests cover deterministic boundaries; actual claims, modded trees, unusual seals, moving vehicles and mass block drops remain runtime scenarios.
-- HeadlessMC is a viable Forge 1.12.2 launch/UI driver, but the repository cannot yet assemble the third-party pack in public CI because mod JARs are intentionally not committed and redistribution rights are unresolved.
+- HeadlessMC is a viable Forge 1.12.2 launch/UI driver and can stage the installed `industrial-civilization-astra` instance locally. Public CI still cannot reconstruct the complete pack from Git alone because third-party binaries and the authorized first-launch dependency are intentionally not committed.
 - Workshop review art and an exact placement contract now exist outside the game. Several decorative blocks/models pictured in the visual target are not implemented yet.
-- Public release licensing, authorized dependency delivery, Technic packaging, multiplayer QA and full-campaign balance remain open.
+- The hidden Technic/GitHub delivery path is operational. Public release still requires the remaining redistribution/attribution review, multiplayer QA, side-path acceptance, and full survival-balance testing.
 """)
 
 print(f"Generated 26 progression documents from {len(chapters)} chapters, {len(graph['optional_branches'])} side paths, and {len(milestones)} milestones")

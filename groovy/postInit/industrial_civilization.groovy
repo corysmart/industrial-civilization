@@ -1,4 +1,4 @@
-// Industrial Civilization vertical-slice integration.
+// Industrial Civilization campaign integration.
 // This postInit script is reloadable in-game with: /gs reload --clean
 
 import net.minecraftforge.event.entity.player.ItemTooltipEvent

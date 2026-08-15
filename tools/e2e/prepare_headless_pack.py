@@ -8,7 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = Path(os.environ.get("IC_TECHNIC_PACK",
-    "/Users/cory/Library/Application Support/technic/modpacks/tekkit-2")).resolve()
+    "/Users/cory/Library/Application Support/technic/modpacks/industrial-civilization-astra")).resolve()
 TARGET = (ROOT / ".headlessmc/game").resolve()
 CACHE_ROOT = (ROOT / ".headlessmc/pack-cache").resolve()
 

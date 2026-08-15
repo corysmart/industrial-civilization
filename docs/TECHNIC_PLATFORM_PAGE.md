@@ -18,7 +18,7 @@ Highlights:
 - One unified Industrial Civilization advancement tree
 - Continued sandbox play after the main campaign is complete
 
-Version 0.3.0 is a hidden development build while redistribution and final release review remain in progress.
+Version 0.3.0 is a hidden internal alpha. The complete numbered campaign has passed live acceptance, while redistribution review, side-path acceptance, multiplayer QA, and final survival-balance work remain in progress.
 
 ## Help
 
@@ -28,7 +28,7 @@ Recommended setup:
 
 - Use 64-bit Java 8.
 - Allocate at least 6 GB of memory; 8 GB is recommended.
-- Expect the first startup to take several minutes while 192 mods initialize.
+- Expect the first startup to take several minutes while the 162 pinned mod JARs initialize.
 - Back up an important world before installing a future development update.
 - Follow the Industrial Civilization quest book rather than an upstream mod's standalone advancement order.
 
@@ -47,4 +47,3 @@ This Technic listing remains hidden and is for internal development testing unti
 - `technic-assets/icon.png` — 50×50 launcher icon
 - `technic-assets/logo.png` — 370×220 launcher/platform logo
 - `technic-assets/background.png` — 900×600 launcher background
-

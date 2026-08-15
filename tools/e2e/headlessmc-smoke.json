@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "driver": "HeadlessMC HMC-Specifics Forge 1.12.2",
-  "pack_source": "/Users/cory/Library/Application Support/technic/modpacks/tekkit-2",
+  "pack_source": "/Users/cory/Library/Application Support/technic/modpacks/industrial-civilization-astra",
   "checks": [
     {"id": "title", "action": "render", "expect": "Industrial Civilization"},
     {"id": "quest_key", "action": "key f6", "expect_gui_contains": "betterquesting"},

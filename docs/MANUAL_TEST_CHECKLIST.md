@@ -2,8 +2,8 @@
 
 ## Startup
 
-1. In Technic Launcher, select the customized Tekkit 2 instance at `/Users/cory/Library/Application Support/technic/modpacks/tekkit-2`.
-2. Confirm Java 8 and allocate at least 4 GiB if available (the old metadata requests 3 GiB; Techguns, Custom NPCs, AE2, and Better Questing increase load).
+1. In Technic Launcher, select **Industrial Civilization: Astra** at `/Users/cory/Library/Application Support/technic/modpacks/industrial-civilization-astra`.
+2. Confirm 64-bit Java 8 and allocate at least 6 GiB; 8 GiB is recommended for the complete pack.
 3. Launch once and wait at the title screen. Do not open the pre-existing `New World` save.
 4. Confirm the menu label reads `Industrial Civilization v0.3.0` and inspect Loaded Mods for 162 JAR files / the expected mod IDs, including Onysd Vehicles 1.4.0, Obfuscate 0.4.2, and ICBM Classic 6.5.5.
 5. Open a disposable world, run `/gs reload --clean`, and confirm chat reports a successful reload with no errors. Review `logs/groovy.log` if it does not.
@@ -35,7 +35,7 @@
 - Craft the Analyzer, charge it from IC2 EU, and consume exactly 6,250 EU each for Earth Iron, lunar Meteoric Iron, and Martian Desh. Inspect all three origin-tagged records and confirm comparative research completes only after the set.
 - In orbit/Moon/Mars, confirm radiation begins damaging an exposed player after 30 seconds, then stops inside a roofed room served by an active sealed Oxygen Sealer or while wearing a full IC2 QuantumSuit.
 - Repeat radiation protection in irregular rooms, a large base, two connected sealed rooms, at a loaded/unloaded chunk boundary, and with configured modded sealing blocks. Test missing, depleted and damaged QuantumSuit pieces. Ride or drive a moving entity across breathable-air boundaries and confirm protection follows the player's live AABB.
-- In orbit, Moon and Mars, keep the complete required infrastructure operating for two minutes. Confirm habitat/mining/manufacturing/communications quests and the functional-base mastery advancement trigger from telemetry, record once, and do not trigger from merely holding their component items.
+- In orbit, Moon and Mars, seal a room and confirm a placed Galacticraft Oxygen Detector reaches its active/redstone state. Player oxygen exposure or a running sealer without an active detector must not complete habitat quests. Keep the detector and all required infrastructure operating together for two continuous minutes; confirm mining/manufacturing/communications and functional-base mastery trigger from telemetry, record once, and reset their stability streak when any required component stops.
 - Deposit upgrade materials into inventories within 24 blocks of a primitive settlement. Confirm no random upgrade occurs, only 16 items are absorbed per cycle, the documented bill is consumed, and the settlement constructs exactly one expansion. Complete a real IC Credit trade and confirm circulation reaches the nearest settlement ledger.
 - Visit already-generated Mars chunks before AI, unlock AI, then reload those chunks. Confirm they receive deterministic bounded processing and do not duplicate structures after further reloads.
 - Visit all six Apollo marker coordinates and verify mission name, real landing date, latitude/longitude plaque, United States flag, no loot, and no ordinary Moon mobs or structures.

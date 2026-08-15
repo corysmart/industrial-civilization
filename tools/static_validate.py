@@ -343,7 +343,7 @@ for path in sorted((ROOT / "config").rglob("*.json")) + sorted((ROOT / "developm
 
 quests = json.loads((ROOT / "config/betterquesting/DefaultQuests.json").read_text())
 ok(quests.get("format:8") == "2.0.0", "Better Questing schema version")
-ok(len(quests.get("questDatabase:9", {})) == 129, "129 Phase 2 capability milestones")
+ok(len(quests.get("questDatabase:9", {})) == 129, "129 campaign capability milestones")
 ok(len(quests.get("questLines:9", {})) == 23, "16 chapter and 7 independent side-path tabs")
 names = [q["properties:10"]["betterquesting:10"]["name:8"] for q in quests["questDatabase:9"].values()]
 ordered_gates = ["Orbital Research Archive", "Authorized Lunar Landing", "Lunar Engineering Archive",

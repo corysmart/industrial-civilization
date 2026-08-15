@@ -7,7 +7,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 PACK = Path(os.environ.get("IC_TECHNIC_PACK",
-    "/Users/cory/Library/Application Support/technic/modpacks/tekkit-2"))
+    "/Users/cory/Library/Application Support/technic/modpacks/industrial-civilization-astra"))
 LOG = PACK / "logs/latest.log"
 SNAPSHOT = ROOT / ".headlessmc/results/workshop-adjacency.json"
 command = [sys.executable, str(Path(__file__).with_name("runtime_log_assert.py")), str(LOG),

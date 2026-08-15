@@ -1,6 +1,6 @@
 # Firearm Progression
 
-The representative vertical-slice route avoids multi-layer part microcrafting:
+The required campaign route avoids multi-layer part microcrafting:
 
 1. Railcraft/ore-dictionary steel and IC2 circuits unlock a Techguns pistol and magazines.
 2. A combat shotgun adds iron, steel, rubber, and a wooden stock route.

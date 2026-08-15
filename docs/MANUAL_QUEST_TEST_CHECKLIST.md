@@ -2,7 +2,7 @@
 
 # Manual Quest Test Checklist
 
-Do not use a valued world for the first database import. No runtime claims are made until this checklist passes.
+Use this checklist for release regressions and dedicated side-path acceptance. The numbered campaign's completed 0.3.0 evidence is recorded in `MAIN_QUESTLINE_LIVE_TEST_LOG.md`; rerun affected checks after progression or runtime changes. Do not use a valued world for a quest-database migration.
 
 - [ ] 1. Quest book opens with F6.
 - [ ] 2. All 16 numbered chapters and all 7 independent side-path tabs appear.
@@ -51,7 +51,7 @@ Do not use a valued world for the first database import. No runtime claims are m
 - [ ] 45. AI Age is presented as the beginning of the endgame.
 - [ ] 46. Post-AI branches are visible but do not block AI entry.
 - [ ] 47. No circular or impossible dependencies are visible.
-- [ ] 48. Orbital, lunar, and Mars habitat quests trigger only while the player is actually inside Galacticraft breathable air.
+- [ ] 48. Orbital, lunar, and Mars habitat quests trigger only after a nearby Galacticraft Oxygen Detector becomes active from breathable air; oxygen affecting the player or a running sealer alone is insufficient.
 - [ ] 49. Functional off-world bases require two continuous minutes of stable habitat samples plus their placed/operating infrastructure.
 - [ ] 50. A primitive settlement absorbs nearby stockpile items, pays an exact material bill, and constructs each physical upgrade without a random roll.
 - [ ] 51. Already-generated Mars chunks receive deterministic civilization processing after an AI-age player loads them.

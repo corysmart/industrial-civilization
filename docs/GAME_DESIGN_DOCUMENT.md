@@ -1,10 +1,10 @@
 # Industrial Civilization — Game Design Document
 
-Status: Phase 2 playable development build  
-Pack: Minecraft 1.12.2 / Technic Tekkit 2  
-First-party runtime: IndustrialCivilizationCore 0.3.0
-Industrial Civilization pack release: 0.3.0 (Technic base selector: 1.2.6)
-Authoritative data: `progression/*.json`; generated quest pack: `config/betterquesting/DefaultQuests.json`
+- Status: 0.3.0 hidden internal alpha; numbered campaign live-validated
+- Pack: Industrial Civilization: Astra / Minecraft 1.12.2 / Forge 14.23.5.2860
+- First-party runtime: IndustrialCivilizationCore 0.3.0
+- Industrial Civilization pack release: 0.3.0 (Technic base selector: 1.2.6)
+- Authoritative data: `progression/*.json`; generated quest pack: `config/betterquesting/DefaultQuests.json`
 
 ## Vision
 
@@ -194,15 +194,15 @@ The art source of truth and reproducible review assets are documented in `progre
 
 Offline checks cover registry objects, models/textures, runtime recipes, quest counts/prerequisites/task types, energy interop, keybind defaults, JAR integrity, and absence of placeholder IDs. They do not claim to simulate Forge rendering or a complete multiplayer playthrough.
 
-Quest/config changes can be loaded into an existing test world with `/bq_admin default load` after backing up its quest data. Resource additions and first-party JAR changes require a client restart. The source tree is deployed to `/Users/cory/Library/Application Support/technic/modpacks/tekkit-2`; that installed directory is a test target, not the Git authority.
+Quest/config changes can be loaded into an existing test world with `/bq_admin default load` after backing up its quest data. Resource additions and first-party JAR changes require a client restart. The source tree is deployed to `/Users/cory/Library/Application Support/technic/modpacks/industrial-civilization-astra`; that installed directory is a test target, not the Git authority. The older `tekkit-2` directory is retained only as pre-pack migration context.
 
 ## Implemented now
 
 - 16 chapters, 7 independent side paths, 129 automatic quests, full aspirational visibility, no manual checkbox tasks.
-- A visible 130-node vanilla advancement tree (root plus every quest) mirrors critical-route order and branches optional objectives from their real prerequisites.
+- A single connected Industrial Civilization advancement page exposes 324 achievable nodes in gameplay order, including 194 ported objectives from Minecraft and integrated mods. Foreign advancement pages are hidden, and 37 impossible, duplicate, magical, End-only, or fake-monster objectives are removed or replaced.
 - Story/mission/proof/control descriptions and actual objective icons for the entire generated quest set.
 - Five era-specific quest backgrounds and IC2-styled custom block/item/GUI art.
-- Thirty first-party blocks (18 machines/utility blocks plus 12 workshop architecture components), twenty-two progression artifacts, and the IC Credit currency with real construction/production paths.
+- Thirty first-party blocks (18 machines/utility blocks plus 12 workshop architecture components), twenty-three first-party items, and the IC Credit currency with real construction/production paths.
 - EU-native machines, environment-aware research, pre-selection Moon/Mars gates, solar multipliers/dust behavior, cargo channels, salvage route, AI synthesis, complete AI-gated AE2 catalog, and concrete post-AI proofs.
 - The End and portal activation are disabled. Natural pearls are suppressed; the compatible pearl registry item becomes a custom-rendered Technical Phase Pearl with an AI-only IC2 recipe and no pre-AI dependencies.
 - AI entry grants its advancement and opens the Industrial Civilization credits once per player, prominently crediting creator `corysmart`, then returns to the still-playable post-credits world.
@@ -212,21 +212,22 @@ Quest/config changes can be loaded into an existing test world with `/bq_admin d
 - First-completion quest timestamps/evidence sources and sustained telemetry detection for functional orbital, lunar and Mars bases.
 - Deterministic material-backed settlement upgrades, post-AI processing of existing Mars chunks, historically mapped Apollo markers, initial faction NPC skins, and a 15–30 second terrain warmup.
 - JUnit mechanics rules plus the documented HeadlessMC real-client E2E route.
-- Static/runtime-content/progression/energy validation harnesses and private Git version control.
+- Static/runtime-content/progression/energy validation harnesses and public Git source control.
+- Live acceptance of all 111 numbered Better Questing tasks through Chapter 16, including final-milestone save/reload persistence and continued post-campaign play.
 
 ## Remaining work
 
 ### Required playtest verification
 
-1. Restart once and visually inspect all five quest backgrounds, representative evidence icons, wrapping/scrolling of long descriptions, and locked-node browsing.
-2. Import pack version 9 into a disposable world and verify representative retrieval and advancement tasks across Earth, orbit, Moon, Mars, AI, and a side path.
-3. Complete a measured critical-route playthrough, record resource/power bottlenecks, and tune toward the intended 3–6 hour test route without adding arbitrary microcrafts.
-4. Exercise every custom machine GUI/peripheral method and cross-dimensional cargo channel under chunk unload/reload and save/restart.
+1. Complete a measured survival campaign without Creative-staged ingredients, record resource/power bottlenecks, and tune pacing without adding arbitrary microcrafts.
+2. Run dedicated acceptance passes for all seven independent side paths; ten faction/vehicle side-line advancements remained intentionally incomplete at the end of numbered-campaign acceptance.
+3. Exercise Earth and space factions, equipment drops, procedural settlements/cities/fabrication centers, vehicle handling, and world-generation spacing across fresh chunks and migrated low-exploration worlds.
+4. Exercise every custom machine GUI/peripheral method, cross-dimensional cargo channel, and multiplayer ownership path under chunk unload/reload and save/restart.
 
 ### Verification and release boundaries
 
 - Procedural settlements, trade prices, NPC pathfinding, reputation pacing, faction combat, vehicle handling, and capstone throughput require measured playtesting for final numerical tuning; their gameplay paths are implemented.
 - Static validation cannot prove Better Questing/Galacticraft GUI rendering or every third-party runtime event, so the disposable-world checklist remains authoritative.
-- Public release work is intentionally deferred: third-party licenses, authorized download links/Technic Solder, and distribution packaging are not gameplay features and remain separate release work.
+- Public release work is intentionally deferred: the hidden Technic/GitHub delivery path is operational, but the remaining third-party redistribution review, attribution, multiplayer QA, and release packaging are separate from gameplay completion.
 
 This document describes the current build, not aspirational functionality disguised as complete. When runtime behavior or canonical progression changes, update the machine-readable source and regenerate the projections before changing this document.

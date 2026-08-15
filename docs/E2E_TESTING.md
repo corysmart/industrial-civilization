@@ -35,10 +35,10 @@ GameTest execution applies to newer Minecraft versions.
 1. `./gradlew test` runs deterministic Java rules without Minecraft.
 2. `python3 tools/static_validate.py` and the progression/runtime validators
    reject broken content graphs, registrations and source-level contracts.
-3. A future HeadlessMC runner will launch the **actual assembled pack**, create
-   a disposable flat world, inspect the branded menu, press F6, inspect quest
-   text, open advancements, join a world, execute `/ic_status`, inspect HEI and
-   capture screenshots.
+3. The HeadlessMC runner stages the **actual assembled Astra pack** from the
+   installed standalone Technic instance, creates a disposable flat world,
+   inspects the branded menu and quest/advancement UI, joins a world, executes
+   diagnostics, inspects HEI, and captures screenshots.
 4. Mechanics that require spatial interaction—tree shapes, protected claims,
    sealed rooms, vehicles and rockets—remain real-world scenario tests driven
    by a small first-party test command/mod extension.
@@ -52,11 +52,11 @@ rules without changing survival spawning.
 
 ## Current boundary
 
-The repository does not redistribute its third-party mod JARs, so a public CI
-runner cannot reconstruct the pack legally from Git alone. The first HeadlessMC
-runner must stage the already-installed private Technic instance locally. It is
-not yet a replacement for the manual playthrough checklist, but it is the
-viable route to automated UI and launch smoke tests.
+The repository does not commit its third-party mod JARs, so public CI cannot
+reconstruct the complete pack from Git alone. HeadlessMC stages the installed
+`industrial-civilization-astra` Technic instance locally. It complements the
+completed numbered-campaign run and manual scenario checklists; it does not
+replace spatial, balance, side-path, or multiplayer acceptance.
 
 Sources consulted: the official HeadlessMC documentation and the
 `headlesshq/mc-runtime-test` project. Both are MIT-licensed tooling; neither is

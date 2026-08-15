@@ -444,7 +444,7 @@ def main():
         "questLines:9": quest_lines,
         "questSettings:10": {"betterquesting:10": {
             "livesdef:3": 3,
-            "pack_name:8": "Industrial Civilization — Phase 2",
+            "pack_name:8": "Industrial Civilization — Astra",
             "home_anchor_y:5": 0.5,
             "livesmax:3": 10,
             "home_anchor_x:5": 0.5,

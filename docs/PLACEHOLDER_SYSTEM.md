@@ -2,7 +2,7 @@
 
 # Placeholder Replacement Status
 
-All eleven Phase 2 test placeholders have been removed. Their stable milestone IDs were preserved while their fulfillment mechanisms were replaced with real runtime content. No `[TEST PLACEHOLDER]` item, two-item shortcut recipe, shared placeholder model, or placeholder enable toggle remains.
+All eleven early test placeholders have been removed. Their stable milestone IDs were preserved while their fulfillment mechanisms were replaced with real runtime content. No `[TEST PLACEHOLDER]` item, two-item shortcut recipe, shared placeholder model, or placeholder enable toggle remains.
 
 | Former placeholder | Stable milestone | Runtime object | Implemented behavior |
 |---|---|---|---|
