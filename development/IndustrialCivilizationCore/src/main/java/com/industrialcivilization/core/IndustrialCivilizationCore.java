@@ -703,7 +703,7 @@ public final class IndustrialCivilizationCore {
         private static net.minecraft.client.multiplayer.WorldClient terrainWarmupWorld;
         private static boolean terrainWarmupShown;
 
-        @SubscribeEvent
+        @SubscribeEvent(priority = EventPriority.LOWEST)
         public static void registerModels(ModelRegistryEvent event) {
             ModelLoader.setCustomModelResourceLocation(
                 Item.getItemFromBlock(MOLECULAR_ANALYZER), 0,
@@ -748,6 +748,39 @@ public final class IndustrialCivilizationCore {
                 ModelLoader.setCustomModelResourceLocation(
                     artifact, 0,
                     new ModelResourceLocation(artifact.getRegistryName(), "inventory"));
+            }
+            registerIc2MachineModels();
+        }
+
+        /**
+         * IC2 Classic keeps its familiar placed-block renderer, but its tiny
+         * isometric inventory cubes are hard to distinguish in HEI. Map each
+         * metadata variant to a flat, front-face Astra icon generated from the
+         * same source atlas. LOWEST event priority ensures this intentional
+         * resource-pack presentation wins over IC2's default item model setup.
+         */
+        private static void registerIc2MachineModels() {
+            registerIc2MachineModels("blockmachinelv", 16);
+            registerIc2MachineModels("blockmachinelv2", 8);
+            registerIc2MachineModels("blockmachinemv", 14);
+            registerIc2MachineModels("blockmachinehv", 7);
+            registerIc2MachineModels("blockgenerator", 15);
+            registerIc2MachineModels("blockcompactedgenerator", 9);
+            registerIc2MachineModels("blockelectric", 11);
+            registerIc2MachineModels("blockpersonal", 11);
+            registerIc2MachineModels("blockchargepad", 4);
+        }
+
+        private static void registerIc2MachineModels(String registryName, int metadataCount) {
+            Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation("ic2", registryName));
+            if (item == null) {
+                LOGGER.warn("Could not install Astra inventory icons for missing IC2 item {}", registryName);
+                return;
+            }
+            for (int metadata = 0; metadata < metadataCount; metadata++) {
+                ModelLoader.setCustomModelResourceLocation(item, metadata,
+                    new ModelResourceLocation(MODID + ":ic2_machines/"
+                        + registryName + "_" + metadata, "inventory"));
             }
         }
 

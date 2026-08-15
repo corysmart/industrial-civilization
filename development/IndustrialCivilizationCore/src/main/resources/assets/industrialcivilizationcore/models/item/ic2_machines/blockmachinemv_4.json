@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "industrialcivilizationcore:items/ic2_machines/blockmachinemv_4"
+  }
+}

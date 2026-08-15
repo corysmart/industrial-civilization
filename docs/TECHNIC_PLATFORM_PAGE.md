@@ -22,13 +22,13 @@ Version 0.3.0 is a hidden internal alpha. The complete numbered campaign has pas
 
 ## Help
 
-The first launch may display a ModDirector screen for an author-hosted dependency. Leave the listed file selected and continue; its cryptographic hash is verified before Minecraft starts.
+The first launch may display a ModDirector screen for author-hosted dependencies. Leave the listed files selected and continue; every cryptographic hash is verified before Minecraft starts.
 
 Recommended setup:
 
 - Use 64-bit Java 8.
 - Allocate at least 6 GB of memory; 8 GB is recommended.
-- Expect the first startup to take several minutes while the 162 pinned mod JARs initialize.
+- Expect the first startup to take several minutes while more than 160 pinned mod JARs initialize.
 - Back up an important world before installing a future development update.
 - Follow the Industrial Civilization quest book rather than an upstream mod's standalone advancement order.
 
@@ -38,7 +38,7 @@ Source, documentation, and issue reporting: https://github.com/corysmart/industr
 
 Industrial Civilization's original code, scripts, configuration, quests, writing, and artwork are maintained in the public project repository. Third-party mods remain the property of their respective authors and are distributed under their individual licenses and modpack permissions.
 
-The pack archive contains official, unmodified third-party binaries only where their terms permit modpack inclusion. Techguns is not rehosted in the GitHub pack archive; ModDirector retrieves the pinned official CurseForge file during first launch and verifies SHA-256 before use. ICBM Classic is included under the modpack permission contained in its distributed license.
+The pack archive contains official, unmodified third-party binaries only where their terms permit modpack inclusion. Techguns, Connected Glass 1.1.8, and its Core Lib are not rehosted in the GitHub pack archive; ModDirector retrieves their pinned official CurseForge files during first launch and verifies SHA-256 before use. Connected Glass explicitly permits modpack use and is intentionally pinned to the last pre-Fusion renderer release for compatibility with this optimized 1.12.2 pack. ICBM Classic is included under the modpack permission contained in its distributed license.
 
 This Technic listing remains hidden and is for internal development testing until the complete redistribution review is resolved. Do not mirror or publicly redistribute this development archive.
 

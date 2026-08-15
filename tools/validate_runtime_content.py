@@ -4,6 +4,7 @@ from pathlib import Path
 import json
 import re
 import sys
+import zipfile
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -129,6 +130,71 @@ check(all(title_logo.getpixel(point)[3] >= 250 for point in ((60, 20), (30, 128)
       "main-menu title card preserves the exterior metal frame")
 check(title_logo.getpixel((256, 128))[3] == 255,
       "main-menu title card preserves its opaque plaque interior")
+
+override_root = ROOT / "resources"
+ic2_machine_sheets = (
+    "batbox.png", "batterystation.png", "block_electric.png",
+    "block_generator.png", "block_generator_compact.png",
+    "block_machine_hv.png", "block_machine_lv.png", "block_machine_lv_2.png",
+    "block_machine_mv.png", "block_pads.png", "block_personal.png",
+    "block_personal_energy.png", "mfe.png", "mfsu.png", "pesu.png",
+)
+ic2_jar = ROOT / "mods/IC2Classic-1.12.2-1.5.11.jar"
+with zipfile.ZipFile(ic2_jar) as archive:
+    for filename in ic2_machine_sheets:
+        with archive.open(f"assets/ic2/textures/sprites/{filename}") as source_file:
+            source_texture = Image.open(source_file).convert("RGBA")
+            source_texture.load()
+        override_texture = Image.open(override_root / "ic2/textures/sprites" / filename).convert("RGBA")
+        check(override_texture.size == source_texture.size,
+              f"IC2 machine override preserves atlas dimensions: {filename}")
+        check(override_texture.getchannel("A").tobytes() == source_texture.getchannel("A").tobytes(),
+              f"IC2 machine override preserves sprite silhouettes and atlas occupancy: {filename}")
+        check(override_texture.tobytes() != source_texture.tobytes(),
+              f"IC2 machine override applies the Astra material palette: {filename}")
+
+ic2_icon_counts = {
+    "blockmachinelv": 16,
+    "blockmachinelv2": 8,
+    "blockmachinemv": 14,
+    "blockmachinehv": 7,
+    "blockgenerator": 15,
+    "blockcompactedgenerator": 9,
+    "blockelectric": 11,
+    "blockpersonal": 11,
+    "blockchargepad": 4,
+}
+ic2_icon_root = ASSETS / "textures/items/ic2_machines"
+ic2_model_root = ASSETS / "models/item/ic2_machines"
+for registry_name, metadata_count in ic2_icon_counts.items():
+    for metadata in range(metadata_count):
+        stem = f"{registry_name}_{metadata}"
+        texture_path = ic2_icon_root / f"{stem}.png"
+        model_path = ic2_model_root / f"{stem}.json"
+        check(texture_path.is_file(), f"IC2 flat inventory texture exists: {stem}")
+        icon = Image.open(texture_path).convert("RGBA")
+        check(icon.size == (64, 64), f"IC2 flat inventory texture is 64x64: {stem}")
+        check(icon.getpixel((0, 0))[3] == 0 and icon.getpixel((63, 63))[3] == 0,
+              f"IC2 flat inventory texture has transparent corners: {stem}")
+        alpha_bbox = icon.getchannel("A").getbbox()
+        check(alpha_bbox is not None and (alpha_bbox[2] - alpha_bbox[0]) >= 40
+              and (alpha_bbox[3] - alpha_bbox[1]) >= 40,
+              f"IC2 flat inventory texture uses a readable area: {stem}")
+        check(model_path.is_file(), f"IC2 flat inventory model exists: {stem}")
+        model = json.loads(model_path.read_text())
+        check(model.get("parent") == "item/generated"
+              and model.get("textures", {}).get("layer0")
+              == f"industrialcivilizationcore:items/ic2_machines/{stem}",
+              f"IC2 flat inventory model references its dedicated texture: {stem}")
+
+core_model_source = (JAVA / "IndustrialCivilizationCore.java").read_text()
+check("registerIc2MachineModels();" in core_model_source
+      and "@SubscribeEvent(priority = EventPriority.LOWEST)\n        public static void registerModels"
+      in core_model_source,
+      "IC2 flat inventory models override default item cubes at lowest event priority")
+for registry_name, metadata_count in ic2_icon_counts.items():
+    check(f'registerIc2MachineModels("{registry_name}", {metadata_count});' in core_model_source,
+          f"IC2 inventory registration covers every metadata variant: {registry_name}")
 
 gameplay_rules = (JAVA / "GameplayRules.java").read_text()
 check("questHomeTitleWidth" in gameplay_rules,

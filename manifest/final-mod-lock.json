@@ -56,13 +56,13 @@
       "filename": "!mod-director-launchwrapper-1.8.3.jar",
       "size": 2917748,
       "sha256": "19c995a1a964e8c6af4f04d5b6ad682b8f89f216afcddc7ea90602a08ed65c57",
-      "classification": "LIBRARY",
+      "classification": "KEEP",
       "mods": [],
       "declared_dependencies": [],
-      "core_plugin": "net.jan.moddirector.launchwrapper.ModDirectorTweaker",
+      "core_plugin": null,
       "suspicious": [],
-      "source": "https://modrinth.com/mod/mod-director/version/b8pITnja",
-      "redistribution": "MIT-licensed official ModDirector LaunchWrapper 1.8.3 binary."
+      "source": "Inherited from audited local Tekkit 2 v1.2.6 instance",
+      "redistribution": "Inherited third-party binary; verify author terms before any export."
     },
     {
       "file": "mods/1.12.2/ChickenASM-1.12-1.0.2.7.jar",
@@ -1594,7 +1594,7 @@
       "core_plugin": null,
       "suspicious": [],
       "source": "https://www.curseforge.com/minecraft/mc-mods/icbm/files/8177228",
-      "license": "Code and assets have separate terms; the JAR's bundled asset license expressly permits inclusion in a modpack when shipped as the official project",
+      "license": "All Rights Reserved; local private-pack testing only",
       "purpose": "Strategic missiles and defense, recipe-gated through IC2 progression"
     },
     {
@@ -1650,8 +1650,8 @@
     {
       "file": "mods/IndustrialCivilizationCore-0.3.0.jar",
       "filename": "IndustrialCivilizationCore-0.3.0.jar",
-      "size": 3111633,
-      "sha256": "3580dbc766d8d7775ba82b104ba75f1c2bbe537301c936001d96daf6530729da",
+      "size": 3232986,
+      "sha256": "fdf8e615bf69cbde90da378bb32772991322edd13359f34b0909c9d5a0ede31e",
       "classification": "KEEP",
       "mods": [
         {
@@ -3764,8 +3764,8 @@
     },
     {
       "file": "config/Galacticraft/core.cfg",
-      "sha256": "9d2aa37b5cac42bf455974b6f94e874aa4afae3a1a37a301a60b834b5bc7a36d",
-      "size": 12013
+      "sha256": "a411c972ebceacab3af45cbcc8da60b3ea0ca49266cbf3beba9a51c0d9dc1af2",
+      "size": 12149
     },
     {
       "file": "config/Galacticraft/energy.cfg",
@@ -3944,8 +3944,8 @@
     },
     {
       "file": "config/betterquesting/DefaultQuests.json",
-      "sha256": "30f707a51701c74907587b7b7ea0b39a5114cc0a3aab61dcbd825e2ca73533ff",
-      "size": 355553
+      "sha256": "1fa5546b5283b7d7e00ff66b72aa7f73e0603e2c63acfecfd72665af99e6f115",
+      "size": 355551
     },
     {
       "file": "config/blockcraftery.cfg",
@@ -4728,6 +4728,26 @@
       "size": 7449
     },
     {
+      "file": "config/mod-director/connected-glass.curse.json",
+      "sha256": "09879d09d01cdb7c90faf235dd0be58cae190bab0fce0a6b3a95fbf68d77fd9e",
+      "size": 170
+    },
+    {
+      "file": "config/mod-director/modpack.json",
+      "sha256": "4e3aa8f2813d6deff788386c130172339b933f86f34a25abcb5b4905b2c78435",
+      "size": 51
+    },
+    {
+      "file": "config/mod-director/supermartijn642-core-lib.curse.json",
+      "sha256": "5eca001fca6e033a7d26db7a29d6628aa2b2e7529a77045ce443012696fb21f1",
+      "size": 170
+    },
+    {
+      "file": "config/mod-director/techguns.curse.json",
+      "sha256": "09409298c5c24a38189d1916a2dcaaefe3cebfa1d70b4fb9d15c9b8b58d7dfaa",
+      "size": 170
+    },
+    {
       "file": "config/modernbetaforge.cfg",
       "sha256": "6506cda0fc5e8915d206f3e2a370115da05fa49bd0c05d5340dcc31d16e28537",
       "size": 2141
@@ -5199,8 +5219,8 @@
     },
     {
       "file": "groovy/postInit/industrial_civilization.groovy",
-      "sha256": "55c135857a019ead8bf73185b57e630c71c22157864650f439c55cd04b5c5723",
-      "size": 10951
+      "sha256": "194c1ca1c471ac5aca359e8907c19f0adb9fba367f21d9b19f3b8298a6452c8b",
+      "size": 10945
     },
     {
       "file": "groovy/postInit/industrial_civilization_content.groovy",
@@ -5231,6 +5251,81 @@
       "file": "resources/assets/modernsplash/textures/gui/title/mojang.png",
       "sha256": "a4985a99d84feaf816a98684cdaa9b7e5b1c393754ed0aca104e04e382590120",
       "size": 54786
+    },
+    {
+      "file": "resources/ic2/textures/sprites/batbox.png",
+      "sha256": "def2ac9bb0bebec12fd42ca24e49b1140b4ac887587702ab3ac4ad6cbd1ae93a",
+      "size": 997
+    },
+    {
+      "file": "resources/ic2/textures/sprites/batterystation.png",
+      "sha256": "74f4a4a1dee2f9cb2e64df0e284d7d304adf51eb49aa910e5c96ce9a57150c7b",
+      "size": 799
+    },
+    {
+      "file": "resources/ic2/textures/sprites/block_electric.png",
+      "sha256": "6cd6cfc8639625c384fda3bdba32b9f23577c11bc4069a6d8fb32af4a336f1be",
+      "size": 11309
+    },
+    {
+      "file": "resources/ic2/textures/sprites/block_generator.png",
+      "sha256": "02931b81afaca32898f41b4e24c40035b069a91aba945aa9c4c9534067676477",
+      "size": 17937
+    },
+    {
+      "file": "resources/ic2/textures/sprites/block_generator_compact.png",
+      "sha256": "8fb3d868f69cf5bb4391e3934777e7ea0968eb8c841ac929fddb37ae86d34fb0",
+      "size": 14403
+    },
+    {
+      "file": "resources/ic2/textures/sprites/block_machine_hv.png",
+      "sha256": "ae5ed19886f6949f518413a26434a6dc3599ec6f28c3213d8e31e86b7287d28e",
+      "size": 17905
+    },
+    {
+      "file": "resources/ic2/textures/sprites/block_machine_lv.png",
+      "sha256": "2b10537542cb1a644391fdece4c749776c090957b5317a9c464aa5695195d0b4",
+      "size": 15422
+    },
+    {
+      "file": "resources/ic2/textures/sprites/block_machine_lv_2.png",
+      "sha256": "8e0bf44a11f0c7adc7688996856d82bd216230c7f486bfe7b8b62c62e72427a1",
+      "size": 13008
+    },
+    {
+      "file": "resources/ic2/textures/sprites/block_machine_mv.png",
+      "sha256": "afce662267816d8b096b1b9ea7a982635326cda18803a80281d7d570311001cf",
+      "size": 16363
+    },
+    {
+      "file": "resources/ic2/textures/sprites/block_pads.png",
+      "sha256": "46dcee43edc2c36465533d7c633d2d41787efbfdeb6ad423ba7c2d6842de2e2e",
+      "size": 4136
+    },
+    {
+      "file": "resources/ic2/textures/sprites/block_personal.png",
+      "sha256": "eeb2f0a1de9157e25cf13ea48572accecf52b7ffff860a003c0d64c208eeb932",
+      "size": 7789
+    },
+    {
+      "file": "resources/ic2/textures/sprites/block_personal_energy.png",
+      "sha256": "55aed5bafda86e84effe12786450bf33003f5471b78f9d3960403ff06463828c",
+      "size": 2564
+    },
+    {
+      "file": "resources/ic2/textures/sprites/mfe.png",
+      "sha256": "c74a392f1effa2db56e57a4eced312d3148413dab22b337a9a930712bd5c91ee",
+      "size": 1426
+    },
+    {
+      "file": "resources/ic2/textures/sprites/mfsu.png",
+      "sha256": "b1763e133d14d3bae828c0939afdfd1f01f192b6deed054c6e92807b185b8e84",
+      "size": 1114
+    },
+    {
+      "file": "resources/ic2/textures/sprites/pesu.png",
+      "sha256": "807a1df6b66307e9ceaa8f94d5d890188c08edc35ce021dc263aa249c58533d4",
+      "size": 1029
     },
     {
       "file": "resources/industrialcivilizationcore/textures/gui/quest_bg_earth.png",

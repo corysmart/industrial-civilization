@@ -27,24 +27,33 @@ Exact evidence, defects found during testing, fixes, and contamination notes are
 - Persistent factions, IC Credit trade, reputation, membership, companions, settlement stockpiles/upgrades, roads, utility spines, cargo exchange, procedural civilization, and bounded post-AI processing of already-loaded Mars chunks.
 - Six curated vehicles, a Passenger Carrier, Vehicle Service Dock, covered workshop controllers, wear/rust/repair, machine-gated firearms, and ICBM strategic-defense integration.
 - Unified Industrial Civilization advancements, branded menus/window/crash metadata, one-time creator credits, disabled End progression, AI-age Technical Phase Pearl, and IC2 Martian Paradise compatibility.
+- Always-on Astra texture overrides preserve IC2 machine identity while updating placed-block casings to the first-party steel/orange/cyan visual language. Dedicated flat front-face icons make IC2 machines easier to distinguish in inventory and HEI without changing their placed geometry.
+- Crafted Connecting Glass provides clean habitat windows whose joined interior edges disappear while the structure's outside border remains readable; ordinary vanilla glass is unchanged.
 
 ## Distribution state
 
 - The public Git repository is `corysmart/industrial-civilization`; its reachable history uses the `corysmart` GitHub no-reply identity rather than a Prepaid2Coin address.
 - The hidden Technic listing installs as `industrial-civilization-astra` and serves the full permitted pack from the GitHub `v0.3.0` release.
-- Techguns is omitted from the GitHub archive. ModDirector retrieves pinned CurseForge project `244201`, file `2958103`, and requires SHA-256 `154d3d794cfd74252f2cec979a6e72f5187bb9c21897ed4b42f45771a0e558f7` before startup.
+- Techguns, Connected Glass 1.1.8, and its Core Lib are omitted from the GitHub archive. ModDirector retrieves pinned official CurseForge files and verifies their SHA-256 hashes before startup. Connected Glass is intentionally held at the last pre-Fusion renderer release for compatibility with the pack's optimized 1.12.2 rendering stack.
 - ICBM Classic 6.5.5 is included under the modpack permission in its distributed license.
 - The pack remains hidden until the remaining redistribution/attribution review and public-release QA are complete.
 
 ## Current automated evidence
 
-- Runtime-content harness: 801 checks.
+- Runtime-content harness: 1,426 checks.
 - Unified advancements: 194 ported, 324 visible, 37 removed/replaced, one rooted campaign tree.
 - Energy interoperability: 22 checks.
 - Progression validator: 3,540 checks, 16 chapters, 7 side paths, 129 milestones, 11 runtime replacements, 0 placeholders.
-- Static validator: 1,834 checks.
+- Static validator: 1,933 checks.
 - HeadlessMC preflight: 8 smoke checks.
 - The Java 8 Forge build and deterministic unit suite passed for the campaign-acceptance build; live deployment hashes and per-fix test counts are retained in the live log.
+
+## Local 0.4.0 visual candidate
+
+- On 2026-08-15, the rebuilt candidate was installed only into the local `industrial-civilization-astra` Technic instance, followed by a full client restart and reload of the existing `Test Bed 1` world on Mars. It has not been published or deployed as 0.4.0.
+- The attempted first-party ordinary-glass CTM override failed live acceptance and was removed. Connected glass is being supplied through a dedicated, upstream-maintained mod instead.
+- HEI search for `macerator` displayed the new flat front-face icons for the IC2 machine variants. The icons retain the established IC2 face markings while using the Astra steel, orange-process, and cyan-status palette.
+- Placed IC2 machines retained their familiar geometry and functional face language while loading the cleaner casing textures. The world was left clean and paused after the test.
 
 ## Remaining release work
 

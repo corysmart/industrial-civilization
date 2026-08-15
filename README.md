@@ -27,9 +27,10 @@ The older `tekkit-2` directory was the pre-pack development installation. It
 is retained only as legacy/migration context and is no longer the deployment
 or testing target.
 
-The release archive contains the full permitted pack payload. Techguns is not
-rehosted; ModDirector retrieves the pinned official CurseForge file on first
-launch and verifies its SHA-256 before Forge starts. See
+The release archive contains the full permitted pack payload. Restricted
+dependencies are not rehosted: ModDirector retrieves pinned official
+CurseForge files for Techguns, Connected Glass, and its Core Lib on first launch,
+then verifies every SHA-256 before Forge starts. See
 `docs/TECHNIC_PLATFORM_PAGE.md`, `docs/ADDED_MODS.md`, and
 `manifest/final-mod-lock.json` for packaging, dependency, and hash details.
 
@@ -43,6 +44,13 @@ launch and verifies its SHA-256 before Forge starts. See
   objectives are hidden, removed, or replaced
 - IC2-centered EU power, manufacturing, monitored nuclear engineering,
   research, programmable automation, matter technology, and AE2 endgame
+- An always-on Astra texture layer with recognizable IC2 machinery restyled in
+  the first-party steel, orange-process, and cyan-power visual language, plus
+  readable flat IC2 machine icons for inventory and HEI
+- Crafted Connecting Glass with a visible structure perimeter and seamless
+  shared interior edges; the deliberately pinned pre-Fusion renderer is
+  compatible with the pack's legacy optimized rendering stack, and ordinary
+  vanilla glass remains unchanged
 - Functional orbital, lunar, and Martian infrastructure gates backed by
   sustained telemetry and active Galacticraft Oxygen Detector proof
 - Human Earth and space factions, settlements, cities, fabrication centers,
@@ -73,6 +81,7 @@ interpreter. The canonical generation and validation sequence is:
 
 ```sh
 python3 tools/generate_ic2_assets.py
+python3 development/tools/generate_astra_texture_overrides.py
 python3 tools/generate_runtime_advancements.py
 python3 tools/generate_unified_advancements.py
 python3 tools/generate_objectives.py
@@ -85,9 +94,9 @@ python3 tools/static_validate.py
 python3 tools/e2e/preflight.py
 ```
 
-At the current 0.3.0 state these checks report 801 runtime-content checks,
+At the current 0.3.0 state these checks report 1,426 runtime-content checks,
 324 connected visible advancements, 22 energy-interoperability checks, 3,540
-progression checks, 1,834 static checks, and 8 HeadlessMC preflight checks.
+progression checks, 1,933 static checks, and 8 HeadlessMC preflight checks.
 Offline checks complement—not replace—the live evidence and scenario lists in
 `docs/E2E_TESTING.md`, `docs/MAIN_QUESTLINE_TEST_PLAN.md`, and
 `docs/MANUAL_TEST_CHECKLIST.md`.
