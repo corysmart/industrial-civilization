@@ -1648,16 +1648,16 @@
       "redistribution": "Inherited third-party binary; verify author terms before any export."
     },
     {
-      "file": "mods/IndustrialCivilizationCore-0.3.0.jar",
-      "filename": "IndustrialCivilizationCore-0.3.0.jar",
+      "file": "mods/IndustrialCivilizationCore-0.4.0.jar",
+      "filename": "IndustrialCivilizationCore-0.4.0.jar",
       "size": 3232986,
-      "sha256": "fdf8e615bf69cbde90da378bb32772991322edd13359f34b0909c9d5a0ede31e",
+      "sha256": "b4af289d50ca68932317e4125644e59a57f2a1fd2e91bd01aa8fc5101ef5d16a",
       "classification": "KEEP",
       "mods": [
         {
           "id": "industrialcivilizationcore",
           "name": "Industrial Civilization Core",
-          "version": "0.3.0",
+          "version": "0.4.0",
           "minecraft": "1.12.2",
           "dependencies": [
             "computercraft",
@@ -3739,7 +3739,7 @@
     },
     {
       "file": "config/CustomMainMenu/mainmenu.json",
-      "sha256": "f9d75b22089bea7cbbd8698200c3015abfafb8149a676d189d9f9b1e5c07b898",
+      "sha256": "fba3a243cb48b7cee065d1470deb2cdfeafcf89e6bb898724173b63835783c4b",
       "size": 4007
     },
     {

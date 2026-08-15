@@ -9,7 +9,7 @@ release readiness and balance:
 3. Test fresh and lightly explored worlds for settlement/city/fabrication-center spacing, roads, utilities, Moon/Mars human ecology, equipment tiers, drops, and post-AI chunk processing.
 4. Measure IC Credit circulation, construction bills, production rates, reputation, NPC pathfinding/combat, space-pirate cargo triggers, and vehicle handling/repair.
 5. Exercise cross-dimensional cargo, ComputerCraft peripherals, claims/protection adapters, and multiplayer ownership through unload/reload and restart cycles.
-6. Finish the redistribution and attribution audit, confirm each dependency delivery path, remove the hidden Technic restriction only when approved, and perform clean-install/update QA from the `v0.3.0` baseline.
+6. Finish the redistribution and attribution audit, confirm each dependency delivery path, remove the hidden Technic restriction only when approved, and perform clean-install/update QA from the `v0.4.0` baseline.
 
 Do not reopen completed main-line gates merely to add grind. New work should
 improve clarity, balance, reliability, side content, or public-release safety.

@@ -12,7 +12,7 @@
 | `vehicle-mod-1.4.0-1.12.2.jar` | Onysd Vehicles driving/physics base and six curated vehicle chassis | Modrinth `LuvveCaI` | Minecraft 1.12.2; LGPL-2.1-or-later source available |
 | `ICBM-classic-1.12.2-6.5.5.jar` | Strategic missiles, launch control, radar and defense hardware; duplicate parts hidden and recipes rebuilt around IC2 | CurseForge file `8177228` | Minecraft 1.12.2; the bundled asset license expressly permits inclusion in a modpack; preserve upstream credits and ship the official unmodified JAR |
 | `obfuscate-0.4.2-1.12.2.jar` | Required vehicle animation/network library | 2916310 | Minecraft 1.12.2; GPL-3.0 |
-| `IndustrialCivilizationCore-0.3.0.jar` | First-party progression, research, factory salvage, machine, gate, and UI integration | local source | Compiled against Forge 14.23.5.2860 / Java 8 |
+| `IndustrialCivilizationCore-0.4.0.jar` | First-party progression, research, factory salvage, machine, gate, and UI integration | local source | Compiled against Forge 14.23.5.2860 / Java 8 |
 | `connectedglass-1.1.8-forge-mc1.12.jar` | Crafted connecting, clear, and styled habitat glass and panes | CurseForge file `4771346` | Minecraft 1.12.2; last native-renderer release before the Fusion migration, intentionally pinned for compatibility with the pack's optimized legacy renderer; fetched from CurseForge by ModDirector |
 | `_supermartijn642corelib-1.1.21-forge-mc1.12.jar` | Shared runtime dependency for Connected Glass | CurseForge file `7783295` | Minecraft 1.12.2; fetched from CurseForge by ModDirector |
 

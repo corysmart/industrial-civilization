@@ -468,7 +468,7 @@ checklist.extend([
 "Stone axe/chainsaw trees and 3x3/9x9 drills process at most 12 extra blocks per tick while preserving protection, drops, enchantments and per-block tool payment.",
 "Radiation correctly follows players in vehicles and other moving entities as their AABB enters or leaves breathable air."
 ])
-write("MANUAL_QUEST_TEST_CHECKLIST.md", "Manual Quest Test Checklist", "Use this checklist for release regressions and dedicated side-path acceptance. The numbered campaign's completed 0.3.0 evidence is recorded in `MAIN_QUESTLINE_LIVE_TEST_LOG.md`; rerun affected checks after progression or runtime changes. Do not use a valued world for a quest-database migration.\n\n" + "\n".join(f"- [ ] {i}. {v}" for i, v in enumerate(checklist, 1)) + "\n\nCheck `logs/latest.log`, `logs/groovy.log`, and `crafttweaker.log` after the run. Record quest/task IDs and screenshots for any mismatch.")
+write("MANUAL_QUEST_TEST_CHECKLIST.md", "Manual Quest Test Checklist", "Use this checklist for release regressions and dedicated side-path acceptance. The numbered campaign's completed 0.4.0 evidence is recorded in `MAIN_QUESTLINE_LIVE_TEST_LOG.md`; rerun affected checks after progression or runtime changes. Do not use a valued world for a quest-database migration.\n\n" + "\n".join(f"- [ ] {i}. {v}" for i, v in enumerate(checklist, 1)) + "\n\nCheck `logs/latest.log`, `logs/groovy.log`, and `crafttweaker.log` after the run. Record quest/task IDs and screenshots for any mismatch.")
 
 write("KNOWN_LIMITATIONS.md", "Verification Boundaries", """
 The build is a hidden internal alpha. The numbered 16-chapter campaign passed live acceptance, but targeted systems and side paths still retain these verification boundaries:
