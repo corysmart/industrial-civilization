@@ -1,10 +1,10 @@
 # Industrial Civilization — Full Status Report
 
-- Status date: 2026-08-15
+- Status date: 2026-08-16
 - Source authority: `/Users/cory/Documents/tekkit-3`
 - Technic pack: `Industrial Civilization: Astra`
 - Technic test target: `/Users/cory/Library/Application Support/technic/modpacks/industrial-civilization-astra`
-- Release: `0.4.0` (`v0.4.0` on GitHub; hidden Technic listing)
+- Release: `0.5.0` (`v0.5.0` on GitHub; hidden Technic listing)
 
 ## Current acceptance state
 
@@ -33,18 +33,18 @@ Exact evidence, defects found during testing, fixes, and contamination notes are
 ## Distribution state
 
 - The public Git repository is `corysmart/industrial-civilization`; its reachable history uses the `corysmart` GitHub no-reply identity rather than a Prepaid2Coin address.
-- The hidden Technic listing installs as `industrial-civilization-astra` and serves the full permitted pack from the GitHub `v0.4.0` release.
+- The hidden Technic listing installs as `industrial-civilization-astra` and serves the full permitted pack from the GitHub `v0.5.0` release.
 - Techguns, Connected Glass 1.1.8, and its Core Lib are omitted from the GitHub archive. ModDirector retrieves pinned official CurseForge files and verifies their SHA-256 hashes before startup. Connected Glass is intentionally held at the last pre-Fusion renderer release for compatibility with the pack's optimized 1.12.2 rendering stack.
 - ICBM Classic 6.5.5 is included under the modpack permission in its distributed license.
 - The pack remains hidden until the remaining redistribution/attribution review and public-release QA are complete.
 
 ## Current automated evidence
 
-- Runtime-content harness: 1,426 checks.
+- Runtime-content harness: 1,451 checks.
 - Unified advancements: 194 ported, 324 visible, 37 removed/replaced, one rooted campaign tree.
-- Energy interoperability: 22 checks.
+- Energy interoperability: 39 checks.
 - Progression validator: 3,540 checks, 16 chapters, 7 side paths, 129 milestones, 11 runtime replacements, 0 placeholders.
-- Static validator: 1,933 checks.
+- Static validator: 1,934 checks.
 - HeadlessMC preflight: 8 smoke checks.
 - The Java 8 Forge build and deterministic unit suite passed for the campaign-acceptance build; live deployment hashes and per-fix test counts are retained in the live log.
 
@@ -55,6 +55,14 @@ Exact evidence, defects found during testing, fixes, and contamination notes are
 - HEI search for `macerator` displayed the new flat front-face icons for the IC2 machine variants. The icons retain the established IC2 face markings while using the Astra steel, orange-process, and cyan-status palette.
 - Placed IC2 machines retained their familiar geometry and functional face language while loading the cleaner casing textures. The world was left clean and paused after the test.
 
+## 0.5.0 native IC2 power release
+
+- First-party processing machines now consume recipe work in EU and scale throughput from aggregate legal IC2 packets while checking each packet's voltage independently. Parallel MFSU banks are an intentional expert-engineering strategy rather than a false overvoltage condition.
+- Baseline timings and total energy remain stable at baseline power. Manufacturing can approach one tick with extreme legal infrastructure, while scientific observations retain only their documented physical minimum durations.
+- Machine GUIs and ComputerCraft peripherals expose accepted EU/t, baseline power, effective speed, work completion, and ETA without exposing Forge Energy to players.
+- Live acceptance proved 1× and 4× legal packet aggregation, native illegal-packet destruction, Fabricator/Assembler/Robotic/Gun production, the Martian experiment time floor, and exact save/reload continuation of partial EU work.
+- Pack-controlled startup faults found during testing were corrected for GroovyScript, Galacticraft's lunar inventory alias, Better Ping Display, KleeSlabs, and Default Options. The remaining diagnostics are inherited third-party compatibility warnings documented in the live log.
+
 ## Remaining release work
 
 - Complete measured survival-balance and resource/power pacing runs without Creative-staged ingredients.
@@ -63,4 +71,4 @@ Exact evidence, defects found during testing, fixes, and contamination notes are
 - Exercise multiplayer ownership, long-distance/chunk-unloaded cargo, every ComputerCraft peripheral method, and third-party protection integrations.
 - Finish the redistribution and attribution audit, confirm every dependency delivery path, and perform public-release packaging/upgrade QA.
 
-Version 0.4.0 is suitable for continued private/internal play and preservation of the lightly explored playthrough world. It is not yet presented as a public release-quality build.
+Version 0.5.0 is suitable for continued private/internal play and preservation of the lightly explored playthrough world. It is not yet presented as a public release-quality build.

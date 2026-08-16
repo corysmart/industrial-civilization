@@ -80,13 +80,15 @@ import org.apache.logging.log4j.Logger;
 public final class IndustrialCivilizationCore {
     public static final String MODID = "industrialcivilizationcore";
     public static final String NAME = "Industrial Civilization Core";
-    public static final String VERSION = "0.4.0";
+    public static final String VERSION = "0.5.0";
     /** Canonical pack conversion, matching IC2 Classic's RFPerEU setting. */
     public static final int FE_PER_EU = 8;
     public static final int GUI_INDUSTRIAL_MACHINE = 1;
     public static final int GUI_VEHICLE_STORAGE = 2;
     public static final int GUI_VEHICLE_CRAFTING = 3;
     public static boolean ENFORCE_SPACE_GATES = true;
+    public static boolean NATIVE_IC2_POWER_SCALING = true;
+    public static boolean ALLOW_MULTI_PACKET_THROUGHPUT = true;
     public static boolean TEST_BRIDGE_ENABLED = false;
     public static String E2E_AUTO_SCENARIO = "";
     public static int ROBBER_SPAWN_PERCENT = 25;
@@ -220,6 +222,10 @@ public final class IndustrialCivilizationCore {
         runtime.load();
         ENFORCE_SPACE_GATES = runtime.getBoolean("enforceSpaceResearchGates", "progression",
             true, "Return unauthorized players to Earth when entering the Moon or Mars.");
+        NATIVE_IC2_POWER_SCALING = runtime.getBoolean("nativeIc2PowerScaling", "energy",
+            true, "Convert machine progress into total-EU work so legal aggregate IC2 input increases throughput.");
+        ALLOW_MULTI_PACKET_THROUGHPUT = runtime.getBoolean("allowMultiPacketThroughput", "energy",
+            true, "Allow independently legal IC2 packets received between machine ticks to contribute aggregate work.");
         ROBBER_SPAWN_PERCENT = runtime.getInt("robberSpawnPercent", "ecology", 25, 0, 100,
             "Percent of ordinary Earth zombie spawn attempts converted into Robbers.");
         ROBBER_LOCAL_CAP = runtime.getInt("robberLocalCap", "ecology", 4, 1, 16,

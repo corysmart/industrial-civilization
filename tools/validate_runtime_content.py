@@ -321,11 +321,16 @@ expected_recipes = {
 check(set(recipe_ids) == expected_recipes, "all runtime machine recipes are present")
 
 kind_source = (JAVA / "IndustrialMachineKind.java").read_text()
-specs = {name: (int(cap), int(voltage), int(duration)) for name, _id, cap, voltage, duration in
-         re.findall(r'(\w+)\("([^"]+)", (\d+), (\d+), (\d+)\)', kind_source)}
-for name, (capacity, voltage, duration) in specs.items():
+specs = {name: (int(cap), int(voltage), int(duration), int(minimum), work_class)
+         for name, _id, cap, voltage, duration, minimum, work_class in re.findall(
+             r'(\w+)\("([^"]+)", (\d+), (\d+), (\d+), (\d+), WorkClass\.(\w+)\)', kind_source)}
+check(len(specs) == 12, "all first-party processing-machine work specifications are parsed")
+for name, (capacity, voltage, duration, minimum, work_class) in specs.items():
     check(capacity >= voltage * duration, f"{name} can buffer at least one complete operation")
     check(duration > 0 and voltage in {32, 128, 512, 2048, 8192}, f"{name} has an IC2 voltage tier and finite duration")
+    check(0 <= minimum <= duration, f"{name} has a valid physical/scientific minimum duration")
+    check((minimum == 0) == (work_class == "ENERGY_LIMITED"),
+          f"{name} work classification agrees with its minimum duration")
 
 lang = (ASSETS / "lang/en_us.lang").read_text()
 check("[TEST PLACEHOLDER]" not in lang, "no temporary display names remain")

@@ -13,7 +13,7 @@ public final class GuiIndustrialMachine extends GuiContainer {
     private static final int TITLE_WIDTH = 184;
     private static final int STATUS_LEFT = 37;
     private static final int STATUS_RIGHT = 190;
-    private static final int STATUS_Y = 69;
+    private static final int STATUS_Y = 82;
     private static final int STATUS_COLOR = 0xD7E0E3;
     private static final int ENERGY_BAR_HEIGHT = 36;
     private static final int ENERGY_BAR_BOTTOM = 67;
@@ -63,6 +63,13 @@ public final class GuiIndustrialMachine extends GuiContainer {
             tile.getDisplayName().getUnformattedText(), TITLE_WIDTH);
         int titleX = TITLE_LEFT + (TITLE_WIDTH - fontRenderer.getStringWidth(title)) / 2;
         fontRenderer.drawString(title, titleX, 6, 0x25333A);
+        String input = "Input " + IndustrialUiText.compactNumber(tile.getAcceptedEUThisTick())
+            + " EU/t  " + IndustrialUiText.speedMultiplier(tile.getEffectiveSpeedMultiplier());
+        fontRenderer.drawString(input, STATUS_LEFT, 58, STATUS_COLOR);
+        String work = "Work " + IndustrialUiText.compactNumber(tile.getWorkCompletedEU())
+            + "/" + IndustrialUiText.compactNumber(tile.getWorkRequiredEU())
+            + "  ETA " + IndustrialUiText.ticksAsEta(tile.getEstimatedTicksRemaining());
+        fontRenderer.drawString(work, STATUS_LEFT, 70, STATUS_COLOR);
         String energy = "EU " + IndustrialUiText.compactNumber(tile.getEnergyStored())
             + "/" + IndustrialUiText.compactNumber(tile.getCapacity());
         // The status row belongs inside the dark process display. Its left edge
@@ -84,8 +91,8 @@ public final class GuiIndustrialMachine extends GuiContainer {
             : (int) ((long) ENERGY_BAR_HEIGHT * tile.getEnergyStored() / tile.getCapacity());
         drawTexturedModalRect(left + 21, top + ENERGY_BAR_BOTTOM - energyHeight,
             208, ENERGY_BAR_HEIGHT - energyHeight, 8, energyHeight);
-        int progressWidth = tile.getDuration() <= 0 ? 0
-            : PROGRESS_WIDTH * tile.getProgress() / tile.getDuration();
+        int progressWidth = tile.getWorkRequiredEU() <= 0 ? 0
+            : (int) (PROGRESS_WIDTH * tile.getWorkCompletedEU() / tile.getWorkRequiredEU());
         drawTexturedModalRect(left + PROGRESS_LEFT, top + 39,
             208, 49, progressWidth, 16);
     }

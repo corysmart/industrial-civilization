@@ -4,6 +4,8 @@
 
 Time differences emerge from engineering quality: parallelism, power stability, routing, preparation, local production, and reduced downtime.
 
+First-party manufacturing turns legal aggregate IC2 delivery directly into work throughput. Parallel MFSU banks are an intentional high-end optimization: each packet remains subject to native voltage safety while accepted EU/t aggregates for the active operation. Orbital generation therefore improves industry naturally through storage and distribution engineering, without a dimension-specific crafting multiplier.
+
 ## 01 — Early Survival and Workshop
 
 - Experienced players consolidate mining trips and build only durable workshop infrastructure.

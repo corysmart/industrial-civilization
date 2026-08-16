@@ -33,11 +33,26 @@ import net.minecraftforge.energy.IEnergyStorage;
 public final class TileIndustrialMachine extends TileEntity
         implements ITickable, ISidedInventory, IEnergySink, IPeripheral {
     public static final int OUTPUT_SLOT = 3;
+    static final String[] PERIPHERAL_METHODS = {
+        "getStatus", "getEnergy", "getCapacity", "getProgress", "getEnvironment",
+        "listRecipes", "selectRecipe", "queue", "getCompleted", "setCargoChannel",
+        "getCargoChannel", "transferCargo", "getEnergyStored", "getInputTier",
+        "getAcceptedEUThisTick", "getBaselineEUPerTick", "getEffectiveSpeedMultiplier",
+        "getWorkCompleted", "getWorkRequired", "getEstimatedTicksRemaining"
+    };
     private static final int[] INPUTS = {0, 1, 2};
     private static final int[] OUTPUT = {3};
     private final NonNullList<ItemStack> inventory = NonNullList.withSize(4, ItemStack.EMPTY);
     private double energy;
     private int progress;
+    private double workCompletedEU;
+    private double pendingOperationEU;
+    private double acceptedSinceLastUpdateEU;
+    private double lastAcceptedEU;
+    private int elapsedOperationTicks;
+    private String activeRecipeId = "";
+    private boolean legacyWorkAwaitingRecipe;
+    private int legacyProgressTicks;
     private int completedOperations;
     private int queuedOperations = 1;
     private String selectedRecipe = "";
@@ -53,15 +68,10 @@ public final class TileIndustrialMachine extends TileEntity
 
     private final IEnergyStorage forgeEnergy = new IEnergyStorage() {
         @Override public int receiveEnergy(int amount, boolean simulate) {
-            int missingFe = (int) Math.floor((getCapacity() - energy)
-                * IndustrialCivilizationCore.FE_PER_EU);
-            int transferLimit = getKind().voltage * IndustrialCivilizationCore.FE_PER_EU;
-            int accepted = Math.max(0, Math.min(amount, Math.min(missingFe, transferLimit)));
-            if (!simulate && accepted > 0) {
-                energy += accepted / (double) IndustrialCivilizationCore.FE_PER_EU;
-                markDirty();
-            }
-            return accepted;
+            double offeredEU = amount / (double) IndustrialCivilizationCore.FE_PER_EU;
+            double acceptedEU = acceptEnergyEU(Math.min(offeredEU, getKind().voltage), simulate);
+            return Math.max(0, Math.min(amount,
+                (int) Math.floor(acceptedEU * IndustrialCivilizationCore.FE_PER_EU)));
         }
         @Override public int extractEnergy(int amount, boolean simulate) { return 0; }
         @Override public int getEnergyStored() {
@@ -84,6 +94,26 @@ public final class TileIndustrialMachine extends TileEntity
     public int getCapacity() { return getKind().capacity; }
     public int getProgress() { return progress; }
     public int getDuration() { return getKind().duration; }
+    public long getWorkRequiredEU() { return getKind().totalWorkEU(); }
+    public long getWorkCompletedEU() { return (long) Math.floor(workCompletedEU); }
+    public int getMinimumTicks() { return getKind().minimumTicks; }
+    public int getElapsedOperationTicks() { return elapsedOperationTicks; }
+    public int getAcceptedEUThisTick() { return (int) Math.floor(lastAcceptedEU); }
+    public int getBaselineEUPerTick() { return getKind().voltage; }
+    public double getEffectiveSpeedMultiplier() {
+        if (getBaselineEUPerTick() <= 0) return 0D;
+        double effective = IndustrialCivilizationCore.NATIVE_IC2_POWER_SCALING
+            ? Math.max(getBaselineEUPerTick(), lastAcceptedEU) : getBaselineEUPerTick();
+        if (!IndustrialCivilizationCore.ALLOW_MULTI_PACKET_THROUGHPUT)
+            effective = Math.min(effective, getBaselineEUPerTick());
+        return effective / getBaselineEUPerTick();
+    }
+    public int getEstimatedTicksRemaining() {
+        return NativeIc2PowerModel.estimateTicksRemaining(workCompletedEU, getWorkRequiredEU(),
+            elapsedOperationTicks, getMinimumTicks(), getBaselineEUPerTick(), lastAcceptedEU,
+            IndustrialCivilizationCore.NATIVE_IC2_POWER_SCALING,
+            IndustrialCivilizationCore.ALLOW_MULTI_PACKET_THROUGHPUT);
+    }
     public int getCompletedOperations() { return completedOperations; }
     public int getEnergyStored() { return (int) energy; }
     public void setLastUser(EntityPlayer player) { lastUser = player.getUniqueID(); markDirty(); }
@@ -119,10 +149,16 @@ public final class TileIndustrialMachine extends TileEntity
     @Override
     public void update() {
         if (world == null || world.isRemote) return;
+        // NBT is read before the tile necessarily has a world/block state. Defer the
+        // capacity clamp until now so high-capacity machines are not truncated using
+        // the fallback machine kind during chunk loading.
+        energy = Math.max(0D, Math.min(getCapacity(), energy));
+        lastAcceptedEU = acceptedSinceLastUpdateEU;
+        acceptedSinceLastUpdateEU = 0D;
         if (isWeatherSensitive() && world.getTotalWorldTime() % 20 == 0
                 && world.isRainingAt(pos.up()) && world.canSeeSky(pos.up())) {
             rusted = true;
-            progress = 0;
+            resetOperation(true);
             markDirty();
         }
         if (rusted) return;
@@ -130,24 +166,71 @@ public final class TileIndustrialMachine extends TileEntity
         if (getKind() == IndustrialMachineKind.CARGO_CONTROLLER && !cargoChannel.isEmpty()
                 && world.getTotalWorldTime() % 100 == 0 && transferCargo()) return;
         MachineRecipe recipe = queuedOperations > 0 ? MachineRecipe.find(this, selectedRecipe) : null;
-        int cost = getKind().voltage;
-        if (recipe == null || energy < cost) {
-            if (recipe == null && progress != 0) progress = 0;
+        if (recipe == null) {
+            if (progress != 0 || workCompletedEU > 0D || pendingOperationEU > 0D)
+                resetOperation(true);
             return;
         }
-        energy -= cost;
-        progress++;
-        if (progress >= getDuration()) {
+        if (!recipe.id.equals(activeRecipeId)) {
+            if (legacyWorkAwaitingRecipe && legacyProgressTicks > 0) {
+                workCompletedEU = NativeIc2PowerModel.migrateLegacyProgress(
+                    legacyProgressTicks, getDuration(), getWorkRequiredEU());
+                elapsedOperationTicks = legacyProgressTicks;
+                legacyProgressTicks = 0;
+            }
+            if (legacyWorkAwaitingRecipe && activeRecipeId.isEmpty()) {
+                activeRecipeId = recipe.id;
+                legacyWorkAwaitingRecipe = false;
+            } else {
+                resetOperation(true);
+                activeRecipeId = recipe.id;
+            }
+        }
+
+        workCompletedEU = Math.max(0D, Math.min(getWorkRequiredEU(), workCompletedEU));
+        pendingOperationEU = Math.max(0D, Math.min(
+            getWorkRequiredEU() - workCompletedEU, pendingOperationEU));
+
+        double remaining = Math.max(0D, getWorkRequiredEU() - workCompletedEU);
+        double usable = NativeIc2PowerModel.usableWorkEU(energy, pendingOperationEU,
+            lastAcceptedEU, getBaselineEUPerTick(), remaining,
+            IndustrialCivilizationCore.NATIVE_IC2_POWER_SCALING,
+            IndustrialCivilizationCore.ALLOW_MULTI_PACKET_THROUGHPUT);
+        if (usable > 0D) {
+            double directUsed = Math.min(pendingOperationEU, usable);
+            pendingOperationEU -= directUsed;
+            energy = Math.max(0D, energy - (usable - directUsed));
+            workCompletedEU = Math.min(getWorkRequiredEU(), workCompletedEU + usable);
+        }
+        if (usable > 0D || workCompletedEU >= getWorkRequiredEU()) elapsedOperationTicks++;
+        progress = (int) Math.min(getDuration(), Math.floor(
+            workCompletedEU * getDuration() / (double) getWorkRequiredEU()));
+
+        if (workCompletedEU >= getWorkRequiredEU()
+                && elapsedOperationTicks >= getMinimumTicks()) {
             recipe.complete(this);
-            progress = 0;
             completedOperations++;
             queuedOperations = Math.max(0, queuedOperations - 1);
             if (getKind() == IndustrialMachineKind.ELECTRIC_FABRICATOR) queuedOperations = 1;
             awardOperation(recipe.id);
+            resetOperation(false);
             markDirty();
-        } else if ((progress & 15) == 0) {
+        } else if (usable > 0D && (elapsedOperationTicks & 15) == 0) {
             markDirty();
         }
+    }
+
+    private void resetOperation(boolean recoverPending) {
+        if (recoverPending && pendingOperationEU > 0D) {
+            energy = Math.min(getCapacity(), energy + pendingOperationEU);
+        }
+        progress = 0;
+        workCompletedEU = 0D;
+        pendingOperationEU = 0D;
+        elapsedOperationTicks = 0;
+        activeRecipeId = "";
+        legacyWorkAwaitingRecipe = false;
+        legacyProgressTicks = 0;
     }
 
     @Override
@@ -183,12 +266,42 @@ public final class TileIndustrialMachine extends TileEntity
     }
 
     @Override public boolean acceptsEnergyFrom(IEnergyEmitter emitter, EnumFacing side) { return true; }
-    @Override public double getDemandedEnergy() { return Math.max(0, getCapacity() - energy); }
+    @Override public double getDemandedEnergy() {
+        double demand = Math.max(0D, getCapacity() - energy);
+        if (canAcceptDirectOperationEnergy()) {
+            demand += Math.max(0D, getWorkRequiredEU() - workCompletedEU - pendingOperationEU);
+        }
+        return demand;
+    }
     @Override public int getSinkTier() { return getKind().tier(); }
     @Override public double injectEnergy(EnumFacing directionFrom, double amount, double voltage) {
-        double accepted = Math.min(amount, getDemandedEnergy());
-        energy += accepted;
+        // IC2 Classic validates each delivered packet against getSinkTier() before
+        // invoking this method. Do not combine calls or reinterpret their voltage.
+        double accepted = acceptEnergyEU(amount, false);
         return amount - accepted;
+    }
+
+    private boolean canAcceptDirectOperationEnergy() {
+        return IndustrialCivilizationCore.NATIVE_IC2_POWER_SCALING
+            && IndustrialCivilizationCore.ALLOW_MULTI_PACKET_THROUGHPUT
+            && !rusted && queuedOperations > 0
+            && MachineRecipe.find(this, selectedRecipe) != null;
+    }
+
+    private double acceptEnergyEU(double offeredEU, boolean simulate) {
+        if (offeredEU <= 0D) return 0D;
+        double bufferRoom = Math.max(0D, getCapacity() - energy);
+        double directRoom = canAcceptDirectOperationEnergy()
+            ? Math.max(0D, getWorkRequiredEU() - workCompletedEU - pendingOperationEU) : 0D;
+        double accepted = Math.min(offeredEU, bufferRoom + directRoom);
+        if (!simulate && accepted > 0D) {
+            double buffered = Math.min(bufferRoom, accepted);
+            energy += buffered;
+            pendingOperationEU += accepted - buffered;
+            acceptedSinceLastUpdateEU += accepted;
+            markDirty();
+        }
+        return accepted;
     }
 
     @Override
@@ -208,6 +321,10 @@ public final class TileIndustrialMachine extends TileEntity
         super.writeToNBT(compound);
         compound.setDouble("Energy", energy);
         compound.setInteger("Progress", progress);
+        compound.setDouble("WorkCompletedEU", workCompletedEU);
+        compound.setDouble("PendingOperationEU", pendingOperationEU);
+        compound.setInteger("ElapsedOperationTicks", elapsedOperationTicks);
+        compound.setString("ActiveRecipe", activeRecipeId);
         compound.setInteger("Completed", completedOperations);
         compound.setInteger("Queued", queuedOperations);
         compound.setString("SelectedRecipe", selectedRecipe);
@@ -228,6 +345,15 @@ public final class TileIndustrialMachine extends TileEntity
         super.readFromNBT(compound);
         energy = compound.getDouble("Energy");
         progress = compound.getInteger("Progress");
+        if (compound.hasKey("WorkCompletedEU", 99)) {
+            workCompletedEU = Math.max(0D, compound.getDouble("WorkCompletedEU"));
+            pendingOperationEU = Math.max(0D, compound.getDouble("PendingOperationEU"));
+            elapsedOperationTicks = Math.max(0, compound.getInteger("ElapsedOperationTicks"));
+            activeRecipeId = compound.getString("ActiveRecipe");
+        } else {
+            legacyProgressTicks = Math.max(0, progress);
+            legacyWorkAwaitingRecipe = legacyProgressTicks > 0;
+        }
         completedOperations = compound.getInteger("Completed");
         queuedOperations = compound.getInteger("Queued");
         selectedRecipe = compound.getString("SelectedRecipe");
@@ -242,6 +368,8 @@ public final class TileIndustrialMachine extends TileEntity
             inventory.set(i, compound.hasKey("Slot" + i, 10)
                 ? new ItemStack(compound.getCompoundTag("Slot" + i)) : ItemStack.EMPTY);
         }
+        energy = Math.max(0D, energy);
+        pendingOperationEU = Math.max(0D, pendingOperationEU);
     }
 
     @Override public int getSizeInventory() { return inventory.size(); }
@@ -274,18 +402,35 @@ public final class TileIndustrialMachine extends TileEntity
     @Override public boolean isItemValidForSlot(int index, ItemStack stack) { return index != OUTPUT_SLOT; }
     @Override public int getField(int id) {
         if (id == 0) return progress;
-        if (id == 1) return (int) energy;
+        if (id == 1) return lowWord((long) energy);
         if (id == 2) return completedOperations;
         if (id == 3) return queuedOperations;
+        if (id == 4) return highWord((long) energy);
+        if (id == 5) return lowWord(getWorkCompletedEU());
+        if (id == 6) return highWord(getWorkCompletedEU());
+        if (id == 7) return lowWord(getAcceptedEUThisTick());
+        if (id == 8) return highWord(getAcceptedEUThisTick());
+        if (id == 9) return elapsedOperationTicks;
         return 0;
     }
     @Override public void setField(int id, int value) {
         if (id == 0) progress = value;
-        else if (id == 1) energy = value;
+        else if (id == 1) energy = combineWords(value, highWord((long) energy));
         else if (id == 2) completedOperations = value;
         else if (id == 3) queuedOperations = value;
+        else if (id == 4) energy = combineWords(lowWord((long) energy), value);
+        else if (id == 5) workCompletedEU = combineWords(value, highWord(getWorkCompletedEU()));
+        else if (id == 6) workCompletedEU = combineWords(lowWord(getWorkCompletedEU()), value);
+        else if (id == 7) lastAcceptedEU = combineWords(value, highWord(getAcceptedEUThisTick()));
+        else if (id == 8) lastAcceptedEU = combineWords(lowWord(getAcceptedEUThisTick()), value);
+        else if (id == 9) elapsedOperationTicks = value & 0xFFFF;
     }
-    @Override public int getFieldCount() { return 4; }
+    @Override public int getFieldCount() { return 10; }
+    private static int lowWord(long value) { return (int) (value & 0xFFFFL); }
+    private static int highWord(long value) { return (int) ((value >>> 16) & 0xFFFFL); }
+    private static long combineWords(int low, int high) {
+        return ((long) high & 0xFFFFL) << 16 | ((long) low & 0xFFFFL);
+    }
     @Override public void clear() { inventory.clear(); }
     @Override public int[] getSlotsForFace(EnumFacing side) { return side == EnumFacing.DOWN ? OUTPUT : INPUTS; }
     @Override public boolean canInsertItem(int index, ItemStack stack, EnumFacing direction) { return index != OUTPUT_SLOT; }
@@ -293,9 +438,7 @@ public final class TileIndustrialMachine extends TileEntity
 
     @Override public String getType() { return "industrial_machine"; }
     @Override public String[] getMethodNames() {
-        return new String[] {"getStatus", "getEnergy", "getCapacity", "getProgress",
-            "getEnvironment", "listRecipes", "selectRecipe", "queue", "getCompleted",
-            "setCargoChannel", "getCargoChannel", "transferCargo"};
+        return PERIPHERAL_METHODS.clone();
     }
     @Override
     public Object[] callMethod(IComputerAccess computer, ILuaContext context, int method,
@@ -323,6 +466,14 @@ public final class TileIndustrialMachine extends TileEntity
                 cargoChannel = ((String) arguments[0]).trim(); markDirty(); return new Object[] {cargoChannel};
             case 10: return new Object[] {cargoChannel};
             case 11: return new Object[] {transferCargo()};
+            case 12: return new Object[] {getEnergyStored()};
+            case 13: return new Object[] {getKind().tier()};
+            case 14: return new Object[] {getAcceptedEUThisTick()};
+            case 15: return new Object[] {getBaselineEUPerTick()};
+            case 16: return new Object[] {getEffectiveSpeedMultiplier()};
+            case 17: return new Object[] {getWorkCompletedEU()};
+            case 18: return new Object[] {getWorkRequiredEU()};
+            case 19: return new Object[] {getEstimatedTicksRemaining()};
             default: throw new LuaException("Unknown method");
         }
     }

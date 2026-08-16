@@ -22,4 +22,13 @@ The IC2 Electric Flux Generators are intentionally the normal one-way bridge
 from the EU backbone to the inherited FE ecosystem. A general FE-to-EU bridge
 is not part of the intended progression.
 
+First-party processing machines use packet-aware total-EU work. IC2 Classic
+validates each delivery against the sink tier before `injectEnergy`; the machine
+then aggregates all independently accepted calls between updates. Many legal
+512-EU packets can accelerate one operation without becoming one illegal packet.
+Parallel MFSU banks are intentionally supported, and no low aggregate cap is
+applied to energy-limited manufacturing. See
+[`IC2_NATIVE_POWER_SCALING.md`](IC2_NATIVE_POWER_SCALING.md) for installed API
+behavior, work totals, minimum scientific durations, migration, and live tests.
+
 Run `python3 tools/validate_energy_interop.py` after any energy/config change.

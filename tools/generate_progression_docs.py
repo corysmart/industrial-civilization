@@ -142,7 +142,11 @@ write("PACING_PROFILES.md", "Pacing Profiles", "These profiles are inferred outc
 opt_sections = []
 for c in chapters:
     opt_sections.append(f"## {c['number']:02d} — {c['title']}\n\n" + "\n".join(f"- {v}" for v in c["optimization_opportunities"]) + f"\n\nReuse: {c['infrastructure_reuse']}")
-write("OPTIMIZATION_OPPORTUNITIES.md", "Optimization Opportunities", "Time differences emerge from engineering quality: parallelism, power stability, routing, preparation, local production, and reduced downtime.\n\n" + "\n\n".join(opt_sections))
+write("OPTIMIZATION_OPPORTUNITIES.md", "Optimization Opportunities", """Time differences emerge from engineering quality: parallelism, power stability, routing, preparation, local production, and reduced downtime.
+
+First-party manufacturing turns legal aggregate IC2 delivery directly into work throughput. Parallel MFSU banks are an intentional high-end optimization: each packet remains subject to native voltage safety while accepted EU/t aggregates for the active operation. Orbital generation therefore improves industry naturally through storage and distribution engineering, without a dimension-specific crafting multiplier.
+
+""" + "\n\n".join(opt_sections))
 
 write("ANTI_GRIND_RULES.md", "Anti-Grind Rules", """
 1. Every repeated task receives automation before large-scale demand.
@@ -182,22 +186,22 @@ write("AUTOCRAFTING_PROGRESSION.md", "Autocrafting Progression", """
 |---|---:|---|---|
 | Manual Crafting Table | Immediate | Baseline assembly | Player labor |
 | Automatic Crafting Table | 10–20 seconds | Removes player presence | Fixed recipe and physical routing |
-| Electric Fabricator | 4–8 seconds | EU-powered standard automation | One active recipe |
-| Programmable Assembler | 1–4 seconds | Queues, programs, shortage reporting | Logistics and MV/HV power |
-| Robotic Manufacturing Cell | 0.5–2 seconds | Parallel high-throughput operations | Advanced infrastructure |
+| Electric Fabricator | 8 seconds at 32 EU/t; faster with legal aggregate input | EU-powered standard automation | One active recipe |
+| Programmable Assembler | 12 seconds at 128 EU/t; faster with legal aggregate input | Queues, programs, shortage reporting | Logistics and MV/HV power |
+| Robotic Manufacturing Cell | 16 seconds at 512 EU/t; near-instant with extreme legal input | Parallel high-throughput operations | Advanced infrastructure |
 | Applied Energistics | Immediate/near-immediate | Network inventory, dependencies, routing, scheduling | Materials and physical processes |
 
-AE2 perfects autocrafting; it does not introduce it. Smelting, macerating, refining, isotope separation, fuel preparation, UU-Matter, and replication remain time- and power-bound.
+AE2 perfects autocrafting; it does not introduce it. First-party manufacturing and replication use total-EU work, so parallel legal IC2 packets accelerate them while preserving baseline energy cost. Scientific observation and containment retain documented minimum elapsed durations.
 """)
 
 write("RESEARCH_PROGRESSION.md", "Research Progression", """
-The modular Research Station and Environmental Experiment Module are native IC2 EU-powered machines with four-slot automation inventories, IC2-styled GUIs, persistent progress, environment recognition, and ComputerCraft peripherals. Forge Energy compatibility remains an invisible adapter.
+The modular Research Station and Environmental Experiment Module are native IC2 EU-powered machines with four-slot automation inventories, IC2-styled GUIs, persistent total-EU work, environment recognition, and ComputerCraft peripherals. Research Station archive computation scales with legal aggregate IC2 power. Experiment Modules retain a 600-tick observation floor. Forge Energy compatibility remains an invisible adapter.
 
 - Orbit produces the Orbital Research Archive from sustained station operation and experiments.
 - The Moon produces the Lunar Engineering Archive from local industry and lunar science.
 - Mars produces the Martian Autonomy Archive from autonomous colony behavior and research.
 
-Experiment modules fill data cartridges only in orbit, on the Moon, or on Mars. Research Station recipes validate the data's recorded environment and prerequisite archive or controller. ComputerCraft exposes status, energy, capacity, progress, environment, recipe selection, queues, and completed-operation count.
+Experiment modules fill data cartridges only in orbit, on the Moon, or on Mars. Research Station recipes validate the data's recorded environment and prerequisite archive or controller. ComputerCraft preserves its existing API and additionally exposes input tier, accepted EU/t, baseline, speed multiplier, work totals, and ETA.
 """)
 
 write("ORBITAL_STATION.md", "Orbital Station", """
@@ -468,13 +472,14 @@ checklist.extend([
 "Stone axe/chainsaw trees and 3x3/9x9 drills process at most 12 extra blocks per tick while preserving protection, drops, enchantments and per-block tool payment.",
 "Radiation correctly follows players in vehicles and other moving entities as their AABB enters or leaves breathable air."
 ])
-write("MANUAL_QUEST_TEST_CHECKLIST.md", "Manual Quest Test Checklist", "Use this checklist for release regressions and dedicated side-path acceptance. The numbered campaign's completed 0.4.0 evidence is recorded in `MAIN_QUESTLINE_LIVE_TEST_LOG.md`; rerun affected checks after progression or runtime changes. Do not use a valued world for a quest-database migration.\n\n" + "\n".join(f"- [ ] {i}. {v}" for i, v in enumerate(checklist, 1)) + "\n\nCheck `logs/latest.log`, `logs/groovy.log`, and `crafttweaker.log` after the run. Record quest/task IDs and screenshots for any mismatch.")
+write("MANUAL_QUEST_TEST_CHECKLIST.md", "Manual Quest Test Checklist", "Use this checklist for release regressions and dedicated side-path acceptance. The numbered campaign's completed 0.5.0 evidence is recorded in `MAIN_QUESTLINE_LIVE_TEST_LOG.md`; rerun affected checks after progression or runtime changes. Do not use a valued world for a quest-database migration.\n\n" + "\n".join(f"- [ ] {i}. {v}" for i, v in enumerate(checklist, 1)) + "\n\nCheck `logs/latest.log`, `logs/groovy.log`, and `crafttweaker.log` after the run. Record quest/task IDs and screenshots for any mismatch.")
 
 write("KNOWN_LIMITATIONS.md", "Verification Boundaries", """
 The build is a hidden internal alpha. The numbered 16-chapter campaign passed live acceptance, but targeted systems and side paths still retain these verification boundaries:
 
 - The critical orbital/lunar/Mars base milestones now have sustained runtime telemetry. Many simpler inherited-mod quests still use tangible, non-consuming item evidence; that proves acquisition, not permanent assembly or provenance.
 - Static and JUnit validation cannot prove Better Questing/Galacticraft GUI rendering, Forge event ordering, third-party protection integrations, entity behavior or performance.
+- IC2 Classic packet handling and MFSU output were verified from the installed 1.5.11 bytecode, and the work model has deterministic 1/4/10/50-source tests. A controlled live network test is still required to prove actual source ordering, cabling topology, native overvoltage destruction, GUI telemetry, and save/reload behavior in the full client.
 - Settlement upgrades are deterministic and material-backed, but production rates, construction bills, trade circulation and weapon multipliers need measured economic playthroughs.
 - Existing loaded Mars chunks can transform after AI. Unloaded chunks wait until an AI-age player loads them; this deliberately avoids an unbounded background rewrite.
 - Apollo positions use documented latitude/longitude projected at 24 blocks per degree. Galacticraft terrain is not a geographic lunar simulation, and the block monuments are interpretive heritage markers.

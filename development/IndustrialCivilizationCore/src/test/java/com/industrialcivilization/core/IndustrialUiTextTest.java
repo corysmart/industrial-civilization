@@ -20,4 +20,12 @@ public final class IndustrialUiTextTest {
         assertEquals("40M", IndustrialUiText.compactNumber(40000000));
         assertEquals("1G", IndustrialUiText.compactNumber(999999999));
     }
+
+    @Test
+    public void formatsPowerScalingTelemetry() {
+        assertEquals("4.0x", IndustrialUiText.speedMultiplier(4D));
+        assertEquals("50x", IndustrialUiText.speedMultiplier(50D));
+        assertEquals("19t", IndustrialUiText.ticksAsEta(19));
+        assertEquals("2.0s", IndustrialUiText.ticksAsEta(40));
+    }
 }

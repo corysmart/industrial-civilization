@@ -1,9 +1,9 @@
 # Industrial Civilization — Game Design Document
 
-- Status: 0.4.0 hidden internal alpha; numbered campaign live-validated
+- Status: 0.5.0 hidden internal alpha; numbered campaign live-validated
 - Pack: Industrial Civilization: Astra / Minecraft 1.12.2 / Forge 14.23.5.2860
-- First-party runtime: IndustrialCivilizationCore 0.4.0
-- Industrial Civilization pack release: 0.4.0 (Technic base selector: 1.2.6)
+- First-party runtime: IndustrialCivilizationCore 0.5.0
+- Industrial Civilization pack release: 0.5.0 (Technic base selector: 1.2.6)
 - Authoritative data: `progression/*.json`; generated quest pack: `config/betterquesting/DefaultQuests.json`
 
 ## Vision
@@ -99,16 +99,16 @@ Recipes below use E-Circuit = `ic2:itemmisc:451` and A-Circuit = `ic2:itemmisc:4
 | Block | How it is built | Runtime role |
 |---|---|---|
 | Molecular Analyzer | Meteoric Iron + advanced ComputerCraft computer + steel + IC2 MV machine + A-Circuits + Martian Desh | Tier-3 IC2 sink; 25,000-EU buffer; right-click with Desh metadata 2 consumes 6,250 EU and one sample to create a non-replicable Material Pattern Record |
-| Electric Fabricator | Steel, piston, E-Circuits, IC2 LV machine, rubber, crafting table | 40,000 EU / 32 EU-t / 160-tick fixed manufacturing; makes Precision Frames and Blank Data Cartridges |
-| Programmable Assembler | Steel, advanced computer, A-Circuits, Electric Fabricator, pistons, redstone | 120,000 EU / 128 EU-t / 240 ticks; makes Control Processors; ComputerCraft can select recipes and queue 1–64 operations |
-| Robotic Manufacturing Cell | A-Circuits, advanced computer, steel, Programmable Assembler, pistons, IC2 MV machine | 400,000 EU / 512 EU-t / 320 ticks; dimension-aware lunar components, AI cores, and civilization-scale AI |
-| Research Station | Glass, advanced computer, steel, IC2 MV machine, A-Circuits, Programmable Assembler | 100,000 EU / 32 EU-t / 600 ticks; converts environment-tagged data and prior archives into orbital, lunar, Mars, and autonomy gates |
-| Orbital Experiment Module | Meteoric Iron, glass, steel, Research Station, A-Circuits, Blank Data Cartridge | 80,000 EU / 32 EU-t / 600 ticks; records orbit/Moon/Mars data with an `Environment` NBT tag |
+| Electric Fabricator | Steel, piston, E-Circuits, IC2 LV machine, rubber, crafting table | 40,000-EU buffer; 5,120-EU work at a 32-EU/t, 160-tick baseline; legal aggregate input scales manufacturing |
+| Programmable Assembler | Steel, advanced computer, A-Circuits, Electric Fabricator, pistons, redstone | 120,000-EU buffer; 30,720-EU work at a 128-EU/t, 240-tick baseline; queues 1–64 operations |
+| Robotic Manufacturing Cell | A-Circuits, advanced computer, steel, Programmable Assembler, pistons, IC2 MV machine | 400,000-EU buffer; 163,840-EU work at a 512-EU/t, 320-tick baseline; dimension-aware, burst-scalable manufacturing |
+| Research Station | Glass, advanced computer, steel, IC2 MV machine, A-Circuits, Programmable Assembler | 100,000-EU buffer; 19,200-EU energy-limited archive computation at a 32-EU/t, 600-tick baseline |
+| Orbital Experiment Module | Meteoric Iron, glass, steel, Research Station, A-Circuits, Blank Data Cartridge | 80,000-EU buffer; 19,200-EU work plus a real 600-tick observation floor; records environment-tagged data |
 | Factory Control Terminal | Not craftable; generated in rare abandoned-factory structures and repaired through the encounter | Staged salvage encounter and alternate industrial/programming capacity proofs |
 | Environmental Solar Array | Glass, E/A-Circuits, IC2 MV machine, steel, Control Processor | 200,000-EU buffer; outputs 8 EU/t Earth, 96 orbit, 32 Moon, and 16 Mars with deterministic dust derating to 4 |
 | Tracking Solar Array | Observers, Control Processor, three Environmental Solar Arrays, A-Circuits, advanced computer | 192 EU/t in orbit and 12 EU/t on Earth; grants sustained tracking-array proof after real generation |
-| Matter Replicator | A-Circuits, AI Core, IC2 HV machines, Robotic Cell, obsidian, Material Pattern Record | 8,000,000 EU / 2,048 EU-t / 2,000 ticks; produces UU-Matter capsule and controlled replication record only after AI |
-| Fusion Research Core | Nether Stars, AI Core, IC2 HV machines, Matter Replicator, obsidian, Control Processor | 40,000,000 EU / 8,192 EU-t / 4,000 ticks; produces contained antimatter only in orbit |
+| Matter Replicator | A-Circuits, AI Core, IC2 HV machines, Robotic Cell, obsidian, Material Pattern Record | 8,000,000-EU buffer; 4,096,000-EU work at a 2,048-EU/t, 2,000-tick baseline; fully burst-scalable after AI |
+| Fusion Research Core | Nether Stars, AI Core, IC2 HV machines, Matter Replicator, obsidian, Control Processor | 40,000,000-EU buffer; 32,768,000-EU work at an 8,192-EU/t baseline plus a 600-tick containment floor |
 | Interplanetary Cargo Controller | Meteoric Iron, advanced computer, Control Processors, Robotic Cell, Ender Eyes, recovered factory control system | 4,000,000 EU / 512 EU-t; paired same-name channels move one item between loaded controllers in different dimensions |
 | Orbital Megastructure Controller | Beacons, AI Core, IC2 HV machines, Cargo Controller, obsidian, Control Processor | 24,000,000 EU / 8,192 EU-t / 2,000 ticks; in orbit consumes post-AI proofs to create a Megastructure Control Record |
 | Autonomous Colony Beacon | Beacons, AI Core, Control Processors, Cargo Controller, diamonds, Robotic Cell | 8,000,000 EU / 2,048 EU-t / 1,200 ticks; on Moon or Mars produces a colony charter from AI, control, and cargo proofs |
@@ -117,7 +117,7 @@ Recipes below use E-Circuit = `ic2:itemmisc:451` and A-Circuit = `ic2:itemmisc:4
 | Repair Bench | IC2 machine components | Repairs the nearest rusted large workshop within 12 blocks, consuming one complete IC2 Machine Block |
 | Vehicle Service Dock | BuildCraft pipe and IC2 machine components | Bridges BuildCraft item/fluid capabilities to a parked Industrial Service Carrier within four blocks |
 
-All twelve processing machines are IC2 EU sinks with sided inventories (inputs on non-bottom faces, output below), a four-slot IC2-styled GUI, automatic matching for inserted inputs, and a ComputerCraft peripheral. The same blocks expose Forge Energy only as hidden compatibility plumbing at the canonical 8 FE = 1 EU ratio.
+All twelve processing machines are IC2 EU sinks with sided inventories (inputs on non-bottom faces, output below), a four-slot IC2-styled GUI, automatic matching for inserted inputs, and a ComputerCraft peripheral. Total-EU work preserves each historical baseline while independently legal packets aggregate into higher throughput. Experiment, fusion, megastructure, and colony processes retain only their documented observation/stabilization floors. The same blocks expose Forge Energy only as hidden compatibility plumbing at the canonical 8 FE = 1 EU ratio.
 
 ## First-party artifacts: production and gates
 
@@ -151,7 +151,7 @@ Research artifacts that carry progression knowledge must be held and right-click
 ## Cross-mod composition
 
 - **IC2 Classic:** visible power system, voltage tiers, generators, storage, processing, reactor, electric tools, Nano/Quantum equipment.
-- **ComputerCraft/Computronics:** monitoring and first-party peripheral control. Machine methods expose status, energy, capacity, progress, environment, recipes, queues, completion counts, and cargo channels.
+- **ComputerCraft/Computronics:** monitoring and first-party peripheral control. Machine methods expose status, energy, capacity, progress, environment, recipes, queues, completion counts, cargo channels, accepted EU/t, input tier, baseline, speed multiplier, work totals, and ETA.
 - **Galacticraft:** rockets, Moon/Mars dimensions, habitats, oxygen, and cargo hardware. The travel map retains its visual astronomy but its actionable destination whitelist is narrowed to orbit, research-gated Moon, and Quantum/authorization-gated Mars. Because the Moon intentionally has no dungeons/inorganic structures, Mars Mission Authorization directly unlocks the Tier 2 NASA Workbench page; server transfer checks remain a backstop.
 - **Railcraft/BuildCraft/ProjectRed/MFFS/Techguns:** freight, extraction/logistics, wireless control, containment/defense, and industrial armament.
 - **ICBM Classic:** private-test strategic weapons dependency. Duplicate steel, circuits, wire, and battery parts are hidden and uncraftable; launch hardware uses IC2 MV/HV blocks, circuits/cable, steel, computers, and first-party processors. Runtime power comes from the pack's 8:1 IC2 conversion bridge. Native nuclear, antimatter, and red-matter shortcuts are disabled.

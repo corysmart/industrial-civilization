@@ -9,7 +9,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'java'
 
-version = '0.4.0'
+version = '0.5.0'
 group = 'com.industrialcivilization'
 archivesBaseName = 'IndustrialCivilizationCore'
 sourceCompatibility = targetCompatibility = '1.8'
@@ -26,6 +26,8 @@ dependencies {
     compileOnly files('../../mods/vehicle-mod-1.4.0-1.12.2.jar')
     compileOnly files('../../mods/Galacticraft-1.12.2-4.0.7-technic-ic2c.jar')
     testImplementation 'junit:junit:4.13.2'
+    testImplementation files('../../mods/cc-tweaked-1.12.2-1.89.2.jar')
+    testImplementation files('../../mods/IC2Classic-1.12.2-1.5.11.jar')
 }
 
 processResources {

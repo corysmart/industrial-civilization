@@ -41,11 +41,40 @@ check('B:"Disable INPUT of Forge Energy to GC machines"=true' in gc,
 
 core = (JAVA / "IndustrialCivilizationCore.java").read_text()
 machines = (JAVA / "TileIndustrialMachine.java").read_text()
+machine_kinds = (JAVA / "IndustrialMachineKind.java").read_text()
+power_model = (JAVA / "NativeIc2PowerModel.java").read_text()
 solar = (JAVA / "TileEnvironmentalSolarArray.java").read_text()
 analyzer = (JAVA / "TileMolecularAnalyzer.java").read_text()
 check("FE_PER_EU = 8" in core, "custom content uses the canonical adapter ratio")
-check("accepted / (double) IndustrialCivilizationCore.FE_PER_EU" in machines,
+check("amount / (double) IndustrialCivilizationCore.FE_PER_EU" in machines,
       "custom machine FE intake converts into internal EU")
+check("NATIVE_IC2_POWER_SCALING" in core and "ALLOW_MULTI_PACKET_THROUGHPUT" in core,
+      "native IC2 work scaling and multi-packet throughput are configurable")
+check("acceptedSinceLastUpdateEU += accepted" in machines
+      and "pendingOperationEU += accepted - buffered" in machines,
+      "independent injections aggregate and can bypass a full legacy buffer only for bounded active work")
+check("IC2 Classic validates each delivered packet against getSinkTier()" in machines
+      and "getKind().tier()" in machines,
+      "machine sink preserves native IC2 packet-tier validation")
+check("totalWorkEU()" in machine_kinds and "(long) voltage * duration" in machine_kinds,
+      "machine work totals preserve baseline EU cost and duration")
+check("minimumTicks" in machine_kinds and "TIME_LIMITED" in machine_kinds,
+      "scientific and physical processes declare explicit elapsed-time floors")
+check("isLegalPacket" in power_model and "simulateDuration" in power_model,
+      "pure packet/work harness covers legal aggregation and illegal packets")
+check("WorkCompletedEU" in machines and "migrateLegacyProgress" in machines
+      and "ActiveRecipe" in machines,
+      "placed machines persist work and migrate legacy tick progress proportionally")
+completion_gate = re.search(
+    r"if \(workCompletedEU >= getWorkRequiredEU\(\).*?"
+    r"recipe\.complete\(this\);.*?awardOperation\(recipe\.id\);",
+    machines, re.DOTALL)
+check(completion_gate is not None,
+      "operation/mastery advancements remain behind actual work completion")
+for method in ("getEnergyStored", "getInputTier", "getAcceptedEUThisTick",
+               "getBaselineEUPerTick", "getEffectiveSpeedMultiplier",
+               "getWorkCompleted", "getWorkRequired", "getEstimatedTicksRemaining"):
+    check(f'"{method}"' in machines, f"ComputerCraft power telemetry method is present: {method}")
 check("amount / (double) IndustrialCivilizationCore.FE_PER_EU" in solar,
       "custom solar FE extraction debits the internal EU buffer correctly")
 check("implements IPeripheral, IEnergySink" in analyzer
@@ -84,6 +113,8 @@ check("trimStringToWidth" in gui and "TITLE_LEFT = 12" in gui and "TITLE_WIDTH =
       "machine GUI keeps long titles clear of the energy meter at small GUI scales")
 check("STATUS_RIGHT - fontRenderer.getStringWidth(operations)" in gui,
       "machine operation status remains right-aligned as its value grows")
+check('"Input "' in gui and '"Work "' in gui and '"  ETA "' in gui,
+      "machine GUI exposes EU input, work, speed, and ETA without Forge Energy language")
 
 if errors:
     print(f"ENERGY INTEROP FAILED: {len(errors)} of {len(errors) + len(checks)} checks")

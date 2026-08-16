@@ -9,10 +9,12 @@ import net.minecraft.item.ItemStack;
 
 public final class ContainerIndustrialMachine extends Container {
     private final TileIndustrialMachine tile;
-    private final int[] lastFields = {-1, -1, -1, -1};
+    private final int[] lastFields;
 
     public ContainerIndustrialMachine(InventoryPlayer playerInventory, TileIndustrialMachine tile) {
         this.tile = tile;
+        lastFields = new int[tile.getFieldCount()];
+        java.util.Arrays.fill(lastFields, -1);
         addSlotToContainer(new Slot(tile, 0, 45, 37));
         addSlotToContainer(new Slot(tile, 1, 73, 37));
         addSlotToContainer(new Slot(tile, 2, 101, 37));

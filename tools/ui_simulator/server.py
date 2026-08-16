@@ -34,11 +34,15 @@ def parse_lang() -> dict[str, str]:
 
 def parse_machines() -> list[dict]:
     text = (JAVA / "IndustrialMachineKind.java").read_text(encoding="utf-8")
-    pattern = re.compile(r'(\w+)\("([^"]+)",\s*(\d+),\s*(\d+),\s*(\d+)\)')
+    pattern = re.compile(
+        r'(\w+)\("([^"]+)",\s*(\d+),\s*(\d+),\s*(\d+),\s*'
+        r'(\d+),\s*WorkClass\.(\w+)\)')
     return [
         {"enum": enum, "id": machine_id, "capacity": int(capacity),
-         "voltage": int(voltage), "duration": int(duration)}
-        for enum, machine_id, capacity, voltage, duration in pattern.findall(text)
+         "voltage": int(voltage), "duration": int(duration),
+         "minimumTicks": int(minimum_ticks), "workClass": work_class}
+        for enum, machine_id, capacity, voltage, duration, minimum_ticks, work_class
+        in pattern.findall(text)
     ]
 
 

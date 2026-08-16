@@ -21,4 +21,14 @@ public final class IndustrialUiText {
         }
         return Long.toString(Math.round(scaled)) + SUFFIXES[suffix];
     }
+
+    public static String speedMultiplier(double multiplier) {
+        return String.format(Locale.ROOT, multiplier < 10D ? "%.1fx" : "%.0fx", multiplier);
+    }
+
+    public static String ticksAsEta(int ticks) {
+        if (ticks == Integer.MAX_VALUE) return "--";
+        if (ticks < 20) return ticks + "t";
+        return String.format(Locale.ROOT, "%.1fs", ticks / 20D);
+    }
 }
