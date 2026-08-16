@@ -4,7 +4,7 @@
 - Source authority: `/Users/cory/Documents/tekkit-3`
 - Technic pack: `Industrial Civilization: Astra`
 - Technic test target: `/Users/cory/Library/Application Support/technic/modpacks/industrial-civilization-astra`
-- Release: `0.5.1` (`v0.5.1` on GitHub; hidden Technic listing)
+- Release: `0.5.2` (`v0.5.2` on GitHub; hidden Technic listing)
 
 ## Current acceptance state
 
@@ -33,7 +33,7 @@ Exact evidence, defects found during testing, fixes, and contamination notes are
 ## Distribution state
 
 - The public Git repository is `corysmart/industrial-civilization`; its reachable history uses the `corysmart` GitHub no-reply identity rather than a Prepaid2Coin address.
-- The hidden Technic listing installs as `industrial-civilization-astra` and serves the full permitted pack from the GitHub `v0.5.1` release.
+- The hidden Technic listing installs as `industrial-civilization-astra` and serves the full permitted pack from the GitHub `v0.5.2` release.
 - Techguns, Connected Glass 1.1.8, and its Core Lib are omitted from the GitHub archive. ModDirector retrieves pinned official CurseForge files and verifies their SHA-256 hashes before startup. Connected Glass is intentionally held at the last pre-Fusion renderer release for compatibility with the pack's optimized 1.12.2 rendering stack.
 - ICBM Classic 6.5.5 is included under the modpack permission in its distributed license.
 - The pack remains hidden until the remaining redistribution/attribution review and public-release QA are complete.
@@ -69,6 +69,12 @@ Exact evidence, defects found during testing, fixes, and contamination notes are
 - Runtime proof is tied to accepted 512-EU EnergyNet equivalents during a real active recipe. FE input, inventory ownership, granted outputs, and split cable-routing callbacks cannot satisfy the milestones.
 - The MFFS legacy version check reads a pack-local version descriptor instead of its removed Bitbucket endpoint, eliminating that actionable startup error without changing MFFS gameplay.
 
+## 0.5.2 quest clarity patch
+
+- The opening material quest requires IC2 Classic rubber metadata `450` rather than wildcarding the entire `ic2:itemmisc` registry.
+- Better Questing pictures are selected independently from completion evidence, use valid Minecraft 1.12 and Railcraft item IDs, and avoid wildcard or generic Misc Item stacks that render as question marks.
+- Better Questing defaults advance to pack version 15 so existing installations can import the corrected quest definitions.
+
 ## Remaining release work
 
 - Complete measured survival-balance and resource/power pacing runs without Creative-staged ingredients.
@@ -77,4 +83,4 @@ Exact evidence, defects found during testing, fixes, and contamination notes are
 - Exercise multiplayer ownership, long-distance/chunk-unloaded cargo, every ComputerCraft peripheral method, and third-party protection integrations.
 - Finish the redistribution and attribution audit, confirm every dependency delivery path, and perform public-release packaging/upgrade QA.
 
-Version 0.5.1 is suitable for continued private/internal play and preservation of the lightly explored playthrough world. It is not yet presented as a public release-quality build.
+Version 0.5.2 is suitable for continued private/internal play and preservation of the lightly explored playthrough world. It is not yet presented as a public release-quality build.

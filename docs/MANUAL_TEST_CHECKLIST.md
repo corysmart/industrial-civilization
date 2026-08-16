@@ -5,7 +5,7 @@
 1. In Technic Launcher, select **Industrial Civilization: Astra** at `/Users/cory/Library/Application Support/technic/modpacks/industrial-civilization-astra`.
 2. Confirm 64-bit Java 8 and allocate at least 6 GiB; 8 GiB is recommended for the complete pack.
 3. Launch once and wait at the title screen. Do not open the pre-existing `New World` save.
-4. Confirm the menu label reads `Industrial Civilization v0.5.1` and inspect Loaded Mods for the expected mod IDs, including Onysd Vehicles 1.4.0, Obfuscate 0.4.2, ICBM Classic 6.5.5, Connected Glass 1.1.8, and SuperMartijn642 Core Lib 1.1.21.
+4. Confirm the menu label reads `Industrial Civilization v0.5.2` and inspect Loaded Mods for the expected mod IDs, including Onysd Vehicles 1.4.0, Obfuscate 0.4.2, ICBM Classic 6.5.5, Connected Glass 1.1.8, and SuperMartijn642 Core Lib 1.1.21.
 5. Open a disposable world, run `/gs reload --clean`, and confirm chat reports a successful reload with no errors. Review `logs/groovy.log` if it does not.
 6. Confirm the welcome chat identifies **F6** as the Industrial Civilization Guide key. Press F6 and verify the Industrial Civilization home banner renders without magenta missing-texture panels, then inspect the 16 chapters and 7 side-path tabs.
 7. Open the in-game pause menu. Confirm **Advancements** opens the vanilla advancement screen, then verify its Industrial Civilization tab contains the visible, ordered progression tree. F6 remains the Better Questing guide.

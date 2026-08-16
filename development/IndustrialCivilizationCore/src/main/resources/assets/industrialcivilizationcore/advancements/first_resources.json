@@ -63,7 +63,8 @@
       "conditions": {
         "items": [
           {
-            "item": "ic2:itemmisc"
+            "item": "ic2:itemmisc",
+            "data": 450
           }
         ]
       }

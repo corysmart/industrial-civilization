@@ -40,6 +40,20 @@ telemetry = read_json(PROG / "telemetry-schema.json")
 runtime_content = read_json(PROG / "runtime-content.json")
 schemas = {path.name: read_json(path) for path in sorted((PROG / "schemas").glob("*.json"))}
 
+# IC2 Classic pools unrelated components under itemmisc metadata values. A
+# wildcard here renders as "Misc Item" and can accept the wrong component.
+detection_items = [
+    value.get("item", "") if isinstance(value, dict) else value
+    for values in objective_detection.get("overrides", {}).values()
+    for value in values
+]
+check("ic2:itemmisc:*" not in detection_items,
+      "quest retrieval never wildcards IC2's pooled Misc Item registry")
+first_resource_items = objective_detection.get("overrides", {}).get("first_resources", [])
+check(any((value.get("item") if isinstance(value, dict) else value) == "ic2:itemmisc:450"
+          for value in first_resource_items),
+      "starter-material retrieval requires the exact IC2 Classic rubber metadata")
+
 # Lightweight, dependency-free validation against the checked-in schemas.
 chapter_required = schemas.get("chapter.schema.json", {}).get("required", [])
 milestone_required = schemas.get("milestone.schema.json", {}).get("required", [])
@@ -317,7 +331,33 @@ for index, ms in enumerate(milestones):
 check(not any(ms.get("placeholder_id") for ms in milestones), "generated projection has no placeholder milestones")
 check(not any(quest.get("tasks:9", {}).get("0:10", {}).get("taskID:8") == "bq_standard:checkbox"
               for quest in quest_db.values()), "generated quest projection contains no manual checkbox tasks")
-check(quests.get("questSettings:10", {}).get("betterquesting:10", {}).get("pack_version:3") == 14, "Better Questing pack version includes the runtime-verified MFSU burst-power side path")
+generated_icon_stacks = [quest.get("properties:10", {}).get("betterquesting:10", {}).get("icon:10", {})
+                         for quest in quest_db.values()]
+check(not any(icon.get("Damage:2") == 32767 for icon in generated_icon_stacks),
+      "quest pictures never render wildcard metadata as a missing/question-mark icon")
+check(not any(icon.get("id:8") == "ic2:itemmisc" for icon in generated_icon_stacks),
+      "quest pictures never use IC2's generic Misc Item container")
+check(not any(icon.get("id:8") in {"minecraft:firework_rocket", "minecraft:red_sand"}
+              for icon in generated_icon_stacks),
+      "quest pictures translate post-1.12 Minecraft item names to renderable legacy IDs")
+clear_icon_expectations = {
+    "first_resources": ("minecraft:iron_ingot", 0),
+    "freight_infrastructure": ("railcraft:locomotive_steam_solid", 0),
+    "reactor_telemetry": ("computercraft:computer", 0),
+    "emergency_shutdown": ("minecraft:lever", 0),
+    "nuclear_containment": ("minecraft:obsidian", 0),
+    "lunar_mining": ("minecraft:diamond_pickaxe", 0),
+    "mars_readiness_trial": ("minecraft:fireworks", 0),
+    "martian_science_program": ("industrialcivilizationcore:martian_autonomy_archive", 0),
+    "ai_prerequisite_audit": ("minecraft:written_book", 0),
+    "abandoned_factory_discovered": ("industrialcivilizationcore:factory_control_terminal", 0),
+}
+for milestone_id, (item_id, damage) in clear_icon_expectations.items():
+    quest = quest_db.get(f"{id_order[milestone_id]}:10", {})
+    icon = quest.get("properties:10", {}).get("betterquesting:10", {}).get("icon:10", {})
+    check((icon.get("id:8"), icon.get("Damage:2")) == (item_id, damage),
+          f"quest picture is render-safe and semantically clear: {milestone_id}")
+check(quests.get("questSettings:10", {}).get("betterquesting:10", {}).get("pack_version:3") == 15, "Better Questing pack version includes exact IC2 Classic rubber retrieval")
 
 expected_backgrounds = {
     "industrialcivilizationcore:textures/gui/quest_bg_earth_ui.png",

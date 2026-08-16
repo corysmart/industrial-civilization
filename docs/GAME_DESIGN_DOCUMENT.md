@@ -1,9 +1,9 @@
 # Industrial Civilization — Game Design Document
 
-- Status: 0.5.1 hidden internal alpha; numbered campaign live-validated
+- Status: 0.5.2 hidden internal alpha; numbered campaign live-validated
 - Pack: Industrial Civilization: Astra / Minecraft 1.12.2 / Forge 14.23.5.2860
-- First-party runtime: IndustrialCivilizationCore 0.5.1
-- Industrial Civilization pack release: 0.5.1 (Technic base selector: 1.2.6)
+- First-party runtime: IndustrialCivilizationCore 0.5.2
+- Industrial Civilization pack release: 0.5.2 (Technic base selector: 1.2.6)
 - Authoritative data: `progression/*.json`; generated quest pack: `config/betterquesting/DefaultQuests.json`
 
 ## Vision
@@ -70,7 +70,7 @@ Quest tasks use two mechanisms:
 - `bq_standard:advancement` for first-party machine operations and dimension/environment events implemented by IndustrialCivilizationCore.
 - `bq_standard:retrieval` for non-consuming ownership/construction evidence across other mods.
 
-The generator also owns story openings/transitions, contextual control blocks, evidence-driven icons, five era backgrounds, and `pack_version` 9. Each quest tab begins at the center of its artwork and expands through deterministic rotated rings or ellipses, giving connector paths varied wheel, arc, diamond, and orbital geometry. Existing worlds must import the new Better Questing default after backup; new worlds receive it directly.
+The generator also owns story openings/transitions, contextual control blocks, curated render-safe icons, five era backgrounds, and `pack_version` 15. Each quest tab begins at the center of its artwork and expands through deterministic rotated rings or ellipses, giving connector paths varied wheel, arc, diamond, and orbital geometry. Existing worlds must import the new Better Questing default after backup; new worlds receive it directly.
 
 ## Controls taught in quests
 

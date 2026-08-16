@@ -1648,16 +1648,16 @@
       "redistribution": "Inherited third-party binary; verify author terms before any export."
     },
     {
-      "file": "mods/IndustrialCivilizationCore-0.5.1.jar",
-      "filename": "IndustrialCivilizationCore-0.5.1.jar",
-      "size": 3242284,
-      "sha256": "02f8e53704ac812d19d2d3584d8cff2eda18ba186e8d3a836fa6cb5f94a2f759",
+      "file": "mods/IndustrialCivilizationCore-0.5.2.jar",
+      "filename": "IndustrialCivilizationCore-0.5.2.jar",
+      "size": 3242285,
+      "sha256": "fcc50e0ba5341c4f0da54ee29aa96cd383ccd84d6842a0951548a562f99491b7",
       "classification": "KEEP",
       "mods": [
         {
           "id": "industrialcivilizationcore",
           "name": "Industrial Civilization Core",
-          "version": "0.5.1",
+          "version": "0.5.2",
           "minecraft": "1.12.2",
           "dependencies": [
             "computercraft",
@@ -3739,7 +3739,7 @@
     },
     {
       "file": "config/CustomMainMenu/mainmenu.json",
-      "sha256": "14ea9898b86737c9a3a90f0693d7d21ea0383cdc5918d38c3ba3e7c32af26291",
+      "sha256": "071516e1981f99406baa42045efd1b4094401e811d8e1120eaec3d241755831e",
       "size": 4007
     },
     {
@@ -3944,8 +3944,8 @@
     },
     {
       "file": "config/betterquesting/DefaultQuests.json",
-      "sha256": "dbd84709a2b7dbaf451fc4f85880f1234494d0a5e6d12b2b7bbad9ad2cd16508",
-      "size": 370439
+      "sha256": "06cc6170e001bf30c9c6b69abec4ca51d9f2662cff89e8fb7cd31e13a1f49a76",
+      "size": 370193
     },
     {
       "file": "config/blockcraftery.cfg",
@@ -5244,7 +5244,7 @@
     },
     {
       "file": "groovy/runConfig.json",
-      "sha256": "f853883adb6a4e00c8bc087884548de1ace25382f5eae3fe4335f292d33739ea",
+      "sha256": "b7da97b1d4f371e1dba758f1b844c57f0cc973d7bd9fa833e260ccdaa2e2cca4",
       "size": 343
     },
     {

@@ -44,7 +44,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 
 - **Prerequisites:** none; this is the opening quest.
 - **Detection mode:** Non-consuming inventory retrieval.
-- **Exact test action:** Before this quest unlocks, keep its matching evidence out of the player inventory. After it unlocks, obtain or Creative-give all of the following at the same time: 8× `minecraft:coal`, 8× `minecraft:iron_ingot`, `ic2:blockmetal:0`, `ic2:blockmetal:1`, `ic2:itemmisc:*`. Wait at least two seconds for Better Questing inventory detection; the items must remain unconsumed.
+- **Exact test action:** Before this quest unlocks, keep its matching evidence out of the player inventory. After it unlocks, obtain or Creative-give all of the following at the same time: 8× `minecraft:coal`, 8× `minecraft:iron_ingot`, `ic2:blockmetal:0`, `ic2:blockmetal:1`, `ic2:itemmisc:450`. Wait at least two seconds for Better Questing inventory detection; the items must remain unconsumed.
 - **Negative assertion:** Confirm the quest did not gain progress while locked and that removing/re-adding the evidence works without a manual checkbox or claim button.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `basic_storage`, `defensive_readiness`, `manual_production_area`.
 - **Gameplay assertion:** Obtain coal, iron, copper, tin, and rubber.

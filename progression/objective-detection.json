@@ -11,7 +11,7 @@
       {"item": "minecraft:iron_ingot", "count": 8},
       {"item": "ic2:blockmetal:0", "count": 1},
       {"item": "ic2:blockmetal:1", "count": 1},
-      {"item": "ic2:itemmisc:*", "count": 1}
+      {"item": "ic2:itemmisc:450", "count": 1}
     ],
     "basic_storage": ["ironchest:iron_chest:3", "ironchest:iron_chest:0"],
     "defensive_readiness": ["techguns:pistol", "techguns:itemshared:11"],

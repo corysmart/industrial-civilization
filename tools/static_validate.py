@@ -50,9 +50,9 @@ for name in ("baseline-mod-lock.json", "technical-baseline-mod-lock.json", "fina
 pack_version = json.loads((ROOT / "manifest/pack-version.json").read_text())
 technic_version = json.loads((ROOT / "bin/version").read_text())
 ok(pack_version == {
-       "industrial_civilization_version": "0.5.1",
+       "industrial_civilization_version": "0.5.2",
        "technic_base_version": "1.2.6",
-       "core_version": "0.5.1",
+       "core_version": "0.5.2",
    } and technic_version["version"] == pack_version["technic_base_version"],
    "private pack release is versioned without inventing a nonexistent Technic Solder build")
 
@@ -158,8 +158,8 @@ for path in jars:
     except Exception as exc:
         ok(False, f"JAR integrity {path.relative_to(ROOT)}: {exc}")
 
-core_build = ROOT / "development/IndustrialCivilizationCore/build/libs/IndustrialCivilizationCore-0.5.1.jar"
-core_live = ROOT / "mods/IndustrialCivilizationCore-0.5.1.jar"
+core_build = ROOT / "development/IndustrialCivilizationCore/build/libs/IndustrialCivilizationCore-0.5.2.jar"
+core_live = ROOT / "mods/IndustrialCivilizationCore-0.5.2.jar"
 ok(core_build.is_file() and core_live.is_file() and digest(core_build) == digest(core_live), "custom build output equals live JAR")
 core_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/IndustrialCivilizationCore.java").read_text()
 ok("openQuestGuideAtFirstChapter" in core_source

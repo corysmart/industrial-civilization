@@ -18,7 +18,7 @@ Highlights:
 - One unified Industrial Civilization advancement tree
 - Continued sandbox play after the main campaign is complete
 
-Version 0.5.1 is a hidden internal alpha. The complete numbered campaign has passed live acceptance, while redistribution review, side-path acceptance, multiplayer QA, and final survival-balance work remain in progress.
+Version 0.5.2 is a hidden internal alpha. The complete numbered campaign has passed live acceptance, while redistribution review, side-path acceptance, multiplayer QA, and final survival-balance work remain in progress.
 
 ## Help
 

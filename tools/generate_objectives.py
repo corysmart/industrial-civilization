@@ -112,17 +112,29 @@ CHAPTER_ERAS = {
 # actually proves the objective. Most other icons are derived automatically
 # from required-item or objective-evidence data below.
 ICON_OVERRIDES = {
+    "basic_storage": "ironchest:iron_chest:3",
+    "first_ic2_generator": "ic2:blockgenerator:0",
+    "low_voltage_network": "ic2:itemcable:0",
+    "electric_processing": "ic2:blockmachinelv:0",
     "ore_doubling": "ic2:blockmachinelv",
+    "electric_tools": "ic2:itemdrills:0",
     "voltage_literacy": "ic2:itemcable",
+    "quarry_extraction": "buildcraftbuilders:quarry",
     "loaded_industry": "railcraft:worldspike",
     "wireless_control": "wrcbe:wireless_logic",
     "automation_throughput": "minecraft:hopper",
-    "freight_infrastructure": "railcraft:locomotive",
+    "railcraft_steel": "railcraft:tool_pickaxe_steel",
+    "refined_fuel": "buildcraftfactory:distiller",
+    "advanced_ic2": "ic2:blockmachinemv:0",
+    "freight_infrastructure": "railcraft:locomotive_steam_solid",
     "faction_contacts": "industrialcivilizationcore:industrial_credit",
+    "mffs_installation": "modularforcefieldsystem:projector",
     "production_queue": "industrialcivilizationcore:programmable_assembler",
     "multi_step_manufacturing": "industrialcivilizationcore:programmable_assembler",
     "programmable_manufacturing": "industrialcivilizationcore:control_processor",
+    "nuclear_reactor": "ic2:blocknuclearreactor",
     "reactor_output": "ic2:blocknuclearreactor",
+    "orbital_power": "industrialcivilizationcore:environmental_solar_array",
     "orbital_experiments": "industrialcivilizationcore:orbital_experiment_module",
     "orbital_operational_data": "industrialcivilizationcore:research_data",
     "moon_access": "industrialcivilizationcore:orbital_research_archive",
@@ -131,6 +143,10 @@ ICON_OVERRIDES = {
     "lunar_science_program": "industrialcivilizationcore:lunar_engineering_archive",
     "lunar_darkness_mastery": "industrialcivilizationcore:environmental_solar_array",
     "lunar_precision_manufacturing": "industrialcivilizationcore:precision_frame",
+    "extreme_voltage_industry": "ic2:blockmachinehv:0",
+    "nanosuit_and_tools": "ic2:itemarmornanohelmet:0",
+    "quantumsuit": "ic2:itemarmorquantumhelmet:0",
+    "mars_sample": "galacticraftplanets:item_basic_mars:2",
     "martian_cargo": "industrialcivilizationcore:interplanetary_cargo_controller",
     "martian_science_program": "industrialcivilizationcore:martian_autonomy_archive",
     "autonomous_resource_response": "industrialcivilizationcore:programmable_assembler",
@@ -139,6 +155,23 @@ ICON_OVERRIDES = {
     "analyzer_power": "industrialcivilizationcore:molecular_analyzer",
     "comparative_molecular_analysis": "industrialcivilizationcore:material_pattern_record",
     "lite_matter_complete": "industrialcivilizationcore:material_pattern_record",
+    "abandoned_factory_discovered": "industrialcivilizationcore:factory_control_terminal",
+}
+
+# Control guidance is based on the gameplay object that originally supplied
+# useful operating context, not on later visual-only icon curation.
+CONTROL_HINT_OVERRIDES = {
+    key: ICON_OVERRIDES[key] for key in (
+        "ore_doubling", "voltage_literacy", "loaded_industry", "wireless_control",
+        "automation_throughput", "freight_infrastructure", "faction_contacts",
+        "production_queue", "multi_step_manufacturing", "programmable_manufacturing",
+        "reactor_output", "orbital_experiments", "orbital_operational_data", "moon_access",
+        "lunar_landing", "lunar_cargo", "lunar_science_program", "lunar_darkness_mastery",
+        "lunar_precision_manufacturing", "martian_cargo", "martian_science_program",
+        "autonomous_resource_response", "autonomous_power_response",
+        "unattended_martian_production", "analyzer_power",
+        "comparative_molecular_analysis", "lite_matter_complete",
+    )
 }
 
 
@@ -153,6 +186,12 @@ def load_side_paths():
 
 
 def split_item(ref):
+    legacy_aliases = {
+        "minecraft:firework_rocket": ("minecraft:fireworks", 0),
+        "minecraft:red_sand": ("minecraft:sand", 1),
+    }
+    if ref in legacy_aliases:
+        return legacy_aliases[ref]
     parts = ref.split(":")
     if len(parts) == 3 and parts[-1] == "*":
         return ":".join(parts[:2]), 32767
@@ -200,17 +239,17 @@ def task_for(ms):
     return retrieval_task(evidence)
 
 
-def evidence_item(value):
-    return value["item"] if isinstance(value, dict) else value
-
-
 def quest_icon(ms):
     if ms["id"] in ICON_OVERRIDES:
         return ICON_OVERRIDES[ms["id"]]
     if ms.get("required_item"):
         return ms["required_item"]
-    evidence = DETECTION.get("overrides", {}).get(ms["id"])
-    return evidence_item(evidence[0]) if evidence else ms["icon"]
+    # Detection evidence answers "what proves completion?" and is often a
+    # generic hopper, computer, machine casing, or the first item in a larger
+    # set. The authored icon answers "what visually identifies this quest?"
+    # Keep those concerns separate and override only when a concrete objective
+    # artifact is clearer than the authored symbol.
+    return ms["icon"]
 
 
 def quest_icon_stack(ms):
@@ -238,7 +277,18 @@ def story(ms, line, index, total):
 
 
 def controls_for(ms):
-    haystack = " ".join([ms["id"], ms["title"], ms["capability"], ms["icon"], quest_icon(ms)]).lower()
+    evidence = DETECTION.get("overrides", {}).get(ms["id"], [])
+    if ms["id"] in CONTROL_HINT_OVERRIDES:
+        evidence_ref = CONTROL_HINT_OVERRIDES[ms["id"]]
+    elif ms.get("required_item"):
+        evidence_ref = ms["required_item"]
+    elif evidence:
+        value = evidence[0]
+        evidence_ref = value.get("item", "") if isinstance(value, dict) else value
+    else:
+        evidence_ref = ms["icon"]
+    haystack = " ".join([ms["id"], ms["title"], ms["capability"], ms["icon"],
+                         ms.get("required_item", ""), evidence_ref]).lower()
     controls = ["F6 — reopen the Industrial Civilization quest guide."]
     modded = (":" in ms["icon"] and not ms["icon"].startswith("minecraft:")) or any(
         word in haystack for word in ("ic2", "electric", "voltage", "reactor", "computer", "factory", "orbit", "lunar", "moon", "mars", "quantum", "matter", "cargo", "faction", "wireless"))
@@ -458,7 +508,7 @@ def main():
             "hardcore:1": 0,
             "home_image:8": "industrialcivilizationcore:textures/gui/quest_home_v2.png",
             "party_enable:1": 1,
-            "pack_version:3": 14,
+            "pack_version:3": 15,
             "home_offset_x:3": -128,
             "home_offset_y:3": -64,
         }},
