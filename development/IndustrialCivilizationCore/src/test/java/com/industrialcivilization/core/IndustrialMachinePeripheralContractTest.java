@@ -23,6 +23,7 @@ public final class IndustrialMachinePeripheralContractTest {
         assertTrue(Arrays.asList(TileIndustrialMachine.PERIPHERAL_METHODS).containsAll(
             Arrays.asList("getEnergyStored", "getInputTier", "getAcceptedEUThisTick",
                 "getBaselineEUPerTick", "getEffectiveSpeedMultiplier", "getWorkCompleted",
-                "getWorkRequired", "getEstimatedTicksRemaining")));
+                "getWorkRequired", "getEstimatedTicksRemaining", "getMfsuPacketsThisTick",
+                "getOperationPeakMfsuPackets")));
     }
 }

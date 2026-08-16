@@ -1,0 +1,24 @@
+{
+  "parent": "industrialcivilizationcore:mfsu_bank_baseline",
+  "display": {
+    "icon": {
+      "item": "ic2:blockelectric",
+      "data": 2
+    },
+    "title": {
+      "text": "11.09 \u2014 Four-MFSU Parallel Bank"
+    },
+    "description": {
+      "text": "Complete genuine manufacturing after delivering four legal MFSU-class packets in one tick for at least 2,048 EU/t of burst input."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "runtime": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

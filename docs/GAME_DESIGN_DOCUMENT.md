@@ -1,9 +1,9 @@
 # Industrial Civilization — Game Design Document
 
-- Status: 0.5.0 hidden internal alpha; numbered campaign live-validated
+- Status: 0.5.1 hidden internal alpha; numbered campaign live-validated
 - Pack: Industrial Civilization: Astra / Minecraft 1.12.2 / Forge 14.23.5.2860
-- First-party runtime: IndustrialCivilizationCore 0.5.0
-- Industrial Civilization pack release: 0.5.0 (Technic base selector: 1.2.6)
+- First-party runtime: IndustrialCivilizationCore 0.5.1
+- Industrial Civilization pack release: 0.5.1 (Technic base selector: 1.2.6)
 - Authoritative data: `progression/*.json`; generated quest pack: `config/betterquesting/DefaultQuests.json`
 
 ## Vision
@@ -198,7 +198,7 @@ Quest/config changes can be loaded into an existing test world with `/bq_admin d
 
 ## Implemented now
 
-- 16 chapters, 7 independent side paths, 129 automatic quests, full aspirational visibility, no manual checkbox tasks.
+- 16 chapters, 8 independent side paths, 134 automatic quests, full aspirational visibility, no manual checkbox tasks.
 - A single connected Industrial Civilization advancement page exposes 324 achievable nodes in gameplay order, including 194 ported objectives from Minecraft and integrated mods. Foreign advancement pages are hidden, and 37 impossible, duplicate, magical, End-only, or fake-monster objectives are removed or replaced.
 - Story/mission/proof/control descriptions and actual objective icons for the entire generated quest set.
 - Five era-specific quest backgrounds and IC2-styled custom block/item/GUI art.
@@ -220,7 +220,7 @@ Quest/config changes can be loaded into an existing test world with `/bq_admin d
 ### Required playtest verification
 
 1. Complete a measured survival campaign without Creative-staged ingredients, record resource/power bottlenecks, and tune pacing without adding arbitrary microcrafts.
-2. Run dedicated acceptance passes for all seven independent side paths; ten faction/vehicle side-line advancements remained intentionally incomplete at the end of numbered-campaign acceptance.
+2. Run dedicated acceptance passes for all eight independent side paths; the new MFSU Burst Power path requires physical 1/4/10/50-bank acceptance and ten faction/vehicle side-line advancements remained intentionally incomplete at the end of numbered-campaign acceptance.
 3. Exercise Earth and space factions, equipment drops, procedural settlements/cities/fabrication centers, vehicle handling, and world-generation spacing across fresh chunks and migrated low-exploration worlds.
 4. Exercise every custom machine GUI/peripheral method, cross-dimensional cargo channel, and multiplayer ownership path under chunk unload/reload and save/restart.
 

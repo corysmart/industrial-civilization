@@ -5,7 +5,7 @@ about growing a survival workshop into an interplanetary industrial
 civilization. It began from the Tekkit 2 technical baseline, but it is now its
 own source project, release archive, and hidden Technic pack.
 
-The current pack release is **0.5.0**. Its complete 16-chapter numbered
+The current pack release is **0.5.1**. Its complete 16-chapter numbered
 campaign has passed live acceptance in `Test Bed 1`: all 111 numbered Better
 Questing tasks completed, the final `continuous_civilization` milestone
 persisted after save/reload, the one-time AI credits returned to the playable
@@ -15,9 +15,9 @@ and vehicle side paths still require their own full acceptance pass.
 ## Current distribution status
 
 - Technic pack: **Industrial Civilization: Astra** (`industrial-civilization-astra`)
-- Pack version: **0.5.0**
+- Pack version: **0.5.1**
 - Minecraft: **1.12.2**, Forge **14.23.5.2860**, Java **8**
-- GitHub release: `v0.5.0`
+- GitHub release: `v0.5.1`
 - Visibility: hidden internal alpha while redistribution review, multiplayer
   QA, and final balance work continue
 - Installed Technic instance:
@@ -36,7 +36,7 @@ then verifies every SHA-256 before Forge starts. See
 
 ## What is implemented
 
-- 16 numbered chapters and 7 independent side paths across Earth, orbit, the
+- 16 numbered chapters and 8 independent side paths across Earth, orbit, the
   Moon, Mars, Lite Matter Engineering, the AI Age, and post-AI civilization
 - 129 automatic capability milestones with no manual checkbox objectives
 - One Industrial Civilization advancement page with 324 connected visible
@@ -94,7 +94,7 @@ python3 tools/static_validate.py
 python3 tools/e2e/preflight.py
 ```
 
-At the current 0.5.0 state these checks report 1,451 runtime-content checks,
+At the current 0.5.1 state these checks report 1,426 runtime-content checks,
 324 connected visible advancements, 39 energy-interoperability checks, 3,540
 progression checks, 1,934 static checks, and 8 HeadlessMC preflight checks.
 Offline checks complement—not replace—the live evidence and scenario lists in

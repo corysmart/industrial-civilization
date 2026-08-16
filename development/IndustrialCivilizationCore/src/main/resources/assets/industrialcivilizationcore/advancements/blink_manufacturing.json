@@ -1,0 +1,23 @@
+{
+  "parent": "industrialcivilizationcore:mfsu_bank_fifty",
+  "display": {
+    "icon": {
+      "item": "industrialcivilizationcore:robotic_manufacturing_cell"
+    },
+    "title": {
+      "text": "11.12 \u2014 Blink Manufacturing"
+    },
+    "description": {
+      "text": "Use a fifty-MFSU burst bank to finish a genuine energy-limited first-party manufacturing recipe in eight active ticks or fewer\u2014less than 0.4 seconds."
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "runtime": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

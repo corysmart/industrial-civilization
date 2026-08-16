@@ -1362,7 +1362,7 @@
     "24:10": {
       "questID:3": 24,
       "preRequisites:11": [
-        111
+        116
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -1530,7 +1530,7 @@
       "questID:3": 27,
       "preRequisites:11": [
         26,
-        114
+        119
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -1898,7 +1898,7 @@
       "questID:3": 35,
       "preRequisites:11": [
         34,
-        115
+        120
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -3774,6 +3774,201 @@
     "74:10": {
       "questID:3": 74,
       "preRequisites:11": [
+        67
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "ic2:blockelectric",
+            "Count:3": 1,
+            "Damage:2": 2,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Single-MFSU Baseline",
+          "desc:8": "STORY\nThe quantum technology program advances one dependable system at a time. This step turns single-mfsu baseline from an idea into infrastructure.\n\nMISSION\nComplete a genuine energy-limited manufacturing operation while it receives at least one legal 512-EU MFSU-class packet in a tick.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Connect a real MFSU to a tier-3-compatible Industrial Civilization manufacturing machine.\n- Start a genuine recipe and complete it under live IC2 EnergyNet power.\n- Confirm the machine records at least one 512-EU packet during the operation.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- IC2 equipment: F10 changes supported modes. Backslash is the armor modifier, Option+H toggles boost, and Option+O expands the armor HUD. Sneak while mining/chopping to suppress pack-added area or whole-tree behavior.\n- MFSU bank: orient each MFSU output toward an independent EnergyNet connection to the same tier-3-compatible machine. Start the real recipe before discharge. The machine GUI reports aggregate Input EU/t and speed; an adjacent ComputerCraft computer can also call getMfsuPacketsThisTick() and getOperationPeakMfsuPackets().\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "advancement_id:8": "industrialcivilizationcore:mfsu_bank_baseline",
+          "index:3": 0,
+          "taskID:8": "bq_standard:advancement"
+        }
+      },
+      "rewards:9": {}
+    },
+    "75:10": {
+      "questID:3": 75,
+      "preRequisites:11": [
+        74
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "ic2:blockelectric",
+            "Count:3": 1,
+            "Damage:2": 2,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Four-MFSU Parallel Bank",
+          "desc:8": "STORY\nThe quantum technology program advances one dependable system at a time. This step turns four-mfsu parallel bank from an idea into infrastructure.\n\nMISSION\nComplete genuine manufacturing after delivering four legal MFSU-class packets in one tick for at least 2,048 EU/t of burst input.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Build four independently connected and correctly oriented MFSUs.\n- Complete a real recipe with a peak of at least four 512-EU packets in one tick.\n- Confirm aggregate throughput does not cause a false overvoltage event.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- IC2 equipment: F10 changes supported modes. Backslash is the armor modifier, Option+H toggles boost, and Option+O expands the armor HUD. Sneak while mining/chopping to suppress pack-added area or whole-tree behavior.\n- MFSU bank: orient each MFSU output toward an independent EnergyNet connection to the same tier-3-compatible machine. Start the real recipe before discharge. The machine GUI reports aggregate Input EU/t and speed; an adjacent ComputerCraft computer can also call getMfsuPacketsThisTick() and getOperationPeakMfsuPackets().\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "advancement_id:8": "industrialcivilizationcore:mfsu_bank_quad",
+          "index:3": 0,
+          "taskID:8": "bq_standard:advancement"
+        }
+      },
+      "rewards:9": {}
+    },
+    "76:10": {
+      "questID:3": 76,
+      "preRequisites:11": [
+        75
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "ic2:blockelectric",
+            "Count:3": 1,
+            "Damage:2": 2,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Ten-MFSU Burst Bank",
+          "desc:8": "STORY\nThe quantum technology program advances one dependable system at a time. This step turns ten-mfsu burst bank from an idea into infrastructure.\n\nMISSION\nComplete genuine manufacturing after delivering ten legal MFSU-class packets in one tick for at least 5,120 EU/t of burst input.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Scale the parallel bank to ten real MFSUs without combining them into one illegal packet.\n- Complete a real recipe with a peak of at least ten 512-EU packets in one tick.\n- Observe the expected throughput increase through the machine GUI or ComputerCraft telemetry.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- IC2 equipment: F10 changes supported modes. Backslash is the armor modifier, Option+H toggles boost, and Option+O expands the armor HUD. Sneak while mining/chopping to suppress pack-added area or whole-tree behavior.\n- MFSU bank: orient each MFSU output toward an independent EnergyNet connection to the same tier-3-compatible machine. Start the real recipe before discharge. The machine GUI reports aggregate Input EU/t and speed; an adjacent ComputerCraft computer can also call getMfsuPacketsThisTick() and getOperationPeakMfsuPackets().\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "advancement_id:8": "industrialcivilizationcore:mfsu_bank_ten",
+          "index:3": 0,
+          "taskID:8": "bq_standard:advancement"
+        }
+      },
+      "rewards:9": {}
+    },
+    "77:10": {
+      "questID:3": 77,
+      "preRequisites:11": [
+        76
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "ic2:blockelectric",
+            "Count:3": 1,
+            "Damage:2": 2,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Fifty-MFSU Power Bank",
+          "desc:8": "STORY\nThe quantum technology program advances one dependable system at a time. This step turns fifty-mfsu power bank from an idea into infrastructure.\n\nMISSION\nComplete genuine manufacturing with a physical fifty-MFSU bank delivering at least 25,600 EU/t as fifty independently legal packets.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Charge, orient, and connect fifty real MFSUs to a tier-3-compatible machine.\n- Complete a real recipe with a peak of at least fifty 512-EU packets in one tick.\n- Confirm the bank accelerates work without bypassing per-packet voltage safety.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- IC2 equipment: F10 changes supported modes. Backslash is the armor modifier, Option+H toggles boost, and Option+O expands the armor HUD. Sneak while mining/chopping to suppress pack-added area or whole-tree behavior.\n- MFSU bank: orient each MFSU output toward an independent EnergyNet connection to the same tier-3-compatible machine. Start the real recipe before discharge. The machine GUI reports aggregate Input EU/t and speed; an adjacent ComputerCraft computer can also call getMfsuPacketsThisTick() and getOperationPeakMfsuPackets().\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "advancement_id:8": "industrialcivilizationcore:mfsu_bank_fifty",
+          "index:3": 0,
+          "taskID:8": "bq_standard:advancement"
+        }
+      },
+      "rewards:9": {}
+    },
+    "78:10": {
+      "questID:3": 78,
+      "preRequisites:11": [
+        77
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "industrialcivilizationcore:robotic_manufacturing_cell",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Blink Manufacturing",
+          "desc:8": "STORY\nThe quantum technology program advances one dependable system at a time. This step turns blink manufacturing from an idea into infrastructure.\n\nMISSION\nUse a fifty-MFSU burst bank to finish a genuine energy-limited first-party manufacturing recipe in eight active ticks or fewer\u2014less than 0.4 seconds.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Use a Robotic Manufacturing Cell or another compatible energy-limited first-party machine.\n- Deliver at least fifty MFSU-class packets in one operation tick.\n- Complete the genuine recipe in no more than eight active ticks; precharging or possessing the output does not count.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Industrial Civilization machines: right-click to open the IC2-styled EU/inventory screen. Put recipe inputs in the three left slots and take output from the right slot. Matching inputs run automatically; ComputerCraft is required only for explicit recipe selection, queues, telemetry, or cargo channels.\n- MFSU bank: orient each MFSU output toward an independent EnergyNet connection to the same tier-3-compatible machine. Start the real recipe before discharge. The machine GUI reports aggregate Input EU/t and speed; an adjacent ComputerCraft computer can also call getMfsuPacketsThisTick() and getOperationPeakMfsuPackets().\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "advancement_id:8": "industrialcivilizationcore:blink_manufacturing",
+          "index:3": 0,
+          "taskID:8": "bq_standard:advancement"
+        }
+      },
+      "rewards:9": {}
+    },
+    "79:10": {
+      "questID:3": 79,
+      "preRequisites:11": [
         73,
         53,
         65
@@ -3824,10 +4019,10 @@
       },
       "rewards:9": {}
     },
-    "75:10": {
-      "questID:3": 75,
+    "80:10": {
+      "questID:3": 80,
       "preRequisites:11": [
-        74
+        79
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -3863,10 +4058,10 @@
       },
       "rewards:9": {}
     },
-    "76:10": {
-      "questID:3": 76,
+    "81:10": {
+      "questID:3": 81,
       "preRequisites:11": [
-        75
+        80
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -3902,10 +4097,10 @@
       },
       "rewards:9": {}
     },
-    "77:10": {
-      "questID:3": 77,
+    "82:10": {
+      "questID:3": 82,
       "preRequisites:11": [
-        76
+        81
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -3941,10 +4136,10 @@
       },
       "rewards:9": {}
     },
-    "78:10": {
-      "questID:3": 78,
+    "83:10": {
+      "questID:3": 83,
       "preRequisites:11": [
-        77
+        82
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -3980,10 +4175,10 @@
       },
       "rewards:9": {}
     },
-    "79:10": {
-      "questID:3": 79,
+    "84:10": {
+      "questID:3": 84,
       "preRequisites:11": [
-        78
+        83
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -4019,10 +4214,10 @@
       },
       "rewards:9": {}
     },
-    "80:10": {
-      "questID:3": 80,
+    "85:10": {
+      "questID:3": 85,
       "preRequisites:11": [
-        78
+        83
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -4070,10 +4265,10 @@
       },
       "rewards:9": {}
     },
-    "81:10": {
-      "questID:3": 81,
+    "86:10": {
+      "questID:3": 86,
       "preRequisites:11": [
-        79
+        84
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -4121,14 +4316,14 @@
       },
       "rewards:9": {}
     },
-    "82:10": {
-      "questID:3": 82,
+    "87:10": {
+      "questID:3": 87,
       "preRequisites:11": [
-        76,
-        77,
-        78,
-        79,
-        80
+        81,
+        82,
+        83,
+        84,
+        85
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -4164,10 +4359,10 @@
       },
       "rewards:9": {}
     },
-    "83:10": {
-      "questID:3": 83,
+    "88:10": {
+      "questID:3": 88,
       "preRequisites:11": [
-        82
+        87
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -4203,10 +4398,10 @@
       },
       "rewards:9": {}
     },
-    "84:10": {
-      "questID:3": 84,
+    "89:10": {
+      "questID:3": 89,
       "preRequisites:11": [
-        83
+        88
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -4242,10 +4437,10 @@
       },
       "rewards:9": {}
     },
-    "85:10": {
-      "questID:3": 85,
+    "90:10": {
+      "questID:3": 90,
       "preRequisites:11": [
-        83
+        88
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -4281,11 +4476,11 @@
       },
       "rewards:9": {}
     },
-    "86:10": {
-      "questID:3": 86,
+    "91:10": {
+      "questID:3": 91,
       "preRequisites:11": [
-        84,
-        85
+        89,
+        90
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -4321,10 +4516,10 @@
       },
       "rewards:9": {}
     },
-    "87:10": {
-      "questID:3": 87,
+    "92:10": {
+      "questID:3": 92,
       "preRequisites:11": [
-        86
+        91
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -4372,11 +4567,11 @@
       },
       "rewards:9": {}
     },
-    "88:10": {
-      "questID:3": 88,
+    "93:10": {
+      "questID:3": 93,
       "preRequisites:11": [
-        80,
-        87
+        85,
+        92
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -4424,10 +4619,10 @@
       },
       "rewards:9": {}
     },
-    "89:10": {
-      "questID:3": 89,
+    "94:10": {
+      "questID:3": 94,
       "preRequisites:11": [
-        88
+        93
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -4463,11 +4658,11 @@
       },
       "rewards:9": {}
     },
-    "90:10": {
-      "questID:3": 90,
+    "95:10": {
+      "questID:3": 95,
       "preRequisites:11": [
-        89,
-        80
+        94,
+        85
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -4515,10 +4710,10 @@
       },
       "rewards:9": {}
     },
-    "91:10": {
-      "questID:3": 91,
+    "96:10": {
+      "questID:3": 96,
       "preRequisites:11": [
-        90
+        95
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -4554,10 +4749,10 @@
       },
       "rewards:9": {}
     },
-    "92:10": {
-      "questID:3": 92,
+    "97:10": {
+      "questID:3": 97,
       "preRequisites:11": [
-        91
+        96
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -4611,10 +4806,10 @@
       },
       "rewards:9": {}
     },
-    "93:10": {
-      "questID:3": 93,
+    "98:10": {
+      "questID:3": 98,
       "preRequisites:11": [
-        91
+        96
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -4650,14 +4845,14 @@
       },
       "rewards:9": {}
     },
-    "94:10": {
-      "questID:3": 94,
+    "99:10": {
+      "questID:3": 99,
       "preRequisites:11": [
         53,
         65,
         73,
-        87,
-        93
+        92,
+        98
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -4723,10 +4918,10 @@
       },
       "rewards:9": {}
     },
-    "95:10": {
-      "questID:3": 95,
+    "100:10": {
+      "questID:3": 100,
       "preRequisites:11": [
-        94
+        99
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -4774,10 +4969,10 @@
       },
       "rewards:9": {}
     },
-    "96:10": {
-      "questID:3": 96,
+    "101:10": {
+      "questID:3": 101,
       "preRequisites:11": [
-        95
+        100
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -4813,10 +5008,10 @@
       },
       "rewards:9": {}
     },
-    "97:10": {
-      "questID:3": 97,
+    "102:10": {
+      "questID:3": 102,
       "preRequisites:11": [
-        96
+        101
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -4852,10 +5047,10 @@
       },
       "rewards:9": {}
     },
-    "98:10": {
-      "questID:3": 98,
+    "103:10": {
+      "questID:3": 103,
       "preRequisites:11": [
-        96
+        101
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -4903,10 +5098,10 @@
       },
       "rewards:9": {}
     },
-    "99:10": {
-      "questID:3": 99,
+    "104:10": {
+      "questID:3": 104,
       "preRequisites:11": [
-        98
+        103
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -4954,10 +5149,10 @@
       },
       "rewards:9": {}
     },
-    "100:10": {
-      "questID:3": 100,
+    "105:10": {
+      "questID:3": 105,
       "preRequisites:11": [
-        99
+        104
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5005,10 +5200,10 @@
       },
       "rewards:9": {}
     },
-    "101:10": {
-      "questID:3": 101,
+    "106:10": {
+      "questID:3": 106,
       "preRequisites:11": [
-        100
+        105
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5056,10 +5251,10 @@
       },
       "rewards:9": {}
     },
-    "102:10": {
-      "questID:3": 102,
+    "107:10": {
+      "questID:3": 107,
       "preRequisites:11": [
-        100
+        105
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5107,10 +5302,10 @@
       },
       "rewards:9": {}
     },
-    "103:10": {
-      "questID:3": 103,
+    "108:10": {
+      "questID:3": 108,
       "preRequisites:11": [
-        100
+        105
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5158,10 +5353,10 @@
       },
       "rewards:9": {}
     },
-    "104:10": {
-      "questID:3": 104,
+    "109:10": {
+      "questID:3": 109,
       "preRequisites:11": [
-        103
+        108
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5209,10 +5404,10 @@
       },
       "rewards:9": {}
     },
-    "105:10": {
-      "questID:3": 105,
+    "110:10": {
+      "questID:3": 110,
       "preRequisites:11": [
-        104
+        109
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5260,10 +5455,10 @@
       },
       "rewards:9": {}
     },
-    "106:10": {
-      "questID:3": 106,
+    "111:10": {
+      "questID:3": 111,
       "preRequisites:11": [
-        103
+        108
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5311,10 +5506,10 @@
       },
       "rewards:9": {}
     },
-    "107:10": {
-      "questID:3": 107,
+    "112:10": {
+      "questID:3": 112,
       "preRequisites:11": [
-        101
+        106
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5362,11 +5557,11 @@
       },
       "rewards:9": {}
     },
-    "108:10": {
-      "questID:3": 108,
+    "113:10": {
+      "questID:3": 113,
       "preRequisites:11": [
-        101,
-        102
+        106,
+        107
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5414,12 +5609,12 @@
       },
       "rewards:9": {}
     },
-    "109:10": {
-      "questID:3": 109,
+    "114:10": {
+      "questID:3": 114,
       "preRequisites:11": [
-        105,
-        107,
-        108
+        110,
+        112,
+        113
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5467,10 +5662,10 @@
       },
       "rewards:9": {}
     },
-    "110:10": {
-      "questID:3": 110,
+    "115:10": {
+      "questID:3": 115,
       "preRequisites:11": [
-        105
+        110
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5518,8 +5713,8 @@
       },
       "rewards:9": {}
     },
-    "111:10": {
-      "questID:3": 111,
+    "116:10": {
+      "questID:3": 116,
       "preRequisites:11": [],
       "properties:10": {
         "betterquesting:10": {
@@ -5567,10 +5762,10 @@
       },
       "rewards:9": {}
     },
-    "112:10": {
-      "questID:3": 112,
+    "117:10": {
+      "questID:3": 117,
       "preRequisites:11": [
-        111,
+        116,
         24
       ],
       "properties:10": {
@@ -5619,10 +5814,10 @@
       },
       "rewards:9": {}
     },
-    "113:10": {
-      "questID:3": 113,
+    "118:10": {
+      "questID:3": 118,
       "preRequisites:11": [
-        112
+        117
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5670,10 +5865,10 @@
       },
       "rewards:9": {}
     },
-    "114:10": {
-      "questID:3": 114,
+    "119:10": {
+      "questID:3": 119,
       "preRequisites:11": [
-        113
+        118
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5721,10 +5916,10 @@
       },
       "rewards:9": {}
     },
-    "115:10": {
-      "questID:3": 115,
+    "120:10": {
+      "questID:3": 120,
       "preRequisites:11": [
-        114
+        119
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5772,8 +5967,8 @@
       },
       "rewards:9": {}
     },
-    "116:10": {
-      "questID:3": 116,
+    "121:10": {
+      "questID:3": 121,
       "preRequisites:11": [
         24
       ],
@@ -5811,8 +6006,8 @@
       },
       "rewards:9": {}
     },
-    "117:10": {
-      "questID:3": 117,
+    "122:10": {
+      "questID:3": 122,
       "preRequisites:11": [
         24
       ],
@@ -5850,8 +6045,8 @@
       },
       "rewards:9": {}
     },
-    "118:10": {
-      "questID:3": 118,
+    "123:10": {
+      "questID:3": 123,
       "preRequisites:11": [
         24
       ],
@@ -5889,10 +6084,10 @@
       },
       "rewards:9": {}
     },
-    "119:10": {
-      "questID:3": 119,
+    "124:10": {
+      "questID:3": 124,
       "preRequisites:11": [
-        118
+        123
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5928,10 +6123,10 @@
       },
       "rewards:9": {}
     },
-    "120:10": {
-      "questID:3": 120,
+    "125:10": {
+      "questID:3": 125,
       "preRequisites:11": [
-        116
+        121
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5967,8 +6162,8 @@
       },
       "rewards:9": {}
     },
-    "121:10": {
-      "questID:3": 121,
+    "126:10": {
+      "questID:3": 126,
       "preRequisites:11": [
         34
       ],
@@ -6006,10 +6201,10 @@
       },
       "rewards:9": {}
     },
-    "122:10": {
-      "questID:3": 122,
+    "127:10": {
+      "questID:3": 127,
       "preRequisites:11": [
-        121
+        126
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6045,10 +6240,10 @@
       },
       "rewards:9": {}
     },
-    "123:10": {
-      "questID:3": 123,
+    "128:10": {
+      "questID:3": 128,
       "preRequisites:11": [
-        122
+        127
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6084,8 +6279,8 @@
       },
       "rewards:9": {}
     },
-    "124:10": {
-      "questID:3": 124,
+    "129:10": {
+      "questID:3": 129,
       "preRequisites:11": [
         24
       ],
@@ -6123,8 +6318,8 @@
       },
       "rewards:9": {}
     },
-    "125:10": {
-      "questID:3": 125,
+    "130:10": {
+      "questID:3": 130,
       "preRequisites:11": [
         34
       ],
@@ -6162,10 +6357,10 @@
       },
       "rewards:9": {}
     },
-    "126:10": {
-      "questID:3": 126,
+    "131:10": {
+      "questID:3": 131,
       "preRequisites:11": [
-        125
+        130
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6219,10 +6414,10 @@
       },
       "rewards:9": {}
     },
-    "127:10": {
-      "questID:3": 127,
+    "132:10": {
+      "questID:3": 132,
       "preRequisites:11": [
-        126
+        131
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6270,10 +6465,10 @@
       },
       "rewards:9": {}
     },
-    "128:10": {
-      "questID:3": 128,
+    "133:10": {
+      "questID:3": 133,
       "preRequisites:11": [
-        127
+        132
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6909,11 +7104,11 @@
           "id:3": 73,
           "sizeY:3": 24
         },
-        "74:10": {
+        "79:10": {
           "sizeX:3": 24,
           "x:3": 402,
           "y:3": 266,
-          "id:3": 74,
+          "id:3": 79,
           "sizeY:3": 24
         }
       },
@@ -6931,53 +7126,53 @@
     },
     "11:10": {
       "quests:9": {
-        "75:10": {
+        "80:10": {
           "sizeX:3": 24,
           "x:3": 244,
           "y:3": 244,
-          "id:3": 75,
+          "id:3": 80,
           "sizeY:3": 24
         },
-        "76:10": {
+        "81:10": {
           "sizeX:3": 24,
           "x:3": 297,
           "y:3": 294,
-          "id:3": 76,
-          "sizeY:3": 24
-        },
-        "77:10": {
-          "sizeX:3": 24,
-          "x:3": 320,
-          "y:3": 229,
-          "id:3": 77,
-          "sizeY:3": 24
-        },
-        "78:10": {
-          "sizeX:3": 24,
-          "x:3": 267,
-          "y:3": 178,
-          "id:3": 78,
-          "sizeY:3": 24
-        },
-        "79:10": {
-          "sizeX:3": 24,
-          "x:3": 191,
-          "y:3": 194,
-          "id:3": 79,
-          "sizeY:3": 24
-        },
-        "80:10": {
-          "sizeX:3": 24,
-          "x:3": 168,
-          "y:3": 259,
-          "id:3": 80,
+          "id:3": 81,
           "sizeY:3": 24
         },
         "82:10": {
           "sizeX:3": 24,
+          "x:3": 320,
+          "y:3": 229,
+          "id:3": 82,
+          "sizeY:3": 24
+        },
+        "83:10": {
+          "sizeX:3": 24,
+          "x:3": 267,
+          "y:3": 178,
+          "id:3": 83,
+          "sizeY:3": 24
+        },
+        "84:10": {
+          "sizeX:3": 24,
+          "x:3": 191,
+          "y:3": 194,
+          "id:3": 84,
+          "sizeY:3": 24
+        },
+        "85:10": {
+          "sizeX:3": 24,
+          "x:3": 168,
+          "y:3": 259,
+          "id:3": 85,
+          "sizeY:3": 24
+        },
+        "87:10": {
+          "sizeX:3": 24,
           "x:3": 221,
           "y:3": 310,
-          "id:3": 82,
+          "id:3": 87,
           "sizeY:3": 24
         }
       },
@@ -6995,39 +7190,39 @@
     },
     "12:10": {
       "quests:9": {
-        "83:10": {
+        "88:10": {
           "sizeX:3": 24,
           "x:3": 244,
           "y:3": 244,
-          "id:3": 83,
+          "id:3": 88,
           "sizeY:3": 24
         },
-        "84:10": {
+        "89:10": {
           "sizeX:3": 24,
           "x:3": 252,
           "y:3": 300,
-          "id:3": 84,
+          "id:3": 89,
           "sizeY:3": 24
         },
-        "85:10": {
+        "90:10": {
           "sizeX:3": 24,
           "x:3": 166,
           "y:3": 250,
-          "id:3": 85,
+          "id:3": 90,
           "sizeY:3": 24
         },
-        "86:10": {
+        "91:10": {
           "sizeX:3": 24,
           "x:3": 236,
           "y:3": 188,
-          "id:3": 86,
+          "id:3": 91,
           "sizeY:3": 24
         },
-        "87:10": {
+        "92:10": {
           "sizeX:3": 24,
           "x:3": 322,
           "y:3": 238,
-          "id:3": 87,
+          "id:3": 92,
           "sizeY:3": 24
         }
       },
@@ -7045,39 +7240,39 @@
     },
     "13:10": {
       "quests:9": {
-        "88:10": {
+        "93:10": {
           "sizeX:3": 24,
           "x:3": 244,
           "y:3": 244,
-          "id:3": 88,
+          "id:3": 93,
           "sizeY:3": 24
         },
-        "89:10": {
+        "94:10": {
           "sizeX:3": 24,
           "x:3": 204,
           "y:3": 297,
-          "id:3": 89,
+          "id:3": 94,
           "sizeY:3": 24
         },
-        "90:10": {
+        "95:10": {
           "sizeX:3": 24,
           "x:3": 311,
           "y:3": 276,
-          "id:3": 90,
+          "id:3": 95,
           "sizeY:3": 24
         },
-        "91:10": {
+        "96:10": {
           "sizeX:3": 24,
           "x:3": 284,
           "y:3": 191,
-          "id:3": 91,
+          "id:3": 96,
           "sizeY:3": 24
         },
-        "93:10": {
+        "98:10": {
           "sizeX:3": 24,
           "x:3": 177,
           "y:3": 212,
-          "id:3": 93,
+          "id:3": 98,
           "sizeY:3": 24
         }
       },
@@ -7095,39 +7290,39 @@
     },
     "14:10": {
       "quests:9": {
-        "94:10": {
+        "99:10": {
           "sizeX:3": 24,
           "x:3": 244,
           "y:3": 244,
-          "id:3": 94,
+          "id:3": 99,
           "sizeY:3": 24
         },
-        "95:10": {
+        "100:10": {
           "sizeX:3": 24,
           "x:3": 172,
           "y:3": 270,
-          "id:3": 95,
+          "id:3": 100,
           "sizeY:3": 24
         },
-        "96:10": {
+        "101:10": {
           "sizeX:3": 24,
           "x:3": 215,
           "y:3": 180,
-          "id:3": 96,
+          "id:3": 101,
           "sizeY:3": 24
         },
-        "97:10": {
+        "102:10": {
           "sizeX:3": 24,
           "x:3": 316,
           "y:3": 218,
-          "id:3": 97,
+          "id:3": 102,
           "sizeY:3": 24
         },
-        "98:10": {
+        "103:10": {
           "sizeX:3": 24,
           "x:3": 273,
           "y:3": 308,
-          "id:3": 98,
+          "id:3": 103,
           "sizeY:3": 24
         }
       },
@@ -7145,46 +7340,46 @@
     },
     "15:10": {
       "quests:9": {
-        "99:10": {
+        "104:10": {
           "sizeX:3": 24,
           "x:3": 244,
           "y:3": 244,
-          "id:3": 99,
-          "sizeY:3": 24
-        },
-        "100:10": {
-          "sizeX:3": 24,
-          "x:3": 169,
-          "y:3": 229,
-          "id:3": 100,
-          "sizeY:3": 24
-        },
-        "103:10": {
-          "sizeX:3": 24,
-          "x:3": 202,
-          "y:3": 291,
-          "id:3": 103,
-          "sizeY:3": 24
-        },
-        "104:10": {
-          "sizeX:3": 24,
-          "x:3": 293,
-          "y:3": 288,
           "id:3": 104,
           "sizeY:3": 24
         },
         "105:10": {
           "sizeX:3": 24,
-          "x:3": 317,
-          "y:3": 224,
+          "x:3": 169,
+          "y:3": 229,
           "id:3": 105,
+          "sizeY:3": 24
+        },
+        "108:10": {
+          "sizeX:3": 24,
+          "x:3": 202,
+          "y:3": 291,
+          "id:3": 108,
+          "sizeY:3": 24
+        },
+        "109:10": {
+          "sizeX:3": 24,
+          "x:3": 293,
+          "y:3": 288,
+          "id:3": 109,
           "sizeY:3": 24
         },
         "110:10": {
           "sizeX:3": 24,
+          "x:3": 317,
+          "y:3": 224,
+          "id:3": 110,
+          "sizeY:3": 24
+        },
+        "115:10": {
+          "sizeX:3": 24,
           "x:3": 240,
           "y:3": 188,
-          "id:3": 110,
+          "id:3": 115,
           "sizeY:3": 24
         }
       },
@@ -7230,11 +7425,11 @@
           "id:3": 16,
           "sizeY:3": 24
         },
-        "92:10": {
+        "97:10": {
           "sizeX:3": 24,
           "x:3": 321,
           "y:3": 255,
-          "id:3": 92,
+          "id:3": 97,
           "sizeY:3": 24
         }
       },
@@ -7266,39 +7461,39 @@
           "id:3": 24,
           "sizeY:3": 24
         },
-        "117:10": {
+        "122:10": {
           "sizeX:3": 24,
           "x:3": 262,
           "y:3": 311,
-          "id:3": 117,
+          "id:3": 122,
           "sizeY:3": 24
         },
-        "118:10": {
+        "123:10": {
           "sizeX:3": 24,
           "x:3": 319,
           "y:3": 264,
-          "id:3": 118,
+          "id:3": 123,
           "sizeY:3": 24
         },
-        "119:10": {
+        "124:10": {
           "sizeX:3": 24,
           "x:3": 301,
           "y:3": 197,
-          "id:3": 119,
+          "id:3": 124,
           "sizeY:3": 24
         },
-        "116:10": {
+        "121:10": {
           "sizeX:3": 24,
           "x:3": 226,
           "y:3": 177,
-          "id:3": 116,
+          "id:3": 121,
           "sizeY:3": 24
         },
-        "120:10": {
+        "125:10": {
           "sizeX:3": 24,
           "x:3": 169,
           "y:3": 224,
-          "id:3": 120,
+          "id:3": 125,
           "sizeY:3": 24
         },
         "25:10": {
@@ -7315,39 +7510,39 @@
           "id:3": 40,
           "sizeY:3": 24
         },
-        "111:10": {
+        "116:10": {
           "sizeX:3": 24,
           "x:3": 376,
           "y:3": 323,
-          "id:3": 111,
+          "id:3": 116,
           "sizeY:3": 24
         },
-        "112:10": {
+        "117:10": {
           "sizeX:3": 24,
           "x:3": 397,
           "y:3": 202,
-          "id:3": 112,
+          "id:3": 117,
           "sizeY:3": 24
         },
-        "113:10": {
+        "118:10": {
           "sizeX:3": 24,
           "x:3": 302,
           "y:3": 113,
-          "id:3": 113,
+          "id:3": 118,
           "sizeY:3": 24
         },
-        "114:10": {
+        "119:10": {
           "sizeX:3": 24,
           "x:3": 164,
           "y:3": 122,
-          "id:3": 114,
+          "id:3": 119,
           "sizeY:3": 24
         },
-        "115:10": {
+        "120:10": {
           "sizeX:3": 24,
           "x:3": 86,
           "y:3": 223,
-          "id:3": 115,
+          "id:3": 120,
           "sizeY:3": 24
         }
       },
@@ -7394,6 +7589,56 @@
     },
     "19:10": {
       "quests:9": {
+        "74:10": {
+          "sizeX:3": 24,
+          "x:3": 244,
+          "y:3": 244,
+          "id:3": 74,
+          "sizeY:3": 24
+        },
+        "75:10": {
+          "sizeX:3": 24,
+          "x:3": 177,
+          "y:3": 212,
+          "id:3": 75,
+          "sizeY:3": 24
+        },
+        "76:10": {
+          "sizeX:3": 24,
+          "x:3": 204,
+          "y:3": 297,
+          "id:3": 76,
+          "sizeY:3": 24
+        },
+        "77:10": {
+          "sizeX:3": 24,
+          "x:3": 311,
+          "y:3": 276,
+          "id:3": 77,
+          "sizeY:3": 24
+        },
+        "78:10": {
+          "sizeX:3": 24,
+          "x:3": 284,
+          "y:3": 191,
+          "id:3": 78,
+          "sizeY:3": 24
+        }
+      },
+      "lineID:3": 19,
+      "properties:10": {
+        "betterquesting:10": {
+          "visibility:8": "ALWAYS",
+          "name:8": "Side Path \u2014 MFSU Burst Power",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_moon_ui.png",
+          "bg_size:3": 512,
+          "desc:8": "Optional parallel-storage challenges that turn legal tier-3 packets into extreme manufacturing throughput. Side paths are visible from the start and may create alternate progression routes."
+        }
+      },
+      "order:3": 19
+    },
+    "20:10": {
+      "quests:9": {
         "22:10": {
           "sizeX:3": 24,
           "x:3": 244,
@@ -7403,73 +7648,23 @@
         },
         "60:10": {
           "sizeX:3": 24,
-          "x:3": 177,
-          "y:3": 212,
+          "x:3": 215,
+          "y:3": 180,
           "id:3": 60,
           "sizeY:3": 24
         },
-        "81:10": {
+        "86:10": {
           "sizeX:3": 24,
-          "x:3": 243,
-          "y:3": 306,
-          "id:3": 81,
+          "x:3": 321,
+          "y:3": 254,
+          "id:3": 86,
           "sizeY:3": 24
         },
-        "101:10": {
+        "106:10": {
           "sizeX:3": 24,
-          "x:3": 312,
-          "y:3": 214,
-          "id:3": 101,
-          "sizeY:3": 24
-        }
-      },
-      "lineID:3": 19,
-      "properties:10": {
-        "betterquesting:10": {
-          "visibility:8": "ALWAYS",
-          "name:8": "Side Path \u2014 Cargo Logistics",
-          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_post_ai_ui.png",
-          "bg_size:3": 512,
-          "desc:8": "Optional freight and interplanetary cargo mastery. Side paths are visible from the start and may create alternate progression routes."
-        }
-      },
-      "order:3": 19
-    },
-    "20:10": {
-      "quests:9": {
-        "121:10": {
-          "sizeX:3": 24,
-          "x:3": 244,
-          "y:3": 244,
-          "id:3": 121,
-          "sizeY:3": 24
-        },
-        "122:10": {
-          "sizeX:3": 24,
-          "x:3": 215,
-          "y:3": 180,
-          "id:3": 122,
-          "sizeY:3": 24
-        },
-        "123:10": {
-          "sizeX:3": 24,
-          "x:3": 316,
-          "y:3": 218,
-          "id:3": 123,
-          "sizeY:3": 24
-        },
-        "124:10": {
-          "sizeX:3": 24,
-          "x:3": 273,
-          "y:3": 308,
-          "id:3": 124,
-          "sizeY:3": 24
-        },
-        "125:10": {
-          "sizeX:3": 24,
-          "x:3": 172,
-          "y:3": 270,
-          "id:3": 125,
+          "x:3": 196,
+          "y:3": 298,
+          "id:3": 106,
           "sizeY:3": 24
         }
       },
@@ -7477,10 +7672,10 @@
       "properties:10": {
         "betterquesting:10": {
           "visibility:8": "ALWAYS",
-          "name:8": "Side Path \u2014 Mobility and Nations",
-          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_earth_ui.png",
+          "name:8": "Side Path \u2014 Cargo Logistics",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_post_ai_ui.png",
           "bg_size:3": 512,
-          "desc:8": "Optional road travel, industrial vehicles, city exchange, and advanced workshop infrastructure. Side paths are visible from the start and may create alternate progression routes."
+          "desc:8": "Optional freight and interplanetary cargo mastery. Side paths are visible from the start and may create alternate progression routes."
         }
       },
       "order:3": 20
@@ -7503,13 +7698,63 @@
         },
         "128:10": {
           "sizeX:3": 24,
+          "x:3": 169,
+          "y:3": 229,
+          "id:3": 128,
+          "sizeY:3": 24
+        },
+        "129:10": {
+          "sizeX:3": 24,
           "x:3": 224,
           "y:3": 298,
-          "id:3": 128,
+          "id:3": 129,
+          "sizeY:3": 24
+        },
+        "130:10": {
+          "sizeX:3": 24,
+          "x:3": 319,
+          "y:3": 259,
+          "id:3": 130,
           "sizeY:3": 24
         }
       },
       "lineID:3": 21,
+      "properties:10": {
+        "betterquesting:10": {
+          "visibility:8": "ALWAYS",
+          "name:8": "Side Path \u2014 Mobility and Nations",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_earth_ui.png",
+          "bg_size:3": 512,
+          "desc:8": "Optional road travel, industrial vehicles, city exchange, and advanced workshop infrastructure. Side paths are visible from the start and may create alternate progression routes."
+        }
+      },
+      "order:3": 21
+    },
+    "22:10": {
+      "quests:9": {
+        "131:10": {
+          "sizeX:3": 24,
+          "x:3": 244,
+          "y:3": 244,
+          "id:3": 131,
+          "sizeY:3": 24
+        },
+        "132:10": {
+          "sizeX:3": 24,
+          "x:3": 305,
+          "y:3": 206,
+          "id:3": 132,
+          "sizeY:3": 24
+        },
+        "133:10": {
+          "sizeX:3": 24,
+          "x:3": 183,
+          "y:3": 282,
+          "id:3": 133,
+          "sizeY:3": 24
+        }
+      },
+      "lineID:3": 22,
       "properties:10": {
         "betterquesting:10": {
           "visibility:8": "ALWAYS",
@@ -7519,47 +7764,47 @@
           "desc:8": "Extend IC2 heavy industry into radar, launch control, conventional missiles, and defensive deterrence without bypassing nuclear or AI progression. Side paths are visible from the start and may create alternate progression routes."
         }
       },
-      "order:3": 21
+      "order:3": 22
     },
-    "22:10": {
+    "23:10": {
       "quests:9": {
-        "102:10": {
+        "107:10": {
           "sizeX:3": 24,
           "x:3": 244,
           "y:3": 244,
-          "id:3": 102,
-          "sizeY:3": 24
-        },
-        "106:10": {
-          "sizeX:3": 24,
-          "x:3": 305,
-          "y:3": 206,
-          "id:3": 106,
-          "sizeY:3": 24
-        },
-        "107:10": {
-          "sizeX:3": 24,
-          "x:3": 292,
-          "y:3": 293,
           "id:3": 107,
           "sizeY:3": 24
         },
-        "108:10": {
+        "111:10": {
           "sizeX:3": 24,
-          "x:3": 183,
-          "y:3": 282,
-          "id:3": 108,
+          "x:3": 322,
+          "y:3": 243,
+          "id:3": 111,
           "sizeY:3": 24
         },
-        "109:10": {
+        "112:10": {
           "sizeX:3": 24,
-          "x:3": 196,
-          "y:3": 195,
-          "id:3": 109,
+          "x:3": 243,
+          "y:3": 175,
+          "id:3": 112,
+          "sizeY:3": 24
+        },
+        "113:10": {
+          "sizeX:3": 24,
+          "x:3": 166,
+          "y:3": 245,
+          "id:3": 113,
+          "sizeY:3": 24
+        },
+        "114:10": {
+          "sizeX:3": 24,
+          "x:3": 245,
+          "y:3": 313,
+          "id:3": 114,
           "sizeY:3": 24
         }
       },
-      "lineID:3": 22,
+      "lineID:3": 23,
       "properties:10": {
         "betterquesting:10": {
           "visibility:8": "ALWAYS",
@@ -7569,7 +7814,7 @@
           "desc:8": "Parallel civilization-scale endgame projects. Side paths are visible from the start and may create alternate progression routes."
         }
       },
-      "order:3": 22
+      "order:3": 23
     }
   },
   "questSettings:10": {
@@ -7583,7 +7828,7 @@
       "hardcore:1": 0,
       "home_image:8": "industrialcivilizationcore:textures/gui/quest_home_v2.png",
       "party_enable:1": 1,
-      "pack_version:3": 13,
+      "pack_version:3": 14,
       "home_offset_x:3": -128,
       "home_offset_y:3": -64
     }

@@ -1,0 +1,24 @@
+{
+  "parent": "industrialcivilizationcore:mfsu_bank_quad",
+  "display": {
+    "icon": {
+      "item": "ic2:blockelectric",
+      "data": 2
+    },
+    "title": {
+      "text": "11.10 \u2014 Ten-MFSU Burst Bank"
+    },
+    "description": {
+      "text": "Complete genuine manufacturing after delivering ten legal MFSU-class packets in one tick for at least 5,120 EU/t of burst input."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "runtime": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

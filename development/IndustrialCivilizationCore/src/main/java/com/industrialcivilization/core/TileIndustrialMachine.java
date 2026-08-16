@@ -38,7 +38,8 @@ public final class TileIndustrialMachine extends TileEntity
         "listRecipes", "selectRecipe", "queue", "getCompleted", "setCargoChannel",
         "getCargoChannel", "transferCargo", "getEnergyStored", "getInputTier",
         "getAcceptedEUThisTick", "getBaselineEUPerTick", "getEffectiveSpeedMultiplier",
-        "getWorkCompleted", "getWorkRequired", "getEstimatedTicksRemaining"
+        "getWorkCompleted", "getWorkRequired", "getEstimatedTicksRemaining",
+        "getMfsuPacketsThisTick", "getOperationPeakMfsuPackets"
     };
     private static final int[] INPUTS = {0, 1, 2};
     private static final int[] OUTPUT = {3};
@@ -49,6 +50,9 @@ public final class TileIndustrialMachine extends TileEntity
     private double pendingOperationEU;
     private double acceptedSinceLastUpdateEU;
     private double lastAcceptedEU;
+    private double acceptedMfsuEUSinceLastUpdate;
+    private int lastAcceptedMfsuPackets;
+    private int operationPeakMfsuPackets;
     private int elapsedOperationTicks;
     private String activeRecipeId = "";
     private boolean legacyWorkAwaitingRecipe;
@@ -99,6 +103,8 @@ public final class TileIndustrialMachine extends TileEntity
     public int getMinimumTicks() { return getKind().minimumTicks; }
     public int getElapsedOperationTicks() { return elapsedOperationTicks; }
     public int getAcceptedEUThisTick() { return (int) Math.floor(lastAcceptedEU); }
+    public int getMfsuPacketsThisTick() { return lastAcceptedMfsuPackets; }
+    public int getOperationPeakMfsuPackets() { return operationPeakMfsuPackets; }
     public int getBaselineEUPerTick() { return getKind().voltage; }
     public double getEffectiveSpeedMultiplier() {
         if (getBaselineEUPerTick() <= 0) return 0D;
@@ -155,6 +161,9 @@ public final class TileIndustrialMachine extends TileEntity
         energy = Math.max(0D, Math.min(getCapacity(), energy));
         lastAcceptedEU = acceptedSinceLastUpdateEU;
         acceptedSinceLastUpdateEU = 0D;
+        lastAcceptedMfsuPackets = NativeIc2PowerModel.mfsuPacketEquivalents(
+            acceptedMfsuEUSinceLastUpdate);
+        acceptedMfsuEUSinceLastUpdate = 0D;
         if (isWeatherSensitive() && world.getTotalWorldTime() % 20 == 0
                 && world.isRainingAt(pos.up()) && world.canSeeSky(pos.up())) {
             rusted = true;
@@ -186,6 +195,8 @@ public final class TileIndustrialMachine extends TileEntity
                 activeRecipeId = recipe.id;
             }
         }
+        operationPeakMfsuPackets = Math.max(operationPeakMfsuPackets,
+            lastAcceptedMfsuPackets);
 
         workCompletedEU = Math.max(0D, Math.min(getWorkRequiredEU(), workCompletedEU));
         pendingOperationEU = Math.max(0D, Math.min(
@@ -231,6 +242,7 @@ public final class TileIndustrialMachine extends TileEntity
         activeRecipeId = "";
         legacyWorkAwaitingRecipe = false;
         legacyProgressTicks = 0;
+        operationPeakMfsuPackets = 0;
     }
 
     @Override
@@ -278,6 +290,13 @@ public final class TileIndustrialMachine extends TileEntity
         // IC2 Classic validates each delivered packet against getSinkTier() before
         // invoking this method. Do not combine calls or reinterpret their voltage.
         double accepted = acceptEnergyEU(amount, false);
+        if (accepted > 0D && canAcceptDirectOperationEnergy()
+                && NativeIc2PowerModel.isMfsuClassVoltage(voltage)) {
+            // IC2 Classic may split one source packet across several cable paths
+            // and invoke the sink more than once. Count the accepted 512-EU
+            // equivalents, not callbacks, or a meshed cable bus inflates the bank.
+            acceptedMfsuEUSinceLastUpdate += accepted;
+        }
         return amount - accepted;
     }
 
@@ -325,6 +344,7 @@ public final class TileIndustrialMachine extends TileEntity
         compound.setDouble("PendingOperationEU", pendingOperationEU);
         compound.setInteger("ElapsedOperationTicks", elapsedOperationTicks);
         compound.setString("ActiveRecipe", activeRecipeId);
+        compound.setInteger("OperationPeakMfsuPackets", operationPeakMfsuPackets);
         compound.setInteger("Completed", completedOperations);
         compound.setInteger("Queued", queuedOperations);
         compound.setString("SelectedRecipe", selectedRecipe);
@@ -350,6 +370,8 @@ public final class TileIndustrialMachine extends TileEntity
             pendingOperationEU = Math.max(0D, compound.getDouble("PendingOperationEU"));
             elapsedOperationTicks = Math.max(0, compound.getInteger("ElapsedOperationTicks"));
             activeRecipeId = compound.getString("ActiveRecipe");
+            operationPeakMfsuPackets = Math.max(0,
+                compound.getInteger("OperationPeakMfsuPackets"));
         } else {
             legacyProgressTicks = Math.max(0, progress);
             legacyWorkAwaitingRecipe = legacyProgressTicks > 0;
@@ -474,6 +496,8 @@ public final class TileIndustrialMachine extends TileEntity
             case 17: return new Object[] {getWorkCompletedEU()};
             case 18: return new Object[] {getWorkRequiredEU()};
             case 19: return new Object[] {getEstimatedTicksRemaining()};
+            case 20: return new Object[] {getMfsuPacketsThisTick()};
+            case 21: return new Object[] {getOperationPeakMfsuPackets()};
             default: throw new LuaException("Unknown method");
         }
     }
@@ -524,6 +548,7 @@ public final class TileIndustrialMachine extends TileEntity
     private void awardOperation(String recipe) {
         EntityPlayerMP player = RuntimeAdvancements.playerFor(this, lastUser);
         if (player == null) return;
+        awardMfsuBankProgress(player);
         if ("control_processor".equals(recipe)) {
             RuntimeAdvancements.grant(player, "production_queue");
             if (completedOperations >= 3) RuntimeAdvancements.grant(player, "multi_step_manufacturing");
@@ -553,6 +578,21 @@ public final class TileIndustrialMachine extends TileEntity
                 RuntimeAdvancements.grant(player, "industrial_service_carrier");
         } else if ("combat_shotgun".equals(recipe) || "automatic_rifle".equals(recipe)) {
             RuntimeAdvancements.grant(player, "advanced_armament_factory");
+        }
+    }
+
+    private void awardMfsuBankProgress(EntityPlayerMP player) {
+        if (operationPeakMfsuPackets >= 1)
+            RuntimeAdvancements.grant(player, "mfsu_bank_baseline");
+        if (operationPeakMfsuPackets >= 4)
+            RuntimeAdvancements.grant(player, "mfsu_bank_quad");
+        if (operationPeakMfsuPackets >= 10)
+            RuntimeAdvancements.grant(player, "mfsu_bank_ten");
+        if (operationPeakMfsuPackets >= 50)
+            RuntimeAdvancements.grant(player, "mfsu_bank_fifty");
+        if (NativeIc2PowerModel.qualifiesBlinkManufacturing(operationPeakMfsuPackets,
+                elapsedOperationTicks, getMinimumTicks())) {
+            RuntimeAdvancements.grant(player, "blink_manufacturing");
         }
     }
 }

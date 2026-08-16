@@ -58,6 +58,7 @@ STORY_OPENINGS = {
     "strategic_defense": "Heavy industry has made long-range force possible. Strategic defense asks whether radar, launch control, and missiles can protect civilization without allowing dangerous payloads to bypass the scientific progression that makes them governable.",
     "field_engineering": "Civilization is built between major breakthroughs as much as at them. Field engineering rewards the tools, remote controls, and recovery practices that keep ambitious systems from becoming fragile ones.",
     "orbital_power": "A station that merely survives is still dependent on Earth. Orbital power engineering exploits constant sunlight and active tracking to make the platform an industrial contributor.",
+    "burst_power_banking": "Extreme voltage becomes most interesting when storage is treated as parallel infrastructure rather than one large battery. Burst-power banking turns safe individual MFSU packets into manufacturing speed without disguising an illegal voltage shortcut.",
     "cargo_logistics": "Separate worlds become one civilization only when material can move between them predictably. Cargo logistics turns launches into scheduled infrastructure instead of heroic one-off expeditions.",
     "post_ai_parallel": "The AI Age creates several urgent frontiers at once. These programs are intentionally parallel: the player decides whether matter, logistics, fusion, colonies, or megastructures receive the next industrial generation.",
 }
@@ -83,6 +84,7 @@ STORY_TRANSITIONS = {
     "strategic_defense": "A controlled conventional deterrent now exists. Nuclear and exotic payloads remain separate scientific responsibilities, not automatic upgrades.",
     "field_engineering": "The field toolkit is resilient enough for expansion, but it remains an optional advantage rather than a scientific gate.",
     "orbital_power": "Orbital generation can now carry real production loads and support later off-world industry.",
+    "burst_power_banking": "The bank now converts stored energy into near-instant industrial work while every individual packet remains within the machine's native voltage limit.",
     "cargo_logistics": "The cargo network makes distance routine; future colonies can be supplied as systems rather than emergencies.",
     "post_ai_parallel": "This program expands the civilization without closing any of its other frontiers.",
 }
@@ -275,6 +277,8 @@ def controls_for(ms):
         controls.append("IC2 equipment: F10 changes supported modes. Backslash is the armor modifier, Option+H toggles boost, and Option+O expands the armor HUD. Sneak while mining/chopping to suppress pack-added area or whole-tree behavior.")
     if ms["id"] == "electric_tools":
         controls.append("Pack tool behavior: stone-tier axes and better, plus the IC2 Chainsaw, fell one connected leaf-bearing tree and charge durability/EU per log. The IC2 Drill mines a 3×3 plane and the Diamond Drill a 9×9 plane; Sneak restores one-block precision.")
+    if "mfsu" in haystack or "burst bank" in haystack or "blink manufacturing" in haystack:
+        controls.append("MFSU bank: orient each MFSU output toward an independent EnergyNet connection to the same tier-3-compatible machine. Start the real recipe before discharge. The machine GUI reports aggregate Input EU/t and speed; an adjacent ComputerCraft computer can also call getMfsuPacketsThisTick() and getOperationPeakMfsuPackets().")
     if any(word in haystack for word in ("applied energistics", "ae2", "storage network", "crafting unit")):
         controls.append("AE2: right-click terminals and network blocks to configure them; Command+P toggles search-field focus.")
     if modded:
@@ -400,6 +404,7 @@ def main():
         "field_engineering": ("Side Path — Field Engineering", "Optional tools, resilience, remote control, and recovery capabilities."),
         "factions_and_salvage": (side_path_by_id["factions_and_salvage"]["title"], side_path_by_id["factions_and_salvage"]["purpose"]),
         "orbital_power": ("Side Path — Orbital Power", "Optional orbital generation and tracking-array development."),
+        "burst_power_banking": ("Side Path — MFSU Burst Power", "Optional parallel-storage challenges that turn legal tier-3 packets into extreme manufacturing throughput."),
         "cargo_logistics": ("Side Path — Cargo Logistics", "Optional freight and interplanetary cargo mastery."),
         "mobility_and_nations": ("Side Path — Mobility and Nations", "Optional road travel, industrial vehicles, city exchange, and advanced workshop infrastructure."),
         "strategic_defense": (side_path_by_id["strategic_defense"]["title"], side_path_by_id["strategic_defense"]["purpose"]),
@@ -409,6 +414,7 @@ def main():
         "field_engineering": "earth",
         "factions_and_salvage": "earth",
         "orbital_power": "orbit",
+        "burst_power_banking": "moon",
         "cargo_logistics": "post_ai",
         "mobility_and_nations": "earth",
         "strategic_defense": "earth",
@@ -452,7 +458,7 @@ def main():
             "hardcore:1": 0,
             "home_image:8": "industrialcivilizationcore:textures/gui/quest_home_v2.png",
             "party_enable:1": 1,
-            "pack_version:3": 13,
+            "pack_version:3": 14,
             "home_offset_x:3": -128,
             "home_offset_y:3": -64,
         }},

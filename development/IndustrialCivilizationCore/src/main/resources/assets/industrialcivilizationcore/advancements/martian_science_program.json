@@ -2,7 +2,8 @@
   "parent": "industrialcivilizationcore:functional_martian_base",
   "display": {
     "icon": {
-      "item": "minecraft:sand"
+      "item": "minecraft:sand",
+      "data": 1
     },
     "title": {
       "text": "13.01 \u2014 Martian Science Program"

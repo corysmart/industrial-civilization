@@ -34,6 +34,14 @@ Optional objectives live in independent Better Questing tabs, never inside numbe
 - `orbital_solar_industry` — Orbital Solar Industry
 - `orbital_tracking_array` — Advanced Tracking Solar Array
 
+## Burst Power Banking
+
+- `mfsu_bank_baseline` — Single-MFSU Baseline
+- `mfsu_bank_quad` — Four-MFSU Parallel Bank
+- `mfsu_bank_ten` — Ten-MFSU Burst Bank
+- `mfsu_bank_fifty` — Fifty-MFSU Power Bank
+- `blink_manufacturing` — Blink Manufacturing
+
 ## Cargo Logistics
 
 - `freight_infrastructure` — Industrial Freight

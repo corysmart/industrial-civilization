@@ -60,6 +60,11 @@ RUNTIME_TEST_ACTIONS = {
     "lite_matter_complete": "The third distinct Earth/Moon/Mars Analyzer origin grants this completion together with comparative analysis. Confirm spawned pattern records alone do not grant it.",
     "ai_age_entry": "After the prerequisite audit, obtain the AI Core and keep it in inventory for at least one second. The player must already have the Lite Matter completion record and the canonical Martian Autonomy Archive record. Confirm the scrolling credits appear once and return to the playable world.",
     "technical_phase_pearl": "After AI Age Entry, craft the Technical Phase Pearl through its real recipe with the durable AI Core catalyst. Spawning an Ender Pearl must not complete this quest; a real crafting event must.",
+    "mfsu_bank_baseline": "Connect one real MFSU to a tier-3-compatible first-party manufacturing machine, begin a genuine recipe, and complete it while the machine records at least one 512-EU packet in an operation tick.",
+    "mfsu_bank_quad": "Repeat genuine manufacturing with four independently oriented MFSUs. Verify at least four MFSU-class packets and approximately 2,048 EU/t are accepted in one tick without false overvoltage.",
+    "mfsu_bank_ten": "Scale the physical bank to ten independently connected MFSUs and complete a genuine recipe. Verify a peak of ten packets and approximately 5,120 EU/t.",
+    "mfsu_bank_fifty": "Scale the physical bank to fifty independently connected MFSUs and complete a genuine recipe. Verify a peak of fifty packets and approximately 25,600 EU/t.",
+    "blink_manufacturing": "Use the fifty-MFSU bank on a Robotic Manufacturing Cell or another energy-limited first-party machine. Complete one genuine recipe in eight active ticks or fewer while the same operation records a peak of at least fifty MFSU-class packets.",
 }
 
 
@@ -176,7 +181,7 @@ Every quest completes automatically. Native machine operations and dimension eve
 
 The generator also emits one visible vanilla advancement per quest plus an Industrial Civilization root. Critical milestones form the intended chapter-order spine, while optional milestones branch from their real prerequisites. Pause > Advancements opens this vanilla tree; F6 remains the detailed Better Questing story, tutorial, and controls interface.
 
-Quest IDs are deterministic from chapter/side-path order and milestone order. Cross-line prerequisites use the same global numeric map. `pack_version` is 9. Every generated description contains story, mission, automatic proof, and contextual Mac/no-numpad controls. Quest pictures use real required/evidence objects, and each line uses an era-specific pack-owned background. Each tab opens at the artwork center and expands through rotated circular or elliptical geometry. Import/update the default pack through Better Questing when a world retains the older database.
+Quest IDs are deterministic from chapter/side-path order and milestone order. Cross-line prerequisites use the same global numeric map. `pack_version` is 14. Every generated description contains story, mission, automatic proof, and contextual Mac/no-numpad controls. Quest pictures use real required/evidence objects, and each line uses an era-specific pack-owned background. Each tab opens at the artwork center and expands through rotated circular or elliptical geometry. Import/update the default pack through Better Questing when a world retains the older database.
 
 The integration mod persists research artifacts on each player and returns unauthorized arrivals to Earth. Moon entry requires the Orbital Research Archive. Mars entry requires the Lunar Quantum Component and Mars Mission Authorization. `config/industrialcivilization/runtime.cfg` provides an explicit creative-testing bypass.
 """)
@@ -472,7 +477,7 @@ checklist.extend([
 "Stone axe/chainsaw trees and 3x3/9x9 drills process at most 12 extra blocks per tick while preserving protection, drops, enchantments and per-block tool payment.",
 "Radiation correctly follows players in vehicles and other moving entities as their AABB enters or leaves breathable air."
 ])
-write("MANUAL_QUEST_TEST_CHECKLIST.md", "Manual Quest Test Checklist", "Use this checklist for release regressions and dedicated side-path acceptance. The numbered campaign's completed 0.5.0 evidence is recorded in `MAIN_QUESTLINE_LIVE_TEST_LOG.md`; rerun affected checks after progression or runtime changes. Do not use a valued world for a quest-database migration.\n\n" + "\n".join(f"- [ ] {i}. {v}" for i, v in enumerate(checklist, 1)) + "\n\nCheck `logs/latest.log`, `logs/groovy.log`, and `crafttweaker.log` after the run. Record quest/task IDs and screenshots for any mismatch.")
+write("MANUAL_QUEST_TEST_CHECKLIST.md", "Manual Quest Test Checklist", "Use this checklist for release regressions and dedicated side-path acceptance. The numbered campaign's completed 0.5.1 evidence is recorded in `MAIN_QUESTLINE_LIVE_TEST_LOG.md`; rerun affected checks after progression or runtime changes. Do not use a valued world for a quest-database migration.\n\n" + "\n".join(f"- [ ] {i}. {v}" for i, v in enumerate(checklist, 1)) + "\n\nCheck `logs/latest.log`, `logs/groovy.log`, and `crafttweaker.log` after the run. Record quest/task IDs and screenshots for any mismatch.")
 
 write("KNOWN_LIMITATIONS.md", "Verification Boundaries", """
 The build is a hidden internal alpha. The numbered 16-chapter campaign passed live acceptance, but targeted systems and side paths still retain these verification boundaries:

@@ -1,0 +1,24 @@
+{
+  "parent": "industrialcivilizationcore:mfsu_bank_ten",
+  "display": {
+    "icon": {
+      "item": "ic2:blockelectric",
+      "data": 2
+    },
+    "title": {
+      "text": "11.11 \u2014 Fifty-MFSU Power Bank"
+    },
+    "description": {
+      "text": "Complete genuine manufacturing with a physical fifty-MFSU bank delivering at least 25,600 EU/t as fifty independently legal packets."
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "runtime": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

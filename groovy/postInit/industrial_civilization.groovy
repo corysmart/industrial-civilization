@@ -47,6 +47,14 @@ mods.jei.ingredient.add(mffsProgressionMachines)
 def vanillaTotem = item('minecraft:totem_of_undying')
 mods.jei.ingredient.removeAndHide([vanillaTotem])
 
+// IC2 Classic finishes a small batch of recipe-index work on Forge worker
+// threads as post-init begins. Minecraft 1.12's Ingredient instance registry
+// is an unsynchronised WeakHashMap; constructing our first recipe while those
+// workers are still draining can corrupt that map and leave startup spinning
+// forever in WeakHashMap.put. Give the workers a short, deterministic drain
+// window before this script begins constructing vanilla crafting ingredients.
+Thread.sleep(2000L)
+
 // IC Credits can be minted only as an expensive emergency measure. Selling
 // ordinary components at neutral settlement prices is intentionally cheaper.
 crafting.addShaped('industrial_civilization:industrial_credit', item('industrialcivilizationcore:industrial_credit'), [

@@ -140,6 +140,101 @@
       "automation_paths": []
     },
     {
+      "id": "mfsu_bank_baseline",
+      "title": "Single-MFSU Baseline",
+      "category": "operation",
+      "icon": "ic2:blockelectric:2",
+      "prerequisites": [
+        "extreme_voltage_industry"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Complete a genuine energy-limited manufacturing operation while it receives at least one legal 512-EU MFSU-class packet in a tick.",
+      "final_validation": [
+        "Connect a real MFSU to a tier-3-compatible Industrial Civilization manufacturing machine.",
+        "Start a genuine recipe and complete it under live IC2 EnergyNet power.",
+        "Confirm the machine records at least one 512-EU packet during the operation."
+      ],
+      "automation_paths": [],
+      "runtime_advancement": true
+    },
+    {
+      "id": "mfsu_bank_quad",
+      "title": "Four-MFSU Parallel Bank",
+      "category": "operation",
+      "icon": "ic2:blockelectric:2",
+      "prerequisites": [
+        "mfsu_bank_baseline"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Complete genuine manufacturing after delivering four legal MFSU-class packets in one tick for at least 2,048 EU/t of burst input.",
+      "final_validation": [
+        "Build four independently connected and correctly oriented MFSUs.",
+        "Complete a real recipe with a peak of at least four 512-EU packets in one tick.",
+        "Confirm aggregate throughput does not cause a false overvoltage event."
+      ],
+      "automation_paths": [],
+      "runtime_advancement": true
+    },
+    {
+      "id": "mfsu_bank_ten",
+      "title": "Ten-MFSU Burst Bank",
+      "category": "operation",
+      "icon": "ic2:blockelectric:2",
+      "prerequisites": [
+        "mfsu_bank_quad"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Complete genuine manufacturing after delivering ten legal MFSU-class packets in one tick for at least 5,120 EU/t of burst input.",
+      "final_validation": [
+        "Scale the parallel bank to ten real MFSUs without combining them into one illegal packet.",
+        "Complete a real recipe with a peak of at least ten 512-EU packets in one tick.",
+        "Observe the expected throughput increase through the machine GUI or ComputerCraft telemetry."
+      ],
+      "automation_paths": [],
+      "runtime_advancement": true
+    },
+    {
+      "id": "mfsu_bank_fifty",
+      "title": "Fifty-MFSU Power Bank",
+      "category": "mastery",
+      "icon": "ic2:blockelectric:2",
+      "prerequisites": [
+        "mfsu_bank_ten"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Complete genuine manufacturing with a physical fifty-MFSU bank delivering at least 25,600 EU/t as fifty independently legal packets.",
+      "final_validation": [
+        "Charge, orient, and connect fifty real MFSUs to a tier-3-compatible machine.",
+        "Complete a real recipe with a peak of at least fifty 512-EU packets in one tick.",
+        "Confirm the bank accelerates work without bypassing per-packet voltage safety."
+      ],
+      "automation_paths": [],
+      "runtime_advancement": true
+    },
+    {
+      "id": "blink_manufacturing",
+      "title": "Blink Manufacturing",
+      "category": "mastery",
+      "icon": "industrialcivilizationcore:robotic_manufacturing_cell",
+      "prerequisites": [
+        "mfsu_bank_fifty"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Use a fifty-MFSU burst bank to finish a genuine energy-limited first-party manufacturing recipe in eight active ticks or fewer—less than 0.4 seconds.",
+      "final_validation": [
+        "Use a Robotic Manufacturing Cell or another compatible energy-limited first-party machine.",
+        "Deliver at least fifty MFSU-class packets in one operation tick.",
+        "Complete the genuine recipe in no more than eight active ticks; precharging or possessing the output does not count."
+      ],
+      "automation_paths": [],
+      "runtime_advancement": true
+    },
+    {
       "id": "mars_mission_authorization",
       "title": "Mars Mission Authorization",
       "category": "possession",

@@ -73,8 +73,16 @@ check(completion_gate is not None,
       "operation/mastery advancements remain behind actual work completion")
 for method in ("getEnergyStored", "getInputTier", "getAcceptedEUThisTick",
                "getBaselineEUPerTick", "getEffectiveSpeedMultiplier",
-               "getWorkCompleted", "getWorkRequired", "getEstimatedTicksRemaining"):
+               "getWorkCompleted", "getWorkRequired", "getEstimatedTicksRemaining",
+               "getMfsuPacketsThisTick", "getOperationPeakMfsuPackets"):
     check(f'"{method}"' in machines, f"ComputerCraft power telemetry method is present: {method}")
+check("isMfsuClassVoltage(voltage)" in machines
+      and "acceptedMfsuEUSinceLastUpdate += accepted" in machines
+      and "mfsuPacketEquivalents" in machines,
+      "runtime counts accepted native 512-EU EnergyNet equivalents instead of inventory ownership or split callbacks")
+check('RuntimeAdvancements.grant(player, "mfsu_bank_fifty")' in machines
+      and 'RuntimeAdvancements.grant(player, "blink_manufacturing")' in machines,
+      "MFSU-bank mastery is awarded only from a completed real machine operation")
 check("amount / (double) IndustrialCivilizationCore.FE_PER_EU" in solar,
       "custom solar FE extraction debits the internal EU buffer correctly")
 check("implements IPeripheral, IEnergySink" in analyzer

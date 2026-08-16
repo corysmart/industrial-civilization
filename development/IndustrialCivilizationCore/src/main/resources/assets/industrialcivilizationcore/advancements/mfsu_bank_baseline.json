@@ -1,0 +1,24 @@
+{
+  "parent": "industrialcivilizationcore:extreme_voltage_industry",
+  "display": {
+    "icon": {
+      "item": "ic2:blockelectric",
+      "data": 2
+    },
+    "title": {
+      "text": "11.08 \u2014 Single-MFSU Baseline"
+    },
+    "description": {
+      "text": "Complete a genuine energy-limited manufacturing operation while it receives at least one legal 512-EU MFSU-class packet in a tick."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "runtime": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

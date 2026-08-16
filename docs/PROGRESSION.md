@@ -25,7 +25,7 @@ advancement page mirrors the achievable order.
 The declared main-campaign completion milestone is
 `continuous_civilization`. It does not end the world or disable continued play.
 The full numbered campaign passed live acceptance in `Test Bed 1`, including
-save/reload persistence. The seven independent side paths remain optional and
+save/reload persistence. The eight independent side paths remain optional and
 do not block campaign completion.
 
 Factory capability—not arbitrary component inflation—is the pacing lever. The

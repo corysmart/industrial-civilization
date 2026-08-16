@@ -15,6 +15,7 @@ public final class IndustrialMachinePersistenceTest {
         saved.setDouble("PendingOperationEU", 128D);
         saved.setInteger("ElapsedOperationTicks", 80);
         saved.setString("ActiveRecipe", "precision_frame");
+        saved.setInteger("OperationPeakMfsuPackets", 10);
         saved.setInteger("Queued", 1);
 
         TileIndustrialMachine tile = new TileIndustrialMachine();
@@ -24,6 +25,7 @@ public final class IndustrialMachinePersistenceTest {
         assertEquals(2560L, tile.getWorkCompletedEU());
         assertEquals(80, tile.getElapsedOperationTicks());
         assertEquals(80, tile.getProgress());
+        assertEquals(10, tile.getOperationPeakMfsuPackets());
     }
 
     @Test

@@ -39,6 +39,37 @@ public final class NativeIc2PowerModelTest {
     }
 
     @Test
+    public void identifiesOnlyMfsuClassVoltage() {
+        assertTrue(NativeIc2PowerModel.isMfsuClassVoltage(512D));
+        assertFalse(NativeIc2PowerModel.isMfsuClassVoltage(128D));
+        assertFalse(NativeIc2PowerModel.isMfsuClassVoltage(2048D));
+    }
+
+    @Test
+    public void countsAcceptedEnergyInsteadOfSplitEnergyNetCallbacks() {
+        assertEquals(0, NativeIc2PowerModel.mfsuPacketEquivalents(255.999D));
+        assertEquals(1, NativeIc2PowerModel.mfsuPacketEquivalents(511.999D));
+        assertEquals(1, NativeIc2PowerModel.mfsuPacketEquivalents(512D));
+        assertEquals(10, NativeIc2PowerModel.mfsuPacketEquivalents(5120D));
+        assertEquals(50, NativeIc2PowerModel.mfsuPacketEquivalents(25600D));
+        // Small legal glass-fibre losses still represent fifty emitted MFSU packets.
+        assertEquals(50, NativeIc2PowerModel.mfsuPacketEquivalents(25500D));
+        // Forty-nine full packets remain below the fifty-bank threshold.
+        assertEquals(49, NativeIc2PowerModel.mfsuPacketEquivalents(49D * 512D));
+        // Fifty-six callbacks that aggregate to ten real source packets still
+        // represent ten MFSUs, not a fifty-MFSU bank.
+        assertEquals(10, NativeIc2PowerModel.mfsuPacketEquivalents(56D * (5120D / 56D)));
+    }
+
+    @Test
+    public void blinkChallengeRequiresFiftyPacketsAndEnergyLimitedWork() {
+        assertTrue(NativeIc2PowerModel.qualifiesBlinkManufacturing(50, 7, 0));
+        assertFalse(NativeIc2PowerModel.qualifiesBlinkManufacturing(49, 7, 0));
+        assertFalse(NativeIc2PowerModel.qualifiesBlinkManufacturing(50, 9, 0));
+        assertFalse(NativeIc2PowerModel.qualifiesBlinkManufacturing(50, 7, 600));
+    }
+
+    @Test
     public void directOperationCapacityAvoidsLegacyBufferThroughputCap() {
         assertEquals(25600D, NativeIc2PowerModel.usableWorkEU(
             0D, 25600D, 25600D, 512, 163840D, true, true), 0D);

@@ -101,6 +101,13 @@
       "orbital_solar_industry",
       "orbital_tracking_array"
     ],
+    "burst_power_banking": [
+      "mfsu_bank_baseline",
+      "mfsu_bank_quad",
+      "mfsu_bank_ten",
+      "mfsu_bank_fifty",
+      "blink_manufacturing"
+    ],
     "cargo_logistics": [
       "freight_infrastructure",
       "lunar_cargo",

@@ -80,7 +80,7 @@ import org.apache.logging.log4j.Logger;
 public final class IndustrialCivilizationCore {
     public static final String MODID = "industrialcivilizationcore";
     public static final String NAME = "Industrial Civilization Core";
-    public static final String VERSION = "0.5.0";
+    public static final String VERSION = "0.5.1";
     /** Canonical pack conversion, matching IC2 Classic's RFPerEU setting. */
     public static final int FE_PER_EU = 8;
     public static final int GUI_INDUSTRIAL_MACHINE = 1;
@@ -774,7 +774,6 @@ public final class IndustrialCivilizationCore {
             registerIc2MachineModels("blockcompactedgenerator", 9);
             registerIc2MachineModels("blockelectric", 11);
             registerIc2MachineModels("blockpersonal", 11);
-            registerIc2MachineModels("blockchargepad", 4);
         }
 
         private static void registerIc2MachineModels(String registryName, int metadataCount) {

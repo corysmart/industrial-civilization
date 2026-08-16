@@ -175,9 +175,33 @@ finished outputs.
 
 The deterministic harness additionally covers 10- and 50-source aggregation,
 buffer limits, baseline/2x/4x timing, overvoltage distinction, NBT migration,
-and ComputerCraft return values. A physical 10/50-MFSU build, an orbital burst
-factory, and a live Matter Replicator burst remain useful stress tests rather
-than blockers for the work-model implementation.
+and ComputerCraft return values.
+
+## Live 10/50-bank acceptance — 2026-08-16
+
+The optional Chapter 11 `MFSU Burst Power` side path was exercised in the same
+client and world with a loop-free glass-fibre trunk and fifty physical IC2 MFSUs.
+The Robotic Manufacturing Cell began each measurement with an empty internal
+buffer and the three genuine AI-core ingredients already installed; reconnecting
+the real cable started the operation.
+
+- With ten MFSUs facing the trunk and forty facing away, the one-, four-, and
+  ten-bank milestones completed. The fifty-bank and eight-tick blink milestones
+  remained incomplete.
+- After all fifty MFSUs were oriented toward the trunk and the chunks were
+  reloaded to rebuild EnergyNet, the fifty-bank and blink milestones both
+  completed. This is the live proof that the actual EnergyNet provides the
+  intended approximately seven-tick AI-core burst.
+- A looped two-dimensional cable mesh is not a valid bank topology. It causes
+  IC2 Classic to split a packet over many routes, multiplying callback count and
+  route loss. Detection therefore aggregates EU from 512-EU source-voltage
+  deliveries instead of counting callbacks.
+- Source-packet equivalents use nearest-packet conversion. This tolerates small
+  legal cable losses on fifty real 512-EU source packets while 49 complete
+  packets remain below the fifty-bank threshold.
+
+An orbital burst factory and a live Matter Replicator burst remain useful future
+stress tests, but the physical 10/50-MFSU acceptance is complete.
 
 ## Manual live-test handoff
 

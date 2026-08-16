@@ -4,11 +4,11 @@
 
 ## Scope and pass condition
 
-This plan tests only the **16 numbered chapters and their 111 main-line quests**. Independent faction, vehicle, salvage, weapon, and strategic-defense side quests are excluded. The two main transition quests that support a side-route must be tested through their numbered-chapter construction route in this run.
+This plan tests only the **16 numbered chapters and their 116 main-line quests**. Independent faction, vehicle, salvage, weapon, and strategic-defense side quests are excluded. The two main transition quests that support a side-route must be tested through their numbered-chapter construction route in this run.
 
 A pass requires every quest to complete from its declared automatic evidence, every prerequisite boundary to behave correctly, every matching vanilla advancement to agree with Better Questing, and every broader gameplay assertion to be checked separately. Inventory evidence proves acquisition only; it does not prove that the represented structure or machine genuinely works.
 
-Current main-line detection split: **72 non-consuming inventory tasks** and **39 runtime-advancement tasks**.
+Current main-line detection split: **72 non-consuming inventory tasks** and **44 runtime-advancement tasks**.
 
 ## Test-world preparation
 
@@ -796,7 +796,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Detection mode:** Non-consuming inventory retrieval.
 - **Exact test action:** Before this quest unlocks, keep its matching evidence out of the player inventory. After it unlocks, obtain or Creative-give all of the following at the same time: `ic2:blockmachinehv:*`, `ic2:blockelectric:*`. Wait at least two seconds for Better Questing inventory detection; the items must remain unconsumed.
 - **Negative assertion:** Confirm the quest did not gain progress while locked and that removing/re-adding the evidence works without a manual checkbox or claim button.
-- **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `robotic_manufacturing_cell`, `nanosuit_and_tools`.
+- **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `robotic_manufacturing_cell`, `nanosuit_and_tools`, `mfsu_bank_baseline`.
 - **Gameplay assertion:** Operate high-tier generation, storage, transformation, and advanced processing safely.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
@@ -860,7 +860,57 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Master conventional high-tier technology and Mars-ready automated manufacturing.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 75. Mars Mission Authorization (`mars_mission_authorization`)
+### 75. Single-MFSU Baseline (`mfsu_bank_baseline`)
+
+- **Prerequisites:** `extreme_voltage_industry`.
+- **Detection mode:** Runtime advancement.
+- **Exact test action:** Connect one real MFSU to a tier-3-compatible first-party manufacturing machine, begin a genuine recipe, and complete it while the machine records at least one 512-EU packet in an operation tick.
+- **Negative assertion:** Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task.
+- **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `mfsu_bank_quad`.
+- **Gameplay assertion:** Connect a real MFSU to a tier-3-compatible Industrial Civilization manufacturing machine. Start a genuine recipe and complete it under live IC2 EnergyNet power. Confirm the machine records at least one 512-EU packet during the operation.
+- **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
+
+### 76. Four-MFSU Parallel Bank (`mfsu_bank_quad`)
+
+- **Prerequisites:** `mfsu_bank_baseline`.
+- **Detection mode:** Runtime advancement.
+- **Exact test action:** Repeat genuine manufacturing with four independently oriented MFSUs. Verify at least four MFSU-class packets and approximately 2,048 EU/t are accepted in one tick without false overvoltage.
+- **Negative assertion:** Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task.
+- **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `mfsu_bank_ten`.
+- **Gameplay assertion:** Build four independently connected and correctly oriented MFSUs. Complete a real recipe with a peak of at least four 512-EU packets in one tick. Confirm aggregate throughput does not cause a false overvoltage event.
+- **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
+
+### 77. Ten-MFSU Burst Bank (`mfsu_bank_ten`)
+
+- **Prerequisites:** `mfsu_bank_quad`.
+- **Detection mode:** Runtime advancement.
+- **Exact test action:** Scale the physical bank to ten independently connected MFSUs and complete a genuine recipe. Verify a peak of ten packets and approximately 5,120 EU/t.
+- **Negative assertion:** Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task.
+- **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `mfsu_bank_fifty`.
+- **Gameplay assertion:** Scale the parallel bank to ten real MFSUs without combining them into one illegal packet. Complete a real recipe with a peak of at least ten 512-EU packets in one tick. Observe the expected throughput increase through the machine GUI or ComputerCraft telemetry.
+- **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
+
+### 78. Fifty-MFSU Power Bank (`mfsu_bank_fifty`)
+
+- **Prerequisites:** `mfsu_bank_ten`.
+- **Detection mode:** Runtime advancement.
+- **Exact test action:** Scale the physical bank to fifty independently connected MFSUs and complete a genuine recipe. Verify a peak of fifty packets and approximately 25,600 EU/t.
+- **Negative assertion:** Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task.
+- **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `blink_manufacturing`.
+- **Gameplay assertion:** Charge, orient, and connect fifty real MFSUs to a tier-3-compatible machine. Complete a real recipe with a peak of at least fifty 512-EU packets in one tick. Confirm the bank accelerates work without bypassing per-packet voltage safety.
+- **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
+
+### 79. Blink Manufacturing (`blink_manufacturing`)
+
+- **Prerequisites:** `mfsu_bank_fifty`.
+- **Detection mode:** Runtime advancement.
+- **Exact test action:** Use the fifty-MFSU bank on a Robotic Manufacturing Cell or another energy-limited first-party machine. Complete one genuine recipe in eight active ticks or fewer while the same operation records a peak of at least fifty MFSU-class packets.
+- **Negative assertion:** Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task.
+- **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete; no numbered main-line quest directly depends on it.
+- **Gameplay assertion:** Use a Robotic Manufacturing Cell or another compatible energy-limited first-party machine. Deliver at least fifty MFSU-class packets in one operation tick. Complete the genuine recipe in no more than eight active ticks; precharging or possessing the output does not count.
+- **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
+
+### 80. Mars Mission Authorization (`mars_mission_authorization`)
 
 - **Prerequisites:** `quantum_technology_complete` AND `orbital_research_complete` AND `lunar_research_complete`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -878,7 +928,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 
 **Entry check:** Before completing this chapter's opening quest, confirm the chapter is visible for browsing but its locked quest cannot be opened or progressed. After the previous chapter's completion milestone is satisfied, confirm the opening quest becomes available without a reload.
 
-### 76. Authorized Tier 2 Mars Launch (`tier2_mars_launch`)
+### 81. Authorized Tier 2 Mars Launch (`tier2_mars_launch`)
 
 - **Prerequisites:** `mars_mission_authorization`.
 - **Detection mode:** Runtime advancement.
@@ -888,7 +938,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Build a Tier 2 spacecraft and travel to Mars with mission authorization.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 77. Martian Habitat (`martian_habitat`)
+### 82. Martian Habitat (`martian_habitat`)
 
 - **Prerequisites:** `tier2_mars_launch`.
 - **Detection mode:** Runtime advancement.
@@ -898,7 +948,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Establish pressure, oxygen, water, radiation protection, communications, and safe habitation.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 78. Reliable Martian Power (`martian_power`)
+### 83. Reliable Martian Power (`martian_power`)
 
 - **Prerequisites:** `martian_habitat`.
 - **Detection mode:** Runtime advancement.
@@ -908,7 +958,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Maintain local generation and storage through dust-related solar fluctuation; nuclear backup is encouraged.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 79. Automated Martian Mining (`martian_mining`)
+### 84. Automated Martian Mining (`martian_mining`)
 
 - **Prerequisites:** `martian_power`.
 - **Detection mode:** Runtime advancement.
@@ -918,7 +968,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Mine and route Martian resources without direct labor.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 80. Local Martian Manufacturing (`martian_manufacturing`)
+### 85. Local Martian Manufacturing (`martian_manufacturing`)
 
 - **Prerequisites:** `martian_mining`.
 - **Detection mode:** Runtime advancement.
@@ -928,7 +978,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Process Martian materials and manufacture colony components locally.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 81. Martian Desh Sample (`mars_sample`)
+### 86. Martian Desh Sample (`mars_sample`)
 
 - **Prerequisites:** `martian_mining`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -938,7 +988,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Obtain Galacticraft Desh (metadata 2), the existing real Mars Sample used by the Molecular Analyzer.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 82. Martian Cargo and Return (`martian_cargo`)
+### 87. Martian Cargo and Return (`martian_cargo`)
 
 - **Prerequisites:** `martian_manufacturing`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -948,7 +998,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Establish a return or cargo route without relying on repeated emergency Earth supply trips.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 83. Functional Martian Base (`functional_martian_base`)
+### 88. Functional Martian Base (`functional_martian_base`)
 
 - **Prerequisites:** `martian_habitat` AND `martian_power` AND `martian_mining` AND `martian_manufacturing` AND `mars_sample`.
 - **Detection mode:** Runtime advancement.
@@ -966,7 +1016,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 
 **Entry check:** Before completing this chapter's opening quest, confirm the chapter is visible for browsing but its locked quest cannot be opened or progressed. After the previous chapter's completion milestone is satisfied, confirm the opening quest becomes available without a reload.
 
-### 84. Martian Science Program (`martian_science_program`)
+### 89. Martian Science Program (`martian_science_program`)
 
 - **Prerequisites:** `functional_martian_base`.
 - **Detection mode:** Runtime advancement.
@@ -976,7 +1026,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Complete atmospheric, subsurface, radiation-computation, water-recovery, semiconductor, and robotics studies as implemented.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 85. Autonomous Resource Response (`autonomous_resource_response`)
+### 90. Autonomous Resource Response (`autonomous_resource_response`)
 
 - **Prerequisites:** `martian_science_program`.
 - **Detection mode:** Runtime advancement.
@@ -986,7 +1036,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Detect missing materials and automatically replenish or reschedule production.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 86. Autonomous Power Response (`autonomous_power_response`)
+### 91. Autonomous Power Response (`autonomous_power_response`)
 
 - **Prerequisites:** `martian_science_program`.
 - **Detection mode:** Runtime advancement.
@@ -996,7 +1046,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Detect power interruption, shed load safely, and restore production automatically.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 87. Unattended Martian Production (`unattended_martian_production`)
+### 92. Unattended Martian Production (`unattended_martian_production`)
 
 - **Prerequisites:** `autonomous_resource_response` AND `autonomous_power_response`.
 - **Detection mode:** Runtime advancement.
@@ -1006,7 +1056,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Complete local production without direct crafting while habitat and telemetry remain stable.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 88. Martian Autonomy Archive (`martian_autonomy_complete`)
+### 93. Martian Autonomy Archive (`martian_autonomy_complete`)
 
 - **Prerequisites:** `unattended_martian_production`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -1024,7 +1074,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 
 **Entry check:** Before completing this chapter's opening quest, confirm the chapter is visible for browsing but its locked quest cannot be opened or progressed. After the previous chapter's completion milestone is satisfied, confirm the opening quest becomes available without a reload.
 
-### 89. Molecular Analyzer (`molecular_analyzer`)
+### 94. Molecular Analyzer (`molecular_analyzer`)
 
 - **Prerequisites:** `mars_sample` AND `martian_autonomy_complete`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -1034,7 +1084,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Craft the existing Molecular Analyzer from meteorite iron, an advanced computer, steel, an IC2 MV machine block, advanced circuits, and Desh.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 90. Power the Analyzer (`analyzer_power`)
+### 95. Power the Analyzer (`analyzer_power`)
 
 - **Prerequisites:** `molecular_analyzer`.
 - **Detection mode:** Runtime advancement.
@@ -1044,7 +1094,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Supply the Analyzer with at least 6,250 EU for a Desh analysis.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 91. Martian Material Pattern Record (`material_pattern_record`)
+### 96. Martian Material Pattern Record (`material_pattern_record`)
 
 - **Prerequisites:** `analyzer_power` AND `mars_sample`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -1054,7 +1104,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Insert Galacticraft Desh metadata 2 and complete the 6,250 EU analysis to produce a non-consumable pattern record.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 92. Comparative Molecular Characterization (`comparative_molecular_analysis`)
+### 97. Comparative Molecular Characterization (`comparative_molecular_analysis`)
 
 - **Prerequisites:** `material_pattern_record`.
 - **Detection mode:** Runtime advancement.
@@ -1064,7 +1114,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Record planned Earth, lunar, and Martian material comparisons without enabling arbitrary transmutation.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 93. Advanced Material Recovery (`advanced_material_recovery`)
+### 98. Advanced Material Recovery (`advanced_material_recovery`)
 
 - **Prerequisites:** `comparative_molecular_analysis`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -1074,7 +1124,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Demonstrate efficient recycling or high-purity recovery using existing industrial machines.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 94. Lite Matter Engineering Complete (`lite_matter_complete`)
+### 99. Lite Matter Engineering Complete (`lite_matter_complete`)
 
 - **Prerequisites:** `comparative_molecular_analysis`.
 - **Detection mode:** Runtime advancement.
@@ -1092,7 +1142,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 
 **Entry check:** Before completing this chapter's opening quest, confirm the chapter is visible for browsing but its locked quest cannot be opened or progressed. After the previous chapter's completion milestone is satisfied, confirm the opening quest becomes available without a reload.
 
-### 95. Civilization Capability Audit (`ai_prerequisite_audit`)
+### 100. Civilization Capability Audit (`ai_prerequisite_audit`)
 
 - **Prerequisites:** `orbital_research_complete` AND `lunar_research_complete` AND `quantum_technology_complete` AND `martian_autonomy_complete` AND `lite_matter_complete`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -1102,7 +1152,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Confirm Orbital and Lunar archives, Quantum completion, Martian Autonomy, and Lite Matter completion.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 96. Artificial Industrial Intelligence Core (`artificial_industrial_intelligence_core`)
+### 101. Artificial Industrial Intelligence Core (`artificial_industrial_intelligence_core`)
 
 - **Prerequisites:** `ai_prerequisite_audit`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -1112,7 +1162,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Demonstrate the capability: Artificial Industrial Intelligence Core.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 97. Enter the AI Age (`ai_age_entry`)
+### 102. Enter the AI Age (`ai_age_entry`)
 
 - **Prerequisites:** `artificial_industrial_intelligence_core`.
 - **Detection mode:** Runtime advancement.
@@ -1122,7 +1172,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Enter the continuously expanding endgame and authorize AI-coordinated digital industry.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 98. Technical Phase Pearl (`technical_phase_pearl`)
+### 103. Technical Phase Pearl (`technical_phase_pearl`)
 
 - **Prerequisites:** `ai_age_entry`.
 - **Detection mode:** Runtime advancement.
@@ -1132,7 +1182,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Manufacture a Technical Phase Pearl only after the AI Age has unlocked.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 99. Applied Energistics Entry (`ae2_entry`)
+### 104. Applied Energistics Entry (`ae2_entry`)
 
 - **Prerequisites:** `ai_age_entry`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -1150,7 +1200,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 
 **Entry check:** Before completing this chapter's opening quest, confirm the chapter is visible for browsing but its locked quest cannot be opened or progressed. After the previous chapter's completion milestone is satisfied, confirm the opening quest becomes available without a reload.
 
-### 100. AE2 Network Crafting (`ae2_autocrafting`)
+### 105. AE2 Network Crafting (`ae2_autocrafting`)
 
 - **Prerequisites:** `ae2_entry`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -1160,7 +1210,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Encode and execute an ordinary multi-step crafting request while physical machine processes retain real throughput.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 101. AI Factory Coordination (`ai_factory_coordination`)
+### 106. AI Factory Coordination (`ai_factory_coordination`)
 
 - **Prerequisites:** `ae2_autocrafting`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -1170,7 +1220,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Coordinate inventory-aware production across multiple physical machine lines.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 102. Cross-Planetary AI Logistics (`cross_planetary_logistics`)
+### 107. Cross-Planetary AI Logistics (`cross_planetary_logistics`)
 
 - **Prerequisites:** `ai_factory_coordination`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -1180,7 +1230,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Coordinate automated orbital cargo, autonomous lunar industry, and autonomous Martian industry.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 103. Predictive Production (`predictive_production`)
+### 108. Predictive Production (`predictive_production`)
 
 - **Prerequisites:** `ai_factory_coordination`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -1190,7 +1240,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Maintain demand forecasts, resilient buffers, and automatic shortage response.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 104. UU-Matter Research (`uu_matter_research`)
+### 109. UU-Matter Research (`uu_matter_research`)
 
 - **Prerequisites:** `ai_factory_coordination`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -1200,7 +1250,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Complete the future AI-assisted energy-to-matter research program.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 105. Controlled UU-Matter Production (`uu_matter_production`)
+### 110. Controlled UU-Matter Production (`uu_matter_production`)
 
 - **Prerequisites:** `uu_matter_research`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -1210,7 +1260,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Produce UU-Matter through a high-energy, time-based physical process.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 106. Controlled Matter Replication (`controlled_replication`)
+### 111. Controlled Matter Replication (`controlled_replication`)
 
 - **Prerequisites:** `uu_matter_production`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -1220,7 +1270,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Replicate an authorized pattern with material, energy, and throughput constraints.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 107. Fusion and Antimatter (`fusion_and_antimatter`)
+### 112. Fusion and Antimatter (`fusion_and_antimatter`)
 
 - **Prerequisites:** `uu_matter_research`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -1230,7 +1280,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Develop fusion power, exotic materials, and contained antimatter research.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 108. Orbital Megastructures (`orbital_megastructures`)
+### 113. Orbital Megastructures (`orbital_megastructures`)
 
 - **Prerequisites:** `cross_planetary_logistics`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -1240,7 +1290,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Build advanced orbital solar arrays, automated shipyards, and large interplanetary vessels.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 109. Autonomous Colony Expansion (`autonomous_colony_expansion`)
+### 114. Autonomous Colony Expansion (`autonomous_colony_expansion`)
 
 - **Prerequisites:** `cross_planetary_logistics` AND `predictive_production`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -1250,7 +1300,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Establish a new colony with self-repairing factories and connected logistics.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 110. Civilization-Scale AI Core (`civilization_scale_ai`)
+### 115. Civilization-Scale AI Core (`civilization_scale_ai`)
 
 - **Prerequisites:** `controlled_replication` AND `orbital_megastructures` AND `autonomous_colony_expansion`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -1260,7 +1310,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 - **Gameplay assertion:** Coordinate a planetary-scale manufacturing and research network.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 111. Continuously Expanding Civilization (`continuous_civilization`)
+### 116. Continuously Expanding Civilization (`continuous_civilization`)
 
 - **Prerequisites:** `controlled_replication`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -1274,7 +1324,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **39
 
 ## End-of-run acceptance
 
-1. Confirm all 111 numbered-chapter quests are complete in F6 and exactly their matching main-line advancements are complete.
+1. Confirm all 116 numbered-chapter quests are complete in F6 and exactly their matching main-line advancements are complete.
 2. Confirm unfinished independent side-path tabs do not prevent completion of the numbered route.
 3. Confirm AI entry displayed the Industrial Civilization credits containing `corysmart` exactly once and returned control to the same playable world.
 4. Confirm Chapter 16 completion does not show a victory/end screen or disable continued play.

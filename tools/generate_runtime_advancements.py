@@ -19,6 +19,12 @@ def advancement_id(milestone):
 
 
 def split_item(reference):
+    legacy_aliases = {
+        "minecraft:firework_rocket": ("minecraft:fireworks", None),
+        "minecraft:red_sand": ("minecraft:sand", 1),
+    }
+    if reference in legacy_aliases:
+        return legacy_aliases[reference]
     parts = reference.split(":")
     if len(parts) == 3 and (parts[-1].isdigit() or parts[-1] == "*"):
         return ":".join(parts[:2]), None if parts[-1] == "*" else int(parts[-1])

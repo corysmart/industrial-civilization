@@ -47,6 +47,29 @@ public final class NativeIc2PowerModel {
         return deliveredPacketEU <= maximumPacketEU;
     }
 
+    /** A tier-3 IC2 packet is the observable EnergyNet signature of an MFSU output. */
+    public static boolean isMfsuClassVoltage(double voltageEU) {
+        return voltageEU >= 511.999D && voltageEU <= 512.001D;
+    }
+
+    /**
+     * Converts accepted energy carried by MFSU-class deliveries into source-packet
+     * equivalents. EnergyNet may split one legal packet into multiple sink callbacks,
+     * while a legal cable path can shave a small amount from that same 512-EU packet.
+     * Nearest-packet conversion handles both effects without promoting 49 full MFSU
+     * packets to the fifty-bank threshold.
+     */
+    public static int mfsuPacketEquivalents(double acceptedMfsuEU) {
+        if (acceptedMfsuEU < 256D) return 0;
+        return (int) Math.floor((acceptedMfsuEU + 256D + 0.000001D) / 512D);
+    }
+
+    public static boolean qualifiesBlinkManufacturing(int peakMfsuPacketsPerTick,
+            int elapsedOperationTicks, int minimumTicks) {
+        return minimumTicks == 0 && peakMfsuPacketsPerTick >= 50
+            && elapsedOperationTicks > 0 && elapsedOperationTicks <= 8;
+    }
+
     public static int simulateDuration(long totalWorkEU, int baselineEUPerTick,
             int minimumTicks, int maximumPacketEU, int packetEU, int packetsPerTick) {
         if (!isLegalPacket(packetEU, maximumPacketEU)) return -1;

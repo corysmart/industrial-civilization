@@ -162,7 +162,6 @@ ic2_icon_counts = {
     "blockcompactedgenerator": 9,
     "blockelectric": 11,
     "blockpersonal": 11,
-    "blockchargepad": 4,
 }
 ic2_icon_root = ASSETS / "textures/items/ic2_machines"
 ic2_model_root = ASSETS / "models/item/ic2_machines"
