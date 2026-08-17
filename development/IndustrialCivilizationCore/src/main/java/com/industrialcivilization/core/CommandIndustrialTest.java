@@ -2,7 +2,9 @@ package com.industrialcivilization.core;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -15,13 +17,22 @@ import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.init.Blocks;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.InventoryCrafting;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import net.minecraftforge.common.crafting.IShapedRecipe;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 /** Development-only deterministic scenarios and parseable runtime snapshots. */
 public final class CommandIndustrialTest extends CommandBase {
@@ -29,7 +40,7 @@ public final class CommandIndustrialTest extends CommandBase {
 
     @Override public String getName() { return "ic_test"; }
     @Override public String getUsage(ICommandSender sender) {
-        return "/ic_test snapshot [radius] | scenario <workshop_adjacency|earth_ecology> | assert <workshop_adjacency|earth_ecology>";
+        return "/ic_test snapshot [radius] | scenario <workshop_adjacency|earth_ecology|release_recipes> | assert <workshop_adjacency|earth_ecology>";
     }
     @Override public int getRequiredPermissionLevel() { return 0; }
 
@@ -67,7 +78,155 @@ public final class CommandIndustrialTest extends CommandBase {
                 + "|other_vanilla_hostiles=" + result.otherVanillaHostiles);
             return;
         }
+        if (args.length == 2 && "scenario".equals(args[0]) && "release_recipes".equals(args[1])) {
+            RecipeResult result = runReleaseRecipeScenario(player);
+            emit(player, (result.failures.isEmpty() ? "PASS" : "FAIL")
+                + "|release_recipes|explicit=" + result.explicitPassed + "/" + result.explicitTotal
+                + "|modified=" + result.modifiedPassed + "/" + result.modifiedTotal
+                + "|forbidden_inputs=" + result.forbiddenInputs
+                + (result.failures.isEmpty() ? "" : "|failures=" + String.join(",", result.failures)));
+            return;
+        }
         throw new WrongUsageException(getUsage(sender));
+    }
+
+    private static RecipeResult runReleaseRecipeScenario(EntityPlayerMP player) {
+        String[][] explicit = {
+            {"lv_plant_sower", "industrialforegoing:crop_sower", "1"},
+            {"lv_plant_gatherer", "industrialforegoing:crop_recolector", "1"},
+            {"lv_resourceful_furnace", "industrialforegoing:resourceful_furnace", "1"},
+            {"lv_plant_interactor", "industrialforegoing:plant_interactor", "1"},
+            {"lv_plant_fertilizer", "industrialforegoing:crop_enrich_material_injector", "1"},
+            {"lv_animal_breeder", "industrialforegoing:animal_stock_increaser", "1"},
+            {"lv_animal_growth", "industrialforegoing:animal_growth_increaser", "1"},
+            {"lv_animal_separator", "industrialforegoing:animal_independence_selector", "1"},
+            {"lv_animal_harvester", "industrialforegoing:animal_resource_harvester", "1"},
+            {"lv_sewage_collector", "industrialforegoing:animal_byproduct_recolector", "1"},
+            {"lv_sewage_composter", "industrialforegoing:sewage_composter_solidifier", "1"},
+            {"lv_water_resource_collector", "industrialforegoing:water_resources_collector", "1"},
+            {"industrial_civilization_gunpowder", "minecraft:gunpowder", "3"},
+            {"colorful_lamp", "computronics:colorful_lamp", "1"},
+            {"quantum_tape_diamond", "computronics:tape", "1"},
+            {"quantum_tape_dense", "computronics:tape", "1"},
+            {"earth_purpur_stairs", "minecraft:purpur_stairs", "4"},
+            {"earth_purpur_slab", "minecraft:purpur_slab", "6"},
+            {"earth_nether_brick", "minecraft:nether_brick", "1"},
+            {"earth_glowstone_torch", "galacticraftcore:glowstone_torch", "4"},
+            {"earth_mirrorprint", "chiselsandbits:mirrorprint", "1"},
+            {"earth_neon_light", "techguns:neonlights", "1"},
+            {"earth_purpur_wall", "quark:purpur_block_wall", "1"},
+            {"earth_soul_sandstone", "quark:soul_sandstone", "1"},
+            {"earth_antiblock", "chisel:antiblock", "1"}
+        };
+        RecipeResult result = new RecipeResult(explicit.length);
+        for (String[] target : explicit) {
+            IRecipe recipe = findRecipe(target[0], target[1]);
+            if (recipe == null) {
+                result.failures.add(target[0] + ":missing");
+                continue;
+            }
+            String failure = craftFailure(recipe, player.world, target[1], Integer.parseInt(target[2]));
+            if (failure == null) result.explicitPassed++;
+            else result.failures.add(target[0] + ":" + failure);
+        }
+        for (IRecipe recipe : ForgeRegistries.RECIPES) {
+            ResourceLocation name = recipe.getRegistryName();
+            if (name == null || !"crafttweaker".equals(name.getResourceDomain())
+                    || !name.getResourcePath().endsWith("_modified")) continue;
+            if (isSupersededModifiedRecipe(name.toString())) continue;
+            ItemStack expected = recipe.getRecipeOutput();
+            String expectedId = expected.isEmpty() || expected.getItem().getRegistryName() == null
+                ? "" : expected.getItem().getRegistryName().toString();
+            result.modifiedTotal++;
+            String failure = craftFailure(recipe, player.world, expectedId, expected.getCount());
+            if (failure == null) result.modifiedPassed++;
+            else if (result.failures.size() < 12) result.failures.add(name + ":" + failure);
+        }
+        result.forbiddenInputs = forbiddenInputCount();
+        if (result.forbiddenInputs != 0) result.failures.add("forbidden_inputs:" + result.forbiddenInputs);
+        return result;
+    }
+
+    private static boolean isSupersededModifiedRecipe(String recipeId) {
+        return Arrays.asList(
+            "crafttweaker:minecraft_purpur_stairs_modified",
+            "crafttweaker:minecraft_purpur_slab_modified",
+            "crafttweaker:minecraft_nether_brick_modified",
+            "crafttweaker:galacticraftcore_glowstone_torch_modified",
+            "crafttweaker:chiselsandbits_mirrorprint_modified",
+            "crafttweaker:icbmclassic_parts/circuit.elite_modified",
+            "crafttweaker:techguns_neonlights_0_modified",
+            "crafttweaker:quark_purpur_block_wall_modified",
+            "crafttweaker:quark_soul_sandstone_modified",
+            "crafttweaker:chisel_antiblock_modified"
+        ).contains(recipeId);
+    }
+
+    private static IRecipe findRecipe(String token, String outputId) {
+        for (IRecipe recipe : ForgeRegistries.RECIPES) {
+            ResourceLocation name = recipe.getRegistryName();
+            ItemStack output = recipe.getRecipeOutput();
+            ResourceLocation outputName = output.isEmpty() ? null : output.getItem().getRegistryName();
+            if (name != null && name.toString().contains(token)
+                    && outputName != null && outputId.equals(outputName.toString())) return recipe;
+        }
+        return null;
+    }
+
+    private static String craftFailure(IRecipe recipe, World world, String expectedId, int expectedCount) {
+        final Container container = new Container() {
+            @Override public boolean canInteractWith(net.minecraft.entity.player.EntityPlayer player) { return true; }
+        };
+        InventoryCrafting grid = new InventoryCrafting(container, 3, 3);
+        List<Ingredient> ingredients = recipe.getIngredients();
+        int width = recipe instanceof IShapedRecipe ? ((IShapedRecipe) recipe).getRecipeWidth() : 3;
+        if (width < 1 || width > 3 || ingredients.size() > 9) return "unsupported_grid";
+        for (int index = 0; index < ingredients.size(); index++) {
+            Ingredient ingredient = ingredients.get(index);
+            if (ingredient == Ingredient.EMPTY) continue;
+            ItemStack[] candidates = ingredient.getMatchingStacks();
+            if (candidates.length == 0) return "empty_ingredient_" + index;
+            int slot = recipe instanceof IShapedRecipe
+                ? (index / width) * 3 + index % width : index;
+            grid.setInventorySlotContents(slot, candidates[0].copy());
+        }
+        IRecipe matched = CraftingManager.findMatchingRecipe(grid, world);
+        if (matched == null) return "no_match";
+        ItemStack output = matched.getCraftingResult(grid);
+        ResourceLocation outputName = output.isEmpty() ? null : output.getItem().getRegistryName();
+        if (outputName == null || !expectedId.equals(outputName.toString()))
+            return "wrong_output_" + (outputName == null ? "empty" : outputName);
+        if (output.getCount() != expectedCount) return "wrong_count_" + output.getCount();
+        return null;
+    }
+
+    private static int forbiddenInputCount() {
+        List<String> forbidden = Arrays.asList(
+            "minecraft:slime_ball", "minecraft:ghast_tear", "minecraft:blaze_rod",
+            "minecraft:blaze_powder", "minecraft:magma_cream", "minecraft:nether_star",
+            "minecraft:quartz", "minecraft:netherrack", "minecraft:soul_sand",
+            "minecraft:nether_wart", "minecraft:netherbrick", "minecraft:glowstone_dust",
+            "minecraft:end_stone", "minecraft:chorus_fruit", "minecraft:chorus_fruit_popped",
+            "minecraft:purpur_block", "minecraft:purpur_pillar", "minecraft:shulker_shell",
+            "minecraft:dragon_breath", "minecraft:dragon_egg", "minecraft:end_crystal");
+        int count = 0;
+        for (IRecipe recipe : ForgeRegistries.RECIPES) for (Ingredient ingredient : recipe.getIngredients()) {
+            for (ItemStack candidate : ingredient.getMatchingStacks()) {
+                ResourceLocation name = candidate.getItem().getRegistryName();
+                if (name != null && forbidden.contains(name.toString())) count++;
+            }
+        }
+        return count;
+    }
+
+    private static final class RecipeResult {
+        final int explicitTotal;
+        final List<String> failures = new ArrayList<>();
+        int explicitPassed;
+        int modifiedTotal;
+        int modifiedPassed;
+        int forbiddenInputs;
+        RecipeResult(int explicitTotal) { this.explicitTotal = explicitTotal; }
     }
 
     private static EcologyResult runEarthEcologyScenario(MinecraftServer server, EntityPlayerMP player) {
@@ -213,7 +372,7 @@ public final class CommandIndustrialTest extends CommandBase {
             String[] args, BlockPos targetPos) {
         if (args.length == 1) return getListOfStringsMatchingLastWord(args, "snapshot", "scenario", "assert");
         if (args.length == 2 && ("scenario".equals(args[0]) || "assert".equals(args[0])))
-            return getListOfStringsMatchingLastWord(args, "workshop_adjacency", "earth_ecology");
+            return getListOfStringsMatchingLastWord(args, "workshop_adjacency", "earth_ecology", "release_recipes");
         return Arrays.asList();
     }
 }

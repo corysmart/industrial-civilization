@@ -1650,8 +1650,8 @@
     {
       "file": "mods/IndustrialCivilizationCore-0.6.0.jar",
       "filename": "IndustrialCivilizationCore-0.6.0.jar",
-      "size": 3255764,
-      "sha256": "9a54c7088e08911ebec134d21fa04bd6ec01a9ef5b25b8684e1c17c711796225",
+      "size": 3261464,
+      "sha256": "8f7da585ac70bab9c28eab944089b1c7c47b468023859bca78837285c5452664",
       "classification": "KEEP",
       "mods": [
         {
@@ -5229,8 +5229,8 @@
     },
     {
       "file": "groovy/postInit/dimension_material_unification.groovy",
-      "sha256": "a83a428ec325752c3126fb3d7a523d7d76449d5daf2c7d36d851935fee1c8491",
-      "size": 1491
+      "sha256": "c02a8907329ae8f442d6e5e9829576e136e01d3775778808ab81e486410e34ac",
+      "size": 4212
     },
     {
       "file": "groovy/postInit/industrial_civilization.groovy",

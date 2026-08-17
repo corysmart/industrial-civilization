@@ -95,8 +95,8 @@ python3 tools/e2e/preflight.py
 ```
 
 At the current 0.6.0 state these checks report 1,426 runtime-content checks,
-333 connected visible advancements, 43 energy-interoperability checks, 3,760
-progression checks, 1,968 static checks, and 8 HeadlessMC preflight checks.
+339 connected visible advancements, 57 energy-interoperability checks, 3,913
+progression checks, 2,021 static checks, and 8 HeadlessMC preflight checks.
 Offline checks complement—not replace—the live evidence and scenario lists in
 `docs/E2E_TESTING.md`, `docs/MAIN_QUESTLINE_TEST_PLAN.md`, and
 `docs/MANUAL_TEST_CHECKLIST.md`.
