@@ -2,6 +2,12 @@ package com.industrialcivilization.core;
 
 /** Pure deterministic rules shared with the headless mechanics test suite. */
 public final class GameplayRules {
+    /** One supplemental bone per eight eligible, player-killed adult animals. */
+    public static boolean supplementalBoneDrop(boolean eligibleAnimal, boolean child,
+            boolean killedByPlayer, int roll) {
+        return eligibleAnimal && !child && killedByPlayer && roll == 0;
+    }
+
     public static boolean suppressOffWorldMonster(boolean moonOrMars, boolean monster) {
         return moonOrMars && monster;
     }

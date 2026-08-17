@@ -4,7 +4,7 @@
 - Source authority: `/Users/cory/Documents/tekkit-3`
 - Technic pack: `Industrial Civilization: Astra`
 - Technic test target: `/Users/cory/Library/Application Support/technic/modpacks/industrial-civilization-astra`
-- Release: `0.5.2` (`v0.5.2` on GitHub; hidden Technic listing)
+- Release candidate: `0.6.0` (hidden Technic listing)
 
 ## Current acceptance state
 
@@ -18,7 +18,7 @@ Exact evidence, defects found during testing, fixes, and contamination notes are
 
 ## Implemented systems
 
-- 16 numbered chapters, 8 independent visible side paths, and 134 automatic capability milestones with no manual checkbox objectives.
+- 16 numbered chapters, 10 independent visible side paths, and 144 automatic capability milestones with no manual checkbox objectives.
 - Thirty first-party blocks and twenty-three first-party items, including EU-native manufacturing, research, cargo, replication, AI, habitat, settlement, vehicle, and strategic systems.
 - IC2-centered power and voltage language with hidden compatibility conversion at 8 FE = 1 EU.
 - Sustained functional orbital, lunar, and Martian gates. Habitat evidence requires a nearby active Galacticraft Oxygen Detector; merely oxygenating the player or running a sealer is insufficient.
@@ -33,7 +33,7 @@ Exact evidence, defects found during testing, fixes, and contamination notes are
 ## Distribution state
 
 - The public Git repository is `corysmart/industrial-civilization`; its reachable history uses the `corysmart` GitHub no-reply identity rather than a Prepaid2Coin address.
-- The hidden Technic listing installs as `industrial-civilization-astra` and serves the full permitted pack from the GitHub `v0.5.2` release.
+- The hidden Technic listing installs as `industrial-civilization-astra`; this work prepares the `v0.6.0` release candidate.
 - Techguns, Connected Glass 1.1.8, and its Core Lib are omitted from the GitHub archive. ModDirector retrieves pinned official CurseForge files and verifies their SHA-256 hashes before startup. Connected Glass is intentionally held at the last pre-Fusion renderer release for compatibility with the pack's optimized 1.12.2 rendering stack.
 - ICBM Classic 6.5.5 is included under the modpack permission in its distributed license.
 - The pack remains hidden until the remaining redistribution/attribution review and public-release QA are complete.
@@ -41,10 +41,10 @@ Exact evidence, defects found during testing, fixes, and contamination notes are
 ## Current automated evidence
 
 - Runtime-content harness: 1,426 checks.
-- Unified advancements: 194 ported, 329 visible, 37 removed/replaced, one rooted campaign tree.
+- Unified advancements: 194 ported, 339 visible, 37 removed/replaced, one rooted campaign tree.
 - Energy interoperability: 43 checks.
-- Progression model: 16 chapters, 8 side paths, 134 milestones, 11 runtime replacements, 0 placeholders. Exact validator totals are regenerated with each build.
-- Static validator: 1,949 checks.
+- Progression model: 16 chapters, 10 side paths, 144 milestones, 11 runtime replacements, 0 placeholders. Exact validator totals are regenerated with each build.
+- Static validator: 1,968 checks.
 - HeadlessMC preflight: 8 smoke checks.
 - The Java 8 Forge build and deterministic unit suite passed for the campaign-acceptance build; live deployment hashes and per-fix test counts are retained in the live log.
 
@@ -83,4 +83,4 @@ Exact evidence, defects found during testing, fixes, and contamination notes are
 - Exercise multiplayer ownership, long-distance/chunk-unloaded cargo, every ComputerCraft peripheral method, and third-party protection integrations.
 - Finish the redistribution and attribution audit, confirm every dependency delivery path, and perform public-release packaging/upgrade QA.
 
-Version 0.5.2 is suitable for continued private/internal play and preservation of the lightly explored playthrough world. It is not yet presented as a public release-quality build.
+Version 0.6.0 is suitable for continued private/internal play and preservation of the lightly explored playthrough world after the new migration checks pass. It is not yet presented as a public release-quality build.

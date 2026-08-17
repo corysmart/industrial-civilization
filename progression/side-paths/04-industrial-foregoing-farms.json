@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "id": "industrial_foregoing_farms",
+  "number": 4,
+  "title": "Side Path — Automated Agriculture",
+  "purpose": "Use IC2 LV components to automate trees, field crops, peaceful livestock, fertilizer, and water resources from the beginning of electrification.",
+  "milestones": [
+    {
+      "id": "lv_tree_planting",
+      "title": "LV Tree Planting",
+      "category": "construction",
+      "icon": "industrialforegoing:crop_sower",
+      "prerequisites": ["first_ic2_generator"],
+      "critical": false,
+      "optional": true,
+      "capability": "Build an Industrial Foregoing Plant Sower from an IC2 LV Machine Block, Electronic Circuit, rubber, and ordinary workshop parts. The farm family no longer waits for Industrial Foregoing plastic or a separate Tesla frame.",
+      "final_validation": [
+        "Craft a Plant Sower using its pack-owned IC2 LV recipe.",
+        "Place it below a prepared tree plot and load saplings into its planting grid.",
+        "Power it from the first IC2 generator through the installed energy adapter; the machine's input is safely within LV capacity."
+      ],
+      "automation_paths": [],
+      "required_item": "industrialforegoing:crop_sower"
+    },
+    {
+      "id": "lv_charcoal_tree_farm",
+      "title": "LV Charcoal Tree Farm",
+      "category": "operation",
+      "icon": "industrialforegoing:crop_recolector",
+      "prerequisites": ["lv_tree_planting"],
+      "critical": false,
+      "optional": true,
+      "capability": "Complete the early tree loop with a Plant Gatherer and Resourceful Furnace. Replant saplings, harvest logs, smelt part of the wood into charcoal, and return that charcoal to the IC2 Generator so early electrical expansion can feed itself.",
+      "final_validation": [
+        "Own the Plant Sower, Plant Gatherer, and Resourceful Furnace together; the evidence is not consumed.",
+        "Configure the Gatherer's working area to cover the Sower's tree plot and route saplings back to planting.",
+        "Smelt harvested logs into charcoal and feed the charcoal to an IC2 Generator while retaining surplus wood."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "automated_field_agriculture",
+      "title": "Automated Field Agriculture",
+      "category": "operation",
+      "icon": "industrialforegoing:plant_interactor",
+      "prerequisites": ["lv_charcoal_tree_farm"],
+      "critical": false,
+      "optional": true,
+      "capability": "Add a Plant Interactor and Plant Fertilizer for crops that should be harvested without breaking their planted state. Keep fertilizer inputs renewable and constrain the working area to avoid neighboring breeding plots.",
+      "final_validation": [
+        "Craft both the Plant Interactor and Plant Fertilizer from IC2 LV components.",
+        "Set their working areas over a field-crop plot rather than the tree plot.",
+        "Verify harvested output enters storage and the planted crop remains available for another growth cycle."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "automated_animal_husbandry",
+      "title": "Automated Animal Husbandry",
+      "category": "operation",
+      "icon": "industrialforegoing:animal_stock_increaser",
+      "prerequisites": ["automated_field_agriculture", "controlled_livestock"],
+      "critical": false,
+      "optional": true,
+      "capability": "Use the Animal Breeder, Animal Growth Increaser, and Animal Baby Separator to turn the controlled livestock enclosure into a renewable, population-limited husbandry system.",
+      "final_validation": [
+        "Own the Animal Breeder, Growth Increaser, and Baby Separator together; the evidence is not consumed.",
+        "Supply species-appropriate food and set a breeding population limit before unattended operation.",
+        "Route juveniles away from the breeding enclosure so the adult population remains controlled."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "automated_animal_resources",
+      "title": "Automated Animal Resources",
+      "category": "operation",
+      "icon": "industrialforegoing:animal_resource_harvester",
+      "prerequisites": ["automated_animal_husbandry"],
+      "critical": false,
+      "optional": true,
+      "capability": "Harvest renewable products from living animals, collect sewage, and compost it into fertilizer. This peaceful production line does not introduce hostile-mob drops or require a slaughter factory.",
+      "final_validation": [
+        "Own the Animal Resource Harvester, Animal Byproduct Collector, and Sewage Composter together.",
+        "Collect milk or wool without killing the breeding population.",
+        "Pipe collected sewage into the composter and store the resulting fertilizer for the crop line."
+      ],
+      "automation_paths": []
+    },
+    {
+      "id": "automated_water_resources",
+      "title": "Automated Water Resources",
+      "category": "mastery",
+      "icon": "industrialforegoing:water_resources_collector",
+      "prerequisites": ["automated_animal_resources"],
+      "critical": false,
+      "optional": true,
+      "capability": "Round out peaceful LV agriculture with the Water Resources Collector, giving the settlement an automated fishing and aquatic-resource station without creating a hostile-mob economy.",
+      "final_validation": [
+        "Craft and place a Water Resources Collector from its IC2 LV recipe.",
+        "Give it a valid water working area and connect output storage.",
+        "Confirm the completed agriculture branch covers trees, field crops, livestock products, fertilizer, and water resources."
+      ],
+      "automation_paths": [],
+      "required_item": "industrialforegoing:water_resources_collector"
+    }
+  ]
+}

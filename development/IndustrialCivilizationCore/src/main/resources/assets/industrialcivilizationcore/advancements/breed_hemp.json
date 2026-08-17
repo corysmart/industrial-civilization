@@ -1,0 +1,32 @@
+{
+  "parent": "industrialcivilizationcore:crop_engineering",
+  "display": {
+    "icon": {
+      "item": "ic2:itemmisc",
+      "data": 159
+    },
+    "title": {
+      "text": "S3.02 \u2014 Breed Hemp"
+    },
+    "description": {
+      "text": "Crossbreed and harvest IC2 Hemp. Hemp is a normal tier-3 crop: it needs light level 7, matures at growth stage 6, and regrows from stage 4 after harvest. Melon is a strong accessible parent because it shares Hemp's Green trait and close crop properties; pairing it with a different tier-2/3 crop such as Cocoa gives a practical early search. Hemp is the normal early renewable fiber source because spiders are not part of Industrial Civilization's ecology."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ic2:itemmisc",
+            "data": 159
+          }
+        ]
+      }
+    }
+  }
+}

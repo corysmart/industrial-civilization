@@ -5,7 +5,7 @@ about growing a survival workshop into an interplanetary industrial
 civilization. It began from the Tekkit 2 technical baseline, but it is now its
 own source project, release archive, and hidden Technic pack.
 
-The current pack release is **0.5.2**. Its complete 16-chapter numbered
+The current development candidate is **0.6.0**. Its complete 16-chapter numbered
 campaign has passed live acceptance in `Test Bed 1`: all 111 numbered Better
 Questing tasks completed, the final `continuous_civilization` milestone
 persisted after save/reload, the one-time AI credits returned to the playable
@@ -15,9 +15,9 @@ and vehicle side paths still require their own full acceptance pass.
 ## Current distribution status
 
 - Technic pack: **Industrial Civilization: Astra** (`industrial-civilization-astra`)
-- Pack version: **0.5.2**
+- Installed test candidate: **0.6.0**
 - Minecraft: **1.12.2**, Forge **14.23.5.2860**, Java **8**
-- GitHub release: `v0.5.2`
+- GitHub release candidate: `v0.6.0`
 - Visibility: hidden internal alpha while redistribution review, multiplayer
   QA, and final balance work continue
 - Installed Technic instance:
@@ -36,10 +36,10 @@ then verifies every SHA-256 before Forge starts. See
 
 ## What is implemented
 
-- 16 numbered chapters and 8 independent side paths across Earth, orbit, the
+- 16 numbered chapters and 10 independent side paths across Earth, orbit, the
   Moon, Mars, Lite Matter Engineering, the AI Age, and post-AI civilization
-- 129 automatic capability milestones with no manual checkbox objectives
-- One Industrial Civilization advancement page with 324 connected visible
+- 144 automatic capability milestones with no manual checkbox objectives
+- One Industrial Civilization advancement page with 339 connected visible
   advancements; obsolete, duplicate, magical, End-only, and fake-monster
   objectives are hidden, removed, or replaced
 - IC2-centered EU power, manufacturing, monitored nuclear engineering,
@@ -94,9 +94,9 @@ python3 tools/static_validate.py
 python3 tools/e2e/preflight.py
 ```
 
-At the current 0.5.2 state these checks report 1,426 runtime-content checks,
-324 connected visible advancements, 39 energy-interoperability checks, 3,540
-progression checks, 1,934 static checks, and 8 HeadlessMC preflight checks.
+At the current 0.6.0 state these checks report 1,426 runtime-content checks,
+333 connected visible advancements, 43 energy-interoperability checks, 3,760
+progression checks, 1,968 static checks, and 8 HeadlessMC preflight checks.
 Offline checks complement—not replace—the live evidence and scenario lists in
 `docs/E2E_TESTING.md`, `docs/MAIN_QUESTLINE_TEST_PLAN.md`, and
 `docs/MANUAL_TEST_CHECKLIST.md`.

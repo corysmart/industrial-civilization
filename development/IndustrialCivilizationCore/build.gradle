@@ -9,7 +9,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'java'
 
-version = '0.5.2'
+version = '0.6.0'
 group = 'com.industrialcivilization'
 archivesBaseName = 'IndustrialCivilizationCore'
 sourceCompatibility = targetCompatibility = '1.8'
@@ -38,6 +38,8 @@ processResources {
 jar {
     manifest {
         attributes(
+            'FMLCorePlugin': 'com.industrialcivilization.core.bootstrap.IngredientRegistryCorePlugin',
+            'FMLCorePluginContainsFMLMod': 'true',
             'Specification-Title': 'Industrial Civilization Core',
             'Specification-Vendor': 'Industrial Civilization',
             'Specification-Version': '1',

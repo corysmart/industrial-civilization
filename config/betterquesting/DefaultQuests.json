@@ -3314,7 +3314,7 @@
           "visibility:8": "ALWAYS",
           "simultaneous:1": 0,
           "icon:10": {
-            "id:8": "minecraft:nether_star",
+            "id:8": "industrialcivilizationcore:lunar_quantum_component",
             "Count:3": 1,
             "Damage:2": 0,
             "OreDict:8": ""
@@ -3729,7 +3729,7 @@
           "visibility:8": "ALWAYS",
           "simultaneous:1": 0,
           "icon:10": {
-            "id:8": "minecraft:nether_star",
+            "id:8": "industrialcivilizationcore:lunar_quantum_component",
             "Count:3": 1,
             "Damage:2": 0,
             "OreDict:8": ""
@@ -6515,6 +6515,559 @@
         }
       },
       "rewards:9": {}
+    },
+    "134:10": {
+      "questID:3": 134,
+      "preRequisites:11": [
+        4
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "ic2:itemcrop",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Crop Engineering",
+          "desc:8": "STORY\nA technical civilization cannot depend on fantasy predators for ordinary fiber. IC2 crop engineering turns farmland, genetics, and tapped rubber trees into a repeatable logistics system for string and livestock.\n\nMISSION\nCraft IC2 Crop Sticks and establish parallel breeding plots. Plant ordinary crops in single sticks; place double sticks between mature adjacent parents to crossbreed, and keep several plots running because each cross is probabilistic.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Craft IC2 Crop Sticks and place them on hydrated farmland.\n- Grow two adjacent parent crops to maturity before placing double Crop Sticks between them.\n- Use parallel crossing plots so one unlucky roll does not halt the fiber program.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- IC2 equipment: F10 changes supported modes. Backslash is the armor modifier, Option+H toggles boost, and Option+O expands the armor HUD. Sneak while mining/chopping to suppress pack-added area or whole-tree behavior.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "ic2:itemcrop",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
+          "index:3": 0,
+          "taskID:8": "bq_standard:retrieval"
+        }
+      },
+      "rewards:9": {}
+    },
+    "135:10": {
+      "questID:3": 135,
+      "preRequisites:11": [
+        134
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "ic2:itemmisc",
+            "Count:3": 1,
+            "Damage:2": 159,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Breed Hemp",
+          "desc:8": "STORY\nThe side path \u2014 industrial agriculture program advances one dependable system at a time. This step turns breed hemp from an idea into infrastructure.\n\nMISSION\nCrossbreed and harvest IC2 Hemp. Hemp is a normal tier-3 crop: it needs light level 7, matures at growth stage 6, and regrows from stage 4 after harvest. Melon is a strong accessible parent because it shares Hemp's Green trait and close crop properties; pairing it with a different tier-2/3 crop such as Cocoa gives a practical early search. Hemp is the normal early renewable fiber source because spiders are not part of Industrial Civilization's ecology.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Discover Hemp through ordinary IC2 crossbreeding rather than grass seed drops; try several mature Melon-plus-Cocoa or similarly diverse tier-2/3 parent plots.\n- Harvest a mature Hemp crop and retain the plant so its stage-4 regrowth continues.\n- Expand successful Hemp genetics into several renewable plots.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- IC2 equipment: F10 changes supported modes. Backslash is the armor modifier, Option+H toggles boost, and Option+O expands the armor HUD. Sneak while mining/chopping to suppress pack-added area or whole-tree behavior.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "ic2:itemmisc",
+              "Count:3": 1,
+              "Damage:2": 159,
+              "OreDict:8": ""
+            }
+          },
+          "index:3": 0,
+          "taskID:8": "bq_standard:retrieval"
+        }
+      },
+      "rewards:9": {}
+    },
+    "136:10": {
+      "questID:3": 136,
+      "preRequisites:11": [
+        135
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "minecraft:string",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Renewable String",
+          "desc:8": "STORY\nThe side path \u2014 industrial agriculture program advances one dependable system at a time. This step turns renewable string from an idea into infrastructure.\n\nMISSION\nTurn harvested IC2 Hemp into String through the native IC2 recipe and verify the repeatable survival route in HEI.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Use HEI to inspect Hemp uses and find the native Hemp-to-String recipe.\n- Craft String from harvested Hemp without spider drops.\n- Keep enough Hemp plots operating to replace consumed fiber.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- IC2 equipment: F10 changes supported modes. Backslash is the armor modifier, Option+H toggles boost, and Option+O expands the armor HUD. Sneak while mining/chopping to suppress pack-added area or whole-tree behavior.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "minecraft:string",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
+          "index:3": 0,
+          "taskID:8": "bq_standard:retrieval"
+        }
+      },
+      "rewards:9": {}
+    },
+    "137:10": {
+      "questID:3": 137,
+      "preRequisites:11": [
+        136
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "minecraft:lead",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Controlled Livestock",
+          "desc:8": "STORY\nThe side path \u2014 industrial agriculture program reaches its decisive proof. The farm now supplies renewable fiber, animal handling, and supplemental bone without introducing a hostile-monster economy.\n\nMISSION\nCombine four renewable Strings with tapped IC2 Sticky Resin to craft two Leads, move livestock into a controlled enclosure, and breed a pair. Managed adult cattle, pigs, sheep, and horses also provide a rare supplemental bone when killed by a player.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Craft two Leads from four Strings and one IC2 Sticky Resin; the evidence is not consumed.\n- Use a Lead to relocate livestock into a fenced production area.\n- Breed a pair before treating livestock as a renewable material source.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- IC2 equipment: F10 changes supported modes. Backslash is the armor modifier, Option+H toggles boost, and Option+O expands the armor HUD. Sneak while mining/chopping to suppress pack-added area or whole-tree behavior.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "minecraft:lead",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
+          "index:3": 0,
+          "taskID:8": "bq_standard:retrieval"
+        }
+      },
+      "rewards:9": {}
+    },
+    "138:10": {
+      "questID:3": 138,
+      "preRequisites:11": [
+        5
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "industrialforegoing:crop_sower",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "LV Tree Planting",
+          "desc:8": "STORY\nThe first IC2 generator should power more than a macerator. LV agricultural machinery turns trees, crops, livestock, and water into unattended infrastructure while charcoal feeds the young electrical grid.\n\nMISSION\nBuild an Industrial Foregoing Plant Sower from an IC2 LV Machine Block, Electronic Circuit, rubber, and ordinary workshop parts. The farm family no longer waits for Industrial Foregoing plastic or a separate Tesla frame.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Craft a Plant Sower using its pack-owned IC2 LV recipe.\n- Place it below a prepared tree plot and load saplings into its planting grid.\n- Power it from the first IC2 generator through the installed energy adapter; the machine's input is safely within LV capacity.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Industrial Foregoing agriculture: right-click the machine to configure its working area, item or fluid inputs, and output handling. Supply it from IC2 generation through the installed adapter; one LV line has ample capacity for these farm machines.\n- IC2 equipment: F10 changes supported modes. Backslash is the armor modifier, Option+H toggles boost, and Option+O expands the armor HUD. Sneak while mining/chopping to suppress pack-added area or whole-tree behavior.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "industrialforegoing:crop_sower",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
+          "index:3": 0,
+          "taskID:8": "bq_standard:retrieval"
+        }
+      },
+      "rewards:9": {}
+    },
+    "139:10": {
+      "questID:3": 139,
+      "preRequisites:11": [
+        138
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "industrialforegoing:crop_recolector",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "LV Charcoal Tree Farm",
+          "desc:8": "STORY\nThe side path \u2014 automated agriculture program advances one dependable system at a time. This step turns lv charcoal tree farm from an idea into infrastructure.\n\nMISSION\nComplete the early tree loop with a Plant Gatherer and Resourceful Furnace. Replant saplings, harvest logs, smelt part of the wood into charcoal, and return that charcoal to the IC2 Generator so early electrical expansion can feed itself.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Own the Plant Sower, Plant Gatherer, and Resourceful Furnace together; the evidence is not consumed.\n- Configure the Gatherer's working area to cover the Sower's tree plot and route saplings back to planting.\n- Smelt harvested logs into charcoal and feed the charcoal to an IC2 Generator while retaining surplus wood.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Industrial Foregoing agriculture: right-click the machine to configure its working area, item or fluid inputs, and output handling. Supply it from IC2 generation through the installed adapter; one LV line has ample capacity for these farm machines.\n- IC2 equipment: F10 changes supported modes. Backslash is the armor modifier, Option+H toggles boost, and Option+O expands the armor HUD. Sneak while mining/chopping to suppress pack-added area or whole-tree behavior.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "industrialforegoing:crop_sower",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "industrialforegoing:crop_recolector",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "2:10": {
+              "id:8": "industrialforegoing:resourceful_furnace",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
+          "index:3": 0,
+          "taskID:8": "bq_standard:retrieval"
+        }
+      },
+      "rewards:9": {}
+    },
+    "140:10": {
+      "questID:3": 140,
+      "preRequisites:11": [
+        139
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "industrialforegoing:plant_interactor",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Automated Field Agriculture",
+          "desc:8": "STORY\nThe side path \u2014 automated agriculture program advances one dependable system at a time. This step turns automated field agriculture from an idea into infrastructure.\n\nMISSION\nAdd a Plant Interactor and Plant Fertilizer for crops that should be harvested without breaking their planted state. Keep fertilizer inputs renewable and constrain the working area to avoid neighboring breeding plots.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Craft both the Plant Interactor and Plant Fertilizer from IC2 LV components.\n- Set their working areas over a field-crop plot rather than the tree plot.\n- Verify harvested output enters storage and the planted crop remains available for another growth cycle.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Industrial Foregoing agriculture: right-click the machine to configure its working area, item or fluid inputs, and output handling. Supply it from IC2 generation through the installed adapter; one LV line has ample capacity for these farm machines.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "industrialforegoing:plant_interactor",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "industrialforegoing:crop_enrich_material_injector",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
+          "index:3": 0,
+          "taskID:8": "bq_standard:retrieval"
+        }
+      },
+      "rewards:9": {}
+    },
+    "141:10": {
+      "questID:3": 141,
+      "preRequisites:11": [
+        140,
+        137
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "industrialforegoing:animal_stock_increaser",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Automated Animal Husbandry",
+          "desc:8": "STORY\nThe side path \u2014 automated agriculture program advances one dependable system at a time. This step turns automated animal husbandry from an idea into infrastructure.\n\nMISSION\nUse the Animal Breeder, Animal Growth Increaser, and Animal Baby Separator to turn the controlled livestock enclosure into a renewable, population-limited husbandry system.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Own the Animal Breeder, Growth Increaser, and Baby Separator together; the evidence is not consumed.\n- Supply species-appropriate food and set a breeding population limit before unattended operation.\n- Route juveniles away from the breeding enclosure so the adult population remains controlled.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Industrial Foregoing agriculture: right-click the machine to configure its working area, item or fluid inputs, and output handling. Supply it from IC2 generation through the installed adapter; one LV line has ample capacity for these farm machines.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "industrialforegoing:animal_stock_increaser",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "industrialforegoing:animal_growth_increaser",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "2:10": {
+              "id:8": "industrialforegoing:animal_independence_selector",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
+          "index:3": 0,
+          "taskID:8": "bq_standard:retrieval"
+        }
+      },
+      "rewards:9": {}
+    },
+    "142:10": {
+      "questID:3": 142,
+      "preRequisites:11": [
+        141
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "industrialforegoing:animal_resource_harvester",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Automated Animal Resources",
+          "desc:8": "STORY\nThe side path \u2014 automated agriculture program advances one dependable system at a time. This step turns automated animal resources from an idea into infrastructure.\n\nMISSION\nHarvest renewable products from living animals, collect sewage, and compost it into fertilizer. This peaceful production line does not introduce hostile-mob drops or require a slaughter factory.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Own the Animal Resource Harvester, Animal Byproduct Collector, and Sewage Composter together.\n- Collect milk or wool without killing the breeding population.\n- Pipe collected sewage into the composter and store the resulting fertilizer for the crop line.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Industrial Foregoing agriculture: right-click the machine to configure its working area, item or fluid inputs, and output handling. Supply it from IC2 generation through the installed adapter; one LV line has ample capacity for these farm machines.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "industrialforegoing:animal_resource_harvester",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "1:10": {
+              "id:8": "industrialforegoing:animal_byproduct_recolector",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            },
+            "2:10": {
+              "id:8": "industrialforegoing:sewage_composter_solidifier",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
+          "index:3": 0,
+          "taskID:8": "bq_standard:retrieval"
+        }
+      },
+      "rewards:9": {}
+    },
+    "143:10": {
+      "questID:3": 143,
+      "preRequisites:11": [
+        142
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "industrialforegoing:water_resources_collector",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Automated Water Resources",
+          "desc:8": "STORY\nThe side path \u2014 automated agriculture program reaches its decisive proof. Peaceful agriculture is now automated from soil to storage, and its charcoal loop can finance the settlement's next generation of electrical machines.\n\nMISSION\nRound out peaceful LV agriculture with the Water Resources Collector, giving the settlement an automated fishing and aquatic-resource station without creating a hostile-mob economy.\n\nCompletion is detected automatically from real gameplay evidence; no checkbox or command is required.\n\nPROOF OF COMPLETION\n- Craft and place a Water Resources Collector from its IC2 LV recipe.\n- Give it a valid water working area and connect output storage.\n- Confirm the completed agriculture branch covers trees, field crops, livestock products, fertilizer, and water resources.\n\nCONTROLS AND OPERATION\n- F6 \u2014 reopen the Industrial Civilization quest guide.\n- HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.\n- Industrial Foregoing agriculture: right-click the machine to configure its working area, item or fluid inputs, and output handling. Supply it from IC2 generation through the installed adapter; one LV line has ample capacity for these farm machines.\n- Factions: Pause > Factions & Settlements shows reputation, attitude, membership rules, known settlement types, and trades. Normal right-click opens IC Credit trades; sneak-right-click requests membership. Trusted members at 60 reputation can recruit a companion by holding 8 IC Credits while sneak-right-clicking.\n- Custom NPCs: F8 opens the separate NPC quest log when an authored encounter uses it.\n- Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.\n\nOptional: this quest does not gate the canonical critical path."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "partialMatch:1": 1,
+          "ignoreNBT:1": 1,
+          "consume:1": 0,
+          "groupDetect:1": 1,
+          "autoConsume:1": 0,
+          "requiredItems:9": {
+            "0:10": {
+              "id:8": "industrialforegoing:water_resources_collector",
+              "Count:3": 1,
+              "Damage:2": 0,
+              "OreDict:8": ""
+            }
+          },
+          "index:3": 0,
+          "taskID:8": "bq_standard:retrieval"
+        }
+      },
+      "rewards:9": {}
     }
   },
   "questLines:9": {
@@ -7815,6 +8368,106 @@
         }
       },
       "order:3": 23
+    },
+    "24:10": {
+      "quests:9": {
+        "134:10": {
+          "sizeX:3": 24,
+          "x:3": 244,
+          "y:3": 244,
+          "id:3": 134,
+          "sizeY:3": 24
+        },
+        "135:10": {
+          "sizeX:3": 24,
+          "x:3": 307,
+          "y:3": 277,
+          "id:3": 135,
+          "sizeY:3": 24
+        },
+        "136:10": {
+          "sizeX:3": 24,
+          "x:3": 173,
+          "y:3": 267,
+          "id:3": 136,
+          "sizeY:3": 24
+        },
+        "137:10": {
+          "sizeX:3": 24,
+          "x:3": 252,
+          "y:3": 188,
+          "id:3": 137,
+          "sizeY:3": 24
+        }
+      },
+      "lineID:3": 24,
+      "properties:10": {
+        "betterquesting:10": {
+          "visibility:8": "ALWAYS",
+          "name:8": "Side Path \u2014 Industrial Agriculture",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_earth_ui.png",
+          "bg_size:3": 512,
+          "desc:8": "Establish IC2 crop breeding as the renewable early source of fiber, string, adhesive logistics, and controlled livestock. Side paths are visible from the start and may create alternate progression routes."
+        }
+      },
+      "order:3": 24
+    },
+    "25:10": {
+      "quests:9": {
+        "138:10": {
+          "sizeX:3": 24,
+          "x:3": 244,
+          "y:3": 244,
+          "id:3": 138,
+          "sizeY:3": 24
+        },
+        "139:10": {
+          "sizeX:3": 24,
+          "x:3": 267,
+          "y:3": 304,
+          "id:3": 139,
+          "sizeY:3": 24
+        },
+        "140:10": {
+          "sizeX:3": 24,
+          "x:3": 322,
+          "y:3": 245,
+          "id:3": 140,
+          "sizeY:3": 24
+        },
+        "141:10": {
+          "sizeX:3": 24,
+          "x:3": 269,
+          "y:3": 185,
+          "id:3": 141,
+          "sizeY:3": 24
+        },
+        "142:10": {
+          "sizeX:3": 24,
+          "x:3": 182,
+          "y:3": 206,
+          "id:3": 142,
+          "sizeY:3": 24
+        },
+        "143:10": {
+          "sizeX:3": 24,
+          "x:3": 180,
+          "y:3": 280,
+          "id:3": 143,
+          "sizeY:3": 24
+        }
+      },
+      "lineID:3": 25,
+      "properties:10": {
+        "betterquesting:10": {
+          "visibility:8": "ALWAYS",
+          "name:8": "Side Path \u2014 Automated Agriculture",
+          "bg_image:8": "industrialcivilizationcore:textures/gui/quest_bg_earth_ui.png",
+          "bg_size:3": 512,
+          "desc:8": "Use IC2 LV components to automate trees, field crops, peaceful livestock, fertilizer, and water resources from the beginning of electrification. Side paths are visible from the start and may create alternate progression routes."
+        }
+      },
+      "order:3": 25
     }
   },
   "questSettings:10": {
@@ -7828,7 +8481,7 @@
       "hardcore:1": 0,
       "home_image:8": "industrialcivilizationcore:textures/gui/quest_home_v2.png",
       "party_enable:1": 1,
-      "pack_version:3": 15,
+      "pack_version:3": 17,
       "home_offset_x:3": -128,
       "home_offset_y:3": -64
     }

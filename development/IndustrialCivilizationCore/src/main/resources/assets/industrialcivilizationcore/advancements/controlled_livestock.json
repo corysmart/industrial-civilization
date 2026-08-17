@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:renewable_string",
+  "display": {
+    "icon": {
+      "item": "minecraft:lead"
+    },
+    "title": {
+      "text": "S3.04 \u2014 Controlled Livestock"
+    },
+    "description": {
+      "text": "Combine four renewable Strings with tapped IC2 Sticky Resin to craft two Leads, move livestock into a controlled enclosure, and breed a pair. Managed adult cattle, pigs, sheep, and horses also provide a rare supplemental bone when killed by a player."
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:lead"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -60,7 +60,7 @@ public final class CommandIndustrialTest extends CommandBase {
         }
         if (args.length == 2 && ("scenario".equals(args[0]) || "assert".equals(args[0]))
                 && "earth_ecology".equals(args[1])) {
-            EcologyResult result = runEarthEcologyScenario(player);
+            EcologyResult result = runEarthEcologyScenario(server, player);
             emit(player, (result.pass ? "PASS" : "FAIL") + "|earth_ecology|robbers="
                 + result.robbers + "|patrols=" + result.patrols + "|vanilla_zombies="
                 + result.vanillaZombies + "|vanilla_skeletons=" + result.vanillaSkeletons
@@ -70,9 +70,12 @@ public final class CommandIndustrialTest extends CommandBase {
         throw new WrongUsageException(getUsage(sender));
     }
 
-    private static EcologyResult runEarthEcologyScenario(EntityPlayerMP player) {
-        World world = player.world;
-        BlockPos base = player.getPosition().add(0, 2, 10);
+    private static EcologyResult runEarthEcologyScenario(MinecraftServer server, EntityPlayerMP player) {
+        // Test the Earth-only replacement rules in the Overworld even when a
+        // seeded test-bed player was last saved on the Moon or Mars.
+        World world = server.getWorld(0);
+        BlockPos anchor = player.dimension == 0 ? player.getPosition() : world.getSpawnPoint();
+        BlockPos base = anchor.add(0, 2, 10);
         AxisAlignedBB box = new AxisAlignedBB(base.add(-3, -2, -3), base.add(8, 4, 3));
         for (Entity entity : world.getEntitiesWithinAABB(Entity.class, box, candidate ->
                 candidate instanceof EntityRobber || candidate instanceof EntityMilitiaPatrol)) {

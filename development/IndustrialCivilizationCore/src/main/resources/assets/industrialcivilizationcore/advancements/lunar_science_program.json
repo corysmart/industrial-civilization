@@ -2,7 +2,8 @@
   "parent": "industrialcivilizationcore:functional_lunar_base",
   "display": {
     "icon": {
-      "item": "minecraft:quartz"
+      "item": "appliedenergistics2:material",
+      "data": 0
     },
     "title": {
       "text": "10.01 \u2014 Lunar Science Program"

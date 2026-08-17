@@ -71,6 +71,22 @@ Optional objectives live in independent Better Questing tabs, never inside numbe
 - `autonomous_colony_expansion` — Autonomous Colony Expansion
 - `civilization_scale_ai` — Civilization-Scale AI Core
 
+## Industrial Agriculture
+
+- `crop_engineering` — Crop Engineering
+- `breed_hemp` — Breed Hemp
+- `renewable_string` — Renewable String
+- `controlled_livestock` — Controlled Livestock
+
+## Industrial Foregoing Farms
+
+- `lv_tree_planting` — LV Tree Planting
+- `lv_charcoal_tree_farm` — LV Charcoal Tree Farm
+- `automated_field_agriculture` — Automated Field Agriculture
+- `automated_animal_husbandry` — Automated Animal Husbandry
+- `automated_animal_resources` — Automated Animal Resources
+- `automated_water_resources` — Automated Water Resources
+
 ## Alternate construction bypasses
 
 Defeating or otherwise resolving the criminal network can reveal an abandoned factory. Restoring its power and production satisfies `industrial_capacity_access` through native OR prerequisite logic. Recovering and auditing its control system similarly satisfies `programmable_capacity_access`. These routes bypass building Chapters 4 and 5, but do not bypass Nuclear safety, Orbital Research, Lunar Research, Quantum Technology, Mars Authorization, Martian Autonomy, Lite Matter, or the AI gate.

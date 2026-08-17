@@ -132,6 +132,20 @@
       "orbital_megastructures",
       "autonomous_colony_expansion",
       "civilization_scale_ai"
+    ],
+    "industrial_agriculture": [
+      "crop_engineering",
+      "breed_hemp",
+      "renewable_string",
+      "controlled_livestock"
+    ],
+    "industrial_foregoing_farms": [
+      "lv_tree_planting",
+      "lv_charcoal_tree_farm",
+      "automated_field_agriculture",
+      "automated_animal_husbandry",
+      "automated_animal_resources",
+      "automated_water_resources"
     ]
   },
   "alternate_gates": {

@@ -23,7 +23,7 @@
       "id": "lunar_science_program",
       "title": "Lunar Science Program",
       "category": "research",
-      "icon": "minecraft:quartz",
+      "icon": "appliedenergistics2:material:0",
       "prerequisites": [
         "functional_lunar_base"
       ],
@@ -92,7 +92,7 @@
       "id": "quantum_research_access",
       "title": "Quantum Research Access",
       "category": "transition",
-      "icon": "minecraft:nether_star",
+      "icon": "industrialcivilizationcore:lunar_quantum_component",
       "prerequisites": [
         "lunar_research_complete"
       ],

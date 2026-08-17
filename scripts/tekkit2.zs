@@ -3,6 +3,48 @@ import crafttweaker.item.IItemStack;
 import crafttweaker.oredict.IOreDict;
 import crafttweaker.oredict.IOreDictEntry;
 
+// Industrial Civilization has no fantasy-monster adhesive economy. Replace
+// every inherited crafting-table use of a Slimeball with IC2 Sticky Resin and
+// every Ghast Tear dependency with IC2 Advanced Alloy. The third argument is
+// an optional output filter; null deliberately applies the policy pack-wide.
+recipes.replaceAllOccurences(<minecraft:slime_ball>, <ic2:itemharz>, null);
+recipes.replaceAllOccurences(<minecraft:ghast_tear>, <ic2:itemmisc:257>, null);
+// Dimension-exclusive vanilla materials are not part of the Earth-to-space
+// route. Translate inherited crafting-table recipes into the pack's visible
+// Overworld/IC2 material language so ordinary machines never require an
+// unadvertised Nether or End trip.
+recipes.replaceAllOccurences(<minecraft:quartz>, <appliedenergistics2:material:0>, null);
+recipes.replaceAllOccurences(<minecraft:netherrack>, <minecraft:cobblestone>, null);
+recipes.replaceAllOccurences(<minecraft:soul_sand>, <minecraft:sand>, null);
+recipes.replaceAllOccurences(<minecraft:nether_wart>, <ic2:itemmisc:159>, null);
+recipes.replaceAllOccurences(<minecraft:netherbrick>, <minecraft:brick>, null);
+recipes.replaceAllOccurences(<minecraft:glowstone_dust>, <minecraft:redstone>, null);
+recipes.replaceAllOccurences(<minecraft:blaze_rod>, <ic2:itemmisc:53>, null);
+recipes.replaceAllOccurences(<minecraft:blaze_powder>, <ore:dustCoal>, null);
+recipes.replaceAllOccurences(<minecraft:magma_cream>, <ic2:itemharz>, null);
+recipes.replaceAllOccurences(<minecraft:nether_star>, <industrialcivilizationcore:lunar_quantum_component>, null);
+recipes.replaceAllOccurences(<minecraft:end_stone>, <minecraft:obsidian>, null);
+recipes.replaceAllOccurences(<minecraft:chorus_fruit>, <minecraft:ender_pearl>, null);
+recipes.replaceAllOccurences(<minecraft:chorus_fruit_popped>, <ic2:itemmisc:257>, null);
+recipes.replaceAllOccurences(<minecraft:purpur_block>, <minecraft:stonebrick>, null);
+recipes.replaceAllOccurences(<minecraft:end_crystal>, <ic2:itembatcrystal>, null);
+
+// Keep one clear early recipe for each adhesive application. IC2 Classic
+// already teaches Hemp -> String; these recipes make that renewable fiber and
+// tapped Sticky Resin the canonical Lead and Sticky Piston path in HEI.
+recipes.remove(<minecraft:lead>);
+recipes.addShapeless("industrial_civilization_lead", <minecraft:lead> * 2,
+    [<minecraft:string>, <minecraft:string>, <minecraft:string>, <minecraft:string>, <ic2:itemharz>]);
+recipes.remove(<minecraft:sticky_piston>);
+recipes.addShapeless("industrial_civilization_sticky_piston", <minecraft:sticky_piston>,
+    [<minecraft:piston>, <ic2:itemharz>]);
+// Creepers do not belong to the Earth ecology. Early explosives and firearm
+// propellant therefore use an explicit carbon/redstone industrial blend.
+recipes.addShapeless("industrial_civilization_gunpowder", <minecraft:gunpowder> * 3,
+    [<ore:dustCoal>, <ore:dustCoal>, <minecraft:redstone>]);
+mods.jei.JEI.hide(<minecraft:slime_ball>);
+mods.jei.JEI.hide(<minecraft:ghast_tear>);
+
 // Craftable (full) Akashic Tome
 var startingTome = <akashictome:tome>.withTag(
 	{"akashictome:data": {
@@ -86,6 +128,10 @@ recipes.removeByRecipeName("hammercore:cableflux_recipescf.2");
 recipes.removeByRecipeName("ic2:shaped_tile.pistonstickybase_1809078030");
 recipes.removeByRecipeName("industrialforegoing:infinity_drill_0");
 recipes.removeByRecipeName("minecraft:purple_shulker_box");
+recipes.removeByRecipeName("quark:purple_shulker_box");
+// The Wither Builder has no valid target in the pack's human-centered ecology.
+recipes.remove(<industrialforegoing:wither_builder>);
+mods.jei.JEI.hide(<industrialforegoing:wither_builder>);
 
 // ICBM strategic payloads cannot bypass the IC2 nuclear and AI stages. Their
 // native crafting-table chains are disabled; controlled machine production is
@@ -93,6 +139,8 @@ recipes.removeByRecipeName("minecraft:purple_shulker_box");
 recipes.removeByRecipeName("icbmclassic:explosives/nuclear");
 recipes.removeByRecipeName("icbmclassic:explosives/antimatter");
 recipes.removeByRecipeName("icbmclassic:explosives/redmatter");
+recipes.removeByRecipeName("icbmclassic:explosives/vanilla/antimatter");
+recipes.removeByRecipeName("icbmclassic:explosives/vanilla/redmatter");
 recipes.removeByRecipeName("icbmclassic:missile/ex/nuclear");
 recipes.removeByRecipeName("icbmclassic:missile/ex/antimatter");
 recipes.removeByRecipeName("icbmclassic:missile/ex/redmatter");

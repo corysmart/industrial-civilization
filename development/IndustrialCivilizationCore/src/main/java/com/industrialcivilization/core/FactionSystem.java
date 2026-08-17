@@ -281,7 +281,7 @@ public final class FactionSystem {
             addExternalSale(offers, "ic2:itemmisc", 451, 1, 10, reputationDiscount);
             addExternalSale(offers, "ic2:itemmisc", 452, 1, 24, reputationDiscount);
             addSale(offers, Items.REDSTONE, 8, 3, reputationDiscount);
-            addSale(offers, Items.SLIME_BALL, 2, 4, reputationDiscount);
+            addExternalSale(offers, "ic2:itemharz", 0, 2, 4, reputationDiscount);
         } else if ("fuel".equals(specialty)) {
             addSale(offers, Items.COAL, 16, 4, reputationDiscount);
             addSale(offers, Items.BLAZE_POWDER, 4, 8, reputationDiscount);

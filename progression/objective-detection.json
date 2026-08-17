@@ -61,6 +61,10 @@
     "functional_martian_base": ["industrialcivilizationcore:environmental_solar_array", "industrialcivilizationcore:research_station", "computercraft:computer", "galacticraftplanets:item_basic_mars:2"],
     "advanced_material_recovery": ["ic2:blockmachinelv:*", "industrialcivilizationcore:material_pattern_record"],
     "ai_prerequisite_audit": ["industrialcivilizationcore:orbital_research_archive", "industrialcivilizationcore:lunar_engineering_archive", "industrialcivilizationcore:martian_autonomy_archive", "industrialcivilizationcore:material_pattern_record"],
-    "predictive_production": ["industrialcivilizationcore:artificial_industrial_intelligence_core", "industrialcivilizationcore:control_processor"]
+    "predictive_production": ["industrialcivilizationcore:artificial_industrial_intelligence_core", "industrialcivilizationcore:control_processor"],
+    "lv_charcoal_tree_farm": ["industrialforegoing:crop_sower", "industrialforegoing:crop_recolector", "industrialforegoing:resourceful_furnace"],
+    "automated_field_agriculture": ["industrialforegoing:plant_interactor", "industrialforegoing:crop_enrich_material_injector"],
+    "automated_animal_husbandry": ["industrialforegoing:animal_stock_increaser", "industrialforegoing:animal_growth_increaser", "industrialforegoing:animal_independence_selector"],
+    "automated_animal_resources": ["industrialforegoing:animal_resource_harvester", "industrialforegoing:animal_byproduct_recolector", "industrialforegoing:sewage_composter_solidifier"]
   }
 }

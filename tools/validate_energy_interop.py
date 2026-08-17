@@ -39,6 +39,24 @@ check('B:"Disable INPUT of IC2 energy"=false' in gc
 check('B:"Disable INPUT of Forge Energy to GC machines"=true' in gc,
       "Galacticraft exposes EU—not a competing FE UI—in this pack")
 
+if_config = (ROOT / "config/industrialforegoing.cfg").read_text()
+if_config_duplicate = (ROOT / "config/IndustrialForegoing.cfg").read_text()
+check(if_config == if_config_duplicate, "Industrial Foregoing duplicate config names remain identical")
+early_if_machines = (
+    "crop_sower", "crop_recolector", "resourceful_furnace", "plant_interactor",
+    "crop_enrich_material_injector", "animal_stock_increaser", "animal_growth_increaser",
+    "animal_independence_selector", "animal_resource_harvester",
+    "animal_byproduct_recolector", "sewage_composter_solidifier",
+    "water_resources_collector",
+)
+for machine in early_if_machines:
+    section = re.search(rf"^    {machine} \{{(.*?)^    \}}", if_config, re.MULTILINE | re.DOTALL)
+    enabled = section and "B:enabled=true" in section.group(1)
+    rate_match = section and re.search(r"I:energyRate=([0-9]+)", section.group(1))
+    rate = int(rate_match.group(1)) if rate_match else 0
+    check(bool(enabled) and rate <= 256,
+          f"early Industrial Foregoing {machine} is enabled and fits one IC2 LV adapter budget")
+
 core = (JAVA / "IndustrialCivilizationCore.java").read_text()
 machines = (JAVA / "TileIndustrialMachine.java").read_text()
 machine_kinds = (JAVA / "IndustrialMachineKind.java").read_text()
@@ -109,6 +127,7 @@ for jar_name, class_name in jar_contracts.items():
 player_files = [
     RES / "assets/industrialcivilizationcore/lang/en_us.lang",
     ROOT / "groovy/postInit/industrial_civilization.groovy",
+    ROOT / "groovy/postInit/industrial_foregoing_lv.groovy",
     ROOT / "config/betterquesting/DefaultQuests.json",
 ]
 for path in player_files:

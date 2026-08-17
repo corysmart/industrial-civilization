@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:first_ic2_generator",
+  "display": {
+    "icon": {
+      "item": "industrialforegoing:crop_sower"
+    },
+    "title": {
+      "text": "S4.01 \u2014 LV Tree Planting"
+    },
+    "description": {
+      "text": "Build an Industrial Foregoing Plant Sower from an IC2 LV Machine Block, Electronic Circuit, rubber, and ordinary workshop parts. The farm family no longer waits for Industrial Foregoing plastic or a separate Tesla frame."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "industrialforegoing:crop_sower"
+          }
+        ]
+      }
+    }
+  }
+}

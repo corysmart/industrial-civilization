@@ -45,7 +45,7 @@ crafting.addShaped('industrial_civilization:matter_replicator',
 
 crafting.addShaped('industrial_civilization:fusion_research_core',
     item('industrialcivilizationcore:fusion_research_core'), [
-    [item('minecraft:nether_star'), item('industrialcivilizationcore:artificial_industrial_intelligence_core'), item('minecraft:nether_star')],
+    [item('industrialcivilizationcore:lunar_quantum_component'), item('industrialcivilizationcore:artificial_industrial_intelligence_core'), item('industrialcivilizationcore:lunar_quantum_component')],
     [item('ic2:blockmachinehv'), item('industrialcivilizationcore:matter_replicator'), item('ic2:blockmachinehv')],
     [item('minecraft:obsidian'), item('industrialcivilizationcore:control_processor'), item('minecraft:obsidian')]
 ])

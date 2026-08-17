@@ -4,6 +4,17 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class GameplayRulesTest {
+    @Test
+    public void supplementalBonesRequireAdultLivestockPlayerKillAndExactRareRoll() {
+        assertTrue(GameplayRules.supplementalBoneDrop(true, false, true, 0));
+        assertFalse(GameplayRules.supplementalBoneDrop(false, false, true, 0));
+        assertFalse(GameplayRules.supplementalBoneDrop(true, true, true, 0));
+        assertFalse(GameplayRules.supplementalBoneDrop(true, false, false, 0));
+        for (int roll = 1; roll < 8; roll++) {
+            assertFalse(GameplayRules.supplementalBoneDrop(true, false, true, roll));
+        }
+    }
+
     @Test public void moonAndMarsSuppressEveryMonsterIdentity() {
         assertTrue(GameplayRules.suppressOffWorldMonster(true, true));
         assertFalse(GameplayRules.suppressOffWorldMonster(true, false));

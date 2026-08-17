@@ -1,0 +1,50 @@
+{
+  "parent": "industrialcivilizationcore:automated_animal_husbandry",
+  "display": {
+    "icon": {
+      "item": "industrialforegoing:animal_resource_harvester"
+    },
+    "title": {
+      "text": "S4.05 \u2014 Automated Animal Resources"
+    },
+    "description": {
+      "text": "Harvest renewable products from living animals, collect sewage, and compost it into fertilizer. This peaceful production line does not introduce hostile-mob drops or require a slaughter factory."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "industrialforegoing:animal_resource_harvester"
+          }
+        ]
+      }
+    },
+    "evidence_2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "industrialforegoing:animal_byproduct_recolector"
+          }
+        ]
+      }
+    },
+    "evidence_3": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "industrialforegoing:sewage_composter_solidifier"
+          }
+        ]
+      }
+    }
+  }
+}

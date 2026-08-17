@@ -173,4 +173,4 @@ The rollback snapshot intentionally still contains the original files. Historica
 
 ## Deferred vanilla content
 
-Vanilla enchanting, potions, supernatural mobs, and the Nether remain unchanged as required. None is a required shortcut around the Moon/Mars material chain.
+Vanilla enchanting and potions remain registry-compatible, but ordinary technology recipes do not require Nether- or End-exclusive ingredients. Dimension materials are translated to Overworld/IC2 equivalents, and inaccessible supernatural shortcuts remain removed.

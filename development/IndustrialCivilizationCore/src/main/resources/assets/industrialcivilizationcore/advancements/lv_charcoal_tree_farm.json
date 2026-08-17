@@ -1,0 +1,50 @@
+{
+  "parent": "industrialcivilizationcore:lv_tree_planting",
+  "display": {
+    "icon": {
+      "item": "industrialforegoing:crop_recolector"
+    },
+    "title": {
+      "text": "S4.02 \u2014 LV Charcoal Tree Farm"
+    },
+    "description": {
+      "text": "Complete the early tree loop with a Plant Gatherer and Resourceful Furnace. Replant saplings, harvest logs, smelt part of the wood into charcoal, and return that charcoal to the IC2 Generator so early electrical expansion can feed itself."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "industrialforegoing:crop_sower"
+          }
+        ]
+      }
+    },
+    "evidence_2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "industrialforegoing:crop_recolector"
+          }
+        ]
+      }
+    },
+    "evidence_3": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "industrialforegoing:resourceful_furnace"
+          }
+        ]
+      }
+    }
+  }
+}

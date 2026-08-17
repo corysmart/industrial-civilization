@@ -55,6 +55,8 @@ STORY_OPENINGS = {
     "ai_age": "Earth industry, orbital experiments, lunar quantum engineering, and Martian autonomy finally describe one connected civilization. An industrial intelligence can now be built to coordinate that history, but creating it begins the endgame rather than ending it.",
     "post_ai_civilization": "The AI core removes the limit of human scheduling, not the limits of matter, energy, or distance. From here the civilization branches outward: logistics, replication, fusion, megastructures, and colonies become parallel programs with no final horizon.",
     "factions_and_salvage": "Not every industrial route begins at a crafting table. Settlements, criminal networks, and abandoned factories preserve fragments of the old world; diplomacy or force can recover them, but inherited machinery carries inherited risks.",
+    "industrial_agriculture": "A technical civilization cannot depend on fantasy predators for ordinary fiber. IC2 crop engineering turns farmland, genetics, and tapped rubber trees into a repeatable logistics system for string and livestock.",
+    "industrial_foregoing_farms": "The first IC2 generator should power more than a macerator. LV agricultural machinery turns trees, crops, livestock, and water into unattended infrastructure while charcoal feeds the young electrical grid.",
     "strategic_defense": "Heavy industry has made long-range force possible. Strategic defense asks whether radar, launch control, and missiles can protect civilization without allowing dangerous payloads to bypass the scientific progression that makes them governable.",
     "field_engineering": "Civilization is built between major breakthroughs as much as at them. Field engineering rewards the tools, remote controls, and recovery practices that keep ambitious systems from becoming fragile ones.",
     "orbital_power": "A station that merely survives is still dependent on Earth. Orbital power engineering exploits constant sunlight and active tracking to make the platform an industrial contributor.",
@@ -81,6 +83,8 @@ STORY_TRANSITIONS = {
     "ai_age": "The AI core is online and AE2 foundation technology is authorized. The civilization has reached an opening, not an ending.",
     "post_ai_civilization": "There is no victory screen here. Each completed program creates the capacity—and the obligation—to begin another.",
     "factions_and_salvage": "The recovered infrastructure offers alternate access to industrial capacity, but it cannot replace the scientific gates ahead.",
+    "industrial_agriculture": "The farm now supplies renewable fiber, animal handling, and supplemental bone without introducing a hostile-monster economy.",
+    "industrial_foregoing_farms": "Peaceful agriculture is now automated from soil to storage, and its charcoal loop can finance the settlement's next generation of electrical machines.",
     "strategic_defense": "A controlled conventional deterrent now exists. Nuclear and exotic payloads remain separate scientific responsibilities, not automatic upgrades.",
     "field_engineering": "The field toolkit is resilient enough for expansion, but it remains an optional advantage rather than a scientific gate.",
     "orbital_power": "Orbital generation can now carry real production loads and support later off-world industry.",
@@ -105,6 +109,8 @@ CHAPTER_ERAS = {
     **{name: "post_ai" for name in ("ai_age", "post_ai_civilization")},
     "factions_and_salvage": "earth",
     "strategic_defense": "earth",
+    "industrial_agriculture": "earth",
+    "industrial_foregoing_farms": "earth",
 }
 
 # Better Questing quest pictures are ItemStacks. These exceptions replace old
@@ -296,6 +302,8 @@ def controls_for(ms):
         controls.append("HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.")
     if any(word in haystack for word in ("industrialcivilizationcore", "fabricator", "assembler", "robotic", "research station", "experiment module", "replicator", "fusion", "cargo controller", "megastructure", "colony beacon")):
         controls.append("Industrial Civilization machines: right-click to open the IC2-styled EU/inventory screen. Put recipe inputs in the three left slots and take output from the right slot. Matching inputs run automatically; ComputerCraft is required only for explicit recipe selection, queues, telemetry, or cargo channels.")
+    if "industrialforegoing" in haystack:
+        controls.append("Industrial Foregoing agriculture: right-click the machine to configure its working area, item or fluid inputs, and output handling. Supply it from IC2 generation through the installed adapter; one LV line has ample capacity for these farm machines.")
     if any(word in haystack for word in ("archive", "record", "authorization", "dossier", "ledger", "certificate", "charter", "network key")):
         controls.append("Research artifacts: hold the finished record and right-click once to register its knowledge with the progression system.")
     if any(word in haystack for word in ("computercraft", "computer", "programmable", "telemetry", "queue", "autonomous", "unattended")):
@@ -451,6 +459,8 @@ def main():
     # numbered chapters. A quest appears in exactly one visual line.
     side_path_by_id = {path["id"]: path for path in side_paths}
     branch_titles = {
+        "industrial_agriculture": (side_path_by_id["industrial_agriculture"]["title"], side_path_by_id["industrial_agriculture"]["purpose"]),
+        "industrial_foregoing_farms": (side_path_by_id["industrial_foregoing_farms"]["title"], side_path_by_id["industrial_foregoing_farms"]["purpose"]),
         "field_engineering": ("Side Path — Field Engineering", "Optional tools, resilience, remote control, and recovery capabilities."),
         "factions_and_salvage": (side_path_by_id["factions_and_salvage"]["title"], side_path_by_id["factions_and_salvage"]["purpose"]),
         "orbital_power": ("Side Path — Orbital Power", "Optional orbital generation and tracking-array development."),
@@ -461,6 +471,8 @@ def main():
         "post_ai_parallel": ("Side Path — Post-AI Horizons", "Parallel civilization-scale endgame projects."),
     }
     branch_eras = {
+        "industrial_agriculture": "earth",
+        "industrial_foregoing_farms": "earth",
         "field_engineering": "earth",
         "factions_and_salvage": "earth",
         "orbital_power": "orbit",
@@ -508,7 +520,7 @@ def main():
             "hardcore:1": 0,
             "home_image:8": "industrialcivilizationcore:textures/gui/quest_home_v2.png",
             "party_enable:1": 1,
-            "pack_version:3": 15,
+            "pack_version:3": 17,
             "home_offset_x:3": -128,
             "home_offset_y:3": -64,
         }},

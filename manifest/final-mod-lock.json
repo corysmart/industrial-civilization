@@ -1648,16 +1648,16 @@
       "redistribution": "Inherited third-party binary; verify author terms before any export."
     },
     {
-      "file": "mods/IndustrialCivilizationCore-0.5.2.jar",
-      "filename": "IndustrialCivilizationCore-0.5.2.jar",
-      "size": 3242285,
-      "sha256": "fcc50e0ba5341c4f0da54ee29aa96cd383ccd84d6842a0951548a562f99491b7",
+      "file": "mods/IndustrialCivilizationCore-0.6.0.jar",
+      "filename": "IndustrialCivilizationCore-0.6.0.jar",
+      "size": 3255764,
+      "sha256": "9a54c7088e08911ebec134d21fa04bd6ec01a9ef5b25b8684e1c17c711796225",
       "classification": "KEEP",
       "mods": [
         {
           "id": "industrialcivilizationcore",
           "name": "Industrial Civilization Core",
-          "version": "0.5.2",
+          "version": "0.6.0",
           "minecraft": "1.12.2",
           "dependencies": [
             "computercraft",
@@ -1673,7 +1673,7 @@
         "galacticraftcore",
         "galacticraftplanets"
       ],
-      "core_plugin": null,
+      "core_plugin": "com.industrialcivilization.core.bootstrap.IngredientReg",
       "suspicious": [],
       "source": "development/IndustrialCivilizationCore",
       "redistribution": "First-party pack integration source included in this instance."
@@ -3944,8 +3944,8 @@
     },
     {
       "file": "config/betterquesting/DefaultQuests.json",
-      "sha256": "06cc6170e001bf30c9c6b69abec4ca51d9f2662cff89e8fb7cd31e13a1f49a76",
-      "size": 370193
+      "sha256": "58e627c00f80dbbc3f0f1a33a4d2cb8000eaec030e3be3b29e3c998be40413b3",
+      "size": 403444
     },
     {
       "file": "config/blockcraftery.cfg",
@@ -5224,23 +5224,43 @@
     },
     {
       "file": "scripts/tekkit2.zs",
-      "sha256": "03d51c2b3a83eee9ccc4cd6362241bea0b99d62c3ecb32235b05f58b1ce5dd9e",
-      "size": 22303
+      "sha256": "22c1f21e7bf3c1bd0b86cb8aa4729e02378813d2ff3255fd17d1c5ffe233ba92",
+      "size": 25694
+    },
+    {
+      "file": "groovy/postInit/dimension_material_unification.groovy",
+      "sha256": "a83a428ec325752c3126fb3d7a523d7d76449d5daf2c7d36d851935fee1c8491",
+      "size": 1491
     },
     {
       "file": "groovy/postInit/industrial_civilization.groovy",
-      "sha256": "f4ec7400dc79296e197383a029d7e5917e8f6d9cdd1ffa4210048889e38f5f60",
-      "size": 11491
+      "sha256": "639ce395a72afb2b94635ab41145ee370e4eb1d1ae4346d5a714566187e1e845",
+      "size": 11004
     },
     {
       "file": "groovy/postInit/industrial_civilization_content.groovy",
-      "sha256": "99e17219f3828ee15822f9e0fe3617db9095ba310926378007fbaef47ba1cc55",
-      "size": 9599
+      "sha256": "7ad6afc89d3b21668b1e802e1cc718e84abbdc23154751dfc87d55485c523551",
+      "size": 9657
+    },
+    {
+      "file": "groovy/postInit/industrial_foregoing_lv.groovy",
+      "sha256": "e7c0a9d473391da2139f2cfc14701b626e00a4e678d26df9916fc43103c0a378",
+      "size": 5239
     },
     {
       "file": "groovy/postInit/industrial_icbm.groovy",
       "sha256": "17aab85bffc226fa79aa282581b280d73c540f74582e6286cec8fc83388568ed",
       "size": 3563
+    },
+    {
+      "file": "groovy/postInit/industrial_material_unification.groovy",
+      "sha256": "9bdd991baf3f514f5d5a1775e406de6d2773cb2c0c2229d838e595f3730afb9b",
+      "size": 1158
+    },
+    {
+      "file": "groovy/postInit/material_ecology_audit.groovy",
+      "sha256": "74c4704227c2d72bace28152d4611963bb03dab8d550cb56566df4759d6065a2",
+      "size": 3273
     },
     {
       "file": "groovy/runConfig.json",

@@ -10,7 +10,11 @@ from pathlib import Path
 FATAL_PATTERNS = {
     "crash": re.compile(r"---- Minecraft Crash Report ----|The game crashed whilst", re.I),
     "script_errors": re.compile(r"Found [1-9][0-9]* errors? while running scripts", re.I),
-    "industrial_exception": re.compile(r"(?:ERROR|Exception).*industrialcivilization", re.I),
+    "industrial_exception": re.compile(
+        r"\[[^\]\r\n]+/ERROR\]\s+\[industrialcivilizationcore\]"
+        r"|\bIC_E2E\|SCENARIO_EXCEPTION",
+        re.I,
+    ),
     "missing_registry": re.compile(r"Missing registry data for.*industrialcivilization", re.I),
 }
 

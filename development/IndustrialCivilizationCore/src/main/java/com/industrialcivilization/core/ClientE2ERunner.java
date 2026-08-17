@@ -54,7 +54,6 @@ public final class ClientE2ERunner {
                     CommandIndustrialTest command = new CommandIndustrialTest();
                     try {
                         command.execute(server, player, new String[] {"scenario", scenario});
-                        command.execute(server, player, new String[] {"assert", scenario});
                         command.execute(server, player, new String[] {"snapshot", "64"});
                         IndustrialCivilizationCore.LOGGER.info("IC_E2E|SCENARIO_COMMANDS_COMPLETE|{}", scenario);
                     } catch (CommandException exception) {

@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import os
 import signal
+import shutil
 import subprocess
 import sys
 import time
@@ -13,7 +14,10 @@ ROOT = Path(__file__).resolve().parents[2]
 GAME = ROOT / ".headlessmc/game"
 HMC_JAR = ROOT / ".headlessmc/headlessmc-launcher-wrapper.jar"
 HMC_JAVA = ROOT / ".headlessmc/HeadlessMC/java/jdk-21.0.12+8-jre/Contents/Home/bin/java"
-GAME_JAVA = Path("/private/tmp/ic-jdk8/jdk8u502-b07/Contents/Home/bin/java")
+GAME_JAVA = Path(os.environ.get(
+    "IC_JAVA8",
+    "/private/tmp/astra-jdk8/jdk8u492-b09/Contents/Home/bin/java",
+))
 
 def stop_process(process: subprocess.Popen[str]) -> None:
     if process.poll() is not None: return
@@ -28,10 +32,23 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("scenario", nargs="?", default="workshop_adjacency")
     parser.add_argument("--timeout", type=int, default=720, help="maximum real-client runtime in seconds")
+    parser.add_argument("--seed-world", type=Path,
+                        help="copy an existing world into the disposable scenario slot before launch")
     args = parser.parse_args()
     subprocess.run([sys.executable, str(ROOT / "tools/e2e/preflight.py")], cwd=ROOT, check=True)
     subprocess.run([sys.executable, str(ROOT / "tools/e2e/prepare_headless_pack.py"),
                     "--scenario", args.scenario], cwd=ROOT, check=True)
+    if not GAME_JAVA.is_file():
+        raise SystemExit(f"Java 8 runtime not found: {GAME_JAVA}; set IC_JAVA8 to a valid executable")
+    if args.seed_world:
+        seed_world = args.seed_world.expanduser().resolve()
+        if not (seed_world / "level.dat").is_file():
+            raise SystemExit(f"seed world is not a Minecraft save: {seed_world}")
+        safe_scenario = "".join(character if character.isalnum() or character in "_-" else "-"
+                                for character in args.scenario.lower())
+        target_world = GAME / "saves" / f"ic-e2e-{safe_scenario}"
+        shutil.copytree(seed_world, target_world)
+        print(f"E2E CLIENT: seeded disposable world from {seed_world.name}", flush=True)
     launcher_log = ROOT / ".headlessmc/launcher-e2e.log"
     game_log = GAME / "logs/latest.log"
     snapshot = ROOT / ".headlessmc/artifacts" / f"{args.scenario}-snapshot.json"

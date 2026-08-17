@@ -1,0 +1,30 @@
+{
+  "parent": "industrialcivilizationcore:secure_workshop",
+  "display": {
+    "icon": {
+      "item": "ic2:itemcrop"
+    },
+    "title": {
+      "text": "S3.01 \u2014 Crop Engineering"
+    },
+    "description": {
+      "text": "Craft IC2 Crop Sticks and establish parallel breeding plots. Plant ordinary crops in single sticks; place double sticks between mature adjacent parents to crossbreed, and keep several plots running because each cross is probabilistic."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "evidence_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ic2:itemcrop"
+          }
+        ]
+      }
+    }
+  }
+}

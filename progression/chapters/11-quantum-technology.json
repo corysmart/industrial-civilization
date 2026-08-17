@@ -127,7 +127,7 @@
       "id": "quantum_technology_complete",
       "title": "Quantum Technology Complete",
       "category": "mastery",
-      "icon": "minecraft:nether_star",
+      "icon": "industrialcivilizationcore:lunar_quantum_component",
       "prerequisites": [
         "mars_readiness_trial"
       ],

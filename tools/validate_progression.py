@@ -335,8 +335,10 @@ generated_icon_stacks = [quest.get("properties:10", {}).get("betterquesting:10",
                          for quest in quest_db.values()]
 check(not any(icon.get("Damage:2") == 32767 for icon in generated_icon_stacks),
       "quest pictures never render wildcard metadata as a missing/question-mark icon")
-check(not any(icon.get("id:8") == "ic2:itemmisc" for icon in generated_icon_stacks),
-      "quest pictures never use IC2's generic Misc Item container")
+check(not any(icon.get("id:8") == "ic2:itemmisc"
+              and icon.get("Damage:2") in {0, 32767}
+              for icon in generated_icon_stacks),
+      "quest pictures never use an unqualified IC2 Misc Item container")
 check(not any(icon.get("id:8") in {"minecraft:firework_rocket", "minecraft:red_sand"}
               for icon in generated_icon_stacks),
       "quest pictures translate post-1.12 Minecraft item names to renderable legacy IDs")
@@ -351,13 +353,15 @@ clear_icon_expectations = {
     "martian_science_program": ("industrialcivilizationcore:martian_autonomy_archive", 0),
     "ai_prerequisite_audit": ("minecraft:written_book", 0),
     "abandoned_factory_discovered": ("industrialcivilizationcore:factory_control_terminal", 0),
+    "breed_hemp": ("ic2:itemmisc", 159),
+    "controlled_livestock": ("minecraft:lead", 0),
 }
 for milestone_id, (item_id, damage) in clear_icon_expectations.items():
     quest = quest_db.get(f"{id_order[milestone_id]}:10", {})
     icon = quest.get("properties:10", {}).get("betterquesting:10", {}).get("icon:10", {})
     check((icon.get("id:8"), icon.get("Damage:2")) == (item_id, damage),
           f"quest picture is render-safe and semantically clear: {milestone_id}")
-check(quests.get("questSettings:10", {}).get("betterquesting:10", {}).get("pack_version:3") == 15, "Better Questing pack version includes exact IC2 Classic rubber retrieval")
+check(quests.get("questSettings:10", {}).get("betterquesting:10", {}).get("pack_version:3") == 17, "Better Questing pack version includes LV Automated Agriculture")
 
 expected_backgrounds = {
     "industrialcivilizationcore:textures/gui/quest_bg_earth_ui.png",

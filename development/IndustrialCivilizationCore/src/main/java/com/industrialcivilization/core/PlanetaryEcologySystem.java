@@ -8,6 +8,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.passive.AbstractHorse;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.IMob;
@@ -522,6 +527,26 @@ public final class PlanetaryEcologySystem {
             }
         } else if (dead.world.provider.getDimension() == 0 && dead.world.rand.nextInt(12) == 0) {
             dead.entityDropItem(new ItemStack(IndustrialCivilizationCore.PRECISION_FRAME), 0.0F);
+        }
+    }
+
+    /**
+     * Livestock butchery supplies a modest renewable bone stream without
+     * turning civilians, pets, or faction combatants into the optimal source.
+     * Existing animal drops are untouched.
+     */
+    @SubscribeEvent
+    public static void supplementalLivestockBone(LivingDeathEvent event) {
+        EntityLivingBase dead = event.getEntityLiving();
+        boolean livestock = dead instanceof EntityCow || dead instanceof EntityPig
+            || dead instanceof EntitySheep || dead instanceof EntityHorse;
+        boolean playerKill = event.getSource().getTrueSource() instanceof EntityPlayer;
+        boolean child = dead instanceof net.minecraft.entity.EntityAgeable
+            && ((net.minecraft.entity.EntityAgeable) dead).isChild();
+        boolean pet = dead instanceof AbstractHorse && ((AbstractHorse) dead).isTame();
+        if (!dead.world.isRemote && GameplayRules.supplementalBoneDrop(
+                livestock && !pet, child, playerKill, dead.world.rand.nextInt(8))) {
+            dead.entityDropItem(new ItemStack(Items.BONE), 0.0F);
         }
     }
 

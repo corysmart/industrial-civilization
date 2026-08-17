@@ -53,7 +53,7 @@ ADDED = {
         "source": "https://www.curseforge.com/minecraft/mc-mods/obfuscate/files/2916310",
         "redistribution": "GPL-3.0 dependency; preserve license and corresponding-source obligations when distributing.",
     },
-    "IndustrialCivilizationCore-0.5.2.jar": {
+    "IndustrialCivilizationCore-0.6.0.jar": {
         "source": "development/IndustrialCivilizationCore",
         "redistribution": "First-party pack integration source included in this instance.",
     },

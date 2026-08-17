@@ -5,7 +5,7 @@
 Use this checklist for release regressions and dedicated side-path acceptance. The numbered campaign's completed 0.5.2 evidence is recorded in `MAIN_QUESTLINE_LIVE_TEST_LOG.md`; rerun affected checks after progression or runtime changes. Do not use a valued world for a quest-database migration.
 
 - [ ] 1. Quest book opens with F6.
-- [ ] 2. All 16 numbered chapters and all 8 independent side-path tabs appear.
+- [ ] 2. All 16 numbered chapters and all 10 independent side-path tabs appear.
 - [ ] 3. Every objective completes automatically from item evidence or a hooked runtime event; no manual checkbox task appears.
 - [ ] 4. Every future quest is visible for aspirational browsing, but locked quests cannot be opened or progressed.
 - [ ] 5. Numbered chapter tabs contain no optional side-path objectives.
