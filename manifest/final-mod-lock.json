@@ -3739,7 +3739,7 @@
     },
     {
       "file": "config/CustomMainMenu/mainmenu.json",
-      "sha256": "071516e1981f99406baa42045efd1b4094401e811d8e1120eaec3d241755831e",
+      "sha256": "8dc98d1d491a04d123b325b294ed974f4a95eae49adb5d8769e2bd08bfa70e50",
       "size": 4007
     },
     {
@@ -5264,7 +5264,7 @@
     },
     {
       "file": "groovy/runConfig.json",
-      "sha256": "b7da97b1d4f371e1dba758f1b844c57f0cc973d7bd9fa833e260ccdaa2e2cca4",
+      "sha256": "8a336a8d2d1dff2b76a7198b15afe5d96ccdf8ca9337f58752776eff3d2f4cb6",
       "size": 343
     },
     {

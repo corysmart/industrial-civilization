@@ -49,12 +49,20 @@ for name in ("baseline-mod-lock.json", "technical-baseline-mod-lock.json", "fina
         ok(False, f"valid manifest JSON {name}: {exc}")
 pack_version = json.loads((ROOT / "manifest/pack-version.json").read_text())
 technic_version = json.loads((ROOT / "bin/version").read_text())
+groovy_pack = json.loads((ROOT / "groovy/runConfig.json").read_text())
+main_menu = json.loads((ROOT / "config/CustomMainMenu/mainmenu.json").read_text())
 ok(pack_version == {
        "industrial_civilization_version": "0.6.0",
        "technic_base_version": "1.2.6",
        "core_version": "0.6.0",
    } and technic_version["version"] == pack_version["technic_base_version"],
    "private pack release is versioned without inventing a nonexistent Technic Solder build")
+release_version = pack_version["industrial_civilization_version"]
+ok(groovy_pack["version"] == release_version,
+   "GroovyScript in-client pack version matches the Industrial Civilization release")
+ok(main_menu["labels"]["industrialcivilization"]["text"]
+   == f"Industrial Civilization v{release_version}",
+   "Custom Main Menu in-client version label matches the Industrial Civilization release")
 
 snapshot = ROOT / ".backups" / "pre-industrial-civilization"
 ok((snapshot / "mods/ProjectE-1.12.2-PE1.4.8-14-technic.jar").is_file(), "rollback snapshot retains original ProjectE")
