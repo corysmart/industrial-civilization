@@ -1,9 +1,9 @@
 # Industrial Civilization — Game Design Document
 
-- Status: 0.6.0 hidden internal alpha; numbered campaign live-validated
+- Status: 0.6.1 hidden internal alpha; numbered campaign live-validated
 - Pack: Industrial Civilization: Astra / Minecraft 1.12.2 / Forge 14.23.5.2860
-- First-party runtime: IndustrialCivilizationCore 0.6.0
-- Industrial Civilization pack release: 0.6.0 (Technic base selector: 1.2.6)
+- First-party runtime: IndustrialCivilizationCore 0.6.1
+- Industrial Civilization pack release: 0.6.1 (Technic base selector: 1.2.6)
 - Authoritative data: `progression/*.json`; generated quest pack: `config/betterquesting/DefaultQuests.json`
 
 ## Vision

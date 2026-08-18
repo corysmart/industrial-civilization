@@ -80,7 +80,7 @@ import org.apache.logging.log4j.Logger;
 public final class IndustrialCivilizationCore {
     public static final String MODID = "industrialcivilizationcore";
     public static final String NAME = "Industrial Civilization Core";
-    public static final String VERSION = "0.6.0";
+    public static final String VERSION = "0.6.1";
     /** Canonical pack conversion, matching IC2 Classic's RFPerEU setting. */
     public static final int FE_PER_EU = 8;
     public static final int GUI_INDUSTRIAL_MACHINE = 1;
@@ -706,6 +706,16 @@ public final class IndustrialCivilizationCore {
             key("keybind.railcraft.loco.mode", 50, KeyModifier.ALT, 39, KeyModifier.ALT),
             key("keybind.railcraft.loco.whistle", 49, KeyModifier.ALT, 40, KeyModifier.ALT)
         };
+
+        /** Replace vanilla's fixed 252x140 advancement window before it initializes. */
+        @SubscribeEvent(priority = EventPriority.HIGHEST)
+        public static void openResponsiveAdvancementScreen(GuiOpenEvent event) {
+            if (event.getGui() == null
+                    || event.getGui().getClass() != GuiScreenAdvancements.class
+                    || Minecraft.getMinecraft().getConnection() == null) return;
+            event.setGui(new GuiIndustrialAdvancements(Minecraft.getMinecraft().getConnection()
+                .getAdvancementManager()));
+        }
         private static boolean keyBindingsChecked;
         private static net.minecraft.client.multiplayer.WorldClient terrainWarmupWorld;
         private static boolean terrainWarmupShown;
@@ -978,6 +988,7 @@ public final class IndustrialCivilizationCore {
                     ADVANCEMENT_TAB_SCROLL_X.setInt(packTab, 103);
                     ADVANCEMENT_TAB_SCROLL_Y.setInt(packTab, 43);
                     ADVANCEMENT_TAB_CENTERED.setBoolean(packTab, true);
+                    GuiIndustrialAdvancements.arrangeWideCampaign(packTab);
                     LOGGER.info("Unified advancement GUI root={} totalRoots={} selected={} page={}",
                         packTab.getAdvancement().getId(), tabs.size(),
                         ((GuiAdvancementTab) SELECTED_ADVANCEMENT_TAB.get(screen)).getAdvancement().getId(),

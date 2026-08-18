@@ -5,7 +5,7 @@ about growing a survival workshop into an interplanetary industrial
 civilization. It began from the Tekkit 2 technical baseline, but it is now its
 own source project, release archive, and hidden Technic pack.
 
-The current development candidate is **0.6.0**. Its complete 16-chapter numbered
+The current development candidate is **0.6.1**. Its complete 16-chapter numbered
 campaign has passed live acceptance in `Test Bed 1`: all 111 numbered Better
 Questing tasks completed, the final `continuous_civilization` milestone
 persisted after save/reload, the one-time AI credits returned to the playable
@@ -15,9 +15,9 @@ and vehicle side paths still require their own full acceptance pass.
 ## Current distribution status
 
 - Technic pack: **Industrial Civilization: Astra** (`industrial-civilization-astra`)
-- Installed test candidate: **0.6.0**
+- Installed test candidate: **0.6.1**
 - Minecraft: **1.12.2**, Forge **14.23.5.2860**, Java **8**
-- GitHub release candidate: `v0.6.0`
+- GitHub release candidate: `v0.6.1`
 - Visibility: hidden internal alpha while redistribution review, multiplayer
   QA, and final balance work continue
 - Installed Technic instance:
@@ -94,7 +94,7 @@ python3 tools/static_validate.py
 python3 tools/e2e/preflight.py
 ```
 
-At the current 0.6.0 state these checks report 1,426 runtime-content checks,
+At the current 0.6.1 state these checks report 1,426 runtime-content checks,
 339 connected visible advancements, 57 energy-interoperability checks, 3,913
 progression checks, 2,021 static checks, and 8 HeadlessMC preflight checks.
 Offline checks complement—not replace—the live evidence and scenario lists in

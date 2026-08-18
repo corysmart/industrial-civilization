@@ -92,6 +92,22 @@ public class GameplayRulesTest {
         assertEquals(256, GameplayRules.questBoundedScroll(400, 512, 512, 2.0F));
     }
 
+    @Test public void advancementWindowUsesMostOfFullscreenViewport() {
+        assertEquals(830, GameplayRules.advancementWindowWidth(854));
+        assertEquals(456, GameplayRules.advancementWindowHeight(480));
+        assertEquals(960, GameplayRules.advancementWindowWidth(1440));
+        assertEquals(600, GameplayRules.advancementWindowHeight(900));
+    }
+
+    @Test public void advancementPanningSupportsNegativeAndPositiveBranches() {
+        assertEquals(224, GameplayRules.advancementBoundedScroll(999, 700, -200, 900));
+        assertEquals(-224, GameplayRules.advancementBoundedScroll(-999, 700, -200, 900));
+    }
+
+    @Test public void smallAdvancementTreeCentersInLargeViewport() {
+        assertEquals(25, GameplayRules.advancementBoundedScroll(0, 700, 300, 350));
+    }
+
     @Test public void ordinaryRobberSpawnsUseConfiguredTwentyFivePercentChance() {
         assertTrue(GameplayRules.robberSpawnAllowed(24, 25, 0, 4, false));
         assertFalse(GameplayRules.robberSpawnAllowed(25, 25, 0, 4, false));

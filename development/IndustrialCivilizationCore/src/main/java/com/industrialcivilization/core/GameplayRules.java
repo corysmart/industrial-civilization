@@ -65,6 +65,25 @@ public final class GameplayRules {
         return Math.max(0, Math.min(maximumScroll, requestedScroll));
     }
 
+    public static int advancementWindowWidth(int screenWidth) {
+        return Math.max(252, Math.min(960, screenWidth - 24));
+    }
+
+    public static int advancementWindowHeight(int screenHeight) {
+        return Math.max(140, Math.min(600, screenHeight - 24));
+    }
+
+    public static int advancementBoundedScroll(int requestedScroll, int viewportPixels,
+            int minimumNode, int maximumNode) {
+        int padding = 24;
+        int minimumScroll = viewportPixels - maximumNode - padding;
+        int maximumScroll = -minimumNode + padding;
+        if (minimumScroll > maximumScroll) {
+            return (viewportPixels - (maximumNode - minimumNode)) / 2 - minimumNode;
+        }
+        return Math.max(minimumScroll, Math.min(maximumScroll, requestedScroll));
+    }
+
     public static boolean robberSpawnAllowed(int roll, int percent, int nearby,
             int localCap, boolean forced) {
         if (forced) return true;

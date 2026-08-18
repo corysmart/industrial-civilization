@@ -18,6 +18,7 @@ GAME_JAVA = Path(os.environ.get(
     "IC_JAVA8",
     "/private/tmp/astra-jdk8/jdk8u492-b09/Contents/Home/bin/java",
 ))
+TEST_XMX = os.environ.get("IC_TEST_XMX", "8G")
 
 def stop_process(process: subprocess.Popen[str]) -> None:
     if process.poll() is not None: return
@@ -55,7 +56,7 @@ def main() -> int:
     snapshot.parent.mkdir(parents=True, exist_ok=True)
     command = [str(HMC_JAVA), "-Djdk.lang.Process.launchMechanism=FORK", "-Dhmc.jline.enabled=false",
                f"-Dhmc.gamedir={GAME}",
-               "-Dhmc.jvmargs=-Xmx8G",
+               f"-Dhmc.jvmargs=-Xmx{TEST_XMX}",
                f"-Dhmc.java.versions={GAME_JAVA}", "-jar", str(HMC_JAR)]
     print(f"E2E CLIENT: launching {args.scenario} (timeout {args.timeout}s)", flush=True)
     with launcher_log.open("w") as output:

@@ -10,8 +10,9 @@ hmc = os.environ.get("HEADLESSMC_JAR")
 local_hmc = ROOT / ".headlessmc/headlessmc-launcher-wrapper.jar"
 errors = []
 if not pack.is_dir(): errors.append(f"Technic pack not found: {pack}")
+core_override = os.environ.get("IC_TEST_CORE_JAR")
 required = [
-    pack / "mods/IndustrialCivilizationCore-0.6.0.jar",
+    Path(core_override).expanduser() if core_override else pack / "mods/IndustrialCivilizationCore-0.6.1.jar",
     pack / "config/betterquesting/DefaultQuests.json",
     pack / "groovy/postInit/industrial_civilization.groovy",
 ]

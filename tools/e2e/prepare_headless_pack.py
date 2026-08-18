@@ -11,6 +11,8 @@ SOURCE = Path(os.environ.get("IC_TECHNIC_PACK",
     "/Users/cory/Library/Application Support/technic/modpacks/industrial-civilization-astra")).resolve()
 TARGET = (ROOT / ".headlessmc/game").resolve()
 CACHE_ROOT = (ROOT / ".headlessmc/pack-cache").resolve()
+CORE_OVERRIDE = os.environ.get("IC_TEST_CORE_JAR")
+USE_CACHE = not os.environ.get("IC_TEST_NO_CACHE")
 
 # These alter low-level audio/render classes that HeadlessMC intentionally replaces.
 # They remain installed and tested by normal Technic; only the headless shadow excludes them.
@@ -48,6 +50,21 @@ def configure_scenario(scenario: str) -> None:
              for line in text.splitlines()]
     runtime.write_text("\n".join(lines) + "\n")
 
+def disable_redundant_downloads() -> None:
+    """Avoid network checks for ModDirector artifacts already staged in mods/."""
+    directory = TARGET / "config/mod-director"
+    for name in ("connected-glass.curse.json", "supermartijn642-core-lib.curse.json",
+                 "techguns.curse.json"):
+        descriptor = directory / name
+        if descriptor.is_file(): descriptor.unlink()
+
+def configure_background_ticks() -> None:
+    options = TARGET / "options.txt"
+    if not options.is_file(): return
+    lines = ["pauseOnLostFocus:false" if line.startswith("pauseOnLostFocus:") else line
+             for line in options.read_text().splitlines()]
+    options.write_text("\n".join(lines) + "\n")
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--scenario", default="", help="dev-only scenario to run after joining a disposable world")
@@ -57,15 +74,18 @@ def main() -> None:
     CACHE_ROOT.mkdir(parents=True, exist_ok=True)
     for name in ("config", "groovy", "scripts", "customnpcs", "options.txt"):
         copy_if_present(name)
+    disable_redundant_downloads()
+    configure_background_ticks()
     for name in ("resources", "resourcepacks"):
         source = SOURCE / name
         if source.exists(): (TARGET / name).symlink_to(source, target_is_directory=True)
     # Preserve expensive HEI/VintageFix indexes between disposable-world runs.
-    for name in ("cache", "vintagefix"):
-        seed = CACHE_ROOT / name
-        source = SOURCE / name
-        if not seed.exists() and source.is_dir(): shutil.copytree(source, seed, symlinks=True)
-        if seed.exists(): (TARGET / name).symlink_to(seed, target_is_directory=True)
+    if USE_CACHE:
+        for name in ("cache", "vintagefix"):
+            seed = CACHE_ROOT / name
+            source = SOURCE / name
+            if not seed.exists() and source.is_dir(): shutil.copytree(source, seed, symlinks=True)
+            if seed.exists(): (TARGET / name).symlink_to(seed, target_is_directory=True)
     mods = TARGET / "mods"
     mods.mkdir()
     staged = 0
@@ -73,6 +93,13 @@ def main() -> None:
         if source.name in HEADLESS_EXCLUSIONS: continue
         (mods / source.name).symlink_to(source)
         staged += 1
+    if CORE_OVERRIDE:
+        candidate = Path(CORE_OVERRIDE).expanduser().resolve()
+        if not candidate.is_file(): raise SystemExit(f"candidate core JAR missing: {candidate}")
+        for installed in mods.glob("IndustrialCivilizationCore-*.jar"):
+            installed.unlink()
+        (mods / candidate.name).symlink_to(candidate)
+        print(f"HEADLESS PACK: candidate core override {candidate}")
     if args.scenario: configure_scenario(args.scenario)
     for name in ("logs", "crash-reports", "saves", "screenshots"):
         (TARGET / name).mkdir()
