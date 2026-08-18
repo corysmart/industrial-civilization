@@ -120,7 +120,7 @@ public final class GuiIndustrialAdvancements extends GuiScreenAdvancements {
 
         String title = "Industrial Civilization Advancements";
         fontRenderer.drawString(title, layout.left + 9, layout.top + 8, 0xFFF2F5F5);
-        String hint = "Drag: horizontal + vertical  |  Wheel: vertical  |  Shift+wheel: horizontal";
+        String hint = "Pan: arrows/WASD, drag, or wheel (Shift+wheel: horizontal)";
         int hintX = layout.right() - 9 - fontRenderer.getStringWidth(hint);
         if (hintX > layout.left + 19 + fontRenderer.getStringWidth(title)) {
             fontRenderer.drawString(hint, hintX, layout.top + 8, 0xFFB8C7CA);
@@ -150,6 +150,41 @@ public final class GuiIndustrialAdvancements extends GuiScreenAdvancements {
         } catch (ReflectiveOperationException exception) {
             IndustrialCivilizationCore.LOGGER.warn("Could not wheel-pan advancement tree", exception);
         }
+    }
+
+    @Override
+    protected void keyTyped(char typedChar, int keyCode) throws IOException {
+        GuiAdvancementTab tab = selectedTab();
+        if (tab != null) {
+            try {
+                if (panForKey(tab, keyCode, layout())) return;
+            } catch (ReflectiveOperationException exception) {
+                IndustrialCivilizationCore.LOGGER.warn(
+                    "Could not keyboard-pan advancement tree", exception);
+            }
+        }
+        super.keyTyped(typedChar, keyCode);
+    }
+
+    private static boolean panForKey(GuiAdvancementTab tab, int keyCode, Layout layout)
+            throws IllegalAccessException {
+        int step = 24;
+        if (keyCode == Keyboard.KEY_LEFT || keyCode == Keyboard.KEY_A) {
+            pan(tab, step, 0, layout);
+        } else if (keyCode == Keyboard.KEY_RIGHT || keyCode == Keyboard.KEY_D) {
+            pan(tab, -step, 0, layout);
+        } else if (keyCode == Keyboard.KEY_UP || keyCode == Keyboard.KEY_W) {
+            pan(tab, 0, step, layout);
+        } else if (keyCode == Keyboard.KEY_DOWN || keyCode == Keyboard.KEY_S) {
+            pan(tab, 0, -step, layout);
+        } else if (keyCode == Keyboard.KEY_PRIOR) {
+            pan(tab, 0, Math.max(step, layout.viewportHeight * 3 / 4), layout);
+        } else if (keyCode == Keyboard.KEY_NEXT) {
+            pan(tab, 0, -Math.max(step, layout.viewportHeight * 3 / 4), layout);
+        } else {
+            return false;
+        }
+        return true;
     }
 
     private void drawTab(GuiAdvancementTab tab, Layout layout, int mouseX, int mouseY) {
@@ -298,9 +333,17 @@ public final class GuiIndustrialAdvancements extends GuiScreenAdvancements {
             boolean responsive = layout.width > 252 && layout.height > 140;
             boolean horizontal = lowX != highX && minX < maxX;
             boolean vertical = lowY != highY && minY < maxY;
+            int keyboardStartX = highX;
+            int keyboardStartY = highY;
+            boolean acceptedRight = panForKey(tab, Keyboard.KEY_RIGHT, layout);
+            boolean acceptedDown = panForKey(tab, Keyboard.KEY_DOWN, layout);
+            int keyboardX = SCROLL_X.getInt(tab);
+            int keyboardY = SCROLL_Y.getInt(tab);
+            boolean keyboard = acceptedRight && acceptedDown
+                && keyboardX < keyboardStartX && keyboardY < keyboardStartY;
             SCROLL_X.setInt(tab, highX);
             SCROLL_Y.setInt(tab, highY);
-            return (responsive && horizontal && vertical ? "PASS" : "FAIL")
+            return (responsive && horizontal && vertical && keyboard ? "PASS" : "FAIL")
                 + "|advancement_ui|screen=" + width + "x" + height
                 + "|window=" + layout.width + "x" + layout.height
                 + "|viewport=" + layout.viewportWidth + "x" + layout.viewportHeight
@@ -308,7 +351,8 @@ public final class GuiIndustrialAdvancements extends GuiScreenAdvancements {
                 + "|tree_y=" + minY + ".." + maxY
                 + "|pan_x=" + lowX + ".." + highX
                 + "|pan_y=" + lowY + ".." + highY
-                + "|horizontal=" + horizontal + "|vertical=" + vertical;
+                + "|horizontal=" + horizontal + "|vertical=" + vertical
+                + "|keyboard=" + keyboard;
         } catch (ReflectiveOperationException exception) {
             IndustrialCivilizationCore.LOGGER.warn("Could not exercise advancement UI", exception);
             return "FAIL|advancement_ui|reason=reflection";
