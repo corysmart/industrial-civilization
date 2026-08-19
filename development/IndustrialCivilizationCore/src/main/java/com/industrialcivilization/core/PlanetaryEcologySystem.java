@@ -32,6 +32,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -439,6 +441,7 @@ public final class PlanetaryEcologySystem {
     private static void steal(EntityRobber robber) {
         BlockPos center = robber.getPosition();
         for (BlockPos pos : BlockPos.getAllInBoxMutable(center.add(-2, -1, -2), center.add(2, 2, 2))) {
+            if (!canStealAt(robber, pos)) continue;
             TileEntity tile = robber.world.getTileEntity(pos);
             if (!(tile instanceof IInventory)) continue;
             IInventory inventory = (IInventory) tile;
@@ -452,6 +455,7 @@ public final class PlanetaryEcologySystem {
         }
         if (robber.getEntityData().getInteger(ROBBER_TIER) < 3) return;
         for (BlockPos pos : BlockPos.getAllInBoxMutable(center.add(-1, -1, -1), center.add(1, 2, 1))) {
+            if (!canStealAt(robber, pos)) continue;
             Block block = robber.world.getBlockState(pos).getBlock();
             Material material = robber.world.getBlockState(pos).getMaterial();
             if (material != Material.WOOD && block != Blocks.FURNACE && block != Blocks.CRAFTING_TABLE) continue;
@@ -459,6 +463,22 @@ public final class PlanetaryEcologySystem {
             if (!taken.isEmpty() && robber.world.destroyBlock(pos, false)) remember(robber, taken);
             return;
         }
+    }
+
+    /** Invokes the production theft path from disposable integrated-server tests. */
+    static void stealForTest(EntityRobber robber) {
+        steal(robber);
+    }
+
+    private static boolean canStealAt(EntityRobber robber, BlockPos pos) {
+        Vec3d target = new Vec3d(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D);
+        if (!GameplayRules.robberTheftWithinReach(robber.getPositionVector().squareDistanceTo(target))) {
+            return false;
+        }
+        Vec3d eyes = new Vec3d(robber.posX, robber.posY + robber.getEyeHeight(), robber.posZ);
+        RayTraceResult hit = robber.world.rayTraceBlocks(eyes, target, false, true, false);
+        return hit != null && hit.typeOfHit == RayTraceResult.Type.BLOCK
+            && pos.equals(hit.getBlockPos());
     }
 
     private static void remember(EntityRobber robber, ItemStack stack) {

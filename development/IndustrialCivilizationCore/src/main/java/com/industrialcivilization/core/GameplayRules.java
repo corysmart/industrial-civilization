@@ -96,6 +96,10 @@ public final class GameplayRules {
         return carriesTechnicalOrValuableLoot || retaliating;
     }
 
+    public static boolean robberTheftWithinReach(double distanceSquared) {
+        return distanceSquared >= 0.0D && distanceSquared <= 2.5D * 2.5D;
+    }
+
     public static boolean militiaPatrolSpawnAllowed(boolean nearRegisteredOutpost,
             int nearby, int localCap, boolean forced) {
         return forced || (nearRegisteredOutpost && nearby < Math.max(1, localCap));

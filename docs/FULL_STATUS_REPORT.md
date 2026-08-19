@@ -4,7 +4,7 @@
 - Source authority: `/Users/cory/Documents/tekkit-3`
 - Technic pack: `Industrial Civilization: Astra`
 - Technic test target: `/Users/cory/Library/Application Support/technic/modpacks/industrial-civilization-astra`
-- Release candidate: `0.6.1` (hidden Technic listing)
+- Release candidate: `0.6.2` (hidden Technic listing)
 
 ## Current acceptance state
 
@@ -33,7 +33,7 @@ Exact evidence, defects found during testing, fixes, and contamination notes are
 ## Distribution state
 
 - The public Git repository is `corysmart/industrial-civilization`; its reachable history uses the `corysmart` GitHub no-reply identity rather than a Prepaid2Coin address.
-- The hidden Technic listing installs as `industrial-civilization-astra`; this work prepares the `v0.6.1` release candidate.
+- The hidden Technic listing installs as `industrial-civilization-astra`; this work prepares the `v0.6.2` release candidate.
 - Techguns, Connected Glass 1.1.8, and its Core Lib are omitted from the GitHub archive. ModDirector retrieves pinned official CurseForge files and verifies their SHA-256 hashes before startup. Connected Glass is intentionally held at the last pre-Fusion renderer release for compatibility with the pack's optimized 1.12.2 rendering stack.
 - ICBM Classic 6.5.5 is included under the modpack permission in its distributed license.
 - The pack remains hidden until the remaining redistribution/attribution review and public-release QA are complete.
@@ -83,4 +83,4 @@ Exact evidence, defects found during testing, fixes, and contamination notes are
 - Exercise multiplayer ownership, long-distance/chunk-unloaded cargo, every ComputerCraft peripheral method, and third-party protection integrations.
 - Finish the redistribution and attribution audit, confirm every dependency delivery path, and perform public-release packaging/upgrade QA.
 
-Version 0.6.1 is suitable for continued private/internal play and preservation of the lightly explored playthrough world after the new migration checks pass. It is not yet presented as a public release-quality build.
+Version 0.6.2 is suitable for continued private/internal play and preservation of the lightly explored playthrough world after the new migration checks pass. It is not yet presented as a public release-quality build.

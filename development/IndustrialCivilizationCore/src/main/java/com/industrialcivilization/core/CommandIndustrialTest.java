@@ -18,6 +18,7 @@ import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
@@ -40,7 +41,7 @@ public final class CommandIndustrialTest extends CommandBase {
 
     @Override public String getName() { return "ic_test"; }
     @Override public String getUsage(ICommandSender sender) {
-        return "/ic_test snapshot [radius] | scenario <workshop_adjacency|earth_ecology|release_recipes> | assert <workshop_adjacency|earth_ecology>";
+        return "/ic_test snapshot [radius] | scenario <workshop_adjacency|earth_ecology|release_recipes|robber_wall_theft> | assert <workshop_adjacency|earth_ecology>";
     }
     @Override public int getRequiredPermissionLevel() { return 0; }
 
@@ -87,7 +88,38 @@ public final class CommandIndustrialTest extends CommandBase {
                 + (result.failures.isEmpty() ? "" : "|failures=" + String.join(",", result.failures)));
             return;
         }
+        if (args.length == 2 && "scenario".equals(args[0]) && "robber_wall_theft".equals(args[1])) {
+            int[] result = runRobberWallTheftScenario(player);
+            boolean pass = result[0] == 9 && result[1] < 9;
+            emit(player, (pass ? "PASS" : "FAIL") + "|robber_wall_theft|blocked_remaining="
+                + result[0] + "|open_remaining=" + result[1]);
+            return;
+        }
         throw new WrongUsageException(getUsage(sender));
+    }
+
+    private static int[] runRobberWallTheftScenario(EntityPlayerMP player) {
+        World world = player.world;
+        BlockPos base = player.getPosition().add(0, 2, 10);
+        for (BlockPos pos : BlockPos.getAllInBoxMutable(base.add(-1, -1, -1), base.add(3, 3, 1))) {
+            world.setBlockToAir(pos);
+        }
+        BlockPos chestPos = base.add(2, 0, 0);
+        world.setBlockState(chestPos, Blocks.CHEST.getDefaultState(), 3);
+        IInventory chest = (IInventory) world.getTileEntity(chestPos);
+        chest.setInventorySlotContents(0, new ItemStack(net.minecraft.init.Items.IRON_INGOT, 9));
+        world.setBlockState(base.add(1, 0, 0), Blocks.STONE.getDefaultState(), 3);
+        world.setBlockState(base.add(1, 1, 0), Blocks.STONE.getDefaultState(), 3);
+        EntityRobber robber = new EntityRobber(world);
+        robber.setPosition(base.getX() + 0.5D, base.getY(), base.getZ() + 0.5D);
+        PlanetaryEcologySystem.stealForTest(robber);
+        int blockedRemaining = chest.getStackInSlot(0).getCount();
+        world.setBlockToAir(base.add(1, 0, 0));
+        world.setBlockToAir(base.add(1, 1, 0));
+        PlanetaryEcologySystem.stealForTest(robber);
+        int openRemaining = chest.getStackInSlot(0).getCount();
+        world.setBlockToAir(chestPos);
+        return new int[] {blockedRemaining, openRemaining};
     }
 
     private static RecipeResult runReleaseRecipeScenario(EntityPlayerMP player) {

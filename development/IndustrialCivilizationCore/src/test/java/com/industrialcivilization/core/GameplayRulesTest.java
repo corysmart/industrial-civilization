@@ -124,6 +124,11 @@ public class GameplayRulesTest {
     @Test public void robberTargetsPlayerCarryingTechnicalOrValuableLoot() {
         assertTrue(GameplayRules.robberTargetsPlayer(true, false));
     }
+    @Test public void robberTheftRequiresPhysicalReach() {
+        assertTrue(GameplayRules.robberTheftWithinReach(6.25D));
+        assertFalse(GameplayRules.robberTheftWithinReach(6.26D));
+        assertFalse(GameplayRules.robberTheftWithinReach(-1.0D));
+    }
     @Test public void robberDefendsItselfWhenAttackedByUnprofitablePlayer() {
         assertTrue(GameplayRules.robberTargetsPlayer(false, true));
     }
