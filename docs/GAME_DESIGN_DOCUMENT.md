@@ -20,11 +20,11 @@ The design has four pillars:
 ## Player-facing rules
 
 - F6 opens the Better Questing guide. Pause > Advancements opens Minecraft's advancement screen, whose Industrial Civilization tab mirrors the intended progression.
-- All 129 quests use aspirational `ALWAYS` visibility. Locked future lines remain visible; secret objectives are not used.
+- All 144 quests use aspirational `ALWAYS` visibility. Locked future lines remain visible; secret objectives are not used.
 - Every quest completes automatically through a runtime advancement or non-consuming inventory evidence. There are no manual checkbox tasks.
 - Every modded quest includes the relevant Mac/no-numpad controls and operating instructions in its description.
 - Every node picture is the actual required item, first evidence item, or an explicit real machine/artifact/vehicle override. Symbolic storyboard pictures are not emitted.
-- Numbered chapters contain the critical route. Seven independent side-path tabs can be pursued whenever their prerequisites or discoveries permit, including faction/discovery objectives and strategic ICBM defense.
+- Numbered chapters contain the critical route. Ten independent side-path tabs can be pursued whenever their prerequisites or discoveries permit, including faction/discovery objectives, strategic ICBM defense, industrial agriculture, and automated farming.
 - Pause > Factions & Settlements is the complete in-game directory for faction reputation, attitude, membership rules, settlement types, products, and NPC interaction instructions.
 
 ## Complete progression flow
@@ -57,9 +57,13 @@ Canonical dependency order is Earth industry → monitored nuclear power → orb
 | Field Engineering | Whole-tree tools, area drills, remote controls, recovery, and resilience | Optional quality-of-life and reliability capabilities |
 | Factions and Salvage | Settlements, criminal encounters, abandoned factory restoration | Can provide documented alternate access to industrial and programmable capacity; cannot skip scientific gates |
 | Orbital Power | Environmental and tracking solar development | Optional power specialization that becomes especially valuable in orbit |
+| MFSU Burst Power | Physical 1/4/10/50-MFSU banks and blink manufacturing | Optional extreme-power engineering with completed full-client acceptance evidence |
 | Cargo Logistics | Freight and cross-dimensional cargo mastery | Optional until the post-AI logistics program requires civilization-scale proof |
 | Mobility and Nations | Roads, six real vehicles, city exchange, service carrier, and covered workshops | Optional industrial mobility and advanced armament capacity |
+| Strategic Defense | ICBM launch control, radar defense, and conventional deterrence | Optional defense specialization without prohibited strategic-payload shortcuts |
 | Post-AI Horizons | Matter, fusion, colony, logistics, and megastructure programs | Parallel by design; no single branch blocks AI entry or all other branches |
+| Industrial Agriculture | IC2 crops, Hemp, String, Leads, and livestock handling | Optional renewable-material and animal-management path available during early industry |
+| Automated Agriculture | Industrial Foregoing tree, crop, animal, and resource farms | Optional LV-era automation, including an early renewable charcoal-power loop |
 
 ## How the quest system is built
 
@@ -222,7 +226,7 @@ Quest/config changes appear in an existing single-player world through Better Qu
 ### Required playtest verification
 
 1. Complete a measured survival campaign without Creative-staged ingredients, record resource/power bottlenecks, and tune pacing without adding arbitrary microcrafts.
-2. Run dedicated acceptance passes for all nine independent side paths; Industrial Agriculture requires a survival crop-breeding/Lead pass, the MFSU Burst Power path requires physical 1/4/10/50-bank acceptance, and ten faction/vehicle side-line advancements remained intentionally incomplete at the end of numbered-campaign acceptance.
+2. Run dedicated acceptance passes for all ten independent side paths; Industrial Agriculture requires a survival crop-breeding/Lead pass, the completed physical 1/4/10/50-bank MFSU Burst Power evidence should remain covered by regression testing, and ten faction/vehicle side-line advancements remained intentionally incomplete at the end of numbered-campaign acceptance.
 3. Exercise Earth and space factions, equipment drops, procedural settlements/cities/fabrication centers, vehicle handling, and world-generation spacing across fresh chunks and migrated low-exploration worlds.
 4. Exercise every custom machine GUI/peripheral method, cross-dimensional cargo channel, and multiplayer ownership path under chunk unload/reload and save/restart.
 

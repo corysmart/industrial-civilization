@@ -6,7 +6,7 @@ The build is a hidden internal alpha. The numbered 16-chapter campaign passed li
 
 - The critical orbital/lunar/Mars base milestones now have sustained runtime telemetry. Many simpler inherited-mod quests still use tangible, non-consuming item evidence; that proves acquisition, not permanent assembly or provenance.
 - Static and JUnit validation cannot prove Better Questing/Galacticraft GUI rendering, Forge event ordering, third-party protection integrations, entity behavior or performance.
-- IC2 Classic packet handling and MFSU output were verified from the installed 1.5.11 bytecode, and the work model has deterministic 1/4/10/50-source tests. A controlled live network test is still required to prove actual source ordering, cabling topology, native overvoltage destruction, GUI telemetry, and save/reload behavior in the full client.
+- IC2 Classic packet handling, MFSU output, physical 1/4/10/50-source networks, native overvoltage destruction, GUI telemetry, and save/reload continuation have full-client evidence. Unusual cable topologies, mixed third-party EnergyNet components, multiplayer ownership, and long-duration operation remain runtime scenarios.
 - Settlement upgrades are deterministic and material-backed, but production rates, construction bills, trade circulation and weapon multipliers need measured economic playthroughs.
 - Existing loaded Mars chunks can transform after AI. Unloaded chunks wait until an AI-age player loads them; this deliberately avoids an unbounded background rewrite.
 - Apollo positions use documented latitude/longitude projected at 24 blocks per degree. Galacticraft terrain is not a geographic lunar simulation, and the block monuments are interpretive heritage markers.

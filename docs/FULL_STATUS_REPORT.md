@@ -1,18 +1,18 @@
 # Industrial Civilization — Full Status Report
 
-- Status date: 2026-08-16
+- Status date: 2026-08-21
 - Source authority: `/Users/cory/Documents/tekkit-3`
 - Technic pack: `Industrial Civilization: Astra`
 - Technic test target: `/Users/cory/Library/Application Support/technic/modpacks/industrial-civilization-astra`
-- Release candidate: `0.6.2` (hidden Technic listing)
+- Current release: `0.6.2` (hidden Technic listing)
 
 ## Current acceptance state
 
 - The complete numbered campaign is implemented across 16 chapters. All 111 numbered Better Questing task records completed in the live `Test Bed 1` run.
 - Chapter 16's `continuous_civilization` completion persisted after save, title-screen exit, and reload. AI credits displayed `corysmart` once, returned to the same playable world, and did not create a terminal victory state.
 - The main-line run exercised real crafting, machine processing, ComputerCraft control, nuclear progression, Tier 1 rocket assembly/fueling/launch, orbital-station creation, Oxygen Detector habitat proof, sustained station/base telemetry, gated Moon/Mars research, AI synthesis, AE2 entry, and post-AI matter/civilization milestones. Creative mode staged ingredients and isolated evidence where documented; the live log distinguishes clean negatives, clean positives, contaminated inventory detections, and command-assisted recovery.
-- Exactly one advancement page is visible. Its connected Industrial Civilization tree contains 329 achievable nodes, including 194 ported Minecraft/mod objectives. Thirty-seven impossible, duplicate, magical, End-only, dungeon/buggy, fake-monster, or duplicate-solar objectives are removed or replaced.
-- The optional side lines remain outside numbered-campaign acceptance and require dedicated passes, including the new physical MFSU burst-power branch.
+- Exactly one advancement page is visible. Its connected Industrial Civilization tree contains 339 visible nodes, including 194 ported Minecraft/mod objectives. Thirty-seven impossible, duplicate, magical, End-only, dungeon/buggy, fake-monster, or duplicate-solar objectives are removed or replaced.
+- The optional side lines remain outside numbered-campaign acceptance and require dedicated passes. The physical MFSU burst-power branch has separate full-client acceptance evidence; the other side paths still need their documented coverage.
 
 Exact evidence, defects found during testing, fixes, and contamination notes are recorded in `docs/MAIN_QUESTLINE_LIVE_TEST_LOG.md`.
 
@@ -33,7 +33,7 @@ Exact evidence, defects found during testing, fixes, and contamination notes are
 ## Distribution state
 
 - The public Git repository is `corysmart/industrial-civilization`; its reachable history uses the `corysmart` GitHub no-reply identity rather than a Prepaid2Coin address.
-- The hidden Technic listing installs as `industrial-civilization-astra`; this work prepares the `v0.6.2` release candidate.
+- The hidden Technic listing installs as `industrial-civilization-astra` and currently serves the published `v0.6.2` release.
 - Techguns, Connected Glass 1.1.8, and its Core Lib are omitted from the GitHub archive. ModDirector retrieves pinned official CurseForge files and verifies their SHA-256 hashes before startup. Connected Glass is intentionally held at the last pre-Fusion renderer release for compatibility with the pack's optimized 1.12.2 rendering stack.
 - ICBM Classic 6.5.5 is included under the modpack permission in its distributed license.
 - The pack remains hidden until the remaining redistribution/attribution review and public-release QA are complete.
@@ -42,9 +42,9 @@ Exact evidence, defects found during testing, fixes, and contamination notes are
 
 - Runtime-content harness: 1,426 checks.
 - Unified advancements: 194 ported, 339 visible, 37 removed/replaced, one rooted campaign tree.
-- Energy interoperability: 43 checks.
+- Energy interoperability: 57 checks.
 - Progression model: 16 chapters, 10 side paths, 144 milestones, 11 runtime replacements, 0 placeholders. Exact validator totals are regenerated with each build.
-- Static validator: 1,968 checks.
+- Static validator: 2,023 checks.
 - HeadlessMC preflight: 8 smoke checks.
 - The Java 8 Forge build and deterministic unit suite passed for the campaign-acceptance build; live deployment hashes and per-fix test counts are retained in the live log.
 
@@ -75,12 +75,28 @@ Exact evidence, defects found during testing, fixes, and contamination notes are
 - Better Questing pictures are selected independently from completion evidence, use valid Minecraft 1.12 and Railcraft item IDs, and avoid wildcard or generic Misc Item stacks that render as question marks.
 - Better Questing defaults advance to pack version 15 so existing installations can import the corrected quest definitions.
 
+## 0.6.0 industrial agriculture and material-access release
+
+- Industrial Foregoing uses earlier LV IC2-style recipes, with automated tree farming available alongside the first IC2 machines. Industrial Agriculture and Industrial Foregoing Farms provide dedicated optional paths, and an Overworld gunpowder recipe is available.
+- Ordinary Nether Quartz and other Nether-/End-exclusive recipe dependencies were replaced with accessible Overworld, IC2, or AE2 materials. Better Questing defaults migrate automatically on normal pack updates without requiring `/bq_admin default load`.
+- Full Forge recipe validation covered all explicit release recipes and remaining material rewrites with no forbidden Nether/End inputs or Groovy errors.
+
+## 0.6.1 responsive advancements patch
+
+- The Industrial Civilization advancements window now scales with the available display and supports two-axis mouse dragging, wheel/Shift-wheel panning, arrow keys, WASD, Page Up, and Page Down.
+- A real Forge/OpenGL client test verified responsive sizing, horizontal and vertical pan bounds, keyboard navigation, and non-placeholder advancement icons.
+
+## 0.6.2 robber theft reach patch
+
+- Robbers can steal only from targets within 2.5 blocks that are the first block on an unobstructed ray from the robber's eyes. Walls, glass, floors, ceilings, and other intervening blocks prevent theft.
+- The production theft routine passed a full Forge regression: a chest retained all nine iron ingots behind a stone wall and became stealable only after the wall was removed.
+
 ## Remaining release work
 
 - Complete measured survival-balance and resource/power pacing runs without Creative-staged ingredients.
-- Complete dedicated acceptance for all eight side paths, especially MFSU burst power, faction, vehicle, salvage, and strategic-defense branches.
+- Complete dedicated acceptance for all ten side paths, especially faction, vehicle, salvage, strategic-defense, and automated-agriculture branches. The MFSU burst-power path already has physical full-client acceptance evidence.
 - Measure procedural world-generation spacing, roads/utilities, settlement economics, NPC pathfinding, Earth/space spawn balance, drop rates, equipment tiers, and vehicle handling in new and lightly explored worlds.
 - Exercise multiplayer ownership, long-distance/chunk-unloaded cargo, every ComputerCraft peripheral method, and third-party protection integrations.
 - Finish the redistribution and attribution audit, confirm every dependency delivery path, and perform public-release packaging/upgrade QA.
 
-Version 0.6.2 is suitable for continued private/internal play and preservation of the lightly explored playthrough world after the new migration checks pass. It is not yet presented as a public release-quality build.
+Version 0.6.2 is suitable for continued private/internal play and preservation of the lightly explored playthrough world. It is not yet presented as a public release-quality build.
