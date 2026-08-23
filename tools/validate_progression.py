@@ -300,6 +300,16 @@ phase_pearl = by_id["technical_phase_pearl"]
 check("ai_age_entry" in ancestors("technical_phase_pearl")
       and phase_pearl.get("required_item") == "minecraft:ender_pearl",
       "Technical Phase Pearl is an AI-only compatibility item")
+check("AssemblyRecipeRegistry.REGISTRY" in content_script
+      and "ai_gated_item_teleport_pipe" in content_script
+      and "additionalpipes:pipe_items_teleport" in content_script,
+      "Additional Pipes teleport logistics are explicitly AI-gated")
+ic2_recipe_toggles = read_json(ROOT / "config/ic2/ic2craftingRecipes.json")
+check(all(ic2_recipe_toggles.get(recipe_id) is False for recipe_id in (
+          "shaped_tile.blockTeleporter_1949721530",
+          "shaped_tile.blockTeleporterHub_-665861465",
+          "shaped_item.itemPortableTeleporter_-869928001")),
+      "IC2 teleport hardware has no pre-AI native recipe")
 
 # Generated quest database must be a lossless projection of milestone IDs/order.
 quests = read_json(ROOT / "config/betterquesting/DefaultQuests.json")

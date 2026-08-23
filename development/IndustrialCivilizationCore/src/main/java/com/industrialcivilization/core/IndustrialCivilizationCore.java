@@ -75,12 +75,12 @@ import org.apache.logging.log4j.Logger;
     name = IndustrialCivilizationCore.NAME,
     version = IndustrialCivilizationCore.VERSION,
     acceptedMinecraftVersions = "[1.12.2]",
-    dependencies = "required-after:forge@[14.23.5.2860,);required-after:betterquesting;required-after:computercraft;required-after:galacticraftcore;required-after:galacticraftplanets;required-after:vehicle"
+    dependencies = "required-after:forge@[14.23.5.2860,);required-after:betterquesting;required-after:computercraft;required-after:galacticraftcore;required-after:galacticraftplanets;required-after:vehicle;required-after:buildcraftbuilders"
 )
 public final class IndustrialCivilizationCore {
     public static final String MODID = "industrialcivilizationcore";
     public static final String NAME = "Industrial Civilization Core";
-    public static final String VERSION = "0.6.3";
+    public static final String VERSION = "0.7.0";
     /** Canonical pack conversion, matching IC2 Classic's RFPerEU setting. */
     public static final int FE_PER_EU = 8;
     public static final int GUI_INDUSTRIAL_MACHINE = 1;
@@ -140,6 +140,8 @@ public final class IndustrialCivilizationCore {
         new BlockEnvironmentalSolarArray("tracking_solar_array", true);
     public static final BlockRepairBench REPAIR_BENCH = new BlockRepairBench();
     public static final BlockVehicleServiceDock VEHICLE_SERVICE_DOCK = new BlockVehicleServiceDock();
+    public static final BlockMobileQuarryController MOBILE_QUARRY_CONTROLLER =
+        new BlockMobileQuarryController();
     public static final BlockWorkshopComponent STEEL_FRAME = component("steel_frame");
     public static final BlockWorkshopComponent STEEL_CASING = component("steel_casing");
     public static final BlockWorkshopComponent MACHINE_CASING = component("machine_casing");
@@ -257,6 +259,8 @@ public final class IndustrialCivilizationCore {
             new ResourceLocation(MODID, "environmental_solar_array"));
         GameRegistry.registerTileEntity(TileVehicleServiceDock.class,
             new ResourceLocation(MODID, "vehicle_service_dock"));
+        GameRegistry.registerTileEntity(TileMobileQuarryController.class,
+            new ResourceLocation(MODID, "mobile_quarry_controller"));
         EntityRegistry.registerModEntity(new ResourceLocation(MODID, "robber"),
             EntityRobber.class, "robber", 1, this, 80, 3, true, 0x273029, 0x8A3C28);
         EntityRegistry.registerModEntity(new ResourceLocation(MODID, "militia_patrol"),
@@ -278,6 +282,7 @@ public final class IndustrialCivilizationCore {
     public void init(FMLInitializationEvent event) {
         removeVanillaHostileSpawnEggs();
         AnalyzerPeripheralProvider.register();
+        if (TEST_BRIDGE_ENABLED) MinecraftForge.EVENT_BUS.register(MobileQuarryLifecycleTest.INSTANCE);
         NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, new IndustrialGuiHandler());
     }
 
@@ -307,6 +312,7 @@ public final class IndustrialCivilizationCore {
             event.getRegistry().register(TRACKING_SOLAR_ARRAY);
             event.getRegistry().register(REPAIR_BENCH);
             event.getRegistry().register(VEHICLE_SERVICE_DOCK);
+            event.getRegistry().register(MOBILE_QUARRY_CONTROLLER);
             event.getRegistry().registerAll(WORKSHOP_COMPONENTS);
         }
 
@@ -339,6 +345,9 @@ public final class IndustrialCivilizationCore {
             event.getRegistry().register(new ItemBlock(VEHICLE_SERVICE_DOCK)
                 .setCreativeTab(CREATIVE_TAB)
                 .setRegistryName(VEHICLE_SERVICE_DOCK.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(MOBILE_QUARRY_CONTROLLER)
+                .setCreativeTab(CREATIVE_TAB)
+                .setRegistryName(MOBILE_QUARRY_CONTROLLER.getRegistryName()));
             for (BlockWorkshopComponent component : WORKSHOP_COMPONENTS) {
                 event.getRegistry().register(new ItemBlock(component)
                     .setCreativeTab(CREATIVE_TAB)
@@ -757,6 +766,9 @@ public final class IndustrialCivilizationCore {
             ModelLoader.setCustomModelResourceLocation(
                 Item.getItemFromBlock(VEHICLE_SERVICE_DOCK), 0,
                 new ModelResourceLocation(VEHICLE_SERVICE_DOCK.getRegistryName(), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(
+                Item.getItemFromBlock(MOBILE_QUARRY_CONTROLLER), 0,
+                new ModelResourceLocation(MOBILE_QUARRY_CONTROLLER.getRegistryName(), "inventory"));
             for (BlockWorkshopComponent component : WORKSHOP_COMPONENTS) {
                 ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(component), 0,
                     new ModelResourceLocation(component.getRegistryName(), "inventory"));

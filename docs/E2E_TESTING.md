@@ -43,12 +43,32 @@ GameTest execution applies to newer Minecraft versions.
    sealed rooms, vehicles and rockets—remain real-world scenario tests driven
    by a small first-party test command/mod extension.
 
-Implemented deterministic real-client scenarios are `workshop_adjacency` and
-`earth_ecology`. The ecology scenario explicitly marks one zombie and skeleton
+Implemented deterministic real-client scenarios include `workshop_adjacency`,
+`earth_ecology`, and `mobile_quarry_relocation`. The quarry scenario places a
+real BuildCraft Quarry beside the first-party controller in a shallow two-lane
+rig carried by a real ProjectRed frame motor and frame harness. No spare Quarry
+or teleport/tether block is present: the ProjectRed Block Breaker recovers the
+one Quarry, hoppers deliver it to the carried Block Placer, and the controller
+emits only directional redstone pulses. The scenario requires natural frame
+construction, powered excavation to bedrock, sixteen individually verified
+frame steps, reuse of that same Quarry item, moved output pipe/chest, second-frame
+construction, and resumed excavation. A fixed fuel-burning Railcraft Standard
+Worldspike then keeps the relocated lane loaded while the player is 512 blocks
+away from a rig built outside vanilla spawn chunks. The rendered runner records
+Minecraft's own framebuffer throughout this acceptance run. The
+ecology scenario explicitly marks one zombie and skeleton
 as deterministic conversion probes, then asserts that exactly one registered
 robber and one registered militia patrol remain and that no source vanilla
 hostiles do. This test-only marker bypasses natural density and outpost-distance
 rules without changing survival spawning.
+
+The current 0.7.0 review capture is
+`artifacts/mobile-quarry-test-bed-0.7.0-no-teleport-candidate.mp4`. It shows the
+real BuildCraft excavation, the visible ProjectRed harness moving sixteen
+blocks, Block Placer redeployment, second-lane excavation, and the offscreen
+Worldspike check. The parseable PASS marker is authoritative for item identity,
+the absence of spare/teleport blocks, settled-frame coordinates, and the Forge
+chunk ticket.
 
 ## Current boundary
 

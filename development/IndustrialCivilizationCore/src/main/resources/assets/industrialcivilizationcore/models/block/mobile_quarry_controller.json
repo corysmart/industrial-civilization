@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "industrialcivilizationcore:blocks/mobile_quarry_controller",
+    "north": "industrialcivilizationcore:blocks/mobile_quarry_controller",
+    "south": "industrialcivilizationcore:blocks/mobile_quarry_controller_side",
+    "east": "industrialcivilizationcore:blocks/mobile_quarry_controller_side",
+    "west": "industrialcivilizationcore:blocks/mobile_quarry_controller_side",
+    "up": "industrialcivilizationcore:blocks/mobile_quarry_controller_top",
+    "down": "industrialcivilizationcore:blocks/mobile_quarry_controller_side"
+  }
+}

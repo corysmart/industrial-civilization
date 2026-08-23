@@ -9,6 +9,7 @@ Optional objectives live in independent Better Questing tabs, never inside numbe
 - `defensive_readiness` — Workshop Defense
 - `electric_tools` — Electric Tools
 - `loaded_industry` — Loaded Industrial Area
+- `mobile_quarry_relocation` — The Walking Quarry
 - `wireless_control` — Remote Factory Control
 - `advanced_material_recovery` — Advanced Material Recovery
 

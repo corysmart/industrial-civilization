@@ -50,6 +50,7 @@ def icon(milestone):
 
 
 ADVANCEMENT_DESCRIPTION_OVERRIDES = {
+    "mobile_quarry_relocation": "Physically recover and redeploy the same exhausted Quarry in the next lane.",
     "first_resources": "Gather the metals, fuel, and rubber that make an electrical workshop possible.",
     "first_ic2_generator": "Generate the first EU for a workshop that can grow beyond hand labor.",
     "voltage_literacy": "Build with IC2 voltage tiers, transformers, and insulation safely.",

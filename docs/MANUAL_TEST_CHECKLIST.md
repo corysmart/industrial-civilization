@@ -5,12 +5,12 @@
 1. In Technic Launcher, select **Industrial Civilization: Astra** at `/Users/cory/Library/Application Support/technic/modpacks/industrial-civilization-astra`.
 2. Confirm 64-bit Java 8 and allocate at least 6 GiB; 8 GiB is recommended for the complete pack.
 3. Launch once and wait at the title screen. Do not open the pre-existing `New World` save.
-4. Confirm the menu label reads `Industrial Civilization v0.6.3` and inspect Loaded Mods for the expected mod IDs, including Onysd Vehicles 1.4.0, Obfuscate 0.4.2, ICBM Classic 6.5.5, Connected Glass 1.1.8, and SuperMartijn642 Core Lib 1.1.21.
+4. Confirm the menu label reads `Industrial Civilization v0.7.0` and inspect Loaded Mods for the expected mod IDs, including Onysd Vehicles 1.4.0, Obfuscate 0.4.2, ICBM Classic 6.5.5, Connected Glass 1.1.8, and SuperMartijn642 Core Lib 1.1.21.
 5. Open a disposable world, run `/gs reload --clean`, and confirm chat reports a successful reload with no errors. Review `logs/groovy.log` if it does not.
 6. Confirm the welcome chat identifies **F6** as the Industrial Civilization Guide key. Press F6 and verify the Industrial Civilization home banner renders without magenta missing-texture panels, then inspect the 16 chapters and 10 side-path tabs.
 7. Open the in-game pause menu. Confirm **Advancements** opens the vanilla advancement screen, then verify its Industrial Civilization tab contains the visible, ordered progression tree. F6 remains the Better Questing guide.
 8. Open Options → Controls and confirm the Conflicts section is empty. On macOS, spot-check F6 (guide), Option+Y (Techguns reload), Command+R (GroovyScript reload), Option+R (inventory sort), and Command+[/]/;/0/' (Waila).
-9. Enter Creative inventory and locate the **Industrial Civilization** tab. Confirm all 30 custom blocks (including the 12 independently placeable workshop architecture components) and all 23 custom items appear. Use the tab-page arrows to confirm **Applied Energistics 2** and Onysd Vehicles are also present; all namespaces must appear in the Search tab.
+9. Enter Creative inventory and locate the **Industrial Civilization** tab. Confirm all 31 custom blocks (including the Mobile Quarry Controller and 12 independently placeable workshop architecture components) and all 23 custom items appear. Use the tab-page arrows to confirm **Applied Energistics 2** and Onysd Vehicles are also present; all namespaces must appear in the Search tab.
 
 ## Disposable world
 
@@ -32,6 +32,7 @@
 - Repeat tree felling with an irregular branching tree, at least one modded `isWood`/`isLeaves` tree, and a generated tree above 96 logs. Confirm a claimed/protected log cancels normally and the 12-block/tick queue does not bypass the protection. Observe server tick time and mass drops while processing the large tree.
 - Mine a flat stone wall with IC2 Mining Drill metadata 0 and Diamond Drill metadata 1; verify perpendicular 3×3 and 9×9 areas, per-block EU use, normal drops, and sneaking precision mode.
 - Repeat drill tests against floor, ceiling and two wall axes. Test energy sufficient for only part of the plane, Fortune/Silk Touch/Unbreaking where supported, mixed ores, protected blocks, tile entities and a full inventory. Verify normal drops and that work spans multiple ticks without a long server stall.
+- Build a ProjectRed frame carriage with a Mobile Quarry Controller directly behind a BuildCraft Quarry, plus a real Frame Motor, Block Breaker, Block Placer, recovery path, and carried output pipe/chest. Do not preload a spare Quarry. Arm the controller, run the Quarry to bedrock, and confirm the breaker recovers that Quarry, the harness takes exactly sixteen one-block steps without leaving frame ghosts, and the placer redeploys the recovered Quarry before excavation resumes. Confirm no teleport/tether block is present and a fixed fueled Railcraft Worldspike keeps the relocated Quarry mining with the player outside loading range. Also confirm sneak-right-click disarms the controller and a stalled or invalid frame move faults without replacing blocks.
 - Use the NPC Wand to instantiate the three faction blueprints; verify neutral trade, hostile ranged combat, warning/trespass hostility, and persistence after reload.
 - Verify IC2 energy values and reactor metadata through Plethora; test SCRAM with no fuel first.
 - Verify Galacticraft's map permits only currently reachable orbit/Moon/Mars destinations, never the End/Venus/Asteroids. Confirm Mars Mission Authorization directly unlocks the Tier 2 Rocket NASA Workbench page without a Moon dungeon.

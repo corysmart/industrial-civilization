@@ -65,6 +65,15 @@ def configure_background_ticks() -> None:
              for line in options.read_text().splitlines()]
     options.write_text("\n".join(lines) + "\n")
 
+def configure_render_compatibility() -> None:
+    """Keep VintageFix's indexes but bypass its ProjectRed-incompatible model wrapper."""
+    properties = TARGET / "config/vintagefix.properties"
+    if not properties.is_file(): return
+    lines = ["mixin.dynamic_resources=false"
+             if line.startswith("mixin.dynamic_resources=") else line
+             for line in properties.read_text().splitlines()]
+    properties.write_text("\n".join(lines) + "\n")
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--scenario", default="", help="dev-only scenario to run after joining a disposable world")
@@ -76,6 +85,7 @@ def main() -> None:
         copy_if_present(name)
     disable_redundant_downloads()
     configure_background_ticks()
+    configure_render_compatibility()
     for name in ("resources", "resourcepacks"):
         source = SOURCE / name
         if source.exists(): (TARGET / name).symlink_to(source, target_is_directory=True)

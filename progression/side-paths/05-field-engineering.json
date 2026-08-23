@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "id": "field_engineering",
+  "number": 5,
+  "title": "Side Path — Field Engineering",
+  "purpose": "Turn proven industrial machines into ambitious physical systems that reward hands-on engineering without gating the main campaign.",
+  "milestones": [
+    {
+      "id": "mobile_quarry_relocation",
+      "title": "The Walking Quarry",
+      "category": "mastery",
+      "icon": "buildcraftbuilders:quarry",
+      "prerequisites": [
+        "loaded_industry"
+      ],
+      "critical": false,
+      "optional": true,
+      "capability": "Build a non-teleporting ProjectRed frame carriage that recovers one exhausted BuildCraft Quarry, advances one lane, redeploys that same Quarry, and resumes extraction.",
+      "final_validation": [
+        "Mount the Mobile Quarry Controller, ProjectRed Block Breaker and Block Placer, redstone bus, Quarry recovery path, and output route on one connected frame carriage.",
+        "Leave the Block Placer empty before the run so the broken Quarry itself must travel through the recovery path.",
+        "Keep both lanes loaded with one fixed, fueled Standard Worldspike; do not use teleport pipes, teleport tethers, or a spare Quarry.",
+        "Run the first Quarry to bedrock and let the controller command all 16 verified frame steps without manual pulses.",
+        "Confirm that the recovered Quarry is placed at the next lane and resumes frame construction and excavation."
+      ],
+      "automation_paths": [
+        "ProjectRed frames and Frame Motor",
+        "ProjectRed Block Breaker and Block Placer",
+        "Physical hopper recovery and BuildCraft output routing",
+        "Fixed Railcraft Standard Worldspike"
+      ],
+      "runtime_advancement": true
+    }
+  ]
+}

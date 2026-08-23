@@ -1,0 +1,2 @@
+# Disposable-world contract for the first 0.7.0 mobile-quarry movement phase.
+/ic_test scenario mobile_quarry_relocation

@@ -52,9 +52,9 @@ technic_version = json.loads((ROOT / "bin/version").read_text())
 groovy_pack = json.loads((ROOT / "groovy/runConfig.json").read_text())
 main_menu = json.loads((ROOT / "config/CustomMainMenu/mainmenu.json").read_text())
 ok(pack_version == {
-       "industrial_civilization_version": "0.6.3",
+       "industrial_civilization_version": "0.7.0",
        "technic_base_version": "1.2.6",
-       "core_version": "0.6.3",
+       "core_version": "0.7.0",
    } and technic_version["version"] == pack_version["technic_base_version"],
    "private pack release is versioned without inventing a nonexistent Technic Solder build")
 release_version = pack_version["industrial_civilization_version"]
@@ -166,8 +166,8 @@ for path in jars:
     except Exception as exc:
         ok(False, f"JAR integrity {path.relative_to(ROOT)}: {exc}")
 
-core_build = ROOT / "development/IndustrialCivilizationCore/build/libs/IndustrialCivilizationCore-0.6.3.jar"
-core_live = ROOT / "mods/IndustrialCivilizationCore-0.6.3.jar"
+core_build = ROOT / "development/IndustrialCivilizationCore/build/libs/IndustrialCivilizationCore-0.7.0.jar"
+core_live = ROOT / "mods/IndustrialCivilizationCore-0.7.0.jar"
 ok(core_build.is_file() and core_live.is_file() and digest(core_build) == digest(core_live), "custom build output equals live JAR")
 core_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/IndustrialCivilizationCore.java").read_text()
 ok("openQuestGuideAtFirstChapter" in core_source
@@ -351,7 +351,7 @@ for path in sorted((ROOT / "config").rglob("*.json")) + sorted((ROOT / "developm
 
 quests = json.loads((ROOT / "config/betterquesting/DefaultQuests.json").read_text())
 ok(quests.get("format:8") == "2.0.0", "Better Questing schema version")
-ok(len(quests.get("questDatabase:9", {})) == 144, "144 campaign capability milestones")
+ok(len(quests.get("questDatabase:9", {})) == 145, "145 campaign capability milestones")
 ok(len(quests.get("questLines:9", {})) == 26, "16 chapter and 10 independent side-path tabs")
 names = [q["properties:10"]["betterquesting:10"]["name:8"] for q in quests["questDatabase:9"].values()]
 ordered_gates = ["Orbital Research Archive", "Authorized Lunar Landing", "Lunar Engineering Archive",
@@ -466,7 +466,7 @@ ok("PlayerContainerEvent.Close" in faction_source and "ContainerMerchant" in fac
 
 advancement_dir = ROOT / "development/IndustrialCivilizationCore/src/main/resources/assets/industrialcivilizationcore/advancements"
 advancement_files = sorted(advancement_dir.glob("*.json"))
-ok(len(advancement_files) == 145, "visible advancement tree covers all 144 quests plus its root")
+ok(len(advancement_files) == 146, "visible advancement tree covers all 145 quests plus its root")
 advancements = {path.stem: json.loads(path.read_text()) for path in advancement_files}
 ok("root" in advancements and "parent" not in advancements.get("root", {}),
    "Industrial Civilization advancement root exists")
@@ -548,6 +548,28 @@ ok("startsWith('appliedenergistics2:')" in content_script and ".removeAll()" in 
 ok("technical_phase_pearl" in content_script and "aiCore" in content_script
    and "crafting.removeByOutput(item('minecraft:ender_pearl'))" in content_script,
    "Technical Phase Pearl has one AI-authorized manufacturing source")
+ic2_recipe_toggles = json.loads((ROOT / "config/ic2/ic2craftingRecipes.json").read_text())
+for recipe_id in (
+    "shaped_tile.blockTeleporter_1949721530",
+    "shaped_tile.blockTeleporterHub_-665861465",
+    "shaped_item.itemPortableTeleporter_-869928001",
+):
+    ok(ic2_recipe_toggles.get(recipe_id) is False,
+       f"pre-AI IC2 teleport recipe disabled: {recipe_id}")
+ok("AssemblyRecipeRegistry.REGISTRY" in content_script
+   and "additionalpipes:pipe_items_teleport" in content_script
+   and "ai_gated_item_teleport_pipe" in content_script
+   and "minecraft:ender_pearl" in content_script,
+   "Additional Pipes item teleport is removed from the pre-AI assembly table and rebuilt behind AI authorization")
+additional_pipes_config = (ROOT / "config/additionalpipes.cfg").read_text()
+ok("B:enableChunkloaderRecipe=false" in additional_pipes_config,
+   "Additional Pipes Teleport Tether remains unobtainable in survival")
+with zipfile.ZipFile(ROOT / "mods/EnderStorage-1.12.2-2.4.6.137-universal.jar") as archive:
+    for recipe_name in ("ender_chest", "ender_pouch", "ender_tank"):
+        recipe = json.loads(archive.read(
+            f"assets/enderstorage/recipes/{recipe_name}.json").decode("utf-8"))
+        ok(any(value.get("ore") == "enderpearl" for value in recipe.get("key", {}).values()),
+           f"EnderStorage {recipe_name} requires the AI-gated phase pearl")
 for item in ("techguns:pistol", "techguns:combatshotgun", "techguns:m4", "industrialcivilizationcore:molecular_analyzer"):
     ok(item in script, f"integration recipe reference {item}")
 for item in ("techguns:itemshared:2", "techguns:itemshared:11", "techguns:itemshared:13", "computercraft:computer:16384"):

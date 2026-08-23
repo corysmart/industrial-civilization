@@ -1,9 +1,9 @@
 # Industrial Civilization — Game Design Document
 
-- Status: 0.6.3 hidden internal release; numbered campaign live-validated
+- Status: 0.7.0 hidden internal release; live-validated
 - Pack: Industrial Civilization: Astra / Minecraft 1.12.2 / Forge 14.23.5.2860
-- First-party runtime: IndustrialCivilizationCore 0.6.3
-- Industrial Civilization pack release: 0.6.3 (Technic base selector: 1.2.6)
+- First-party runtime: IndustrialCivilizationCore 0.7.0
+- Industrial Civilization pack release: 0.7.0 (Technic base selector: 1.2.6)
 - Authoritative data: `progression/*.json`; generated quest pack: `config/betterquesting/DefaultQuests.json`
 
 ## Vision
@@ -20,7 +20,7 @@ The design has four pillars:
 ## Player-facing rules
 
 - F6 opens the Better Questing guide. Pause > Advancements opens Minecraft's advancement screen, whose Industrial Civilization tab mirrors the intended progression.
-- All 144 quests use aspirational `ALWAYS` visibility. Locked future lines remain visible; secret objectives are not used.
+- All 145 quests use aspirational `ALWAYS` visibility. Locked future lines remain visible; secret objectives are not used.
 - Every quest completes automatically through a runtime advancement or non-consuming inventory evidence. There are no manual checkbox tasks.
 - Every modded quest includes the relevant Mac/no-numpad controls and operating instructions in its description.
 - Every node picture is the actual required item, first evidence item, or an explicit real machine/artifact/vehicle override. Symbolic storyboard pictures are not emitted.
@@ -204,11 +204,11 @@ Quest/config changes appear in an existing single-player world through Better Qu
 
 ## Implemented now
 
-- 16 chapters, 10 independent side paths, 144 automatic quests, full aspirational visibility, no manual checkbox tasks.
-- A single connected Industrial Civilization advancement page exposes 339 visible nodes in gameplay order, including 194 ported objectives from Minecraft and integrated mods. Foreign advancement pages are hidden, and 37 impossible, duplicate, magical, End-only, or fake-monster objectives are removed or replaced.
+- 16 chapters, 10 independent side paths, 145 automatic quests, full aspirational visibility, no manual checkbox tasks.
+- A single connected Industrial Civilization advancement page exposes 340 visible nodes in gameplay order, including 194 ported objectives from Minecraft and integrated mods. Foreign advancement pages are hidden, and 37 impossible, duplicate, magical, End-only, or fake-monster objectives are removed or replaced.
 - Story/mission/proof/control descriptions and actual objective icons for the entire generated quest set.
 - Five era-specific quest backgrounds and IC2-styled custom block/item/GUI art.
-- Thirty first-party blocks (18 machines/utility blocks plus 12 workshop architecture components), twenty-three first-party items, and the IC Credit currency with real construction/production paths.
+- Thirty-one first-party blocks (19 machines/utility blocks plus 12 workshop architecture components), twenty-three first-party items, and the IC Credit currency with real construction/production paths.
 - EU-native machines, environment-aware research, pre-selection Moon/Mars gates, solar multipliers/dust behavior, cargo channels, salvage route, AI synthesis, complete AI-gated AE2 catalog, and concrete post-AI proofs.
 - The End and portal activation are disabled. Natural pearls are suppressed; the compatible pearl registry item becomes a custom-rendered Technical Phase Pearl with an AI-only IC2 recipe and no pre-AI dependencies.
 - AI entry grants its advancement and opens the Industrial Civilization credits once per player, prominently crediting creator `corysmart`, then returns to the still-playable post-credits world.
@@ -226,7 +226,7 @@ Quest/config changes appear in an existing single-player world through Better Qu
 ### Required playtest verification
 
 1. Complete a measured survival campaign without Creative-staged ingredients, record resource/power bottlenecks, and tune pacing without adding arbitrary microcrafts.
-2. Run dedicated acceptance passes for all ten independent side paths; Industrial Agriculture requires a survival crop-breeding/Lead pass, the completed physical 1/4/10/50-bank MFSU Burst Power evidence should remain covered by regression testing, and ten faction/vehicle side-line advancements remained intentionally incomplete at the end of numbered-campaign acceptance.
+2. Run dedicated acceptance passes for the remaining independent side paths; Industrial Agriculture requires a survival crop-breeding/Lead pass, the completed physical MFSU Burst Power and Walking Quarry evidence should remain covered by regression testing, and faction/vehicle side-line advancements remained intentionally incomplete at the end of numbered-campaign acceptance.
 3. Exercise Earth and space factions, equipment drops, procedural settlements/cities/fabrication centers, vehicle handling, and world-generation spacing across fresh chunks and migrated low-exploration worlds.
 4. Exercise every custom machine GUI/peripheral method, cross-dimensional cargo channel, and multiplayer ownership path under chunk unload/reload and save/restart.
 

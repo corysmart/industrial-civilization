@@ -5,19 +5,20 @@ about growing a survival workshop into an interplanetary industrial
 civilization. It began from the Tekkit 2 technical baseline, but it is now its
 own source project, release archive, and hidden Technic pack.
 
-The current hidden internal release is **0.6.3**. Its complete 16-chapter numbered
+The current hidden internal release is **0.7.0**. Its complete 16-chapter numbered
 campaign has passed live acceptance in `Test Bed 1`: all 111 numbered Better
 Questing tasks completed, the final `continuous_civilization` milestone
 persisted after save/reload, the one-time AI credits returned to the playable
-world, and post-campaign sandbox play remained available. Independent faction
-and vehicle side paths still require their own full acceptance pass.
+world, and post-campaign sandbox play remained available. The physical Walking
+Quarry and MFSU Burst Power side paths have separate full-client acceptance;
+independent faction and vehicle paths still require their own passes.
 
 ## Current distribution status
 
 - Technic pack: **Industrial Civilization: Astra** (`industrial-civilization-astra`)
-- Installed test release: **0.6.3**
+- Installed test release: **0.7.0**
 - Minecraft: **1.12.2**, Forge **14.23.5.2860**, Java **8**
-- Current GitHub release: `v0.6.3`
+- Current GitHub release: `v0.7.0`
 - Visibility: hidden internal alpha while redistribution review, multiplayer
   QA, and final balance work continue
 - Installed Technic instance:
@@ -38,12 +39,14 @@ then verifies every SHA-256 before Forge starts. See
 
 - 16 numbered chapters and 10 independent side paths across Earth, orbit, the
   Moon, Mars, Lite Matter Engineering, the AI Age, and post-AI civilization
-- 144 automatic capability milestones with no manual checkbox objectives
-- One Industrial Civilization advancement page with 339 connected visible
+- 145 automatic capability milestones with no manual checkbox objectives
+- One Industrial Civilization advancement page with 340 connected visible
   advancements; obsolete, duplicate, magical, End-only, and fake-monster
   objectives are hidden, removed, or replaced
 - IC2-centered EU power, manufacturing, monitored nuclear engineering,
   research, programmable automation, matter technology, and AE2 endgame
+- A non-teleporting ProjectRed frame Walking Quarry that physically recovers,
+  carries, and redeploys the same BuildCraft Quarry at the next excavation lane
 - An always-on Astra texture layer with recognizable IC2 machinery restyled in
   the first-party steel, orange-process, and cyan-power visual language, plus
   readable flat IC2 machine icons for inventory and HEI
@@ -94,9 +97,9 @@ python3 tools/static_validate.py
 python3 tools/e2e/preflight.py
 ```
 
-At the current 0.6.3 release state these checks report 1,426 runtime-content checks,
-339 connected visible advancements, 57 energy-interoperability checks, 4,346
-progression checks, 2,023 static checks, and 8 HeadlessMC preflight checks.
+At the current 0.7.0 release state these checks report 1,444 runtime-content checks,
+340 connected visible advancements, 57 energy-interoperability checks, 4,380
+progression checks, 2,037 static checks, and 8 HeadlessMC preflight checks.
 Offline checks complement—not replace—the live evidence and scenario lists in
 `docs/E2E_TESTING.md`, `docs/MAIN_QUESTLINE_TEST_PLAN.md`, and
 `docs/MANUAL_TEST_CHECKLIST.md`.

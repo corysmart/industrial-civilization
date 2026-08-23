@@ -1,5 +1,6 @@
 package com.industrialcivilization.core;
 
+import java.io.File;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.advancements.GuiScreenAdvancements;
 import net.minecraft.client.renderer.GlStateManager;
@@ -19,6 +20,7 @@ public final class ClientE2ERunner {
     private static final int WORLD_SETTLE_TICKS = 600;
     private int state;
     private int ticks;
+    private int videoFrame;
 
     ClientE2ERunner() {}
 
@@ -28,6 +30,16 @@ public final class ClientE2ERunner {
         String scenario = IndustrialCivilizationCore.E2E_AUTO_SCENARIO;
         if (scenario.isEmpty()) return;
         Minecraft minecraft = Minecraft.getMinecraft();
+        if (state == 3 && Boolean.getBoolean("ic.e2e.captureFrames")
+                && minecraft.world != null && ++ticks % 4 == 0) {
+            File frames = new File(minecraft.mcDataDir, "screenshots/quarry-video");
+            if (frames.isDirectory() || frames.mkdirs()) {
+                ScreenShotHelper.saveScreenshot(minecraft.mcDataDir,
+                    String.format(java.util.Locale.ROOT,
+                        "quarry-video/frame-%05d.png", videoFrame++),
+                    minecraft.displayWidth, minecraft.displayHeight, minecraft.getFramebuffer());
+            }
+        }
         if (state == 0) {
             // A true headless LWJGL shim can reach a stable title loop without
             // exposing a concrete GuiScreen, so world absence is the reliable gate.
@@ -51,6 +63,11 @@ public final class ClientE2ERunner {
                 ticks = 0;
                 state = 4;
                 return;
+            }
+            if (Boolean.getBoolean("ic.e2e.captureFrames")) {
+                // Preserve the action bar: narrated acceptance recordings are
+                // much easier to audit when each physical phase is labelled.
+                minecraft.gameSettings.hideGUI = false;
             }
             final String playerName = minecraft.player.getName();
             final MinecraftServer server = minecraft.getIntegratedServer();

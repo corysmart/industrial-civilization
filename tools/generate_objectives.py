@@ -97,6 +97,7 @@ STORY_TRANSITIONS = {
 # Short, self-explanatory quests use the line narrative plus their authored
 # action text; unfamiliar systems receive a focused field-guide explanation.
 QUEST_STORY_OVERRIDES = {
+    "mobile_quarry_relocation": "A Quarry can automate excavation, but reaching bedrock still leaves the next worksite to the engineer. This optional challenge turns relocation into physical infrastructure: ProjectRed machinery must recover the exhausted Quarry, carry its control and logistics harness to the next lane, and deploy the same machine again without teleportation or a hidden spare.",
     "first_ic2_generator": "A hand-fed furnace can process material, but it cannot distribute power. The Generator is the first machine that lets one fuel source support an electrical workshop instead of one isolated task.",
     "low_voltage_network": "Electricity becomes useful only when it can move safely. LV cable gives the workshop a shared power network, while transformers let later voltage tiers feed smaller machines without destroying them.",
     "electric_processing": "Electric machines turn fuel into a workshop-wide resource. A dependable processing suite replaces separate furnace fires with controllable EU and lays the foundation for continuous production.",
@@ -180,6 +181,7 @@ ICON_OVERRIDES = {
     "voltage_literacy": "ic2:itemcable",
     "quarry_extraction": "buildcraftbuilders:quarry",
     "loaded_industry": "railcraft:worldspike",
+    "mobile_quarry_relocation": "industrialcivilizationcore:mobile_quarry_controller",
     "wireless_control": "wrcbe:wireless_logic",
     "automation_throughput": "minecraft:hopper",
     "railcraft_steel": "railcraft:tool_pickaxe_steel",
@@ -221,7 +223,7 @@ ICON_OVERRIDES = {
 # useful operating context, not on later visual-only icon curation.
 CONTROL_HINT_OVERRIDES = {
     key: ICON_OVERRIDES[key] for key in (
-        "ore_doubling", "voltage_literacy", "loaded_industry", "wireless_control",
+        "ore_doubling", "voltage_literacy", "loaded_industry", "mobile_quarry_relocation", "wireless_control",
         "automation_throughput", "freight_infrastructure", "faction_contacts",
         "production_queue", "multi_step_manufacturing", "programmable_manufacturing",
         "reactor_output", "orbital_experiments", "orbital_operational_data", "moon_access",

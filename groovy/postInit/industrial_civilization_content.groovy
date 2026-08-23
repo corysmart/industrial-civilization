@@ -1,3 +1,5 @@
+import buildcraft.lib.recipe.AssemblyRecipeRegistry
+
 // Real Industrial Civilization content recipes. Machine outputs are handled by
 // IndustrialCivilizationCore runtime logic and cannot be bypassed here.
 
@@ -20,6 +22,16 @@ crafting.addShaped('industrial_civilization:robotic_manufacturing_cell',
     [item('ic2:itemmisc:452'), item('computercraft:computer:16384'), item('ic2:itemmisc:452')],
     [ore('ingotSteel'), item('industrialcivilizationcore:programmable_assembler'), ore('ingotSteel')],
     [item('minecraft:piston'), item('ic2:blockmachinemv'), item('minecraft:piston')]
+])
+
+// Phase-one quarry mobility preserves the physical BuildCraft Quarry. The
+// controller moves it only after bedrock; players still extend power and item
+// routing to each new lane until they build the later full utility deployment.
+crafting.addShaped('industrial_civilization:mobile_quarry_controller',
+    item('industrialcivilizationcore:mobile_quarry_controller'), [
+    [ore('ingotSteel'), item('computercraft:computer:16384'), ore('ingotSteel')],
+    [item('minecraft:piston'), item('ic2:blockmachinemv'), item('minecraft:piston')],
+    [item('buildcraftcore:gear_diamond'), item('industrialcivilizationcore:control_processor'), item('buildcraftcore:gear_diamond')]
 ])
 
 crafting.addShaped('industrial_civilization:research_station',
@@ -100,6 +112,29 @@ crafting.addShaped('industrial_civilization:technical_phase_pearl', item('minecr
     [item('minecraft:diamond'), aiCore, item('minecraft:diamond')],
     [item('ic2:itemmisc:452'), item('ic2:blockmachinehv'), item('ic2:itemmisc:452')]
 ])
+
+// Additional Pipes registers its Item Teleport Pipe directly in BuildCraft's
+// assembly-table registry. JEI hiding is not progression gating, and the stock
+// chipset recipe is reachable before AI Age, so remove it by output rather than
+// relying on its version-specific recipe key. The replacement requires the
+// durable AI authorization core and the phase component unlocked in Chapter 15.
+def teleportAssemblyKeys = AssemblyRecipeRegistry.REGISTRY.findAll { key, recipe ->
+    recipe.outputPreviews.any { stack ->
+        !stack.empty && stack.item?.registryName?.toString() == 'additionalpipes:pipe_items_teleport'
+    }
+}.keySet().toList()
+teleportAssemblyKeys.each { key -> AssemblyRecipeRegistry.REGISTRY.remove(key) }
+
+crafting.addShaped('industrial_civilization:ai_gated_item_teleport_pipe',
+    item('additionalpipes:pipe_items_teleport') * 8, [
+    [item('buildcraftsilicon:redstone_chipset:4'), item('minecraft:ender_pearl'), item('buildcraftsilicon:redstone_chipset:4')],
+    [item('buildcrafttransport:pipe_diamond_item'), aiCore, item('buildcrafttransport:pipe_diamond_item')],
+    [item('buildcraftsilicon:redstone_chipset:3'), item('industrialcivilizationcore:control_processor'), item('buildcraftsilicon:redstone_chipset:3')]
+])
+
+if (teleportAssemblyKeys.empty) {
+    throw new IllegalStateException('Additional Pipes Item Teleport Pipe assembly recipe was not found')
+}
 
 def ae2Foundation = [
     'energy_acceptor': item('appliedenergistics2:energy_acceptor'),

@@ -105,6 +105,11 @@ def block_pattern(block_id):
     def dock(d, a):
         d.rectangle((4, 5, 7, 10), outline=a); d.rectangle((9, 5, 11, 10), outline=PALETTE["copper"])
         d.line((7, 7, 9, 7), fill=PALETTE["cyan2"])
+    def mobile_quarry(d, a):
+        d.rectangle((4, 5, 9, 10), outline=a)
+        d.line((5, 11, 11, 11), fill=PALETTE["copper"], width=2)
+        d.line((9, 6, 11, 8, 9, 10), fill=PALETTE["orange"])
+        d.point((6, 7), fill=PALETTE["cyan2"])
     def component(d, a):
         if "hazard" in block_id:
             for n in range(-8, 24, 6): d.line((n, 13, n + 10, 3), fill=PALETTE["orange"], width=3)
@@ -137,6 +142,7 @@ def block_pattern(block_id):
         "environmental_solar_array": solar, "tracking_solar_array": solar,
         "car_workshop": workshop, "gun_factory": armament,
         "repair_bench": repair, "vehicle_service_dock": dock,
+        "mobile_quarry_controller": mobile_quarry,
         **{name: component for name in ("steel_frame", "steel_casing", "machine_casing",
             "reinforced_plate", "grated_plate", "industrial_floor", "hazard_stripe",
             "workshop_cable_block", "workshop_cable_cover", "reinforced_glass_panel",

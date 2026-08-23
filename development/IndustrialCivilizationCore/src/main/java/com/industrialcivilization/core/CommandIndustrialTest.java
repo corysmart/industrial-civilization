@@ -1,5 +1,7 @@
 package com.industrialcivilization.core;
 
+import buildcraft.api.recipes.AssemblyRecipe;
+import buildcraft.lib.recipe.AssemblyRecipeRegistry;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCrafting;
@@ -41,7 +44,7 @@ public final class CommandIndustrialTest extends CommandBase {
 
     @Override public String getName() { return "ic_test"; }
     @Override public String getUsage(ICommandSender sender) {
-        return "/ic_test snapshot [radius] | scenario <workshop_adjacency|earth_ecology|release_recipes|robber_wall_theft> | assert <workshop_adjacency|earth_ecology>";
+        return "/ic_test snapshot [radius] | scenario <workshop_adjacency|earth_ecology|release_recipes|robber_wall_theft|mobile_quarry_relocation|teleport_gate> | assert <workshop_adjacency|earth_ecology>";
     }
     @Override public int getRequiredPermissionLevel() { return 0; }
 
@@ -95,7 +98,73 @@ public final class CommandIndustrialTest extends CommandBase {
                 + result[0] + "|open_remaining=" + result[1]);
             return;
         }
+        if (args.length == 2 && "scenario".equals(args[0])
+                && "mobile_quarry_relocation".equals(args[1])) {
+            MobileQuarryLifecycleTest.start(player);
+            return;
+        }
+        if (args.length == 2 && "scenario".equals(args[0]) && "teleport_gate".equals(args[1])) {
+            int[] result = inspectTeleportGate();
+            boolean pass = result[0] == 0 && result[1] == 1 && result[2] == 1
+                && result[3] == 0 && result[4] == 0 && result[5] == 1 && result[6] == 1;
+            emit(player, (pass ? "PASS" : "FAIL") + "|teleport_gate|legacy_assembly="
+                + result[0] + "|ai_recipe=" + result[1] + "|ai_ingredients=" + result[2]
+                + "|ic2_native=" + result[3] + "|teleport_tether=" + result[4]
+                + "|phase_pearl_sources=" + result[5] + "|phase_pearl_ai=" + result[6]);
+            return;
+        }
         throw new WrongUsageException(getUsage(sender));
+    }
+
+    private static int[] inspectTeleportGate() {
+        int legacyAssembly = 0;
+        for (AssemblyRecipe recipe : AssemblyRecipeRegistry.REGISTRY.values()) {
+            for (ItemStack output : recipe.getOutputPreviews()) {
+                if (stackIs(output, "additionalpipes:pipe_items_teleport")) legacyAssembly++;
+            }
+        }
+        IRecipe gated = findRecipe("ai_gated_item_teleport_pipe",
+            "additionalpipes:pipe_items_teleport");
+        int aiRecipe = gated == null ? 0 : 1;
+        net.minecraft.item.Item diamondPipe = ForgeRegistries.ITEMS.getValue(
+            new ResourceLocation("buildcrafttransport", "pipe_diamond_item"));
+        int aiIngredients = gated != null
+            && recipeAccepts(gated, new ItemStack(IndustrialCivilizationCore.AI_CORE))
+            && recipeAccepts(gated, new ItemStack(Items.ENDER_PEARL))
+            && diamondPipe != null && recipeAccepts(gated, new ItemStack(diamondPipe)) ? 1 : 0;
+        int ic2Native = 0;
+        for (String id : Arrays.asList(
+                "ic2:shaped_tile.blockteleporter_1949721530",
+                "ic2:shaped_tile.blockteleporterhub_-665861465",
+                "ic2:shaped_item.itemportableteleporter_-869928001")) {
+            if (ForgeRegistries.RECIPES.containsKey(new ResourceLocation(id))) ic2Native++;
+        }
+        int tether = ForgeRegistries.RECIPES.containsKey(
+            new ResourceLocation("additionalpipes", "teleport_tether")) ? 1 : 0;
+        int phasePearlSources = 0;
+        int phasePearlAi = 0;
+        for (IRecipe recipe : ForgeRegistries.RECIPES) {
+            if (stackIs(recipe.getRecipeOutput(), "minecraft:ender_pearl")) {
+                phasePearlSources++;
+                if (recipeAccepts(recipe, new ItemStack(IndustrialCivilizationCore.AI_CORE))) {
+                    phasePearlAi++;
+                }
+            }
+        }
+        return new int[] {legacyAssembly, aiRecipe, aiIngredients, ic2Native, tether,
+            phasePearlSources, phasePearlAi};
+    }
+
+    private static boolean recipeAccepts(IRecipe recipe, ItemStack stack) {
+        for (Ingredient ingredient : recipe.getIngredients()) {
+            if (ingredient.apply(stack)) return true;
+        }
+        return false;
+    }
+
+    private static boolean stackIs(ItemStack stack, String id) {
+        return !stack.isEmpty() && stack.getItem().getRegistryName() != null
+            && id.equals(stack.getItem().getRegistryName().toString());
     }
 
     private static int[] runRobberWallTheftScenario(EntityPlayerMP player) {
@@ -404,7 +473,8 @@ public final class CommandIndustrialTest extends CommandBase {
             String[] args, BlockPos targetPos) {
         if (args.length == 1) return getListOfStringsMatchingLastWord(args, "snapshot", "scenario", "assert");
         if (args.length == 2 && ("scenario".equals(args[0]) || "assert".equals(args[0])))
-            return getListOfStringsMatchingLastWord(args, "workshop_adjacency", "earth_ecology", "release_recipes");
+            return getListOfStringsMatchingLastWord(args, "workshop_adjacency", "earth_ecology",
+                "release_recipes", "robber_wall_theft", "mobile_quarry_relocation");
         return Arrays.asList();
     }
 }

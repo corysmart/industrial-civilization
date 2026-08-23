@@ -45,7 +45,8 @@
     {"id": "workshop_cable_cover", "system": "placeable workshop architecture"},
     {"id": "reinforced_glass_panel", "system": "placeable workshop architecture"},
     {"id": "tool_wall", "system": "placeable workshop architecture"},
-    {"id": "drawer_cabinet", "system": "placeable workshop architecture"}
+    {"id": "drawer_cabinet", "system": "placeable workshop architecture"},
+    {"id": "mobile_quarry_controller", "system": "bedrock-triggered BuildCraft Quarry relocation"}
   ],
   "items": [
     {"id": "material_pattern_record", "system": "Lite Matter record"},

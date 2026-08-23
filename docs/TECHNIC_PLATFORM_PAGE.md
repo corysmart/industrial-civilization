@@ -17,8 +17,9 @@ Highlights:
 - Restorable factories, drivable vehicles, logistics networks, research machines, and programmable automation
 - One unified Industrial Civilization advancement tree
 - Continued sandbox play after the main campaign is complete
+- A physically relocating ProjectRed frame Walking Quarry with no teleporting or spare Quarry
 
-Version 0.6.3 is the current hidden internal release. It rewrites the complete questbook as a player-facing industrial field guide while retaining the live-validated campaign, responsive advancements UI, and unobstructed-reach robber fix. Redistribution review, remaining side-path acceptance, multiplayer QA, and final survival-balance work remain in progress.
+Version 0.7.0 is the current hidden internal release. It adds the live-validated Walking Quarry side quest: one BuildCraft Quarry is physically recovered, moved sixteen ProjectRed frame steps, redeployed, and resumed under fixed Worldspike chunk loading. Teleport pipes, linked storage, and IC2 teleport hardware remain unavailable until AI authorization. Redistribution review, remaining side-path acceptance, multiplayer QA, and final survival-balance work remain in progress.
 
 ## Help
 

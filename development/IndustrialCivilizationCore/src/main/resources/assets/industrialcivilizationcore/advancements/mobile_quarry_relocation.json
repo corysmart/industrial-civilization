@@ -1,0 +1,23 @@
+{
+  "parent": "industrialcivilizationcore:loaded_industry",
+  "display": {
+    "icon": {
+      "item": "buildcraftbuilders:quarry"
+    },
+    "title": {
+      "text": "S5.01 \u2014 The Walking Quarry"
+    },
+    "description": {
+      "text": "Physically recover and redeploy the same exhausted Quarry in the next lane."
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "runtime": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}
