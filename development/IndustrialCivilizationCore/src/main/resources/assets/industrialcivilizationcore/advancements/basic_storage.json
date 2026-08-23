@@ -5,10 +5,10 @@
       "item": "ironchest:iron_chest"
     },
     "title": {
-      "text": "01.02 \u2014 Copper and Iron Storage"
+      "text": "01.02 \u2014 Copper or Iron Storage"
     },
     "description": {
-      "text": "Copper and Iron Storage"
+      "text": "Establish Copper or Iron Storage as working industrial infrastructure."
     },
     "frame": "goal",
     "show_toast": true,

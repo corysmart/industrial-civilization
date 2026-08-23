@@ -1,9 +1,9 @@
 # Industrial Civilization — Game Design Document
 
-- Status: 0.6.2 hidden internal alpha; numbered campaign live-validated
+- Status: 0.6.3 hidden internal release; numbered campaign live-validated
 - Pack: Industrial Civilization: Astra / Minecraft 1.12.2 / Forge 14.23.5.2860
-- First-party runtime: IndustrialCivilizationCore 0.6.2
-- Industrial Civilization pack release: 0.6.2 (Technic base selector: 1.2.6)
+- First-party runtime: IndustrialCivilizationCore 0.6.3
+- Industrial Civilization pack release: 0.6.3 (Technic base selector: 1.2.6)
 - Authoritative data: `progression/*.json`; generated quest pack: `config/betterquesting/DefaultQuests.json`
 
 ## Vision
@@ -74,7 +74,7 @@ Quest tasks use two mechanisms:
 - `bq_standard:advancement` for first-party machine operations and dimension/environment events implemented by IndustrialCivilizationCore.
 - `bq_standard:retrieval` for non-consuming ownership/construction evidence across other mods.
 
-The generator also owns story openings/transitions, contextual control blocks, curated render-safe icons, five era backgrounds, and `pack_version` 17. Each quest tab begins at the center of its artwork and expands through deterministic rotated rings or ellipses, giving connector paths varied wheel, arc, diamond, and orbital geometry. New worlds receive the current defaults directly. Existing single-player worlds detect the higher matching pack version and show Better Questing's update-notice button on the quest home; clicking it imports the updated structure while preserving quest progress.
+The generator also owns story openings/transitions, contextual control blocks, curated render-safe icons, five era backgrounds, and `pack_version` 20. Each quest tab begins at the center of its artwork and expands through deterministic rotated rings or ellipses, giving connector paths varied wheel, arc, diamond, and orbital geometry. New worlds receive the current defaults directly. Existing single-player worlds detect the higher matching pack version and show Better Questing's update-notice button on the quest home; clicking it imports the updated structure while preserving quest progress.
 
 ## Controls taught in quests
 

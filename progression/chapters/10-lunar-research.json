@@ -31,7 +31,7 @@
       "optional": false,
       "capability": "Lunar Science Program",
       "final_validation": [
-        "Complete regolith, metallurgy, radiation, seismic, isotope, habitat, mining, communications, and precision-manufacturing studies as implemented."
+        "Complete the regolith, metallurgy, radiation, seismic, isotope, habitat, mining, communications, and precision-manufacturing studies available at the lunar base."
       ],
       "automation_paths": [],
       "runtime_advancement": true
@@ -83,7 +83,7 @@
       "optional": false,
       "capability": "Lunar Engineering Archive",
       "final_validation": [
-        "Demonstrate the capability: Lunar Engineering Archive."
+        "Complete the lunar research program and assemble its results into a Lunar Engineering Archive."
       ],
       "automation_paths": [],
       "required_item": "industrialcivilizationcore:lunar_engineering_archive"

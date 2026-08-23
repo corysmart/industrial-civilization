@@ -49,6 +49,57 @@ def icon(milestone):
     return result
 
 
+ADVANCEMENT_DESCRIPTION_OVERRIDES = {
+    "first_resources": "Gather the metals, fuel, and rubber that make an electrical workshop possible.",
+    "first_ic2_generator": "Generate the first EU for a workshop that can grow beyond hand labor.",
+    "voltage_literacy": "Build with IC2 voltage tiers, transformers, and insulation safely.",
+    "quarry_extraction": "Turn automated extraction into permanent industrial infrastructure.",
+    "early_autocrafting": "Route physical ingredients through a repeatable automatic recipe.",
+    "programmable_assembler": "Move from fixed automation to selectable production programs.",
+    "nuclear_reactor": "Bring a complete IC2 reactor online with safety designed in from the start.",
+    "emergency_shutdown": "Prove that the reactor can be stopped without approaching the core.",
+    "orbital_habitat": "Create a breathable foothold beyond Earth's atmosphere.",
+    "functional_orbital_station": "Sustain habitation, power, research, and safe arrival together in orbit.",
+    "orbital_research_complete": "Turn orbital experiments into the knowledge required for the Moon.",
+    "lunar_darkness_mastery": "Keep lunar life support and industry running through prolonged darkness.",
+    "extreme_voltage_industry": "Operate EV infrastructure without confusing throughput with safe packet size.",
+    "quantumsuit": "Equip and charge a complete QuantumSuit from mature high-tier industry.",
+    "tier2_mars_launch": "Commit a Mars-ready civilization package to interplanetary flight.",
+    "functional_martian_base": "Sustain a Martian settlement with local industry and a dependable return route.",
+    "autonomous_resource_response": "Teach distant production to recognize and answer its own shortages.",
+    "martian_autonomy_complete": "Prove that Martian industry can respond without constant human attention.",
+    "molecular_analyzer": "Begin matter engineering with precise measurement rather than transmutation.",
+    "artificial_industrial_intelligence_core": "Unify the civilization's research into an industrial coordination system.",
+    "ai_age_entry": "Scale automation from individual machines to connected industrial systems.",
+    "ae2_entry": "Bring storage, pattern knowledge, and manufacturing into one digital network.",
+    "ae2_autocrafting": "Coordinate multi-step manufacturing through encoded network patterns.",
+    "continuous_civilization": "Build the capacity for technological civilization to keep expanding.",
+    "crop_engineering": "Establish parallel IC2 crop-breeding experiments for renewable materials.",
+    "breed_hemp": "Discover Hemp and secure a renewable source of industrial fiber.",
+    "lv_charcoal_tree_farm": "Close the loop between automated forestry and electrical generation.",
+    "mfsu_bank_baseline": "Establish one legal 512-EU packet as the burst-power baseline.",
+    "mfsu_bank_quad": "Deliver four legal MFSU packets in one tick for 2,048 EU/t.",
+    "mfsu_bank_ten": "Scale parallel MFSU delivery to ten legal packets and 5,120 EU/t.",
+    "mfsu_bank_fifty": "Deliver 25,600 EU/t as fifty legal packets, never one illegal voltage spike.",
+    "blink_manufacturing": "Turn a physical fifty-MFSU bank into sub-second industrial work.",
+}
+
+
+def advancement_description(milestone):
+    if milestone["id"] in ADVANCEMENT_DESCRIPTION_OVERRIDES:
+        return ADVANCEMENT_DESCRIPTION_OVERRIDES[milestone["id"]]
+    title = milestone["title"]
+    templates = {
+        "construction": f"Establish {title} as working industrial infrastructure.",
+        "possession": f"Secure {title} for the civilization's next stage.",
+        "operation": f"Put {title} into reliable operation.",
+        "research": f"Complete {title} and turn observation into engineering knowledge.",
+        "transition": f"Open the technological path to {title}.",
+        "mastery": f"Integrate the systems required for {title}.",
+    }
+    return templates[milestone["category"]]
+
+
 chapters = load("chapters")
 side_paths = load("side-paths")
 all_milestones = [m for line in chapters + side_paths for m in line["milestones"]]
@@ -118,7 +169,7 @@ for milestone, parent, order in entries:
         "display": {
             "icon": icon(milestone),
             "title": {"text": f"{order} — {milestone['title']}"},
-            "description": {"text": milestone["capability"]},
+            "description": {"text": advancement_description(milestone)},
             "frame": "challenge" if milestone["category"] == "mastery" else
                 "goal" if milestone["category"] in ("construction", "operation") else "task",
             "show_toast": True,

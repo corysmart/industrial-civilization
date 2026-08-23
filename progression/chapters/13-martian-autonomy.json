@@ -31,7 +31,7 @@
       "optional": false,
       "capability": "Martian Science Program",
       "final_validation": [
-        "Complete atmospheric, subsurface, radiation-computation, water-recovery, semiconductor, and robotics studies as implemented."
+        "Complete the atmospheric, subsurface, radiation-computation, water-recovery, semiconductor, and robotics studies available on Mars."
       ],
       "automation_paths": [],
       "runtime_advancement": true
@@ -100,7 +100,7 @@
       "optional": false,
       "capability": "Martian Autonomy Archive",
       "final_validation": [
-        "Demonstrate the capability: Martian Autonomy Archive."
+        "Complete the Martian autonomy program and assemble its results into a Martian Autonomy Archive."
       ],
       "automation_paths": [],
       "required_item": "industrialcivilizationcore:martian_autonomy_archive"

@@ -122,7 +122,7 @@
       "capability": "Meet Civil Defense at an industrial city or honorable operational factory and verify that its attitude follows civilized reputation rather than weapon possession.",
       "final_validation": [
         "Discover a Civil Defense officer at a city or non-criminal factory.",
-        "Confirm the faction directory lists Civil Defense separately from the Territorial Militia.",
+        "Meet Civil Defense as an organization distinct from the Territorial Militia.",
         "Verify that carrying a gun alone does not provoke Civil Defense."
       ],
       "automation_paths": [],
@@ -241,7 +241,7 @@
       "final_validation": [
         "Locate two operational cities with powered utility spines.",
         "Keep both regions loaded and observe a specialty item reach the paired controller.",
-        "Compare settlement prices and confirm reputation only modestly changes the exchange."
+        "Compare settlement prices and observe how reputation changes the exchange without overwhelming the regional market."
       ],
       "automation_paths": [],
       "runtime_advancement": true

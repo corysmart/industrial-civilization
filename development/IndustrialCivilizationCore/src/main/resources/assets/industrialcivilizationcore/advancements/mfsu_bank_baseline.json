@@ -9,7 +9,7 @@
       "text": "11.08 \u2014 Single-MFSU Baseline"
     },
     "description": {
-      "text": "Complete a genuine energy-limited manufacturing operation while it receives at least one legal 512-EU MFSU-class packet in a tick."
+      "text": "Establish one legal 512-EU packet as the burst-power baseline."
     },
     "frame": "goal",
     "show_toast": true,

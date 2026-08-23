@@ -16,7 +16,7 @@
     "basic_storage": ["ironchest:iron_chest:3", "ironchest:iron_chest:0"],
     "defensive_readiness": ["techguns:pistol", "techguns:itemshared:11"],
     "manual_production_area": ["minecraft:crafting_table", "minecraft:furnace", "minecraft:chest"],
-    "secure_workshop": ["minecraft:iron_door", {"item": "minecraft:torch", "count": 16}, "minecraft:chest"],
+    "secure_workshop": ["minecraft:iron_door", {"item": "minecraft:torch", "count": 16}],
     "first_ic2_generator": ["ic2:blockgenerator:*"],
     "low_voltage_network": [{"item": "ic2:itemcable:*", "count": 8}, "ic2:blockelectric:*"],
     "electric_processing": [{"item": "ic2:blockmachinelv:*", "count": 4}],

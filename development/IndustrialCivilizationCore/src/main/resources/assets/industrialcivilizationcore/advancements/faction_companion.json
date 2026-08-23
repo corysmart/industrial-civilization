@@ -8,7 +8,7 @@
       "text": "S1.10 \u2014 Trusted Faction Companion"
     },
     "description": {
-      "text": "Recruit a trusted faction member who follows and defends you without converting every neutral NPC into a disposable follower."
+      "text": "Integrate the systems required for Trusted Faction Companion."
     },
     "frame": "challenge",
     "show_toast": true,

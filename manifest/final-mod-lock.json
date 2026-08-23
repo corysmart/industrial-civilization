@@ -1648,16 +1648,16 @@
       "redistribution": "Inherited third-party binary; verify author terms before any export."
     },
     {
-      "file": "mods/IndustrialCivilizationCore-0.6.2.jar",
-      "filename": "IndustrialCivilizationCore-0.6.2.jar",
-      "size": 3273442,
-      "sha256": "d83852e82dbb2831fb8069ce553333327a3150e7b6b9bf717f8738e4fa7801e3",
+      "file": "mods/IndustrialCivilizationCore-0.6.3.jar",
+      "filename": "IndustrialCivilizationCore-0.6.3.jar",
+      "size": 3274295,
+      "sha256": "968ac3c77f61788e6a0102ad9ac2133676d69e231b88c9f91aa0a90961032d9c",
       "classification": "KEEP",
       "mods": [
         {
           "id": "industrialcivilizationcore",
           "name": "Industrial Civilization Core",
-          "version": "0.6.2",
+          "version": "0.6.3",
           "minecraft": "1.12.2",
           "dependencies": [
             "computercraft",
@@ -3739,7 +3739,7 @@
     },
     {
       "file": "config/CustomMainMenu/mainmenu.json",
-      "sha256": "3ac284e1de6b29529ff4b10c8f82ea3f399c7ee45b44351840615572ec631978",
+      "sha256": "2bd484a170c792c60386f6bdcaff367bda6a4169ec97a47767216fb4fec135bf",
       "size": 4007
     },
     {
@@ -3944,8 +3944,8 @@
     },
     {
       "file": "config/betterquesting/DefaultQuests.json",
-      "sha256": "58e627c00f80dbbc3f0f1a33a4d2cb8000eaec030e3be3b29e3c998be40413b3",
-      "size": 403444
+      "sha256": "aff88e26bd417511d11a61b879d8788b958e69bf4fc87831104c972fcec453eb",
+      "size": 307151
     },
     {
       "file": "config/blockcraftery.cfg",
@@ -5029,8 +5029,8 @@
     },
     {
       "file": "config/randompatches.cfg",
-      "sha256": "07e4cc0e15b57d609f35c885c573366b2a85eda088b2f498233a4701fa73e785",
-      "size": 9651
+      "sha256": "efb45c3e0b4713e1a4a6815505d48cf51126c173411b4c8d58ac49f674640daa",
+      "size": 9650
     },
     {
       "file": "config/reachfix.cfg",
@@ -5189,8 +5189,8 @@
     },
     {
       "file": "config/vintagefix.properties",
-      "sha256": "d16ddd9330fe4e3eaca3c4bea8e0f664fb8945af0a2894eea57c5a88752fe529",
-      "size": 931
+      "sha256": "66df9c36fbfa6eb502362e8f140a3a00792032711324f114e806b131518bcb0a",
+      "size": 932
     },
     {
       "file": "config/voxelmap.properties",
@@ -5264,7 +5264,7 @@
     },
     {
       "file": "groovy/runConfig.json",
-      "sha256": "130d5535612ed8ded51d0f9aceb7f9cd54ab59ca7dc671d8a81cbdfed5b8736c",
+      "sha256": "8db8f959ee561c774929cb0c090701a5a3b748eede448a1a85d4bdcd191de6c1",
       "size": 343
     },
     {

@@ -63,7 +63,7 @@
       "optional": false,
       "capability": "Electric Fabricator",
       "final_validation": [
-        "Demonstrate the capability: Electric Fabricator."
+        "Power an Electric Fabricator and use it to complete one component recipe."
       ],
       "automation_paths": [],
       "required_item": "industrialcivilizationcore:electric_fabricator"
@@ -80,7 +80,7 @@
       "optional": false,
       "capability": "Programmable Assembler",
       "final_validation": [
-        "Demonstrate the capability: Programmable Assembler."
+        "Power a Programmable Assembler, select a recipe, and complete one production order."
       ],
       "automation_paths": [],
       "required_item": "industrialcivilizationcore:programmable_assembler"

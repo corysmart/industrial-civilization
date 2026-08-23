@@ -30,7 +30,7 @@
     },
     {
       "id": "basic_storage",
-      "title": "Copper and Iron Storage",
+      "title": "Copper or Iron Storage",
       "category": "construction",
       "icon": "ironchest:iron_chest",
       "prerequisites": [
@@ -38,9 +38,9 @@
       ],
       "critical": false,
       "optional": false,
-      "capability": "Copper and Iron Storage",
+      "capability": "Copper or Iron Storage",
       "final_validation": [
-        "Build practical storage using Copper and Iron Chests; higher chest tiers are outside progression."
+        "Build either a Copper Chest or an Iron Chest and keep it in your inventory long enough for the questbook to recognize it."
       ],
       "automation_paths": []
     },
@@ -89,7 +89,7 @@
       "optional": false,
       "capability": "Secure Workshop",
       "final_validation": [
-        "Maintain a lit, enclosed workshop with storage and materials prepared for an IC2 Generator."
+        "Maintain a lit, enclosed workshop and prepare the materials for an IC2 Generator."
       ],
       "automation_paths": []
     }

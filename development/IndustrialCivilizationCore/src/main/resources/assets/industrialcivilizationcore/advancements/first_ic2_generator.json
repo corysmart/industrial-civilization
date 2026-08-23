@@ -8,7 +8,7 @@
       "text": "02.01 \u2014 First IC2 Generator"
     },
     "description": {
-      "text": "First IC2 Generator"
+      "text": "Generate the first EU for a workshop that can grow beyond hand labor."
     },
     "frame": "goal",
     "show_toast": true,

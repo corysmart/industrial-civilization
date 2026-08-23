@@ -50,14 +50,14 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Gameplay assertion:** Obtain coal, iron, copper, tin, and rubber.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 2. Copper and Iron Storage (`basic_storage`)
+### 2. Copper or Iron Storage (`basic_storage`)
 
 - **Prerequisites:** `first_resources`.
 - **Detection mode:** Non-consuming inventory retrieval.
 - **Exact test action:** Before this quest unlocks, keep its matching evidence out of the player inventory. After it unlocks, obtain or Creative-give all of the following at the same time: `ironchest:iron_chest:3`, `ironchest:iron_chest:0`. Wait at least two seconds for Better Questing inventory detection; the items must remain unconsumed.
 - **Negative assertion:** Confirm the quest did not gain progress while locked and that removing/re-adding the evidence works without a manual checkbox or claim button.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `secure_workshop`.
-- **Gameplay assertion:** Build practical storage using Copper and Iron Chests; higher chest tiers are outside progression.
+- **Gameplay assertion:** Build either a Copper Chest or an Iron Chest and keep it in your inventory long enough for the questbook to recognize it.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
 ### 3. Workshop Defense (`defensive_readiness`)
@@ -84,10 +84,10 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 
 - **Prerequisites:** `basic_storage` AND `manual_production_area`.
 - **Detection mode:** Non-consuming inventory retrieval.
-- **Exact test action:** Before this quest unlocks, keep its matching evidence out of the player inventory. After it unlocks, obtain or Creative-give all of the following at the same time: `minecraft:iron_door`, 16× `minecraft:torch`, `minecraft:chest`. Wait at least two seconds for Better Questing inventory detection; the items must remain unconsumed.
+- **Exact test action:** Before this quest unlocks, keep its matching evidence out of the player inventory. After it unlocks, obtain or Creative-give all of the following at the same time: `minecraft:iron_door`, 16× `minecraft:torch`. Wait at least two seconds for Better Questing inventory detection; the items must remain unconsumed.
 - **Negative assertion:** Confirm the quest did not gain progress while locked and that removing/re-adding the evidence works without a manual checkbox or claim button.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `first_ic2_generator`. This is the declared completion milestone for Chapter 1.
-- **Gameplay assertion:** Maintain a lit, enclosed workshop with storage and materials prepared for an IC2 Generator.
+- **Gameplay assertion:** Maintain a lit, enclosed workshop and prepare the materials for an IC2 Generator.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
 **Chapter exit check:** Confirm `secure_workshop` is complete, the next numbered chapter is visible and correctly unlocked when applicable, and unrelated later chapters remain locked.
@@ -379,7 +379,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Exact test action:** Before this quest unlocks, keep its matching evidence out of the player inventory. After it unlocks, obtain or Creative-give all of the following at the same time: `industrialcivilizationcore:electric_fabricator`. Wait at least two seconds for Better Questing inventory detection; the items must remain unconsumed.
 - **Negative assertion:** Confirm the quest did not gain progress while locked and that removing/re-adding the evidence works without a manual checkbox or claim button.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `programmable_assembler`.
-- **Gameplay assertion:** Demonstrate the capability: Electric Fabricator.
+- **Gameplay assertion:** Power an Electric Fabricator and use it to complete one component recipe.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
 ### 32. Programmable Assembler (`programmable_assembler`)
@@ -389,7 +389,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Exact test action:** Before this quest unlocks, keep its matching evidence out of the player inventory. After it unlocks, obtain or Creative-give all of the following at the same time: `industrialcivilizationcore:programmable_assembler`. Wait at least two seconds for Better Questing inventory detection; the items must remain unconsumed.
 - **Negative assertion:** Confirm the quest did not gain progress while locked and that removing/re-adding the evidence works without a manual checkbox or claim button.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `production_queue`.
-- **Gameplay assertion:** Demonstrate the capability: Programmable Assembler.
+- **Gameplay assertion:** Power a Programmable Assembler, select a recipe, and complete one production order.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
 ### 33. Queued Production Order (`production_queue`)
@@ -477,7 +477,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Exact test action:** Before this quest unlocks, keep its matching evidence out of the player inventory. After it unlocks, obtain or Creative-give all of the following at the same time: `ic2:blockchambers:*`, `minecraft:lever`. Wait at least two seconds for Better Questing inventory detection; the items must remain unconsumed.
 - **Negative assertion:** Confirm the quest did not gain progress while locked and that removing/re-adding the evidence works without a manual checkbox or claim button.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `monitored_nuclear_power`.
-- **Gameplay assertion:** Trigger a verified remote shutdown and confirm output ceases.
+- **Gameplay assertion:** Trigger a remote shutdown and watch reactor output fall to zero.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
 ### 41. Nuclear Containment (`nuclear_containment`)
@@ -555,7 +555,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Exact test action:** Before this quest unlocks, keep its matching evidence out of the player inventory. After it unlocks, obtain or Creative-give all of the following at the same time: `industrialcivilizationcore:research_station`. Wait at least two seconds for Better Questing inventory detection; the items must remain unconsumed.
 - **Negative assertion:** Confirm the quest did not gain progress while locked and that removing/re-adding the evidence works without a manual checkbox or claim button.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `orbital_experiment_module`.
-- **Gameplay assertion:** Demonstrate the capability: Research Station.
+- **Gameplay assertion:** Install and power a Research Station aboard the orbital facility.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
 ### 48. Orbital Experiment Module (`orbital_experiment_module`)
@@ -565,7 +565,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Exact test action:** Before this quest unlocks, keep its matching evidence out of the player inventory. After it unlocks, obtain or Creative-give all of the following at the same time: `industrialcivilizationcore:orbital_experiment_module`. Wait at least two seconds for Better Questing inventory detection; the items must remain unconsumed.
 - **Negative assertion:** Confirm the quest did not gain progress while locked and that removing/re-adding the evidence works without a manual checkbox or claim button.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `functional_orbital_station`.
-- **Gameplay assertion:** Demonstrate the capability: Orbital Experiment Module.
+- **Gameplay assertion:** Install and power an Orbital Experiment Module where it can collect orbital observations.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
 ### 49. Functional Orbital Station (`functional_orbital_station`)
@@ -593,7 +593,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Exact test action:** In orbit, power an Orbital Experiment Module, insert one Blank Data Cartridge, and complete the `record_orbital_data` operation. Take or leave the resulting orbit-tagged Research Data in the output slot.
 - **Negative assertion:** Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `orbital_operational_data`.
-- **Gameplay assertion:** Complete vacuum materials, radiation, telescope, microgravity, life-support, communications, and eclipse experiments as implemented.
+- **Gameplay assertion:** Complete the vacuum-materials, radiation, telescope, microgravity, life-support, communications, and eclipse experiments available at the Research Station.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
 ### 51. Orbital Operational Data (`orbital_operational_data`)
@@ -623,7 +623,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Exact test action:** In orbit, repeat the previous test with the Advanced Tracking Solar Array. Right-click it once and let lifetime generation reach at least 10,000 EU.
 - **Negative assertion:** Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete; no numbered main-line quest directly depends on it.
-- **Gameplay assertion:** Build an advanced tracking array targeting 15–25× Earth solar output when implemented.
+- **Gameplay assertion:** Build an advanced tracking array and operate it in orbit, where active tracking can deliver 15–25× its Earth output.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
 ### 54. Orbital Research Archive (`orbital_research_complete`)
@@ -633,7 +633,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Exact test action:** Before this quest unlocks, keep its matching evidence out of the player inventory. After it unlocks, obtain or Creative-give all of the following at the same time: `industrialcivilizationcore:orbital_research_archive`. Wait at least two seconds for Better Questing inventory detection; the items must remain unconsumed.
 - **Negative assertion:** Confirm the quest did not gain progress while locked and that removing/re-adding the evidence works without a manual checkbox or claim button.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `moon_access`, `mars_mission_authorization`, `ai_prerequisite_audit`. This is the declared completion milestone for Chapter 8.
-- **Gameplay assertion:** Demonstrate the capability: Orbital Research Archive.
+- **Gameplay assertion:** Complete the orbital research program and assemble its results into an Orbital Research Archive.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
 ### 55. Moon Access (`moon_access`)
@@ -739,7 +739,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Exact test action:** On the Moon, power an Orbital Experiment Module, insert a Blank Data Cartridge, and complete `record_lunar_data` to create Moon-tagged Research Data.
 - **Negative assertion:** Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `lunar_darkness_mastery`, `lunar_precision_manufacturing`.
-- **Gameplay assertion:** Complete regolith, metallurgy, radiation, seismic, isotope, habitat, mining, communications, and precision-manufacturing studies as implemented.
+- **Gameplay assertion:** Complete the regolith, metallurgy, radiation, seismic, isotope, habitat, mining, communications, and precision-manufacturing studies available at the lunar base.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
 ### 64. Darkness-Cycle Habitat Mastery (`lunar_darkness_mastery`)
@@ -769,7 +769,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Exact test action:** Before this quest unlocks, keep its matching evidence out of the player inventory. After it unlocks, obtain or Creative-give all of the following at the same time: `industrialcivilizationcore:lunar_engineering_archive`. Wait at least two seconds for Better Questing inventory detection; the items must remain unconsumed.
 - **Negative assertion:** Confirm the quest did not gain progress while locked and that removing/re-adding the evidence works without a manual checkbox or claim button.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `quantum_research_access`, `lunar_quantum_component`, `mars_mission_authorization`, `ai_prerequisite_audit`. This is the declared completion milestone for Chapter 10.
-- **Gameplay assertion:** Demonstrate the capability: Lunar Engineering Archive.
+- **Gameplay assertion:** Complete the lunar research program and assemble its results into a Lunar Engineering Archive.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
 ### 67. Quantum Research Access (`quantum_research_access`)
@@ -807,7 +807,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Exact test action:** Before this quest unlocks, keep its matching evidence out of the player inventory. After it unlocks, obtain or Creative-give all of the following at the same time: `industrialcivilizationcore:robotic_manufacturing_cell`. Wait at least two seconds for Better Questing inventory detection; the items must remain unconsumed.
 - **Negative assertion:** Confirm the quest did not gain progress while locked and that removing/re-adding the evidence works without a manual checkbox or claim button.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `lunar_quantum_component`, `mars_readiness_trial`.
-- **Gameplay assertion:** Demonstrate the capability: Robotic Manufacturing Cell.
+- **Gameplay assertion:** Power a Robotic Manufacturing Cell and complete one local automated production cycle.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
 ### 70. Lunar Quantum Component (`lunar_quantum_component`)
@@ -817,7 +817,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Exact test action:** Before this quest unlocks, keep its matching evidence out of the player inventory. After it unlocks, obtain or Creative-give all of the following at the same time: `industrialcivilizationcore:lunar_quantum_component`. Wait at least two seconds for Better Questing inventory detection; the items must remain unconsumed.
 - **Negative assertion:** Confirm the quest did not gain progress while locked and that removing/re-adding the evidence works without a manual checkbox or claim button.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `quantumsuit`.
-- **Gameplay assertion:** Demonstrate the capability: Lunar Quantum Component.
+- **Gameplay assertion:** Manufacture a Lunar Quantum Component using the precision industry established on the Moon.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
 ### 71. NanoSuit and Powered Tools (`nanosuit_and_tools`)
@@ -867,7 +867,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Exact test action:** Connect one real MFSU to a tier-3-compatible first-party manufacturing machine, begin a genuine recipe, and complete it while the machine records at least one 512-EU packet in an operation tick.
 - **Negative assertion:** Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `mfsu_bank_quad`.
-- **Gameplay assertion:** Connect a real MFSU to a tier-3-compatible Industrial Civilization manufacturing machine. Start a genuine recipe and complete it under live IC2 EnergyNet power. Confirm the machine records at least one 512-EU packet during the operation.
+- **Gameplay assertion:** Connect a real MFSU to a tier-3-compatible Industrial Civilization manufacturing machine. Start a genuine recipe and complete it under live IC2 EnergyNet power. Run the operation with at least one 512-EU packet reaching the machine.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
 ### 76. Four-MFSU Parallel Bank (`mfsu_bank_quad`)
@@ -877,7 +877,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Exact test action:** Repeat genuine manufacturing with four independently oriented MFSUs. Verify at least four MFSU-class packets and approximately 2,048 EU/t are accepted in one tick without false overvoltage.
 - **Negative assertion:** Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `mfsu_bank_ten`.
-- **Gameplay assertion:** Build four independently connected and correctly oriented MFSUs. Complete a real recipe with a peak of at least four 512-EU packets in one tick. Confirm aggregate throughput does not cause a false overvoltage event.
+- **Gameplay assertion:** Build four independently connected and correctly oriented MFSUs. Complete a real recipe with a peak of at least four 512-EU packets in one tick. Complete the operation at higher aggregate throughput without exceeding the voltage of any individual packet.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
 ### 77. Ten-MFSU Burst Bank (`mfsu_bank_ten`)
@@ -897,7 +897,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Exact test action:** Scale the physical bank to fifty independently connected MFSUs and complete a genuine recipe. Verify a peak of fifty packets and approximately 25,600 EU/t.
 - **Negative assertion:** Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `blink_manufacturing`.
-- **Gameplay assertion:** Charge, orient, and connect fifty real MFSUs to a tier-3-compatible machine. Complete a real recipe with a peak of at least fifty 512-EU packets in one tick. Confirm the bank accelerates work without bypassing per-packet voltage safety.
+- **Gameplay assertion:** Charge, orient, and connect fifty real MFSUs to a tier-3-compatible machine. Complete a real recipe with a peak of at least fifty 512-EU packets in one tick. Use the fifty-unit bank to accelerate real work while every individual packet remains within the machine's voltage limit.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
 ### 79. Blink Manufacturing (`blink_manufacturing`)
@@ -917,7 +917,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Exact test action:** Before this quest unlocks, keep its matching evidence out of the player inventory. After it unlocks, obtain or Creative-give all of the following at the same time: `industrialcivilizationcore:mars_mission_authorization`. Wait at least two seconds for Better Questing inventory detection; the items must remain unconsumed.
 - **Negative assertion:** Confirm the quest did not gain progress while locked and that removing/re-adding the evidence works without a manual checkbox or claim button.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `tier2_mars_launch`.
-- **Gameplay assertion:** Demonstrate the capability: Mars Mission Authorization.
+- **Gameplay assertion:** Combine the required Quantum, lunar, and readiness work into a Mars Mission Authorization.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
 **Chapter exit check:** Confirm `quantum_technology_complete` is complete, the next numbered chapter is visible and correctly unlocked when applicable, and unrelated later chapters remain locked.
@@ -1023,7 +1023,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Exact test action:** On Mars, power an Orbital Experiment Module, insert a Blank Data Cartridge, and complete `record_martian_data` to create Mars-tagged Research Data.
 - **Negative assertion:** Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `autonomous_resource_response`, `autonomous_power_response`.
-- **Gameplay assertion:** Complete atmospheric, subsurface, radiation-computation, water-recovery, semiconductor, and robotics studies as implemented.
+- **Gameplay assertion:** Complete the atmospheric, subsurface, radiation-computation, water-recovery, semiconductor, and robotics studies available on Mars.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
 ### 90. Autonomous Resource Response (`autonomous_resource_response`)
@@ -1063,7 +1063,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Exact test action:** Before this quest unlocks, keep its matching evidence out of the player inventory. After it unlocks, obtain or Creative-give all of the following at the same time: `industrialcivilizationcore:martian_autonomy_archive`. Wait at least two seconds for Better Questing inventory detection; the items must remain unconsumed.
 - **Negative assertion:** Confirm the quest did not gain progress while locked and that removing/re-adding the evidence works without a manual checkbox or claim button.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `molecular_analyzer`, `ai_prerequisite_audit`. This is the declared completion milestone for Chapter 13.
-- **Gameplay assertion:** Demonstrate the capability: Martian Autonomy Archive.
+- **Gameplay assertion:** Complete the Martian autonomy program and assemble its results into a Martian Autonomy Archive.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
 **Chapter exit check:** Confirm `martian_autonomy_complete` is complete, the next numbered chapter is visible and correctly unlocked when applicable, and unrelated later chapters remain locked.
@@ -1111,7 +1111,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Exact test action:** Complete three successful Analyzer runs using an Earth Iron Ingot, lunar raw Meteoric Iron, and Galacticraft Desh metadata 2. Verify each resulting Material Pattern Record carries the correct origin tag.
 - **Negative assertion:** Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `advanced_material_recovery`, `lite_matter_complete`.
-- **Gameplay assertion:** Record planned Earth, lunar, and Martian material comparisons without enabling arbitrary transmutation.
+- **Gameplay assertion:** Record comparable material observations from Earth, the Moon, and Mars without attempting arbitrary transmutation.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
 ### 98. Advanced Material Recovery (`advanced_material_recovery`)
@@ -1149,7 +1149,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Exact test action:** Before this quest unlocks, keep its matching evidence out of the player inventory. After it unlocks, obtain or Creative-give all of the following at the same time: `industrialcivilizationcore:orbital_research_archive`, `industrialcivilizationcore:lunar_engineering_archive`, `industrialcivilizationcore:martian_autonomy_archive`, `industrialcivilizationcore:material_pattern_record`. Wait at least two seconds for Better Questing inventory detection; the items must remain unconsumed.
 - **Negative assertion:** Confirm the quest did not gain progress while locked and that removing/re-adding the evidence works without a manual checkbox or claim button.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `artificial_industrial_intelligence_core`.
-- **Gameplay assertion:** Confirm Orbital and Lunar archives, Quantum completion, Martian Autonomy, and Lite Matter completion.
+- **Gameplay assertion:** Bring together the Orbital and Lunar archives with the achievements of Quantum Technology, Martian Autonomy, and Lite Matter Engineering.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
 ### 101. Artificial Industrial Intelligence Core (`artificial_industrial_intelligence_core`)
@@ -1159,7 +1159,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Exact test action:** Before this quest unlocks, keep its matching evidence out of the player inventory. After it unlocks, obtain or Creative-give all of the following at the same time: `industrialcivilizationcore:artificial_industrial_intelligence_core`. Wait at least two seconds for Better Questing inventory detection; the items must remain unconsumed.
 - **Negative assertion:** Confirm the quest did not gain progress while locked and that removing/re-adding the evidence works without a manual checkbox or claim button.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `ai_age_entry`.
-- **Gameplay assertion:** Demonstrate the capability: Artificial Industrial Intelligence Core.
+- **Gameplay assertion:** Synthesize the accumulated research archives and advanced components into an Artificial Industrial Intelligence Core.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
 ### 102. Enter the AI Age (`ai_age_entry`)
@@ -1247,7 +1247,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Exact test action:** Before this quest unlocks, keep its matching evidence out of the player inventory. After it unlocks, obtain or Creative-give all of the following at the same time: `industrialcivilizationcore:matter_replicator`. Wait at least two seconds for Better Questing inventory detection; the items must remain unconsumed.
 - **Negative assertion:** Confirm the quest did not gain progress while locked and that removing/re-adding the evidence works without a manual checkbox or claim button.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `uu_matter_production`, `fusion_and_antimatter`.
-- **Gameplay assertion:** Complete the future AI-assisted energy-to-matter research program.
+- **Gameplay assertion:** Complete the AI-assisted research program that establishes a controlled energy-to-matter process.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
 ### 110. Controlled UU-Matter Production (`uu_matter_production`)

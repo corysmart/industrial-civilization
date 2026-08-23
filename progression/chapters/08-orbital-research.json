@@ -30,7 +30,7 @@
       "optional": false,
       "capability": "Orbital Experiment Program",
       "final_validation": [
-        "Complete vacuum materials, radiation, telescope, microgravity, life-support, communications, and eclipse experiments as implemented."
+        "Complete the vacuum-materials, radiation, telescope, microgravity, life-support, communications, and eclipse experiments available at the Research Station."
       ],
       "automation_paths": [],
       "runtime_advancement": true
@@ -82,7 +82,7 @@
       "optional": true,
       "capability": "Advanced Tracking Solar Array",
       "final_validation": [
-        "Build an advanced tracking array targeting 15\u201325\u00d7 Earth solar output when implemented."
+        "Build an advanced tracking array and operate it in orbit, where active tracking can deliver 15\u201325\u00d7 its Earth output."
       ],
       "automation_paths": [],
       "required_item": "industrialcivilizationcore:tracking_solar_array",
@@ -100,7 +100,7 @@
       "optional": false,
       "capability": "Orbital Research Archive",
       "final_validation": [
-        "Demonstrate the capability: Orbital Research Archive."
+        "Complete the orbital research program and assemble its results into an Orbital Research Archive."
       ],
       "automation_paths": [],
       "required_item": "industrialcivilizationcore:orbital_research_archive"

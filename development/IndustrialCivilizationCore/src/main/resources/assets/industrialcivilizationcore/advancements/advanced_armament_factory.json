@@ -8,7 +8,7 @@
       "text": "S1.15 \u2014 Commission an Advanced Armament Factory"
     },
     "description": {
-      "text": "Deploy a covered Gun Factory and use its IC2-powered production program for a shotgun or automatic rifle instead of hand crafting advanced firearms."
+      "text": "Integrate the systems required for Commission an Advanced Armament Factory."
     },
     "frame": "challenge",
     "show_toast": true,

@@ -8,7 +8,7 @@
       "text": "S4.02 \u2014 LV Charcoal Tree Farm"
     },
     "description": {
-      "text": "Complete the early tree loop with a Plant Gatherer and Resourceful Furnace. Replant saplings, harvest logs, smelt part of the wood into charcoal, and return that charcoal to the IC2 Generator so early electrical expansion can feed itself."
+      "text": "Close the loop between automated forestry and electrical generation."
     },
     "frame": "goal",
     "show_toast": true,

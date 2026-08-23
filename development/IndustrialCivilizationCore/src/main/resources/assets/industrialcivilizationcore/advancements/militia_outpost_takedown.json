@@ -8,7 +8,7 @@
       "text": "S1.09 \u2014 Dismantle a Militia Outpost"
     },
     "description": {
-      "text": "Dismantle enough of one registered Territorial Militia outpost to remove it from operation while accepting the resulting militia hostility risk."
+      "text": "Integrate the systems required for Dismantle a Militia Outpost."
     },
     "frame": "challenge",
     "show_toast": true,

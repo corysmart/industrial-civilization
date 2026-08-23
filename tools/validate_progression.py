@@ -315,8 +315,17 @@ for index, ms in enumerate(milestones):
     generated_icon = props.get("icon:10", {}).get("id:8", "")
     check(item_exists(generated_icon), f"generated quest picture exists: {ms['id']} -> {generated_icon}")
     description = props.get("desc:8", "")
-    check(all(section in description for section in ("STORY\n", "MISSION\n", "PROOF OF COMPLETION\n", "CONTROLS AND OPERATION\n")),
-          f"generated quest teaches story, proof, and controls: {ms['id']}")
+    developer_phrases = (
+        "completion is detected", "real gameplay evidence", "no checkbox or command",
+        "proof of completion", "evidence is not consumed", "canonical critical path",
+        "temporary validation", "does not check merely", "material ownership",
+        "demonstrate the capability", "story\n", "objective\n", "what to do\n",
+        "operating notes\n", "controls and operation", "optional project",
+        "f6 — reopen", "waila:",
+    )
+    check(bool(description.strip())
+          and not any(phrase in description.lower() for phrase in developer_phrases),
+          f"generated quest uses natural player-facing prose: {ms['id']}")
     check(quest.get("preRequisites:11") == [id_order[p] for p in ms["prerequisites"]], f"generated prerequisites match {ms['id']}")
     task = quest.get("tasks:9", {}).get("0:10", {})
     expected_task = ("bq_standard:advancement" if ms.get("runtime_advancement")
@@ -328,7 +337,24 @@ for index, ms in enumerate(milestones):
               f"generated runtime advancement matches {ms['id']}")
     check(props.get("visibility:8") == "ALWAYS", f"quest is aspirationally visible from the start: {ms['id']}")
     check(props.get("questlogic:8") == ms.get("prerequisite_logic", "AND"), f"generated prerequisite logic matches {ms['id']}")
+    check(props.get("tasklogic:8") == ("OR" if ms["id"] == "basic_storage" else "AND"),
+          f"generated task logic matches {ms['id']}")
 check(not any(ms.get("placeholder_id") for ms in milestones), "generated projection has no placeholder milestones")
+
+advancement_descriptions = []
+for ms in milestones:
+    advancement = ms.get("runtime_advancement")
+    advancement = (ms["id"] if advancement is True or not advancement else advancement)
+    advancement_path = asset_root / "advancements" / f"{advancement}.json"
+    if advancement_path.is_file():
+        payload = read_json(advancement_path)
+        text = payload.get("display", {}).get("description", {}).get("text", "")
+        advancement_descriptions.append(text)
+        check(bool(text.strip()) and text.strip() != ms["capability"].strip()
+              and not any(phrase in text.lower() for phrase in ("demonstrate the capability", "completion is detected", "as implemented", "when implemented")),
+              f"advancement description is concise player-facing significance: {ms['id']}")
+check(len(advancement_descriptions) == len(milestones),
+      "every quest has a synchronized player-facing advancement description")
 check(not any(quest.get("tasks:9", {}).get("0:10", {}).get("taskID:8") == "bq_standard:checkbox"
               for quest in quest_db.values()), "generated quest projection contains no manual checkbox tasks")
 generated_icon_stacks = [quest.get("properties:10", {}).get("betterquesting:10", {}).get("icon:10", {})
@@ -361,7 +387,24 @@ for milestone_id, (item_id, damage) in clear_icon_expectations.items():
     icon = quest.get("properties:10", {}).get("betterquesting:10", {}).get("icon:10", {})
     check((icon.get("id:8"), icon.get("Damage:2")) == (item_id, damage),
           f"quest picture is render-safe and semantically clear: {milestone_id}")
-check(quests.get("questSettings:10", {}).get("betterquesting:10", {}).get("pack_version:3") == 17, "Better Questing pack version includes LV Automated Agriculture")
+basic_storage_quest = quest_db.get(f"{id_order['basic_storage']}:10", {})
+basic_storage_tasks = basic_storage_quest.get("tasks:9", {})
+basic_storage_stacks = [next(iter(task.get("requiredItems:9", {}).values()), {})
+                        for task in basic_storage_tasks.values()]
+check(basic_storage_quest.get("properties:10", {}).get("betterquesting:10", {}).get("tasklogic:8") == "OR"
+      and len(basic_storage_tasks) == 2
+      and {(stack.get("id:8"), stack.get("Damage:2")) for stack in basic_storage_stacks}
+          == {("ironchest:iron_chest", 3), ("ironchest:iron_chest", 0)},
+      "storage quest completes from either a Copper Chest or Iron Chest held in inventory")
+secure_workshop_quest = quest_db.get(f"{id_order['secure_workshop']}:10", {})
+secure_workshop_items = {
+    stack.get("id:8")
+    for task in secure_workshop_quest.get("tasks:9", {}).values()
+    for stack in task.get("requiredItems:9", {}).values()
+}
+check(secure_workshop_items == {"minecraft:iron_door", "minecraft:torch"},
+      "Secure Workshop requires lighting and an iron door without a redundant oak chest")
+check(quests.get("questSettings:10", {}).get("betterquesting:10", {}).get("pack_version:3") == 20, "Better Questing pack version removes the redundant oak chest from Secure Workshop")
 
 expected_backgrounds = {
     "industrialcivilizationcore:textures/gui/quest_bg_earth_ui.png",

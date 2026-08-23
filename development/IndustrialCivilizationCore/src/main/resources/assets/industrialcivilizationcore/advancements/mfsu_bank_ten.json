@@ -9,7 +9,7 @@
       "text": "11.10 \u2014 Ten-MFSU Burst Bank"
     },
     "description": {
-      "text": "Complete genuine manufacturing after delivering ten legal MFSU-class packets in one tick for at least 5,120 EU/t of burst input."
+      "text": "Scale parallel MFSU delivery to ten legal packets and 5,120 EU/t."
     },
     "frame": "goal",
     "show_toast": true,

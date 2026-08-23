@@ -66,7 +66,7 @@
       "optional": true,
       "capability": "Combine four renewable Strings with tapped IC2 Sticky Resin to craft two Leads, move livestock into a controlled enclosure, and breed a pair. Managed adult cattle, pigs, sheep, and horses also provide a rare supplemental bone when killed by a player.",
       "final_validation": [
-        "Craft two Leads from four Strings and one IC2 Sticky Resin; the evidence is not consumed.",
+        "Craft two Leads from four Strings and one IC2 Sticky Resin.",
         "Use a Lead to relocate livestock into a fenced production area.",
         "Breed a pair before treating livestock as a renewable material source."
       ],

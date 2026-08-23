@@ -9,7 +9,7 @@
       "text": "11.09 \u2014 Four-MFSU Parallel Bank"
     },
     "description": {
-      "text": "Complete genuine manufacturing after delivering four legal MFSU-class packets in one tick for at least 2,048 EU/t of burst input."
+      "text": "Deliver four legal MFSU packets in one tick for 2,048 EU/t."
     },
     "frame": "goal",
     "show_toast": true,

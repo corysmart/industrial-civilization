@@ -50,7 +50,7 @@
       "final_validation": [
         "Assemble one conventional ICBM missile through the permitted industrial component chain.",
         "Load it into the IC2-powered launcher and verify target controls in a safe test range.",
-        "Confirm strategic nuclear and exotic payload crafting remains locked behind later controlled programs."
+        "Keep nuclear and exotic payloads out of this conventional defense program until their later controlled research is complete."
       ],
       "automation_paths": [],
       "required_item": "icbmclassic:explosive_missile"

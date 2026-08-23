@@ -9,7 +9,7 @@
       "text": "S3.02 \u2014 Breed Hemp"
     },
     "description": {
-      "text": "Crossbreed and harvest IC2 Hemp. Hemp is a normal tier-3 crop: it needs light level 7, matures at growth stage 6, and regrows from stage 4 after harvest. Melon is a strong accessible parent because it shares Hemp's Green trait and close crop properties; pairing it with a different tier-2/3 crop such as Cocoa gives a practical early search. Hemp is the normal early renewable fiber source because spiders are not part of Industrial Civilization's ecology."
+      "text": "Discover Hemp and secure a renewable source of industrial fiber."
     },
     "frame": "goal",
     "show_toast": true,

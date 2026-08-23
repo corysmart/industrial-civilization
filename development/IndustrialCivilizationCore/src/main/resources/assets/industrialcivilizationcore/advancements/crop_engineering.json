@@ -8,7 +8,7 @@
       "text": "S3.01 \u2014 Crop Engineering"
     },
     "description": {
-      "text": "Craft IC2 Crop Sticks and establish parallel breeding plots. Plant ordinary crops in single sticks; place double sticks between mature adjacent parents to crossbreed, and keep several plots running because each cross is probabilistic."
+      "text": "Establish parallel IC2 crop-breeding experiments for renewable materials."
     },
     "frame": "goal",
     "show_toast": true,

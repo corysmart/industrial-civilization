@@ -78,7 +78,7 @@
       "optional": false,
       "capability": "Remote Emergency Shutdown",
       "final_validation": [
-        "Trigger a verified remote shutdown and confirm output ceases."
+        "Trigger a remote shutdown and watch reactor output fall to zero."
       ],
       "automation_paths": []
     },

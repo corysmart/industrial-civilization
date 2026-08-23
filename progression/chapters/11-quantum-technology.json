@@ -50,7 +50,7 @@
       "optional": false,
       "capability": "Robotic Manufacturing Cell",
       "final_validation": [
-        "Demonstrate the capability: Robotic Manufacturing Cell."
+        "Power a Robotic Manufacturing Cell and complete one local automated production cycle."
       ],
       "automation_paths": [],
       "required_item": "industrialcivilizationcore:robotic_manufacturing_cell"
@@ -68,7 +68,7 @@
       "optional": false,
       "capability": "Lunar Quantum Component",
       "final_validation": [
-        "Demonstrate the capability: Lunar Quantum Component."
+        "Manufacture a Lunar Quantum Component using the precision industry established on the Moon."
       ],
       "automation_paths": [],
       "required_item": "industrialcivilizationcore:lunar_quantum_component"
@@ -153,7 +153,7 @@
       "final_validation": [
         "Connect a real MFSU to a tier-3-compatible Industrial Civilization manufacturing machine.",
         "Start a genuine recipe and complete it under live IC2 EnergyNet power.",
-        "Confirm the machine records at least one 512-EU packet during the operation."
+        "Run the operation with at least one 512-EU packet reaching the machine."
       ],
       "automation_paths": [],
       "runtime_advancement": true
@@ -172,7 +172,7 @@
       "final_validation": [
         "Build four independently connected and correctly oriented MFSUs.",
         "Complete a real recipe with a peak of at least four 512-EU packets in one tick.",
-        "Confirm aggregate throughput does not cause a false overvoltage event."
+        "Complete the operation at higher aggregate throughput without exceeding the voltage of any individual packet."
       ],
       "automation_paths": [],
       "runtime_advancement": true
@@ -210,7 +210,7 @@
       "final_validation": [
         "Charge, orient, and connect fifty real MFSUs to a tier-3-compatible machine.",
         "Complete a real recipe with a peak of at least fifty 512-EU packets in one tick.",
-        "Confirm the bank accelerates work without bypassing per-packet voltage safety."
+        "Use the fifty-unit bank to accelerate real work while every individual packet remains within the machine's voltage limit."
       ],
       "automation_paths": [],
       "runtime_advancement": true
@@ -248,7 +248,7 @@
       "optional": false,
       "capability": "Mars Mission Authorization",
       "final_validation": [
-        "Demonstrate the capability: Mars Mission Authorization."
+        "Combine the required Quantum, lunar, and readiness work into a Mars Mission Authorization."
       ],
       "automation_paths": [],
       "required_item": "industrialcivilizationcore:mars_mission_authorization"

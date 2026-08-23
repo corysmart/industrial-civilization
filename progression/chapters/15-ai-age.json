@@ -36,7 +36,7 @@
       "optional": false,
       "capability": "Civilization Capability Audit",
       "final_validation": [
-        "Confirm Orbital and Lunar archives, Quantum completion, Martian Autonomy, and Lite Matter completion."
+        "Bring together the Orbital and Lunar archives with the achievements of Quantum Technology, Martian Autonomy, and Lite Matter Engineering."
       ],
       "automation_paths": []
     },
@@ -52,7 +52,7 @@
       "optional": false,
       "capability": "Artificial Industrial Intelligence Core",
       "final_validation": [
-        "Demonstrate the capability: Artificial Industrial Intelligence Core."
+        "Synthesize the accumulated research archives and advanced components into an Artificial Industrial Intelligence Core."
       ],
       "automation_paths": [],
       "required_item": "industrialcivilizationcore:artificial_industrial_intelligence_core"

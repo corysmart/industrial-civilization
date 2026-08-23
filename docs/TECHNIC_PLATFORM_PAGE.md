@@ -18,7 +18,7 @@ Highlights:
 - One unified Industrial Civilization advancement tree
 - Continued sandbox play after the main campaign is complete
 
-Version 0.6.2 is the current hidden internal alpha release. The complete numbered campaign has passed live acceptance, the responsive advancements UI has passed real-client testing, and robber theft now requires unobstructed physical reach. Redistribution review, remaining side-path acceptance, multiplayer QA, and final survival-balance work remain in progress.
+Version 0.6.3 is the current hidden internal release. It rewrites the complete questbook as a player-facing industrial field guide while retaining the live-validated campaign, responsive advancements UI, and unobstructed-reach robber fix. Redistribution review, remaining side-path acceptance, multiplayer QA, and final survival-balance work remain in progress.
 
 ## Help
 

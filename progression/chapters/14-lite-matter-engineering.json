@@ -83,7 +83,7 @@
       "optional": false,
       "capability": "Comparative Molecular Characterization",
       "final_validation": [
-        "Record planned Earth, lunar, and Martian material comparisons without enabling arbitrary transmutation."
+        "Record comparable material observations from Earth, the Moon, and Mars without attempting arbitrary transmutation."
       ],
       "automation_paths": [],
       "runtime_advancement": true

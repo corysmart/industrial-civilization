@@ -8,7 +8,7 @@
       "text": "S4.06 \u2014 Automated Water Resources"
     },
     "description": {
-      "text": "Round out peaceful LV agriculture with the Water Resources Collector, giving the settlement an automated fishing and aquatic-resource station without creating a hostile-mob economy."
+      "text": "Integrate the systems required for Automated Water Resources."
     },
     "frame": "challenge",
     "show_toast": true,

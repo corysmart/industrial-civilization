@@ -99,7 +99,7 @@
       "optional": false,
       "capability": "Research Station",
       "final_validation": [
-        "Demonstrate the capability: Research Station."
+        "Install and power a Research Station aboard the orbital facility."
       ],
       "automation_paths": [],
       "required_item": "industrialcivilizationcore:research_station"
@@ -116,7 +116,7 @@
       "optional": false,
       "capability": "Orbital Experiment Module",
       "final_validation": [
-        "Demonstrate the capability: Orbital Experiment Module."
+        "Install and power an Orbital Experiment Module where it can collect orbital observations."
       ],
       "automation_paths": [],
       "required_item": "industrialcivilizationcore:orbital_experiment_module"

@@ -2,7 +2,7 @@
 
 # Manual Quest Test Checklist
 
-Use this checklist for release regressions and dedicated side-path acceptance. The numbered campaign's completed acceptance evidence and subsequent 0.6.2 regression results are recorded in `MAIN_QUESTLINE_LIVE_TEST_LOG.md`; rerun affected checks after progression or runtime changes. Do not use a valued world for a quest-database migration.
+Use this checklist for 0.6.3 release-candidate regressions and dedicated side-path acceptance. The numbered campaign's completed acceptance evidence and earlier 0.6.2 regression results are recorded in `MAIN_QUESTLINE_LIVE_TEST_LOG.md`; rerun affected checks after progression or runtime changes. Do not use a valued world for a quest-database migration.
 
 - [ ] 1. Quest book opens with F6.
 - [ ] 2. All 16 numbered chapters and all 10 independent side-path tabs appear.

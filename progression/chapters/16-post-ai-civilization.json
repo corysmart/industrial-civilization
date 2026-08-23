@@ -100,7 +100,7 @@
       "optional": false,
       "capability": "UU-Matter Research",
       "final_validation": [
-        "Complete the future AI-assisted energy-to-matter research program."
+        "Complete the AI-assisted research program that establishes a controlled energy-to-matter process."
       ],
       "automation_paths": [],
       "required_item": "industrialcivilizationcore:matter_replicator"

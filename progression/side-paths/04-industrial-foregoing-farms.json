@@ -32,7 +32,7 @@
       "optional": true,
       "capability": "Complete the early tree loop with a Plant Gatherer and Resourceful Furnace. Replant saplings, harvest logs, smelt part of the wood into charcoal, and return that charcoal to the IC2 Generator so early electrical expansion can feed itself.",
       "final_validation": [
-        "Own the Plant Sower, Plant Gatherer, and Resourceful Furnace together; the evidence is not consumed.",
+        "Install a Plant Sower, Plant Gatherer, and Resourceful Furnace as one working tree-farm line.",
         "Configure the Gatherer's working area to cover the Sower's tree plot and route saplings back to planting.",
         "Smelt harvested logs into charcoal and feed the charcoal to an IC2 Generator while retaining surplus wood."
       ],
@@ -64,7 +64,7 @@
       "optional": true,
       "capability": "Use the Animal Breeder, Animal Growth Increaser, and Animal Baby Separator to turn the controlled livestock enclosure into a renewable, population-limited husbandry system.",
       "final_validation": [
-        "Own the Animal Breeder, Growth Increaser, and Baby Separator together; the evidence is not consumed.",
+        "Install the Animal Breeder, Growth Increaser, and Baby Separator around the same livestock enclosure.",
         "Supply species-appropriate food and set a breeding population limit before unattended operation.",
         "Route juveniles away from the breeding enclosure so the adult population remains controlled."
       ],
@@ -98,7 +98,7 @@
       "final_validation": [
         "Craft and place a Water Resources Collector from its IC2 LV recipe.",
         "Give it a valid water working area and connect output storage.",
-        "Confirm the completed agriculture branch covers trees, field crops, livestock products, fertilizer, and water resources."
+        "Operate tree, field-crop, livestock-product, fertilizer, and water-resource lines as one complete agricultural district."
       ],
       "automation_paths": [],
       "required_item": "industrialforegoing:water_resources_collector"

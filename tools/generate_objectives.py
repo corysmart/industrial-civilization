@@ -93,6 +93,59 @@ STORY_TRANSITIONS = {
     "post_ai_parallel": "This program expands the civilization without closing any of its other frontiers.",
 }
 
+# These paragraphs teach the engineering reason behind milestone-scale systems.
+# Short, self-explanatory quests use the line narrative plus their authored
+# action text; unfamiliar systems receive a focused field-guide explanation.
+QUEST_STORY_OVERRIDES = {
+    "first_ic2_generator": "A hand-fed furnace can process material, but it cannot distribute power. The Generator is the first machine that lets one fuel source support an electrical workshop instead of one isolated task.",
+    "low_voltage_network": "Electricity becomes useful only when it can move safely. LV cable gives the workshop a shared power network, while transformers let later voltage tiers feed smaller machines without destroying them.",
+    "electric_processing": "Electric machines turn fuel into a workshop-wide resource. A dependable processing suite replaces separate furnace fires with controllable EU and lays the foundation for continuous production.",
+    "voltage_literacy": "IC2 machines care about the size of each incoming EU packet, not only total energy. Safe expansion depends on matching machine tiers, cable losses, storage output, and transformer direction before power is applied.",
+    "automated_ore_processing": "Ore doubling is valuable, but carrying every stack between machines still makes the player the factory's conveyor belt. Routed processing is the first step toward production that continues unattended.",
+    "quarry_extraction": "Industrial demand eventually exceeds what even efficient manual mining can supply. A Quarry turns extraction into permanent infrastructure, delivering a steady material stream to the same EU-centered economy that powers the workshop.",
+    "physical_logistics": "Automation fails when inputs pile up in one machine and outputs block another. Pipes, hoppers, and buffers give material a route through the factory and make throughput a property of the system rather than the player.",
+    "early_autocrafting": "Repeated recipes are another form of manual labor. Early autocrafting is deliberately physical and modest: ingredients must be routed into a fixed recipe, and the output must have somewhere to go.",
+    "programmable_assembler": "Fixed automation is efficient until demand changes. The Programmable Assembler turns recipes into selectable production programs, letting one powered line queue different work and report what it still needs.",
+    "production_queue": "A programmable factory should keep working after one order finishes. Queues turn production into a schedule, while shortage reporting shows whether the real bottleneck is material, power, or output space.",
+    "nuclear_reactor": "Orbital construction requires power that does not disappear with daylight or weather. Nuclear energy provides that scale, but only when heat, cooling, containment, and shutdown systems are designed before the reactor is started.",
+    "reactor_telemetry": "A reactor that appears quiet may still be approaching failure. Continuous heat, output, and operating-state telemetry turns invisible risk into information that automation can act upon.",
+    "emergency_shutdown": "Monitoring is useful only if the control system can respond. A remote shutdown must remove the reactor's ability to continue producing heat or power even when the operator cannot safely approach it.",
+    "nuclear_containment": "Automation reduces risk; containment limits the consequences when prevention fails. Build the reactor as an industrial facility with controlled access and a deliberate barrier between the core and the rest of the settlement.",
+    "orbital_habitat": "Orbit has sunlight and research potential, but no breathable environment. A real station begins with a sealed volume where oxygen production can be measured at the place people and equipment must actually survive.",
+    "orbital_power": "Orbital sunlight is strong, but every station still crosses darkness. Generation and storage must be designed together so life support, telemetry, and research continue through an eclipse.",
+    "research_station": "Crafting another machine can no longer answer every engineering question. The Research Station turns environmental observations and operating records into artifacts that authorize the next technological era.",
+    "functional_orbital_station": "A collection of blocks is not yet a station. Habitation, power, communications, storage, experiments, and safe arrival infrastructure must operate together long enough to show that people can remain in orbit.",
+    "lunar_mining": "The Moon becomes useful when it can supply its own industry. Automated mining reduces dependence on launch mass and begins converting an expedition into an extraterrestrial settlement.",
+    "lunar_darkness_mastery": "Lunar night lasts far longer than an Earth night. Surviving one complete darkness cycle requires stored energy, disciplined loads, and enough local infrastructure to avoid turning every eclipse into an evacuation.",
+    "extreme_voltage_industry": "Quantum manufacturing needs energy at a scale ordinary workshops cannot deliver. EV systems demand deliberate transformers, tier-appropriate machines, and packet safety; a single oversized packet can destroy equipment regardless of the average EU/t.",
+    "tier2_mars_launch": "Mars is not the next sightseeing destination. Its distance makes rescue and resupply unreliable, so the mission begins only after lunar engineering and Quantum technology can support a colony designed to stand on its own.",
+    "autonomous_resource_response": "A distant factory cannot wait for an operator to notice every empty input. Resource response lets production recognize shortages and choose whether to replenish, reroute, or postpone work before the entire line stalls.",
+    "autonomous_power_response": "Power failures on Mars threaten every connected system at once. Autonomous load shedding protects life support and essential machinery first, then restores production in a controlled order when generation returns.",
+    "molecular_analyzer": "Matter engineering begins with measurement, not replication. The Molecular Analyzer records how materials from Earth, the Moon, and Mars differ before the civilization attempts to reproduce any of them.",
+    "comparative_molecular_analysis": "One sample describes a material; samples from three worlds reveal which properties belong to the substance and which come from its environment. Comparative records turn scattered observations into reliable engineering knowledge.",
+    "artificial_industrial_intelligence_core": "Until now, automation has coordinated individual machines and queues. The AI Core combines the civilization's accumulated industrial, orbital, lunar, Martian, and matter knowledge so entire production systems can be coordinated together.",
+    "ai_age_entry": "The AI Age is not a magical shortcut. It is the point where every earlier discipline—power, logistics, research, programming, and autonomous response—can be applied at civilization scale.",
+    "ae2_entry": "AE2 is the culmination of the automation path, not merely a larger chest. The AI Core authorizes a network where storage, pattern knowledge, and manufacturing requests can be coordinated as one digital industrial system.",
+    "ae2_autocrafting": "Early autocrafting moved physical ingredients through fixed machinery. AE2 turns that experience into network manufacturing: encoded patterns describe the plan while the network supplies ingredients and coordinates each required step.",
+    "uu_matter_research": "Once energy, computation, and material patterns are understood together, matter itself becomes an industrial input. UU-Matter research explores that conversion without pretending energy or authorization constraints have disappeared.",
+    "controlled_replication": "Replication is powerful because it can reproduce scarce authorized patterns; it is dangerous when treated as free matter. A controlled system ties every copy to known data, real energy, and bounded throughput.",
+    "fusion_and_antimatter": "Fusion and antimatter move the civilization from chemical and nuclear industry into controlled stellar-scale processes. Containment, energy accounting, and remote operation matter more here than raw output alone.",
+    "orbital_megastructures": "Orbit makes structures possible that gravity and atmosphere make impractical on Earth. Megastructure construction turns cargo logistics, autonomous assembly, and orbital power into infrastructure measured across entire regions.",
+    "autonomous_colony_expansion": "A colony becomes a civilization when it can establish the next settlement without rebuilding every supply chain from Earth. Autonomous expansion packages power, habitat, industry, and logistics into a repeatable frontier system.",
+    "continuous_civilization": "There is no final machine that completes civilization. The achievement is a system that can continue exploring, researching, automating, scaling, colonizing, and connecting new industry without a predefined endpoint.",
+    "breed_hemp": "Useful biological materials can be engineered as deliberately as metals. IC2 crop breeding turns mature parent plants and parallel experiments into a renewable path toward Hemp and industrial fiber.",
+    "renewable_string": "Hemp becomes strategically useful when it replaces a scavenged supply with a cultivated one. Processing the harvest into String closes the gap between crop engineering and ordinary workshop logistics.",
+    "controlled_livestock": "Leads connect renewable fiber and Sticky Resin to practical animal management. A controlled herd provides food and materials without depending on dangerous wildlife for basic industrial supplies.",
+    "lv_tree_planting": "Coal can power the first electrical workshop, but every piece burned must be replaced. Automated trees offer a fuel supply that grows back and begin the workshop's first closed industrial loop.",
+    "lv_charcoal_tree_farm": "Planting trees solves only half the fuel problem. Harvesting, sapling recovery, charcoal production, and return fuel must form one loop before the Generator can help supply its own future energy.",
+    "automated_animal_husbandry": "A renewable herd still needs population control. Automated breeding, growth, and separation keep adults productive without overcrowding the enclosure or consuming every food reserve.",
+    "mfsu_bank_baseline": "An MFSU stores enormous energy, but its most important property here is a legal 512-EU output packet. Establish one safe packet as the baseline before attempting parallel burst power.",
+    "mfsu_bank_quad": "Voltage and throughput are different quantities. Four MFSUs can deliver four legal 512-EU packets in the same tick—2,048 EU/t in aggregate—without ever exposing the machine to a packet above its tier.",
+    "mfsu_bank_ten": "Parallel storage turns electrical architecture into manufacturing speed. Ten independently connected MFSUs can deliver 5,120 EU/t as ten legal packets when the receiving machine can convert extra accepted EU into work.",
+    "mfsu_bank_fifty": "At fifty parallel MFSUs, the bank can deliver 25,600 EU/t while every packet remains 512 EU. This is fundamentally different from one illegal 25,600-EU packet and is intentional expert IC2 engineering.",
+    "blink_manufacturing": "A mature burst-power bank can compress an energy-limited manufacturing cycle into a fraction of a second. The challenge is to achieve that speed through real concurrent packets, not stored progress or a finished item supplied in advance.",
+}
+
 ERA_BACKGROUNDS = {
     "earth": "industrialcivilizationcore:textures/gui/quest_bg_earth_ui.png",
     "orbit": "industrialcivilizationcore:textures/gui/quest_bg_orbit_ui.png",
@@ -211,7 +264,7 @@ def stack(ref, count=1, ore_dict=""):
     return {"id:8": item_id, "Count:3": count, "Damage:2": damage, "OreDict:8": ore_dict}
 
 
-def retrieval_task(items):
+def retrieval_task(items, task_index=0):
     required = {}
     for index, value in enumerate(items):
         spec = value if isinstance(value, dict) else {"item": value}
@@ -223,7 +276,7 @@ def retrieval_task(items):
         "groupDetect:1": 1,
         "autoConsume:1": 0,
         "requiredItems:9": required,
-        "index:3": 0,
+        "index:3": task_index,
         "taskID:8": "bq_standard:retrieval",
     }
 
@@ -243,6 +296,14 @@ def task_for(ms):
     # by Better Questing itself and never asks the player to self-certify.
     evidence = DETECTION.get("overrides", {}).get(ms["id"], [ms["icon"]])
     return retrieval_task(evidence)
+
+
+def tasks_for(ms):
+    if ms["id"] == "basic_storage":
+        alternatives = DETECTION["overrides"]["basic_storage"]
+        return {f"{index}:10": retrieval_task([item], index)
+                for index, item in enumerate(alternatives)}
+    return {"0:10": task_for(ms)}
 
 
 def quest_icon(ms):
@@ -268,17 +329,52 @@ def quest_icon_stack(ms):
 
 
 def story(ms, line, index, total):
+    if ms["id"] in QUEST_STORY_OVERRIDES:
+        return QUEST_STORY_OVERRIDES[ms["id"]]
     line_id = line["id"]
     opening = STORY_OPENINGS[line_id]
     transition = STORY_TRANSITIONS[line_id]
     if index == 0:
         moment = opening
     elif index == total - 1:
-        moment = (f"The {line['title'].lower()} program reaches its decisive proof. "
+        moment = (f"The {line['title'].lower()} program is ready for its defining achievement. "
                   f"{transition}")
     else:
-        moment = (f"The {line['title'].lower()} program advances one dependable system at a time. "
-                  f"This step turns {ms['title'].lower()} from an idea into infrastructure.")
+        category_stories = {
+            "construction": (
+                "A plan begins to matter when it becomes infrastructure that other work can depend on.",
+                "Industrial growth needs permanent systems, not a collection of machines placed for one recipe.",
+                "The settlement can now invest materials in equipment meant to support every project that follows.",
+            ),
+            "possession": (
+                "The right component can carry the knowledge and capacity of an entire production chain.",
+                "Expansion now depends on securing a tool or material that ordinary workshop methods cannot replace.",
+                "This stage turns the output of earlier industry into a durable capability for the next frontier.",
+            ),
+            "operation": (
+                "A machine earns its place when it performs useful work as part of the larger factory.",
+                "Installed equipment is only potential; reliable operation is what expands the civilization's capacity.",
+                "The next bottleneck is practical throughput rather than access to another recipe.",
+            ),
+            "research": (
+                "New environments become useful only after observation is converted into engineering knowledge.",
+                "Industry has reached a question that cannot be answered by crafting another familiar machine.",
+                "A controlled experiment can turn an unfamiliar constraint into a repeatable design rule.",
+            ),
+            "transition": (
+                "The workshop has outgrown the assumptions that carried it through the previous era.",
+                "Earlier systems now provide enough confidence to open a more demanding technological path.",
+                "This is a change in industrial scale: the old foundation remains useful, but it is no longer sufficient.",
+            ),
+            "mastery": (
+                "Separate machines must now behave as one dependable system rather than isolated successes.",
+                "The real test of mature industry is whether power, materials, logistics, and control remain stable together.",
+                "Scale exposes every weak connection, so this stage brings the chapter's systems into one working whole.",
+            ),
+        }
+        lead = category_stories[ms["category"]][index % 3]
+        moment = (f"{lead} {ms['title']} advances the {line['title'].lower()} program "
+                  "and prepares the systems that follow.")
     return moment
 
 
@@ -295,75 +391,84 @@ def controls_for(ms):
         evidence_ref = ms["icon"]
     haystack = " ".join([ms["id"], ms["title"], ms["capability"], ms["icon"],
                          ms.get("required_item", ""), evidence_ref]).lower()
-    controls = ["F6 — reopen the Industrial Civilization quest guide."]
-    modded = (":" in ms["icon"] and not ms["icon"].startswith("minecraft:")) or any(
-        word in haystack for word in ("ic2", "electric", "voltage", "reactor", "computer", "factory", "orbit", "lunar", "moon", "mars", "quantum", "matter", "cargo", "faction", "wireless"))
-    if modded:
-        controls.append("HEI: hover an item and press R for its recipe or U for its uses; Option+I bookmarks it.")
-    if any(word in haystack for word in ("industrialcivilizationcore", "fabricator", "assembler", "robotic", "research station", "experiment module", "replicator", "fusion", "cargo controller", "megastructure", "colony beacon")):
+    controls = []
+    if ms["id"] in {"low_voltage_network", "voltage_literacy", "advanced_ic2", "extreme_voltage_industry"}:
+        controls.append("IC2 voltage is determined by the largest EU packet a machine receives. Use transformer output faces deliberately, match cables and storage to the intended tier, and step voltage down before a higher-tier source feeds lower-tier equipment; insulation does not make an oversized packet safe.")
+    if ms["id"] in {"nuclear_reactor", "reactor_output", "reactor_telemetry", "emergency_shutdown"}:
+        controls.append("Design the reactor from a tested component layout before inserting fuel. Observe heat and EU output during the first cycle, and wire the reactor chamber to a remote redstone control that can stop the core without requiring a close approach.")
+    if ms["id"] in {"orbital_habitat", "lunar_habitat", "martian_habitat"}:
+        controls.append("A sealed room becomes a proven habitat when its Oxygen Sealer supplies breathable air and a nearby Galacticraft Oxygen Detector reaches its active redstone state. Keep storage and the environment-specific support systems inside the maintained base area.")
+    if ms["id"] in {"mffs_installation", "nuclear_containment"}:
+        controls.append("An MFFS installation needs power, a configured Projector, and a field shape that encloses the area it protects. Test access and shutdown from outside the field before trusting it around valuable machinery.")
+    if ms["id"] in {"electric_fabricator", "programmable_assembler", "robotic_manufacturing_cell",
+                     "research_station", "orbital_experiment_module", "uu_matter_production",
+                     "controlled_replication", "fusion_and_antimatter", "orbital_megastructures",
+                     "autonomous_colony_expansion"}:
         controls.append("Industrial Civilization machines: right-click to open the IC2-styled EU/inventory screen. Put recipe inputs in the three left slots and take output from the right slot. Matching inputs run automatically; ComputerCraft is required only for explicit recipe selection, queues, telemetry, or cargo channels.")
-    if "industrialforegoing" in haystack:
+    if ms["id"] in {"lv_tree_planting", "lv_charcoal_tree_farm", "automated_field_agriculture",
+                     "automated_animal_husbandry", "automated_animal_resources", "automated_water_resources"}:
         controls.append("Industrial Foregoing agriculture: right-click the machine to configure its working area, item or fluid inputs, and output handling. Supply it from IC2 generation through the installed adapter; one LV line has ample capacity for these farm machines.")
-    if any(word in haystack for word in ("archive", "record", "authorization", "dossier", "ledger", "certificate", "charter", "network key")):
-        controls.append("Research artifacts: hold the finished record and right-click once to register its knowledge with the progression system.")
-    if any(word in haystack for word in ("computercraft", "computer", "programmable", "telemetry", "queue", "autonomous", "unattended")):
+    if ms["id"] in {"orbital_research_complete", "moon_access", "lunar_research_complete",
+                     "quantum_research_access", "mars_mission_authorization", "material_pattern_record",
+                     "martian_autonomy_complete", "ai_prerequisite_audit", "ai_age_entry"}:
+        controls.append("When a finished research artifact is meant to open new work, hold it and right-click once to register the knowledge it contains.")
+    if ms["id"] in {"computer_online", "factory_telemetry", "programmable_assembler", "production_queue",
+                     "reactor_telemetry", "orbital_communications", "autonomous_resource_response",
+                     "autonomous_power_response", "ai_factory_coordination"}:
         controls.append("ComputerCraft: right-click a computer to open it; type help for built-in help; hold Control+T to terminate a running program. Use peripheral.getNames() and peripheral.wrap(side) to find attached machines.")
-    if any(word in haystack for word in ("programmable assembler", "production_queue", "multi_step_manufacturing", "programmable_manufacturing")):
+    if ms["id"] in {"programmable_assembler", "production_queue", "multi_step_manufacturing",
+                     "programmable_manufacturing"}:
         controls.append("Assembler peripheral: after local m = peripheral.wrap(\"right\"), use m.listRecipes(), m.selectRecipe(\"control_processor\"), and m.queue(4). Replace right with the side where the assembler is attached.")
-    if "cargo" in haystack and "industrialcivilizationcore:interplanetary_cargo_controller" in haystack:
+    if ms["id"] in {"martian_cargo", "cross_planetary_logistics", "nation_trade_network"}:
         controls.append("Cargo peripheral: connect a computer to each controller and call setCargoChannel with the same channel name. Keep both controllers loaded in different dimensions; input enters slot 1 and arrives in the remote output slot.")
-    if "molecular_analyzer" in haystack or "analyzer" in haystack:
+    if ms["id"] in {"molecular_analyzer", "analyzer_power", "material_pattern_record"}:
         controls.append("Molecular Analyzer: supply tier-3-compatible IC2 EU, hold Galacticraft Martian Desh metadata 2, and right-click the placed Analyzer. One run consumes one Desh and 6,250 EU.")
-    if "solar" in haystack:
+    if ms["id"] in {"orbital_power", "orbital_solar_industry", "orbital_tracking_array",
+                     "lunar_power", "martian_power"}:
         controls.append("Environmental solar: place with an unobstructed sky view and connect an IC2 cable to any face. Right-click once so sustained generation is credited to you.")
-    if any(word in haystack for word in ("galacticraft", "rocket", "orbit", "orbital", "moon", "lunar", "mars", "martian", "cargo")):
+    if ms["id"] in {"tier1_orbital_launch", "lunar_landing", "lunar_cargo",
+                     "tier2_mars_launch", "martian_cargo"}:
         controls.append("Galacticraft: right-click a fueled rocket to mount it, Space begins launch, and W/A/S/D steer supported vehicles. Command+I opens the spaceship inventory. Right-click machines/cargo loaders to open them; use the standard Galacticraft wrench on configurable connections.")
-    if any(word in haystack for word in ("techguns", "firearm", "armament", "pistol", "shotgun", "rifle", "defensive")):
+    if ms["id"] in {"defensive_readiness", "industrial_armament", "advanced_armament_factory"}:
         controls.append("Techguns: Option+Y forces a reload; right-click aims/uses the weapon and left-click fires.")
-    if any(word in haystack for word in ("icbm", "missile", "launcher", "radar")):
+    if ms["id"] in {"icbm_launch_control", "icbm_radar_defense", "icbm_conventional_missile"}:
         controls.append("ICBM: right-click the Launcher Screen and Radar Station to configure targets, ranges, and firing groups. Supply their converted IC2 EU network before arming; test conventional payloads only in a remote range.")
-    if any(word in haystack for word in ("vehicle", "car workshop", "mobility", "service carrier")):
+    if ms["id"] in {"car_workshop_deployed", "regional_mobility", "industrial_service_carrier"}:
         controls.append("Vehicles: use W/A/S/D to drive, Option+K for the horn, and Option+L to cycle seats. Sneak-right-click the parked Industrial Service Carrier for its 54-slot cargo hold; hold a Crafting Table while doing so for its mobile crafting grid. Fluid containers interact by right-clicking the parked carrier. Park within four blocks of a Vehicle Service Dock to expose cargo and its 64,000 mB tank to BuildCraft pipes.")
-    if any(word in haystack for word in ("car workshop", "gun factory", "rust", "repair bench")):
+    if ms["id"] in {"car_workshop_deployed", "advanced_armament_factory"}:
         controls.append("Large workshops: place the controller to deploy the equipment set piece, then provide a solid roof. Rain reaching the controller rusts it; right-click a Repair Bench while holding one IC2 Machine Block to restore the nearest rusted workshop within 12 blocks.")
-    if any(word in haystack for word in ("railcraft", "freight", "locomotive", "rail logistics")):
+    if ms["id"] in {"railcraft_steel", "freight_infrastructure"}:
         controls.append("Railcraft locomotive: Option+[ reverse, Option+period faster, Option+] slower, Option+; mode, and Option+' whistle. Right-click the locomotive for its configuration screen.")
-    if any(word in haystack for word in ("faction", "criminal", "settlement", "npc")):
+    if ms["id"] in {"faction_contacts", "underworld_lead", "faction_membership"}:
         controls.append("Factions: Pause > Factions & Settlements shows reputation, attitude, membership rules, known settlement types, and trades. Normal right-click opens IC Credit trades; sneak-right-click requests membership. Trusted members at 60 reputation can recruit a companion by holding 8 IC Credits while sneak-right-clicking.")
+    if ms["id"] == "underworld_lead":
         controls.append("Custom NPCs: F8 opens the separate NPC quest log when an authored encounter uses it.")
-    if any(word in haystack for word in ("ic2", "electric tool", "drill", "chainsaw", "nanosuit", "quantumsuit", "quantum suit")):
-        controls.append("IC2 equipment: F10 changes supported modes. Backslash is the armor modifier, Option+H toggles boost, and Option+O expands the armor HUD. Sneak while mining/chopping to suppress pack-added area or whole-tree behavior.")
+    if ms["id"] in {"electric_tools", "nanosuit_and_tools", "quantumsuit"}:
+        controls.append("F10 changes supported IC2 tool modes. Backslash is the armor modifier, Option+H toggles boost, and Option+O expands the armor HUD. Sneak while mining or chopping when you need precise one-block behavior.")
     if ms["id"] == "electric_tools":
         controls.append("Pack tool behavior: stone-tier axes and better, plus the IC2 Chainsaw, fell one connected leaf-bearing tree and charge durability/EU per log. The IC2 Drill mines a 3×3 plane and the Diamond Drill a 9×9 plane; Sneak restores one-block precision.")
-    if "mfsu" in haystack or "burst bank" in haystack or "blink manufacturing" in haystack:
+    if ms["id"] in {"mfsu_bank_baseline", "mfsu_bank_quad", "mfsu_bank_ten",
+                     "mfsu_bank_fifty", "blink_manufacturing"}:
         controls.append("MFSU bank: orient each MFSU output toward an independent EnergyNet connection to the same tier-3-compatible machine. Start the real recipe before discharge. The machine GUI reports aggregate Input EU/t and speed; an adjacent ComputerCraft computer can also call getMfsuPacketsThisTick() and getOperationPeakMfsuPackets().")
-    if any(word in haystack for word in ("applied energistics", "ae2", "storage network", "crafting unit")):
+    if ms["id"] in {"ae2_entry", "ae2_autocrafting"}:
         controls.append("AE2: right-click terminals and network blocks to configure them; Command+P toggles search-field focus.")
-    if modded:
-        controls.append("Waila: Command+[ toggles the overlay, Command+] liquid details, Command+; recipe, Command+0 configuration, and Command+' uses.")
     return controls
 
 
 def description(ms, line, index, total):
-    lines = [
-        "STORY",
-        story(ms, line, index, total),
-        "",
-        "MISSION",
-        f"{ms['capability']}",
-        "",
-        "Completion is detected automatically from real gameplay evidence; no checkbox or command is required.",
-        "",
-        "PROOF OF COMPLETION",
-    ]
-    lines.extend(f"- {value}" for value in ms["final_validation"])
-    lines.extend(["", "CONTROLS AND OPERATION"])
-    lines.extend(f"- {value}" for value in controls_for(ms))
-    if ms.get("temporary_validation"):
-        lines.extend(["", "TEMPORARY VALIDATION:", ms["temporary_validation"]])
-    if ms.get("optional"):
-        lines.extend(["", "Optional: this quest does not gate the canonical critical path."])
-    return "\n".join(lines)
+    paragraphs = [story(ms, line, index, total)]
+    capability = ms["capability"].strip()
+    if capability.rstrip(".") != ms["title"].rstrip("."):
+        paragraphs.append(capability if capability.endswith(".") else capability + ".")
+    paragraphs.extend(controls_for(ms))
+    actions = ms["final_validation"]
+    if len(actions) == 1:
+        action = actions[0]
+        paragraphs.append(action if action.endswith(".") else action + ".")
+    else:
+        paragraphs.append("Bring the project online in these stages:\n" +
+                          "\n".join(f"- {value}" for value in actions))
+    return "\n\n".join(paragraphs)
 
 
 def quest(qid, ms, ids, line, index, total):
@@ -371,7 +476,7 @@ def quest(qid, ms, ids, line, index, total):
         "issilent:1": 0,
         "snd_complete:8": "minecraft:entity.player.levelup",
         "lockedprogress:1": 1,
-        "tasklogic:8": "AND",
+        "tasklogic:8": "OR" if ms["id"] == "basic_storage" else "AND",
         "repeattime:3": -1,
         "visibility:8": "ALWAYS",
         "simultaneous:1": 0,
@@ -389,7 +494,7 @@ def quest(qid, ms, ids, line, index, total):
         "questID:3": qid,
         "preRequisites:11": [ids[p] for p in ms["prerequisites"]],
         "properties:10": {"betterquesting:10": props},
-        "tasks:9": {"0:10": task_for(ms)},
+        "tasks:9": tasks_for(ms),
         "rewards:9": {},
     }
 
@@ -520,7 +625,7 @@ def main():
             "hardcore:1": 0,
             "home_image:8": "industrialcivilizationcore:textures/gui/quest_home_v2.png",
             "party_enable:1": 1,
-            "pack_version:3": 17,
+            "pack_version:3": 20,
             "home_offset_x:3": -128,
             "home_offset_y:3": -64,
         }},
