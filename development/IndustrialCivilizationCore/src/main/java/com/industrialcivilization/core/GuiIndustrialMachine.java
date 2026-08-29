@@ -13,7 +13,7 @@ public final class GuiIndustrialMachine extends GuiContainer {
     private static final int TITLE_WIDTH = 184;
     private static final int STATUS_LEFT = 37;
     private static final int STATUS_RIGHT = 190;
-    private static final int STATUS_Y = 82;
+    private static final int STATUS_Y = 80;
     private static final int STATUS_COLOR = 0xD7E0E3;
     private static final int ENERGY_BAR_HEIGHT = 36;
     private static final int ENERGY_BAR_BOTTOM = 67;
@@ -60,16 +60,24 @@ public final class GuiIndustrialMachine extends GuiContainer {
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         String title = fontRenderer.trimStringToWidth(
-            tile.getDisplayName().getUnformattedText(), TITLE_WIDTH);
+            tile.getOperationsGuiTitle(), TITLE_WIDTH);
         int titleX = TITLE_LEFT + (TITLE_WIDTH - fontRenderer.getStringWidth(title)) / 2;
         fontRenderer.drawString(title, titleX, 6, 0x25333A);
+        if (tile.hasLocalOperationsStatus()) {
+            String[] lines = tile.getOperationsGuiLines();
+            for (int index = 0; index < Math.min(3, lines.length); index++) {
+                String line = fontRenderer.trimStringToWidth(lines[index], STATUS_RIGHT - STATUS_LEFT);
+                fontRenderer.drawString(line, STATUS_LEFT, 58 + index * 11, STATUS_COLOR);
+            }
+            return;
+        }
         String input = "Input " + IndustrialUiText.compactNumber(tile.getAcceptedEUThisTick())
             + " EU/t  " + IndustrialUiText.speedMultiplier(tile.getEffectiveSpeedMultiplier());
         fontRenderer.drawString(input, STATUS_LEFT, 58, STATUS_COLOR);
         String work = "Work " + IndustrialUiText.compactNumber(tile.getWorkCompletedEU())
             + "/" + IndustrialUiText.compactNumber(tile.getWorkRequiredEU())
             + "  ETA " + IndustrialUiText.ticksAsEta(tile.getEstimatedTicksRemaining());
-        fontRenderer.drawString(work, STATUS_LEFT, 70, STATUS_COLOR);
+        fontRenderer.drawString(work, STATUS_LEFT, 69, STATUS_COLOR);
         String energy = "EU " + IndustrialUiText.compactNumber(tile.getEnergyStored())
             + "/" + IndustrialUiText.compactNumber(tile.getCapacity());
         // The status row belongs inside the dark process display. Its left edge

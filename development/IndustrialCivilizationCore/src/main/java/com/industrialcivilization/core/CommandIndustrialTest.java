@@ -79,7 +79,7 @@ public final class CommandIndustrialTest extends CommandBase {
 
     @Override public String getName() { return "ic_test"; }
     @Override public String getUsage(ICommandSender sender) {
-        return "/ic_test snapshot [radius] | scenario <workshop_adjacency|earth_ecology|release_recipes|robber_wall_theft|mobile_quarry_relocation|teleport_gate|faction_side_path|faction_gameplay_path|vehicle_logistics_path|strategic_defense_path|agricultural_side_path|automated_agriculture_path|settlement_economy_path> | assert <workshop_adjacency|earth_ecology>";
+        return "/ic_test snapshot [radius] | scenario <workshop_adjacency|earth_ecology|release_recipes|robber_wall_theft|mobile_quarry_relocation|teleport_gate|faction_side_path|faction_gameplay_path|vehicle_logistics_path|strategic_defense_path|agricultural_side_path|automated_agriculture_path|settlement_economy_path|civilization_systems> | assert <workshop_adjacency|earth_ecology>";
     }
     @Override public int getRequiredPermissionLevel() { return 0; }
 
@@ -196,6 +196,11 @@ public final class CommandIndustrialTest extends CommandBase {
         if (args.length == 2 && "scenario".equals(args[0])
                 && "settlement_economy_path".equals(args[1])) {
             runSettlementEconomyScenario(player);
+            return;
+        }
+        if (args.length == 2 && "scenario".equals(args[0])
+                && "civilization_systems".equals(args[1])) {
+            runCivilizationSystemsScenario(player);
             return;
         }
         throw new WrongUsageException(getUsage(sender));
@@ -716,6 +721,154 @@ public final class CommandIndustrialTest extends CommandBase {
             + (exactBill ? 1 : 0) + "|physical_expansion=" + (physicalExpansion ? 1 : 0)
             + "|circulation=" + (circulation ? 1 : 0) + "|persistence="
             + (persistence ? 1 : 0));
+    }
+
+    private static void runCivilizationSystemsScenario(EntityPlayerMP player) {
+        World world = player.world;
+        BlockPos base = world.getHeight(player.getPosition().add(40, 0, 40));
+        for (BlockPos clear : BlockPos.getAllInBoxMutable(base.add(-3, -2, -3), base.add(28, 8, 12)))
+            world.setBlockToAir(clear);
+        for (BlockPos floor : BlockPos.getAllInBoxMutable(base.add(-3, -1, -3), base.add(28, -1, 12)))
+            world.setBlockState(floor, Blocks.STONE.getDefaultState(), 2);
+
+        BlockPos sourcePos = base;
+        BlockPos destinationPos = base.add(6, 0, 0);
+        BlockPos assemblerPos = destinationPos.add(0, 0, 1);
+        BlockPos highPriorityPos = base.add(10, 0, 6);
+        BlockPos lowPriorityPos = base.add(14, 0, 6);
+        BlockPos servicePos = base.add(20, 0, 0);
+        BlockPos serviceCargoPos = servicePos.add(1, 0, 0);
+        String testRoute = "civilization_test_route_" + base.getX() + "_" + base.getZ();
+        String highPriorityName = "Critical Fabrication " + base.getX() + " " + base.getZ();
+        world.setBlockState(sourcePos, IndustrialCivilizationCore.INTERPLANETARY_CARGO_CONTROLLER.getDefaultState(), 3);
+        world.setBlockState(destinationPos, IndustrialCivilizationCore.INTERPLANETARY_CARGO_CONTROLLER.getDefaultState(), 3);
+        world.setBlockState(assemblerPos, IndustrialCivilizationCore.PROGRAMMABLE_ASSEMBLER.getDefaultState(), 3);
+        world.setBlockState(highPriorityPos, IndustrialCivilizationCore.INTERPLANETARY_CARGO_CONTROLLER.getDefaultState(), 3);
+        world.setBlockState(lowPriorityPos, IndustrialCivilizationCore.INTERPLANETARY_CARGO_CONTROLLER.getDefaultState(), 3);
+        world.setBlockState(servicePos, IndustrialCivilizationCore.CIVILIZATION_SERVICE_INTERFACE.getDefaultState(), 3);
+        world.setBlockState(serviceCargoPos, IndustrialCivilizationCore.INTERPLANETARY_CARGO_CONTROLLER.getDefaultState(), 3);
+        TileIndustrialMachine source = (TileIndustrialMachine) world.getTileEntity(sourcePos);
+        TileIndustrialMachine destination = (TileIndustrialMachine) world.getTileEntity(destinationPos);
+        TileIndustrialMachine assembler = (TileIndustrialMachine) world.getTileEntity(assemblerPos);
+        TileIndustrialMachine highPriority = (TileIndustrialMachine) world.getTileEntity(highPriorityPos);
+        TileIndustrialMachine lowPriority = (TileIndustrialMachine) world.getTileEntity(lowPriorityPos);
+        TileIndustrialMachine service = (TileIndustrialMachine) world.getTileEntity(servicePos);
+        TileIndustrialMachine serviceCargo = (TileIndustrialMachine) world.getTileEntity(serviceCargoPos);
+        source.setLastUser(player); destination.setLastUser(player); service.setLastUser(player);
+        source.seedNationExchange(testRoute, "industrialcivilizationcore:precision_frame");
+        destination.seedNationExchange(testRoute, "minecraft:iron_ingot");
+        source.configureFacilityForTest("Earth Components", "source factory");
+        destination.configureFacilityForTest("Mars Spares", "critical spares reserve");
+        source.requestManifestForTest("Mars Spares", "industrialcivilizationcore:precision_frame", 1);
+        source.setEnergyForTest(source.getCapacity());
+        boolean freight = source.transferNationCargoForTest();
+        String[] manifest = source.policySnapshotForTest();
+        boolean manifestProof = freight && "delivered".equals(manifest[2])
+            && "1".equals(manifest[4])
+            && destination.getStackInSlot(TileIndustrialMachine.OUTPUT_SLOT).getItem()
+                == IndustrialCivilizationCore.PRECISION_FRAME;
+
+        destination.configurePolicyForTest("industrialcivilizationcore:control_processor", 1, 1,
+            1024, "west");
+        destination.setEnergyForTest(0);
+        destination.runPolicyForTest();
+        boolean shed = destination.policyRedstonePower(EnumFacing.WEST) == 15;
+        assembler.setInventorySlotContents(0, new ItemStack(IndustrialCivilizationCore.PRECISION_FRAME, 3));
+        assembler.setInventorySlotContents(1, new ItemStack(IndustrialCivilizationCore.BLANK_DATA_CARTRIDGE, 3));
+        assembler.setInventorySlotContents(2, new ItemStack(Items.REDSTONE, 3));
+        destination.setEnergyForTest(destination.getCapacity());
+        destination.runPolicyForTest();
+        assembler.setEnergyForTest(assembler.getCapacity());
+        for (int tick = 0; tick < assembler.getDuration() * 3; tick++) assembler.update();
+        destination.runPolicyForTest();
+        String[] policy = destination.policySnapshotForTest();
+        boolean production = assembler.getStackInSlot(TileIndustrialMachine.OUTPUT_SLOT).getItem()
+            == IndustrialCivilizationCore.CONTROL_PROCESSOR;
+        boolean recovery = "reserve satisfied".equals(policy[0]) && policy[1].isEmpty();
+
+        highPriority.seedNationExchange(testRoute, "minecraft:iron_ingot");
+        lowPriority.seedNationExchange(testRoute, "minecraft:iron_ingot");
+        highPriority.configureFacilityForTest(highPriorityName, "priority eight reserve");
+        lowPriority.configureFacilityForTest("Deferred Workshop", "priority two reserve");
+        highPriority.configurePolicyForTest("industrialcivilizationcore:precision_frame",
+            1, 3, 0, "north", 8);
+        lowPriority.configurePolicyForTest("industrialcivilizationcore:precision_frame",
+            1, 3, 0, "north", 2);
+        lowPriority.runPolicyForTest();
+        boolean priorityDeferred = lowPriority.policySnapshotForTest()[1]
+            .contains("higher-priority facility " + highPriorityName);
+        source.setInventorySlotContents(0,
+            new ItemStack(IndustrialCivilizationCore.PRECISION_FRAME));
+        highPriority.runPolicyForTest();
+        String[] priorityManifest = source.policySnapshotForTest();
+        String[] priorityDecision = highPriority.policySnapshotForTest();
+        String priorityHighItem = stackId(highPriority.getStackInSlot(TileIndustrialMachine.OUTPUT_SLOT));
+        String priorityLowItem = stackId(lowPriority.getStackInSlot(TileIndustrialMachine.OUTPUT_SLOT));
+        String prioritySourceItem = stackId(source.getStackInSlot(0));
+        boolean priorityServed = highPriority.getStackInSlot(TileIndustrialMachine.OUTPUT_SLOT)
+            .getItem() == IndustrialCivilizationCore.PRECISION_FRAME
+            && lowPriority.getStackInSlot(TileIndustrialMachine.OUTPUT_SLOT).isEmpty();
+        boolean priority = priorityDeferred && priorityServed;
+
+        BlockPos settlementOrigin = base.add(20, 0, 0);
+        SettlementEconomySystem.register(world, settlementOrigin, "primitive", "machine_service", 3);
+        boolean configured = service.configureServiceForTest("earth_machine_service");
+        service.setInventorySlotContents(0, new ItemStack(IndustrialCivilizationCore.PRECISION_FRAME, 16));
+        service.setInventorySlotContents(1, new ItemStack(IndustrialCivilizationCore.CONTROL_PROCESSOR, 8));
+        service.setInventorySlotContents(2, new ItemStack(Items.IRON_INGOT, 32));
+        service.update();
+        service.setInventorySlotContents(2, new ItemStack(IndustrialCivilizationCore.AI_CORE));
+        boolean started = service.startCommissioningForTest();
+        service.setEnergyForTest(service.getCapacity());
+        service.update();
+        boolean registeredRouteGuard = service.policySnapshotForTest()[7]
+            .contains("route is unregistered");
+        serviceCargo.seedNationExchange(testRoute, "minecraft:iron_ingot");
+        for (int tick = 0; tick < 205; tick++) service.update();
+        String[] serviceState = service.policySnapshotForTest();
+        boolean commissioned = "operating".equals(serviceState[6])
+            && world.getBlockState(servicePos.add(2, -1, 2)).getBlock()
+                == IndustrialCivilizationCore.INDUSTRIAL_FLOOR;
+        service.setInventorySlotContents(2, ItemStack.EMPTY);
+        service.update();
+        String[] suspendedState = service.policySnapshotForTest();
+        boolean suspended = "suspended".equals(suspendedState[6])
+            && suspendedState[7].contains("AI Core authorization removed");
+        service.setInventorySlotContents(2, new ItemStack(IndustrialCivilizationCore.AI_CORE));
+        service.setEnergyForTest(service.getCapacity());
+        service.update();
+        boolean resumed = "operating".equals(service.policySnapshotForTest()[6]);
+        boolean suspension = suspended && resumed;
+        boolean settlementService = SettlementEconomySystem.hasTierThreeSettlement(world,
+            servicePos, 64D) && SettlementEconomySystem.machineServiceForTest(world,
+                settlementOrigin);
+        boolean persistence = source.policyRoundTripForTest()
+            && destination.policyRoundTripForTest() && service.policyRoundTripForTest();
+        boolean pass = manifestProof && shed && production && recovery && priority && configured
+            && started && registeredRouteGuard && commissioned && suspension
+            && settlementService && persistence;
+        player.connection.setPlayerLocation(base.getX() + 10.5D, base.getY() + 9D,
+            base.getZ() - 14.5D, 0F, 24F);
+        String result = (pass ? "PASS" : "FAIL") + "|civilization_systems|manifest="
+            + (manifestProof ? 1 : 0) + "|load_shed=" + (shed ? 1 : 0)
+            + "|production=" + (production ? 1 : 0)
+            + "|recovery=" + (recovery ? 1 : 0) + "|priority=" + (priority ? 1 : 0)
+            + "|priority_deferred=" + (priorityDeferred ? 1 : 0)
+            + "|priority_served=" + (priorityServed ? 1 : 0)
+            + "|priority_manifest=" + priorityManifest[2]
+            + "|priority_failure=" + token(priorityManifest[3])
+            + "|priority_action=" + token(priorityDecision[0])
+            + "|priority_blocker=" + token(priorityDecision[1])
+            + "|priority_source_item=" + prioritySourceItem
+            + "|priority_high_item=" + priorityHighItem
+            + "|priority_low_item=" + priorityLowItem
+            + "|route_guard=" + (registeredRouteGuard ? 1 : 0)
+            + "|service=" + (commissioned ? 1 : 0)
+            + "|suspension=" + (suspension ? 1 : 0)
+            + "|physical=" + (commissioned ? 1 : 0) + "|persistence=" + (persistence ? 1 : 0)
+            + "|base=" + coordinates(base);
+        emitDetailed(player, result, (pass ? "PASS" : "FAIL")
+            + "|civilization_systems|all_checks=" + (pass ? 1 : 0));
     }
 
     private static void placeRegistered(World world, BlockPos pos, String id) {
@@ -1335,6 +1488,15 @@ public final class CommandIndustrialTest extends CommandBase {
             && id.equals(stack.getItem().getRegistryName().toString());
     }
 
+    private static String stackId(ItemStack stack) {
+        return stack.isEmpty() || stack.getItem().getRegistryName() == null
+            ? "empty" : stack.getItem().getRegistryName().toString();
+    }
+
+    private static String token(String value) {
+        return value == null || value.isEmpty() ? "none" : value.replace(' ', '_');
+    }
+
     private static int[] runRobberWallTheftScenario(EntityPlayerMP player) {
         World world = player.world;
         BlockPos base = player.getPosition().add(0, 2, 10);
@@ -1636,6 +1798,11 @@ public final class CommandIndustrialTest extends CommandBase {
         player.sendMessage(new TextComponentString(line));
     }
 
+    private static void emitDetailed(EntityPlayerMP player, String loggedValue, String chatValue) {
+        IndustrialCivilizationCore.LOGGER.info(PREFIX + loggedValue);
+        player.sendMessage(new TextComponentString(PREFIX + chatValue));
+    }
+
     @Override
     public java.util.List<String> getTabCompletions(MinecraftServer server, ICommandSender sender,
             String[] args, BlockPos targetPos) {
@@ -1646,7 +1813,7 @@ public final class CommandIndustrialTest extends CommandBase {
                 "teleport_gate", "faction_side_path", "faction_gameplay_path",
                 "faction_persistence_check", "vehicle_logistics_path",
                 "strategic_defense_path", "agricultural_side_path", "automated_agriculture_path",
-                "quest_persistence_check", "settlement_economy_path");
+                "quest_persistence_check", "settlement_economy_path", "civilization_systems");
         return Arrays.asList();
     }
 }

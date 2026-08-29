@@ -66,7 +66,7 @@ public final class SettlementEconomySystem extends WorldSavedData {
                 (event.world.getTotalWorldTime() - settlement.lastCycle) / CYCLE_TICKS));
             settlement.lastCycle = event.world.getTotalWorldTime();
             absorbPhysicalStock(event.world, settlement);
-            produce(settlement, cycles);
+            produce(event.world, settlement, cycles);
             if (canUpgrade(settlement)) {
                 payUpgrade(settlement);
                 settlement.tier++;
@@ -78,7 +78,7 @@ public final class SettlementEconomySystem extends WorldSavedData {
         if (changed) data.markDirty();
     }
 
-    private static void produce(Settlement s, long cycles) {
+    private static void produce(World world, Settlement s, long cycles) {
         // Output is formula-driven. Higher products require accumulated inputs;
         // there is no upgrade roll or random free material injection.
         s.food += (2L + s.tier) * cycles;
@@ -89,6 +89,7 @@ public final class SettlementEconomySystem extends WorldSavedData {
             }
             if (s.tier >= 1 && s.iron > 0 && s.fuel > 0) {
                 s.iron--; s.fuel--; s.circuits += 1;
+                if (s.machineService && consumeNearbyServiceEU(world, s.origin, 128)) s.circuits += 1;
             }
             if (s.tier >= 2 && s.stone >= 4 && s.fuel > 0) {
                 s.stone -= 4; s.fuel--; s.iron += 2;
@@ -155,6 +156,32 @@ public final class SettlementEconomySystem extends WorldSavedData {
         return result;
     }
 
+    public static boolean hasTierThreeSettlement(World world, BlockPos pos, double radius) {
+        Settlement settlement = get(world).nearest(pos, radius);
+        return settlement != null && "primitive".equals(settlement.kind) && settlement.tier >= 3;
+    }
+
+    public static boolean commissionMachineService(World world, BlockPos pos, double radius) {
+        SettlementEconomySystem data = get(world);
+        Settlement settlement = data.nearest(pos, radius);
+        if (settlement == null || !"primitive".equals(settlement.kind) || settlement.tier < 3) return false;
+        settlement.machineService = true;
+        CivilizationWorldGenerator.applySettlementServiceAnnex(world, settlement.origin);
+        data.markDirty();
+        return true;
+    }
+
+    private static boolean consumeNearbyServiceEU(World world, BlockPos origin, int amount) {
+        for (TileEntity tile : world.loadedTileEntityList) {
+            if (!(tile instanceof TileIndustrialMachine)
+                    || tile.getPos().distanceSq(origin) > 64D * 64D) continue;
+            TileIndustrialMachine service = (TileIndustrialMachine) tile;
+            if (service.isCommissionedService("earth_machine_service")
+                    && service.consumeServiceEU(amount)) return true;
+        }
+        return false;
+    }
+
     private static SettlementEconomySystem get(World world) {
         SettlementEconomySystem data = (SettlementEconomySystem) world.getPerWorldStorage()
             .getOrLoadData(SettlementEconomySystem.class, DATA_NAME);
@@ -206,7 +233,12 @@ public final class SettlementEconomySystem extends WorldSavedData {
             && before.wood == after.wood && before.stone == after.stone
             && before.iron == after.iron && before.circuits == after.circuits
             && before.fuel == after.fuel && before.food == after.food
-            && before.credits == after.credits;
+            && before.credits == after.credits && before.machineService == after.machineService;
+    }
+
+    static boolean machineServiceForTest(World world, BlockPos origin) {
+        Settlement settlement = get(world).settlements.get(id(origin));
+        return settlement != null && settlement.machineService;
     }
 
     private static String id(BlockPos pos) { return pos.getX() + ":" + pos.getY() + ":" + pos.getZ(); }
@@ -232,6 +264,7 @@ public final class SettlementEconomySystem extends WorldSavedData {
     private static final class Settlement {
         final BlockPos origin; final String kind; final String specialty;
         int tier; long lastCycle, wood, stone, iron, circuits, fuel, food, credits;
+        boolean machineService;
         Settlement(BlockPos origin, String kind, String specialty, int tier) {
             this.origin = origin; this.kind = kind; this.specialty = specialty; this.tier = tier;
         }
@@ -241,6 +274,7 @@ public final class SettlementEconomySystem extends WorldSavedData {
             lastCycle=n.getLong("LastCycle"); wood=n.getLong("Wood"); stone=n.getLong("Stone");
             iron=n.getLong("Iron"); circuits=n.getLong("Circuits"); fuel=n.getLong("Fuel");
             food=n.getLong("Food"); credits=n.getLong("Credits");
+            machineService=n.getBoolean("MachineService");
         }
         void add(Material m, long amount) {
             switch(m) { case WOOD:wood+=amount;break; case STONE:stone+=amount;break;
@@ -252,7 +286,8 @@ public final class SettlementEconomySystem extends WorldSavedData {
             n.setInteger("Z",origin.getZ()); n.setString("Kind",kind); n.setString("Specialty",specialty);
             n.setInteger("Tier",tier); n.setLong("LastCycle",lastCycle); n.setLong("Wood",wood);
             n.setLong("Stone",stone); n.setLong("Iron",iron); n.setLong("Circuits",circuits);
-            n.setLong("Fuel",fuel); n.setLong("Food",food); n.setLong("Credits",credits); return n;
+            n.setLong("Fuel",fuel); n.setLong("Food",food); n.setLong("Credits",credits);
+            n.setBoolean("MachineService",machineService); return n;
         }
     }
 

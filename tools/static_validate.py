@@ -52,9 +52,9 @@ technic_version = json.loads((ROOT / "bin/version").read_text())
 groovy_pack = json.loads((ROOT / "groovy/runConfig.json").read_text())
 main_menu = json.loads((ROOT / "config/CustomMainMenu/mainmenu.json").read_text())
 ok(pack_version == {
-       "industrial_civilization_version": "0.8.0",
+       "industrial_civilization_version": "0.9.0",
        "technic_base_version": "1.2.6",
-       "core_version": "0.8.0",
+       "core_version": "0.9.0",
    } and technic_version["version"] == pack_version["technic_base_version"],
    "private pack release is versioned without inventing a nonexistent Technic Solder build")
 release_version = pack_version["industrial_civilization_version"]
@@ -166,8 +166,8 @@ for path in jars:
     except Exception as exc:
         ok(False, f"JAR integrity {path.relative_to(ROOT)}: {exc}")
 
-core_build = ROOT / "development/IndustrialCivilizationCore/build/libs/IndustrialCivilizationCore-0.8.0.jar"
-core_live = ROOT / "mods/IndustrialCivilizationCore-0.8.0.jar"
+core_build = ROOT / "development/IndustrialCivilizationCore/build/libs/IndustrialCivilizationCore-0.9.0.jar"
+core_live = ROOT / "mods/IndustrialCivilizationCore-0.9.0.jar"
 ok(core_build.is_file() and core_live.is_file() and digest(core_build) == digest(core_live), "custom build output equals live JAR")
 core_source = (ROOT / "development/IndustrialCivilizationCore/src/main/java/com/industrialcivilization/core/IndustrialCivilizationCore.java").read_text()
 ok("openQuestGuideAtFirstChapter" in core_source
@@ -351,7 +351,7 @@ for path in sorted((ROOT / "config").rglob("*.json")) + sorted((ROOT / "developm
 
 quests = json.loads((ROOT / "config/betterquesting/DefaultQuests.json").read_text())
 ok(quests.get("format:8") == "2.0.0", "Better Questing schema version")
-ok(len(quests.get("questDatabase:9", {})) == 145, "145 campaign capability milestones")
+ok(len(quests.get("questDatabase:9", {})) == 149, "149 campaign capability milestones")
 ok(len(quests.get("questLines:9", {})) == 26, "16 chapter and 10 independent side-path tabs")
 names = [q["properties:10"]["betterquesting:10"]["name:8"] for q in quests["questDatabase:9"].values()]
 ordered_gates = ["Orbital Research Archive", "Authorized Lunar Landing", "Lunar Engineering Archive",
@@ -466,7 +466,7 @@ ok("PlayerContainerEvent.Close" in faction_source and "ContainerMerchant" in fac
 
 advancement_dir = ROOT / "development/IndustrialCivilizationCore/src/main/resources/assets/industrialcivilizationcore/advancements"
 advancement_files = sorted(advancement_dir.glob("*.json"))
-ok(len(advancement_files) == 146, "visible advancement tree covers all 145 quests plus its root")
+ok(len(advancement_files) == 150, "visible advancement tree covers all 149 quests plus its root")
 advancements = {path.stem: json.loads(path.read_text()) for path in advancement_files}
 ok("root" in advancements and "parent" not in advancements.get("root", {}),
    "Industrial Civilization advancement root exists")

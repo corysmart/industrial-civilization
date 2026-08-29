@@ -243,7 +243,11 @@ public final class ClientE2ERunner {
                     CommandIndustrialTest command = new CommandIndustrialTest();
                     try {
                         command.execute(server, player, new String[] {"scenario", scenario});
-                        command.execute(server, player, new String[] {"snapshot", "64"});
+                        // The civilization PASS line already contains every causal subcheck.
+                        // Its showcase recording should frame the built facility instead of
+                        // covering it with the much larger generic JSON snapshot.
+                        if (!"civilization_systems".equals(scenario))
+                            command.execute(server, player, new String[] {"snapshot", "64"});
                         IndustrialCivilizationCore.LOGGER.info("IC_E2E|SCENARIO_COMMANDS_COMPLETE|{}", scenario);
                     } catch (CommandException exception) {
                         IndustrialCivilizationCore.LOGGER.error("IC_E2E|SCENARIO_EXCEPTION|" + scenario, exception);

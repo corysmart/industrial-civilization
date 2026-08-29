@@ -286,43 +286,76 @@ function renderSpaceMap(d, auditScreen = "spacemap") {
   centered("Industrial Civilization Space Program", d.width / 2, 8, "#fff");
   const bodies = [{name:"Earth",x:.22,color:"#4b7cb5",allowed:true},{name:"Moon",x:.50,color:"#b8b8ac",allowed:true},{name:"Mars",x:.78,color:"#b45d3d",allowed:false}];
   bodies.forEach(body => { const x=d.width*body.x,y=d.height*.48; ctx.beginPath();ctx.arc(x,y,Math.max(12,d.width*.035),0,Math.PI*2);ctx.fillStyle=body.color;ctx.fill();centered(body.name,x,y+Math.max(17,d.width*.045),body.allowed?"#fff":"#777"); if(!body.allowed) centered("LOCKED",x,y-4,"#ff776d"); });
-  const status = {x:d.width/2-100,y:d.height-30,w:200,h:20}; button(status.x,status.y,status.w,status.h,"Travel only to authorized bodies");
+  const status = {x:d.width/2-100,y:d.height-30,w:200,h:20}; button(status.x,status.y,status.w,status.h,"Travel to Selected Planet");
   if (!contained(status,{x:0,y:0,w:d.width,h:d.height})) issue(auditScreen,"Space-map status clips viewport",status);
 }
 
-function machineLayout(d, machine, energyPercent, operations, auditScreen = "machine") {
+function effectiveMachineState(machine, requested = "auto") {
+  if (requested !== "auto") return requested;
+  if (machine.id === "interplanetary_cargo_controller") return "cargo_policy";
+  if (machine.id === "civilization_service_interface") return "service_operating";
+  return "generic";
+}
+
+function machineStatus(machine, mode, energy, operations) {
+  if (mode === "cargo_policy" || mode === "cargo_congested") return {
+    title: "Mars Spares Terminal",
+    lines: ["Reserve 12/8>16 P8", "mars_supply 2p | M 6/12 | 18s",
+      mode === "cargo_congested" ? "Blocked destination output congested" : "Action freight requested"],
+  };
+  if (mode === "service_operating" || mode === "service_suspended") return {
+    title: "Earth Machine Service",
+    lines: ["Earth Machine Service", `Service ${mode === "service_suspended" ? "suspended" : "operating"}`,
+      mode === "service_suspended" ? "AI Core authorization removed" : "Operational"],
+  };
+  return {
+    title: data.lang[`tile.industrialcivilizationcore.${machine.id}.name`] || machine.id,
+    lines: [`Input ${compactNumber(machine.voltage)} EU/t  1.0x`,
+      `Work ${compactNumber(Math.round(machine.voltage * machine.duration * .62))}/${compactNumber(machine.voltage * machine.duration)}  ETA 12.0s`],
+    energyText: `EU ${compactNumber(energy)}/${compactNumber(machine.capacity)}`,
+    operationsText: `Ops ${compactNumber(operations)}`,
+  };
+}
+
+function machineLayout(d, machine, energyPercent, operations, auditScreen = "machine", requestedState = "auto") {
   const scale = Math.max(1, Math.min(d.width / 427, d.height / 240));
   const gui = {x: Math.floor((d.width - 208 * scale) / 2), y: Math.floor((d.height - 190 * scale) / 2),
     w: 208 * scale, h: 190 * scale};
   if (!contained(gui, {x: 0, y: 0, w: d.width, h: d.height})) issue(auditScreen, "208×190 machine panel does not fit the logical viewport", gui);
-  const title = data.lang[`tile.industrialcivilizationcore.${machine.id}.name`] || machine.id;
-  const shownTitle = trim(title, 184);
   const energy = Math.round(machine.capacity * energyPercent / 100);
-  const energyText = `EU ${compactNumber(energy)}/${compactNumber(machine.capacity)}`;
-  const operationsText = `Ops ${compactNumber(operations)}`;
-  const energyBox = {x: 37, y: 69, w: textWidth(energyText), h: 9};
-  const opsBox = {x: 190 - textWidth(operationsText), y: 69, w: textWidth(operationsText), h: 9};
-  const darkProcessPanel = {x: 12, y: 20, w: 184, h: 62};
+  const mode = effectiveMachineState(machine, requestedState);
+  const status = machineStatus(machine, mode, energy, operations);
+  const shownTitle = trim(status.title, 184);
+  const energyBox = status.energyText ? {x: 37, y: 80, w: textWidth(status.energyText), h: 9} : null;
+  const opsBox = status.operationsText ? {x: 190 - textWidth(status.operationsText), y: 80, w: textWidth(status.operationsText), h: 9} : null;
+  const darkProcessPanel = {x: 12, y: 20, w: 184, h: 75};
   const energyMeter = {x: 19, y: 29, w: 12, h: 40};
   const inputSlot = {x: 98, y: 34, w: 22, h: 22};
   const progressFill = {x: 125, y: 39, w: 23, h: 16};
   const outputSlot = {x: 158, y: 34, w: 22, h: 22};
-  if (overlap(energyBox, opsBox)) issue(auditScreen, `${machine.id}: energy and operation labels overlap`, {x: gui.x + 37, y: gui.y + 69, w: 153, h: 9});
-  if (!contained(energyBox, darkProcessPanel) || !contained(opsBox, darkProcessPanel)) issue(auditScreen, `${machine.id}: status text escapes the dark process panel`, {x: gui.x + 12, y: gui.y + 20, w: 184, h: 62});
+  if (energyBox && opsBox && overlap(energyBox, opsBox)) issue(auditScreen, `${machine.id}: energy and operation labels overlap`, {x: gui.x + 37, y: gui.y + 80, w: 153, h: 9});
+  if ((energyBox && !contained(energyBox, darkProcessPanel)) || (opsBox && !contained(opsBox, darkProcessPanel))) issue(auditScreen, `${machine.id}: status text escapes the dark process panel`, {x: gui.x + 12, y: gui.y + 20, w: 184, h: 75});
   if (!contained(energyMeter, darkProcessPanel)) issue(auditScreen, `${machine.id}: energy gauge escapes the dark process panel`, {x: gui.x + 19, y: gui.y + 29, w: 12, h: 40});
   const gaugeTopClearance = energyMeter.y - darkProcessPanel.y;
   const gaugeBottomClearance = darkProcessPanel.y + darkProcessPanel.h - energyMeter.y - energyMeter.h;
   if (gaugeTopClearance < 8 || gaugeBottomClearance < 8) issue(auditScreen, `${machine.id}: energy gauge lacks dark-panel edge clearance`, {x: gui.x + 19, y: gui.y + 20, w: 12, h: 62});
-  if (overlap(energyBox, energyMeter)) issue(auditScreen, `${machine.id}: energy text overlaps the energy meter`, {x: gui.x + 19, y: gui.y + 29, w: 12, h: 40});
+  if (energyBox && overlap(energyBox, energyMeter)) issue(auditScreen, `${machine.id}: energy text overlaps the energy meter`, {x: gui.x + 19, y: gui.y + 29, w: 12, h: 40});
   if (overlap(progressFill, inputSlot) || overlap(progressFill, outputSlot)) issue(auditScreen, `${machine.id}: progress connector overlaps an item slot`, {x: gui.x + 98, y: gui.y + 34, w: 82, h: 22});
-  return {gui, scale, title: shownTitle, titleX: 12 + (184 - textWidth(shownTitle)) / 2,
-    energyText, operationsText, energyBox, opsBox, energy, progress: .62};
+  const shownLines = status.lines.map(line => trim(line, 153));
+  shownLines.forEach((line, index) => {
+    const box = {x: 37, y: 58 + index * 11, w: textWidth(line), h: 9};
+    if (!contained(box, darkProcessPanel)) issue(auditScreen, `${machine.id}/${mode}: causal status row escapes the process panel`, box);
+  });
+  return {gui, scale, mode, title: shownTitle, titleX: 12 + (184 - textWidth(shownTitle)) / 2,
+    lines: shownLines, energyText: status.energyText, operationsText: status.operationsText,
+    energyBox, opsBox, energy, progress: .62};
 }
 
 function renderMachine(d, machineOverride, auditScreen) {
   worldBackground(d.width, d.height, true);
   const machine = machineOverride || data.machines.find(m => m.id === $("machine").value) || data.machines[0];
-  const state = machineLayout(d, machine, Number($("energy").value), Number($("operations").value), auditScreen);
+  const state = machineLayout(d, machine, Number($("energy").value), Number($("operations").value), auditScreen,
+    $("machine-state").value);
   const {gui, scale} = state;
   if ($("hei").checked) {
     const gap = 4;
@@ -338,8 +371,9 @@ function renderMachine(d, machineOverride, auditScreen) {
   if (energyHeight > 0) ctx.drawImage(machineTexture, 208, 36 - energyHeight, 8, energyHeight, 21, 67 - energyHeight, 8, energyHeight);
   ctx.drawImage(machineTexture, 208, 49, Math.floor(23 * state.progress), 16, 125, 39, Math.floor(23 * state.progress), 16);
   drawText(state.title, state.titleX, 6, "#25333a");
-  drawText(state.energyText, state.energyBox.x, 69, "#d7e0e3");
-  drawText(state.operationsText, state.opsBox.x, 69, "#d7e0e3");
+  state.lines.forEach((line, index) => drawText(line, 37, 58 + index * 11, "#d7e0e3"));
+  if (state.energyText) drawText(state.energyText, state.energyBox.x, 80, "#d7e0e3");
+  if (state.operationsText) drawText(state.operationsText, state.opsBox.x, 80, "#d7e0e3");
   ctx.restore();
 }
 
@@ -492,6 +526,8 @@ async function render() {
 
 async function audit() {
   issues.length = 0;
+  for (const missing of data.guiCoverage.missing)
+    issue("coverage", `First-party GUI ${missing} has no UI Viewer mapping`, {x:0,y:0,w:0,h:0});
   const presets = [[854,480],[1184,666],[1280,720],[1920,1080],[2560,1600]];
   const originalHei = $("hei").checked; $("hei").checked = true;
   for (const [displayWidth, displayHeight] of presets) for (const requested of [0,1,2,3,4]) {
@@ -499,7 +535,13 @@ async function audit() {
     const d = {displayWidth, displayHeight,factor,width:Math.ceil(displayWidth/factor),height:Math.ceil(displayHeight/factor)};
     mainMenuLayout(d, `mainmenu@${displayWidth}x${displayHeight}/g${requested}`);
     pauseLayout(d, `pause@${displayWidth}x${displayHeight}/g${requested}`);
-    for (const machine of data.machines) machineLayout(d, machine, 100, 999999999, `machine/${machine.id}@${displayWidth}x${displayHeight}/g${requested}`);
+    for (const machine of data.machines) {
+      const states = ["generic"];
+      if (machine.id === "interplanetary_cargo_controller") states.push("cargo_policy", "cargo_congested");
+      if (machine.id === "civilization_service_interface") states.push("service_operating", "service_suspended");
+      for (const state of states) machineLayout(d, machine, 100, 999999999,
+        `machine/${machine.id}/${state}@${displayWidth}x${displayHeight}/g${requested}`, state);
+    }
     for (const faction of data.factions) auditFactionLayout(d, faction, `factions/${faction.id}@${displayWidth}x${displayHeight}/g${requested}`);
     auditWarmupLayout(d, `warmup@${displayWidth}x${displayHeight}/g${requested}`);
     auditCreditsLayout(d, `credits@${displayWidth}x${displayHeight}/g${requested}`);
@@ -507,7 +549,8 @@ async function audit() {
     for (const line of data.questLines) auditQuestLayout(d, line, `quests/${line.id}@${displayWidth}x${displayHeight}/g${requested}`);
   }
   $("hei").checked = originalHei;
-  const report = {passed: issues.length === 0, checks: presets.length * 5 * (data.machines.length + data.factions.length + data.questLines.length + 7), issues};
+  const machineStates = data.machines.length + 4;
+  const report = {passed: issues.length === 0, checks: presets.length * 5 * (machineStates + data.factions.length + data.questLines.length + 7), issues};
   $("audit-output").textContent = JSON.stringify(report, null, 2);
   $("status").className = report.passed ? "pass" : "fail";
   $("status").textContent = report.passed ? `PASS · ${report.checks} layout states` : `FAIL · ${issues.length} layout issue(s)`;
@@ -526,7 +569,7 @@ async function init() {
   for (const faction of data.factions) { const option = document.createElement("option"); option.value = faction.id; option.textContent = faction.name; $("faction").append(option); }
   for (const line of data.questLines) { const option = document.createElement("option"); option.value = line.id; option.textContent = line.name; $("quest-line").append(option); }
   const params = new URLSearchParams(location.search);
-  for (const id of ["screen", "display", "scale", "machine", "faction", "quest-line"]) {
+  for (const id of ["screen", "display", "scale", "machine", "machine-state", "faction", "quest-line"]) {
     if (params.has(id)) $(id).value = params.get(id);
   }
   document.querySelectorAll("select,input").forEach(control => control.addEventListener("input", render));

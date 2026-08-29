@@ -2,7 +2,7 @@
 
 # Manual Quest Test Checklist
 
-Use this checklist for 0.8.0 regressions after progression or runtime changes. The numbered campaign and all ten independent side paths have acceptance evidence recorded in `MAIN_QUESTLINE_LIVE_TEST_LOG.md`; this checklist remains the manual regression contract, not a list of outstanding acceptance gaps. Do not use a valued world for a quest-database migration.
+Use this checklist for 0.9.0 regressions after progression or runtime changes. The numbered campaign and all ten independent side paths have acceptance evidence recorded in `MAIN_QUESTLINE_LIVE_TEST_LOG.md`; this checklist remains the manual regression contract, not a list of outstanding acceptance gaps. Do not use a valued world for a quest-database migration.
 
 - [ ] 1. Quest book opens with F6.
 - [ ] 2. All 16 numbered chapters and all 10 independent side-path tabs appear.

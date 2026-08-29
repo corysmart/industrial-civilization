@@ -16,15 +16,8 @@
     "hidden": false
   },
   "criteria": {
-    "evidence_1": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "industrialcivilizationcore:interplanetary_cargo_controller"
-          }
-        ]
-      }
+    "runtime": {
+      "trigger": "minecraft:impossible"
     }
   }
 }

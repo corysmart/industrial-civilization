@@ -69,6 +69,13 @@ crafting.addShaped('industrial_civilization:interplanetary_cargo_controller',
     [item('minecraft:ender_eye'), item('industrialcivilizationcore:recovered_factory_control_system'), item('minecraft:ender_eye')]
 ])
 
+crafting.addShaped('industrial_civilization:civilization_service_interface',
+    item('industrialcivilizationcore:civilization_service_interface'), [
+    [ore('ingotSteel'), item('computercraft:computer:16384'), ore('ingotSteel')],
+    [item('industrialcivilizationcore:control_processor'), item('industrialcivilizationcore:interplanetary_cargo_controller'), item('industrialcivilizationcore:control_processor')],
+    [item('ic2:itemmisc:452'), item('industrialcivilizationcore:artificial_industrial_intelligence_core'), item('ic2:itemmisc:452')]
+])
+
 crafting.addShaped('industrial_civilization:orbital_megastructure_controller',
     item('industrialcivilizationcore:orbital_megastructure_controller'), [
     [item('minecraft:beacon'), item('industrialcivilizationcore:artificial_industrial_intelligence_core'), item('minecraft:beacon')],

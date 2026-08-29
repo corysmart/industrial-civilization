@@ -31,6 +31,17 @@ public final class BlockIndustrialMachine extends BlockContainer {
         return kind;
     }
 
+    @Override public boolean canProvidePower(IBlockState state) {
+        return kind == IndustrialMachineKind.CARGO_CONTROLLER;
+    }
+
+    @Override public int getWeakPower(IBlockState state, net.minecraft.world.IBlockAccess world,
+            BlockPos pos, EnumFacing side) {
+        TileEntity tile = world.getTileEntity(pos);
+        return tile instanceof TileIndustrialMachine
+            ? ((TileIndustrialMachine) tile).policyRedstonePower(side) : 0;
+    }
+
     @Override
     public EnumBlockRenderType getRenderType(IBlockState state) {
         return EnumBlockRenderType.MODEL;
@@ -58,10 +69,13 @@ public final class BlockIndustrialMachine extends BlockContainer {
         if (!world.isRemote) {
             TileEntity tile = world.getTileEntity(pos);
             if (tile instanceof TileIndustrialMachine) {
-                ((TileIndustrialMachine) tile).setLastUser(player);
-                if (((TileIndustrialMachine) tile).isRusted()) player.sendStatusMessage(
+                TileIndustrialMachine machine = (TileIndustrialMachine) tile;
+                machine.setLastUser(player);
+                if (machine.isRusted()) player.sendStatusMessage(
                     new net.minecraft.util.text.TextComponentTranslation(
                         "message.industrialcivilization.workshop.rusted"), false);
+                if (machine.hasLocalOperationsStatus()) player.sendMessage(
+                    new net.minecraft.util.text.TextComponentString(machine.getLocalOperationsStatus()));
             }
             player.openGui(IndustrialCivilizationCore.INSTANCE,
                 IndustrialCivilizationCore.GUI_INDUSTRIAL_MACHINE, world,

@@ -4,11 +4,11 @@
 
 ## Scope and pass condition
 
-This plan tests only the **16 numbered chapters and their 116 main-line quests**. Independent faction, vehicle, salvage, weapon, and strategic-defense side quests are excluded. The two main transition quests that support a side-route must be tested through their numbered-chapter construction route in this run.
+This plan tests only the **16 numbered chapters and their 120 main-line quests**. Independent faction, vehicle, salvage, weapon, and strategic-defense side quests are excluded. The two main transition quests that support a side-route must be tested through their numbered-chapter construction route in this run.
 
 A pass requires every quest to complete from its declared automatic evidence, every prerequisite boundary to behave correctly, every matching vanilla advancement to agree with Better Questing, and every broader gameplay assertion to be checked separately. Inventory evidence proves acquisition only; it does not prove that the represented structure or machine genuinely works.
 
-Current main-line detection split: **72 non-consuming inventory tasks** and **44 runtime-advancement tasks**.
+Current main-line detection split: **69 non-consuming inventory tasks** and **51 runtime-advancement tasks**.
 
 ## Test-world preparation
 
@@ -1062,7 +1062,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Detection mode:** Non-consuming inventory retrieval.
 - **Exact test action:** Before this quest unlocks, keep its matching evidence out of the player inventory. After it unlocks, obtain or Creative-give all of the following at the same time: `industrialcivilizationcore:martian_autonomy_archive`. Wait at least two seconds for Better Questing inventory detection; the items must remain unconsumed.
 - **Negative assertion:** Confirm the quest did not gain progress while locked and that removing/re-adding the evidence works without a manual checkbox or claim button.
-- **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `molecular_analyzer`, `ai_prerequisite_audit`. This is the declared completion milestone for Chapter 13.
+- **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `molecular_analyzer`, `ai_prerequisite_audit`, `martian_service_program`. This is the declared completion milestone for Chapter 13.
 - **Gameplay assertion:** Complete the Martian autonomy program and assemble its results into a Martian Autonomy Archive.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
@@ -1213,16 +1213,56 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 ### 106. AI Factory Coordination (`ai_factory_coordination`)
 
 - **Prerequisites:** `ae2_autocrafting`.
-- **Detection mode:** Non-consuming inventory retrieval.
-- **Exact test action:** Before this quest unlocks, keep its matching evidence out of the player inventory. After it unlocks, obtain or Creative-give all of the following at the same time: `industrialcivilizationcore:interplanetary_cargo_controller`. Wait at least two seconds for Better Questing inventory detection; the items must remain unconsumed.
-- **Negative assertion:** Confirm the quest did not gain progress while locked and that removing/re-adding the evidence works without a manual checkbox or claim button.
-- **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `cross_planetary_logistics`, `predictive_production`, `uu_matter_research`.
-- **Gameplay assertion:** Coordinate inventory-aware production across multiple physical machine lines.
+- **Detection mode:** Runtime advancement.
+- **Exact test action:** Name two Cargo Controller facilities, register the same route channel, create a manifest with requestFreight(destination, item, count), and let the source controller physically deliver it. Owning or crafting either controller must not complete this quest.
+- **Negative assertion:** Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task.
+- **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `observable_industrial_network`, `uu_matter_research`.
+- **Gameplay assertion:** Create and deliver a named freight manifest between registered physical controllers so the policy layer coordinates more than one infrastructure endpoint.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 107. Cross-Planetary AI Logistics (`cross_planetary_logistics`)
+### 107. Observable Utility and Freight Network (`observable_industrial_network`)
 
 - **Prerequisites:** `ai_factory_coordination`.
+- **Detection mode:** Runtime advancement.
+- **Exact test action:** During the same manifest delivery, inspect getFacilityStatus(), getPowerStatus(), getRouteStatus(), and getManifest(). Confirm the delivered quantity and last-arrival tick update, then deliberately remove source EU and fill the destination output to verify distinct causal failure messages.
+- **Negative assertion:** Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task.
+- **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `earth_civilization_service`, `cross_planetary_logistics`.
+- **Gameplay assertion:** Deliver a named physical manifest while source, destination, quantity, route state, power reserve, timestamps, congestion, and failure cause remain inspectable at the controller or through ComputerCraft.
+- **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
+
+### 108. Earth Civilization Service Program (`earth_civilization_service`)
+
+- **Prerequisites:** `observable_industrial_network`.
+- **Detection mode:** Runtime advancement.
+- **Exact test action:** At a tier-three Earth settlement, place a Civilization Service Interface beside a named Cargo Controller. Configure earth_machine_service, insert 16 Precision Frames, 8 Control Processors, and 32 Iron Ingots, then replace slot three with the durable AI Core. Start commissioning and sustain 512 EU/t for 200 consecutive ticks. Verify the physical annex appears and later settlement processing consumes service EU for its material-backed circuit-efficiency benefit.
+- **Negative assertion:** Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task.
+- **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `martian_service_program`.
+- **Gameplay assertion:** At a tier-three settlement, pay the Machine-Service Annex construction bill, attach a registered cargo route with a loaded peer and AI authorization, sustain commissioning EU, and prove the physical annex suspends and resumes when its operating requirements are removed and restored.
+- **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
+
+### 109. Martian Spares Service Program (`martian_service_program`)
+
+- **Prerequisites:** `earth_civilization_service` AND `martian_autonomy_complete`.
+- **Detection mode:** Runtime advancement.
+- **Exact test action:** On Mars, place a Service Interface beside a named Cargo Controller. Configure mars_spares, insert 12 Precision Frames, 8 Control Processors, and 16 raw Meteoric Iron, then replace slot three with the durable AI Core. Sustain 512 EU/t for 200 commissioning ticks and verify the physical pad. After commissioning, supply 2 Iron Ingots and 1 Redstone plus 4,096 EU and wait one settlement cycle for one locally produced Precision Frame.
+- **Negative assertion:** Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task.
+- **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `ai_industrial_policy`.
+- **Gameplay assertion:** On Mars, pay the environment-derived spares-depot bill, sustain commissioning EU beside a registered cargo route with a loaded peer, and keep AI authorization, EU, iron, redstone, and output capacity available for local Precision-Frame spare production.
+- **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
+
+### 110. AI Industrial Policy (`ai_industrial_policy`)
+
+- **Prerequisites:** `martian_service_program`.
+- **Detection mode:** Runtime advancement.
+- **Exact test action:** On a named controller, configure a resource minimum and higher preferred reserve, an emergency EU reserve, and an explicit noncritical redstone load. Enable policy, create a shortage, and verify a registered production or freight request occurs. Restore the resource through that physical system and confirm the preferred reserve, policy action, and blocker all recover without manually moving the target item.
+- **Negative assertion:** Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task.
+- **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `predictive_production`.
+- **Gameplay assertion:** Define minimum and preferred reserves, allow a real production or freight response, and recover the observed reserve through registered infrastructure without manually moving the target resource.
+- **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
+
+### 111. Cross-Planetary AI Logistics (`cross_planetary_logistics`)
+
+- **Prerequisites:** `observable_industrial_network`.
 - **Detection mode:** Non-consuming inventory retrieval.
 - **Exact test action:** Before this quest unlocks, keep its matching evidence out of the player inventory. After it unlocks, obtain or Creative-give all of the following at the same time: `industrialcivilizationcore:interplanetary_cargo_network_key`. Wait at least two seconds for Better Questing inventory detection; the items must remain unconsumed.
 - **Negative assertion:** Confirm the quest did not gain progress while locked and that removing/re-adding the evidence works without a manual checkbox or claim button.
@@ -1230,17 +1270,17 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Gameplay assertion:** Coordinate automated orbital cargo, autonomous lunar industry, and autonomous Martian industry.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 108. Predictive Production (`predictive_production`)
+### 112. Predictive Production (`predictive_production`)
 
-- **Prerequisites:** `ai_factory_coordination`.
-- **Detection mode:** Non-consuming inventory retrieval.
-- **Exact test action:** Before this quest unlocks, keep its matching evidence out of the player inventory. After it unlocks, obtain or Creative-give all of the following at the same time: `industrialcivilizationcore:artificial_industrial_intelligence_core`. Wait at least two seconds for Better Questing inventory detection; the items must remain unconsumed.
-- **Negative assertion:** Confirm the quest did not gain progress while locked and that removing/re-adding the evidence works without a manual checkbox or claim button.
+- **Prerequisites:** `ai_industrial_policy`.
+- **Detection mode:** Runtime advancement.
+- **Exact test action:** Remove the configured target resource so the observed count falls below minimum. Let policy queue a known recipe on an adjacent supplied and powered manufacturing machine or request registered freight. Do not move the target item by hand. The quest completes only after that physical work raises the observed count to the preferred reserve; the gap between minimum and preferred is the hysteresis band.
+- **Negative assertion:** Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `autonomous_colony_expansion`.
-- **Gameplay assertion:** Maintain demand forecasts, resilient buffers, and automatic shortage response.
+- **Gameplay assertion:** Let an observed reserve fall below its minimum, allow policy to request real production or freight, and let the physical system restore the preferred reserve without manually moving the target item.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 109. UU-Matter Research (`uu_matter_research`)
+### 113. UU-Matter Research (`uu_matter_research`)
 
 - **Prerequisites:** `ai_factory_coordination`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -1250,7 +1290,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Gameplay assertion:** Complete the AI-assisted research program that establishes a controlled energy-to-matter process.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 110. Controlled UU-Matter Production (`uu_matter_production`)
+### 114. Controlled UU-Matter Production (`uu_matter_production`)
 
 - **Prerequisites:** `uu_matter_research`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -1260,7 +1300,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Gameplay assertion:** Produce UU-Matter through a high-energy, time-based physical process.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 111. Controlled Matter Replication (`controlled_replication`)
+### 115. Controlled Matter Replication (`controlled_replication`)
 
 - **Prerequisites:** `uu_matter_production`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -1270,7 +1310,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Gameplay assertion:** Replicate an authorized pattern with material, energy, and throughput constraints.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 112. Fusion and Antimatter (`fusion_and_antimatter`)
+### 116. Fusion and Antimatter (`fusion_and_antimatter`)
 
 - **Prerequisites:** `uu_matter_research`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -1280,7 +1320,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Gameplay assertion:** Develop fusion power, exotic materials, and contained antimatter research.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 113. Orbital Megastructures (`orbital_megastructures`)
+### 117. Orbital Megastructures (`orbital_megastructures`)
 
 - **Prerequisites:** `cross_planetary_logistics`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -1290,17 +1330,17 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Gameplay assertion:** Build advanced orbital solar arrays, automated shipyards, and large interplanetary vessels.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 114. Autonomous Colony Expansion (`autonomous_colony_expansion`)
+### 118. Autonomous Colony Expansion (`autonomous_colony_expansion`)
 
 - **Prerequisites:** `cross_planetary_logistics` AND `predictive_production`.
-- **Detection mode:** Non-consuming inventory retrieval.
-- **Exact test action:** Before this quest unlocks, keep its matching evidence out of the player inventory. After it unlocks, obtain or Creative-give all of the following at the same time: `industrialcivilizationcore:autonomous_colony_charter`. Wait at least two seconds for Better Questing inventory detection; the items must remain unconsumed.
-- **Negative assertion:** Confirm the quest did not gain progress while locked and that removing/re-adding the evidence works without a manual checkbox or claim button.
+- **Detection mode:** Runtime advancement.
+- **Exact test action:** Commission either the Earth Machine-Service Annex or Martian Spares Service Program from its full construction bill, adjacent cargo route, durable AI authorization, and 200 powered ticks. Confirm the physical service project and operating state exist; possessing a Colony Charter alone must not complete this quest.
+- **Negative assertion:** Before the final triggering event, confirm that merely holding or spawning the quest icon does not complete the task.
 - **Expected quest result:** The quest completes in F6 and its matching vanilla advancement is complete. These direct main-line successors become eligible after their other prerequisites are satisfied: `civilization_scale_ai`.
-- **Gameplay assertion:** Establish a new colony with self-repairing factories and connected logistics.
+- **Gameplay assertion:** Commission an operating Earth or Martian civilization-service facility with a physical project, sustained EU, AI authorization, and connected logistics.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 115. Civilization-Scale AI Core (`civilization_scale_ai`)
+### 119. Civilization-Scale AI Core (`civilization_scale_ai`)
 
 - **Prerequisites:** `controlled_replication` AND `orbital_megastructures` AND `autonomous_colony_expansion`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -1310,7 +1350,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 - **Gameplay assertion:** Coordinate a planetary-scale manufacturing and research network.
 - **Record:** Mark pass/fail, note completion time, and capture F6 plus Advancements screenshots for any mismatch.
 
-### 116. Continuously Expanding Civilization (`continuous_civilization`)
+### 120. Continuously Expanding Civilization (`continuous_civilization`)
 
 - **Prerequisites:** `controlled_replication`.
 - **Detection mode:** Non-consuming inventory retrieval.
@@ -1324,7 +1364,7 @@ Current main-line detection split: **72 non-consuming inventory tasks** and **44
 
 ## End-of-run acceptance
 
-1. Confirm all 116 numbered-chapter quests are complete in F6 and exactly their matching main-line advancements are complete.
+1. Confirm all 120 numbered-chapter quests are complete in F6 and exactly their matching main-line advancements are complete.
 2. Confirm unfinished independent side-path tabs do not prevent completion of the numbered route.
 3. Confirm AI entry displayed the Industrial Civilization credits containing `corysmart` exactly once and returned control to the same playable world.
 4. Confirm Chapter 16 completion does not show a victory/end screen or disable continued play.

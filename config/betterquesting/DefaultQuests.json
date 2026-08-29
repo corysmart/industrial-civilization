@@ -1367,7 +1367,7 @@
     "24:10": {
       "questID:3": 24,
       "preRequisites:11": [
-        116
+        120
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -1535,7 +1535,7 @@
       "questID:3": 27,
       "preRequisites:11": [
         26,
-        119
+        123
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -1903,7 +1903,7 @@
       "questID:3": 35,
       "preRequisites:11": [
         34,
-        120
+        124
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5181,26 +5181,14 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "AI Factory Coordination",
-          "desc:8": "The real test of mature industry is whether power, materials, logistics, and control remain stable together. AI Factory Coordination advances the continuously expanding post-ai civilization program and prepares the systems that follow.\n\nComputerCraft: right-click a computer to open it; type help for built-in help; hold Control+T to terminate a running program. Use peripheral.getNames() and peripheral.wrap(side) to find attached machines.\n\nCoordinate inventory-aware production across multiple physical machine lines."
+          "desc:8": "The real test of mature industry is whether power, materials, logistics, and control remain stable together. AI Factory Coordination advances the continuously expanding post-ai civilization program and prepares the systems that follow.\n\nComputerCraft: right-click a computer to open it; type help for built-in help; hold Control+T to terminate a running program. Use peripheral.getNames() and peripheral.wrap(side) to find attached machines.\n\nFacility controller: give every endpoint a unique name with setFacilityIdentity(name, role), then inspect getFacilityStatus(), getPowerStatus(), getRouteStatus(), and getManifest(). Configure bounded automation with configureReserve(itemId, minimum, preferred, priority), configureEmergencyReserve(eu, percent), setPolicyEnabled(true), and requestFreight(destinationName, itemId, count). A shortage at a higher numeric priority defers lower-priority demand for the same resource on that route. getPolicyAction() and getPolicyBlocker() explain the current decision; setManualOverride(true) returns direct control immediately.\n\nCreate and deliver a named freight manifest between registered physical controllers so the policy layer coordinates more than one infrastructure endpoint."
         }
       },
       "tasks:9": {
         "0:10": {
-          "partialMatch:1": 1,
-          "ignoreNBT:1": 1,
-          "consume:1": 0,
-          "groupDetect:1": 1,
-          "autoConsume:1": 0,
-          "requiredItems:9": {
-            "0:10": {
-              "id:8": "industrialcivilizationcore:interplanetary_cargo_controller",
-              "Count:3": 1,
-              "Damage:2": 0,
-              "OreDict:8": ""
-            }
-          },
+          "advancement_id:8": "industrialcivilizationcore:ai_factory_coordination",
           "index:3": 0,
-          "taskID:8": "bq_standard:retrieval"
+          "taskID:8": "bq_standard:advancement"
         }
       },
       "rewards:9": {}
@@ -5209,6 +5197,163 @@
       "questID:3": 106,
       "preRequisites:11": [
         105
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "industrialcivilizationcore:interplanetary_cargo_controller",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Observable Utility and Freight Network",
+          "desc:8": "Civilization-scale control starts with honest instrumentation. Named facilities, bounded routes, reserves, timestamps, congestion, and causal failures make distance an engineering problem the player can inspect.\n\nComputerCraft: right-click a computer to open it; type help for built-in help; hold Control+T to terminate a running program. Use peripheral.getNames() and peripheral.wrap(side) to find attached machines.\n\nFacility controller: give every endpoint a unique name with setFacilityIdentity(name, role), then inspect getFacilityStatus(), getPowerStatus(), getRouteStatus(), and getManifest(). Configure bounded automation with configureReserve(itemId, minimum, preferred, priority), configureEmergencyReserve(eu, percent), setPolicyEnabled(true), and requestFreight(destinationName, itemId, count). A shortage at a higher numeric priority defers lower-priority demand for the same resource on that route. getPolicyAction() and getPolicyBlocker() explain the current decision; setManualOverride(true) returns direct control immediately.\n\nDeliver a named physical manifest while source, destination, quantity, route state, power reserve, timestamps, congestion, and failure cause remain inspectable at the controller or through ComputerCraft."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "advancement_id:8": "industrialcivilizationcore:observable_industrial_network",
+          "index:3": 0,
+          "taskID:8": "bq_standard:advancement"
+        }
+      },
+      "rewards:9": {}
+    },
+    "107:10": {
+      "questID:3": 107,
+      "preRequisites:11": [
+        106
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "industrialcivilizationcore:civilization_service_interface",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Earth Civilization Service Program",
+          "desc:8": "A mature settlement should do more than accumulate another upgrade bill. Its Machine-Service Annex turns constructed space, sustained EU, logistics, and local materials into an ongoing industrial service.\n\nComputerCraft: right-click a computer to open it; type help for built-in help; hold Control+T to terminate a running program. Use peripheral.getNames() and peripheral.wrap(side) to find attached machines.\n\nService interface: attach a Cargo Controller whose registered channel has at least one loaded peer, then attach a computer and call configureServiceProgram(\"earth_machine_service\") at a tier-three Earth settlement or configureServiceProgram(\"mars_spares\") on Mars. Insert the displayed three-part bill, place the durable AI Core in input slot three, and call commissionServiceProgram(). Commissioning requires 200 powered ticks at 512 EU/t. After commissioning, missing AI authorization or operating EU suspends either service; Martian service also suspends without iron, redstone, or output capacity. getServiceProgramStatus() reports the exact blocker and recovery.\n\nAt a tier-three settlement, pay the Machine-Service Annex construction bill, attach a registered cargo route with a loaded peer and AI authorization, sustain commissioning EU, and prove the physical annex suspends and resumes when its operating requirements are removed and restored."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "advancement_id:8": "industrialcivilizationcore:earth_civilization_service",
+          "index:3": 0,
+          "taskID:8": "bq_standard:advancement"
+        }
+      },
+      "rewards:9": {}
+    },
+    "108:10": {
+      "questID:3": 108,
+      "preRequisites:11": [
+        107,
+        92
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "industrialcivilizationcore:civilization_service_interface",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "Martian Spares Service Program",
+          "desc:8": "Mars begins with imported spares, but autonomy requires local substitution. A commissioned depot uses Martian infrastructure and ordinary feedstock to keep Precision Frames available while emergency freight remains useful.\n\nComputerCraft: right-click a computer to open it; type help for built-in help; hold Control+T to terminate a running program. Use peripheral.getNames() and peripheral.wrap(side) to find attached machines.\n\nService interface: attach a Cargo Controller whose registered channel has at least one loaded peer, then attach a computer and call configureServiceProgram(\"earth_machine_service\") at a tier-three Earth settlement or configureServiceProgram(\"mars_spares\") on Mars. Insert the displayed three-part bill, place the durable AI Core in input slot three, and call commissionServiceProgram(). Commissioning requires 200 powered ticks at 512 EU/t. After commissioning, missing AI authorization or operating EU suspends either service; Martian service also suspends without iron, redstone, or output capacity. getServiceProgramStatus() reports the exact blocker and recovery.\n\nOn Mars, pay the environment-derived spares-depot bill, sustain commissioning EU beside a registered cargo route with a loaded peer, and keep AI authorization, EU, iron, redstone, and output capacity available for local Precision-Frame spare production."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "advancement_id:8": "industrialcivilizationcore:martian_service_program",
+          "index:3": 0,
+          "taskID:8": "bq_standard:advancement"
+        }
+      },
+      "rewards:9": {}
+    },
+    "109:10": {
+      "questID:3": 109,
+      "preRequisites:11": [
+        108
+      ],
+      "properties:10": {
+        "betterquesting:10": {
+          "issilent:1": 0,
+          "snd_complete:8": "minecraft:entity.player.levelup",
+          "lockedprogress:1": 1,
+          "tasklogic:8": "AND",
+          "repeattime:3": -1,
+          "visibility:8": "ALWAYS",
+          "simultaneous:1": 0,
+          "icon:10": {
+            "id:8": "industrialcivilizationcore:artificial_industrial_intelligence_core",
+            "Count:3": 1,
+            "Damage:2": 0,
+            "OreDict:8": ""
+          },
+          "globalshare:1": 0,
+          "questlogic:8": "AND",
+          "partysinglereward:1": 0,
+          "snd_update:8": "minecraft:entity.player.levelup",
+          "autoclaim:1": 0,
+          "ismain:1": 0,
+          "name:8": "AI Industrial Policy",
+          "desc:8": "The AI changes the abstraction level without replacing machinery. It observes declared facilities and asks registered production, freight, and load controls to pursue reserves while preserving explicit safety limits.\n\nComputerCraft: right-click a computer to open it; type help for built-in help; hold Control+T to terminate a running program. Use peripheral.getNames() and peripheral.wrap(side) to find attached machines.\n\nFacility controller: give every endpoint a unique name with setFacilityIdentity(name, role), then inspect getFacilityStatus(), getPowerStatus(), getRouteStatus(), and getManifest(). Configure bounded automation with configureReserve(itemId, minimum, preferred, priority), configureEmergencyReserve(eu, percent), setPolicyEnabled(true), and requestFreight(destinationName, itemId, count). A shortage at a higher numeric priority defers lower-priority demand for the same resource on that route. getPolicyAction() and getPolicyBlocker() explain the current decision; setManualOverride(true) returns direct control immediately.\n\nDefine minimum and preferred reserves, allow a real production or freight response, and recover the observed reserve through registered infrastructure without manually moving the target resource."
+        }
+      },
+      "tasks:9": {
+        "0:10": {
+          "advancement_id:8": "industrialcivilizationcore:ai_industrial_policy",
+          "index:3": 0,
+          "taskID:8": "bq_standard:advancement"
+        }
+      },
+      "rewards:9": {}
+    },
+    "110:10": {
+      "questID:3": 110,
+      "preRequisites:11": [
+        106
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5256,10 +5401,10 @@
       },
       "rewards:9": {}
     },
-    "107:10": {
-      "questID:3": 107,
+    "111:10": {
+      "questID:3": 111,
       "preRequisites:11": [
-        105
+        109
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5283,32 +5428,20 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Predictive Production",
-          "desc:8": "The AI Age creates several urgent frontiers at once. These programs are intentionally parallel: the player decides whether matter, logistics, fusion, colonies, or megastructures receive the next industrial generation.\n\nMaintain demand forecasts, resilient buffers, and automatic shortage response."
+          "desc:8": "The AI Age creates several urgent frontiers at once. These programs are intentionally parallel: the player decides whether matter, logistics, fusion, colonies, or megastructures receive the next industrial generation.\n\nComputerCraft: right-click a computer to open it; type help for built-in help; hold Control+T to terminate a running program. Use peripheral.getNames() and peripheral.wrap(side) to find attached machines.\n\nFacility controller: give every endpoint a unique name with setFacilityIdentity(name, role), then inspect getFacilityStatus(), getPowerStatus(), getRouteStatus(), and getManifest(). Configure bounded automation with configureReserve(itemId, minimum, preferred, priority), configureEmergencyReserve(eu, percent), setPolicyEnabled(true), and requestFreight(destinationName, itemId, count). A shortage at a higher numeric priority defers lower-priority demand for the same resource on that route. getPolicyAction() and getPolicyBlocker() explain the current decision; setManualOverride(true) returns direct control immediately.\n\nLet an observed reserve fall below its minimum, allow policy to request real production or freight, and let the physical system restore the preferred reserve without manually moving the target item."
         }
       },
       "tasks:9": {
         "0:10": {
-          "partialMatch:1": 1,
-          "ignoreNBT:1": 1,
-          "consume:1": 0,
-          "groupDetect:1": 1,
-          "autoConsume:1": 0,
-          "requiredItems:9": {
-            "0:10": {
-              "id:8": "industrialcivilizationcore:artificial_industrial_intelligence_core",
-              "Count:3": 1,
-              "Damage:2": 0,
-              "OreDict:8": ""
-            }
-          },
+          "advancement_id:8": "industrialcivilizationcore:predictive_production",
           "index:3": 0,
-          "taskID:8": "bq_standard:retrieval"
+          "taskID:8": "bq_standard:advancement"
         }
       },
       "rewards:9": {}
     },
-    "108:10": {
-      "questID:3": 108,
+    "112:10": {
+      "questID:3": 112,
       "preRequisites:11": [
         105
       ],
@@ -5358,10 +5491,10 @@
       },
       "rewards:9": {}
     },
-    "109:10": {
-      "questID:3": 109,
+    "113:10": {
+      "questID:3": 113,
       "preRequisites:11": [
-        108
+        112
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5385,7 +5518,7 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Controlled UU-Matter Production",
-          "desc:8": "The next bottleneck is practical throughput rather than access to another recipe. Controlled UU-Matter Production advances the continuously expanding post-ai civilization program and prepares the systems that follow.\n\nIndustrial Civilization machines: right-click to open the IC2-styled EU/inventory screen. Put recipe inputs in the three left slots and take output from the right slot. Matching inputs run automatically; ComputerCraft is required only for explicit recipe selection, queues, telemetry, or cargo channels.\n\nProduce UU-Matter through a high-energy, time-based physical process."
+          "desc:8": "A machine earns its place when it performs useful work as part of the larger factory. Controlled UU-Matter Production advances the continuously expanding post-ai civilization program and prepares the systems that follow.\n\nIndustrial Civilization machines: right-click to open the IC2-styled EU/inventory screen. Put recipe inputs in the three left slots and take output from the right slot. Matching inputs run automatically; ComputerCraft is required only for explicit recipe selection, queues, telemetry, or cargo channels.\n\nProduce UU-Matter through a high-energy, time-based physical process."
         }
       },
       "tasks:9": {
@@ -5409,10 +5542,10 @@
       },
       "rewards:9": {}
     },
-    "110:10": {
-      "questID:3": 110,
+    "114:10": {
+      "questID:3": 114,
       "preRequisites:11": [
-        109
+        113
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5460,10 +5593,10 @@
       },
       "rewards:9": {}
     },
-    "111:10": {
-      "questID:3": 111,
+    "115:10": {
+      "questID:3": 115,
       "preRequisites:11": [
-        108
+        112
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5511,10 +5644,10 @@
       },
       "rewards:9": {}
     },
-    "112:10": {
-      "questID:3": 112,
+    "116:10": {
+      "questID:3": 116,
       "preRequisites:11": [
-        106
+        110
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5562,11 +5695,11 @@
       },
       "rewards:9": {}
     },
-    "113:10": {
-      "questID:3": 113,
+    "117:10": {
+      "questID:3": 117,
       "preRequisites:11": [
-        106,
-        107
+        110,
+        111
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5590,36 +5723,24 @@
           "autoclaim:1": 0,
           "ismain:1": 0,
           "name:8": "Autonomous Colony Expansion",
-          "desc:8": "A colony becomes a civilization when it can establish the next settlement without rebuilding every supply chain from Earth. Autonomous expansion packages power, habitat, industry, and logistics into a repeatable frontier system.\n\nIndustrial Civilization machines: right-click to open the IC2-styled EU/inventory screen. Put recipe inputs in the three left slots and take output from the right slot. Matching inputs run automatically; ComputerCraft is required only for explicit recipe selection, queues, telemetry, or cargo channels.\n\nEstablish a new colony with self-repairing factories and connected logistics."
+          "desc:8": "A colony becomes a civilization when it can establish the next settlement without rebuilding every supply chain from Earth. Autonomous expansion packages power, habitat, industry, and logistics into a repeatable frontier system.\n\nIndustrial Civilization machines: right-click to open the IC2-styled EU/inventory screen. Put recipe inputs in the three left slots and take output from the right slot. Matching inputs run automatically; ComputerCraft is required only for explicit recipe selection, queues, telemetry, or cargo channels.\n\nCommission an operating Earth or Martian civilization-service facility with a physical project, sustained EU, AI authorization, and connected logistics."
         }
       },
       "tasks:9": {
         "0:10": {
-          "partialMatch:1": 1,
-          "ignoreNBT:1": 1,
-          "consume:1": 0,
-          "groupDetect:1": 1,
-          "autoConsume:1": 0,
-          "requiredItems:9": {
-            "0:10": {
-              "id:8": "industrialcivilizationcore:autonomous_colony_charter",
-              "Count:3": 1,
-              "Damage:2": 0,
-              "OreDict:8": ""
-            }
-          },
+          "advancement_id:8": "industrialcivilizationcore:autonomous_colony_expansion",
           "index:3": 0,
-          "taskID:8": "bq_standard:retrieval"
+          "taskID:8": "bq_standard:advancement"
         }
       },
       "rewards:9": {}
     },
-    "114:10": {
-      "questID:3": 114,
+    "118:10": {
+      "questID:3": 118,
       "preRequisites:11": [
-        110,
-        112,
-        113
+        114,
+        116,
+        117
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5667,10 +5788,10 @@
       },
       "rewards:9": {}
     },
-    "115:10": {
-      "questID:3": 115,
+    "119:10": {
+      "questID:3": 119,
       "preRequisites:11": [
-        110
+        114
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5718,8 +5839,8 @@
       },
       "rewards:9": {}
     },
-    "116:10": {
-      "questID:3": 116,
+    "120:10": {
+      "questID:3": 120,
       "preRequisites:11": [],
       "properties:10": {
         "betterquesting:10": {
@@ -5767,10 +5888,10 @@
       },
       "rewards:9": {}
     },
-    "117:10": {
-      "questID:3": 117,
+    "121:10": {
+      "questID:3": 121,
       "preRequisites:11": [
-        116,
+        120,
         24
       ],
       "properties:10": {
@@ -5819,10 +5940,10 @@
       },
       "rewards:9": {}
     },
-    "118:10": {
-      "questID:3": 118,
+    "122:10": {
+      "questID:3": 122,
       "preRequisites:11": [
-        117
+        121
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5870,10 +5991,10 @@
       },
       "rewards:9": {}
     },
-    "119:10": {
-      "questID:3": 119,
+    "123:10": {
+      "questID:3": 123,
       "preRequisites:11": [
-        118
+        122
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5921,10 +6042,10 @@
       },
       "rewards:9": {}
     },
-    "120:10": {
-      "questID:3": 120,
+    "124:10": {
+      "questID:3": 124,
       "preRequisites:11": [
-        119
+        123
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -5972,8 +6093,8 @@
       },
       "rewards:9": {}
     },
-    "121:10": {
-      "questID:3": 121,
+    "125:10": {
+      "questID:3": 125,
       "preRequisites:11": [
         24
       ],
@@ -6011,8 +6132,8 @@
       },
       "rewards:9": {}
     },
-    "122:10": {
-      "questID:3": 122,
+    "126:10": {
+      "questID:3": 126,
       "preRequisites:11": [
         24
       ],
@@ -6050,8 +6171,8 @@
       },
       "rewards:9": {}
     },
-    "123:10": {
-      "questID:3": 123,
+    "127:10": {
+      "questID:3": 127,
       "preRequisites:11": [
         24
       ],
@@ -6089,10 +6210,10 @@
       },
       "rewards:9": {}
     },
-    "124:10": {
-      "questID:3": 124,
+    "128:10": {
+      "questID:3": 128,
       "preRequisites:11": [
-        123
+        127
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6128,10 +6249,10 @@
       },
       "rewards:9": {}
     },
-    "125:10": {
-      "questID:3": 125,
+    "129:10": {
+      "questID:3": 129,
       "preRequisites:11": [
-        121
+        125
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6167,8 +6288,8 @@
       },
       "rewards:9": {}
     },
-    "126:10": {
-      "questID:3": 126,
+    "130:10": {
+      "questID:3": 130,
       "preRequisites:11": [
         34
       ],
@@ -6206,10 +6327,10 @@
       },
       "rewards:9": {}
     },
-    "127:10": {
-      "questID:3": 127,
+    "131:10": {
+      "questID:3": 131,
       "preRequisites:11": [
-        126
+        130
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6245,10 +6366,10 @@
       },
       "rewards:9": {}
     },
-    "128:10": {
-      "questID:3": 128,
+    "132:10": {
+      "questID:3": 132,
       "preRequisites:11": [
-        127
+        131
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6284,8 +6405,8 @@
       },
       "rewards:9": {}
     },
-    "129:10": {
-      "questID:3": 129,
+    "133:10": {
+      "questID:3": 133,
       "preRequisites:11": [
         24
       ],
@@ -6323,8 +6444,8 @@
       },
       "rewards:9": {}
     },
-    "130:10": {
-      "questID:3": 130,
+    "134:10": {
+      "questID:3": 134,
       "preRequisites:11": [
         34
       ],
@@ -6362,10 +6483,10 @@
       },
       "rewards:9": {}
     },
-    "131:10": {
-      "questID:3": 131,
+    "135:10": {
+      "questID:3": 135,
       "preRequisites:11": [
-        130
+        134
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6401,10 +6522,10 @@
       },
       "rewards:9": {}
     },
-    "132:10": {
-      "questID:3": 132,
+    "136:10": {
+      "questID:3": 136,
       "preRequisites:11": [
-        131
+        135
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6440,10 +6561,10 @@
       },
       "rewards:9": {}
     },
-    "133:10": {
-      "questID:3": 133,
+    "137:10": {
+      "questID:3": 137,
       "preRequisites:11": [
-        132
+        136
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6479,8 +6600,8 @@
       },
       "rewards:9": {}
     },
-    "134:10": {
-      "questID:3": 134,
+    "138:10": {
+      "questID:3": 138,
       "preRequisites:11": [
         4
       ],
@@ -6518,10 +6639,10 @@
       },
       "rewards:9": {}
     },
-    "135:10": {
-      "questID:3": 135,
+    "139:10": {
+      "questID:3": 139,
       "preRequisites:11": [
-        134
+        138
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6557,10 +6678,10 @@
       },
       "rewards:9": {}
     },
-    "136:10": {
-      "questID:3": 136,
+    "140:10": {
+      "questID:3": 140,
       "preRequisites:11": [
-        135
+        139
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6596,10 +6717,10 @@
       },
       "rewards:9": {}
     },
-    "137:10": {
-      "questID:3": 137,
+    "141:10": {
+      "questID:3": 141,
       "preRequisites:11": [
-        136
+        140
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6635,8 +6756,8 @@
       },
       "rewards:9": {}
     },
-    "138:10": {
-      "questID:3": 138,
+    "142:10": {
+      "questID:3": 142,
       "preRequisites:11": [
         5
       ],
@@ -6674,10 +6795,10 @@
       },
       "rewards:9": {}
     },
-    "139:10": {
-      "questID:3": 139,
+    "143:10": {
+      "questID:3": 143,
       "preRequisites:11": [
-        138
+        142
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6713,10 +6834,10 @@
       },
       "rewards:9": {}
     },
-    "140:10": {
-      "questID:3": 140,
+    "144:10": {
+      "questID:3": 144,
       "preRequisites:11": [
-        139
+        143
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6752,11 +6873,11 @@
       },
       "rewards:9": {}
     },
-    "141:10": {
-      "questID:3": 141,
+    "145:10": {
+      "questID:3": 145,
       "preRequisites:11": [
-        140,
-        137
+        144,
+        141
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6792,10 +6913,10 @@
       },
       "rewards:9": {}
     },
-    "142:10": {
-      "questID:3": 142,
+    "146:10": {
+      "questID:3": 146,
       "preRequisites:11": [
-        141
+        145
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6831,10 +6952,10 @@
       },
       "rewards:9": {}
     },
-    "143:10": {
-      "questID:3": 143,
+    "147:10": {
+      "questID:3": 147,
       "preRequisites:11": [
-        142
+        146
       ],
       "properties:10": {
         "betterquesting:10": {
@@ -6870,8 +6991,8 @@
       },
       "rewards:9": {}
     },
-    "144:10": {
-      "questID:3": 144,
+    "148:10": {
+      "questID:3": 148,
       "preRequisites:11": [
         15
       ],
@@ -7747,32 +7868,60 @@
           "id:3": 105,
           "sizeY:3": 24
         },
+        "106:10": {
+          "sizeX:3": 24,
+          "x:3": 189,
+          "y:3": 284,
+          "id:3": 106,
+          "sizeY:3": 24
+        },
+        "107:10": {
+          "sizeX:3": 24,
+          "x:3": 264,
+          "y:3": 298,
+          "id:3": 107,
+          "sizeY:3": 24
+        },
         "108:10": {
           "sizeX:3": 24,
-          "x:3": 202,
-          "y:3": 291,
+          "x:3": 319,
+          "y:3": 259,
           "id:3": 108,
           "sizeY:3": 24
         },
         "109:10": {
           "sizeX:3": 24,
-          "x:3": 293,
-          "y:3": 288,
+          "x:3": 299,
+          "y:3": 204,
           "id:3": 109,
           "sizeY:3": 24
         },
-        "110:10": {
+        "112:10": {
           "sizeX:3": 24,
-          "x:3": 317,
-          "y:3": 224,
-          "id:3": 110,
+          "x:3": 224,
+          "y:3": 190,
+          "id:3": 112,
           "sizeY:3": 24
         },
-        "115:10": {
+        "113:10": {
           "sizeX:3": 24,
-          "x:3": 240,
-          "y:3": 188,
-          "id:3": 115,
+          "x:3": 89,
+          "y:3": 214,
+          "id:3": 113,
+          "sizeY:3": 24
+        },
+        "114:10": {
+          "sizeX:3": 24,
+          "x:3": 285,
+          "y:3": 355,
+          "id:3": 114,
+          "sizeY:3": 24
+        },
+        "119:10": {
+          "sizeX:3": 24,
+          "x:3": 357,
+          "y:3": 163,
+          "id:3": 119,
           "sizeY:3": 24
         }
       },
@@ -7811,11 +7960,11 @@
           "id:3": 15,
           "sizeY:3": 24
         },
-        "144:10": {
+        "148:10": {
           "sizeX:3": 24,
           "x:3": 210,
           "y:3": 188,
-          "id:3": 144,
+          "id:3": 148,
           "sizeY:3": 24
         },
         "16:10": {
@@ -7861,39 +8010,39 @@
           "id:3": 24,
           "sizeY:3": 24
         },
-        "122:10": {
+        "126:10": {
           "sizeX:3": 24,
           "x:3": 262,
           "y:3": 311,
-          "id:3": 122,
+          "id:3": 126,
           "sizeY:3": 24
         },
-        "123:10": {
+        "127:10": {
           "sizeX:3": 24,
           "x:3": 319,
           "y:3": 264,
-          "id:3": 123,
+          "id:3": 127,
           "sizeY:3": 24
         },
-        "124:10": {
+        "128:10": {
           "sizeX:3": 24,
           "x:3": 301,
           "y:3": 197,
-          "id:3": 124,
-          "sizeY:3": 24
-        },
-        "121:10": {
-          "sizeX:3": 24,
-          "x:3": 226,
-          "y:3": 177,
-          "id:3": 121,
+          "id:3": 128,
           "sizeY:3": 24
         },
         "125:10": {
           "sizeX:3": 24,
+          "x:3": 226,
+          "y:3": 177,
+          "id:3": 125,
+          "sizeY:3": 24
+        },
+        "129:10": {
+          "sizeX:3": 24,
           "x:3": 169,
           "y:3": 224,
-          "id:3": 125,
+          "id:3": 129,
           "sizeY:3": 24
         },
         "25:10": {
@@ -7910,39 +8059,39 @@
           "id:3": 40,
           "sizeY:3": 24
         },
-        "116:10": {
+        "120:10": {
           "sizeX:3": 24,
           "x:3": 376,
           "y:3": 323,
-          "id:3": 116,
+          "id:3": 120,
           "sizeY:3": 24
         },
-        "117:10": {
+        "121:10": {
           "sizeX:3": 24,
           "x:3": 397,
           "y:3": 202,
-          "id:3": 117,
+          "id:3": 121,
           "sizeY:3": 24
         },
-        "118:10": {
+        "122:10": {
           "sizeX:3": 24,
           "x:3": 302,
           "y:3": 113,
-          "id:3": 118,
+          "id:3": 122,
           "sizeY:3": 24
         },
-        "119:10": {
+        "123:10": {
           "sizeX:3": 24,
           "x:3": 164,
           "y:3": 122,
-          "id:3": 119,
+          "id:3": 123,
           "sizeY:3": 24
         },
-        "120:10": {
+        "124:10": {
           "sizeX:3": 24,
           "x:3": 86,
           "y:3": 223,
-          "id:3": 120,
+          "id:3": 124,
           "sizeY:3": 24
         }
       },
@@ -8060,11 +8209,11 @@
           "id:3": 86,
           "sizeY:3": 24
         },
-        "106:10": {
+        "110:10": {
           "sizeX:3": 24,
           "x:3": 196,
           "y:3": 298,
-          "id:3": 106,
+          "id:3": 110,
           "sizeY:3": 24
         }
       },
@@ -8082,39 +8231,39 @@
     },
     "21:10": {
       "quests:9": {
-        "126:10": {
+        "130:10": {
           "sizeX:3": 24,
           "x:3": 244,
           "y:3": 244,
-          "id:3": 126,
+          "id:3": 130,
           "sizeY:3": 24
         },
-        "127:10": {
+        "131:10": {
           "sizeX:3": 24,
           "x:3": 264,
           "y:3": 190,
-          "id:3": 127,
+          "id:3": 131,
           "sizeY:3": 24
         },
-        "128:10": {
+        "132:10": {
           "sizeX:3": 24,
           "x:3": 169,
           "y:3": 229,
-          "id:3": 128,
+          "id:3": 132,
           "sizeY:3": 24
         },
-        "129:10": {
+        "133:10": {
           "sizeX:3": 24,
           "x:3": 224,
           "y:3": 298,
-          "id:3": 129,
+          "id:3": 133,
           "sizeY:3": 24
         },
-        "130:10": {
+        "134:10": {
           "sizeX:3": 24,
           "x:3": 319,
           "y:3": 259,
-          "id:3": 130,
+          "id:3": 134,
           "sizeY:3": 24
         }
       },
@@ -8132,25 +8281,25 @@
     },
     "22:10": {
       "quests:9": {
-        "131:10": {
+        "135:10": {
           "sizeX:3": 24,
           "x:3": 244,
           "y:3": 244,
-          "id:3": 131,
+          "id:3": 135,
           "sizeY:3": 24
         },
-        "132:10": {
+        "136:10": {
           "sizeX:3": 24,
           "x:3": 305,
           "y:3": 206,
-          "id:3": 132,
+          "id:3": 136,
           "sizeY:3": 24
         },
-        "133:10": {
+        "137:10": {
           "sizeX:3": 24,
           "x:3": 183,
           "y:3": 282,
-          "id:3": 133,
+          "id:3": 137,
           "sizeY:3": 24
         }
       },
@@ -8168,39 +8317,39 @@
     },
     "23:10": {
       "quests:9": {
-        "107:10": {
+        "111:10": {
           "sizeX:3": 24,
           "x:3": 244,
           "y:3": 244,
-          "id:3": 107,
-          "sizeY:3": 24
-        },
-        "111:10": {
-          "sizeX:3": 24,
-          "x:3": 322,
-          "y:3": 243,
           "id:3": 111,
           "sizeY:3": 24
         },
-        "112:10": {
+        "115:10": {
+          "sizeX:3": 24,
+          "x:3": 322,
+          "y:3": 243,
+          "id:3": 115,
+          "sizeY:3": 24
+        },
+        "116:10": {
           "sizeX:3": 24,
           "x:3": 243,
           "y:3": 175,
-          "id:3": 112,
+          "id:3": 116,
           "sizeY:3": 24
         },
-        "113:10": {
+        "117:10": {
           "sizeX:3": 24,
           "x:3": 166,
           "y:3": 245,
-          "id:3": 113,
+          "id:3": 117,
           "sizeY:3": 24
         },
-        "114:10": {
+        "118:10": {
           "sizeX:3": 24,
           "x:3": 245,
           "y:3": 313,
-          "id:3": 114,
+          "id:3": 118,
           "sizeY:3": 24
         }
       },
@@ -8218,32 +8367,32 @@
     },
     "24:10": {
       "quests:9": {
-        "134:10": {
+        "138:10": {
           "sizeX:3": 24,
           "x:3": 244,
           "y:3": 244,
-          "id:3": 134,
+          "id:3": 138,
           "sizeY:3": 24
         },
-        "135:10": {
+        "139:10": {
           "sizeX:3": 24,
           "x:3": 307,
           "y:3": 277,
-          "id:3": 135,
+          "id:3": 139,
           "sizeY:3": 24
         },
-        "136:10": {
+        "140:10": {
           "sizeX:3": 24,
           "x:3": 173,
           "y:3": 267,
-          "id:3": 136,
+          "id:3": 140,
           "sizeY:3": 24
         },
-        "137:10": {
+        "141:10": {
           "sizeX:3": 24,
           "x:3": 252,
           "y:3": 188,
-          "id:3": 137,
+          "id:3": 141,
           "sizeY:3": 24
         }
       },
@@ -8261,46 +8410,46 @@
     },
     "25:10": {
       "quests:9": {
-        "138:10": {
+        "142:10": {
           "sizeX:3": 24,
           "x:3": 244,
           "y:3": 244,
-          "id:3": 138,
-          "sizeY:3": 24
-        },
-        "139:10": {
-          "sizeX:3": 24,
-          "x:3": 267,
-          "y:3": 304,
-          "id:3": 139,
-          "sizeY:3": 24
-        },
-        "140:10": {
-          "sizeX:3": 24,
-          "x:3": 322,
-          "y:3": 245,
-          "id:3": 140,
-          "sizeY:3": 24
-        },
-        "141:10": {
-          "sizeX:3": 24,
-          "x:3": 269,
-          "y:3": 185,
-          "id:3": 141,
-          "sizeY:3": 24
-        },
-        "142:10": {
-          "sizeX:3": 24,
-          "x:3": 182,
-          "y:3": 206,
           "id:3": 142,
           "sizeY:3": 24
         },
         "143:10": {
           "sizeX:3": 24,
+          "x:3": 267,
+          "y:3": 304,
+          "id:3": 143,
+          "sizeY:3": 24
+        },
+        "144:10": {
+          "sizeX:3": 24,
+          "x:3": 322,
+          "y:3": 245,
+          "id:3": 144,
+          "sizeY:3": 24
+        },
+        "145:10": {
+          "sizeX:3": 24,
+          "x:3": 269,
+          "y:3": 185,
+          "id:3": 145,
+          "sizeY:3": 24
+        },
+        "146:10": {
+          "sizeX:3": 24,
+          "x:3": 182,
+          "y:3": 206,
+          "id:3": 146,
+          "sizeY:3": 24
+        },
+        "147:10": {
+          "sizeX:3": 24,
           "x:3": 180,
           "y:3": 280,
-          "id:3": 143,
+          "id:3": 147,
           "sizeY:3": 24
         }
       },
@@ -8328,7 +8477,7 @@
       "hardcore:1": 0,
       "home_image:8": "industrialcivilizationcore:textures/gui/quest_home_v2.png",
       "party_enable:1": 1,
-      "pack_version:3": 20,
+      "pack_version:3": 21,
       "home_offset_x:3": -128,
       "home_offset_y:3": -64
     }

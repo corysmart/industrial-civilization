@@ -20,6 +20,13 @@ RESOURCES = ROOT / "development/IndustrialCivilizationCore/src/main/resources/as
 PACK_RESOURCES = ROOT / "resources/industrialcivilizationcore"
 QUESTS = ROOT / "config/betterquesting/DefaultQuests.json"
 MINECRAFT_JAR = Path.home() / "Library/Application Support/technic/cache/minecraft_1.12.2.jar"
+GUI_SCREEN_MAP = {
+    "GuiIndustrialMachine.java": "machine",
+    "GuiFactionDirectory.java": "factions",
+    "GuiTerrainWarmup.java": "warmup",
+    "GuiIndustrialCredits.java": "credits",
+    "GuiIndustrialAdvancements.java": "advancements",
+}
 
 
 def parse_lang() -> dict[str, str]:
@@ -100,6 +107,16 @@ def parse_main_menu() -> dict:
     return json.loads((ROOT / "config/CustomMainMenu/mainmenu.json").read_text(encoding="utf-8"))
 
 
+def gui_coverage() -> dict:
+    discovered = sorted(path.name for path in JAVA.glob("Gui*.java")
+                        if re.search(r"extends\s+Gui(?:Screen|Container|ScreenAdvancements)",
+                                     path.read_text(encoding="utf-8")))
+    mapped = sorted(name for name in discovered if name in GUI_SCREEN_MAP)
+    return {"discovered": discovered, "mapped": mapped,
+            "missing": sorted(set(discovered) - set(GUI_SCREEN_MAP)),
+            "screens": GUI_SCREEN_MAP}
+
+
 def source_stamp() -> int:
     watched = [HERE / "index.html", HERE / "styles.css", HERE / "app.js", QUESTS,
                ROOT / "config/CustomMainMenu/mainmenu.json",
@@ -134,7 +151,7 @@ class Handler(BaseHTTPRequestHandler):
             self.send_json({"lang": parse_lang(), "machines": parse_machines(),
                             "factions": parse_factions(), "questLines": parse_quests(),
                             "questHome": parse_quest_home(),
-                            "mainMenu": parse_main_menu()})
+                            "mainMenu": parse_main_menu(), "guiCoverage": gui_coverage()})
             return
         if path == "/api/stamp":
             self.send_json({"stamp": source_stamp()})

@@ -46,7 +46,8 @@
     {"id": "reinforced_glass_panel", "system": "placeable workshop architecture"},
     {"id": "tool_wall", "system": "placeable workshop architecture"},
     {"id": "drawer_cabinet", "system": "placeable workshop architecture"},
-    {"id": "mobile_quarry_controller", "system": "bedrock-triggered BuildCraft Quarry relocation"}
+    {"id": "mobile_quarry_controller", "system": "bedrock-triggered BuildCraft Quarry relocation"},
+    {"id": "civilization_service_interface", "system": "commissioned Earth and Mars service programs"}
   ],
   "items": [
     {"id": "material_pattern_record", "system": "Lite Matter record"},

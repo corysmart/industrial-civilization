@@ -414,7 +414,7 @@ secure_workshop_items = {
 }
 check(secure_workshop_items == {"minecraft:iron_door", "minecraft:torch"},
       "Secure Workshop requires lighting and an iron door without a redundant oak chest")
-check(quests.get("questSettings:10", {}).get("betterquesting:10", {}).get("pack_version:3") == 20, "Better Questing pack version removes the redundant oak chest from Secure Workshop")
+check(quests.get("questSettings:10", {}).get("betterquesting:10", {}).get("pack_version:3") == 21, "Better Questing pack version includes the 0.9 civilization-service and AI-policy program")
 
 expected_backgrounds = {
     "industrialcivilizationcore:textures/gui/quest_bg_earth_ui.png",

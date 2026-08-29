@@ -1,7 +1,7 @@
 # IndustrialCivilizationCore
 
 Source: `development/IndustrialCivilizationCore/`  
-Development runtime JAR: `mods/IndustrialCivilizationCore-0.8.0.jar`
+Development runtime JAR: `mods/IndustrialCivilizationCore-0.9.0.jar`
 
 Responsibilities implemented:
 

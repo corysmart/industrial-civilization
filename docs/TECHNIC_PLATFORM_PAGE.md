@@ -19,7 +19,7 @@ Highlights:
 - Continued sandbox play after the main campaign is complete
 - A physically relocating ProjectRed frame Walking Quarry with no teleporting or spare Quarry
 
-Version 0.8.0 is the current hidden internal release. It retains the live-validated Walking Quarry side quest from 0.7.0 and adds the accepted city/world-generation overhaul, connected roads, faction and settlement fixes, agriculture and vehicle side-path coverage, and expanded persistence/testing infrastructure. Teleport pipes, linked storage, and IC2 teleport hardware remain unavailable until AI authorization. Redistribution review, external two-client soak testing, and final survival-balance work remain in progress.
+Version 0.9.0 is the current hidden internal release and the feature-complete 1.0 gameplay candidate. It adds commissioned Earth and Martian service programs, observable named freight manifests, protected reserves, deterministic network failures, and a bounded AI industrial-policy layer while preserving the accepted 0.8.0 world-generation, faction, settlement, agriculture, vehicle, and Walking Quarry systems. Teleport pipes, linked storage, and IC2 teleport hardware remain unavailable until AI authorization. Redistribution review, external two-client soak testing, and final survival-balance work remain in progress.
 
 ## Help
 

@@ -15,11 +15,13 @@ open http://127.0.0.1:43127
 python3 tools/ui_simulator/audit.py --screenshots
 ```
 
-The 1,200-check audit covers ten screen families, five display sizes, GUI scales
+The 1,400-check audit covers ten screen families, five display sizes, GUI scales
 1–4 and Auto, every custom machine, every faction and every quest line. It
 rejects clipped panels, overlapping labels or buttons, undersized detail
 columns, and quest nodes or backgrounds outside their legal canvas. Eleven
-review PNGs are written under `docs/ui-simulator/`.
+review PNGs plus six focused machine/menu comparisons are written under
+`docs/ui-simulator/`. The server also discovers every first-party `Gui*` class
+and fails the audit if any custom GUI is not mapped into the viewer.
 
 Minecraft 1.12.2 predates Mojang's GameTest framework. There is therefore no
 drop-in simulator that can faithfully emulate this 162-mod Forge client.

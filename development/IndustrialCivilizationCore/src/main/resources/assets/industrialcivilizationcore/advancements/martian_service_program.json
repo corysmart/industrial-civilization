@@ -1,0 +1,23 @@
+{
+  "parent": "industrialcivilizationcore:earth_civilization_service",
+  "display": {
+    "icon": {
+      "item": "industrialcivilizationcore:civilization_service_interface"
+    },
+    "title": {
+      "text": "16.05 \u2014 Martian Spares Service Program"
+    },
+    "description": {
+      "text": "Establish Martian Spares Service Program as working industrial infrastructure."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "runtime": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

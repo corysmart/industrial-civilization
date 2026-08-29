@@ -4,7 +4,9 @@ This browser simulator renders every first-party Industrial Civilization UI
 without starting Minecraft, Forge, or Technic:
 
 - the branded main menu and the injected pause-menu layout;
-- the shared industrial machine container and HEI side panels;
+- the shared industrial machine container and HEI side panels, including every
+  machine plus original, Cargo Policy, congestion, service-operating, and
+  service-suspended comparison states;
 - Factions & Settlements;
 - terrain warmup;
 - AI Age credits;
@@ -27,7 +29,8 @@ open http://127.0.0.1:43127
 ```
 
 Run the automated matrix (five display sizes, GUI scales 1–4 and Auto, all ten
-screen families, every machine, and every faction) and export review images:
+screen families, every machine, all four 0.9.0 operations states, and every
+faction) and export review images:
 
 ```sh
 python3 tools/ui_simulator/audit.py --screenshots

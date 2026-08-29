@@ -1,0 +1,23 @@
+{
+  "parent": "industrialcivilizationcore:martian_service_program",
+  "display": {
+    "icon": {
+      "item": "industrialcivilizationcore:artificial_industrial_intelligence_core"
+    },
+    "title": {
+      "text": "16.06 \u2014 AI Industrial Policy"
+    },
+    "description": {
+      "text": "Integrate the systems required for AI Industrial Policy."
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "runtime": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

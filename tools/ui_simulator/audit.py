@@ -89,6 +89,10 @@ def capture(base_url: str, chrome: Path, profile: Path, output: Path) -> None:
     screens = {
         "machine-fusion-core.png": "screen=machine&machine=fusion_research_core&display=854x480&scale=2",
         "machine-programmable-assembler.png": "screen=machine&machine=programmable_assembler&display=1184x666&scale=2",
+        "machine-cargo-policy.png": "screen=machine&machine=interplanetary_cargo_controller&machine-state=cargo_policy&display=1184x666&scale=2",
+        "machine-cargo-congested.png": "screen=machine&machine=interplanetary_cargo_controller&machine-state=cargo_congested&display=1184x666&scale=2",
+        "machine-service-operating.png": "screen=machine&machine=civilization_service_interface&machine-state=service_operating&display=1184x666&scale=2",
+        "machine-service-suspended.png": "screen=machine&machine=civilization_service_interface&machine-state=service_suspended&display=1184x666&scale=2",
         "main-menu-mac-window.png": "screen=mainmenu&display=1184x666&scale=2",
         "main-menu-small-window.png": "screen=mainmenu&display=854x480&scale=2",
         "pause-menu-small-window.png": "screen=pause&display=854x480&scale=2",

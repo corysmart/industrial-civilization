@@ -126,6 +126,10 @@ QUEST_STORY_OVERRIDES = {
     "comparative_molecular_analysis": "One sample describes a material; samples from three worlds reveal which properties belong to the substance and which come from its environment. Comparative records turn scattered observations into reliable engineering knowledge.",
     "artificial_industrial_intelligence_core": "Until now, automation has coordinated individual machines and queues. The AI Core combines the civilization's accumulated industrial, orbital, lunar, Martian, and matter knowledge so entire production systems can be coordinated together.",
     "ai_age_entry": "The AI Age is not a magical shortcut. It is the point where every earlier discipline—power, logistics, research, programming, and autonomous response—can be applied at civilization scale.",
+    "observable_industrial_network": "Civilization-scale control starts with honest instrumentation. Named facilities, bounded routes, reserves, timestamps, congestion, and causal failures make distance an engineering problem the player can inspect.",
+    "earth_civilization_service": "A mature settlement should do more than accumulate another upgrade bill. Its Machine-Service Annex turns constructed space, sustained EU, logistics, and local materials into an ongoing industrial service.",
+    "martian_service_program": "Mars begins with imported spares, but autonomy requires local substitution. A commissioned depot uses Martian infrastructure and ordinary feedstock to keep Precision Frames available while emergency freight remains useful.",
+    "ai_industrial_policy": "The AI changes the abstraction level without replacing machinery. It observes declared facilities and asks registered production, freight, and load controls to pursue reserves while preserving explicit safety limits.",
     "ae2_entry": "AE2 is the culmination of the automation path, not merely a larger chest. The AI Core authorizes a network where storage, pattern knowledge, and manufacturing requests can be coordinated as one digital industrial system.",
     "ae2_autocrafting": "Early autocrafting moved physical ingredients through fixed machinery. AE2 turns that experience into network manufacturing: encoded patterns describe the plan while the network supplies ingredients and coordinates each required step.",
     "uu_matter_research": "Once energy, computation, and material patterns are understood together, matter itself becomes an industrial input. UU-Matter research explores that conversion without pretending energy or authorization constraints have disappeared.",
@@ -416,8 +420,15 @@ def controls_for(ms):
         controls.append("When a finished research artifact is meant to open new work, hold it and right-click once to register the knowledge it contains.")
     if ms["id"] in {"computer_online", "factory_telemetry", "programmable_assembler", "production_queue",
                      "reactor_telemetry", "orbital_communications", "autonomous_resource_response",
-                     "autonomous_power_response", "ai_factory_coordination"}:
+                     "autonomous_power_response", "ai_factory_coordination",
+                     "observable_industrial_network", "earth_civilization_service",
+                     "martian_service_program", "ai_industrial_policy", "predictive_production"}:
         controls.append("ComputerCraft: right-click a computer to open it; type help for built-in help; hold Control+T to terminate a running program. Use peripheral.getNames() and peripheral.wrap(side) to find attached machines.")
+    if ms["id"] in {"ai_factory_coordination", "observable_industrial_network",
+                     "ai_industrial_policy", "predictive_production"}:
+        controls.append("Facility controller: give every endpoint a unique name with setFacilityIdentity(name, role), then inspect getFacilityStatus(), getPowerStatus(), getRouteStatus(), and getManifest(). Configure bounded automation with configureReserve(itemId, minimum, preferred, priority), configureEmergencyReserve(eu, percent), setPolicyEnabled(true), and requestFreight(destinationName, itemId, count). A shortage at a higher numeric priority defers lower-priority demand for the same resource on that route. getPolicyAction() and getPolicyBlocker() explain the current decision; setManualOverride(true) returns direct control immediately.")
+    if ms["id"] in {"earth_civilization_service", "martian_service_program"}:
+        controls.append("Service interface: attach a Cargo Controller whose registered channel has at least one loaded peer, then attach a computer and call configureServiceProgram(\"earth_machine_service\") at a tier-three Earth settlement or configureServiceProgram(\"mars_spares\") on Mars. Insert the displayed three-part bill, place the durable AI Core in input slot three, and call commissionServiceProgram(). Commissioning requires 200 powered ticks at 512 EU/t. After commissioning, missing AI authorization or operating EU suspends either service; Martian service also suspends without iron, redstone, or output capacity. getServiceProgramStatus() reports the exact blocker and recovery.")
     if ms["id"] in {"programmable_assembler", "production_queue", "multi_step_manufacturing",
                      "programmable_manufacturing"}:
         controls.append("Assembler peripheral: after local m = peripheral.wrap(\"right\"), use m.listRecipes(), m.selectRecipe(\"control_processor\"), and m.queue(4). Replace right with the side where the assembler is attached.")
@@ -627,7 +638,7 @@ def main():
             "hardcore:1": 0,
             "home_image:8": "industrialcivilizationcore:textures/gui/quest_home_v2.png",
             "party_enable:1": 1,
-            "pack_version:3": 20,
+            "pack_version:3": 21,
             "home_offset_x:3": -128,
             "home_offset_y:3": -64,
         }},

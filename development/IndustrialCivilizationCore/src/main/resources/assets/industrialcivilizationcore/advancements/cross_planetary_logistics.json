@@ -1,11 +1,11 @@
 {
-  "parent": "industrialcivilizationcore:ai_factory_coordination",
+  "parent": "industrialcivilizationcore:observable_industrial_network",
   "display": {
     "icon": {
       "item": "industrialcivilizationcore:interplanetary_cargo_network_key"
     },
     "title": {
-      "text": "16.03 \u2014 Cross-Planetary AI Logistics"
+      "text": "16.07 \u2014 Cross-Planetary AI Logistics"
     },
     "description": {
       "text": "Integrate the systems required for Cross-Planetary AI Logistics."

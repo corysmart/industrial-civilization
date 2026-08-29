@@ -5,7 +5,7 @@ about growing a survival workshop into an interplanetary industrial
 civilization. It began from the Tekkit 2 technical baseline, but it is now its
 own source project, release archive, and hidden Technic pack.
 
-The current hidden internal release is **0.8.0**. Its complete 16-chapter numbered
+The current hidden internal release is **0.9.0**. Its complete 16-chapter numbered
 campaign has passed live acceptance in `Test Bed 1`: all 111 numbered Better
 Questing tasks completed, the final `continuous_civilization` milestone
 persisted after save/reload, the one-time AI credits returned to the playable
@@ -16,9 +16,9 @@ Quarry, MFSU Burst Power, factions, agriculture, and vehicle/logistics paths.
 ## Current distribution status
 
 - Technic pack: **Industrial Civilization: Astra** (`industrial-civilization-astra`)
-- Installed test release: **0.8.0**
+- Installed test release: **0.9.0**
 - Minecraft: **1.12.2**, Forge **14.23.5.2860**, Java **8**
-- Current GitHub release: `v0.8.0`
+- Current GitHub release: `v0.9.0`
 - Visibility: hidden internal alpha while redistribution review, multiplayer
   QA, and final balance work continue
 - Installed Technic instance:
@@ -39,8 +39,8 @@ then verifies every SHA-256 before Forge starts. See
 
 - 16 numbered chapters and 10 independent side paths across Earth, orbit, the
   Moon, Mars, Lite Matter Engineering, the AI Age, and post-AI civilization
-- 145 automatic capability milestones with no manual checkbox objectives
-- One Industrial Civilization advancement page with 340 connected visible
+- 149 automatic capability milestones with no manual checkbox objectives
+- One Industrial Civilization advancement page with 344 connected visible
   advancements; obsolete, duplicate, magical, End-only, and fake-monster
   objectives are hidden, removed, or replaced
 - IC2-centered EU power, manufacturing, monitored nuclear engineering,
@@ -60,6 +60,10 @@ then verifies every SHA-256 before Forge starts. See
   militia, robbers/space pirates, vehicles, factories, trade, reputation, and
   equipment drops
 - Continued sandbox play after the main campaign milestone
+- Commissioned Earth Machine-Service and Martian Spares programs with bounded
+  construction bills, sustained EU, physical facilities, and ongoing benefits
+- Observable named freight manifests, protected source reserves, deterministic
+  congestion/power failures, and a bounded AI policy layer exposed to ComputerCraft
 
 The authoritative progression is the machine-readable `progression/` tree.
 The consolidated design and implementation reference is
@@ -97,9 +101,9 @@ python3 tools/static_validate.py
 python3 tools/e2e/preflight.py
 ```
 
-At the current 0.8.0 release state these checks report 1,444 runtime-content checks,
-340 connected visible advancements, 57 energy-interoperability checks, 4,406
-progression checks, 2,037 static checks, and 8 HeadlessMC preflight checks.
+At the current 0.9.0 release state these checks report 1,466 runtime-content checks,
+344 connected visible advancements, 57 energy-interoperability checks, 4,510
+progression checks, 2,052 static checks, and 8 HeadlessMC preflight checks.
 Offline checks complement—not replace—the live evidence and scenario lists in
 `docs/E2E_TESTING.md`, `docs/MAIN_QUESTLINE_TEST_PLAN.md`, and
 `docs/MANUAL_TEST_CHECKLIST.md`.

@@ -5,7 +5,7 @@
       "item": "industrialcivilizationcore:autonomous_colony_charter"
     },
     "title": {
-      "text": "16.10 \u2014 Autonomous Colony Expansion"
+      "text": "16.14 \u2014 Autonomous Colony Expansion"
     },
     "description": {
       "text": "Integrate the systems required for Autonomous Colony Expansion."
@@ -16,15 +16,8 @@
     "hidden": false
   },
   "criteria": {
-    "evidence_1": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "industrialcivilizationcore:autonomous_colony_charter"
-          }
-        ]
-      }
+    "runtime": {
+      "trigger": "minecraft:impossible"
     }
   }
 }

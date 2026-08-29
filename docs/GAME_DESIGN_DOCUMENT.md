@@ -1,9 +1,9 @@
 # Industrial Civilization — Game Design Document
 
-- Status: 0.8.0 hidden internal release; live-validated
+- Status: 0.9.0 hidden internal release; live-validated gameplay candidate
 - Pack: Industrial Civilization: Astra / Minecraft 1.12.2 / Forge 14.23.5.2860
-- First-party runtime: IndustrialCivilizationCore 0.8.0
-- Industrial Civilization pack release: 0.8.0 (Technic base selector: 1.2.6)
+- First-party runtime: IndustrialCivilizationCore 0.9.0
+- Industrial Civilization pack release: 0.9.0 (Technic base selector: 1.2.6)
 - Authoritative data: `progression/*.json`; generated quest pack: `config/betterquesting/DefaultQuests.json`
 
 ## Vision
@@ -205,7 +205,7 @@ Quest/config changes appear in an existing single-player world through Better Qu
 ## Implemented now
 
 - 16 chapters, 10 independent side paths, 145 automatic quests, full aspirational visibility, no manual checkbox tasks.
-- A single connected Industrial Civilization advancement page exposes 340 visible nodes in gameplay order, including 194 ported objectives from Minecraft and integrated mods. Foreign advancement pages are hidden, and 37 impossible, duplicate, magical, End-only, or fake-monster objectives are removed or replaced.
+- A single connected Industrial Civilization advancement page exposes 344 visible nodes in gameplay order, including 194 ported objectives from Minecraft and integrated mods. Foreign advancement pages are hidden, and 37 impossible, duplicate, magical, End-only, or fake-monster objectives are removed or replaced.
 - Story/mission/proof/control descriptions and actual objective icons for the entire generated quest set.
 - Five era-specific quest backgrounds and IC2-styled custom block/item/GUI art.
 - Thirty-one first-party blocks (19 machines/utility blocks plus 12 workshop architecture components), twenty-three first-party items, and the IC Credit currency with real construction/production paths.

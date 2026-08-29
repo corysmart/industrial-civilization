@@ -11,6 +11,7 @@ public enum IndustrialMachineKind {
     MATTER_REPLICATOR("matter_replicator", 8000000, 2048, 2000, 0, WorkClass.ENERGY_LIMITED),
     FUSION_RESEARCH_CORE("fusion_research_core", 40000000, 8192, 4000, 600, WorkClass.TIME_LIMITED),
     CARGO_CONTROLLER("interplanetary_cargo_controller", 4000000, 512, 600, 0, WorkClass.ENERGY_LIMITED),
+    SERVICE_INTERFACE("civilization_service_interface", 4000000, 512, 600, 0, WorkClass.ENERGY_LIMITED),
     MEGASTRUCTURE_CONTROLLER("orbital_megastructure_controller", 24000000, 8192, 2000, 400, WorkClass.TIME_LIMITED),
     COLONY_BEACON("autonomous_colony_beacon", 8000000, 2048, 1200, 400, WorkClass.TIME_LIMITED);
 

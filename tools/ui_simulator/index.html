@@ -35,6 +35,14 @@
     </select></label>
     <section id="machine-controls">
       <label>Machine<select id="machine"></select></label>
+      <label>Operations state<select id="machine-state">
+        <option value="auto">Automatic for machine</option>
+        <option value="generic">Original machine UI</option>
+        <option value="cargo_policy">Cargo policy operating</option>
+        <option value="cargo_congested">Cargo destination congested</option>
+        <option value="service_operating">Service operating</option>
+        <option value="service_suspended">Service suspended</option>
+      </select></label>
       <label>Energy <input id="energy" type="range" min="0" max="100" value="73"></label>
       <label>Completed operations <input id="operations" type="number" min="0" value="12345"></label>
       <label><input id="hei" type="checkbox" checked> HEI side panels</label>

@@ -1,0 +1,23 @@
+{
+  "parent": "industrialcivilizationcore:ai_factory_coordination",
+  "display": {
+    "icon": {
+      "item": "industrialcivilizationcore:interplanetary_cargo_controller"
+    },
+    "title": {
+      "text": "16.03 \u2014 Observable Utility and Freight Network"
+    },
+    "description": {
+      "text": "Put Observable Utility and Freight Network into reliable operation."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "runtime": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

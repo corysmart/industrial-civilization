@@ -49,10 +49,79 @@
       "optional": false,
       "capability": "AI Factory Coordination",
       "final_validation": [
-        "Coordinate inventory-aware production across multiple physical machine lines."
+        "Create and deliver a named freight manifest between registered physical controllers so the policy layer coordinates more than one infrastructure endpoint."
       ],
       "automation_paths": [],
-      "required_item": "industrialcivilizationcore:interplanetary_cargo_controller"
+      "runtime_advancement": true
+    },
+    {
+      "id": "observable_industrial_network",
+      "title": "Observable Utility and Freight Network",
+      "category": "operation",
+      "icon": "industrialcivilizationcore:interplanetary_cargo_controller",
+      "prerequisites": [
+        "ai_factory_coordination"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Observable Utility and Freight Network",
+      "final_validation": [
+        "Deliver a named physical manifest while source, destination, quantity, route state, power reserve, timestamps, congestion, and failure cause remain inspectable at the controller or through ComputerCraft."
+      ],
+      "automation_paths": [],
+      "runtime_advancement": true
+    },
+    {
+      "id": "earth_civilization_service",
+      "title": "Earth Civilization Service Program",
+      "category": "construction",
+      "icon": "industrialcivilizationcore:civilization_service_interface",
+      "prerequisites": [
+        "observable_industrial_network"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Earth Civilization Service Program",
+      "final_validation": [
+        "At a tier-three settlement, pay the Machine-Service Annex construction bill, attach a registered cargo route with a loaded peer and AI authorization, sustain commissioning EU, and prove the physical annex suspends and resumes when its operating requirements are removed and restored."
+      ],
+      "automation_paths": [],
+      "runtime_advancement": true
+    },
+    {
+      "id": "martian_service_program",
+      "title": "Martian Spares Service Program",
+      "category": "construction",
+      "icon": "industrialcivilizationcore:civilization_service_interface",
+      "prerequisites": [
+        "earth_civilization_service",
+        "martian_autonomy_complete"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "Martian Spares Service Program",
+      "final_validation": [
+        "On Mars, pay the environment-derived spares-depot bill, sustain commissioning EU beside a registered cargo route with a loaded peer, and keep AI authorization, EU, iron, redstone, and output capacity available for local Precision-Frame spare production."
+      ],
+      "automation_paths": [],
+      "runtime_advancement": true
+    },
+    {
+      "id": "ai_industrial_policy",
+      "title": "AI Industrial Policy",
+      "category": "mastery",
+      "icon": "industrialcivilizationcore:artificial_industrial_intelligence_core",
+      "prerequisites": [
+        "martian_service_program"
+      ],
+      "critical": false,
+      "optional": false,
+      "capability": "AI Industrial Policy",
+      "final_validation": [
+        "Define minimum and preferred reserves, allow a real production or freight response, and recover the observed reserve through registered infrastructure without manually moving the target resource."
+      ],
+      "automation_paths": [],
+      "runtime_advancement": true
     },
     {
       "id": "cross_planetary_logistics",
@@ -60,7 +129,7 @@
       "category": "mastery",
       "icon": "industrialcivilizationcore:interplanetary_cargo_network_key",
       "prerequisites": [
-        "ai_factory_coordination"
+        "observable_industrial_network"
       ],
       "critical": false,
       "optional": true,
@@ -77,16 +146,16 @@
       "category": "mastery",
       "icon": "industrialcivilizationcore:artificial_industrial_intelligence_core",
       "prerequisites": [
-        "ai_factory_coordination"
+        "ai_industrial_policy"
       ],
       "critical": false,
       "optional": true,
       "capability": "Predictive Production",
       "final_validation": [
-        "Maintain demand forecasts, resilient buffers, and automatic shortage response."
+        "Let an observed reserve fall below its minimum, allow policy to request real production or freight, and let the physical system restore the preferred reserve without manually moving the target item."
       ],
       "automation_paths": [],
-      "required_item": "industrialcivilizationcore:artificial_industrial_intelligence_core"
+      "runtime_advancement": true
     },
     {
       "id": "uu_matter_research",
@@ -186,10 +255,10 @@
       "optional": true,
       "capability": "Autonomous Colony Expansion",
       "final_validation": [
-        "Establish a new colony with self-repairing factories and connected logistics."
+        "Commission an operating Earth or Martian civilization-service facility with a physical project, sustained EU, AI authorization, and connected logistics."
       ],
       "automation_paths": [],
-      "required_item": "industrialcivilizationcore:autonomous_colony_charter"
+      "runtime_advancement": true
     },
     {
       "id": "civilization_scale_ai",

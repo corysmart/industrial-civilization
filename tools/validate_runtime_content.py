@@ -323,7 +323,7 @@ kind_source = (JAVA / "IndustrialMachineKind.java").read_text()
 specs = {name: (int(cap), int(voltage), int(duration), int(minimum), work_class)
          for name, _id, cap, voltage, duration, minimum, work_class in re.findall(
              r'(\w+)\("([^"]+)", (\d+), (\d+), (\d+), (\d+), WorkClass\.(\w+)\)', kind_source)}
-check(len(specs) == 12, "all first-party processing-machine work specifications are parsed")
+check(len(specs) == 13, "all first-party processing and service-machine work specifications are parsed")
 for name, (capacity, voltage, duration, minimum, work_class) in specs.items():
     check(capacity >= voltage * duration, f"{name} can buffer at least one complete operation")
     check(duration > 0 and voltage in {32, 128, 512, 2048, 8192}, f"{name} has an IC2 voltage tier and finite duration")

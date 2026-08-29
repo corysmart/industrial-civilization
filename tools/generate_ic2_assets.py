@@ -137,6 +137,7 @@ def block_pattern(block_id):
         "factory_control_terminal": terminal,
         "matter_replicator": replicator, "fusion_research_core": fusion,
         "interplanetary_cargo_controller": cargo,
+        "civilization_service_interface": terminal,
         "orbital_megastructure_controller": megastructure,
         "autonomous_colony_beacon": colony,
         "environmental_solar_array": solar, "tracking_solar_array": solar,
@@ -403,7 +404,10 @@ def make_gui():
     image = Image.new("RGBA", (256, 256), (0, 0, 0, 0)); d = ImageDraw.Draw(image)
     d.rectangle((0, 0, 207, 189), fill="#aeb8ba", outline="#1c2529")
     d.rectangle((3, 3, 204, 186), outline="#e8eeee")
-    d.rectangle((12, 20, 195, 81), fill="#7b898e", outline="#3a484d")
+    # The taller process panel supports three causal status rows for Cargo
+    # Controllers and Civilization Service Interfaces without covering the
+    # player inventory. Standard machines retain the same slot geometry.
+    d.rectangle((12, 20, 195, 94), fill="#7b898e", outline="#3a484d")
     for x in (42, 70, 98, 158): slot(d, x, 34, 22)
     d.line((120, 46, 151, 46), fill=PALETTE["dark"], width=2)
     d.polygon([(152, 43), (157, 46), (152, 49)], fill=PALETTE["orange"])

@@ -80,7 +80,7 @@ import org.apache.logging.log4j.Logger;
 public final class IndustrialCivilizationCore {
     public static final String MODID = "industrialcivilizationcore";
     public static final String NAME = "Industrial Civilization Core";
-    public static final String VERSION = "0.8.0";
+    public static final String VERSION = "0.9.0";
     /** Canonical pack conversion, matching IC2 Classic's RFPerEU setting. */
     public static final int FE_PER_EU = 8;
     public static final int GUI_INDUSTRIAL_MACHINE = 1;
@@ -131,6 +131,7 @@ public final class IndustrialCivilizationCore {
     public static final BlockIndustrialMachine MATTER_REPLICATOR = machine(IndustrialMachineKind.MATTER_REPLICATOR);
     public static final BlockIndustrialMachine FUSION_RESEARCH_CORE = machine(IndustrialMachineKind.FUSION_RESEARCH_CORE);
     public static final BlockIndustrialMachine INTERPLANETARY_CARGO_CONTROLLER = machine(IndustrialMachineKind.CARGO_CONTROLLER);
+    public static final BlockIndustrialMachine CIVILIZATION_SERVICE_INTERFACE = machine(IndustrialMachineKind.SERVICE_INTERFACE);
     public static final BlockIndustrialMachine ORBITAL_MEGASTRUCTURE_CONTROLLER = machine(IndustrialMachineKind.MEGASTRUCTURE_CONTROLLER);
     public static final BlockIndustrialMachine AUTONOMOUS_COLONY_BEACON = machine(IndustrialMachineKind.COLONY_BEACON);
     public static final BlockFactoryControlTerminal FACTORY_CONTROL_TERMINAL = new BlockFactoryControlTerminal();
@@ -164,6 +165,7 @@ public final class IndustrialCivilizationCore {
         PROGRAMMABLE_ASSEMBLER, CAR_WORKSHOP, GUN_FACTORY,
         ROBOTIC_MANUFACTURING_CELL, MATTER_REPLICATOR,
         FUSION_RESEARCH_CORE, INTERPLANETARY_CARGO_CONTROLLER,
+        CIVILIZATION_SERVICE_INTERFACE,
         ORBITAL_MEGASTRUCTURE_CONTROLLER, AUTONOMOUS_COLONY_BEACON
     };
     public static final ItemIndustrialArtifact ORBITAL_RESEARCH_ARCHIVE = artifact("orbital_research_archive");

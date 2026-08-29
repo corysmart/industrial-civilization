@@ -1257,6 +1257,18 @@ public final class CivilizationWorldGenerator implements IWorldGenerator {
         }
     }
 
+    /** Physical post-tier-three machine-service annex commissioned by a powered interface. */
+    public static void applySettlementServiceAnnex(World world, BlockPos origin) {
+        BlockPos annex = origin.add(32, 1, 32);
+        building(world, annex, 11, 9, IndustrialCivilizationCore.STEEL_CASING.getDefaultState(), 6);
+        set(world, annex.add(5, 1, 0), Blocks.AIR.getDefaultState());
+        set(world, annex.add(3, 1, 4), IndustrialCivilizationCore.REPAIR_BENCH.getDefaultState());
+        set(world, annex.add(7, 1, 4), IndustrialCivilizationCore.ELECTRIC_FABRICATOR.getDefaultState());
+        set(world, annex.add(5, 1, 7), Blocks.CHEST.getDefaultState());
+        for (int x = 0; x <= 10; x++)
+            set(world, annex.add(x, 0, -1), IndustrialCivilizationCore.INDUSTRIAL_FLOOR.getDefaultState());
+    }
+
     private static void set(World world, BlockPos pos, IBlockState state) {
         if (!insidePlacement(pos)) return;
         world.setBlockState(pos, state, 2);

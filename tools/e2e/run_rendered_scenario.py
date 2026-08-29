@@ -18,7 +18,7 @@ RENDER_XMX = os.environ.get("IC_RENDER_XMX", "4G")
 LIBRARIES = Path("/Users/cory/Library/Application Support/minecraft/libraries")
 NATIVES = Path("/Users/cory/Library/Application Support/technic/modpacks/industrial-civilization-astra/bin/natives")
 JAVA = Path(os.environ.get(
-    "IC_JAVA8", "/private/tmp/astra-jdk8/jdk8u502-b07/Contents/Home/bin/java"))
+    "IC_JAVA8", "/private/tmp/astra-jdk8/jdk8u492-b09/Contents/Home/bin/java"))
 
 REPLACEMENTS = {
     "librarylwjglopenal-20100824.jar":
@@ -123,7 +123,7 @@ def main() -> int:
                     pass_ready = pass_ready and "IC_E2E|SCREENSHOT|" in text
                 if pass_ready:
                     result = "pass"
-                    time.sleep(3)
+                    time.sleep(8 if scenario == "civilization_systems" else 3)
                     break
                 if f"IC_TEST|FAIL|{scenario}" in text or "---- Minecraft Crash Report ----" in text:
                     result = "fail"

@@ -4,14 +4,14 @@
 - Source authority: `/Users/cory/Documents/tekkit-3`
 - Technic pack: `Industrial Civilization: Astra`
 - Technic test target: `/Users/cory/Library/Application Support/technic/modpacks/industrial-civilization-astra`
-- Current hidden internal release: `0.8.0`
+- Current hidden internal release: `0.9.0`
 
 ## Current acceptance state
 
 - The complete numbered campaign is implemented across 16 chapters. All 111 numbered Better Questing task records completed in the live `Test Bed 1` run.
 - Chapter 16's `continuous_civilization` completion persisted after save, title-screen exit, and reload. AI credits displayed `corysmart` once, returned to the same playable world, and did not create a terminal victory state.
 - The main-line run exercised real crafting, machine processing, ComputerCraft control, nuclear progression, Tier 1 rocket assembly/fueling/launch, orbital-station creation, Oxygen Detector habitat proof, sustained station/base telemetry, gated Moon/Mars research, AI synthesis, AE2 entry, and post-AI matter/civilization milestones. Creative mode staged ingredients and isolated evidence where documented; the live log distinguishes clean negatives, clean positives, contaminated inventory detections, and command-assisted recovery.
-- Exactly one advancement page is visible. Its connected Industrial Civilization tree contains 340 visible nodes, including 194 ported Minecraft/mod objectives. Thirty-seven impossible, duplicate, magical, End-only, dungeon/buggy, fake-monster, or duplicate-solar objectives are removed or replaced.
+- Exactly one advancement page is visible. Its connected Industrial Civilization tree contains 344 visible nodes, including 194 ported Minecraft/mod objectives. Thirty-seven impossible, duplicate, magical, End-only, dungeon/buggy, fake-monster, or duplicate-solar objectives are removed or replaced.
 - The optional side lines remain outside the numbered-campaign result, but all ten now have targeted runtime acceptance. This includes the physical MFSU burst-power and Walking Quarry branches, both agriculture branches, strategic defense, factions, settlements, and vehicle/logistics coverage.
 
 Exact evidence, defects found during testing, fixes, and contamination notes are recorded in `docs/MAIN_QUESTLINE_LIVE_TEST_LOG.md`.
@@ -19,7 +19,7 @@ Exact evidence, defects found during testing, fixes, and contamination notes are
 ## Implemented systems
 
 - 16 numbered chapters, 10 independent visible side paths, and 145 automatic capability milestones with no manual checkbox objectives.
-- Thirty-one first-party blocks and twenty-three first-party items, including EU-native manufacturing, research, cargo, replication, AI, habitat, settlement, vehicle, strategic, and mobile-quarry systems.
+- Thirty-two first-party blocks and twenty-three first-party items, including EU-native manufacturing, research, cargo, civilization service, AI policy, replication, habitat, settlement, vehicle, strategic, and mobile-quarry systems.
 - IC2-centered power and voltage language with hidden compatibility conversion at 8 FE = 1 EU.
 - Sustained functional orbital, lunar, and Martian gates. Habitat evidence requires a nearby active Galacticraft Oxygen Detector; merely oxygenating the player or running a sealer is insufficient.
 - Environment-tagged Earth/Moon/Mars research, gated Galacticraft destinations, real NASA Workbench rocket assembly, monitored nuclear power, lunar darkness, Martian autonomy, Lite Matter Engineering, AI-authorized AE2, and continued post-AI play.
@@ -33,18 +33,18 @@ Exact evidence, defects found during testing, fixes, and contamination notes are
 ## Distribution state
 
 - The public Git repository is `corysmart/industrial-civilization`; its reachable history uses the `corysmart` GitHub no-reply identity rather than a Prepaid2Coin address.
-- The hidden Technic listing installs as `industrial-civilization-astra` and serves `v0.8.0`.
+- The hidden Technic listing installs as `industrial-civilization-astra` and serves `v0.9.0`.
 - Techguns, Connected Glass 1.1.8, and its Core Lib are omitted from the GitHub archive. ModDirector retrieves pinned official CurseForge files and verifies their SHA-256 hashes before startup. Connected Glass is intentionally held at the last pre-Fusion renderer release for compatibility with the pack's optimized 1.12.2 rendering stack.
 - ICBM Classic 6.5.5 is included under the modpack permission in its distributed license.
 - The pack remains hidden until the remaining redistribution/attribution review and public-release QA are complete.
 
 ## Current automated evidence
 
-- Runtime-content harness: 1,444 checks.
-- Unified advancements: 194 ported, 340 visible, 37 removed/replaced, one rooted campaign tree.
+- Runtime-content harness: 1,466 checks.
+- Unified advancements: 194 ported, 344 visible, 37 removed/replaced, one rooted campaign tree.
 - Energy interoperability: 57 checks.
-- Progression model: 16 chapters, 10 side paths, 145 milestones, 11 runtime replacements, 0 placeholders. Exact validator totals are regenerated with each build.
-- Static validator: 2,037 checks.
+- Progression model: 16 chapters, 10 side paths, 149 milestones, 11 runtime replacements, 0 placeholders. Exact validator totals are regenerated with each build.
+- Static validator: 2,052 checks.
 - HeadlessMC preflight: 8 smoke checks.
 - The Java 8 Forge build and deterministic unit suite passed for the campaign-acceptance build; live deployment hashes and per-fix test counts are retained in the live log.
 
@@ -121,3 +121,14 @@ Exact evidence, defects found during testing, fixes, and contamination notes are
 - Finish the redistribution and attribution audit, confirm every dependency delivery path, and perform public-release packaging/upgrade QA.
 
 Version 0.8.0 is published as a hidden internal release for continued private testing. It is not yet presented as a public release-quality build.
+
+## 0.9.0 feature-complete gameplay candidate
+
+- One reusable Civilization Service Interface now commissions a post-tier-three Earth Machine-Service Annex or a Martian Spares Depot from environment-derived, bounded three-part bills. Commissioning requires an adjacent cargo controller on a registered route with a loaded peer, a durable AI Core, and 200 sustained ticks at 512 EU/t. It creates physical infrastructure; Earth service consumes real EU to improve material-backed circuit work, while Mars consumes iron, redstone, and EU to produce local Precision Frames. Commissioned services suspend with a causal blocker when AI authorization or operating resources disappear and resume when restored.
+- Cargo Controllers now expose named facility identity, stored/accepted EU, protected source reserves, route peers, throughput, named manifests, requested/delivered quantities, creation/arrival ticks, destination congestion, source depletion, and causal blockers. Transfers remain one physical item per 100 ticks across loaded registered controllers and never bypass the existing transportation domain.
+- The bounded AI policy vocabulary supports minimum/preferred reserves, effective numeric priority, absolute/percentage emergency EU reserve, adjacent known-recipe production requests, registered-route freight requests, explicit redstone noncritical-load shedding, cooldown/hysteresis, causal explanation, disable, and manual override. A higher-priority shortage for the same resource on the same route defers lower-priority demand; resource-specific source observation prevents unrelated or unconfigured reserve policies from falsely blocking freight. All state persists and is exposed through appended ComputerCraft methods without changing legacy method indices.
+- Chapter 16 grows from 145 to 149 milestones. AI Factory Coordination, Predictive Production, and Autonomous Colony Expansion are runtime proofs: controller possession no longer completes coordination, prediction waits for real shortage response and reserve recovery, and colony expansion waits for a commissioned operating service project.
+- The rendered `civilization_systems` Test Bed scenario caught reserve-threshold, whole-NBT assertion, stale-fixture identity, resource-observation, and solid-ground annex-foundation defects. After correction, the exact candidate passed real manifest delivery, priority deferral and service, load shedding, queued manufacturing, reserve recovery, route registration guarding, sustained service commissioning, post-commission suspension/resumption, physical construction, and policy/service NBT persistence. The accepted 37-frame framebuffer recording visibly frames the completed test facility at `artifacts/0.9.0-civilization-systems.mp4`.
+- The hot-reloading UI Viewer discovers every first-party `Gui*` class and maps all five custom screen families. It also enumerates every industrial machine and now includes explicit Cargo Policy, Cargo Congested, Service Operating, and Service Suspended comparison states. Its full viewport/scale audit passes 1,400 checks and produces 17 review PNGs.
+
+Version 0.9.0 is deployed as the hidden, feature-complete 1.0 gameplay candidate. It is not yet presented as a public release-quality build.

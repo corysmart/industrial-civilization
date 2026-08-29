@@ -23,6 +23,7 @@ tile.industrialcivilizationcore.factory_control_terminal.name=Abandoned Factory 
 tile.industrialcivilizationcore.matter_replicator.name=Matter Replicator
 tile.industrialcivilizationcore.fusion_research_core.name=Fusion Research Core
 tile.industrialcivilizationcore.interplanetary_cargo_controller.name=Interplanetary Cargo Controller
+tile.industrialcivilizationcore.civilization_service_interface.name=Civilization Service Interface
 tile.industrialcivilizationcore.orbital_megastructure_controller.name=Orbital Megastructure Controller
 tile.industrialcivilizationcore.autonomous_colony_beacon.name=Autonomous Colony Beacon
 tile.industrialcivilizationcore.environmental_solar_array.name=Environmental Solar Array
