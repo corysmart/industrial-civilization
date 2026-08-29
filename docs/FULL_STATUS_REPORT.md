@@ -33,7 +33,7 @@ Exact evidence, defects found during testing, fixes, and contamination notes are
 ## Distribution state
 
 - The public Git repository is `corysmart/industrial-civilization`; its reachable history uses the `corysmart` GitHub no-reply identity rather than a Prepaid2Coin address.
-- The hidden Technic listing installs as `industrial-civilization-astra`; the local installed candidate is 0.8.0 while the published hidden release remains `v0.7.0` until packaging is complete.
+- The hidden Technic listing installs as `industrial-civilization-astra` and serves `v0.8.0`.
 - Techguns, Connected Glass 1.1.8, and its Core Lib are omitted from the GitHub archive. ModDirector retrieves pinned official CurseForge files and verifies their SHA-256 hashes before startup. Connected Glass is intentionally held at the last pre-Fusion renderer release for compatibility with the pack's optimized 1.12.2 rendering stack.
 - ICBM Classic 6.5.5 is included under the modpack permission in its distributed license.
 - The pack remains hidden until the remaining redistribution/attribution review and public-release QA are complete.
@@ -120,4 +120,4 @@ Exact evidence, defects found during testing, fixes, and contamination notes are
 - Run an external two-client multiplayer soak in addition to the deterministic distinct-player server-state test.
 - Finish the redistribution and attribution audit, confirm every dependency delivery path, and perform public-release packaging/upgrade QA.
 
-Version 0.8.0 is deployed as a hidden internal candidate for continued private testing. It is not yet presented as a public release-quality build.
+Version 0.8.0 is published as a hidden internal release for continued private testing. It is not yet presented as a public release-quality build.

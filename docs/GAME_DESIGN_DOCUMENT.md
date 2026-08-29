@@ -1,6 +1,6 @@
 # Industrial Civilization — Game Design Document
 
-- Status: 0.8.0 hidden internal candidate; live-validated
+- Status: 0.8.0 hidden internal release; live-validated
 - Pack: Industrial Civilization: Astra / Minecraft 1.12.2 / Forge 14.23.5.2860
 - First-party runtime: IndustrialCivilizationCore 0.8.0
 - Industrial Civilization pack release: 0.8.0 (Technic base selector: 1.2.6)

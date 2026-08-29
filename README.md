@@ -18,7 +18,7 @@ Quarry, MFSU Burst Power, factions, agriculture, and vehicle/logistics paths.
 - Technic pack: **Industrial Civilization: Astra** (`industrial-civilization-astra`)
 - Installed test release: **0.8.0**
 - Minecraft: **1.12.2**, Forge **14.23.5.2860**, Java **8**
-- Current GitHub release: `v0.7.0` (0.8.0 candidate is deployed locally, not yet published)
+- Current GitHub release: `v0.8.0`
 - Visibility: hidden internal alpha while redistribution review, multiplayer
   QA, and final balance work continue
 - Installed Technic instance:
