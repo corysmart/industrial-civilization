@@ -13,6 +13,7 @@
       "prerequisites": ["advanced_armament_factory"],
       "critical": false,
       "optional": true,
+      "runtime_advancement": true,
       "capability": "Construct an ICBM launcher base and control screen from IC2 MV/HV infrastructure, steel, computers, and control processors.",
       "final_validation": [
         "Craft an ICBM Launcher Pad and Launcher Screen using the IC2 integration recipes.",
@@ -29,6 +30,7 @@
       "prerequisites": ["icbm_launch_control"],
       "critical": false,
       "optional": true,
+      "runtime_advancement": true,
       "capability": "Add an IC2-powered radar station that detects missile threats and supports defensive launch decisions.",
       "final_validation": [
         "Craft and place an ICBM Radar Station.",
@@ -46,6 +48,7 @@
       "prerequisites": ["icbm_radar_defense"],
       "critical": false,
       "optional": true,
+      "runtime_advancement": true,
       "capability": "Assemble a non-nuclear conventional missile and verify launch control without unlocking nuclear, antimatter, or red-matter shortcuts.",
       "final_validation": [
         "Assemble one conventional ICBM missile through the permitted industrial component chain.",

@@ -13,7 +13,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 GAME = ROOT / ".headlessmc/game"
 HMC_JAR = ROOT / ".headlessmc/headlessmc-launcher-wrapper.jar"
-HMC_JAVA = ROOT / ".headlessmc/HeadlessMC/java/jdk-21.0.12+8-jre/Contents/Home/bin/java"
+_bundled_hmc_javas = sorted(
+    (ROOT / ".headlessmc/HeadlessMC/java").glob("jdk-21*-jre/Contents/Home/bin/java")
+)
+HMC_JAVA = Path(os.environ["IC_HMC_JAVA"]) if "IC_HMC_JAVA" in os.environ else (
+    _bundled_hmc_javas[-1] if _bundled_hmc_javas
+    else ROOT / ".headlessmc/HeadlessMC/java/missing-java-21/bin/java"
+)
 GAME_JAVA = Path(os.environ.get(
     "IC_JAVA8",
     "/private/tmp/astra-jdk8/jdk8u492-b09/Contents/Home/bin/java",
@@ -72,7 +78,8 @@ def main() -> int:
             while time.monotonic() < deadline:
                 if game_log.is_file():
                     text = game_log.read_text(errors="replace")
-                    if f"IC_TEST|PASS|{args.scenario}" in text and "IC_TEST|SNAPSHOT|" in text:
+                    if (f"IC_TEST|PASS|{args.scenario}|" in text
+                            and "IC_TEST|SNAPSHOT|" in text):
                         result = "pass"
                         break
                     if f"IC_TEST|FAIL|{args.scenario}" in text or "---- Minecraft Crash Report ----" in text:

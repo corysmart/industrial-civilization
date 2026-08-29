@@ -143,6 +143,14 @@ public final class TileIndustrialMachine extends TileEntity
         markDirty();
     }
 
+    boolean transferNationCargoForTest() {
+        if (!nationManaged) return false;
+        restockNationProduct();
+        return transferCargo();
+    }
+
+    boolean isNationManagedForTest() { return nationManaged; }
+
     public String environment() {
         if (world == null || world.provider == null) return "earth";
         String name = world.provider.getDimensionType().getName().toLowerCase();
@@ -171,6 +179,12 @@ public final class TileIndustrialMachine extends TileEntity
             markDirty();
         }
         if (rusted) return;
+        if (getKind() == IndustrialMachineKind.CAR_WORKSHOP && !world.canSeeSky(pos.up())
+                && (energy > 0D || lastAcceptedEU > 0D)) {
+            EntityPlayerMP player = RuntimeAdvancements.playerFor(this, lastUser);
+            if (player != null && ProgressionState.has(player, "car_workshop_structure_deployed"))
+                RuntimeAdvancements.grant(player, "car_workshop_deployed");
+        }
         if (nationManaged && world.getTotalWorldTime() % 1200 == 0) restockNationProduct();
         if (getKind() == IndustrialMachineKind.CARGO_CONTROLLER && !cargoChannel.isEmpty()
                 && world.getTotalWorldTime() % 100 == 0 && transferCargo()) return;
@@ -573,12 +587,20 @@ public final class TileIndustrialMachine extends TileEntity
         } else if ("city_compact".equals(recipe) || "frontier_off_roader".equals(recipe)
                 || "passenger_carrier".equals(recipe) || "agricultural_tractor".equals(recipe)
                 || "utility_cart".equals(recipe) || "scout_atv".equals(recipe)) {
-            RuntimeAdvancements.grant(player, "regional_mobility");
+            ProgressionState.record(player, "regional_vehicle_manufactured");
             if ("passenger_carrier".equals(recipe))
-                RuntimeAdvancements.grant(player, "industrial_service_carrier");
+                ProgressionState.record(player, "industrial_service_carrier_manufactured");
         } else if ("combat_shotgun".equals(recipe) || "automatic_rifle".equals(recipe)) {
-            RuntimeAdvancements.grant(player, "advanced_armament_factory");
+            if (ProgressionState.has(player, "gun_factory_structure_deployed")
+                    && !world.canSeeSky(pos.up()) && (energy > 0D || lastAcceptedEU > 0D))
+                RuntimeAdvancements.grant(player, "advanced_armament_factory");
         }
+    }
+
+    void selectRecipeForTest(String recipe) {
+        selectedRecipe = recipe;
+        queuedOperations = 1;
+        markDirty();
     }
 
     private void awardMfsuBankProgress(EntityPlayerMP player) {

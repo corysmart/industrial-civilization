@@ -5,20 +5,20 @@ about growing a survival workshop into an interplanetary industrial
 civilization. It began from the Tekkit 2 technical baseline, but it is now its
 own source project, release archive, and hidden Technic pack.
 
-The current hidden internal release is **0.7.0**. Its complete 16-chapter numbered
+The current hidden internal release is **0.8.0**. Its complete 16-chapter numbered
 campaign has passed live acceptance in `Test Bed 1`: all 111 numbered Better
 Questing tasks completed, the final `continuous_civilization` milestone
 persisted after save/reload, the one-time AI credits returned to the playable
-world, and post-campaign sandbox play remained available. The physical Walking
-Quarry and MFSU Burst Power side paths have separate full-client acceptance;
-independent faction and vehicle paths still require their own passes.
+world, and post-campaign sandbox play remained available. All ten independent
+side paths now have targeted runtime acceptance, including the physical Walking
+Quarry, MFSU Burst Power, factions, agriculture, and vehicle/logistics paths.
 
 ## Current distribution status
 
 - Technic pack: **Industrial Civilization: Astra** (`industrial-civilization-astra`)
-- Installed test release: **0.7.0**
+- Installed test release: **0.8.0**
 - Minecraft: **1.12.2**, Forge **14.23.5.2860**, Java **8**
-- Current GitHub release: `v0.7.0`
+- Current GitHub release: `v0.7.0` (0.8.0 candidate is deployed locally, not yet published)
 - Visibility: hidden internal alpha while redistribution review, multiplayer
   QA, and final balance work continue
 - Installed Technic instance:
@@ -97,8 +97,8 @@ python3 tools/static_validate.py
 python3 tools/e2e/preflight.py
 ```
 
-At the current 0.7.0 release state these checks report 1,444 runtime-content checks,
-340 connected visible advancements, 57 energy-interoperability checks, 4,380
+At the current 0.8.0 release state these checks report 1,444 runtime-content checks,
+340 connected visible advancements, 57 energy-interoperability checks, 4,406
 progression checks, 2,037 static checks, and 8 HeadlessMC preflight checks.
 Offline checks complement—not replace—the live evidence and scenario lists in
 `docs/E2E_TESTING.md`, `docs/MAIN_QUESTLINE_TEST_PLAN.md`, and

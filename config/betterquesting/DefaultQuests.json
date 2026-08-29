@@ -6394,27 +6394,9 @@
       },
       "tasks:9": {
         "0:10": {
-          "partialMatch:1": 1,
-          "ignoreNBT:1": 1,
-          "consume:1": 0,
-          "groupDetect:1": 1,
-          "autoConsume:1": 0,
-          "requiredItems:9": {
-            "0:10": {
-              "id:8": "icbmclassic:launcherbase",
-              "Count:3": 1,
-              "Damage:2": 0,
-              "OreDict:8": ""
-            },
-            "1:10": {
-              "id:8": "icbmclassic:launcherscreen",
-              "Count:3": 1,
-              "Damage:2": 0,
-              "OreDict:8": ""
-            }
-          },
+          "advancement_id:8": "industrialcivilizationcore:icbm_launch_control",
           "index:3": 0,
-          "taskID:8": "bq_standard:retrieval"
+          "taskID:8": "bq_standard:advancement"
         }
       },
       "rewards:9": {}
@@ -6451,21 +6433,9 @@
       },
       "tasks:9": {
         "0:10": {
-          "partialMatch:1": 1,
-          "ignoreNBT:1": 1,
-          "consume:1": 0,
-          "groupDetect:1": 1,
-          "autoConsume:1": 0,
-          "requiredItems:9": {
-            "0:10": {
-              "id:8": "icbmclassic:radarstation",
-              "Count:3": 1,
-              "Damage:2": 0,
-              "OreDict:8": ""
-            }
-          },
+          "advancement_id:8": "industrialcivilizationcore:icbm_radar_defense",
           "index:3": 0,
-          "taskID:8": "bq_standard:retrieval"
+          "taskID:8": "bq_standard:advancement"
         }
       },
       "rewards:9": {}
@@ -6502,21 +6472,9 @@
       },
       "tasks:9": {
         "0:10": {
-          "partialMatch:1": 1,
-          "ignoreNBT:1": 1,
-          "consume:1": 0,
-          "groupDetect:1": 1,
-          "autoConsume:1": 0,
-          "requiredItems:9": {
-            "0:10": {
-              "id:8": "icbmclassic:explosive_missile",
-              "Count:3": 1,
-              "Damage:2": 0,
-              "OreDict:8": ""
-            }
-          },
+          "advancement_id:8": "industrialcivilizationcore:icbm_conventional_missile",
           "index:3": 0,
-          "taskID:8": "bq_standard:retrieval"
+          "taskID:8": "bq_standard:advancement"
         }
       },
       "rewards:9": {}
@@ -6553,21 +6511,9 @@
       },
       "tasks:9": {
         "0:10": {
-          "partialMatch:1": 1,
-          "ignoreNBT:1": 1,
-          "consume:1": 0,
-          "groupDetect:1": 1,
-          "autoConsume:1": 0,
-          "requiredItems:9": {
-            "0:10": {
-              "id:8": "ic2:itemcrop",
-              "Count:3": 1,
-              "Damage:2": 0,
-              "OreDict:8": ""
-            }
-          },
+          "advancement_id:8": "industrialcivilizationcore:crop_engineering",
           "index:3": 0,
-          "taskID:8": "bq_standard:retrieval"
+          "taskID:8": "bq_standard:advancement"
         }
       },
       "rewards:9": {}
@@ -6604,21 +6550,9 @@
       },
       "tasks:9": {
         "0:10": {
-          "partialMatch:1": 1,
-          "ignoreNBT:1": 1,
-          "consume:1": 0,
-          "groupDetect:1": 1,
-          "autoConsume:1": 0,
-          "requiredItems:9": {
-            "0:10": {
-              "id:8": "ic2:itemmisc",
-              "Count:3": 1,
-              "Damage:2": 159,
-              "OreDict:8": ""
-            }
-          },
+          "advancement_id:8": "industrialcivilizationcore:breed_hemp",
           "index:3": 0,
-          "taskID:8": "bq_standard:retrieval"
+          "taskID:8": "bq_standard:advancement"
         }
       },
       "rewards:9": {}
@@ -6655,21 +6589,9 @@
       },
       "tasks:9": {
         "0:10": {
-          "partialMatch:1": 1,
-          "ignoreNBT:1": 1,
-          "consume:1": 0,
-          "groupDetect:1": 1,
-          "autoConsume:1": 0,
-          "requiredItems:9": {
-            "0:10": {
-              "id:8": "minecraft:string",
-              "Count:3": 1,
-              "Damage:2": 0,
-              "OreDict:8": ""
-            }
-          },
+          "advancement_id:8": "industrialcivilizationcore:renewable_string",
           "index:3": 0,
-          "taskID:8": "bq_standard:retrieval"
+          "taskID:8": "bq_standard:advancement"
         }
       },
       "rewards:9": {}
@@ -6706,21 +6628,9 @@
       },
       "tasks:9": {
         "0:10": {
-          "partialMatch:1": 1,
-          "ignoreNBT:1": 1,
-          "consume:1": 0,
-          "groupDetect:1": 1,
-          "autoConsume:1": 0,
-          "requiredItems:9": {
-            "0:10": {
-              "id:8": "minecraft:lead",
-              "Count:3": 1,
-              "Damage:2": 0,
-              "OreDict:8": ""
-            }
-          },
+          "advancement_id:8": "industrialcivilizationcore:controlled_livestock",
           "index:3": 0,
-          "taskID:8": "bq_standard:retrieval"
+          "taskID:8": "bq_standard:advancement"
         }
       },
       "rewards:9": {}
@@ -6757,21 +6667,9 @@
       },
       "tasks:9": {
         "0:10": {
-          "partialMatch:1": 1,
-          "ignoreNBT:1": 1,
-          "consume:1": 0,
-          "groupDetect:1": 1,
-          "autoConsume:1": 0,
-          "requiredItems:9": {
-            "0:10": {
-              "id:8": "industrialforegoing:crop_sower",
-              "Count:3": 1,
-              "Damage:2": 0,
-              "OreDict:8": ""
-            }
-          },
+          "advancement_id:8": "industrialcivilizationcore:lv_tree_planting",
           "index:3": 0,
-          "taskID:8": "bq_standard:retrieval"
+          "taskID:8": "bq_standard:advancement"
         }
       },
       "rewards:9": {}
@@ -6808,33 +6706,9 @@
       },
       "tasks:9": {
         "0:10": {
-          "partialMatch:1": 1,
-          "ignoreNBT:1": 1,
-          "consume:1": 0,
-          "groupDetect:1": 1,
-          "autoConsume:1": 0,
-          "requiredItems:9": {
-            "0:10": {
-              "id:8": "industrialforegoing:crop_sower",
-              "Count:3": 1,
-              "Damage:2": 0,
-              "OreDict:8": ""
-            },
-            "1:10": {
-              "id:8": "industrialforegoing:crop_recolector",
-              "Count:3": 1,
-              "Damage:2": 0,
-              "OreDict:8": ""
-            },
-            "2:10": {
-              "id:8": "industrialforegoing:resourceful_furnace",
-              "Count:3": 1,
-              "Damage:2": 0,
-              "OreDict:8": ""
-            }
-          },
+          "advancement_id:8": "industrialcivilizationcore:lv_charcoal_tree_farm",
           "index:3": 0,
-          "taskID:8": "bq_standard:retrieval"
+          "taskID:8": "bq_standard:advancement"
         }
       },
       "rewards:9": {}
@@ -6871,27 +6745,9 @@
       },
       "tasks:9": {
         "0:10": {
-          "partialMatch:1": 1,
-          "ignoreNBT:1": 1,
-          "consume:1": 0,
-          "groupDetect:1": 1,
-          "autoConsume:1": 0,
-          "requiredItems:9": {
-            "0:10": {
-              "id:8": "industrialforegoing:plant_interactor",
-              "Count:3": 1,
-              "Damage:2": 0,
-              "OreDict:8": ""
-            },
-            "1:10": {
-              "id:8": "industrialforegoing:crop_enrich_material_injector",
-              "Count:3": 1,
-              "Damage:2": 0,
-              "OreDict:8": ""
-            }
-          },
+          "advancement_id:8": "industrialcivilizationcore:automated_field_agriculture",
           "index:3": 0,
-          "taskID:8": "bq_standard:retrieval"
+          "taskID:8": "bq_standard:advancement"
         }
       },
       "rewards:9": {}
@@ -6929,33 +6785,9 @@
       },
       "tasks:9": {
         "0:10": {
-          "partialMatch:1": 1,
-          "ignoreNBT:1": 1,
-          "consume:1": 0,
-          "groupDetect:1": 1,
-          "autoConsume:1": 0,
-          "requiredItems:9": {
-            "0:10": {
-              "id:8": "industrialforegoing:animal_stock_increaser",
-              "Count:3": 1,
-              "Damage:2": 0,
-              "OreDict:8": ""
-            },
-            "1:10": {
-              "id:8": "industrialforegoing:animal_growth_increaser",
-              "Count:3": 1,
-              "Damage:2": 0,
-              "OreDict:8": ""
-            },
-            "2:10": {
-              "id:8": "industrialforegoing:animal_independence_selector",
-              "Count:3": 1,
-              "Damage:2": 0,
-              "OreDict:8": ""
-            }
-          },
+          "advancement_id:8": "industrialcivilizationcore:automated_animal_husbandry",
           "index:3": 0,
-          "taskID:8": "bq_standard:retrieval"
+          "taskID:8": "bq_standard:advancement"
         }
       },
       "rewards:9": {}
@@ -6992,33 +6824,9 @@
       },
       "tasks:9": {
         "0:10": {
-          "partialMatch:1": 1,
-          "ignoreNBT:1": 1,
-          "consume:1": 0,
-          "groupDetect:1": 1,
-          "autoConsume:1": 0,
-          "requiredItems:9": {
-            "0:10": {
-              "id:8": "industrialforegoing:animal_resource_harvester",
-              "Count:3": 1,
-              "Damage:2": 0,
-              "OreDict:8": ""
-            },
-            "1:10": {
-              "id:8": "industrialforegoing:animal_byproduct_recolector",
-              "Count:3": 1,
-              "Damage:2": 0,
-              "OreDict:8": ""
-            },
-            "2:10": {
-              "id:8": "industrialforegoing:sewage_composter_solidifier",
-              "Count:3": 1,
-              "Damage:2": 0,
-              "OreDict:8": ""
-            }
-          },
+          "advancement_id:8": "industrialcivilizationcore:automated_animal_resources",
           "index:3": 0,
-          "taskID:8": "bq_standard:retrieval"
+          "taskID:8": "bq_standard:advancement"
         }
       },
       "rewards:9": {}
@@ -7055,21 +6863,9 @@
       },
       "tasks:9": {
         "0:10": {
-          "partialMatch:1": 1,
-          "ignoreNBT:1": 1,
-          "consume:1": 0,
-          "groupDetect:1": 1,
-          "autoConsume:1": 0,
-          "requiredItems:9": {
-            "0:10": {
-              "id:8": "industrialforegoing:water_resources_collector",
-              "Count:3": 1,
-              "Damage:2": 0,
-              "OreDict:8": ""
-            }
-          },
+          "advancement_id:8": "industrialcivilizationcore:automated_water_resources",
           "index:3": 0,
-          "taskID:8": "bq_standard:retrieval"
+          "taskID:8": "bq_standard:advancement"
         }
       },
       "rewards:9": {}

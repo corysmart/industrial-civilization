@@ -16,35 +16,8 @@
     "hidden": false
   },
   "criteria": {
-    "evidence_1": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "industrialforegoing:animal_stock_increaser"
-          }
-        ]
-      }
-    },
-    "evidence_2": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "industrialforegoing:animal_growth_increaser"
-          }
-        ]
-      }
-    },
-    "evidence_3": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "industrialforegoing:animal_independence_selector"
-          }
-        ]
-      }
+    "runtime": {
+      "trigger": "minecraft:impossible"
     }
   }
 }

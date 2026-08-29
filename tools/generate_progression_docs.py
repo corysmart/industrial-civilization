@@ -477,10 +477,10 @@ checklist.extend([
 "Stone axe/chainsaw trees and 3x3/9x9 drills process at most 12 extra blocks per tick while preserving protection, drops, enchantments and per-block tool payment.",
 "Radiation correctly follows players in vehicles and other moving entities as their AABB enters or leaves breathable air."
 ])
-write("MANUAL_QUEST_TEST_CHECKLIST.md", "Manual Quest Test Checklist", "Use this checklist for 0.6.3 release-candidate regressions and dedicated side-path acceptance. The numbered campaign's completed acceptance evidence and earlier 0.6.2 regression results are recorded in `MAIN_QUESTLINE_LIVE_TEST_LOG.md`; rerun affected checks after progression or runtime changes. Do not use a valued world for a quest-database migration.\n\n" + "\n".join(f"- [ ] {i}. {v}" for i, v in enumerate(checklist, 1)) + "\n\nCheck `logs/latest.log`, `logs/groovy.log`, and `crafttweaker.log` after the run. Record quest/task IDs and screenshots for any mismatch.")
+write("MANUAL_QUEST_TEST_CHECKLIST.md", "Manual Quest Test Checklist", "Use this checklist for 0.8.0 regressions after progression or runtime changes. The numbered campaign and all ten independent side paths have acceptance evidence recorded in `MAIN_QUESTLINE_LIVE_TEST_LOG.md`; this checklist remains the manual regression contract, not a list of outstanding acceptance gaps. Do not use a valued world for a quest-database migration.\n\n" + "\n".join(f"- [ ] {i}. {v}" for i, v in enumerate(checklist, 1)) + "\n\nCheck `logs/latest.log`, `logs/groovy.log`, and `crafttweaker.log` after the run. Record quest/task IDs and screenshots for any mismatch.")
 
 write("KNOWN_LIMITATIONS.md", "Verification Boundaries", """
-The build is a hidden internal alpha. The numbered 16-chapter campaign passed live acceptance, but targeted systems and side paths still retain these verification boundaries:
+The build is a hidden internal alpha. The numbered 16-chapter campaign and all ten independent side paths have acceptance evidence, but these broader verification boundaries remain:
 
 - The critical orbital/lunar/Mars base milestones now have sustained runtime telemetry. Many simpler inherited-mod quests still use tangible, non-consuming item evidence; that proves acquisition, not permanent assembly or provenance.
 - Static and JUnit validation cannot prove Better Questing/Galacticraft GUI rendering, Forge event ordering, third-party protection integrations, entity behavior or performance.
@@ -492,7 +492,7 @@ The build is a hidden internal alpha. The numbered 16-chapter campaign passed li
 - Tool and habitat rule tests cover deterministic boundaries; actual claims, modded trees, unusual seals, moving vehicles and mass block drops remain runtime scenarios.
 - HeadlessMC is a viable Forge 1.12.2 launch/UI driver and can stage the installed `industrial-civilization-astra` instance locally. Public CI still cannot reconstruct the complete pack from Git alone because third-party binaries and the authorized first-launch dependency are intentionally not committed.
 - Workshop review art and an exact placement contract now exist outside the game. Several decorative blocks/models pictured in the visual target are not implemented yet.
-- The hidden Technic/GitHub delivery path is operational. Public release still requires the remaining redistribution/attribution review, multiplayer QA, side-path acceptance, and full survival-balance testing.
+- The hidden Technic/GitHub delivery path is operational. Public release still requires the remaining redistribution/attribution review, an external two-client multiplayer soak, and full survival-balance testing.
 """)
 
 print(f"Generated 26 progression documents from {len(chapters)} chapters, {len(graph['optional_branches'])} side paths, and {len(milestones)} milestones")

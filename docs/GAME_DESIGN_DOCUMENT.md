@@ -1,9 +1,9 @@
 # Industrial Civilization — Game Design Document
 
-- Status: 0.7.0 hidden internal release; live-validated
+- Status: 0.8.0 hidden internal candidate; live-validated
 - Pack: Industrial Civilization: Astra / Minecraft 1.12.2 / Forge 14.23.5.2860
-- First-party runtime: IndustrialCivilizationCore 0.7.0
-- Industrial Civilization pack release: 0.7.0 (Technic base selector: 1.2.6)
+- First-party runtime: IndustrialCivilizationCore 0.8.0
+- Industrial Civilization pack release: 0.8.0 (Technic base selector: 1.2.6)
 - Authoritative data: `progression/*.json`; generated quest pack: `config/betterquesting/DefaultQuests.json`
 
 ## Vision
@@ -226,9 +226,9 @@ Quest/config changes appear in an existing single-player world through Better Qu
 ### Required playtest verification
 
 1. Complete a measured survival campaign without Creative-staged ingredients, record resource/power bottlenecks, and tune pacing without adding arbitrary microcrafts.
-2. Run dedicated acceptance passes for the remaining independent side paths; Industrial Agriculture requires a survival crop-breeding/Lead pass, the completed physical MFSU Burst Power and Walking Quarry evidence should remain covered by regression testing, and faction/vehicle side-line advancements remained intentionally incomplete at the end of numbered-campaign acceptance.
-3. Exercise Earth and space factions, equipment drops, procedural settlements/cities/fabrication centers, vehicle handling, and world-generation spacing across fresh chunks and migrated low-exploration worlds.
-4. Exercise every custom machine GUI/peripheral method, cross-dimensional cargo channel, and multiplayer ownership path under chunk unload/reload and save/restart.
+2. Retain regression coverage for all ten accepted independent side paths, especially the physical MFSU Burst Power and Walking Quarry fixtures, faction trades/persistence, agriculture automation, and vehicle/logistics transfer.
+3. Extend soak coverage for Earth and space equipment drops, NPC pathfinding, vehicle handling, and world generation in migrated low-exploration worlds; five fresh seeds already cover all ten Overworld structure types and connected roads.
+4. Exercise every custom machine GUI/peripheral method and unusual cross-dimensional cargo route under prolonged chunk unload/reload, then run an external two-client ownership soak beyond the deterministic distinct-server-player isolation test.
 
 ### Verification and release boundaries
 

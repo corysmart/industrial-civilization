@@ -2,7 +2,7 @@
 
 # Verification Boundaries
 
-The build is a hidden internal alpha. The numbered 16-chapter campaign passed live acceptance, but targeted systems and side paths still retain these verification boundaries:
+The build is a hidden internal alpha. The numbered 16-chapter campaign and all ten independent side paths have acceptance evidence, but these broader verification boundaries remain:
 
 - The critical orbital/lunar/Mars base milestones now have sustained runtime telemetry. Many simpler inherited-mod quests still use tangible, non-consuming item evidence; that proves acquisition, not permanent assembly or provenance.
 - Static and JUnit validation cannot prove Better Questing/Galacticraft GUI rendering, Forge event ordering, third-party protection integrations, entity behavior or performance.
@@ -14,4 +14,4 @@ The build is a hidden internal alpha. The numbered 16-chapter campaign passed li
 - Tool and habitat rule tests cover deterministic boundaries; actual claims, modded trees, unusual seals, moving vehicles and mass block drops remain runtime scenarios.
 - HeadlessMC is a viable Forge 1.12.2 launch/UI driver and can stage the installed `industrial-civilization-astra` instance locally. Public CI still cannot reconstruct the complete pack from Git alone because third-party binaries and the authorized first-launch dependency are intentionally not committed.
 - Workshop review art and an exact placement contract now exist outside the game. Several decorative blocks/models pictured in the visual target are not implemented yet.
-- The hidden Technic/GitHub delivery path is operational. Public release still requires the remaining redistribution/attribution review, multiplayer QA, side-path acceptance, and full survival-balance testing.
+- The hidden Technic/GitHub delivery path is operational. Public release still requires the remaining redistribution/attribution review, an external two-client multiplayer soak, and full survival-balance testing.

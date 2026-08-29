@@ -16,25 +16,8 @@
     "hidden": false
   },
   "criteria": {
-    "evidence_1": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "icbmclassic:launcherbase"
-          }
-        ]
-      }
-    },
-    "evidence_2": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "icbmclassic:launcherscreen"
-          }
-        ]
-      }
+    "runtime": {
+      "trigger": "minecraft:impossible"
     }
   }
 }

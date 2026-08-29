@@ -91,6 +91,8 @@ def main() -> int:
         "--userType", "msa", "--tweakClass", "net.minecraftforge.fml.common.launcher.FMLTweaker",
         "--versionType", "Forge", "--width", "1280", "--height", "720",
     ]
+    if os.environ.get("IC_E2E_WORLD_SEED"):
+        command.insert(3, f"-Dic.e2e.worldSeed={int(os.environ['IC_E2E_WORLD_SEED'])}")
     frames_path = GAME / "screenshots/quarry-video"
     if args.record:
         command.insert(3, "-Dic.e2e.captureFrames=true")
@@ -114,7 +116,9 @@ def main() -> int:
                         f"IC_TEST|STATE|{scenario}|phase=natural_lifecycle_started" in text):
                     recording_announced = True
                     print(f"RENDERED CLIENT: recording {recording_path}", flush=True)
-                pass_ready = f"IC_TEST|PASS|{scenario}" in text
+                # Require the complete scenario record. Sub-checks deliberately
+                # use the scenario as a prefix (for example *_road_connection).
+                pass_ready = f"IC_TEST|PASS|{scenario}|" in text
                 if scenario == "advancement_ui":
                     pass_ready = pass_ready and "IC_E2E|SCREENSHOT|" in text
                 if pass_ready:

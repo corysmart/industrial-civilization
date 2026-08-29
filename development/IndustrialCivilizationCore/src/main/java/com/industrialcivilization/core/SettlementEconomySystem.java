@@ -61,7 +61,7 @@ public final class SettlementEconomySystem extends WorldSavedData {
         boolean changed = false;
         for (Settlement settlement : data.settlements.values()) {
             if (!event.world.isAreaLoaded(settlement.origin.add(-16, -4, -16),
-                    settlement.origin.add(30, 16, 30))) continue;
+                    settlement.origin.add(64, 18, 64))) continue;
             long cycles = Math.max(1L, Math.min(10L,
                 (event.world.getTotalWorldTime() - settlement.lastCycle) / CYCLE_TICKS));
             settlement.lastCycle = event.world.getTotalWorldTime();
@@ -163,6 +163,50 @@ public final class SettlementEconomySystem extends WorldSavedData {
             world.getPerWorldStorage().setData(DATA_NAME, data);
         }
         return data;
+    }
+
+    static int absorbForTest(World world, BlockPos origin) {
+        Settlement settlement = get(world).settlements.get(id(origin));
+        if (settlement == null) return -1;
+        long before = settlement.wood + settlement.stone + settlement.iron
+            + settlement.circuits + settlement.fuel + settlement.food + settlement.credits;
+        absorbPhysicalStock(world, settlement);
+        long after = settlement.wood + settlement.stone + settlement.iron
+            + settlement.circuits + settlement.fuel + settlement.food + settlement.credits;
+        get(world).markDirty();
+        return (int) (after - before);
+    }
+
+    static boolean upgradeForTest(World world, BlockPos origin) {
+        Settlement settlement = get(world).settlements.get(id(origin));
+        if (settlement == null || !canUpgrade(settlement)) return false;
+        payUpgrade(settlement);
+        settlement.tier++;
+        CivilizationWorldGenerator.applySettlementUpgrade(world, origin, settlement.tier);
+        get(world).markDirty();
+        return true;
+    }
+
+    /** tier, wood, stone, iron, circuits, fuel, food, credits */
+    static long[] snapshotForTest(World world, BlockPos origin) {
+        Settlement settlement = get(world).settlements.get(id(origin));
+        return settlement == null ? new long[0] : new long[] {settlement.tier,
+            settlement.wood, settlement.stone, settlement.iron, settlement.circuits,
+            settlement.fuel, settlement.food, settlement.credits};
+    }
+
+    static boolean roundTripForTest(World world, BlockPos origin) {
+        SettlementEconomySystem original = get(world);
+        NBTTagCompound tag = original.writeToNBT(new NBTTagCompound());
+        SettlementEconomySystem restored = new SettlementEconomySystem();
+        restored.readFromNBT(tag);
+        Settlement before = original.settlements.get(id(origin));
+        Settlement after = restored.settlements.get(id(origin));
+        return before != null && after != null && before.tier == after.tier
+            && before.wood == after.wood && before.stone == after.stone
+            && before.iron == after.iron && before.circuits == after.circuits
+            && before.fuel == after.fuel && before.food == after.food
+            && before.credits == after.credits;
     }
 
     private static String id(BlockPos pos) { return pos.getX() + ":" + pos.getY() + ":" + pos.getZ(); }

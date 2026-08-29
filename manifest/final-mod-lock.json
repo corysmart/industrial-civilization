@@ -1648,16 +1648,16 @@
       "redistribution": "Inherited third-party binary; verify author terms before any export."
     },
     {
-      "file": "mods/IndustrialCivilizationCore-0.7.0.jar",
-      "filename": "IndustrialCivilizationCore-0.7.0.jar",
-      "size": 3312597,
-      "sha256": "ff50688cd1b00426e2b68fa7cd2803e033f48e3b90e470132ea762368368fb3e",
+      "file": "mods/IndustrialCivilizationCore-0.8.0.jar",
+      "filename": "IndustrialCivilizationCore-0.8.0.jar",
+      "size": 3419346,
+      "sha256": "eb56df5fa1fa7624abe3d934e55b747ff2fa256e0ad5262aa625f2a84d0e677f",
       "classification": "KEEP",
       "mods": [
         {
           "id": "industrialcivilizationcore",
           "name": "Industrial Civilization Core",
-          "version": "0.7.0",
+          "version": "0.8.0",
           "minecraft": "1.12.2",
           "dependencies": [
             "computercraft",
@@ -3739,7 +3739,7 @@
     },
     {
       "file": "config/CustomMainMenu/mainmenu.json",
-      "sha256": "22b384a1f49c2b6821939cff164490c0daf4aee9efd6991deba95dde5f56e0e2",
+      "sha256": "4b6af15a500745bab88741db99bd6d73c9caf117bec08051f2aa1113e812d2dd",
       "size": 4007
     },
     {
@@ -3944,8 +3944,8 @@
     },
     {
       "file": "config/betterquesting/DefaultQuests.json",
-      "sha256": "310fc91fa2c80a394c6cd9d0d6d7cc3275a317dfae6cb236266443a3e7ea2282",
-      "size": 309664
+      "sha256": "4ec87cde6496aa75319573de6bb1f4fd5a335c4e4ee6db8a917a9c02e16e9fb4",
+      "size": 304459
     },
     {
       "file": "config/blockcraftery.cfg",
@@ -5029,8 +5029,8 @@
     },
     {
       "file": "config/randompatches.cfg",
-      "sha256": "1b7f22d490cc2d66dab9e01d9c69fd6c53728b4af69dc1e100bedcab19bbb4c4",
-      "size": 9649
+      "sha256": "07e4cc0e15b57d609f35c885c573366b2a85eda088b2f498233a4701fa73e785",
+      "size": 9651
     },
     {
       "file": "config/reachfix.cfg",
@@ -5264,7 +5264,7 @@
     },
     {
       "file": "groovy/runConfig.json",
-      "sha256": "cd253430106be7e25a8d481d8fd90c0d8a395a15699c289a41491a23cdf5b977",
+      "sha256": "0258470653b58002319853fb37d70767630c7d19d837392fab37a88807efaa96",
       "size": 343
     },
     {

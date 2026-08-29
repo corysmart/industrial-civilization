@@ -13,6 +13,7 @@
       "prerequisites": ["secure_workshop"],
       "critical": false,
       "optional": true,
+      "runtime_advancement": true,
       "capability": "Craft IC2 Crop Sticks and establish parallel breeding plots. Plant ordinary crops in single sticks; place double sticks between mature adjacent parents to crossbreed, and keep several plots running because each cross is probabilistic.",
       "final_validation": [
         "Craft IC2 Crop Sticks and place them on hydrated farmland.",
@@ -30,6 +31,7 @@
       "prerequisites": ["crop_engineering"],
       "critical": false,
       "optional": true,
+      "runtime_advancement": true,
       "capability": "Crossbreed and harvest IC2 Hemp. Hemp is a normal tier-3 crop: it needs light level 7, matures at growth stage 6, and regrows from stage 4 after harvest. Melon is a strong accessible parent because it shares Hemp's Green trait and close crop properties; pairing it with a different tier-2/3 crop such as Cocoa gives a practical early search. Hemp is the normal early renewable fiber source because spiders are not part of Industrial Civilization's ecology.",
       "final_validation": [
         "Discover Hemp through ordinary IC2 crossbreeding rather than grass seed drops; try several mature Melon-plus-Cocoa or similarly diverse tier-2/3 parent plots.",
@@ -47,6 +49,7 @@
       "prerequisites": ["breed_hemp"],
       "critical": false,
       "optional": true,
+      "runtime_advancement": true,
       "capability": "Turn harvested IC2 Hemp into String through the native IC2 recipe and verify the repeatable survival route in HEI.",
       "final_validation": [
         "Use HEI to inspect Hemp uses and find the native Hemp-to-String recipe.",
@@ -64,6 +67,7 @@
       "prerequisites": ["renewable_string"],
       "critical": false,
       "optional": true,
+      "runtime_advancement": true,
       "capability": "Combine four renewable Strings with tapped IC2 Sticky Resin to craft two Leads, move livestock into a controlled enclosure, and breed a pair. Managed adult cattle, pigs, sheep, and horses also provide a rare supplemental bone when killed by a player.",
       "final_validation": [
         "Craft two Leads from four Strings and one IC2 Sticky Resin.",

@@ -16,25 +16,8 @@
     "hidden": false
   },
   "criteria": {
-    "evidence_1": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "industrialforegoing:plant_interactor"
-          }
-        ]
-      }
-    },
-    "evidence_2": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "industrialforegoing:crop_enrich_material_injector"
-          }
-        ]
-      }
+    "runtime": {
+      "trigger": "minecraft:impossible"
     }
   }
 }

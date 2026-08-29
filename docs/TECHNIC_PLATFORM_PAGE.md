@@ -19,7 +19,7 @@ Highlights:
 - Continued sandbox play after the main campaign is complete
 - A physically relocating ProjectRed frame Walking Quarry with no teleporting or spare Quarry
 
-Version 0.7.0 is the current hidden internal release. It adds the live-validated Walking Quarry side quest: one BuildCraft Quarry is physically recovered, moved sixteen ProjectRed frame steps, redeployed, and resumed under fixed Worldspike chunk loading. Teleport pipes, linked storage, and IC2 teleport hardware remain unavailable until AI authorization. Redistribution review, remaining side-path acceptance, multiplayer QA, and final survival-balance work remain in progress.
+Version 0.8.0 is the current hidden internal candidate. It retains the live-validated Walking Quarry side quest from 0.7.0 and adds the accepted city/world-generation overhaul, connected roads, faction and settlement fixes, agriculture and vehicle side-path coverage, and expanded persistence/testing infrastructure. Teleport pipes, linked storage, and IC2 teleport hardware remain unavailable until AI authorization. Redistribution review, external two-client soak testing, and final survival-balance work remain in progress.
 
 ## Help
 

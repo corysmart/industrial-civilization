@@ -9,7 +9,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'java'
 
-version = '0.7.0'
+version = '0.8.0'
 group = 'com.industrialcivilization'
 archivesBaseName = 'IndustrialCivilizationCore'
 sourceCompatibility = targetCompatibility = '1.8'
@@ -24,6 +24,9 @@ dependencies {
     compileOnly files('../../mods/BetterQuesting-3.5.329.jar')
     compileOnly files('../../mods/IC2Classic-1.12.2-1.5.11.jar')
     compileOnly files('../../mods/vehicle-mod-1.4.0-1.12.2.jar')
+    compileOnly files('../../mods/ICBM-classic-1.12.2-6.5.5.jar')
+    compileOnly files('../../mods/industrialforegoing-1.12.2-1.12.13-237.jar')
+    compileOnly files('../../mods/tesla-core-lib-1.12.2-1.0.18.jar')
     compileOnly files('../../mods/Galacticraft-1.12.2-4.0.7-technic-ic2c.jar')
     compileOnly files('../../mods/buildcraft-all-7.99.24.8.jar')
     compileOnly files('../../mods/ProjectRed-1.12.2-4.9.4.120-Base.jar')

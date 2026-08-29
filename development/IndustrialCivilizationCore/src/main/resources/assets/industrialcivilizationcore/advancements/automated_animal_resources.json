@@ -16,35 +16,8 @@
     "hidden": false
   },
   "criteria": {
-    "evidence_1": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "industrialforegoing:animal_resource_harvester"
-          }
-        ]
-      }
-    },
-    "evidence_2": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "industrialforegoing:animal_byproduct_recolector"
-          }
-        ]
-      }
-    },
-    "evidence_3": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "industrialforegoing:sewage_composter_solidifier"
-          }
-        ]
-      }
+    "runtime": {
+      "trigger": "minecraft:impossible"
     }
   }
 }

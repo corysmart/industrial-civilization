@@ -1,10 +1,10 @@
 # Industrial Civilization — Full Status Report
 
-- Status date: 2026-08-24
+- Status date: 2026-08-29
 - Source authority: `/Users/cory/Documents/tekkit-3`
 - Technic pack: `Industrial Civilization: Astra`
 - Technic test target: `/Users/cory/Library/Application Support/technic/modpacks/industrial-civilization-astra`
-- Current hidden internal release: `0.7.0`
+- Current hidden internal release: `0.8.0`
 
 ## Current acceptance state
 
@@ -12,7 +12,7 @@
 - Chapter 16's `continuous_civilization` completion persisted after save, title-screen exit, and reload. AI credits displayed `corysmart` once, returned to the same playable world, and did not create a terminal victory state.
 - The main-line run exercised real crafting, machine processing, ComputerCraft control, nuclear progression, Tier 1 rocket assembly/fueling/launch, orbital-station creation, Oxygen Detector habitat proof, sustained station/base telemetry, gated Moon/Mars research, AI synthesis, AE2 entry, and post-AI matter/civilization milestones. Creative mode staged ingredients and isolated evidence where documented; the live log distinguishes clean negatives, clean positives, contaminated inventory detections, and command-assisted recovery.
 - Exactly one advancement page is visible. Its connected Industrial Civilization tree contains 340 visible nodes, including 194 ported Minecraft/mod objectives. Thirty-seven impossible, duplicate, magical, End-only, dungeon/buggy, fake-monster, or duplicate-solar objectives are removed or replaced.
-- The optional side lines remain outside numbered-campaign acceptance and require dedicated passes. The physical MFSU burst-power and Walking Quarry branches have separate full-client acceptance evidence; the other side paths still need their documented coverage.
+- The optional side lines remain outside the numbered-campaign result, but all ten now have targeted runtime acceptance. This includes the physical MFSU burst-power and Walking Quarry branches, both agriculture branches, strategic defense, factions, settlements, and vehicle/logistics coverage.
 
 Exact evidence, defects found during testing, fixes, and contamination notes are recorded in `docs/MAIN_QUESTLINE_LIVE_TEST_LOG.md`.
 
@@ -33,7 +33,7 @@ Exact evidence, defects found during testing, fixes, and contamination notes are
 ## Distribution state
 
 - The public Git repository is `corysmart/industrial-civilization`; its reachable history uses the `corysmart` GitHub no-reply identity rather than a Prepaid2Coin address.
-- The hidden Technic listing installs as `industrial-civilization-astra` and serves `v0.7.0`.
+- The hidden Technic listing installs as `industrial-civilization-astra`; the local installed candidate is 0.8.0 while the published hidden release remains `v0.7.0` until packaging is complete.
 - Techguns, Connected Glass 1.1.8, and its Core Lib are omitted from the GitHub archive. ModDirector retrieves pinned official CurseForge files and verifies their SHA-256 hashes before startup. Connected Glass is intentionally held at the last pre-Fusion renderer release for compatibility with the pack's optimized 1.12.2 rendering stack.
 - ICBM Classic 6.5.5 is included under the modpack permission in its distributed license.
 - The pack remains hidden until the remaining redistribution/attribution review and public-release QA are complete.
@@ -104,12 +104,20 @@ Exact evidence, defects found during testing, fixes, and contamination notes are
 - Full rendered Test Bed acceptance proved first- and second-lane excavation, settled frame positions without ghost blocks, carried output, same-Quarry identity, and offscreen operation through one fixed fueled Railcraft Worldspike. The side quest and advancement completed from runtime evidence.
 - Teleport logistics remain AI-only. The pre-AI Additional Pipes assembly recipe is removed, its replacement requires the AI Core and Technical Phase Pearl, IC2's native teleporter/hub/portable recipes are disabled, and the Teleport Tether remains unobtainable. A live Forge registry test passed with zero legacy assembly recipes, zero IC2 native recipes, zero tether recipes, and exactly one AI-Core-gated Ender Pearl source.
 
-## Remaining release work
+## 0.8.0 quest, settlement, world-generation, and faction acceptance
+
+- A fresh rendered world opened the Better Questing home and first chapter successfully, found all 16 chapters and 10 side paths, captured both UI screens, and saved zero completed quest users. A semantic audit covers all 145 quests: 68 advancement tasks and 77 retrieval tasks. Eighteen retrievals are possession objectives; the other 59 are explicitly treated as detector proxies whose gameplay claims require separate live/runtime evidence.
+- The complete reachable Industrial Agriculture and Automated Agriculture chain passed ten physical runtime advancements. After a full client restart, all four late automation advancements remained complete and Better Questing retained all ten side-path task records for the same player UUID.
+- Real IC Credit recipes, recurring distinct-day trades, membership, an eight-credit companion purchase, companion following/NBT, gun-sensitive militia hostility, independent Civil Defense reputation, environmental-death safety, three distinct outpost takedowns, and isolated state for a second server-player profile passed together. Membership, companion entity/owner data, 14 trade contacts, and three outposts then survived a full restart.
+- A physical settlement chest supplied 80 items under the per-slot/per-cycle caps; no premature upgrade occurred. The exact tier-one bill was consumed, the market-hall expansion appeared in-world, IC Credit circulation reached the ledger, and settlement saved-data survived an NBT round trip.
+- Five fresh seeds (`8675309`, `42`, `104729`, `-2147483648`, and `987654321`) each located all ten Overworld target types, found an intact generated regional road, captured three review angles, and passed settlement dirt-road plus city asphalt-road connection checks. The archived road images cover plains, snow, forest, badlands, hills, rivers, and lakes without visible discontinuities. Reopening the preserved first seed located all ten targets again.
+- The exact-candidate vehicle/logistics path proves at least two cities, nation-scale cargo transfer, Service Dock item/fluid exchange, and the four associated runtime advancements. The second-player isolation assertion uses a distinct Forge server-player profile in the integrated server; a separate live network client remains desirable public-release soak coverage, not an unresolved state-isolation defect.
+
+## Remaining public-release work
 
 - Complete measured survival-balance and resource/power pacing runs without Creative-staged ingredients.
-- Complete dedicated acceptance for the remaining side paths, especially faction, vehicle, salvage, strategic-defense, and automated-agriculture branches. MFSU Burst Power and Walking Quarry already have physical full-client acceptance evidence.
-- Measure procedural world-generation spacing, roads/utilities, settlement economics, NPC pathfinding, Earth/space spawn balance, drop rates, equipment tiers, and vehicle handling in new and lightly explored worlds.
-- Exercise multiplayer ownership, long-distance/chunk-unloaded cargo, every ComputerCraft peripheral method, and third-party protection integrations.
+- Continue broad soak testing for NPC pathfinding, Earth/space spawn balance, drop rates, equipment tiers, vehicle handling, long-distance chunk-unloaded cargo, every ComputerCraft peripheral method, and third-party protection integrations.
+- Run an external two-client multiplayer soak in addition to the deterministic distinct-player server-state test.
 - Finish the redistribution and attribution audit, confirm every dependency delivery path, and perform public-release packaging/upgrade QA.
 
-Version 0.7.0 is published as a hidden internal release for continued private testing. It is not yet presented as a public release-quality build.
+Version 0.8.0 is deployed as a hidden internal candidate for continued private testing. It is not yet presented as a public release-quality build.

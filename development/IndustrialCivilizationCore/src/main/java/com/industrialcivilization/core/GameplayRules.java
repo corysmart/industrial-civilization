@@ -105,6 +105,43 @@ public final class GameplayRules {
         return forced || (nearRegisteredOutpost && nearby < Math.max(1, localCap));
     }
 
+    public static boolean regionalRoadChunk(int chunkX, int chunkZ) {
+        return Math.floorMod(chunkX, 8) == 0 || Math.floorMod(chunkZ, 8) == 0;
+    }
+
+    /** horizontal flag, structure-side coordinate, network coordinate, fixed axis, lane count. */
+    public static int[] closestRegionalRoadApproach(int minX, int minZ, int width,
+            int streetOffset, int lanes) {
+        int maxX = minX + width - 1;
+        int maxZ = minZ + width - 1;
+        int west = previousRegionalCoordinate(minX - 1);
+        int east = nextRegionalCoordinate(maxX + 1);
+        int north = previousRegionalCoordinate(minZ - 1);
+        int south = nextRegionalCoordinate(maxZ + 1);
+        int westDistance = minX - west;
+        int eastDistance = east - maxX;
+        int northDistance = minZ - north;
+        int southDistance = south - maxZ;
+        int closest = Math.min(Math.min(westDistance, eastDistance),
+            Math.min(northDistance, southDistance));
+        if (closest == westDistance)
+            return new int[] {1, minX - 1, west, minZ + streetOffset, lanes};
+        if (closest == eastDistance)
+            return new int[] {1, maxX + 1, east, minZ + streetOffset, lanes};
+        if (closest == northDistance)
+            return new int[] {0, minZ - 1, north, minX + streetOffset, lanes};
+        return new int[] {0, maxZ + 1, south, minX + streetOffset, lanes};
+    }
+
+    private static int previousRegionalCoordinate(int coordinate) {
+        return Math.floorDiv(coordinate - 8, 128) * 128 + 8;
+    }
+
+    private static int nextRegionalCoordinate(int coordinate) {
+        int previous = previousRegionalCoordinate(coordinate);
+        return previous < coordinate ? previous + 128 : previous;
+    }
+
     public static boolean aiAgeReady(boolean hasAiCore, boolean liteMatterComplete,
             boolean hasMartianAutonomyArchive) {
         return hasAiCore && liteMatterComplete && hasMartianAutonomyArchive;

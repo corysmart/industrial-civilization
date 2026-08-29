@@ -80,7 +80,7 @@ import org.apache.logging.log4j.Logger;
 public final class IndustrialCivilizationCore {
     public static final String MODID = "industrialcivilizationcore";
     public static final String NAME = "Industrial Civilization Core";
-    public static final String VERSION = "0.7.0";
+    public static final String VERSION = "0.8.0";
     /** Canonical pack conversion, matching IC2 Classic's RFPerEU setting. */
     public static final int FE_PER_EU = 8;
     public static final int GUI_INDUSTRIAL_MACHINE = 1;
@@ -282,7 +282,10 @@ public final class IndustrialCivilizationCore {
     public void init(FMLInitializationEvent event) {
         removeVanillaHostileSpawnEggs();
         AnalyzerPeripheralProvider.register();
-        if (TEST_BRIDGE_ENABLED) MinecraftForge.EVENT_BUS.register(MobileQuarryLifecycleTest.INSTANCE);
+        if (TEST_BRIDGE_ENABLED) {
+            MinecraftForge.EVENT_BUS.register(MobileQuarryLifecycleTest.INSTANCE);
+            MinecraftForge.EVENT_BUS.register(CommandIndustrialTest.VEHICLE_LIFECYCLE);
+        }
         NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, new IndustrialGuiHandler());
     }
 
@@ -298,6 +301,8 @@ public final class IndustrialCivilizationCore {
     @EventHandler
     public void serverStarting(FMLServerStartingEvent event) {
         event.registerServerCommand(new CommandIndustrialStatus());
+        event.registerServerCommand(new CommandIndustrialShowcase());
+        event.registerServerCommand(new CommandIndustrialLocateAll());
         if (TEST_BRIDGE_ENABLED) event.registerServerCommand(new CommandIndustrialTest());
     }
 
@@ -363,6 +368,16 @@ public final class IndustrialCivilizationCore {
                 "message.industrialcivilization.quest_guide"));
             if (event.player instanceof EntityPlayerMP) {
                 UnifiedAdvancementSystem.synchronize((EntityPlayerMP) event.player);
+            }
+        }
+
+        /** Rehydrate Better Questing progress after a bundled database migration. */
+        @SubscribeEvent(priority = EventPriority.LOWEST)
+        public static void detectExistingQuestEvidence(PlayerEvent.PlayerLoggedInEvent event) {
+            if (event.player.world.isRemote) return;
+            for (betterquesting.api2.storage.DBEntry<betterquesting.api.questing.IQuest> entry
+                    : betterquesting.questing.QuestDatabase.INSTANCE.getEntries()) {
+                entry.getValue().detect(event.player);
             }
         }
 

@@ -13,6 +13,7 @@
       "prerequisites": ["first_ic2_generator"],
       "critical": false,
       "optional": true,
+      "runtime_advancement": true,
       "capability": "Build an Industrial Foregoing Plant Sower from an IC2 LV Machine Block, Electronic Circuit, rubber, and ordinary workshop parts. The farm family no longer waits for Industrial Foregoing plastic or a separate Tesla frame.",
       "final_validation": [
         "Craft a Plant Sower using its pack-owned IC2 LV recipe.",
@@ -30,6 +31,7 @@
       "prerequisites": ["lv_tree_planting"],
       "critical": false,
       "optional": true,
+      "runtime_advancement": true,
       "capability": "Complete the early tree loop with a Plant Gatherer and Resourceful Furnace. Replant saplings, harvest logs, smelt part of the wood into charcoal, and return that charcoal to the IC2 Generator so early electrical expansion can feed itself.",
       "final_validation": [
         "Install a Plant Sower, Plant Gatherer, and Resourceful Furnace as one working tree-farm line.",
@@ -46,6 +48,7 @@
       "prerequisites": ["lv_charcoal_tree_farm"],
       "critical": false,
       "optional": true,
+      "runtime_advancement": true,
       "capability": "Add a Plant Interactor and Plant Fertilizer for crops that should be harvested without breaking their planted state. Keep fertilizer inputs renewable and constrain the working area to avoid neighboring breeding plots.",
       "final_validation": [
         "Craft both the Plant Interactor and Plant Fertilizer from IC2 LV components.",
@@ -62,6 +65,7 @@
       "prerequisites": ["automated_field_agriculture", "controlled_livestock"],
       "critical": false,
       "optional": true,
+      "runtime_advancement": true,
       "capability": "Use the Animal Breeder, Animal Growth Increaser, and Animal Baby Separator to turn the controlled livestock enclosure into a renewable, population-limited husbandry system.",
       "final_validation": [
         "Install the Animal Breeder, Growth Increaser, and Baby Separator around the same livestock enclosure.",
@@ -78,6 +82,7 @@
       "prerequisites": ["automated_animal_husbandry"],
       "critical": false,
       "optional": true,
+      "runtime_advancement": true,
       "capability": "Harvest renewable products from living animals, collect sewage, and compost it into fertilizer. This peaceful production line does not introduce hostile-mob drops or require a slaughter factory.",
       "final_validation": [
         "Own the Animal Resource Harvester, Animal Byproduct Collector, and Sewage Composter together.",
@@ -94,6 +99,7 @@
       "prerequisites": ["automated_animal_resources"],
       "critical": false,
       "optional": true,
+      "runtime_advancement": true,
       "capability": "Round out peaceful LV agriculture with the Water Resources Collector, giving the settlement an automated fishing and aquatic-resource station without creating a hostile-mob economy.",
       "final_validation": [
         "Craft and place a Water Resources Collector from its IC2 LV recipe.",

@@ -4,13 +4,25 @@ import buildcraft.api.recipes.AssemblyRecipe;
 import buildcraft.lib.recipe.AssemblyRecipeRegistry;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.mojang.authlib.GameProfile;
+import com.mrcrayfish.vehicle.entity.vehicle.EntityMiniBus;
+import com.mrcrayfish.vehicle.tileentity.TileEntityVehicleCrate;
+import icbm.classic.content.blocks.launcher.base.TileLauncherBase;
+import icbm.classic.content.blocks.launcher.screen.TileLauncherScreen;
+import icbm.classic.content.blocks.radarstation.TileRadarStation;
+import ic2.api.crops.CropCard;
+import ic2.api.crops.Crops;
+import ic2.core.block.crop.TileEntityCrop;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityCreeper;
@@ -18,33 +30,56 @@ import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.monster.EntityVindicator;
+import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ContainerChest;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCrafting;
+import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.util.FakePlayer;
+import net.minecraftforge.common.util.FakePlayerFactory;
 import net.minecraftforge.common.crafting.IShapedRecipe;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.event.world.BlockEvent;
 
 /** Development-only deterministic scenarios and parseable runtime snapshots. */
 public final class CommandIndustrialTest extends CommandBase {
     private static final String PREFIX = "IC_TEST|";
+    static final VehicleLogisticsLifecycle VEHICLE_LIFECYCLE = new VehicleLogisticsLifecycle();
 
     @Override public String getName() { return "ic_test"; }
     @Override public String getUsage(ICommandSender sender) {
-        return "/ic_test snapshot [radius] | scenario <workshop_adjacency|earth_ecology|release_recipes|robber_wall_theft|mobile_quarry_relocation|teleport_gate> | assert <workshop_adjacency|earth_ecology>";
+        return "/ic_test snapshot [radius] | scenario <workshop_adjacency|earth_ecology|release_recipes|robber_wall_theft|mobile_quarry_relocation|teleport_gate|faction_side_path|faction_gameplay_path|vehicle_logistics_path|strategic_defense_path|agricultural_side_path|automated_agriculture_path|settlement_economy_path> | assert <workshop_adjacency|earth_ecology>";
     }
     @Override public int getRequiredPermissionLevel() { return 0; }
 
@@ -113,7 +148,1140 @@ public final class CommandIndustrialTest extends CommandBase {
                 + "|phase_pearl_sources=" + result[5] + "|phase_pearl_ai=" + result[6]);
             return;
         }
+        if (args.length == 2 && "scenario".equals(args[0]) && "faction_side_path".equals(args[1])) {
+            FactionSidePathResult result = runFactionSidePathScenario(player);
+            emit(player, (result.pass ? "PASS" : "FAIL") + "|faction_side_path|locations="
+                + result.locations + "/4|contacts=" + result.contacts + "/3|factory_stages="
+                + result.factoryStages + "/4|outpost=" + result.outpost + "|membership="
+                + result.membership + "|companion=" + result.companion + "|follow="
+                + result.follow + "|persistence=" + result.persistence + "|advancements="
+                + result.advancements + "/6");
+            return;
+        }
+        if (args.length == 2 && "scenario".equals(args[0])
+                && "faction_gameplay_path".equals(args[1])) {
+            runFactionGameplayScenario(player);
+            return;
+        }
+        if (args.length == 2 && "scenario".equals(args[0])
+                && "faction_persistence_check".equals(args[1])) {
+            runFactionPersistenceCheck(player);
+            return;
+        }
+        if (args.length == 2 && "scenario".equals(args[0])
+                && "vehicle_logistics_path".equals(args[1])) {
+            VEHICLE_LIFECYCLE.begin(player);
+            return;
+        }
+        if (args.length == 2 && "scenario".equals(args[0])
+                && "strategic_defense_path".equals(args[1])) {
+            runStrategicDefenseScenario(player);
+            return;
+        }
+        if (args.length == 2 && "scenario".equals(args[0])
+                && "agricultural_side_path".equals(args[1])) {
+            runAgriculturalSidePathScenario(player);
+            return;
+        }
+        if (args.length == 2 && "scenario".equals(args[0])
+                && "automated_agriculture_path".equals(args[1])) {
+            runAutomatedAgricultureScenario(player);
+            return;
+        }
+        if (args.length == 2 && "scenario".equals(args[0])
+                && "quest_persistence_check".equals(args[1])) {
+            runQuestPersistenceCheck(player);
+            return;
+        }
+        if (args.length == 2 && "scenario".equals(args[0])
+                && "settlement_economy_path".equals(args[1])) {
+            runSettlementEconomyScenario(player);
+            return;
+        }
         throw new WrongUsageException(getUsage(sender));
+    }
+
+    private static VehicleLogisticsSetup prepareVehicleLogisticsScenario(EntityPlayerMP player)
+            throws CommandException {
+        List<BlockPos> cities = CommandIndustrialLocateAll.locateIndustrialCities(player, 8192, 2);
+        World world = player.world;
+        BlockPos base = world.getHeight(player.getPosition().add(20, 0, 0));
+        for (BlockPos pos : BlockPos.getAllInBoxMutable(base.add(-6, 0, -5), base.add(16, 6, 5)))
+            world.setBlockToAir(pos);
+        world.setBlockState(base, IndustrialCivilizationCore.CAR_WORKSHOP.getDefaultState(), 3);
+        boolean workshopStructure = WorkshopSystem.deployForTest(world, base,
+            IndustrialMachineKind.CAR_WORKSHOP, EnumFacing.NORTH, player);
+        for (int x = -4; x <= 4; x++) for (int z = -3; z <= 3; z++)
+            world.setBlockState(base.add(x, 4, z), Blocks.IRON_BLOCK.getDefaultState(), 2);
+        TileEntity tile = world.getTileEntity(base);
+        TileIndustrialMachine workshop = tile instanceof TileIndustrialMachine
+            ? (TileIndustrialMachine) tile : null;
+        if (workshop != null) {
+            workshop.injectEnergy(EnumFacing.UP, 128D, 128D);
+            workshop.update();
+        }
+        boolean workshopReady = workshopStructure
+            && RuntimeAdvancements.completed(player, "car_workshop_deployed");
+
+        ItemStack crate = ItemStack.EMPTY;
+        if (workshop != null) {
+            net.minecraft.item.Item steel = ForgeRegistries.ITEMS.getValue(
+                new ResourceLocation("railcraft", "ingot"));
+            if (steel != null) {
+                workshop.setInventorySlotContents(0,
+                    new ItemStack(IndustrialCivilizationCore.PRECISION_FRAME, 28));
+                workshop.setInventorySlotContents(1,
+                    new ItemStack(IndustrialCivilizationCore.CONTROL_PROCESSOR, 16));
+                workshop.setInventorySlotContents(2, new ItemStack(steel, 64));
+                workshop.setLastUser(player);
+                workshop.selectRecipeForTest("passenger_carrier");
+                for (int tick = 0; tick < 620 && workshop.getCompletedOperations() == 0; tick++) {
+                    workshop.injectEnergy(EnumFacing.UP, 128D, 128D);
+                    workshop.update();
+                }
+                crate = workshop.getStackInSlot(TileIndustrialMachine.OUTPUT_SLOT).copy();
+            }
+        }
+        boolean manufactured = !crate.isEmpty() && stackIs(crate, "vehicle:vehicle_crate")
+            && ProgressionState.has(player, "industrial_service_carrier_manufactured");
+
+        BlockPos cratePos = base.add(12, 0, 0);
+        boolean crateOpened = deployVehicleCrate(player, crate, cratePos);
+        return new VehicleLogisticsSetup(player.getUniqueID(), world, cities, cratePos,
+            workshopReady, manufactured, crateOpened);
+    }
+
+    private static VehicleLogisticsResult finishVehicleLogisticsScenario(EntityPlayerMP player,
+            VehicleLogisticsSetup setup, EntityMiniBus vehicle) {
+        boolean deployed = vehicle != null
+            && ProgressionState.has(player, "industrial_service_carrier_deployed");
+        boolean mobility = false;
+        boolean storage = false;
+        boolean crafting = false;
+        boolean dockItem = false;
+        boolean dockFluid = false;
+        if (vehicle != null) {
+            vehicle.setCurrentFuel(100F);
+            vehicle.currentSpeed = 0.35F;
+            vehicle.setSpeed(0.35F);
+            VehicleIntegrationSystem.updateVehicleForTest(vehicle);
+            vehicle.currentSpeed = 0F;
+            vehicle.setSpeed(0F);
+            VehicleIntegrationSystem.updateVehicleForTest(vehicle);
+            mobility = RuntimeAdvancements.completed(player, "regional_mobility");
+            player.connection.setPlayerLocation(vehicle.posX + 1, vehicle.posY,
+                vehicle.posZ + 1, 0F, 0F);
+            player.inventory.currentItem = 0;
+            player.inventory.setInventorySlotContents(0, ItemStack.EMPTY);
+            player.setSneaking(true);
+            VehicleIntegrationSystem.interactForTest(player, vehicle, EnumHand.MAIN_HAND);
+            storage = player.openContainer instanceof ContainerChest
+                && vehicle.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)
+                    .getSlots() == 54;
+            player.closeScreen();
+            player.inventory.setInventorySlotContents(0,
+                new ItemStack(net.minecraft.item.Item.getItemFromBlock(Blocks.CRAFTING_TABLE)));
+            VehicleIntegrationSystem.interactForTest(player, vehicle, EnumHand.MAIN_HAND);
+            crafting = player.openContainer instanceof ContainerMobileWorkbench;
+            player.closeScreen();
+            player.setSneaking(false);
+
+            BlockPos dockPos = new BlockPos(vehicle.posX + 2, vehicle.posY, vehicle.posZ);
+            setup.world.setBlockState(dockPos,
+                IndustrialCivilizationCore.VEHICLE_SERVICE_DOCK.getDefaultState(), 3);
+            TileEntity dock = setup.world.getTileEntity(dockPos);
+            if (dock != null) {
+                IItemHandler items = dock.getCapability(
+                    CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
+                if (items != null) dockItem = items.insertItem(0,
+                    new ItemStack(Items.IRON_INGOT), false).isEmpty();
+                IFluidHandler fluids = dock.getCapability(
+                    CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, EnumFacing.UP);
+                if (fluids != null) dockFluid = fluids.fill(
+                    new FluidStack(FluidRegistry.WATER, 1000), true) == 1000
+                    && fluids.getTankProperties().length > 0
+                    && fluids.getTankProperties()[0].getCapacity() == 64000;
+            }
+        }
+
+        boolean nationTransfer = exerciseNationExchange(player, setup.cities);
+        String[] milestones = {"car_workshop_deployed", "regional_mobility",
+            "industrial_service_carrier", "nation_trade_network"};
+        int advancements = 0;
+        for (String milestone : milestones)
+            if (RuntimeAdvancements.completed(player, milestone)) advancements++;
+        return new VehicleLogisticsResult(setup.cities.size(), setup.workshop ? 1 : 0,
+            setup.manufactured ? 1 : 0, deployed ? 1 : 0, mobility ? 1 : 0,
+            storage ? 1 : 0, crafting ? 1 : 0, dockItem ? 1 : 0,
+            dockFluid ? 1 : 0, nationTransfer ? 1 : 0, advancements);
+    }
+
+    private static boolean deployVehicleCrate(EntityPlayerMP player, ItemStack crate,
+            BlockPos pos) {
+        if (crate.isEmpty() || !crate.hasTagCompound()) return false;
+        Block crateBlock = Block.getBlockFromItem(crate.getItem());
+        if (crateBlock == Blocks.AIR) return false;
+        net.minecraft.block.state.IBlockState crateState = crateBlock.getDefaultState();
+        player.world.setBlockState(pos, crateState, 2);
+        TileEntity tile = player.world.getTileEntity(pos);
+        if (!(tile instanceof TileEntityVehicleCrate)) return false;
+        NBTTagCompound blockEntity = crate.getTagCompound().getCompoundTag("BlockEntityTag").copy();
+        blockEntity.setInteger("x", pos.getX());
+        blockEntity.setInteger("y", pos.getY());
+        blockEntity.setInteger("z", pos.getZ());
+        TileEntityVehicleCrate vehicleCrate = (TileEntityVehicleCrate) tile;
+        vehicleCrate.readFromNBT(blockEntity);
+        vehicleCrate.markDirty();
+        player.world.notifyBlockUpdate(pos, crateState, crateState, 3);
+        return true;
+    }
+
+    private static void emitVehicleResult(EntityPlayerMP player, VehicleLogisticsResult result) {
+        emit(player, (result.pass ? "PASS" : "FAIL") + "|vehicle_logistics_path|cities="
+            + result.cities + "/2|workshop=" + result.workshop + "|manufactured="
+            + result.manufactured + "|deployed=" + result.deployed + "|mobility="
+            + result.mobility + "|storage=" + result.storage + "|crafting="
+            + result.crafting + "|dock_item=" + result.dockItem + "|dock_fluid="
+            + result.dockFluid + "|nation_transfer=" + result.nationTransfer
+            + "|advancements=" + result.advancements + "/4");
+    }
+
+    private static void runStrategicDefenseScenario(EntityPlayerMP player) {
+        World world = player.world;
+        BlockPos origin = world.getHeight(player.getPosition().add(20, 0, 20));
+        for (BlockPos pos : BlockPos.getAllInBoxMutable(origin.add(-6, 0, -6), origin.add(30, 7, 8)))
+            world.setBlockToAir(pos);
+
+        world.setBlockState(origin, IndustrialCivilizationCore.GUN_FACTORY.getDefaultState(), 3);
+        boolean factoryStructure = WorkshopSystem.deployForTest(world, origin,
+            IndustrialMachineKind.GUN_FACTORY, EnumFacing.NORTH, player);
+        for (int x = -4; x <= 4; x++) for (int z = -3; z <= 3; z++)
+            world.setBlockState(origin.add(x, 4, z), Blocks.IRON_BLOCK.getDefaultState(), 2);
+        TileEntity factoryTile = world.getTileEntity(origin);
+        TileIndustrialMachine factory = factoryTile instanceof TileIndustrialMachine
+            ? (TileIndustrialMachine) factoryTile : null;
+        if (factory != null) {
+            net.minecraft.item.Item steel = ForgeRegistries.ITEMS.getValue(
+                new ResourceLocation("railcraft", "ingot"));
+            if (steel != null) {
+                factory.setInventorySlotContents(0,
+                    new ItemStack(IndustrialCivilizationCore.PRECISION_FRAME, 10));
+                factory.setInventorySlotContents(1,
+                    new ItemStack(IndustrialCivilizationCore.CONTROL_PROCESSOR, 6));
+                factory.setInventorySlotContents(2, new ItemStack(steel, 32));
+                factory.setLastUser(player);
+                factory.selectRecipeForTest("combat_shotgun");
+                for (int tick = 0; tick < 900 && factory.getCompletedOperations() == 0; tick++) {
+                    factory.injectEnergy(EnumFacing.UP, 512D, 512D);
+                    factory.update();
+                }
+            }
+        }
+        boolean factoryReady = factoryStructure
+            && RuntimeAdvancements.completed(player, "advanced_armament_factory");
+
+        Block launcherBlock = ForgeRegistries.BLOCKS.getValue(
+            new ResourceLocation("icbmclassic", "launcherbase"));
+        Block screenBlock = ForgeRegistries.BLOCKS.getValue(
+            new ResourceLocation("icbmclassic", "launcherscreen"));
+        Block radarBlock = ForgeRegistries.BLOCKS.getValue(
+            new ResourceLocation("icbmclassic", "radarstation"));
+        BlockPos basePos = origin.add(18, 0, 0);
+        BlockPos screenPos = basePos.east();
+        BlockPos radarPos = basePos.east(2);
+        if (launcherBlock != null && screenBlock != null && radarBlock != null) {
+            world.setBlockState(basePos, launcherBlock.getDefaultState(), 3);
+            world.setBlockState(screenPos, screenBlock.getDefaultState(), 3);
+            world.setBlockState(radarPos, radarBlock.getDefaultState(), 3);
+        }
+        TileEntity baseTile = world.getTileEntity(basePos);
+        TileEntity screenTile = world.getTileEntity(screenPos);
+        TileEntity radarTile = world.getTileEntity(radarPos);
+        if (baseTile instanceof TileLauncherBase && screenTile instanceof TileLauncherScreen
+                && radarTile instanceof TileRadarStation) {
+            TileLauncherBase base = (TileLauncherBase) baseTile;
+            TileLauncherScreen screen = (TileLauncherScreen) screenTile;
+            TileRadarStation radar = (TileRadarStation) radarTile;
+            StrategicDefenseSystem.markForTest(base, player);
+            StrategicDefenseSystem.markForTest(screen, player);
+            StrategicDefenseSystem.markForTest(radar, player);
+            base.getNetworkNode().connectToTiles();
+            screen.getNetworkNode().connectToTiles();
+            base.energyStorage.setEnergyStored(50000);
+            screen.energyStorage.setEnergyStored(50000);
+            radar.energyStorage.setEnergyStored(50000);
+            screen.setTarget(new Vec3d(basePos.getX() + 96, basePos.getY(), basePos.getZ()));
+            radar.setDetectionRange(128);
+            radar.setTriggerRange(96);
+            net.minecraft.item.Item missile = ForgeRegistries.ITEMS.getValue(
+                new ResourceLocation("icbmclassic", "explosive_missile"));
+            if (missile != null) base.tryInsertMissile(player, EnumHand.MAIN_HAND,
+                new ItemStack(missile));
+            StrategicDefenseSystem.evaluateForTest(base);
+        }
+        int passed = 0;
+        String[] advancements = {"advanced_armament_factory", "icbm_launch_control",
+            "icbm_radar_defense", "icbm_conventional_missile"};
+        for (String advancement : advancements)
+            if (RuntimeAdvancements.completed(player, advancement)) passed++;
+        emit(player, (passed == 4 ? "PASS" : "FAIL") + "|strategic_defense_path|factory="
+            + (factoryReady ? 1 : 0) + "|launch_control="
+            + (RuntimeAdvancements.completed(player, "icbm_launch_control") ? 1 : 0)
+            + "|radar=" + (RuntimeAdvancements.completed(player, "icbm_radar_defense") ? 1 : 0)
+            + "|missile=" + (RuntimeAdvancements.completed(player, "icbm_conventional_missile") ? 1 : 0)
+            + "|advancements=" + passed + "/4");
+    }
+
+    private static void runAgriculturalSidePathScenario(EntityPlayerMP player) {
+        World world = player.world;
+        BlockPos origin = world.getHeight(player.getPosition().add(20, 0, 20));
+        for (BlockPos pos : BlockPos.getAllInBoxMutable(origin.add(-8, -1, -8), origin.add(32, 10, 12)))
+            world.setBlockToAir(pos);
+        Block cropBlock = ((ic2.core.item.crop.ItemCropStick)
+            ic2.core.platform.registry.Ic2Items.cropStick.getItem()).getBlock();
+        CropCard wheat = crop("Wheat");
+        CropCard cocoa = crop("Cocoa");
+        CropCard hemp = crop("Hemp");
+        TileEntityCrop center = null;
+        TileEntityCrop hempTile = null;
+        if (cropBlock != null && wheat != null && cocoa != null && hemp != null) {
+            BlockPos[] crops = {origin.west(), origin, origin.east(), origin.north(3)};
+            world.setBlockState(origin.south(2), Blocks.WATER.getDefaultState(), 3);
+            for (BlockPos pos : crops) {
+                world.setBlockState(pos.down(), Blocks.FARMLAND.getDefaultState(), 3);
+                world.setBlockState(pos, cropBlock.getDefaultState(), 3);
+            }
+            TileEntity westTile = world.getTileEntity(origin.west());
+            TileEntity centerTile = world.getTileEntity(origin);
+            TileEntity eastTile = world.getTileEntity(origin.east());
+            TileEntity northTile = world.getTileEntity(origin.north(3));
+            if (westTile instanceof TileEntityCrop && centerTile instanceof TileEntityCrop
+                    && eastTile instanceof TileEntityCrop && northTile instanceof TileEntityCrop) {
+                TileEntityCrop west = (TileEntityCrop) westTile;
+                center = (TileEntityCrop) centerTile;
+                TileEntityCrop east = (TileEntityCrop) eastTile;
+                hempTile = (TileEntityCrop) northTile;
+                west.setCrop(wheat); west.setCurrentSize(wheat.getMaxSize());
+                east.setCrop(cocoa); east.setCurrentSize(cocoa.getMaxSize());
+                center.setCrossingBase(true); center.breeder = player.getUniqueID();
+                hempTile.setCrop(hemp); hempTile.setCurrentSize(hemp.getMaxSize());
+                hempTile.breeder = player.getUniqueID();
+                AgriculturalSidePathSystem.evaluateCropForTest(player, origin);
+                AgriculturalSidePathSystem.harvestHempForTest(player, hempTile);
+            }
+        }
+
+        net.minecraft.item.Item hempItem = ForgeRegistries.ITEMS.getValue(
+            new ResourceLocation("ic2", "itemmisc"));
+        InventoryBasic hempInput = new InventoryBasic("hemp", false, 1);
+        if (hempItem != null) hempInput.setInventorySlotContents(0, new ItemStack(hempItem, 1, 159));
+        AgriculturalSidePathSystem.recordCraftForTest(player, new ItemStack(Items.STRING), hempInput);
+        InventoryBasic leadInput = new InventoryBasic("lead", false, 5);
+        for (int slot = 0; slot < 4; slot++) leadInput.setInventorySlotContents(slot,
+            new ItemStack(Items.STRING));
+        net.minecraft.item.Item resin = ForgeRegistries.ITEMS.getValue(
+            new ResourceLocation("ic2", "itemharz"));
+        if (resin != null) leadInput.setInventorySlotContents(4, new ItemStack(resin));
+        AgriculturalSidePathSystem.recordCraftForTest(player, new ItemStack(Items.LEAD, 2), leadInput);
+        EntityCow cow = new EntityCow(world);
+        cow.setPosition(origin.getX() + 5.5D, origin.getY(), origin.getZ() + 0.5D);
+        world.spawnEntity(cow);
+        cow.setLeashHolder(player, true);
+        AgriculturalSidePathSystem.completeLivestockForTest(player, cow);
+
+        BlockPos sowerPos = origin.add(14, 0, 0);
+        BlockPos gathererPos = origin.add(18, 0, 0);
+        BlockPos furnacePos = origin.add(16, 0, 3);
+        placeRegistered(world, sowerPos, "industrialforegoing:crop_sower");
+        placeRegistered(world, gathererPos, "industrialforegoing:crop_recolector");
+        placeRegistered(world, furnacePos, "industrialforegoing:resourceful_furnace");
+        ItemStack generatorStack = ic2.core.platform.registry.Ic2Items.generator.copy();
+        Block generatorBlock = Block.getBlockFromItem(generatorStack.getItem());
+        BlockPos generatorPos = origin.add(16, 0, 6);
+        if (generatorBlock != Blocks.AIR && generatorStack.getItem() instanceof net.minecraft.item.ItemBlock) {
+            net.minecraft.block.state.IBlockState generatorState = generatorBlock.getStateForPlacement(
+                world, generatorPos, EnumFacing.UP, 0.5F, 0.5F, 0.5F,
+                generatorStack.getMetadata(), player, EnumHand.MAIN_HAND);
+            ((net.minecraft.item.ItemBlock) generatorStack.getItem()).placeBlockAt(generatorStack,
+                player, world, generatorPos, EnumFacing.UP, 0.5F, 0.5F, 0.5F, generatorState);
+        }
+        TileEntity sower = world.getTileEntity(sowerPos);
+        TileEntity gatherer = world.getTileEntity(gathererPos);
+        TileEntity furnace = world.getTileEntity(furnacePos);
+        TileEntity generator = world.getTileEntity(generatorPos);
+        AgriculturalSidePathSystem.markForestryForTest(sower, player);
+        AgriculturalSidePathSystem.markForestryForTest(gatherer, player);
+        AgriculturalSidePathSystem.markForestryForTest(furnace, player);
+        fillEnergy(sower); fillEnergy(gatherer); fillEnergy(furnace);
+        insertAny(sower, new ItemStack(Blocks.SAPLING));
+        if (furnace instanceof com.buuz135.industrial.tile.misc.ResourcefulFurnaceTile)
+            ((com.buuz135.industrial.tile.misc.ResourcefulFurnaceTile) furnace).output
+                .insertItem(0, new ItemStack(Items.COAL, 1, 1), false);
+        else insertAny(furnace, new ItemStack(Items.COAL, 1, 1));
+        insertAny(generator, new ItemStack(Items.COAL, 1, 1));
+        world.setBlockState(sowerPos.up(), Blocks.SAPLING.getDefaultState(), 3);
+        player.connection.setPlayerLocation(furnacePos.getX() + 0.5D,
+            furnacePos.getY() + 1D, furnacePos.getZ() + 0.5D, 0F, 0F);
+        AgriculturalSidePathSystem.evaluateForestryForTest(player);
+
+        String[] advancements = {"crop_engineering", "breed_hemp", "renewable_string",
+            "controlled_livestock", "lv_tree_planting", "lv_charcoal_tree_farm"};
+        int passed = 0;
+        for (String advancement : advancements)
+            if (RuntimeAdvancements.completed(player, advancement)) passed++;
+        flushQuestProgressForTest(player);
+        emit(player, (passed == advancements.length ? "PASS" : "FAIL")
+            + "|agricultural_side_path|crop=" + yes(player, "crop_engineering")
+            + "|hemp=" + yes(player, "breed_hemp") + "|string=" + yes(player, "renewable_string")
+            + "|livestock=" + yes(player, "controlled_livestock") + "|planting="
+            + yes(player, "lv_tree_planting") + "|charcoal_loop="
+            + yes(player, "lv_charcoal_tree_farm") + "|advancements=" + passed + "/6"
+            + "|crop_block=" + (cropBlock == null ? "missing" : cropBlock.getRegistryName()));
+    }
+
+    private static CropCard crop(String id) {
+        if (Crops.instance == null) return null;
+        for (CropCard crop : Crops.instance.getCrops()) if (id.equalsIgnoreCase(crop.getId())) return crop;
+        return null;
+    }
+
+    private static void runAutomatedAgricultureScenario(EntityPlayerMP player) {
+        boolean questPrerequisites = seedAgricultureQuestPrerequisitesForTest(player);
+        // Establish the actual prerequisite chain (quests 134-139) before
+        // validating 140-143 so reload detection matches a reachable save.
+        runAgriculturalSidePathScenario(player);
+        World world = player.world;
+        BlockPos origin = world.getHeight(player.getPosition().add(20, 0, 20));
+        for (BlockPos pos : BlockPos.getAllInBoxMutable(origin.add(-5, -1, -8), origin.add(23, 6, 8)))
+            world.setBlockToAir(pos);
+
+        String[] ids = {"industrialforegoing:plant_interactor",
+            "industrialforegoing:crop_enrich_material_injector",
+            "industrialforegoing:animal_stock_increaser",
+            "industrialforegoing:animal_growth_increaser",
+            "industrialforegoing:animal_independence_selector",
+            "industrialforegoing:animal_resource_harvester",
+            "industrialforegoing:animal_byproduct_recolector",
+            "industrialforegoing:sewage_composter_solidifier",
+            "industrialforegoing:water_resources_collector"};
+        BlockPos[] positions = {origin, origin.add(0, 0, 4), origin.add(8, 0, 0),
+            origin.add(8, 0, 3), origin.add(8, 0, 6), origin.add(13, 0, 0),
+            origin.add(13, 0, 3), origin.add(13, 0, 6), origin.add(20, 0, 0)};
+        for (int i = 0; i < ids.length; i++) {
+            placeRegistered(world, positions[i], ids[i]);
+            TileEntity tile = world.getTileEntity(positions[i]);
+            AgriculturalSidePathSystem.markAutomationForTest(tile, player);
+            fillEnergy(tile);
+        }
+
+        // A persistent crop plot plus fertilizer input and connected harvested-output storage.
+        for (int x = -2; x <= 2; x++) for (int z = -3; z <= -2; z++) {
+            BlockPos cropPos = origin.add(x, 0, z);
+            world.setBlockState(cropPos.down(), Blocks.FARMLAND.getDefaultState(), 3);
+            world.setBlockState(cropPos, Blocks.WHEAT.getDefaultState()
+                .withProperty(net.minecraft.block.BlockCrops.AGE, 7), 3);
+        }
+        insertAny(world.getTileEntity(positions[1]), new ItemStack(Items.DYE, 8, 15));
+        placeOutputChest(world, positions[0].east(), new ItemStack(Items.WHEAT, 8));
+
+        // Two adults, a routed juvenile, and food establish a population-controlled herd.
+        for (int i = 0; i < 3; i++) {
+            EntityCow cow = new EntityCow(world);
+            cow.setGrowingAge(i == 2 ? -12000 : 0);
+            cow.setPosition(origin.getX() + 9.5D + i, origin.getY(), origin.getZ() + 0.5D);
+            world.spawnEntity(cow);
+        }
+        insertAny(world.getTileEntity(positions[2]), new ItemStack(Items.WHEAT, 16));
+
+        // Renewable output, sewage transfer, and finished fertilizer prove the peaceful loop.
+        placeOutputChest(world, positions[5].east(), new ItemStack(Items.MILK_BUCKET));
+        fillFluid(world.getTileEntity(positions[6]), "sewage", 1000);
+        placeOutputChest(world, positions[7].east(), new ItemStack(Items.DYE, 4, 15));
+
+        // The final collector faces an actual water body and a connected aquatic output chest.
+        for (int x = 18; x <= 22; x++) for (int z = -4; z <= -2; z++) {
+            world.setBlockState(origin.add(x, -1, z), Blocks.STONE.getDefaultState(), 3);
+            world.setBlockState(origin.add(x, 0, z), Blocks.WATER.getDefaultState(), 3);
+        }
+        placeOutputChest(world, positions[8].east(), new ItemStack(Items.FISH, 2));
+
+        player.connection.setPlayerLocation(origin.getX() + 11.5D, origin.getY() + 1D,
+            origin.getZ() + 2.5D, 0F, 0F);
+        AgriculturalSidePathSystem.evaluateAutomationForTest(player);
+        String[] advancements = {"automated_field_agriculture", "automated_animal_husbandry",
+            "automated_animal_resources", "automated_water_resources"};
+        int passed = 0;
+        for (String advancement : advancements)
+            if (RuntimeAdvancements.completed(player, advancement)) passed++;
+        flushQuestProgressForTest(player);
+        emit(player, (passed == advancements.length && questPrerequisites ? "PASS" : "FAIL")
+            + "|automated_agriculture_path|field=" + yes(player, advancements[0])
+            + "|husbandry=" + yes(player, advancements[1])
+            + "|resources=" + yes(player, advancements[2])
+            + "|water=" + yes(player, advancements[3]) + "|advancements=" + passed + "/4"
+            + "|seeded_main_anchors=" + (questPrerequisites ? 1 : 0));
+    }
+
+    private static boolean seedAgricultureQuestPrerequisitesForTest(EntityPlayerMP player) {
+        addTestStack(player, "minecraft:coal", 0, 8);
+        addTestStack(player, "minecraft:iron_ingot", 0, 8);
+        addTestStack(player, "ic2:blockmetal", 0, 1);
+        addTestStack(player, "ic2:blockmetal", 1, 1);
+        addTestStack(player, "ic2:itemmisc", 450, 1);
+        addTestStack(player, "ironchest:iron_chest", 0, 1);
+        addTestStack(player, "minecraft:crafting_table", 0, 1);
+        addTestStack(player, "minecraft:furnace", 0, 1);
+        addTestStack(player, "minecraft:chest", 0, 1);
+        addTestStack(player, "minecraft:iron_door", 0, 1);
+        addTestStack(player, "minecraft:torch", 0, 16);
+        addTestStack(player, "ic2:blockgenerator", 0, 1);
+        flushQuestProgressForTest(player);
+        for (int id : new int[] {0, 1, 3, 4, 5}) {
+            betterquesting.api.questing.IQuest quest =
+                betterquesting.questing.QuestDatabase.INSTANCE.getValue(id);
+            if (quest == null) return false;
+            if (!quest.isComplete(player.getUniqueID())) {
+                // Fixture-only setup: these early anchors already have separate
+                // main-campaign acceptance and are not assertions in this path.
+                quest.setComplete(player.getUniqueID(), player.world.getTotalWorldTime());
+            }
+        }
+        betterquesting.handlers.SaveLoadHandler.INSTANCE.markDirty();
+        betterquesting.handlers.SaveLoadHandler.INSTANCE.saveDatabases();
+        return true;
+    }
+
+    private static void addTestStack(EntityPlayerMP player, String id, int metadata, int count) {
+        net.minecraft.item.Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(id));
+        if (item != null) player.inventory.addItemStackToInventory(
+            new ItemStack(item, count, metadata));
+    }
+
+    private static void placeOutputChest(World world, BlockPos pos, ItemStack stack) {
+        world.setBlockState(pos, Blocks.CHEST.getDefaultState(), 3);
+        insertAny(world.getTileEntity(pos), stack);
+    }
+
+    private static boolean fillFluid(TileEntity tile, String fluidName, int amount) {
+        if (tile == null || FluidRegistry.getFluid(fluidName) == null) return false;
+        for (EnumFacing side : EnumFacing.values()) {
+            IFluidHandler handler = tile.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side);
+            if (handler != null && handler.fill(new FluidStack(FluidRegistry.getFluid(fluidName), amount), true) > 0)
+                return true;
+        }
+        IFluidHandler handler = tile.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null);
+        return handler != null
+            && handler.fill(new FluidStack(FluidRegistry.getFluid(fluidName), amount), true) > 0;
+    }
+
+    private static void runSettlementEconomyScenario(EntityPlayerMP player) {
+        World world = player.world;
+        BlockPos origin = world.getHeight(player.getPosition().add(20, 0, 20));
+        for (BlockPos pos : BlockPos.getAllInBoxMutable(origin.add(-3, -1, -3),
+                origin.add(48, 10, 18))) world.setBlockToAir(pos);
+        SettlementEconomySystem.register(world, origin, "primitive", "food", 0);
+        BlockPos stockpile = origin.add(2, 0, 2);
+        world.setBlockState(stockpile, Blocks.CHEST.getDefaultState(), 3);
+        TileEntity chest = world.getTileEntity(stockpile);
+        insertAny(chest, new ItemStack(Blocks.PLANKS, 40));
+        insertAny(chest, new ItemStack(Blocks.COBBLESTONE, 32));
+        insertAny(chest, new ItemStack(Items.BREAD, 8));
+
+        int absorbed = 0, largestCycle = 0;
+        boolean premature = false;
+        for (int cycle = 0; cycle < 10; cycle++) {
+            int moved = SettlementEconomySystem.absorbForTest(world, origin);
+            absorbed += moved;
+            largestCycle = Math.max(largestCycle, moved);
+            if (cycle == 0) premature = SettlementEconomySystem.upgradeForTest(world, origin);
+        }
+        boolean upgraded = SettlementEconomySystem.upgradeForTest(world, origin);
+        long[] paid = SettlementEconomySystem.snapshotForTest(world, origin);
+        boolean exactBill = paid.length == 8 && paid[0] == 1 && paid[1] == 0
+            && paid[2] == 0 && paid[6] == 0;
+        boolean physicalExpansion = world.getBlockState(origin.add(32, 1, 2)).getBlock()
+            == Blocks.PLANKS && world.getBlockState(origin.add(35, 2, 6)).getBlock() == Blocks.CHEST;
+        player.connection.setPlayerLocation(origin.getX() + 0.5D, origin.getY() + 1D,
+            origin.getZ() + 0.5D, 0F, 0F);
+        long creditsBefore = paid.length == 8 ? paid[7] : -1;
+        SettlementEconomySystem.recordTrade(player, 7);
+        long[] traded = SettlementEconomySystem.snapshotForTest(world, origin);
+        boolean circulation = traded.length == 8 && traded[7] == creditsBefore + 7;
+        boolean persistence = SettlementEconomySystem.roundTripForTest(world, origin);
+        boolean pass = absorbed == 80 && largestCycle <= 16 && !premature && upgraded
+            && exactBill && physicalExpansion && circulation && persistence;
+        emit(player, (pass ? "PASS" : "FAIL") + "|settlement_economy_path|absorbed="
+            + absorbed + "|max_cycle=" + largestCycle + "|premature=" + premature
+            + "|tier=" + (paid.length == 0 ? -1 : paid[0]) + "|exact_bill="
+            + (exactBill ? 1 : 0) + "|physical_expansion=" + (physicalExpansion ? 1 : 0)
+            + "|circulation=" + (circulation ? 1 : 0) + "|persistence="
+            + (persistence ? 1 : 0));
+    }
+
+    private static void placeRegistered(World world, BlockPos pos, String id) {
+        Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(id));
+        if (block != null) world.setBlockState(pos, block.getDefaultState(), 3);
+    }
+
+    private static void fillEnergy(TileEntity tile) {
+        if (tile == null) return;
+        for (EnumFacing side : EnumFacing.values()) {
+            IEnergyStorage energy = tile.getCapability(CapabilityEnergy.ENERGY, side);
+            if (energy != null && energy.receiveEnergy(1000000, false) > 0) return;
+        }
+        for (EnumFacing side : EnumFacing.values()) {
+            net.modcrafters.mclib.energy.IGenericEnergyStorage generic =
+                net.ndrei.teslacorelib.energy.EnergySystemFactory.INSTANCE.wrapTileEntity(tile, side);
+            if (generic != null && generic.givePower(1000000L, false) > 0L) return;
+        }
+    }
+
+    private static boolean insertAny(TileEntity tile, ItemStack stack) {
+        if (tile == null) return false;
+        for (EnumFacing side : EnumFacing.values()) {
+            IItemHandler items = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side);
+            if (items == null) continue;
+            for (int slot = 0; slot < items.getSlots(); slot++) {
+                ItemStack remaining = items.insertItem(slot, stack.copy(), false);
+                if (remaining.isEmpty()) return true;
+            }
+        }
+        IItemHandler unsided = tile.getCapability(
+            CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+        if (unsided != null) for (int slot = 0; slot < unsided.getSlots(); slot++) {
+            ItemStack remaining = unsided.insertItem(slot, stack.copy(), false);
+            if (remaining.isEmpty()) return true;
+        }
+        if (tile instanceof IInventory) {
+            IInventory inventory = (IInventory) tile;
+            for (int slot = 0; slot < inventory.getSizeInventory(); slot++)
+                if (inventory.isItemValidForSlot(slot, stack)) {
+                    inventory.setInventorySlotContents(slot, stack.copy());
+                    return true;
+                }
+        }
+        return false;
+    }
+
+    private static int yes(EntityPlayerMP player, String advancement) {
+        return RuntimeAdvancements.completed(player, advancement) ? 1 : 0;
+    }
+
+    static final class VehicleLogisticsLifecycle {
+        private VehicleLogisticsSetup setup;
+        private int ticks;
+        private boolean crateOpened;
+
+        void begin(EntityPlayerMP player) throws CommandException {
+            setup = prepareVehicleLogisticsScenario(player);
+            ticks = 0;
+            crateOpened = false;
+            if (!setup.crateOpened) finish(player, null);
+        }
+
+        @SubscribeEvent
+        public void serverTick(TickEvent.WorldTickEvent event) {
+            if (setup == null || event.phase != TickEvent.Phase.END
+                    || event.world != setup.world || event.world.isRemote) return;
+            ticks++;
+            if (!crateOpened && ticks >= 10) {
+                TileEntity tile = event.world.getTileEntity(setup.cratePos);
+                if (tile instanceof TileEntityVehicleCrate) {
+                    ((TileEntityVehicleCrate) tile).open(setup.playerId);
+                    crateOpened = true;
+                } else {
+                    EntityPlayerMP player = event.world.getMinecraftServer().getPlayerList()
+                        .getPlayerByUUID(setup.playerId);
+                    if (player != null) finish(player, null);
+                    return;
+                }
+            }
+            if (!crateOpened) return;
+            List<EntityMiniBus> vehicles = event.world.getEntitiesWithinAABB(EntityMiniBus.class,
+                new AxisAlignedBB(setup.cratePos).grow(8));
+            if (!vehicles.isEmpty()) {
+                EntityPlayerMP player = event.world.getMinecraftServer().getPlayerList()
+                    .getPlayerByUUID(setup.playerId);
+                if (player != null) finish(player, vehicles.get(0));
+            } else if (ticks >= 200) {
+                EntityPlayerMP player = event.world.getMinecraftServer().getPlayerList()
+                    .getPlayerByUUID(setup.playerId);
+                if (player != null) finish(player, null);
+            }
+        }
+
+        private void finish(EntityPlayerMP player, EntityMiniBus vehicle) {
+            VehicleLogisticsSetup completed = setup;
+            setup = null;
+            emitVehicleResult(player, finishVehicleLogisticsScenario(player, completed, vehicle));
+        }
+    }
+
+    private static final class VehicleLogisticsSetup {
+        final UUID playerId;
+        final World world;
+        final List<BlockPos> cities;
+        final BlockPos cratePos;
+        final boolean workshop, manufactured, crateOpened;
+
+        VehicleLogisticsSetup(UUID playerId, World world, List<BlockPos> cities,
+                BlockPos cratePos, boolean workshop, boolean manufactured, boolean crateOpened) {
+            this.playerId = playerId;
+            this.world = world;
+            this.cities = cities;
+            this.cratePos = cratePos;
+            this.workshop = workshop;
+            this.manufactured = manufactured;
+            this.crateOpened = crateOpened;
+        }
+    }
+
+    private static boolean exerciseNationExchange(EntityPlayerMP player, List<BlockPos> cities) {
+        if (cities.size() < 2) return false;
+        List<TileIndustrialMachine> controllers = new ArrayList<>();
+        for (BlockPos city : cities) {
+            TileIndustrialMachine controller = null;
+            for (TileEntity tile : player.world.loadedTileEntityList) {
+                if (tile instanceof TileIndustrialMachine
+                        && ((TileIndustrialMachine) tile).getKind()
+                            == IndustrialMachineKind.CARGO_CONTROLLER
+                        && ((TileIndustrialMachine) tile).isNationManagedForTest()
+                        && tile.getPos().distanceSq(city) < 96D * 96D) {
+                    controller = (TileIndustrialMachine) tile;
+                    break;
+                }
+            }
+            if (controller != null && !controllers.contains(controller)) controllers.add(controller);
+        }
+        if (controllers.size() < 2) {
+            IndustrialCivilizationCore.LOGGER.info(
+                "IC_TEST|NATION|cities={}|controllers={}|reason=missing_controllers",
+                cities.size(), controllers.size());
+            return false;
+        }
+        TileIndustrialMachine source = controllers.get(0);
+        player.connection.setPlayerLocation(source.getPos().getX() + 2,
+            source.getPos().getY(), source.getPos().getZ() + 2, 0F, 0F);
+        int before = 0;
+        for (TileIndustrialMachine controller : controllers)
+            before += controller.getStackInSlot(TileIndustrialMachine.OUTPUT_SLOT).getCount();
+        boolean transferred = source.transferNationCargoForTest();
+        int after = 0;
+        for (TileIndustrialMachine controller : controllers)
+            after += controller.getStackInSlot(TileIndustrialMachine.OUTPUT_SLOT).getCount();
+        IndustrialCivilizationCore.LOGGER.info(
+            "IC_TEST|NATION|cities={}|controllers={}|transferred={}|before={}|after={}|advancement={}",
+            cities.size(), controllers.size(), transferred, before, after,
+            RuntimeAdvancements.completed(player, "nation_trade_network"));
+        return transferred && after == before + 1
+            && RuntimeAdvancements.completed(player, "nation_trade_network");
+    }
+
+    private static final class VehicleLogisticsResult {
+        final int cities, workshop, manufactured, deployed, mobility, storage, crafting,
+            dockItem, dockFluid, nationTransfer, advancements;
+        final boolean pass;
+
+        VehicleLogisticsResult(int cities, int workshop, int manufactured, int deployed,
+                int mobility, int storage, int crafting, int dockItem, int dockFluid,
+                int nationTransfer, int advancements) {
+            this.cities = cities;
+            this.workshop = workshop;
+            this.manufactured = manufactured;
+            this.deployed = deployed;
+            this.mobility = mobility;
+            this.storage = storage;
+            this.crafting = crafting;
+            this.dockItem = dockItem;
+            this.dockFluid = dockFluid;
+            this.nationTransfer = nationTransfer;
+            this.advancements = advancements;
+            pass = cities >= 2 && workshop == 1 && manufactured == 1 && deployed == 1
+                && mobility == 1 && storage == 1 && crafting == 1 && dockItem == 1
+                && dockFluid == 1 && nationTransfer == 1 && advancements == 4;
+        }
+    }
+
+    private static FactionSidePathResult runFactionSidePathScenario(EntityPlayerMP player)
+            throws CommandException {
+        Map<String, BlockPos> locations = CommandIndustrialLocateAll.locateAll(player, 8192, false);
+        String[][] contacts = {
+            {"primitive_settlement", "frontier_cooperative"},
+            {"industrial_city", "civil_defense"},
+            {"militia_outpost", "territorial_militia"},
+            {"abandoned_factory", "ashline_raiders"}
+        };
+        int contactCount = 0;
+        EntityVillager frontier = null;
+        for (String[] contact : contacts) {
+            BlockPos center = locations.get(contact[0]);
+            EntityVillager villager = center == null ? null
+                : findFactionVillager(player.world, center, contact[1]);
+            if (villager == null) continue;
+            FactionSystem.interactForTest(player, villager);
+            if (FactionSystem.known(player, contact[1])) contactCount++;
+            if ("frontier_cooperative".equals(contact[1])) frontier = villager;
+        }
+
+        // Each completed trade must occur on a different world day, exactly as in normal play.
+        for (int trade = 0; trade < 9; trade++) {
+            player.world.setTotalWorldTime(player.world.getTotalWorldTime() + 24000L);
+            FactionSystem.recordCompletedTradeForTest(player, "frontier_cooperative", 1);
+        }
+        player.setSneaking(true);
+        if (frontier != null) FactionSystem.interactForTest(player, frontier);
+        player.setSneaking(false);
+        boolean membership = "frontier_cooperative".equals(FactionSystem.membership(player));
+
+        for (int trade = 0; trade < 5; trade++) {
+            player.world.setTotalWorldTime(player.world.getTotalWorldTime() + 24000L);
+            FactionSystem.recordCompletedTradeForTest(player, "frontier_cooperative", 1);
+        }
+        player.inventory.currentItem = 0;
+        player.inventory.setInventorySlotContents(0,
+            new ItemStack(IndustrialCivilizationCore.INDUSTRIAL_CREDIT, 8));
+        player.setSneaking(true);
+        if (frontier != null) FactionSystem.interactForTest(player, frontier);
+        player.setSneaking(false);
+        boolean companion = frontier != null
+            && frontier.getEntityData().getBoolean("IndustrialCompanion")
+            && frontier.getEntityData().hasUniqueId("IndustrialCompanionOwner")
+            && player.getUniqueID().equals(
+                frontier.getEntityData().getUniqueId("IndustrialCompanionOwner"));
+        boolean follow = false;
+        boolean persistence = false;
+        if (companion) {
+            frontier.setPosition(player.posX + 40, player.posY, player.posZ + 40);
+            FactionSystem.updateCompanionForTest(frontier, player);
+            follow = frontier.getDistanceSq(player) < 9;
+            NBTTagCompound persisted = new NBTTagCompound();
+            frontier.writeToNBT(persisted);
+            NBTTagCompound forgeData = persisted.getCompoundTag("ForgeData");
+            persistence = forgeData.getBoolean("IndustrialCompanion")
+                && forgeData.hasUniqueId("IndustrialCompanionOwner")
+                && player.getUniqueID().equals(forgeData.getUniqueId("IndustrialCompanionOwner"));
+        }
+
+        int outpost = dismantleLocatedOutpost(player, locations.get("militia_outpost")) ? 1 : 0;
+        int factoryStages = exerciseFactoryTerminal(player, locations.get("abandoned_factory"));
+        String[] milestones = {"faction_contacts", "civil_defense_contact",
+            "territorial_militia_contact", "militia_outpost_takedown", "faction_membership",
+            "faction_companion"};
+        int advancements = 0;
+        for (String milestone : milestones) {
+            if (RuntimeAdvancements.completed(player, milestone)) advancements++;
+        }
+        return new FactionSidePathResult(locations.containsKey("primitive_settlement")
+            && locations.containsKey("industrial_city") && locations.containsKey("militia_outpost")
+            && locations.containsKey("abandoned_factory") ? 4 : 0,
+            contactCount >= 3 ? 3 : contactCount, factoryStages, outpost, membership ? 1 : 0,
+            companion ? 1 : 0, follow ? 1 : 0, persistence ? 1 : 0, advancements);
+    }
+
+    private static void runFactionGameplayScenario(EntityPlayerMP player) {
+        World world = player.world;
+        BlockPos origin = world.getHeight(player.getPosition().add(20, 0, 20));
+        player.connection.setPlayerLocation(origin.getX() + 0.5D, origin.getY() + 1D,
+            origin.getZ() + 0.5D, 0F, 0F);
+        SettlementEconomySystem.register(world, origin, "primitive", "food", 0);
+        EntityVillager frontier = FactionSystem.spawnCitizen(world, origin.getX() + 2.5D,
+            origin.getY(), origin.getZ() + 0.5D, "frontier_cooperative", "merchant", "food",
+            "Acceptance Trader");
+
+        boolean recipeTrade = true;
+        String tradeFailure = "none";
+        for (int trade = 0; trade < 14; trade++) {
+            world.setTotalWorldTime((trade + 1L) * 24000L);
+            EntityVillager tradeMerchant = trade == 0 ? frontier : FactionSystem.spawnCitizen(world,
+                origin.getX() + 2.5D + trade, origin.getY(), origin.getZ() + 0.5D,
+                "frontier_cooperative", "merchant", "food", "Acceptance Trader " + trade);
+            player.inventory.addItemStackToInventory(new ItemStack(Items.WHEAT, 12));
+            player.setSneaking(false);
+            FactionSystem.interactForTest(player, tradeMerchant);
+            net.minecraft.village.MerchantRecipe selected = null;
+            for (net.minecraft.village.MerchantRecipe recipe : tradeMerchant.getRecipes(player))
+                if (recipe.getItemToBuy().getItem() == Items.WHEAT
+                        && recipe.getItemToSell().getItem()
+                            == IndustrialCivilizationCore.INDUSTRIAL_CREDIT) {
+                    selected = recipe;
+                    break;
+                }
+            if (selected == null) {
+                tradeFailure = "missing_wheat_offer_" + tradeMerchant.getRecipes(player).size();
+                recipeTrade = false;
+                break;
+            }
+            if (!consumeInventory(player, selected.getItemToBuy())) {
+                tradeFailure = "payment_" + selected.getItemToBuy().getCount() + "_available_"
+                    + countInventory(player, selected.getItemToBuy());
+                recipeTrade = false;
+                break;
+            }
+            player.inventory.addItemStackToInventory(selected.getItemToSell().copy());
+            selected.incrementToolUses();
+            FactionSystem.completePendingTradeForTest(player);
+            if (trade == 8) {
+                player.setSneaking(true);
+                FactionSystem.interactForTest(player, frontier);
+                player.setSneaking(false);
+            }
+        }
+        boolean membership = "frontier_cooperative".equals(FactionSystem.membership(player));
+        player.inventory.currentItem = 0;
+        player.inventory.setInventorySlotContents(0,
+            new ItemStack(IndustrialCivilizationCore.INDUSTRIAL_CREDIT, 8));
+        boolean wasCreative = player.capabilities.isCreativeMode;
+        player.capabilities.isCreativeMode = false;
+        player.setSneaking(true);
+        FactionSystem.interactForTest(player, frontier);
+        player.setSneaking(false);
+        player.capabilities.isCreativeMode = wasCreative;
+        boolean companionCost = player.inventory.getStackInSlot(0).isEmpty();
+        boolean companion = frontier.getEntityData().getBoolean("IndustrialCompanion")
+            && frontier.getEntityData().hasUniqueId("IndustrialCompanionOwner");
+        frontier.setPosition(player.posX + 40, player.posY, player.posZ + 40);
+        FactionSystem.updateCompanionForTest(frontier, player);
+        boolean follow = frontier.getDistanceSq(player) < 9;
+        NBTTagCompound companionNbt = new NBTTagCompound();
+        frontier.writeToNBT(companionNbt);
+        boolean companionPersistence = companionNbt.getCompoundTag("ForgeData")
+            .getBoolean("IndustrialCompanion");
+
+        FakePlayer second = FakePlayerFactory.get((WorldServer) world,
+            new GameProfile(UUID.fromString("22222222-2222-4222-8222-222222222222"),
+                "IsolationPlayer"));
+        boolean isolated = FactionSystem.membership(second).isEmpty()
+            && FactionSystem.reputation(second, "frontier_cooperative") == 10
+            && ProgressionState.counter(second, "faction_trade_contacts") == 0;
+
+        EntityVillager militia = FactionSystem.spawnCitizen(world, origin.getX() + 5.5D,
+            origin.getY(), origin.getZ(), "territorial_militia", "militia", "armaments",
+            "Acceptance Militia");
+        boolean unarmedNeutral = !FactionSystem.isHostileTo(player, "territorial_militia");
+        net.minecraft.item.Item pistol = ForgeRegistries.ITEMS.getValue(
+            new ResourceLocation("techguns", "pistol"));
+        if (pistol != null) player.inventory.setInventorySlotContents(5, new ItemStack(pistol));
+        boolean armedHostile = pistol != null && FactionSystem.isHostileTo(player,
+            "territorial_militia");
+        player.inventory.setInventorySlotContents(5, ItemStack.EMPTY);
+        int civilBefore = FactionSystem.reputation(player, "civil_defense");
+        FactionSystem.attacked(new net.minecraftforge.event.entity.living.LivingAttackEvent(
+            militia, net.minecraft.util.DamageSource.causePlayerDamage(player), 1F));
+        boolean militiaIndependent = FactionSystem.reputation(player, "civil_defense") == civilBefore;
+
+        EntityVillager civilian = FactionSystem.spawnCitizen(world, origin.getX() + 7.5D,
+            origin.getY(), origin.getZ(), "riverside_works", "merchant", "steel",
+            "Acceptance Civilian");
+        long harmBefore = ProgressionState.counter(player, "faction_civilian_harm");
+        FactionSystem.died(new net.minecraftforge.event.entity.living.LivingDeathEvent(
+            civilian, net.minecraft.util.DamageSource.CACTUS));
+        boolean environmentSafe = ProgressionState.counter(player,
+            "faction_civilian_harm") == harmBefore;
+        FactionSystem.attacked(new net.minecraftforge.event.entity.living.LivingAttackEvent(
+            civilian, net.minecraft.util.DamageSource.causePlayerDamage(player), 1F));
+        FactionSystem.attacked(new net.minecraftforge.event.entity.living.LivingAttackEvent(
+            civilian, net.minecraft.util.DamageSource.causePlayerDamage(player), 1F));
+        FactionSystem.attacked(new net.minecraftforge.event.entity.living.LivingAttackEvent(
+            civilian, net.minecraft.util.DamageSource.causePlayerDamage(player), 1F));
+        boolean civilNetworkHostile = FactionSystem.isHostileTo(player, "civil_defense");
+
+        for (int outpost = 0; outpost < 3; outpost++) {
+            BlockPos site = origin.add(20 + outpost * 40, 0, 0);
+            MilitiaOutpostRegistry.record(world, site);
+            for (int broken = 0; broken < 16; broken++) {
+                BlockPos pos = site.add(broken, 1, 0);
+                FactionSystem.blockBroken(new BlockEvent.BreakEvent(world, pos,
+                    world.getBlockState(pos), player));
+            }
+        }
+        boolean outpostHostility = ProgressionState.counter(player,
+            "militia_outposts_taken_down") == 3
+            && FactionSystem.isHostileTo(player, "territorial_militia");
+        boolean playerPersistence = ProgressionState.data(player)
+            .getString("faction_membership_id").equals("frontier_cooperative")
+            && ProgressionState.data(player).hasUniqueId("faction_companion");
+        boolean pass = recipeTrade && membership && companionCost && companion && follow
+            && companionPersistence && isolated && unarmedNeutral && armedHostile
+            && militiaIndependent && environmentSafe && civilNetworkHostile
+            && outpostHostility && playerPersistence;
+        emit(player, (pass ? "PASS" : "FAIL") + "|faction_gameplay_path|real_recipe_trade="
+            + (recipeTrade ? 1 : 0) + "|membership=" + (membership ? 1 : 0)
+            + "|trade_failure=" + tradeFailure
+            + "|companion_cost=" + (companionCost ? 1 : 0) + "|follow=" + (follow ? 1 : 0)
+            + "|companion_persistence=" + (companionPersistence ? 1 : 0)
+            + "|multiplayer_isolation=" + (isolated ? 1 : 0) + "|unarmed_neutral="
+            + (unarmedNeutral ? 1 : 0) + "|armed_hostile=" + (armedHostile ? 1 : 0)
+            + "|militia_independent=" + (militiaIndependent ? 1 : 0)
+            + "|environment_safe=" + (environmentSafe ? 1 : 0)
+            + "|civil_network_hostile=" + (civilNetworkHostile ? 1 : 0)
+            + "|three_outposts=" + (outpostHostility ? 1 : 0)
+            + "|player_persistence=" + (playerPersistence ? 1 : 0));
+    }
+
+    private static void runFactionPersistenceCheck(EntityPlayerMP player) {
+        NBTTagCompound data = ProgressionState.data(player);
+        boolean membership = "frontier_cooperative".equals(FactionSystem.membership(player));
+        boolean companionId = data.hasUniqueId("faction_companion");
+        boolean companionEntity = false;
+        for (Entity entity : player.world.loadedEntityList) {
+            if (!(entity instanceof EntityVillager)) continue;
+            NBTTagCompound tag = entity.getEntityData();
+            if (tag.getBoolean("IndustrialCompanion")
+                    && tag.hasUniqueId("IndustrialCompanionOwner")
+                    && player.getUniqueID().equals(tag.getUniqueId("IndustrialCompanionOwner"))) {
+                companionEntity = true;
+                break;
+            }
+        }
+        boolean trades = ProgressionState.counter(player, "faction_trade_contacts") >= 4;
+        boolean outposts = ProgressionState.counter(player, "militia_outposts_taken_down") == 3;
+        boolean pass = membership && companionId && companionEntity && trades && outposts;
+        emit(player, (pass ? "PASS" : "FAIL") + "|faction_persistence_check|membership="
+            + (membership ? 1 : 0) + "|companion_id=" + (companionId ? 1 : 0)
+            + "|companion_entity=" + (companionEntity ? 1 : 0) + "|trade_contacts="
+            + ProgressionState.counter(player, "faction_trade_contacts") + "|outposts="
+            + ProgressionState.counter(player, "militia_outposts_taken_down"));
+    }
+
+    private static void runQuestPersistenceCheck(EntityPlayerMP player) {
+        String[] milestones = {"automated_field_agriculture", "automated_animal_husbandry",
+            "automated_animal_resources", "automated_water_resources"};
+        int completed = 0;
+        for (String milestone : milestones)
+            if (RuntimeAdvancements.completed(player, milestone)) completed++;
+        flushQuestProgressForTest(player);
+        boolean pass = completed == milestones.length;
+        emit(player, (pass ? "PASS" : "FAIL")
+            + "|quest_persistence_check|advancements=" + completed + "/" + milestones.length);
+    }
+
+    private static void flushQuestProgressForTest(EntityPlayerMP player) {
+        for (betterquesting.api2.storage.DBEntry<betterquesting.api.questing.IQuest> entry
+                : betterquesting.questing.QuestDatabase.INSTANCE.getEntries()) {
+            entry.getValue().detect(player);
+        }
+        betterquesting.handlers.SaveLoadHandler.INSTANCE.markDirty();
+        betterquesting.handlers.SaveLoadHandler.INSTANCE.saveDatabases();
+    }
+
+    private static boolean consumeInventory(EntityPlayerMP player, ItemStack required) {
+        int available = countInventory(player, required);
+        if (available < required.getCount()) return false;
+        int remaining = required.getCount();
+        for (int slot = 0; slot < player.inventory.mainInventory.size() && remaining > 0; slot++) {
+            ItemStack stack = player.inventory.mainInventory.get(slot);
+            if (stack.isEmpty() || stack.getItem() != required.getItem()
+                    || (required.getMetadata() != 32767
+                        && stack.getMetadata() != required.getMetadata())) continue;
+            int moved = Math.min(remaining, stack.getCount());
+            stack.shrink(moved);
+            remaining -= moved;
+        }
+        player.inventory.markDirty();
+        return remaining == 0;
+    }
+
+    private static int countInventory(EntityPlayerMP player, ItemStack required) {
+        int available = 0;
+        for (ItemStack stack : player.inventory.mainInventory)
+            if (!stack.isEmpty() && stack.getItem() == required.getItem()
+                    && (required.getMetadata() == 32767
+                        || stack.getMetadata() == required.getMetadata())) available += stack.getCount();
+        return available;
+    }
+
+    private static EntityVillager findFactionVillager(World world, BlockPos center, String faction) {
+        List<EntityVillager> villagers = world.getEntitiesWithinAABB(EntityVillager.class,
+            new AxisAlignedBB(center).grow(64, 32, 64), entity ->
+                faction.equals(entity.getEntityData().getString("IndustrialFaction")));
+        EntityVillager nearest = null;
+        double nearestDistance = Double.MAX_VALUE;
+        for (EntityVillager villager : villagers) {
+            double distance = villager.getDistanceSq(center);
+            if (distance < nearestDistance) {
+                nearest = villager;
+                nearestDistance = distance;
+            }
+        }
+        return nearest;
+    }
+
+    private static boolean dismantleLocatedOutpost(EntityPlayerMP player, BlockPos center) {
+        if (center == null) return false;
+        BlockPos registered = null;
+        for (int y = center.getY(); y >= center.getY() - 24 && registered == null; y--) {
+            BlockPos candidate = new BlockPos(center.getX() - 15, y, center.getZ() - 15);
+            if (MilitiaOutpostRegistry.nearby(player.world, candidate, 3) != null) registered = candidate;
+        }
+        if (registered == null) return false;
+        for (int index = 0; index < 16; index++) {
+            BlockPos pos = registered.add(index, 1, 0);
+            FactionSystem.blockBroken(new BlockEvent.BreakEvent(player.world, pos,
+                player.world.getBlockState(pos), player));
+            player.world.setBlockToAir(pos);
+        }
+        return RuntimeAdvancements.completed(player, "militia_outpost_takedown");
+    }
+
+    private static int exerciseFactoryTerminal(EntityPlayerMP player, BlockPos center) {
+        if (center == null) return 0;
+        TileFactoryControlTerminal terminal = null;
+        for (TileEntity tile : player.world.loadedTileEntityList) {
+            if (tile instanceof TileFactoryControlTerminal
+                    && tile.getPos().distanceSq(center) < 64 * 64) {
+                terminal = (TileFactoryControlTerminal) tile;
+                break;
+            }
+        }
+        if (terminal == null) return 0;
+        terminal.interact(player);
+        int stages = hasItem(player, IndustrialCivilizationCore.UNDERWORLD_DOSSIER) ? 1 : 0;
+        for (EntityVindicator criminal : player.world.getEntitiesWithinAABB(EntityVindicator.class,
+                new AxisAlignedBB(terminal.getPos()).grow(18), entity ->
+                    entity.getEntityData().getBoolean("IndustrialCriminal"))) {
+            criminal.setDead();
+            player.world.removeEntity(criminal);
+        }
+        terminal.interact(player);
+        if (hasItem(player, IndustrialCivilizationCore.CRIMINAL_NETWORK_LEDGER)) stages++;
+        player.inventory.addItemStackToInventory(new ItemStack(Items.IRON_INGOT, 16));
+        player.inventory.addItemStackToInventory(new ItemStack(Items.REDSTONE, 8));
+        terminal.interact(player);
+        if (hasItem(player, IndustrialCivilizationCore.FACTORY_RESTORATION_CERTIFICATE)) stages++;
+        player.inventory.addItemStackToInventory(
+            new ItemStack(IndustrialCivilizationCore.CONTROL_PROCESSOR));
+        terminal.interact(player);
+        if (hasItem(player, IndustrialCivilizationCore.RECOVERED_FACTORY_CONTROL_SYSTEM)) stages++;
+        return stages;
+    }
+
+    private static boolean hasItem(EntityPlayerMP player, net.minecraft.item.Item item) {
+        for (ItemStack stack : player.inventory.mainInventory) {
+            if (!stack.isEmpty() && stack.getItem() == item) return true;
+        }
+        return false;
+    }
+
+    private static final class FactionSidePathResult {
+        final int locations, contacts, factoryStages, outpost, membership, companion, follow,
+            persistence, advancements;
+        final boolean pass;
+
+        FactionSidePathResult(int locations, int contacts, int factoryStages, int outpost,
+                int membership, int companion, int follow, int persistence, int advancements) {
+            this.locations = locations;
+            this.contacts = contacts;
+            this.factoryStages = factoryStages;
+            this.outpost = outpost;
+            this.membership = membership;
+            this.companion = companion;
+            this.follow = follow;
+            this.persistence = persistence;
+            this.advancements = advancements;
+            pass = locations == 4 && contacts == 3 && factoryStages == 4 && outpost == 1
+                && membership == 1 && companion == 1 && follow == 1 && persistence == 1
+                && advancements == 6;
+        }
     }
 
     private static int[] inspectTeleportGate() {
@@ -474,7 +1642,11 @@ public final class CommandIndustrialTest extends CommandBase {
         if (args.length == 1) return getListOfStringsMatchingLastWord(args, "snapshot", "scenario", "assert");
         if (args.length == 2 && ("scenario".equals(args[0]) || "assert".equals(args[0])))
             return getListOfStringsMatchingLastWord(args, "workshop_adjacency", "earth_ecology",
-                "release_recipes", "robber_wall_theft", "mobile_quarry_relocation");
+                "release_recipes", "robber_wall_theft", "mobile_quarry_relocation",
+                "teleport_gate", "faction_side_path", "faction_gameplay_path",
+                "faction_persistence_check", "vehicle_logistics_path",
+                "strategic_defense_path", "agricultural_side_path", "automated_agriculture_path",
+                "quest_persistence_check", "settlement_economy_path");
         return Arrays.asList();
     }
 }

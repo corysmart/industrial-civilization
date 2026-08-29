@@ -32,8 +32,10 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
+import net.minecraftforge.event.village.MerchantTradeOffersEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
@@ -55,6 +57,7 @@ public final class FactionSystem {
     private static final String COMPANION = "IndustrialCompanion";
     private static final String COMPANION_OWNER = "IndustrialCompanionOwner";
     private static final String MARKET_CAPACITY = "IndustrialMarketCapacity";
+    private static final String MEMBERSHIP_ID = "faction_membership_id";
 
     public static final Definition[] DEFINITIONS = {
         new Definition("frontier_cooperative", "Frontier Cooperative", 10,
@@ -116,7 +119,11 @@ public final class FactionSystem {
     }
 
     public static String membership(EntityPlayer player) {
-        return ProgressionState.data(player).getString("faction_membership");
+        NBTTagCompound data = ProgressionState.data(player);
+        if (!data.hasKey(MEMBERSHIP_ID, 8) && data.hasKey("faction_membership", 8)) {
+            data.setString(MEMBERSHIP_ID, data.getString("faction_membership"));
+        }
+        return data.getString(MEMBERSHIP_ID);
     }
 
     public static boolean known(EntityPlayer player, String faction) {
@@ -263,6 +270,17 @@ public final class FactionSystem {
             tag.setString(SPECIALTY, "general");
             tag.setInteger(MARKET_CAPACITY, 1);
         }
+        // EntityVillager lazily creates its vanilla career offers on the first
+        // getRecipes call. Initialize that state before installing our list so
+        // the first player opening a generated faction trader cannot replace it.
+        villager.getRecipes(player);
+        villager.setRecipes(buildTrades(villager, player, reputationDiscount));
+        tag.setBoolean("IndustrialTrades", true);
+    }
+
+    private static MerchantRecipeList buildTrades(EntityVillager villager,
+            @Nullable EntityPlayer player, int reputationDiscount) {
+        NBTTagCompound tag = villager.getEntityData();
         MerchantRecipeList offers = new MerchantRecipeList();
         String specialty = tag.getString(SPECIALTY);
         String faction = tag.getString(FACTION);
@@ -275,7 +293,7 @@ public final class FactionSystem {
         addSale(offers, Items.IRON_INGOT, 1, 3, reputationDiscount);
         addSale(offers, Items.STRING, 8, 2, reputationDiscount);
         if ("steel".equals(specialty)) {
-            addExternalSale(offers, "railcraft:ingot_steel", 0, 2, 8, reputationDiscount);
+            addExternalSale(offers, "railcraft:ingot", 0, 2, 8, reputationDiscount);
             addPurchase(offers, Items.IRON_INGOT, 6, 3, reputationDiscount);
         } else if ("electronics".equals(specialty)) {
             addExternalSale(offers, "ic2:itemmisc", 451, 1, 10, reputationDiscount);
@@ -322,8 +340,19 @@ public final class FactionSystem {
             addVehicleSale(offers, "off_roader", 116, reputationDiscount);
         }
         if (earthMarket && player != null) addConditionedBuyback(offers, player.getHeldItemMainhand());
-        villager.setRecipes(offers);
-        tag.setBoolean("IndustrialTrades", true);
+        return offers;
+    }
+
+    /** Keep pack-wide villager filters from stripping IC Credit faction offers. */
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void factionTradeOffers(MerchantTradeOffersEvent event) {
+        if (!(event.getMerchant() instanceof EntityVillager)) return;
+        EntityVillager villager = (EntityVillager) event.getMerchant();
+        if (!villager.getEntityData().hasKey(FACTION, 8)) return;
+        int rep = event.getPlayer() == null ? 0
+            : reputation(event.getPlayer(), villager.getEntityData().getString(FACTION));
+        int discount = rep >= COMPANION_REPUTATION ? 2 : rep >= FRIENDLY_REPUTATION ? 1 : 0;
+        event.setList(buildTrades(villager, event.getPlayer(), discount));
     }
 
     private static void addSale(MerchantRecipeList offers, Item output, int count, int price, int discount) {
@@ -392,28 +421,34 @@ public final class FactionSystem {
     public static void interact(PlayerInteractEvent.EntityInteract event) {
         if (event.getWorld().isRemote || !(event.getTarget() instanceof EntityVillager)) return;
         EntityVillager villager = (EntityVillager) event.getTarget();
+        if (handleInteraction(event.getEntityPlayer(), villager, event.getHand())) cancel(event);
+    }
+
+    static boolean interactForTest(EntityPlayer player, EntityVillager villager) {
+        return handleInteraction(player, villager, net.minecraft.util.EnumHand.MAIN_HAND);
+    }
+
+    private static boolean handleInteraction(EntityPlayer player, EntityVillager villager,
+            net.minecraft.util.EnumHand hand) {
         NBTTagCompound tag = villager.getEntityData();
-        if (!tag.hasKey(FACTION, 8)) return;
-        EntityPlayer player = event.getEntityPlayer();
+        if (!tag.hasKey(FACTION, 8)) return false;
         String faction = tag.getString(FACTION);
         discover(player, faction);
         if (isHostileTo(player, faction) && !membership(player).equals(faction)) {
-            cancel(event);
             player.sendStatusMessage(new TextComponentTranslation(
                 "message.industrialcivilization.faction.hostile", definition(faction).name), false);
             villager.setAttackTarget(player);
-            return;
+            return true;
         }
         if (player.isSneaking()) {
-            cancel(event);
             if (tag.getBoolean(COMPANION) && owns(player, villager)) {
                 tag.setBoolean(COMPANION, false);
                 tag.removeTag(COMPANION_OWNER);
                 player.sendStatusMessage(new TextComponentTranslation(
                     "message.industrialcivilization.faction.companion_dismissed", villager.getName()), false);
-                return;
+                return true;
             }
-            ItemStack held = player.getHeldItem(event.getHand());
+            ItemStack held = player.getHeldItem(hand);
             if (membership(player).equals(faction) && reputation(player, faction) >= COMPANION_REPUTATION
                     && held.getItem() == IndustrialCivilizationCore.INDUSTRIAL_CREDIT
                     && held.getCount() >= 8) {
@@ -424,15 +459,15 @@ public final class FactionSystem {
                 RuntimeAdvancements.grant(player, "faction_companion");
                 player.sendStatusMessage(new TextComponentTranslation(
                     "message.industrialcivilization.faction.companion_recruited", villager.getName()), false);
-                return;
+                return true;
             }
             if (membership(player).equals(faction)) {
                 player.sendStatusMessage(new TextComponentTranslation(
                     "message.industrialcivilization.faction.companion_cost"), false);
-                return;
+                return true;
             }
             if (eligible(player, faction)) {
-                ProgressionState.data(player).setString("faction_membership", faction);
+                ProgressionState.data(player).setString(MEMBERSHIP_ID, faction);
                 adjustReputation(player, faction, 10, "membership accepted");
                 RuntimeAdvancements.grant(player, "faction_membership");
                 player.sendStatusMessage(new TextComponentTranslation(
@@ -441,7 +476,7 @@ public final class FactionSystem {
                 player.sendStatusMessage(new TextComponentTranslation(
                     "message.industrialcivilization.faction.ineligible", definition(faction).membershipRule), false);
             }
-            return;
+            return true;
         }
         int rep = reputation(player, faction);
         configureTrades(villager, player,
@@ -449,13 +484,17 @@ public final class FactionSystem {
         NBTTagCompound progress = ProgressionState.data(player);
         progress.setString("pending_trade_faction", faction);
         progress.setInteger("pending_trade_credits", creditCount(player));
+        return false;
     }
 
     /** Credit a contact only after a real buy or sell changes the IC Credit balance. */
     @SubscribeEvent
     public static void merchantClosed(PlayerContainerEvent.Close event) {
         if (event.getEntityPlayer().world.isRemote || !(event.getContainer() instanceof ContainerMerchant)) return;
-        EntityPlayer player = event.getEntityPlayer();
+        completePendingTrade(event.getEntityPlayer());
+    }
+
+    private static void completePendingTrade(EntityPlayer player) {
         NBTTagCompound progress = ProgressionState.data(player);
         String faction = progress.getString("pending_trade_faction");
         int before = progress.getInteger("pending_trade_credits");
@@ -463,7 +502,20 @@ public final class FactionSystem {
         progress.removeTag("pending_trade_credits");
         int after = creditCount(player);
         if (faction.isEmpty() || before == after) return;
-        SettlementEconomySystem.recordTrade(player, after - before);
+        recordCompletedTrade(player, faction, after - before);
+    }
+
+    static void completePendingTradeForTest(EntityPlayer player) {
+        completePendingTrade(player);
+    }
+
+    static void recordCompletedTradeForTest(EntityPlayer player, String faction, int creditDelta) {
+        recordCompletedTrade(player, faction, creditDelta);
+    }
+
+    private static void recordCompletedTrade(EntityPlayer player, String faction, int creditDelta) {
+        NBTTagCompound progress = ProgressionState.data(player);
+        SettlementEconomySystem.recordTrade(player, creditDelta);
         long day = player.world.getTotalWorldTime() / 24000L + 1L;
         String contactKey = "trade_contact_day_" + faction;
         if (progress.getLong(contactKey) == day) return;
@@ -608,6 +660,10 @@ public final class FactionSystem {
         else if (distance > 4 * 4) villager.getNavigator().tryMoveToEntityLiving(owner, 1.1D);
     }
 
+    static void updateCompanionForTest(EntityVillager villager, EntityPlayer owner) {
+        companionUpdate(villager, owner);
+    }
+
     private static void attack(EntityVillager attacker, EntityLivingBase target) {
         attacker.setAttackTarget(target);
         attacker.getNavigator().tryMoveToEntityLiving(target, 1.15D);
@@ -653,7 +709,7 @@ public final class FactionSystem {
     }
 
     private static void checkFactionContacts(EntityPlayer player) {
-        if (known(player, "frontier_cooperative") && known(player, "survey_detachment_7")
+        if (known(player, "frontier_cooperative") && known(player, "territorial_militia")
                 && known(player, "ashline_raiders")
                 && ProgressionState.counter(player, "faction_trade_contacts") >= 1) {
             RuntimeAdvancements.grant(player, "faction_contacts");

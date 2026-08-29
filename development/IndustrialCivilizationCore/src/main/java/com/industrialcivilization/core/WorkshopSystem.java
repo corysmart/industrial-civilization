@@ -38,12 +38,28 @@ public final class WorkshopSystem {
         deploy(world, origin, controller.getKind(), facing);
         int joins = connectAdjacent(world, origin);
         if (event.getPlayer() != null) {
-            RuntimeAdvancements.grant(event.getPlayer(),
-                controller.getKind() == IndustrialMachineKind.CAR_WORKSHOP
-                    ? "car_workshop_deployed" : "advanced_armament_factory");
+            TileEntity tile = world.getTileEntity(origin);
+            if (tile instanceof TileIndustrialMachine)
+                ((TileIndustrialMachine) tile).setLastUser(event.getPlayer());
+            if (controller.getKind() == IndustrialMachineKind.CAR_WORKSHOP)
+                ProgressionState.record(event.getPlayer(), "car_workshop_structure_deployed");
+            else ProgressionState.record(event.getPlayer(), "gun_factory_structure_deployed");
             if (joins > 0) event.getPlayer().sendStatusMessage(
                 new TextComponentTranslation("message.industrialcivilization.workshop.joined", joins), false);
         }
+    }
+
+    static boolean deployForTest(World world, BlockPos origin, IndustrialMachineKind kind,
+            EnumFacing facing, net.minecraft.entity.player.EntityPlayer player) {
+        String problem = placementProblem(world, origin, facing);
+        if (problem != null) return false;
+        deploy(world, origin, kind, facing);
+        TileEntity tile = world.getTileEntity(origin);
+        if (!(tile instanceof TileIndustrialMachine)) return false;
+        ((TileIndustrialMachine) tile).setLastUser(player);
+        ProgressionState.record(player, kind == IndustrialMachineKind.CAR_WORKSHOP
+            ? "car_workshop_structure_deployed" : "gun_factory_structure_deployed");
+        return true;
     }
 
     private static boolean isWorkshop(IndustrialMachineKind kind) {

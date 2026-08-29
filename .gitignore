@@ -38,6 +38,7 @@
 /.gradle-user-home/
 /.headlessmc/
 /HeadlessMC/
+/artifacts/
 
 # Editor and temporary files
 .idea/
